@@ -1,0 +1,17 @@
+lang.de = {
+	police = 'Polizei',
+	sale = 'Zu Verkaufen',
+	close = 'Zu machen',
+	soon = 'In kurzer Zeit',
+	house = 'Haus',
+	yes = 'Ja',
+	no = 'Nein',
+	thief = 'Dieb',
+	House1 = 'Klassisches Haus',
+	House2 = 'Familien Haus',
+	goTo = 'Reingehen',
+	fisher = 'Fischer',
+	furniture = 'Möbel',
+	hospital = 'Krankenhaus',
+	open = 'Öffnen',
+}
