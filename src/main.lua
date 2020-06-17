@@ -1913,11 +1913,6 @@ local codes = {
 	},
 }
 
-local tips = {
-	BR = {'Você consegue ir e voltar a pé pelo no mapa até 14 vezes em 1 hora!','O jogo começa quando estiverem presentes no mínimo 4 pessoas na sala com IPs diferentes.', 'A planta mais rara do jogo é a Flor-da-sorte!', 'Existem '..#bagIds..' itens no jogo!', 'Você pode plantar na horta de Oliver!', 'Digite <i>!perfil [jogador]</i> para ver perfis de diferentes jogadores!', 'Existem '..#sideQuests..' missões secundárias disponíveis!', 'Você sabia? #mycity foi criado em 2014!', 'Você sabia? A comunidade brasileira é a que mais joga #mycity!'},
-	EN = {'There are '..#bagIds..' items in the game!', 'The rarest plant is the lucky flower!', 'You can plant in Oliver\'s house.', 'Type <i>!profile [playerName]</i> to see profiles from different players!', 'There are '..#sideQuests..' side quests available!'},
-	HU = {'Tudtad? A börtönből megszökhetsz egy csákány segítségével a wc-n keresztül!', 'Tudtad? Küldetések teljesítésével jutalmakat kaphatsz!', 'Tudtad? Készül egy Mycity téma a fórumon. <a href="event:topic_HU">Kattints ide a linkért</a>! ', 'Hamarosan új frissítések kerülnek a játékba. Ha bármi hibát észlelsz, jelezd a fejlesztőnek!', 'Érdekesség: A játék 2014-ben jelent meg!', 'Tudtad? Beszélhetsz a pályán elhelyezett NPC-vel, ha közel mész hozzá és rákattintasz!', 'Ne felejtsd el az éhségedet és az energiádat fenntartani!', 'Ha kórházba kerülsz, az egyenlegedből $400 levonásra kerül!', 'A Bankrabláshoz 2 dinamitra, 1 zsugorító bájitalra és a széf kódjára van szükséged!', 'Tudtad? Ha alszol, az energiád feltöltődik!', 'Adataid autómatikusan mentésre kerülnek!'},
-}
 local bagUpgrades = {
 	[20] = '170fa52959e.png',
 	[25] = '170fa52b3f4.png',

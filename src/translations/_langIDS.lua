@@ -1,3 +1,4 @@
+local lang = {}
 local langIDS = {
 	[0] = 'en',
 	[1] = 'br',

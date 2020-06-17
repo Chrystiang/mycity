@@ -1,6 +1,11 @@
  local tree = {
 	'main.lua',
 
+	'api/table.lua',
+	'api/string.lua',
+	'api/math.lua',
+	
+	'translations/_langIDS.lua',
 	'translations/ar.lua',
 	'translations/br.lua',
 	'translations/de.lua',
@@ -12,13 +17,8 @@
 	'translations/pl.lua',
 	'translations/ru.lua',
 	'translations/tr.lua',
-	'translations/_langIDS.lua',
 	'translations/_merge.lua',
 	'translations/_translationSystem.lua',
-
-	'api/table.lua',
-	'api/string.lua',
-	'api/math.lua',
 
 	'classes/DataHandler.lua',
 	'classes/EventHandler.lua',
@@ -34,8 +34,8 @@
 	'houseSystem/removeHouse.lua',
 	'houseSystem/gardening.lua',
 
-	'interfaces/modernUI/interfaces.lua',
 	'interfaces/modernUI/modernUI.lua',
+	'interfaces/modernUI/interfaces.lua',
 	'interfaces/toRewrite/oldInterface.lua',
 	'interfaces/errorAlert.lua',
 
@@ -115,6 +115,7 @@
 	'lifeStats.lua',
 	'dayPeriods.lua',
 
+	'tips.lua',
 	'map/game.lua',
 	'map/lobby.lua',
 	'map/loadMap.lua',
