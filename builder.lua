@@ -89,9 +89,9 @@
 	'events/Loop.lua',
 	'events/Mouse.lua',
 	'events/PlayerDataLoaded.lua',
-	'events/PlayerDied.lua',	
+	'events/PlayerDied.lua',
 	'events/PlayerLeft.lua',
-	'events/PlayerRespawn.lua',	
+	'events/PlayerRespawn.lua',
 	'events/TextAreaCallback.lua',
 
 	'places/mine/_perlin.lua',
@@ -146,7 +146,7 @@ for i = 1, #tree do
 	path = tree[i]
 	fileData[i] = '--[[ ' .. path .. ' ]]--\n' .. getFile(path)
 
-	print('Writing '' .. path .. ''')
+	print('Writing ' .. path)
 end
 fileData = table.concat(fileData, '\n\n')
 
