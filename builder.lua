@@ -1,4 +1,4 @@
- local tree = {
+local tree = {
 	'main.lua',
 
 	'api/table.lua',

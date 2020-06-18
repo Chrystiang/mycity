@@ -3,7 +3,10 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	local playerData = players[player]
 	if not playerData then return end
 	if not serverRequest then 
-		if players[player].lastCallback.when > os.time()-1000 then 
+		if players[player].lastCallback.when > os.time()-1000 then
+			if players[player].lastCallback.when > os.time()-100 then
+				players[player].lastCallback.when = os.time()
+			end
 			return 
 		end
 	end

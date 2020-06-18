@@ -24,7 +24,7 @@ item_collect = function(item, target, amount)
 	if math.hypo(room.droppedItems[item].x, room.droppedItems[item].y, xx, yy) <= 50 then
 		if target then 
 			local data = room.droppedItems[item]
-			addItem(data.item, amount, target, 0, bagIds[data.id].blockUse)
+			addItem(data.item, amount, target)
 		end
 	end
 

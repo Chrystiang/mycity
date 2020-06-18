@@ -10788,10 +10788,8 @@ savedata = function(name)
 	local chestStorageQuanty = {{}, {}}
 	for counter, data in next, playerInfos.houseData.chests.storage do
 		for i, v in next, data do
-			if v.qt > 0 then
-				chestStorage[counter][#chestStorage[counter]+1] = bagItems[v.name].id
-				chestStorageQuanty[counter][#chestStorageQuanty[counter]+1] = v.qt
-			end
+			chestStorage[counter][#chestStorage[counter]+1] = bagItems[v.name].id
+			chestStorageQuanty[counter][#chestStorageQuanty[counter]+1] = v.qt
 		end
 	end
 	playerData:set(name, 'chestStorage', chestStorage)
@@ -13124,7 +13122,7 @@ item_collect = function(item, target, amount)
 	if math.hypo(room.droppedItems[item].x, room.droppedItems[item].y, xx, yy) <= 50 then
 		if target then 
 			local data = room.droppedItems[item]
-			addItem(data.item, amount, target, 0, bagIds[data.id].blockUse)
+			addItem(data.item, amount, target)
 		end
 	end
 
@@ -14002,7 +14000,10 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	local playerData = players[player]
 	if not playerData then return end
 	if not serverRequest then 
-		if players[player].lastCallback.when > os.time()-1000 then 
+		if players[player].lastCallback.when > os.time()-1000 then
+			if players[player].lastCallback.when > os.time()-100 then
+				players[player].lastCallback.when = os.time()
+			end
 			return 
 		end
 	end
