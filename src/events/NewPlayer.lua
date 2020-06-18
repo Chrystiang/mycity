@@ -1,4 +1,4 @@
-eventNewPlayer =function(player)
+onEvent("NewPlayer", function(player)
 	ui.setMapName('Mycity')
 	TFM.setPlayerScore(player, 0)
 	ui.addTextArea(8500, '', player, 805, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
@@ -231,4 +231,4 @@ eventNewPlayer =function(player)
 			end
 		end
 	end
-end
+end)

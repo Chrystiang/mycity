@@ -63,8 +63,8 @@ do
 					end
 				end
 			end
-
-			local schedule = name ~= "Loop" and name ~= 'TextAreaCallback' and name ~= 'FileLoaded'
+			local allowedSchedules = {'PlayerDataLoaded', 'PlayerRespawn', 'PlayerLeft'}
+			local schedule = table.contains(allowedSchedules, name)
 			local done, result
 			local event_fnc
 			event_fnc = function(a, b, c, d, e)
@@ -84,6 +84,9 @@ do
 					if _paused then
 						message = translatedMessage("emergencyMode_resume")
 						_paused = false
+						for player in next, ROOM.playerList do
+							freezePlayer(player, false)
+						end
 					end
 				elseif paused then
 					if schedule then
@@ -108,6 +111,9 @@ do
 							translatedMessage("emergencyMode_pause")
 						else
 							translatedMessage("syncingGame")
+						end
+						for player in next, ROOM.playerList do
+							freezePlayer(player, true)
 						end
 					end
 
