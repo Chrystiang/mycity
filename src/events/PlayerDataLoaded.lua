@@ -2,7 +2,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if name == 'Sharpiebot#0000' then 
 		return syncGameData(data, name)
 	end
-	if table.contains(room.perban, name) then
+	if table.contains(room.bannedPlayers, name) then
 		return TFM.chatMessage('You can not play #mycity anymore.', name)
 	end
 	if #data > 1500 then return TFM.chatMessage('You have reached your data limit. Please contact Fofinhoppp#0000 for more info.', name) end
@@ -64,10 +64,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 		end
 
 		for i, v in next, furnitures do
-			if v[2] > -50 and v[2] < 1550 then
+			if v[2] >= 0 and v[2] <= 1500 then
 				players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
 			else
-				TFM.chatMessage('<g>Due to an invalid location, a furniture has been moved to your furniture depot.', name)
+				TFM.chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
 				storeFurniture(i)
 			end
 		end

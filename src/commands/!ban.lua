@@ -6,5 +6,6 @@ chatCommands.ban = {
 		room.bannedPlayers[#room.bannedPlayers+1] = target
 		TFM.killPlayer(target)
 		translatedMessage('playerBannedFromRoom', target)
+		room.fileUpdated = true
 	end
 }

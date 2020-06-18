@@ -33,6 +33,20 @@ syncVersion = function(player, vs)
 	players[player].gameVersion = 'v'..table.concat(version, '.')
 end
 
+syncFiles = function()
+    local bannedPlayers = {}
+    local unrankedPlayers = {}
+
+    for _, player in next, room.bannedPlayers do
+        bannedPlayers[#bannedPlayers+1] = player..',0'
+    end
+    for _, player in next, room.unranked do
+        unrankedPlayers[#unrankedPlayers+1] = player..',0'
+    end
+
+    system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';'), 1)
+end
+
 saveGameData = function(bot)
 	sharpieData:set(bot, 'canUpdate', syncData.updating.updateMessage)
 	sharpieData:save(bot)

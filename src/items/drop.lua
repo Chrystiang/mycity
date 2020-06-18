@@ -25,6 +25,7 @@ item_collect = function(item, target, amount)
 		if target then 
 			local data = room.droppedItems[item]
 			addItem(data.item, amount, target)
+			TFM.chatMessage('Collected...')
 		end
 	end
 

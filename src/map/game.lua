@@ -18,11 +18,7 @@ genMap = function()
 		largeGrass = '16f19d53238.jpg'
 	end
     for i = 1, 16 do
-		if i == 17 then
-			xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" N="" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" N="" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
-		else
-			xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="1400" L="10" X="'..room.groundsPosition[3]..'" Y="1100" m="" T="5" P="0,0,0,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" N="" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" N="" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
-		end
+		xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="1400" L="10" X="'..room.groundsPosition[3]..'" Y="1100" m="" T="5" P="0,0,0,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
 		for i = 1, 3 do
 			room.groundsPosition[i] = room.groundsPosition[i] + 1500
 		end
@@ -61,7 +57,7 @@ genMap = function()
 
 		-- Boat Shop
 			aps2[#aps2+1] = '1727230e19e.jpg,1,650,9125,1400,300,650,9125;1727230e19e.jpg,1,650,9425,1400,300,650,9425;17276006818.png,1,830,9075,300,350,830,9075;'
-		aps2[#aps2+1] = '17201b0f743.jpg,1,1100,8050,3410,860,1100,8050;'
+			aps2[#aps2+1] = '17201b0f743.jpg,1,1100,8050,3410,860,1100,8050;'
 
 		local barriers = {{'<S T="12" L="30" H="90" X="1582" Y="8437" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="30" H="90" X="1953" Y="8547" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="30" H="90" X="1688" Y="8817" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>'}, {'<S T="12" L="30" H="90" X="1953" Y="8417" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="40" H="90" X="2103" Y="8522" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="100" H="25" X="2138" Y="8662" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>'}}
 		local allowedPaths = {

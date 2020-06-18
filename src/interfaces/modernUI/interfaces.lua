@@ -287,7 +287,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if quanty > 0 then
 									if itemName == 'cheese' then 
 										if players[player].whenJoined < os.time() then 
-											return alert_Error(player, 'error', 'limitedItemBlock', players[player].whenJoined - os.time()%60)
+											return alert_Error(player, 'error', 'limitedItemBlock', '120')
 										else 
 											players[player].whenJoined = os.time() + 120*10000
 										end

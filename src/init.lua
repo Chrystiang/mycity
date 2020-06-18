@@ -3,7 +3,8 @@ startRoom = function()
 		room.terrains = {}
 		room.houseImgs = {}
 		players = {}
-
+		room.gameLoadedTimes = room.gameLoadedTimes + 1
+		
 		for i = 1, #mainAssets.__terrainsPositions do
 			room.terrains[i] = {img = {}, bought = false, owner = nil, settings = {}, groundsLoadedTo = {}, guests = {}}
 			room.houseImgs[i] = {img = {}, furnitures = {}, expansions = {}}
@@ -18,15 +19,16 @@ startRoom = function()
 		eventNewPlayer('Remi')
 
 		removeTimer(room.temporaryTimer)
-		room.temporaryTimer = addTimer(function()
-			for i, v in next, ROOM.playerList do
-				updateBarLife(i)
-			end
-		end, 60000, 0)
-		if character.orderList == {} then 
+		if room.gameLoadedTimes == 1 then 
 			for i = 1, 2 do 
 				gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
 			end
+
+			addTimer(function()
+				for i, v in next, ROOM.playerList do
+					updateBarLife(i)
+				end
+			end, 60000, 0)
 		end
 	else
 		players = {}
@@ -65,11 +67,21 @@ else
 	end
 end
 TFM.setRoomMaxPlayers(room.maxPlayers)
-system.loadFile(5)
+system.loadFile(1)
 
 addTimer(function()
 	system.loadFile(5)
-end, 120000, 0)
+end, 200000, 0)
+
+addTimer(function()
+	if room.fileUpdated then
+		syncFiles()
+		room.fileUpdated = false
+	else
+		system.loadFile(1)
+	end
+end, 61000, 0)
+
 mine_generate()
 
 if ROOM.uniquePlayers >= room.requiredPlayers then

@@ -39,20 +39,6 @@ local tree = {
 	'interfaces/toRewrite/oldInterface.lua',
 	'interfaces/errorAlert.lua',
 
-	'commands/!ban.lua',
-	'commands/!unban.lua',
-	'commands/!coin.lua',
-	'commands/!insert.lua',
-	'commands/!place.lua',
-	'commands/!profile.lua',
-	'commands/!shop.lua',
-	'commands/!spawn.lua',
-	'commands/!punish.lua',
-	'commands/!jail.lua',
-	'commands/!roomlog.lua',
-	'commands/!moveto.lua',
-	'commands/!job.lua',
-
 	'npcs/npcDialogs.lua',
 	'npcs/gameNpcs/_main.lua',
 	'npcs/gameNpcs/addCharacter.lua',
@@ -70,6 +56,26 @@ local tree = {
 	'playerData/_localDataStructure.lua',
 	'playerData/_dataToSave.lua',
 	'playerData/player.lua',
+	
+	'commands/!ban.lua',
+	'commands/!unban.lua',
+	'commands/!coin.lua',
+	'commands/!insert.lua',
+	'commands/!place.lua',
+	'commands/!profile.lua',
+	'commands/!shop.lua',
+	'commands/!spawn.lua',
+	'commands/!punish.lua',
+	'commands/!jail.lua',
+	'commands/!roomlog.lua',
+	'commands/!moveto.lua',
+	'commands/!job.lua',
+	'commands/!image.lua',
+	'commands/!hour.lua',
+	'commands/!lootbox.lua',
+	'commands/!quest.lua',
+	'commands/!sidequest.lua',
+	'commands/!update.lua',
 
 	'quests/controlCenter.lua',
 	'quests/mainquest.lua',
@@ -137,7 +143,6 @@ local tree = {
 	'recipeSystem.lua',
 
 	'init.lua',
-
 }
 
 local getFile = function(path)

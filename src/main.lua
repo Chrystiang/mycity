@@ -17,15 +17,16 @@ math.randomseed(os.time())
 local players = {}
 local room = { -- Assets that can change while the script runs
 	maxPlayers = 15,
+	gameLoadedTimes = 0,
+	fileUpdated = false,
 	dayCounter = 0,
 	mathSeed = os.date("%j"),
 	rankingImages = {},
 	droppedItems = {},
 	terrains = {},
 	gardens = {},
-	perban = {'Fontflex#0000', 'Luquinhas#6375', 'Luquinhas#9650', 'Mandinhamita#0000', 'Furoaazui#0000', 'Rainhadetudo#6235', 'Gohanffglkj#9524', 'Mycity#3262', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'C4ver4_ghost#1459'},
 	unranked = {'Bodykudo#0000', 'Benaiazyux#0000', 'Fofinhoppp#0000', 'Ffmisael#0000', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'Ppp001#0000'},
-	bannedPlayers = {},
+	bannedPlayers = {'Fontflex#0000', 'Luquinhas#6375', 'Luquinhas#9650', 'Mandinhamita#0000', 'Furoaazui#0000', 'Rainhadetudo#6235', 'Gohanffglkj#9524', 'Mycity#3262', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'C4ver4_ghost#1459'},
 	boatShop2ndFloor = false,
 	isInLobby = true,
 	requiredPlayers = 4,
@@ -376,7 +377,6 @@ local mainAssets = { -- Assets that dont change while the script runs
 		{12595, 1796+room.y-12},
 	},
 	__cars = {
-		-- direita, esquerda
 		[1] = {
 			type 	= 'car',
 			price  	= 2000,
@@ -1135,6 +1135,11 @@ local mainAssets = { -- Assets that dont change while the script runs
 		creator = {'Fofinhoppp#0000'},
 		help = {'Bolodefchoco#0000', 'Laagaadoo#0000', 'Lucasrslv#0000', 'Tocutoeltuco#0000'},
 	},
+	roles = {
+		admin = {'Fofinhoppp#0000', 'Lucasrslv#0000'},
+		mod = {},
+		helper = {},
+	},
 }
 local npcsStores = {
 	items = {},
@@ -1675,9 +1680,9 @@ local groundIDS = {}
 local maxFurnitureStorage = 50
 local maxFurnitureDepot = 60
 
-local version = {3, 0, 0}
+local version = {3, 0, 1}
 local versionLogs = {
-	['v3.0.0'] = {
+	['v3.0.1'] = {
 		releaseDate = '12/06/2020', -- dd/mm/yy
 		maxPages = 1,
 		images = {'172a97d8145.png'},

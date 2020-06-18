@@ -1,4 +1,5 @@
 string.nick = function(name)
+	if not name then return end
     local var = name:lower():gsub('%a', string.upper, 1)
 	for i, v in next, ROOM.playerList do
 		if i:find(var) then

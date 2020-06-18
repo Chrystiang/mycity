@@ -18,15 +18,16 @@ math.randomseed(os.time())
 local players = {}
 local room = { -- Assets that can change while the script runs
 	maxPlayers = 15,
+	gameLoadedTimes = 0,
+	fileUpdated = false,
 	dayCounter = 0,
 	mathSeed = os.date("%j"),
 	rankingImages = {},
 	droppedItems = {},
 	terrains = {},
 	gardens = {},
-	perban = {'Fontflex#0000', 'Luquinhas#6375', 'Luquinhas#9650', 'Mandinhamita#0000', 'Furoaazui#0000', 'Rainhadetudo#6235', 'Gohanffglkj#9524', 'Mycity#3262', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'C4ver4_ghost#1459'},
 	unranked = {'Bodykudo#0000', 'Benaiazyux#0000', 'Fofinhoppp#0000', 'Ffmisael#0000', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'Ppp001#0000'},
-	bannedPlayers = {},
+	bannedPlayers = {'Fontflex#0000', 'Luquinhas#6375', 'Luquinhas#9650', 'Mandinhamita#0000', 'Furoaazui#0000', 'Rainhadetudo#6235', 'Gohanffglkj#9524', 'Mycity#3262', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'C4ver4_ghost#1459'},
 	boatShop2ndFloor = false,
 	isInLobby = true,
 	requiredPlayers = 4,
@@ -377,7 +378,6 @@ local mainAssets = { -- Assets that dont change while the script runs
 		{12595, 1796+room.y-12},
 	},
 	__cars = {
-		-- direita, esquerda
 		[1] = {
 			type 	= 'car',
 			price  	= 2000,
@@ -1136,6 +1136,11 @@ local mainAssets = { -- Assets that dont change while the script runs
 		creator = {'Fofinhoppp#0000'},
 		help = {'Bolodefchoco#0000', 'Laagaadoo#0000', 'Lucasrslv#0000', 'Tocutoeltuco#0000'},
 	},
+	roles = {
+		admin = {'Fofinhoppp#0000', 'Lucasrslv#0000'},
+		mod = {},
+		helper = {},
+	},
 }
 local npcsStores = {
 	items = {},
@@ -1676,9 +1681,9 @@ local groundIDS = {}
 local maxFurnitureStorage = 50
 local maxFurnitureDepot = 60
 
-local version = {3, 0, 0}
+local version = {3, 0, 1}
 local versionLogs = {
-	['v3.0.0'] = {
+	['v3.0.1'] = {
 		releaseDate = '12/06/2020', -- dd/mm/yy
 		maxPages = 1,
 		images = {'172a97d8145.png'},
@@ -1989,6 +1994,7 @@ end
 
 --[[ api/string.lua ]]--
 string.nick = function(name)
+	if not name then return end
     local var = name:lower():gsub('%a', string.upper, 1)
 	for i, v in next, ROOM.playerList do
 		if i:find(var) then
@@ -2968,7 +2974,7 @@ lang.br = {
 	locked_quest = 'Missão %s',
 	furniture_apiary = 'Caixa de abelhas',
 	item_cheese = 'Queijo',
-	itemDesc_cheese = 'Use este item e receba 3 queijos na loja do Transformice!',
+	itemDesc_cheese = 'Use este item e receba +1 queijo na loja do Transformice!',
 	item_fish_SmoltFry = 'Salmão',
 	item_fish_Lionfish = 'Peixe-Leão',
 	item_fish_Dogfish = 'Peixe-Cão',
@@ -3822,7 +3828,7 @@ lang.en = {
 	locked_quest = 'Quest %s',
 	furniture_apiary = 'Bee Box',
 	item_cheese = 'Cheese',
-	itemDesc_cheese = 'Use this item to get +3 cheeses in Transformice shop!',
+	itemDesc_cheese = 'Use this item to get +1 cheese in Transformice shop!',
 	item_fish_SmoltFry = 'Smolt Fry',
 	item_fish_Lionfish = 'Lion Fish',
 	item_fish_Dogfish = 'Dog Fish',
@@ -4758,7 +4764,7 @@ lang.fr = {
     settings_gamePlaces = "Places",
     item_crystal_blue = "Cristal Bleu",
     item_chocolateCake = "Gâteau au Chocolat",
-    itemDesc_cheese = "Utilisez cet objet pour obtenir +3 fromages dans le magasin de Transformice!",
+    itemDesc_cheese = "Utilisez cet objet pour obtenir +1 fromage dans le magasin de Transformice!",
     itemInfo_miningPower = "Dommages causés par à la roche: %s",
     saveChanges = "Sauvegarder les Modifications",
     settingsText_placeWithMorePlayers = "Places avec plus de joueurs: <vp>%s</vp> <r>(%s)</r>",
@@ -9106,7 +9112,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if quanty > 0 then
 									if itemName == 'cheese' then 
 										if players[player].whenJoined < os.time() then 
-											return alert_Error(player, 'error', 'limitedItemBlock', players[player].whenJoined - os.time()%60)
+											return alert_Error(player, 'error', 'limitedItemBlock', '120')
 										else 
 											players[player].whenJoined = os.time() + 120*10000
 										end
@@ -10502,156 +10508,6 @@ alert_Error = function(player, title, text, args)
 	:build()
 end
 
---[[ commands/!ban.lua ]]--
-chatCommands.ban = {
-	permissions = {'admin', 'mod'},
-	event = function(player, args)
-		local target = string.nick(args[1])
-		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-		room.bannedPlayers[#room.bannedPlayers+1] = target
-		TFM.killPlayer(target)
-		translatedMessage('playerBannedFromRoom', target)
-	end
-}
-
---[[ commands/!unban.lua ]]--
-chatCommands.ban = {
-	permissions = {'admin', 'mod'},
-	event = function(player, args)
-		local target = string.nick(args[1])
-		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-		if table.contains(room.bannedPlayers, target) then return end
-		for i, v in next, room.bannedPlayers do
-			if v == target then
-				table.remove(room.bannedPlayers, i)
-				break
-			end
-		end
-		TFM.respawnPlayer(target)
-		translatedMessage('playerUnbannedFromRoom', target)
-	end
-}
-
---[[ commands/!coin.lua ]]--
-chatCommands.coin = {
-	permissions = {'admin'},
-	event = function(player, args)
-		giveCoin(50000, player)
-	end
-}
-
---[[ commands/!insert.lua ]]--
-chatCommands.insert = {
-	permissions = {'admin'},
-	event = function(player, args)
-		local item = args[1]
-		local amount = args[2] or 1
-		if not bagItems[item] then return end
-		addItem(item, amount, player)
-	end
-}
-
---[[ commands/!place.lua ]]--
-chatCommands.place = {
-	permissions = {'admin', 'helper'},
-	event = function(player, args)
-		if places[args[1]] then
-			places[args[1]].saidaF(player)
-		end
-	end
-}
-
---[[ commands/!profile.lua ]]--
-chatCommands.profile = {
-	event = function(player, args)
-		local target = string.nick(args[1])
-		openProfile(player, target)
-	end
-}
-chatCommands.perfil = table.copy(chatCommands.profile)
-chatCommands.profil = table.copy(chatCommands.profile)
-
---[[ commands/!shop.lua ]]--
-chatCommands.shop = {
-	permissions = {'admin'},
-	event = function(player, args)
-		showNPCShop(player, args[1])
-	end
-}
-
---[[ commands/!spawn.lua ]]--
-chatCommands.spawn = {
-	permissions = {'admin', 'mod', 'helper'},
-	event = function(player, args)
-		local target = string.nick(args[1])
-		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-		TFM.chatMessage('<g>[•] moving '..target..' to spawn...', player)
-		players[target].place = 'town'
-		TFM.killPlayer(target)
-	end
-}
-
---[[ commands/!punish.lua ]]--
-chatCommands.punish = {
-	permissions = {'admin', 'mod', 'helper'},
-	event = function(player, args)
-		local target = string.nick(args[1])
-		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-		TFM.chatMessage('[•] removing $100 from '..target..'...', player)
-		giveCoin(-100, target)
-	end
-}
-
---[[ commands/!jail.lua ]]--
-chatCommands.jail = {
-	permissions = {'admin', 'mod', 'helper'},
-	event = function(player, args)
-		local target = string.nick(args[1])
-		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-		TFM.chatMessage('<g>[•] arresting '..target..'...', player)
-		arrestPlayer(target, 'Colt')
-	end
-}
-
---[[ commands/!roomlog.lua ]]--
-chatCommands.roomlog = {
-	permissions = {'admin', 'mod', 'helper'},
-	event = function(player)
-		players[player].roomLog = not players[player].roomLog
-		TFM.chatMessage('<g>[•] roomLog status: '..tostring(players[player].roomLog), player)
-	end
-}
-
---[[ commands/!moveto.lua ]]--
-chatCommands.moveto = {
-	permissions = {'admin', 'mod', 'helper'},
-	event = function(player, args)
-		local target = string.nick(args[1])
-		if players[target] then --return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-			TFM.chatMessage('[•] teleporting to ['..target .. '] ('..players[target].place..')...', player)
-			TFM.movePlayer(player, ROOM.playerList[target].x, ROOM.playerList[target].y, false)
-			players[player].place = players[target].place
-		elseif gameNpcs.characters[args[1]] then
-			TFM.chatMessage('[•] teleporting to <v>[NPC]</v> '..args[1]..'...', player)
-			TFM.movePlayer(player, gameNpcs.characters[args[1]].x+50, gameNpcs.characters[args[1]].y+50, false)
-		else
-			TFM.chatMessage('<g>[•] error $playerName not found.', player)
-		end
-	end
-}
-
---[[ commands/!job.lua ]]--
-chatCommands.job = {
-	permissions = {'admin', 'mod', 'helper'},
-	event = function(player, args)
-		local job = args[1]
-		local target = string.nick(args[2])
-		if not players[target] then target = player end
-		if not jobs[job] then return end
-		job_invite(job, target)
-	end
-}
-
 --[[ npcs/npcDialogs.lua ]]--
 for commu, v in next, lang do
 	for id, message in next, v do 
@@ -11604,6 +11460,263 @@ player_removeImages = function(tbl)
 	end
 end
 
+--[[ commands/!ban.lua ]]--
+chatCommands.ban = {
+	permissions = {'admin', 'mod'},
+	event = function(player, args)
+		local target = string.nick(args[1])
+		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
+		room.bannedPlayers[#room.bannedPlayers+1] = target
+		TFM.killPlayer(target)
+		translatedMessage('playerBannedFromRoom', target)
+		room.fileUpdated = true
+	end
+}
+
+--[[ commands/!unban.lua ]]--
+chatCommands.unban = {
+	permissions = {'admin', 'mod'},
+	event = function(player, args)
+		local target = string.nick(args[1])
+		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
+		if not table.contains(room.bannedPlayers, target) then return end
+		for i, v in next, room.bannedPlayers do
+			if v == target then
+				table.remove(room.bannedPlayers, i)
+				break
+			end
+		end
+		TFM.respawnPlayer(target)
+		translatedMessage('playerUnbannedFromRoom', target)
+		room.fileUpdated = true
+	end
+}
+
+--[[ commands/!coin.lua ]]--
+chatCommands.coin = {
+	permissions = {'admin'},
+	event = function(player, args)
+		giveCoin(50000, player)
+	end
+}
+
+--[[ commands/!insert.lua ]]--
+chatCommands.insert = {
+	permissions = {'admin'},
+	event = function(player, args)
+		local item = args[1]
+		local amount = tonumber(args[2]) or 1
+		if not bagItems[item] then return end
+		addItem(item, amount, player)
+	end
+}
+
+--[[ commands/!place.lua ]]--
+chatCommands.place = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player, args)
+		if places[args[1]] then
+			places[args[1]].saidaF(player)
+		end
+	end
+}
+
+--[[ commands/!profile.lua ]]--
+chatCommands.profile = {
+	event = function(player, args)
+		local target = string.nick(args[1])
+		openProfile(player, target)
+	end
+}
+chatCommands.perfil = table.copy(chatCommands.profile)
+chatCommands.profil = table.copy(chatCommands.profile)
+
+--[[ commands/!shop.lua ]]--
+chatCommands.shop = {
+	permissions = {'admin'},
+	event = function(player, args)
+		showNPCShop(player, args[1])
+	end
+}
+
+--[[ commands/!spawn.lua ]]--
+chatCommands.spawn = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player, args)
+		local target = string.nick(args[1])
+		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
+		TFM.chatMessage('<g>[•] moving '..target..' to spawn...', player)
+		players[target].place = 'town'
+		TFM.killPlayer(target)
+	end
+}
+
+--[[ commands/!punish.lua ]]--
+chatCommands.punish = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player, args)
+		local target = string.nick(args[1])
+		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
+		TFM.chatMessage('[•] removing $100 from '..target..'...', player)
+		giveCoin(-100, target)
+	end
+}
+
+--[[ commands/!jail.lua ]]--
+chatCommands.jail = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player, args)
+		local target = string.nick(args[1])
+		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
+		TFM.chatMessage('<g>[•] arresting '..target..'...', player)
+		arrestPlayer(target, 'Colt')
+	end
+}
+
+--[[ commands/!roomlog.lua ]]--
+chatCommands.roomlog = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player)
+		players[player].roomLog = not players[player].roomLog
+		TFM.chatMessage('<g>[•] roomLog status: '..tostring(players[player].roomLog), player)
+	end
+}
+
+--[[ commands/!moveto.lua ]]--
+chatCommands.moveto = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player, args)
+		if not args[1] then return end
+		local target = string.nick(args[1])
+		if players[target] then
+			TFM.chatMessage('[•] teleporting to ['..target .. '] ('..players[target].place..')...', player)
+			TFM.movePlayer(player, ROOM.playerList[target].x, ROOM.playerList[target].y, false)
+			players[player].place = players[target].place
+		elseif gameNpcs.characters[args[1]] then
+			TFM.chatMessage('[•] teleporting to <v>[NPC]</v> '..args[1]..'...', player)
+			TFM.movePlayer(player, gameNpcs.characters[args[1]].x+50, gameNpcs.characters[args[1]].y+50, false)
+		else
+			TFM.chatMessage('<g>[•] $playerName not found.', player)
+		end
+	end
+}
+
+--[[ commands/!job.lua ]]--
+chatCommands.job = {
+	permissions = {'admin', 'mod', 'helper'},
+	event = function(player, args)
+		local job = args[1]
+		local target = string.nick(args[2])
+		if not players[target] then target = player end
+		if not jobs[job] then return end
+		job_invite(job, target)
+	end
+}
+
+--[[ commands/!image.lua ]]--
+local commandImages = {}
+chatCommands.image = {
+	permissions = {'admin'},
+	event = function(player, args)
+		local image = args[1] or ''
+		local imgType = args[2] or '!10'
+		local x = args[3] or -100
+		local y = args[4] or -100
+
+		commandImages[#commandImages+1] = addImage(image, imgType, x, y)
+		TFM.chatMessage('<FC>Adding image... ID: <rose>'..#commandImages..'</rose>\n<t>' .. 
+			' Ξ url: '..image..'\n' .. 
+			' Ξ type: '..imgType..'\n' ..
+			' Ξ x: '..x..'\n' ..
+			' Ξ y: '..y
+		, player)
+	end
+}
+chatCommands.removeimage = {
+	permissions = {'admin'},
+	event = function(player, args)
+		local id = tonumber(args[1])
+		if commandImages[id] then
+			removeImage(commandImages[id])
+			commandImages[id] = nil
+			TFM.chatMessage('<g>image removed!', player)
+		end
+	end
+}
+
+--[[ commands/!hour.lua ]]--
+chatCommands.hour = {
+	permissions = {'admin'},
+	event = function(player, args)
+		room.currentGameHour = args[1] or 0
+		TFM.chatMessage('<rose>' ..updateHour(player, true))
+	end
+}
+
+--[[ commands/!lootbox.lua ]]--
+chatCommands.lootbox = {
+	permissions = {'admin'},
+	event = function(player)
+		local x = math.random(0, 12000)
+		addLootDrop(x, 7200, 20)
+		for i, v in next, ROOM.playerList do 
+			TFM.movePlayer(i, x, 7600, false)
+		end
+	end
+}
+
+--[[ commands/!quest.lua ]]--
+chatCommands.quest = {
+	permissions = {'admin'},
+	event = function(player, args)
+		local quest = tonumber(args[1])
+		if not lang['en'].quests[quest] then return TFM.chatMessage('<g>[•] invalid quest ID.', player) end
+		local questStep = tonumber(args[2]) or 0
+		local target = string.nick(args[3])
+		if not players[target] then target = player end
+
+		_QuestControlCenter[players[target].questStep[1]].reward(target)
+
+		players[target].questStep[1] = quest
+		players[target].questStep[2] = questStep
+		players[target].questLocalData.step = 0
+		savedata(target)
+
+		_QuestControlCenter[quest].active(target, 0)
+
+		TFM.chatMessage('<g>[•] quest '..quest..':'..questStep..' set to '..target..'.', player)
+	end
+}
+		
+	
+
+--[[ commands/!sidequest.lua ]]--
+chatCommands.sidequest = {
+	permissions = {'admin'},
+	event = function(player, args)
+		local nextQuest = tonumber(args[1])
+		if not sideQuests[nextQuest] then return TFM.chatMessage('<g>[•] invalid sidequest ID.', player) end
+		local target = string.nick(args[2])
+		if not players[target] then target = player end
+
+		players[target].sideQuests[1] = nextQuest
+		players[target].sideQuests[2] = 0
+		savedata(target)
+	end
+}
+
+--[[ commands/!update.lua ]]--
+chatCommands.update = {
+	permissions = {'admin'},
+	event = function(player, args)
+		if not syncData.connected then return TFM.chatMessage('<fc>[•] Failed to update. Reason: Data not synced.') end
+		local msg = args[1] or ''
+		syncData.updating.updateMessage = msg
+		saveGameData('Sharpiebot#0000')
+		TFM.chatMessage('<fc>[•] Update requested. Message: '..msg)
+	end
+}
+
 --[[ quests/controlCenter.lua ]]--
 _QuestControlCenter = {
 	[1] = {
@@ -11974,6 +12087,20 @@ syncVersion = function(player, vs)
 		end
 	end
 	players[player].gameVersion = 'v'..table.concat(version, '.')
+end
+
+syncFiles = function()
+    local bannedPlayers = {}
+    local unrankedPlayers = {}
+
+    for _, player in next, room.bannedPlayers do
+        bannedPlayers[#bannedPlayers+1] = player..',0'
+    end
+    for _, player in next, room.unranked do
+        unrankedPlayers[#unrankedPlayers+1] = player..',0'
+    end
+
+    system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';'), 1)
 end
 
 saveGameData = function(bot)
@@ -13754,6 +13881,7 @@ item_collect = function(item, target, amount)
 		if target then 
 			local data = room.droppedItems[item]
 			addItem(data.item, amount, target)
+			TFM.chatMessage('Collected...')
 		end
 	end
 
@@ -13888,7 +14016,7 @@ onEvent("NewPlayer", function(player)
 		local pngLoad = addImage(imgsToLoad[i], "!0", 0, 0, player)
 		removeImage(pngLoad)
 	end
-	if not table.contains(room.bannedPlayers, player) and not table.contains(room.perban, player) then
+	if not table.contains(room.bannedPlayers, player) then
 		TFM.respawnPlayer(player)
 	end
 	local buildShopImages = {
@@ -14097,70 +14225,29 @@ end)
 --[[ events/ChatCommand.lua ]]--
 onEvent("ChatCommand", function(player, command)
 	if room.isInLobby then return end
-	if player == 'Fofinhoppp#0000' or player == 'Lucasrslv#0000' then
-		if command:sub(1, 5) == 'horas' then
-			room.currentGameHour = command:sub(7)
-			TFM.chatMessage('<rose>' ..updateHour(player, true))								
-		elseif command == 'encomenda' then 
-			local x = math.random(0, 12000)
-			addLootDrop(x, 7200, 20)
-			--TFM.chatMessage('alerta a encomenda chegará proximo ao X: '..x)
-			for i, v in next, ROOM.playerList do 
-				TFM.movePlayer(i, x, 7600, false)
+
+	local args = {}
+    for i in command:gmatch('%S+') do
+        args[#args+1] = i
+    end
+    local command = table.remove(args, 1):lower()
+	if chatCommands[command] then
+		local continue = false
+		if not chatCommands[command].permissions then
+			continue = true
+		else
+			for _, role in next, chatCommands[command].permissions do
+				if table.contains(mainAssets.roles[role], player) then
+					continue = true
+					break
+				end
 			end
-
-		elseif command:sub(1, 9) == 'sidequest' then 
-			local nextQuest = tonumber(command:sub(11))
-			if not sideQuests[nextQuest] then return end
-			players[player].sideQuests[1] = nextQuest
-			players[player].sideQuests[2] = 0
-			players[player].sideQuests[3] = players[player].sideQuests[3] + 1
-		elseif command == 'up' then
-			quest_updateStep(player)
-		elseif command:sub(1, 5) == 'quest' then
-			local quest = tonumber(command:sub(7))
-			
-			_QuestControlCenter[players[player].questStep[1]].reward(player)
-			players[player].questStep[1] = players[player].questStep[1] +1
-			loadMap(player)
-
-			if not lang['en'].quests[quest] then 
-				return 
-			end
-
-			players[player].questStep[1] = quest
-			players[player].questStep[2] = 0
-			players[player].questLocalData.step = 0
-			savedata(player)
-
-			_QuestControlCenter[quest].active(player, 0)
-		elseif command:sub(1,5) == 'image' then
-			local imgg = command:sub(7)
-			imgAtual = imgg
-			removeImage(img)
-	    	img = addImage(imgAtual, typeimg, pos.x, pos.y)
-			TFM.chatMessage('<rose>Imagem atual: '..imgAtual, player)
-		elseif command:sub(1,4) == 'type' then
-			local type = command:sub(6)
-			typeimg = type
-		    removeImage(img)
-	        TFM.chatMessage('<rose>Tipo da imagem: '..typeimg, player)
-	        img = addImage(imgAtual, typeimg, pos.x, pos.y)
-	    elseif command:sub(1,1) == 'x' then
-	        local x = command:sub(3)
-	        pos.x = x
-	        removeImage(img)
-	        TFM.chatMessage('<rose>X:'..x, player)
-	        img = addImage(imgAtual, typeimg, pos.x, pos.y)
-	   	elseif command:sub(1,1) == 'y' then
-	        local y = command:sub(3)
-	        pos.y = y
-	        removeImage(img)
-	        TFM.chatMessage('<rose>Y:'..y, player)
-	        img = addImage(imgAtual, typeimg, pos.x, pos.y)
+		end
+		if continue then
+			chatCommands[command].event(player, args)
 		end
 	end
-	end)
+end)
 
 --[[ events/EmotePlayed.lua ]]--
 onEvent('EmotePlayed', function(player, emote)
@@ -14172,12 +14259,12 @@ end)
 
 --[[ events/FileLoaded.lua ]]--
 onEvent("FileLoaded", function(file, data)
+	local datas = {}
+    for _data in string.gmatch(data, '[^%|]+') do
+        datas[#datas+1] = _data
+    end
 	if tonumber(file) == 5 then -- RANKING
-		local datas = {}
-        for _data in string.gmatch(data, '[^%|]+') do
-            datas[#datas+1] = _data
-        end
-		local rankData = datas[1] -- ranking
+		local rankData = datas[1]
 		room.globalRanking = {}
 
         if rankData then
@@ -14188,6 +14275,23 @@ onEvent("FileLoaded", function(file, data)
 		saveRanking()
 		player_removeImages(room.rankingImages)
 		loadRanking()
+
+	elseif tonumber(file) == 1 then
+		local bannedPlayers = datas[1]
+		local unrankedPlayers = datas[2]
+
+		room.bannedPlayers = {}
+		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do
+			room.bannedPlayers[#room.bannedPlayers+1] = player
+			if players[player] then
+				TFM.killPlayer(player)
+			end
+		end
+
+		room.unranked = {}
+		for player in string.gmatch(unrankedPlayers, '([%w_+]+#%d+),(%w+)') do
+			room.unranked[#room.unranked+1] = player
+		end
 	end
 end)
 
@@ -14368,7 +14472,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if name == 'Sharpiebot#0000' then 
 		return syncGameData(data, name)
 	end
-	if table.contains(room.perban, name) then
+	if table.contains(room.bannedPlayers, name) then
 		return TFM.chatMessage('You can not play #mycity anymore.', name)
 	end
 	if #data > 1500 then return TFM.chatMessage('You have reached your data limit. Please contact Fofinhoppp#0000 for more info.', name) end
@@ -14430,10 +14534,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 		end
 
 		for i, v in next, furnitures do
-			if v[2] > -50 and v[2] < 1550 then
+			if v[2] >= 0 and v[2] <= 1500 then
 				players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
 			else
-				TFM.chatMessage('<g>Due to an invalid location, a furniture has been moved to your furniture depot.', name)
+				TFM.chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
 				storeFurniture(i)
 			end
 		end
@@ -16411,11 +16515,7 @@ genMap = function()
 		largeGrass = '16f19d53238.jpg'
 	end
     for i = 1, 16 do
-		if i == 17 then
-			xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" N="" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" N="" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
-		else
-			xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="1400" L="10" X="'..room.groundsPosition[3]..'" Y="1100" m="" T="5" P="0,0,0,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" N="" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" N="" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
-		end
+		xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="1400" L="10" X="'..room.groundsPosition[3]..'" Y="1100" m="" T="5" P="0,0,0,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
 		for i = 1, 3 do
 			room.groundsPosition[i] = room.groundsPosition[i] + 1500
 		end
@@ -16454,7 +16554,7 @@ genMap = function()
 
 		-- Boat Shop
 			aps2[#aps2+1] = '1727230e19e.jpg,1,650,9125,1400,300,650,9125;1727230e19e.jpg,1,650,9425,1400,300,650,9425;17276006818.png,1,830,9075,300,350,830,9075;'
-		aps2[#aps2+1] = '17201b0f743.jpg,1,1100,8050,3410,860,1100,8050;'
+			aps2[#aps2+1] = '17201b0f743.jpg,1,1100,8050,3410,860,1100,8050;'
 
 		local barriers = {{'<S T="12" L="30" H="90" X="1582" Y="8437" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="30" H="90" X="1953" Y="8547" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="30" H="90" X="1688" Y="8817" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>'}, {'<S T="12" L="30" H="90" X="1953" Y="8417" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="40" H="90" X="2103" Y="8522" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>', '<S T="12" L="100" H="25" X="2138" Y="8662" P="0,0,1,0.3,0,0,0,0" o="e2ad32"/>'}}
 		local allowedPaths = {
@@ -16648,7 +16748,8 @@ startRoom = function()
 		room.terrains = {}
 		room.houseImgs = {}
 		players = {}
-
+		room.gameLoadedTimes = room.gameLoadedTimes + 1
+		
 		for i = 1, #mainAssets.__terrainsPositions do
 			room.terrains[i] = {img = {}, bought = false, owner = nil, settings = {}, groundsLoadedTo = {}, guests = {}}
 			room.houseImgs[i] = {img = {}, furnitures = {}, expansions = {}}
@@ -16663,15 +16764,16 @@ startRoom = function()
 		eventNewPlayer('Remi')
 
 		removeTimer(room.temporaryTimer)
-		room.temporaryTimer = addTimer(function()
-			for i, v in next, ROOM.playerList do
-				updateBarLife(i)
-			end
-		end, 60000, 0)
-		if character.orderList == {} then 
+		if room.gameLoadedTimes == 1 then 
 			for i = 1, 2 do 
 				gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
 			end
+
+			addTimer(function()
+				for i, v in next, ROOM.playerList do
+					updateBarLife(i)
+				end
+			end, 60000, 0)
 		end
 	else
 		players = {}
@@ -16710,11 +16812,21 @@ else
 	end
 end
 TFM.setRoomMaxPlayers(room.maxPlayers)
-system.loadFile(5)
+system.loadFile(1)
 
 addTimer(function()
 	system.loadFile(5)
-end, 120000, 0)
+end, 200000, 0)
+
+addTimer(function()
+	if room.fileUpdated then
+		syncFiles()
+		room.fileUpdated = false
+	else
+		system.loadFile(1)
+	end
+end, 61000, 0)
+
 mine_generate()
 
 if ROOM.uniquePlayers >= room.requiredPlayers then

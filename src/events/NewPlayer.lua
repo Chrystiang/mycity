@@ -27,7 +27,7 @@ onEvent("NewPlayer", function(player)
 		local pngLoad = addImage(imgsToLoad[i], "!0", 0, 0, player)
 		removeImage(pngLoad)
 	end
-	if not table.contains(room.bannedPlayers, player) and not table.contains(room.perban, player) then
+	if not table.contains(room.bannedPlayers, player) then
 		TFM.respawnPlayer(player)
 	end
 	local buildShopImages = {
