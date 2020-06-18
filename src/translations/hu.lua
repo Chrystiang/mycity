@@ -633,4 +633,7 @@ lang.hu = {
     settings_gameHour = "Játékóra",
     settings_donateText2 = 'Az adományozók exkluzív NPC-ket kapnak az adományozásért. Ne felejtsd el elküldeni a Transformice felhasználóneved, így fogom tudni megszerezni az aktuális kinézeted.',
     npcDialog_Bill = 'Heyyo! Szeretnéd ellenőrizni az aktuális horgászszerencséd?\nHmmm... Lássuk csak..\n%s esélyed van egy közönséges hal megszerzésére, %s esélyed egy ritka hal megszerzésére és %s esélyed egy mitikus hal megszerzésére.\n... És %s esélyed van egy legendás hal megszerzésére!',
+    furniture_nightstand = 'Éjjeli szekrény',
+    furniture_bush = 'Bokor',
+    furniture_armchair = 'Fotel',
 }

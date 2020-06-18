@@ -636,4 +636,7 @@ lang.tr = {
     placedFurnitures = 'Yerleştirilen mobilyalar: %s',
     settings_donateText2 = 'Bağışçılar, bağışlarının onuruna özel NPC\'ye sahip olacaklar. Ama unutma bak, bana Transformice adını yolla ki senin güncel görünüşüne erişebileyim.',
     npcDialog_Bill = 'Hey bak hele! Güncel balıkçılık şansını görmek ister misin?\nHmmm... Bi bakalımm...\n%s şansla sıradan bir balık, %s şansla nadir bir balık ve %s şansla efsanevi bir balık tutabilirsin.\n... Ha ayrıca bir de %s şansla efsanevi balık tutabilirsin!', 
+    furniture_nightstand = 'Komodin',
+    furniture_bush = 'Çalı',
+    furniture_armchair = 'İskemle',
 }
