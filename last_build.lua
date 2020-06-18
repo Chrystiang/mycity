@@ -3,7 +3,6 @@ local TFM, ROOM = tfm.exec, tfm.get.room
 local string, math, table, gsub, addGround, removeGround, addTextArea, move, addImage, removeImage = string, math, table, string.gsub, TFM.addPhysicObject, TFM.removePhysicObject, ui.addTextArea, TFM.movePlayer, TFM.addImage, TFM.removeImage
 local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter
 local chatCommands = {}
-TFM.setRoomMaxPlayers(15)
 TFM.disableAutoShaman()
 TFM.disableAfkDeath()
 TFM.disableWatchCommand()
@@ -18,6 +17,7 @@ system.disableChatCommandDisplay()
 math.randomseed(os.time())
 local players = {}
 local room = { -- Assets that can change while the script runs
+	maxPlayers = 15,
 	dayCounter = 0,
 	mathSeed = os.date("%j"),
 	rankingImages = {},
@@ -6327,7 +6327,7 @@ lang.pl = {
             },
             [16] = {
                 _add = "Daj ostry sos Kariina.",
-                dialog = "O MOJ BOZE! Zrobiles to! Dziekuje! \n Gdy cie nie bylo, zdalam sobie sprawe, ze potrzebuje wiecej pszenicy, aby zrobic wiecej ciasta ... Czy mozesz mi przyniesc troche pszenicy?
+                dialog = "O MOJ BOZE! Zrobiles to! Dziekuje! \n Gdy cie nie bylo, zdalam sobie sprawe, ze potrzebuje wiecej pszenicy, aby zrobic wiecej ciasta ... Czy mozesz mi przyniesc troche pszenicy?",
             },
             [17] = {
                 _add = "Zasiej ziarno w swoim domu."
@@ -8278,6 +8278,7 @@ do
 					if _paused then
 						message = translatedMessage("emergencyMode_resume")
 						_paused = false
+						TFM.setRoomMaxPlayers(room.maxPlayers)
 						for player in next, ROOM.playerList do
 							freezePlayer(player, false)
 						end
@@ -8306,6 +8307,7 @@ do
 						else
 							translatedMessage("syncingGame")
 						end
+						TFM.setRoomMaxPlayers(1)
 						for player in next, ROOM.playerList do
 							freezePlayer(player, true)
 						end
@@ -9103,10 +9105,10 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if usedSomething then return end
 								if quanty > 0 then
 									if itemName == 'cheese' then 
-										if players[player].whenJoined > os.time()-1000*120 then 
-											return alert_Error(player, 'error', 'limitedItemBlock')
+										if players[player].whenJoined < os.time() then 
+											return alert_Error(player, 'error', 'limitedItemBlock', players[player].whenJoined - os.time()%60)
 										else 
-											players[player].whenJoined = os.time()
+											players[player].whenJoined = os.time() + 120*10000
 										end
 									end
 									eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
@@ -9430,6 +9432,8 @@ modernUI.showHouseSettings = function(self)
 				if playerFurnitures[index].quanty <= 0 then return end
 				local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
 				if y < 1000 or y > 2000 then return end
+				if x > ((terrainID-1)%terrainID)*1500 or x < ((terrainID-2)%terrainID)*1500 then return end
+
 				playerFurnitures[index].quanty = playerFurnitures[index].quanty - 1
 				totalOfPlacedFurnitures = totalOfPlacedFurnitures + 1
 				ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player)
@@ -10642,7 +10646,7 @@ chatCommands.job = {
 	event = function(player, args)
 		local job = args[1]
 		local target = string.nick(args[2])
-		if not players[target] then target = player
+		if not players[target] then target = player end
 		if not jobs[job] then return end
 		job_invite(job, target)
 	end
@@ -10872,7 +10876,7 @@ gameNpcs.setOrder = function(npcName)
 		if time == orderTime then
 			local images = character.orderList[npcName].fulfilled
 			for player, k in next, images do 
-				if not k.completed then 
+				if not k.completed then
 					player_removeImages(k.icons)
 				end
 			end
@@ -11417,10 +11421,10 @@ savedata = function(name)
 
 	local chestStorage = {{}, {}}
 	local chestStorageQuanty = {{}, {}}
-	for counter, data in next, playerInfos.houseData.chests.storage do
-		for i, v in next, data do
-			chestStorage[counter][#chestStorage[counter]+1] = bagItems[v.name].id
-			chestStorageQuanty[counter][#chestStorageQuanty[counter]+1] = v.qt
+	for counter = 1, 2 do
+		for i, v in next, playerInfos.houseData.chests.storage[counter] do
+			chestStorage[counter][i] = bagItems[v.name].id
+			chestStorageQuanty[counter][i] = v.qt
 		end
 	end
 	playerData:set(name, 'chestStorage', chestStorage)
@@ -12109,19 +12113,15 @@ saveRanking = function()
 
 	for i = #localRanking, 1, -1 do
         if ROOM.playerList[localRanking[i].name] then
-			if players[localRanking[i].name].coins > 0 then
-            	table.remove(localRanking, i)
-			end
+            table.remove(localRanking, i)
         end
     end
 	for name in next, ROOM.playerList do
-        if players[name] then
-			if players[name].coins > 0 then
-				local player = players[name]
-				if player.seasonStats[1][1] == mainAssets.season then 
-					if not table.contains(room.unranked, name) then
-						localRanking[#localRanking+1] = {name = name, level = player.level[1], experience = player.seasonStats[1][2], commu = ROOM.playerList[name].community, id = ROOM.playerList[name].id}
-					end
+		local player = players[name]
+        if player then
+			if player.seasonStats[1][1] == mainAssets.season then 
+				if not table.contains(room.unranked, name) then
+					localRanking[#localRanking+1] = {name = name, level = player.level[1], experience = player.seasonStats[1][2], commu = ROOM.playerList[name].community, id = ROOM.playerList[name].id}
 				end
 			end
         end
@@ -13738,7 +13738,7 @@ item_drop = function(item, player, amount)
 		y = player.y-10
 		player = 'Oliver'
 	end
-	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '!70', x, y)}
+	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_700', x, y)}
 	ui.addTextArea(-40000-#room.droppedItems, "<textformat leftmargin='1' rightmargin='1'><a href='event:collectDroppedItem_"..#room.droppedItems.."'>"..string.rep('\n', 5), nil, x, y, 50, 50, 1, 1, 0, false)
 	item_droppedEvent(#room.droppedItems, player)
 end
@@ -14421,16 +14421,24 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].houseData.furnitures.stored = {}
 	local furnitures, storedFurnitures = playerData:get(name, 'houseObjects'), playerData:get(name, 'storedFurnitures')
 	do
-		for i, v in next, furnitures do
-			players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
-		end
-
-		for i, v in next, storedFurnitures do
+		local function storeFurniture(v)
 			if not players[name].houseData.furnitures.stored[v] then 
 				players[name].houseData.furnitures.stored[v] = {quanty = 1, type = v}
-			else 
+			else
 				players[name].houseData.furnitures.stored[v].quanty = players[name].houseData.furnitures.stored[v].quanty + 1
 			end
+		end
+
+		for i, v in next, furnitures do
+			if v[2] > -50 and v[2] < 1550 then
+				players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
+			else
+				TFM.chatMessage('<g>Due to an invalid location, a furniture has been moved to your furniture depot.', name)
+				storeFurniture(i)
+			end
+		end
+		for i, v in next, storedFurnitures do
+			storeFurniture(v)
 		end
 	end
 	----------------------------------------------------------------------
@@ -16660,6 +16668,11 @@ startRoom = function()
 				updateBarLife(i)
 			end
 		end, 60000, 0)
+		if character.orderList == {} then 
+			for i = 1, 2 do 
+				gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
+			end
+		end
 	else
 		players = {}
 		for name in next, ROOM.playerList do 
@@ -16674,9 +16687,6 @@ for i, v in next, recipes do
 	newDishPrice(i)
 end
 
-for i = 1, 2 do 
-	gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
-end
 
 npcsStores.items = mergeItemsWithFurnitures(mainAssets.__furnitures, bagIds)
 buildNpcsShopItems()
@@ -16699,7 +16709,7 @@ else
 		end
 	end
 end
-
+TFM.setRoomMaxPlayers(room.maxPlayers)
 system.loadFile(5)
 
 addTimer(function()

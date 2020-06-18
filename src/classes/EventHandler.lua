@@ -84,6 +84,7 @@ do
 					if _paused then
 						message = translatedMessage("emergencyMode_resume")
 						_paused = false
+						TFM.setRoomMaxPlayers(room.maxPlayers)
 						for player in next, ROOM.playerList do
 							freezePlayer(player, false)
 						end
@@ -112,6 +113,7 @@ do
 						else
 							translatedMessage("syncingGame")
 						end
+						TFM.setRoomMaxPlayers(1)
 						for player in next, ROOM.playerList do
 							freezePlayer(player, true)
 						end

@@ -55,16 +55,24 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].houseData.furnitures.stored = {}
 	local furnitures, storedFurnitures = playerData:get(name, 'houseObjects'), playerData:get(name, 'storedFurnitures')
 	do
-		for i, v in next, furnitures do
-			players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
-		end
-
-		for i, v in next, storedFurnitures do
+		local function storeFurniture(v)
 			if not players[name].houseData.furnitures.stored[v] then 
 				players[name].houseData.furnitures.stored[v] = {quanty = 1, type = v}
-			else 
+			else
 				players[name].houseData.furnitures.stored[v].quanty = players[name].houseData.furnitures.stored[v].quanty + 1
 			end
+		end
+
+		for i, v in next, furnitures do
+			if v[2] > -50 and v[2] < 1550 then
+				players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
+			else
+				TFM.chatMessage('<g>Due to an invalid location, a furniture has been moved to your furniture depot.', name)
+				storeFurniture(i)
+			end
+		end
+		for i, v in next, storedFurnitures do
+			storeFurniture(v)
 		end
 	end
 	----------------------------------------------------------------------

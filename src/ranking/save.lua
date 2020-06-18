@@ -9,19 +9,15 @@ saveRanking = function()
 
 	for i = #localRanking, 1, -1 do
         if ROOM.playerList[localRanking[i].name] then
-			if players[localRanking[i].name].coins > 0 then
-            	table.remove(localRanking, i)
-			end
+            table.remove(localRanking, i)
         end
     end
 	for name in next, ROOM.playerList do
-        if players[name] then
-			if players[name].coins > 0 then
-				local player = players[name]
-				if player.seasonStats[1][1] == mainAssets.season then 
-					if not table.contains(room.unranked, name) then
-						localRanking[#localRanking+1] = {name = name, level = player.level[1], experience = player.seasonStats[1][2], commu = ROOM.playerList[name].community, id = ROOM.playerList[name].id}
-					end
+		local player = players[name]
+        if player then
+			if player.seasonStats[1][1] == mainAssets.season then 
+				if not table.contains(room.unranked, name) then
+					localRanking[#localRanking+1] = {name = name, level = player.level[1], experience = player.seasonStats[1][2], commu = ROOM.playerList[name].community, id = ROOM.playerList[name].id}
 				end
 			end
         end

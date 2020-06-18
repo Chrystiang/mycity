@@ -484,7 +484,7 @@ lang.pl = {
             },
             [16] = {
                 _add = "Daj ostry sos Kariina.",
-                dialog = "O MOJ BOZE! Zrobiles to! Dziekuje! \n Gdy cie nie bylo, zdalam sobie sprawe, ze potrzebuje wiecej pszenicy, aby zrobic wiecej ciasta ... Czy mozesz mi przyniesc troche pszenicy?
+                dialog = "O MOJ BOZE! Zrobiles to! Dziekuje! \n Gdy cie nie bylo, zdalam sobie sprawe, ze potrzebuje wiecej pszenicy, aby zrobic wiecej ciasta ... Czy mozesz mi przyniesc troche pszenicy?",
             },
             [17] = {
                 _add = "Zasiej ziarno w swoim domu."

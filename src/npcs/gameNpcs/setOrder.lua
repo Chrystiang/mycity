@@ -35,7 +35,7 @@ gameNpcs.setOrder = function(npcName)
 		if time == orderTime then
 			local images = character.orderList[npcName].fulfilled
 			for player, k in next, images do 
-				if not k.completed then 
+				if not k.completed then
 					player_removeImages(k.icons)
 				end
 			end

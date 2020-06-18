@@ -286,10 +286,10 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if usedSomething then return end
 								if quanty > 0 then
 									if itemName == 'cheese' then 
-										if players[player].whenJoined > os.time()-1000*120 then 
-											return alert_Error(player, 'error', 'limitedItemBlock')
+										if players[player].whenJoined < os.time() then 
+											return alert_Error(player, 'error', 'limitedItemBlock', players[player].whenJoined - os.time()%60)
 										else 
-											players[player].whenJoined = os.time()
+											players[player].whenJoined = os.time() + 120*10000
 										end
 									end
 									eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
@@ -613,6 +613,8 @@ modernUI.showHouseSettings = function(self)
 				if playerFurnitures[index].quanty <= 0 then return end
 				local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
 				if y < 1000 or y > 2000 then return end
+				if x > ((terrainID-1)%terrainID)*1500 or x < ((terrainID-2)%terrainID)*1500 then return end
+
 				playerFurnitures[index].quanty = playerFurnitures[index].quanty - 1
 				totalOfPlacedFurnitures = totalOfPlacedFurnitures + 1
 				ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player)

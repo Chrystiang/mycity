@@ -23,6 +23,11 @@ startRoom = function()
 				updateBarLife(i)
 			end
 		end, 60000, 0)
+		if character.orderList == {} then 
+			for i = 1, 2 do 
+				gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
+			end
+		end
 	else
 		players = {}
 		for name in next, ROOM.playerList do 
@@ -37,9 +42,6 @@ for i, v in next, recipes do
 	newDishPrice(i)
 end
 
-for i = 1, 2 do 
-	gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
-end
 
 npcsStores.items = mergeItemsWithFurnitures(mainAssets.__furnitures, bagIds)
 buildNpcsShopItems()
@@ -62,7 +64,7 @@ else
 		end
 	end
 end
-
+TFM.setRoomMaxPlayers(room.maxPlayers)
 system.loadFile(5)
 
 addTimer(function()

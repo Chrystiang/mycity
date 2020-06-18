@@ -2,7 +2,6 @@ local TFM, ROOM = tfm.exec, tfm.get.room
 local string, math, table, gsub, addGround, removeGround, addTextArea, move, addImage, removeImage = string, math, table, string.gsub, TFM.addPhysicObject, TFM.removePhysicObject, ui.addTextArea, TFM.movePlayer, TFM.addImage, TFM.removeImage
 local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter
 local chatCommands = {}
-TFM.setRoomMaxPlayers(15)
 TFM.disableAutoShaman()
 TFM.disableAfkDeath()
 TFM.disableWatchCommand()
@@ -17,6 +16,7 @@ system.disableChatCommandDisplay()
 math.randomseed(os.time())
 local players = {}
 local room = { -- Assets that can change while the script runs
+	maxPlayers = 15,
 	dayCounter = 0,
 	mathSeed = os.date("%j"),
 	rankingImages = {},
