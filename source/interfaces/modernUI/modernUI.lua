@@ -46,6 +46,9 @@ do
 		local buttonAlign = totalButtons > 0 and totalButtons*25 - 10 or 0
 		
 		local backgrounds = {
+			[120] = {
+				[120] = '172cec377fb.png',
+			},
 			[200] = {
 				[200] = '1729faa10a0.png',
 			},

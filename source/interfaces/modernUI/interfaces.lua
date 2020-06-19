@@ -536,12 +536,13 @@ modernUI.showHouses = function(self, selectedTerrain)
 								eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 								players[player].casas[#players[player].casas+1] = _
 								giveCoin(-v.properties.price, player)
-								sendMenu(99, player, '', 400 - 120 * 0.5, (300 * 0.5), 100, 100, 1, true)
 								ui.removeTextArea(24 + selectedTerrain)
 								ui.removeTextArea(44 + selectedTerrain)
 								ui.removeTextArea(selectedTerrain)
 
-								players[player].images[#players[player].images+1] = addImage(v.properties.png, "&70", 400 - 50 * 0.5, 180, player)
+								modernUI.new(player, 120, 120)
+								:build()
+								players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(v.properties.png, "&70", 400 - 50 * 0.5, 180, player)
 
 								equipHouse(player, _, selectedTerrain)
 							end

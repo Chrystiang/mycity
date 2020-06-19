@@ -70,11 +70,11 @@ playerFishing = function(name, x, y, biome)
 				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
 				giveExperiencePoints(name, 2000)		
 			end
-
-			sendMenu(99, name, '', 400 - 120 * 0.5, (300 * 0.5), 100, 100, 1, true)
 			addItem(willFish, 1, name)
-			player.images[#player.images+1] = addImage(willFishInfo.png and willFishInfo.png or '16bc368f352.png', "&70", 400 - 50 * 0.5, 180, name)
-	
+
+			modernUI.new(name, 120, 120)
+			:build()
+			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, "&70", 400 - 50 * 0.5, 180, name)
 
 			local sidequest = sideQuests[player.sideQuests[1]].type
 			if sidequest == 'type:fish' or string.find(sidequest, willFish) then

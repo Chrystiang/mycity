@@ -9,7 +9,7 @@ item_drop = function(item, player, amount)
 		y = player.y-10
 		player = 'Oliver'
 	end
-	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_700', x, y)}
+	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_70000', x, y)}
 	ui.addTextArea(-40000-#room.droppedItems, "<textformat leftmargin='1' rightmargin='1'><a href='event:collectDroppedItem_"..#room.droppedItems.."'>"..string.rep('\n', 5), nil, x, y, 50, 50, 1, 1, 0, false)
 	item_droppedEvent(#room.droppedItems, player)
 end
@@ -43,12 +43,15 @@ item_droppedEvent = function(id, player)
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
 		for chestID, v in next, players[player].houseData.chests.position do
-			if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 50 then
-				if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
-				item_addToChest(item, amount, player, chestID)
-				savedata(player)
-				TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)
-				canRemove = true
+			if v.x then
+				if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 50 then
+					if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
+					item_addToChest(item, amount, player, chestID)
+					savedata(player)
+					TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)
+					canRemove = true
+					break
+				end
 			end
 		end
 	elseif players[player].job == 'farmer' and tonumber(players[player].place:sub(7)) == 11 and string.find(item, 'Seed') then

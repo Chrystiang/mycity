@@ -27,6 +27,12 @@ local tree = {
 
     'checkTimers.lua',
 
+    'cars/IDS.lua',
+
+    'furnitures/IDS.lua',
+
+    'houseSystem/_houses.lua',
+    'houseSystem/_terrainsPositions.lua',
     'houseSystem/_new.lua',
     'houseSystem/genHouseFace.lua',
     'houseSystem/genHouseGrounds.lua',
@@ -39,8 +45,16 @@ local tree = {
     'interfaces/toRewrite/oldInterface.lua',
     'interfaces/errorAlert.lua',
 
+    'jobs/jobData.lua',
+    'jobs/jobState.lua',
+    'jobs/cop/arrest.lua',
+    'jobs/thief/rob.lua',
+    'jobs/fisher/fish.lua',
+    'jobs/fisher/_biomes.lua',
+
     'npcs/npcDialogs.lua',
     'npcs/gameNpcs/_main.lua',
+    'npcs/gameNpcs/daveOffers.lua',
     'npcs/gameNpcs/addCharacter.lua',
     'npcs/gameNpcs/reAddNPC.lua',
     'npcs/gameNpcs/removeNPC.lua',
@@ -86,11 +100,6 @@ local tree = {
     'ranking/load.lua',
     'ranking/save.lua',
 
-    'jobs/jobState.lua',
-    'jobs/cop/arrest.lua',
-    'jobs/thief/rob.lua',
-    'jobs/fisher/fish.lua',
-
     'items/itemList/bagIds.lua',
     'items/itemList/bagItems.lua',
     'items/itemList/recipes.lua',
@@ -116,8 +125,11 @@ local tree = {
 
     'places/mine/_perlin.lua',
     'places/mine/grid.lua',
+    'places/mine/_properties.lua',
+    'places/hospital/_properties.lua',
     'places/hospital/hospitalize.lua',
     'places/hospital/loadFloor.lua',
+    'places/bank/_properties.lua',
     'places/bank/robbingAssets.lua',
 
     'places/_checkLocation/isInHouse.lua',
@@ -141,6 +153,7 @@ local tree = {
     'map/loadMap.lua',
 
     'recipeSystem.lua',
+    'specialFounds.lua',
 
     'init.lua',
 }

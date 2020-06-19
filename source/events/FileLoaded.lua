@@ -19,6 +19,9 @@ onEvent("FileLoaded", function(file, data)
 	elseif tonumber(file) == 1 then
 		local bannedPlayers = datas[1] or table.concat(room.bannedPlayers, ';')
 		local unrankedPlayers = datas[2] or table.concat(room.unranked, ';')
+		local admin = datas[3] or ''
+		local mod = datas[4] or ''
+		local helper = datas[5] or ''
 
 		room.bannedPlayers = {}
 		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do
@@ -31,6 +34,17 @@ onEvent("FileLoaded", function(file, data)
 		room.unranked = {}
 		for player in string.gmatch(unrankedPlayers, '([%w_+]+#%d+),(%w+)') do
 			room.unranked[#room.unranked+1] = player
+		end
+
+		mainAssets.roles.admin = {}
+		mainAssets.roles.mod = {}
+		mainAssets.roles.helper = {}
+
+		for index, role in next, {admin, mod, helper} do 
+			for player in string.gmatch(role, '([%w_+]+#%d+)') do
+				local _role = (index == 1 and 'admin') or (index == 2 and 'mod') or (index == 3 and 'helper')
+				mainAssets.roles[_role][#mainAssets.roles[_role]+1] = player
+			end
 		end
 	end
 end)

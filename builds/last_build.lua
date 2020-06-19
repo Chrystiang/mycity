@@ -42,7 +42,16 @@ local removeImage   = TFM.removeImage
 
 local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter
 
-local chatCommands = {}
+local chatCommands  = {}
+local Mine          = {}
+local grid          = {}
+local grid_width    = 10
+local grid_height   = 01
+local groundIDS     = {}
+local players       = {}
+
+local maxFurnitureStorage   = 50
+local maxFurnitureDepot     = 60
 
 math.randomseed(os.time())
 
@@ -57,182 +66,44 @@ TFM.disablePhysicalConsumables()
 TFM.disableAutoScore()
 system.disableChatCommandDisplay()
 
-local players = {}
-local room = { -- Assets that can change while the script runs
-    maxPlayers = 15,
+local room = { -- Assets that change while the script runs
+    maxPlayers      = 15,
     gameLoadedTimes = 0,
-    fileUpdated = false,
-    dayCounter = 0,
-    mathSeed = os.date("%j"),
-    rankingImages = {},
-    droppedItems = {},
-    terrains = {},
-    gardens = {},
-    unranked = {'Bodykudo#0000', 'Benaiazyux#0000', 'Fofinhoppp#0000', 'Ffmisael#0000', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'Ppp001#0000'},
-    bannedPlayers = {'Fontflex#0000', 'Luquinhas#6375', 'Luquinhas#9650', 'Mandinhamita#0000', 'Furoaazui#0000', 'Rainhadetudo#6235', 'Gohanffglkj#9524', 'Mycity#3262', 'Mavin2#0000', 'Giud#9046', 'Mavin3#8659', 'Euney#5983', 'C4ver4_ghost#1459'},
-    boatShop2ndFloor = false,
-    isInLobby = true,
+    fileUpdated     = false,
+    dayCounter      = 0,
+    mathSeed        = os.date("%j"),
+    unranked        = {},
+    bannedPlayers   = {},
+    rankingImages   = {},
+    droppedItems    = {},
+    terrains        = {},
+    gardens         = {},
+    boatShop2ndFloor= false,
+    isInLobby       = true,
     requiredPlayers = 4,
-    discordServerUrl = 'https://discord.gg/uvGwa2y',
-    globalRanking = {},
-    event = nil, -- released: halloween2019, christmas2019
-    gameDayStep = 'day', -- default: day // halloween: halloween
-    houseImgs = {},
-    y       = 5815,
+    discordServerUrl= 'https://discord.gg/uvGwa2y',
+    globalRanking   = {},
+    event           = nil,
+    gameDayStep     = 'day',
+    houseImgs       = {},
+    y               = 5815,
     currentGameHour = 0,
     groundsPosition = {250, 749+250, 50},
-    specialFounds = {
-        christmas2019 = {
-            evening = '16ee11c6a13.jpg',
-            dawn = '16ee11d3516.jpg',
-            night = '16ee11b36c4.jpg',
-            day = '16ee11b1f00.png',
-            align = 1919,
-        },
-        halloween2019 = {
-            evening = '16dd5d7c4e1.jpg',
-            dawn = '16dd5d78f0d.jpg',
-            night = '16dd5d7ad6f.jpg',
-            day = '16dd5d7738e.jpg',
-            align = 1919,
-        },
-    },
-    started = false,
-    hospital = {
-        [1] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [2] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [3] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [4] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [6] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [7] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [8] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-        [9] = {
-            [1] = {name = nil},
-            [2] = {name = nil},
-        },
-    },
-    bank = {
-        paperCurrentPlace = math.random(1, 13),
-        paperImages = {},
-        paperPlaces = {
-            {x = 500, y = 240}, -- Jason's Workshop
-            {x = 7150, y = 6085}, -- Police Station, next to sherlock
-            {x = 7300, y = 5960}, -- Police Station, office
-            {x = 8200, y = 6400}, -- Police Station, jail
-            {x = 4980, y = 240}, -- Market
-            {x = 14700, y = 240}, -- Pizzeria
-            {x = 13130, y = 240}, -- Fish Shop
-            {x = 13350, y = 1555}, -- Oliver's Farm, next to marcus
-            {x = 16000, y = 1710}, -- Oliver's Farm, garden
-            {x = 12120, y = 240}, -- Seed Store
-            {x = 6480, y = 240}, -- Café
-            {x = 10750, y = 240}, -- Potion Shop
-            {x = 11000, y = 7770}, -- Island, next to bridge
-
-        },
-    },
-    bankBeingRobbed = false,
-    bankRobbingTime = 60,
-    bankImages = {},
-    bankTrashImages = {},
-    bankRobStep = nil,
-    bankDoors = {'', '', '', '', ''},
-    bankVaultPassword = math.random(0,9) .. math.random(0,9) .. math.random(0,9) .. math.random(0,9),
-    robbing = {
+    started         = false,
+    robbing             = {
         prisonTimer = 100,
         robbingTimer = 90,
         bankRobbingTimer = 60,
     },
-    temporaryTimer = nil,
-    fishing = {
-        biomes = {
-            sea = {
-                canUseBoat = true,
-                between = {'town', 'island'},
-                location = {
-                    {x = 6400-70, y = 7775-70}, {x = 6400-70, y = 8000}, {x = 9160+70, y = 7775-70}, {x = 9160+70, y = 8000},
-                },
-                fishes = {
-                    normal = {'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy'},
-                    rare = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish'},
-                    mythical = {'fish_Lobster',},
-                    legendary = {'fish_Goldenmare',},
-                },
-            },
-            bridge = {
-                location = {
-                    {x = 10760, y = 7775-70}, {x = 10915, y = 7775-70},  {x = 10915, y = 7828}, {x = 10760, y = 7828},
-                },
-                fishes = {
-                    normal = {'fish_Frog', 'fish_RuntyGuppy'},
-                    rare = {'fish_Dogfish', 'fish_Catfish', 'lemonSeed'},
-                    mythical = {'fish_Lobster',},
-                    legendary = {'fish_Goldenmare',},           
-                },
-            },
-            sewer = {
-                canUseBoat = true,
-                between = {'mine_labyrinth', 'mine_escavation'},
-                location = {
-                    {x = 2837-70, y = 8662-70}, {x = 2837-70, y = 8800}, {x = 4325+70, y = 8662-70}, {x = 4325+70, y = 8800},
-                },
-                fishes = {
-                    normal = {'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy'},
-                    rare = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish'},
-                    mythical = {'fish_Lobster',},
-                    legendary = {'fish_Goldenmare',},
-                },
-            },
-        },
-        fishes = {
-            normal = {
-                'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy', 'fish_Frog'
-            },
-            rare = {
-                'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish',
-            },
-            mythical = {
-                'fish_Lobster',
-            },
-            legendary = {
-                'fish_Goldenmare',
-            },
-        },
-    }
+    temporaryTimer  = nil,
 }
-local syncData = {
-    connected = false,
-    quests = {
-        newQuestDevelopmentStage = 0,
-    },
-    updating = {
-        isUpdating = false,
-        updateMessage = '',
-    }
-}
-local mainAssets = { -- Assets that dont change while the script runs
+local mainAssets = { -- Assets that rarely changes while the script runs
     season = 1,
+    roles = {
+        admin = {},
+        mod = {},
+        helper = {},
+    },
     supportedCommunity = {'en', 'br', 'es', 'ar', 'tr', 'hu', 'pl', 'ru', 'fr', 'e2', 'sk'},
     housePermissions = {
         [-1] = 'blocked',
@@ -240,922 +111,6 @@ local mainAssets = { -- Assets that dont change while the script runs
         [1] = 'roommate',
         [2] = 'coowner',
         [3] = 'owner',
-    },
-    __houses = {
-        [1] = {
-            properties = {
-                price   = 7000,
-                png     = '1729fd5cfd0.png',
-            },
-            inside = {
-                image   = '172566957cc.png',
-            },
-            outside = {
-                icon    = '1729fd367cb.png',
-                axis    = {8, 4},
-            },
-        },
-        [2] = {
-            properties = {
-                price   = 13000,
-                png     = '16c2524d88c.png',
-            },
-            inside = {
-                image   = '172566a7a66.png',
-                grounds = function(terrainID)
-                    addGround(-6500+terrainID*20, 290 + (terrainID-1)*1500 + 60, 1397 + 65, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30})
-                    addGround(-6501+terrainID*20, 225 + (terrainID-1)*1500 + 60, 1397 + 200, {type = 12, friction = 0.3, restitution = 0.2, width = 350, height = 15})
-                    addGround(-6502+terrainID*20, 055 + (terrainID-1)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
-                    addGround(-6503+terrainID*20, 525 + (terrainID-1)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
-                    addGround(-6504+terrainID*20, 480 + (terrainID-1)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 0.9, width = 105, height = 20})
-                end
-            },
-            outside = {
-                icon    = '15909c0372a.png',
-                axis    = {0, 0},
-            },
-        },
-        [3] = {
-            properties = {
-                price   = 10000,
-                png     = '16c2525f7c5.png',
-            },
-            inside = {
-                image   = '172566a4e82.png',
-                grounds = function(terrainID)
-                    addGround(-6500+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-                    addGround(-6501+terrainID*20, 118 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-                    addGround(-6502+terrainID*20, 188 + (terrainID-1)*1500 + 60, 1397 + 182, {type = 12, friction = 0.3, restitution = 0.2, width = 260})
-                    addGround(-6503+terrainID*20, 460 + (terrainID-1)*1500 + 60, 1397 + 170, {type = 12, friction = 0.3, restitution = 0.2, width = 180})       
-                end
-            },
-            outside = {
-                icon    = '15ef7b94b7f.png',
-                axis    = {0, -50},
-            },
-        },
-        [4] = {
-            properties = {
-                price = 13000,
-                png = '16c795c65e8.png',
-                limitedTime = os.time{day=1, year=2020, month=1},
-            },
-            inside = {
-                image   = '172566a23a6.png',
-            },
-            outside = {
-                icon    = '16c7957eefd.png',
-                axis    = {0, -31},
-            },
-        },
-        [5] = { -- Halloween2019
-            properties = {
-                price   = 20000,
-                png     = '16dd75fa5a1.png',
-                limitedTime = os.time{day=11, year=2019, month=11},
-            },
-            inside = {
-                image   = '1725669f804.png',
-                grounds = function(terrainID)
-                    addGround(-6500+terrainID*20, 201 + (terrainID-1)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 280, height = 20})
-                    addGround(-6501+terrainID*20, 463 + (terrainID-1)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 130, height = 20})
-                    addGround(-6502+terrainID*20, 290 + (terrainID-1)*1500 + 60, 1397 + 038, {type = 12, friction = 0.3, restitution = 0.2, width = 180, height = 20})
-                    addGround(-6503+terrainID*20, 373 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-                    addGround(-6504+terrainID*20, 505 + (terrainID-1)*1500 + 60, 1397 + 114, {type = 13, friction = 0.3, restitution = 1, width = 20})  
-                end
-            },
-            outside = {
-                icon    = '16dd74f0f44.png',
-                axis    = {0, -32},
-            },
-        },
-        [6] = { -- Christmas2019
-            properties = {
-                price = 25000,
-                png = '16ee526d8a3.png',
-                limitedTime = os.time{day=15, year=2020, month=1},
-            },
-            inside = {
-                image   = '1725669cbbb.png',
-                grounds = function(terrainID)
-                    addGround(-6500+terrainID*20, 230 + (terrainID-1)*1500 + 60, 1397 + 140, {type = 12, friction = 0.3, restitution = 0.2, width = 346, height = 20})
-                    addGround(-6501+terrainID*20, 315 + (terrainID-1)*1500 + 60, 1397 + -52, {type = 12, friction = 0.3, restitution = 0.2, width = 170, height = 20})
-                    addGround(-6502+terrainID*20, 458 + (terrainID-1)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 1, width = 107, height = 30})
-                    addGround(-6503+terrainID*20, 195 + (terrainID-1)*1500 + 60, 1397 + 127, {type = 12, friction = 0.3, restitution = 1, width = 43, height = 30})
-                    addGround(-6504+terrainID*20, 420 + (terrainID-1)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = 58})
-                    addGround(-6505+terrainID*20, 155 + (terrainID-1)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = -58})
-                end
-            },
-            outside = {
-                icon    = '16ee521a785.png',
-                axis    = {0, -49},
-            },
-        },
-        [7] = { -- Treehouse
-            properties = {
-                price = 50000,
-                png = '1714cb5c23b.png',
-            },
-            inside = {
-                image   = '172572b0a32.png',
-                grounds = function(terrainID)
-                    addGround(-6500+terrainID*20, 235 + (terrainID-1)*1500 + 60, 1397 + 001, {type = 12, friction = 0.3, restitution = 0.2, width = 460, height = 20})
-                    addGround(-6501+terrainID*20, 440 + (terrainID-1)*1500 + 60, 1397 + 151, {type = 12, friction = 0.3, restitution = 0.2, width = 220, height = 20})
-                    addGround(-6502+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 210, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
-                    addGround(-6503+terrainID*20, 445 + (terrainID-1)*1500 + 60, 1397 + 050, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 90})
-                    addGround(-6504+terrainID*20, 399 + (terrainID-1)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 300, height = 20})
-                    addGround(-6505+terrainID*20, 091 + (terrainID-1)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 145, height = 20})
-                    addGround(-6506+terrainID*20, 149 + (terrainID-1)*1500 + 60, 1397 + -110, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
-                end
-            },
-            outside = {
-                icon    = '1714cb20371.png',
-                axis    = {0, -30},
-            },
-        },
-        [8] = { -- Spongebob House
-            properties = {
-                price = 25000000,
-                png = '171b4158ba5.png',
-                limitedTime = os.time{day=25, year=2020, month=4},
-            },
-            inside = {
-                image   = '17256699f73.png',
-            },
-            outside = {
-                icon    = '171b40ef58c.png',
-                axis    = {0, -49},
-            },
-        },
-        [9] = { -- Restaurant
-            properties = {
-                price = 25,
-                png = '1727ba2f8dd.png',
-                limitedTime = os.time{day=25, year=2020, month=4},
-            },
-            inside = {
-                image   = '1727b98abb7.png',
-            },
-            outside = {
-                icon    = '1727ba0e8b2.png',
-                axis    = {0, -50},
-            },
-        },
-    },
-    __terrainsPositions = {
-        {0100, 1596+room.y-12},
-        {0265, 1596+room.y-12},
-        {0660, 1596+room.y-12},
-        {0825, 1596+room.y-12},
-        {2330, 1796+room.y-12},
-        {2330+165, 1796+room.y-12},
-        {2900, 1796+room.y-12},
-        {3065, 1796+room.y-12},
-        {3065+165, 1796+room.y-12},
-        {113000, 1796+room.y-12}, -- REMI
-        {113000, 1796+room.y-12}, -- OLIVER
-        {12100, 1796+room.y-12},
-        {12265, 1796+room.y-12},
-        {12265+165, 1796+room.y-12},
-        {12595, 1796+room.y-12},
-    },
-    __cars = {
-        [1] = {
-            type    = 'car',
-            price   = 2000,
-            maxVel  = 70,
-            image   = {'15b2a6174cc.png', '15b2a61ce19.png'},
-            x       = -61,
-            y       = -29,
-            name    = 'Classic XI',
-            icon    = '16ab8193788.png',
-        },
-        [2] = {
-            type    = 'car',
-            price   = 6000,
-            maxVel  = 90,
-            image   = {'15b4b26768c.png','15b4b270f39.png'},
-            x       = -60,
-            y       = -26,
-            name    = 'Mini Cooper',
-            icon    = '16ab8194efa.png',
-        },
-        [3] = {
-            type    = 'car',
-            price   = 10000,
-            maxVel  = 120,
-            image   = {'16beb25759c.png', '16beb272303.png'},
-            x       = -85,
-            y       = -30,
-            name    = 'BMW',
-            icon    = '16ab819666d.png',
-        },
-        [4] = {
-            type    = 'car',
-            price   = 15000,
-            maxVel  = 150,
-            image   = {'15b302ac269.png', '15b302a7102.png'},
-            x       = -91,
-            y       = -21,
-            name    = 'Ferrari 488',
-            icon    = '16ab831a98a.png',
-        },
-        [5] = {
-            type    = 'boat',
-            price   = 1000000,
-            maxVel  = 50,
-            image   = {'164d43b8055.png', '164d43ba0bd.png'},
-            x       = -50,
-            y       = -3,
-            name    = 'Boat',
-            icon    = '16ab82e10f6.png',
-        },
-        [6] = {
-            type    = 'boat',
-            price   = 30000,
-            maxVel  = 100,
-            image   = {'16bc49d0cb5.png', '16bc4a93359.png'},
-            x       = -250,
-            y       = -170,
-            name    = 'tugShip',
-            icon    = '16bc4afc305.png',
-        },
-        [7] = {
-            type    = 'car',
-            price   = 45000,
-            maxVel  = 210,
-            image   = {'16be76fd925.png', '16be76d2c15.png'},
-            x       = -90,
-            y       = -30,
-            name    = 'Lamborghini',
-            icon    = '16be7831a66.png',
-        },
-        [8] = {
-            type    = 'boat',
-            price  = 40000,
-            maxVel = 130,
-            image  = {'1716571c641.png', '171656f6573.png'},
-            x      = -100,
-            y      = -80,
-            name   = 'motorboat',
-            icon    = '1716566629c.png',
-        },
-        [9] = { -- Sleigh
-            type    = 'car',
-            price   = 20000,
-            maxVel  = 90,
-            image   = {'16f1a649b5e.png', '16f1a683125.png'},
-            x       = -60,
-            y       = -25,
-            name    = 'Sleigh',
-            icon    = '16f1fd0857f.png',
-            effects = function(player)
-                        if math.random() < 0.5 then 
-                            TFM.movePlayer(player, 0, 0, true, 0, -50, false)
-                        end
-                    end,
-        },
-        [11] = {
-            type    = 'boat',
-            price  = 500000,
-            maxVel = 200,
-            image  = {'1716aa827f8.png', '1716a699fd4.png'},
-            x      = -400,
-            y      = -50,
-            name   = 'yatch',
-            icon    = '171658e5be2.png',
-        },
-        [12] = { -- Bugatti
-            type    = 'car',
-            price   = 500000,
-            maxVel  = 400,
-            image   = {'16eccf772fe.png', '16eccf74fae.png'},
-            x       = -90,
-            y       = -27,
-            name    = 'Bugatti',
-            icon    = '16eccfc33a2.png',
-            effects = function(player)
-                        local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-                        player_removeImages(players[player].carLeds)
-                        players[player].carLeds[#players[player].carLeds+1] = addImage(lights[math.random(#lights)], '$'..player, -130, -20)
-                    end,
-        },
-    },
-    __farmOffers = {
-        [1] = {
-            item = {'lettuce', 5},
-            requires = {'oregano', 10},
-        },
-        [2] = {
-            item = {'lettuce', 5},
-            requires = {'tomato', 10},
-        },
-        [3] = {
-            item = {'egg', 2},
-            requires = {'wheat', 15},
-        },
-        [4] = {
-            item = {'honey', 2},
-            requires = {'bread', 3},
-        },
-        [5] = {
-            item = {'honey', 2},
-            requires = {'lemon', 5},
-        },
-        [6] = {
-            item = {'garlic', 3},
-            requires = {'wheat', 15},
-        },
-        [7] = {
-            item = {'potato', 5},
-            requires = {'tomato', 10},
-        },
-        [8] = {
-            item = {'pumpkin', 1},
-            requires = {'chocolateCake', 2},
-        },
-        [9] = {
-            item = {'egg', 1},
-            requires = {'lemon', 2},
-        },
-        [10] = {
-            item = {'wheatFlour', 5},
-            requires = {'salad', 2},
-        },
-        [11] = {
-            item = {'wheatFlour', 3},
-            requires = {'lemonade', 1},
-        },
-    },
-    __furnitures = {
-        [0] = { -- oven
-            image = '15bff698271.png',
-            png = '16c1f82b594.png',
-            price = 600,
-            area = {48, 50},
-            align = {x = -24, y = -32},
-            name = 'oven',
-            usable = function(player) 
-                eventTextAreaCallback(0, player, 'recipes', true)
-            end,
-        },
-        [1] = { -- kitchenCabinet 1
-            image = '16c2fa4c400.png',
-            png = '16c2fbb3b9f.png',
-            price = 200,
-            area = {53, 53},
-            align = {x = -30, y = -35},
-            name = 'kitchenCabinet',
-        },
-        [2] = { -- kitchenCabinet 2
-            image = '16c2fa904b5.png',
-            png = '17258765a23.png',
-            price = 200,
-            area = {53, 53},
-            align = {x = -30, y = -37},
-            name = 'kitchenCabinet',
-        },
-        [3] = { -- flower
-            image = '16c599ab61c.png',
-            png = '16c59a071aa.png',
-            price = 80,
-            area = {35, 60},
-            align = {x = -20, y = -43},
-            name = 'flowerVase',
-            credits = 'Iho#5679',
-        },
-        [4] = { -- wall 200x140
-            image = '16c3f03c618.png',
-            png = '16c3f168f7c.png',
-            price = 150,
-            area = {35, 60}, 
-            align = {x = -100, y = -123},
-            name = 'wall_200x140',
-            type = 'wall',
-            npcShop = 'jason',
-        },
-        [5] = { -- painting1
-            image = '16c53533293.png',
-            png = '16c535c3ca7.png',
-            price = 100,
-            area = {50, 50},
-            align = {x = -25, y = -80},
-            name = 'painting',
-            credits = 'Iho#5679',
-        },
-        [6] = { -- painting2
-            image = '16c5353534e.png',
-            png = '16c535c8e72.png',
-            price = 100,
-            area = {50, 50},
-            align = {x = -25, y = -80},
-            name = 'painting',
-            credits = 'Iho#5679',
-        },
-        [7] = { -- roof 200x20
-            image = '16c53db2ceb.png',
-            png = '16c53de3fd2.png',
-            price = 150,
-            area = {35, 60},
-            align = {x = -100, y = -140},
-            name = 'roof_200x20',
-            type = 'wall',
-            npcShop = 'jason',
-        },
-        [8] = { -- sofa
-            image = '16c59d2c222.png',
-            png = '16c59b1b50f.png',
-            price = 100,
-            area = {150, 50},
-            align = {x = -75, y = -40},
-            name = 'sofa',
-            credits = 'Iho#5679',
-            grounds = function(x, y, id)
-                addGround(id, 75+x, 47+5+y, {type = 14, height = 30, width = 140, friction = 0.3, restitution = 0.2})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 8)
-            end,
-        },
-        [9] = { -- chest
-            image = '16c72fcbf05.png',
-            png = '16c72fe0a7b.png',
-            price = 0,
-            area = {43, 40},
-            align = {x = -22, y = -24},
-            name = 'chest',
-            credits = 'Iho#5679',
-            type = 'especial',
-            qpPrice = 50,
-            usable = function(player)
-                modernUI.new(player, 520, 300, translate('furniture_chest', player))
-                :build()
-                :showPlayerItems(players[player].houseData.chests.storage[1], 1)
-            end,
-            npcShop = 'marcus',
-            stockLimit = 1,
-        },
-        [10] = { -- tv
-            image = '16c77ecde3d.png',
-            png = '16c7917a3bd.png',
-            price = 300,
-            area = {45, 57},
-            align = {x = -25, y = -90},
-            name = 'tv',
-            credits = 'Iho#5679',
-        },
-        [11] = { -- painting3
-            image = '16d79e8a2b6.png',
-            png = '16da866a844.png',
-            price = 100,
-            area = {50, 50},
-            align = {x = -25, y = -80},
-            name = 'painting',
-            type = 'especial',
-        },
-        [12] = { -- hay
-            image = '16d849a107d.png',
-            png = '16dadb89f3e.png',
-            price = 0,
-            area = {100, 50},
-            align = {x = -50, y = -30},
-            name = 'hay',
-            credits = 'Iho#5679',
-            grounds = function(x, y, id)
-                addGround(id, x+52, y+27, {type = 14, height = 40, width = 90, friction = 0.3, restitution = 0.2})
-            end,
-            qpPrice = 5,
-            type = 'especial',
-            foreground = true,
-            npcShop = 'marcus',
-        },
-        [13] = { -- vaso de flor
-            image = '16db239d1c0.png',
-            png = '16db2410054.png',
-            price = 0,
-            area = {33, 47},
-            align = {x = -15, y = -30},
-            name = 'flowerVase',
-            qpPrice = 3,
-            type = 'especial',
-            npcShop = 'marcus',
-        },
-        [14] = { -- shelf
-            image = '16db2425fb9.png',
-            png = '16db243f19d.png',
-            price = 0,
-            area = {150, 50},
-            align = {x = -50, y = -30},
-            name = 'shelf',
-            qpPrice = 5,
-            type = 'especial',
-            npcShop = 'marcus',
-        },
-        [15] = { -- cauldron
-            image = '16dd6ba8ca9.png',
-            png = '16de570ade0.png',
-            price = 100,
-            area = {100, 100},
-            align = {x = -55, y = -82},
-            name = 'cauldron',
-            credits = 'Iho#5679',
-            usable = function(player) 
-                eventTextAreaCallback(0, player, 'recipes', true)
-            end,
-            qpPrice = 5,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [16] = { -- cross
-            image = '16de58103e8.png',
-            png = '16de570cce8.png',
-            price = 100,
-            area = {70, 81},
-            align = {x = -35, y = -60},
-            name = 'cross',
-            credits = 'Iho#5679',
-            qpPrice = 2,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [17] = { -- rip
-            image = '16de576af32.png',
-            png = '16de574fae2.png',
-            price = 100,
-            area = {51, 55},
-            align = {x = -25, y = -30},
-            name = 'rip',
-            credits = 'Iho#5679',
-            qpPrice = 2,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [18] = { -- pumpkin
-            image = '16de5799419.png',
-            png = '16de57bfce3.png',
-            price = 100,
-            area = {38, 35},
-            align = {x = -17, y = -19},
-            name = 'pumpkin',
-            qpPrice = 2,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [19] = { -- spiderweb
-            image = '16de5881d9e.png',
-            png = '16de58c9497.png',
-            price = 100,
-            area = {100, 100},
-            align = {x = -45, y = -60},
-            name = 'spiderweb',
-            credits = 'Iho#5679',
-            qpPrice = 2,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [20] = { -- candle-Left
-            image = '16de590d1f5.png',
-            png = '16de593a900.png',
-            price = 100,
-            area = {70, 70},
-            align = {x = -40, y = -100},
-            name = 'candle',
-            qpPrice = 1,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [21] = { -- candle-Right
-            image = '16de59085fd.png',
-            png = '16de58e577d.png',
-            price = 100,
-            area = {70, 70},
-            align = {x = -35, y = -100},
-            name = 'candle',
-            qpPrice = 1,
-            type = 'limited-halloween2019',
-            limitedTime = os.time{day=11, year=2019, month=11},
-        },
-        [22] = { -- christmasSocks
-            image = '16eef7f6dcf.png',
-            png = '16ef9dd8e4d.png',
-            price = 100,
-            area = {25, 52},
-            align = {x = -10, y = -65},
-            name = 'christmasSocks',
-            qpPrice = 1,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [23] = { -- christmasWreath
-            image = '16ef9fa5b73.png',
-            png = '16efa0210d1.png',
-            price = 100,
-            area = {41, 40},
-            align = {x = -20, y = -70},
-            name = 'christmasWreath',
-            qpPrice = 2,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [24] = { -- christmasGift
-            image = '16eef7eb241.png',
-            png = '16f1a0c1c4e.png',
-            price = 100,
-            area = {37, 36},
-            align = {x = -20, y = -20},
-            name = 'christmasGift',
-            qpPrice = 2,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [25] = { -- christmasSnowman
-            image = '16eef7f1007.png',
-            png = '16f1a10d79f.png',
-            price = 100,
-            area = {75, 75},
-            align = {x = -40, y = -57},
-            name = 'christmasSnowman',
-            qpPrice = 2,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [26] = { -- christmasFireplace
-            image = '16f1a26cfb8.png',
-            png = '16f1a29f857.png',
-            price = 500,
-            area = {123, 53},
-            align = {x = -55, y = -40},
-            name = 'christmasFireplace',
-            credits = 'Fofinhoppp#0000',
-            qpPrice = 5,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [27] = { -- christmasCandyBowl
-            image = '16f23c7c3dd.png',
-            png = '16f23bed04e.png',
-            price = 500,
-            area = {42, 60},
-            align = {x = -20, y = -41},
-            name = 'christmasCandyBowl',
-            credits = 'Iho#5679',
-            qpPrice = 2,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [28] = { -- christmasCarnivorousPlant
-            image = '16f23c49466.png',
-            png = '16f23bf897f.png',
-            price = 500,
-            area = {50, 60},
-            align = {x = -20, y = -40},
-            name = 'christmasCarnivorousPlant',
-            credits = 'Iho#5679',
-            qpPrice = 2,
-            type = 'limited-christmas2019',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [29] = { -- apiary
-            image = '1704e32c2df.png',
-            png = '1704e327d8a.png',
-            price = 500,
-            area = {56, 48},
-            align = {x = -20, y = -31},
-            name = 'apiary',
-            credits = 'Iho#5679',
-            qpPrice = 200000,
-            type = 'locked-quest05',
-            npcShop = '-',
-        },
-        [30] = { -- hayWagon
-            image = '17257bee13d.png',
-            png = '17257c6d698.png',
-            price = 0,
-            area = {89, 60},
-            align = {x = -40, y = -45},
-            name = 'hayWagon',
-            qpPrice = 10,
-            npcShop = 'marcus',
-        },
-        [31] = { -- scarecrow
-            image = '17257b96953.png',
-            png = '17257c6f891.png',
-            price = 0,
-            area = {74, 100},
-            align = {x = -40, y = -80},
-            name = 'scarecrow',
-            qpPrice = 10,
-            npcShop = 'marcus',
-        },
-        [32] = { -- derp
-            image = '17257cb03da.png',
-            png = '17257ceff0a.png',
-            price = 150,
-            area = {39, 30},
-            align = {x = -20, y = -14},
-            name = 'derp',
-        },
-        [33] = { -- testTubes
-            image = '17257e3ad59.png',
-            png = '17257e7ef02.png',
-            price = 150,
-            area = {70, 40},
-            align = {x = -35, y = -20},
-            name = 'testTubes',
-        },
-        [34] = { -- bookcase
-            image = '172584f6afe.png',
-            png = '172586d18fd.png',
-            price = 300,
-            area = {100, 100},
-            align = {x = -50, y = -84},
-            name = 'bookcase',
-        },
-        [35] = { -- bed1
-            image = '17258599c04.png',
-            png = '172586a69c2.png',
-            price = 500,
-            area = {109, 80},
-            align = {x = -50, y = -65},
-            name = 'bed',
-            grounds = function(x, y, id)
-                addGround(id, 55+x, 64+y, {type = 14, height = 30, width = 109, friction = 0.3, restitution = 0.4})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 6)
-            end,
-        },
-        [36] = { -- bed2
-            image = '172585ca7c0.png',
-            png = '172586a99c7.png',
-            price = 500,
-            area = {113, 80},
-            align = {x = -58, y = -64},
-            name = 'bed',
-            grounds = function(x, y, id)
-                addGround(id, 57+x, 68+y, {type = 14, height = 30, width = 109, friction = 0.3, restitution = 0.4})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 6)
-            end,
-        },
-        [37] = { -- bed3
-            image = '172585e3f6b.png',
-            png = '172586abe28.png',
-            price = 500,
-            area = {122, 75},
-            align = {x = -60, y = -57},
-            name = 'bed',
-            grounds = function(x, y, id)
-                addGround(id, 60+x, 61+y, {type = 14, height = 30, width = 115, friction = 0.3, restitution = 0.4})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 6)
-            end,
-        },
-        [38] = { -- bed4
-            image = '17258605b47.png',
-            png = '172586adf72.png',
-            price = 500,
-            area = {122, 90},
-            align = {x = -60, y = -70},
-            name = 'bed',
-            grounds = function(x, y, id)
-                addGround(id, 60+x, 76+y, {type = 14, height = 30, width = 109, friction = 0.3, restitution = 0.4})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 6)
-            end,
-        },
-        [39] = { -- oven
-            image = '1727c2f76d0.png',
-            png = '1727c532471.png',
-            qpPrice = 30,
-            area = {47, 50},
-            align = {x = -24, y = -32},
-            name = 'oven',
-            usable = function(player) 
-                eventTextAreaCallback(0, player, 'recipes', true)
-            end,
-            npcShop = 'lucas',
-        },
-        [40] = { -- shelf
-            image = '1727c37313a.png',
-            png = '1727c51929b.png',
-            qpPrice = 5,
-            area = {78, 40},
-            align = {x = -40, y = -80},
-            name = 'shelf',
-            npcShop = 'lucas',
-        },
-        [41] = { -- shelf
-            image = '1727c3b69e2.png',
-            png = '1727c51ad48.png',
-            qpPrice = 5,
-            area = {83, 40},
-            align = {x = -41, y = -80},
-            name = 'shelf',
-            npcShop = 'lucas',
-        },
-        [42] = { -- kitchenCabinet
-            image = '1727c3f228a.png',
-            png = '1727c55b85f.png',
-            qpPrice = 7,
-            area = {38, 45},
-            align = {x = -20, y = -30},
-            name = 'kitchenCabinet',
-            npcShop = 'lucas',
-        },
-        [43] = { -- kitchenCabinet
-            image = '1727c41f8b8.png',
-            png = '1727c557c96.png',
-            qpPrice = 7,
-            area = {38, 45},
-            align = {x = -20, y = -30},
-            name = 'kitchenCabinet',
-            npcShop = 'lucas',
-        },
-        [44] = { -- diningTable
-            image = '1727c4dcf4d.png',
-            png = '1727c56f612.png',
-            qpPrice = 20,
-            area = {100, 52},
-            align = {x = -50, y = -36},
-            name = 'diningTable',
-            npcShop = 'lucas',
-            grounds = function(x, y, id)
-                addGround(id, 48+x, 39+y, {type = 14, height = 20, width = 95, friction = 0.3, restitution = 0.2})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 8)
-            end,
-        },
-        [45] = { -- orders list
-            image = '17280c6fc9c.png',
-            png = '17280c6fc9c.png',
-            qpPrice = 100,
-            area = {100, 90},
-            align = {x = -50, y = -140},
-            name = 'ordersList',
-            limitedTime = os.time{day=15, year=2020, month=1},
-        },
-        [46] = { -- fence
-            image = '17280f28298.png',
-            png = '17280f7c480.png',
-            qpPrice = 5,
-            area = {100, 60},
-            align = {x = -50, y = -43},
-            name = 'fence',
-            npcShop = 'marcus',
-        },
-        [47] = { -- white fence
-            image = '17281365ac1.png',
-            png = '172814c4d8b.png',
-            qpPrice = 7,
-            area = {100, 60},
-            align = {x = -50, y = -43},
-            name = 'fence',
-            npcShop = 'marcus',
-        },
-        [48] = { -- nightstand
-            image = '172bdbcce08.png',
-            png = '172bdeb85a5.png',
-            price = 300,
-            area = {113, 100},
-            align = {x = -50, y = -84},
-            name = 'nightstand',
-        },
-        [49] = { -- nightstand
-            image = '172bdc069fd.png',
-            png = '172bdeba88a.png',
-            price = 170,
-            area = {61, 100},
-            align = {x = -30, y = -84},
-            name = 'nightstand',
-        },
-        [50] = { -- armchair
-            image = '172bdc787db.png',
-            png = '172bdea7a74.png',
-            price = 100,
-            area = {86, 62},
-            align = {x = -43, y = -46},
-            name = 'armchair',
-            grounds = function(x, y, id)
-                addGround(id, 43+x, 53+y, {type = 14, height = 18, width = 82, friction = 0.3, restitution = 0.2})
-            end,
-            usable = function(player) 
-                TFM.playEmote(player, 8)
-            end,
-        },
-        [51] = { -- bush
-            image = '172bde4589f.png',
-            png = '172bdecc84c.png',
-            qpPrice = 2,
-            area = {85, 70},
-            align = {x = -45, y = -53},
-            name = 'bush',
-            npcShop = 'marcus',
-        },
     },
     levelIcons = {
         star = {},
@@ -1178,12 +133,19 @@ local mainAssets = { -- Assets that dont change while the script runs
         creator = {'Fofinhoppp#0000'},
         help = {'Bolodefchoco#0000', 'Laagaadoo#0000', 'Lucasrslv#0000', 'Tocutoeltuco#0000'},
     },
-    roles = {
-        admin = {'Fofinhoppp#0000', 'Lucasrslv#0000'},
-        mod = {},
-        helper = {'Weth#9837'},
-    },
 }
+
+local syncData = {
+    connected = false,
+    quests = {
+        newQuestDevelopmentStage = 0,
+    },
+    updating = {
+        isUpdating = false,
+        updateMessage = '',
+    }
+}
+
 local npcsStores = {
     items = {},
     shops = {
@@ -1341,70 +303,7 @@ local houseTerrains = {
         end,
     },
 }
-local jobs = {
-    fisher = {
-        color   = '32CD32',
-        coins   = '15 - $10.000</font>',
-        working = {},
-        players = 0,
-        icon = '171d2134def.png', 
-    }, 
-    police = {
-        color   = '4169E1',
-        coins   = 120,
-        working = {},
-        players = 10,
-        icon = '171d1f8d911.png',
-    },
-    thief = {
-        color   = 'CB546B',
-        coins   = 250,
-        bankRobCoins = 1100,
-        working = {},
-        players = 0,
-        icon = '171d20cca72.png',
-    },
-    miner = {
-        color   = 'B8860B',
-        coins   = 0,
-        working = {},
-        players = 0,
-        icon = '171d21cd12d.png',
-    },
-    farmer = {
-        color   = '9ACD32',
-        coins   = '10 - $10.000</font>',
-        working = {},
-        players = 0,
-        icon = '171d1e559be.png',
-        specialAssets = function(player)
-            for i = 1, 4 do
-                if players['Oliver'].houseTerrainAdd[i] >= #houseTerrainsAdd.plants[players['Oliver'].houseTerrainPlants[i]].stages then
-                    local y = 1500 + 90
-                    ui.addTextArea('-730'..(tonumber(i)..tonumber(players['Oliver'].houseData.houseid)*10), '<a href="event:harvest_'..tonumber(i)..'"><p align="center"><font size="15">'..translate('harvest', player)..'</font></p></a>', player, ((tonumber(11)-1)%tonumber(11))*1500+738-(175/2)-2 + (tonumber(i)-1)*175, y+150, 175, 150, 0xff0000, 0xff0000, 0)
-                end
-            end
-        end,
-    },
-    chef = {
-        color   = '00CED1',
-        coins   = '10 - $10.000</font>',
-        working = {},
-        players = 0,
-        icon = '171d20548bd.png',
-    },
-    ghostbuster = {
-        color   = 'FFE4B5',
-        coins   = 300,
-        players = 0,
-    },
-    ghost = {
-        color   = 'A020F0',
-        coins   = 100,
-        players = 0,
-    },
-}
-local badges = {
+local badges        = {
     [0] = { -- Halloween2019
         png = '16de63ec86f.png',
     },
@@ -1439,7 +338,7 @@ local badges = {
         png = '171db99a9e3.png',
     },
 }
-local places = {
+local places        = {
     market = {
         opened  = '08:00 21:00',
         tp      = {3600, 250},
@@ -1624,104 +523,7 @@ local places = {
         end,
     },
 }
-local Mine = {
-    position = {4536, 8643},
-    area = {10, 60},
-    availableRocks = {},
-    blocks = {},
-    blockLength = 60,
-    ores = {
-        yellow = {
-            img = '1722e1e84dc.png',
-            rarity = 12,
-        },
-        blue = {
-            img = '1722e1eccc0.png',
-            rarity = 7,
-        },
-        purple = {
-            img = '1722e1e56b7.png',
-            rarity = 4,
-        },
-        green = {
-            img = '1722e1eab1c.png',
-            rarity = 3,
-        },
-        red = {
-            img = '1722e1e3389.png',
-            rarity = 2,
-        },
-    },
-    stones = {
-        {
-            name = 'sand',
-            health = 2,
-            ground = 7,
-            image = '171fa7a17c1.png',
-        },
-        {
-            name = 'dirt',
-            health = 5,
-            ground = 5,
-            image = '171fa80941f.jpg',
-        },
-        {
-            name = 'coal',
-            health = 20,
-            ground = 4,
-            image = '1721aa68210.png',
-            ores = {'yellow', 'blue'},
-        },
-        {
-            name = 'stone',
-            health = 50,
-            ground = 10,
-            image = '171fa7cdbc2.png',
-            ores = {'yellow', 'blue', 'purple'},
-        },
-        {
-            name = 'lava',
-            health = 200,
-            ground = 3,
-            image = '171fa832ec8.png',
-            ores = {'yellow', 'blue', 'purple', 'green'},
-        },
-        {
-            name = 'diamont',
-            health = 500,
-            ground = 1,
-            image = '171fa8b16dd.jpg',
-            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
-        },
-        {
-            name = 'tiplonium',
-            health = 1000,
-            ground = 11,
-            image = '1722e396406.png',
-            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
-        },
-        {
-            name = 'chernobyl',
-            health = 2000,
-            ground = 11,
-            image = '1722e4b0bfb.png',
-            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
-        },
-        {
-            name = 'chernobyl2',
-            health = 5000,
-            ground = 15,
-            image = '1722e5fe753.png',
-            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
-        },
-    },
-}
-local grid = {}
-local grid_width = Mine.area[1]
-local grid_height = 1
-local groundIDS = {}
-local maxFurnitureStorage = 50
-local maxFurnitureDepot = 60
+local jobs          = {}
 
 local version = {3, 0, 1}
 local versionLogs = {
@@ -8579,6 +7381,884 @@ do
 	end, 1000, false)
 end
 
+--[[ cars/IDS.lua ]]--
+mainAssets.__cars = {
+    [1] = {
+        type    = 'car',
+        price   = 2000,
+        maxVel  = 70,
+        image   = {'15b2a6174cc.png', '15b2a61ce19.png'},
+        x       = -61,
+        y       = -29,
+        name    = 'Classic XI',
+        icon    = '16ab8193788.png',
+    },
+    [2] = {
+        type    = 'car',
+        price   = 6000,
+        maxVel  = 90,
+        image   = {'15b4b26768c.png','15b4b270f39.png'},
+        x       = -60,
+        y       = -26,
+        name    = 'Mini Cooper',
+        icon    = '16ab8194efa.png',
+    },
+    [3] = {
+        type    = 'car',
+        price   = 10000,
+        maxVel  = 120,
+        image   = {'16beb25759c.png', '16beb272303.png'},
+        x       = -85,
+        y       = -30,
+        name    = 'BMW',
+        icon    = '16ab819666d.png',
+    },
+    [4] = {
+        type    = 'car',
+        price   = 15000,
+        maxVel  = 150,
+        image   = {'15b302ac269.png', '15b302a7102.png'},
+        x       = -91,
+        y       = -21,
+        name    = 'Ferrari 488',
+        icon    = '16ab831a98a.png',
+    },
+    [5] = {
+        type    = 'boat',
+        price   = 1000000,
+        maxVel  = 50,
+        image   = {'164d43b8055.png', '164d43ba0bd.png'},
+        x       = -50,
+        y       = -3,
+        name    = 'Boat',
+        icon    = '16ab82e10f6.png',
+    },
+    [6] = {
+        type    = 'boat',
+        price   = 30000,
+        maxVel  = 100,
+        image   = {'16bc49d0cb5.png', '16bc4a93359.png'},
+        x       = -250,
+        y       = -170,
+        name    = 'tugShip',
+        icon    = '16bc4afc305.png',
+    },
+    [7] = {
+        type    = 'car',
+        price   = 45000,
+        maxVel  = 210,
+        image   = {'16be76fd925.png', '16be76d2c15.png'},
+        x       = -90,
+        y       = -30,
+        name    = 'Lamborghini',
+        icon    = '16be7831a66.png',
+    },
+    [8] = {
+        type    = 'boat',
+        price  = 40000,
+        maxVel = 130,
+        image  = {'1716571c641.png', '171656f6573.png'},
+        x      = -100,
+        y      = -80,
+        name   = 'motorboat',
+        icon    = '1716566629c.png',
+    },
+    [9] = { -- Sleigh
+        type    = 'car',
+        price   = 20000,
+        maxVel  = 90,
+        image   = {'16f1a649b5e.png', '16f1a683125.png'},
+        x       = -60,
+        y       = -25,
+        name    = 'Sleigh',
+        icon    = '16f1fd0857f.png',
+        effects = function(player)
+                    if math.random() < 0.5 then 
+                        TFM.movePlayer(player, 0, 0, true, 0, -50, false)
+                    end
+                end,
+    },
+    [11] = {
+        type    = 'boat',
+        price  = 500000,
+        maxVel = 200,
+        image  = {'1716aa827f8.png', '1716a699fd4.png'},
+        x      = -400,
+        y      = -50,
+        name   = 'yatch',
+        icon    = '171658e5be2.png',
+    },
+    [12] = { -- Bugatti
+        type    = 'car',
+        price   = 500000,
+        maxVel  = 400,
+        image   = {'16eccf772fe.png', '16eccf74fae.png'},
+        x       = -90,
+        y       = -27,
+        name    = 'Bugatti',
+        icon    = '16eccfc33a2.png',
+        effects = function(player)
+                    local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
+                    player_removeImages(players[player].carLeds)
+                    players[player].carLeds[#players[player].carLeds+1] = addImage(lights[math.random(#lights)], '$'..player, -130, -20)
+                end,
+    },
+}
+
+--[[ furnitures/IDS.lua ]]--
+mainAssets.__furnitures = {
+    [0] = { -- oven
+        image = '15bff698271.png',
+        png = '16c1f82b594.png',
+        price = 600,
+        area = {48, 50},
+        align = {x = -24, y = -32},
+        name = 'oven',
+        usable = function(player) 
+            eventTextAreaCallback(0, player, 'recipes', true)
+        end,
+    },
+    [1] = { -- kitchenCabinet 1
+        image = '16c2fa4c400.png',
+        png = '16c2fbb3b9f.png',
+        price = 200,
+        area = {53, 53},
+        align = {x = -30, y = -35},
+        name = 'kitchenCabinet',
+    },
+    [2] = { -- kitchenCabinet 2
+        image = '16c2fa904b5.png',
+        png = '17258765a23.png',
+        price = 200,
+        area = {53, 53},
+        align = {x = -30, y = -37},
+        name = 'kitchenCabinet',
+    },
+    [3] = { -- flower
+        image = '16c599ab61c.png',
+        png = '16c59a071aa.png',
+        price = 80,
+        area = {35, 60},
+        align = {x = -20, y = -43},
+        name = 'flowerVase',
+        credits = 'Iho#5679',
+    },
+    [4] = { -- wall 200x140
+        image = '16c3f03c618.png',
+        png = '16c3f168f7c.png',
+        price = 150,
+        area = {35, 60}, 
+        align = {x = -100, y = -123},
+        name = 'wall_200x140',
+        type = 'wall',
+        npcShop = 'jason',
+    },
+    [5] = { -- painting1
+        image = '16c53533293.png',
+        png = '16c535c3ca7.png',
+        price = 100,
+        area = {50, 50},
+        align = {x = -25, y = -80},
+        name = 'painting',
+        credits = 'Iho#5679',
+    },
+    [6] = { -- painting2
+        image = '16c5353534e.png',
+        png = '16c535c8e72.png',
+        price = 100,
+        area = {50, 50},
+        align = {x = -25, y = -80},
+        name = 'painting',
+        credits = 'Iho#5679',
+    },
+    [7] = { -- roof 200x20
+        image = '16c53db2ceb.png',
+        png = '16c53de3fd2.png',
+        price = 150,
+        area = {35, 60},
+        align = {x = -100, y = -140},
+        name = 'roof_200x20',
+        type = 'wall',
+        npcShop = 'jason',
+    },
+    [8] = { -- sofa
+        image = '16c59d2c222.png',
+        png = '16c59b1b50f.png',
+        price = 100,
+        area = {150, 50},
+        align = {x = -75, y = -40},
+        name = 'sofa',
+        credits = 'Iho#5679',
+        grounds = function(x, y, id)
+            addGround(id, 75+x, 47+5+y, {type = 14, height = 30, width = 140, friction = 0.3, restitution = 0.2})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 8)
+        end,
+    },
+    [9] = { -- chest
+        image = '16c72fcbf05.png',
+        png = '16c72fe0a7b.png',
+        price = 0,
+        area = {43, 40},
+        align = {x = -22, y = -24},
+        name = 'chest',
+        credits = 'Iho#5679',
+        type = 'especial',
+        qpPrice = 50,
+        usable = function(player)
+            modernUI.new(player, 520, 300, translate('furniture_chest', player))
+            :build()
+            :showPlayerItems(players[player].houseData.chests.storage[1], 1)
+        end,
+        npcShop = 'marcus',
+        stockLimit = 1,
+    },
+    [10] = { -- tv
+        image = '16c77ecde3d.png',
+        png = '16c7917a3bd.png',
+        price = 300,
+        area = {45, 57},
+        align = {x = -25, y = -90},
+        name = 'tv',
+        credits = 'Iho#5679',
+    },
+    [11] = { -- painting3
+        image = '16d79e8a2b6.png',
+        png = '16da866a844.png',
+        price = 100,
+        area = {50, 50},
+        align = {x = -25, y = -80},
+        name = 'painting',
+        type = 'especial',
+    },
+    [12] = { -- hay
+        image = '16d849a107d.png',
+        png = '16dadb89f3e.png',
+        price = 0,
+        area = {100, 50},
+        align = {x = -50, y = -30},
+        name = 'hay',
+        credits = 'Iho#5679',
+        grounds = function(x, y, id)
+            addGround(id, x+52, y+27, {type = 14, height = 40, width = 90, friction = 0.3, restitution = 0.2})
+        end,
+        qpPrice = 5,
+        type = 'especial',
+        foreground = true,
+        npcShop = 'marcus',
+    },
+    [13] = { -- vaso de flor
+        image = '16db239d1c0.png',
+        png = '16db2410054.png',
+        price = 0,
+        area = {33, 47},
+        align = {x = -15, y = -30},
+        name = 'flowerVase',
+        qpPrice = 3,
+        type = 'especial',
+        npcShop = 'marcus',
+    },
+    [14] = { -- shelf
+        image = '16db2425fb9.png',
+        png = '16db243f19d.png',
+        price = 0,
+        area = {150, 50},
+        align = {x = -50, y = -30},
+        name = 'shelf',
+        qpPrice = 5,
+        type = 'especial',
+        npcShop = 'marcus',
+    },
+    [15] = { -- cauldron
+        image = '16dd6ba8ca9.png',
+        png = '16de570ade0.png',
+        price = 100,
+        area = {100, 100},
+        align = {x = -55, y = -82},
+        name = 'cauldron',
+        credits = 'Iho#5679',
+        usable = function(player) 
+            eventTextAreaCallback(0, player, 'recipes', true)
+        end,
+        qpPrice = 5,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [16] = { -- cross
+        image = '16de58103e8.png',
+        png = '16de570cce8.png',
+        price = 100,
+        area = {70, 81},
+        align = {x = -35, y = -60},
+        name = 'cross',
+        credits = 'Iho#5679',
+        qpPrice = 2,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [17] = { -- rip
+        image = '16de576af32.png',
+        png = '16de574fae2.png',
+        price = 100,
+        area = {51, 55},
+        align = {x = -25, y = -30},
+        name = 'rip',
+        credits = 'Iho#5679',
+        qpPrice = 2,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [18] = { -- pumpkin
+        image = '16de5799419.png',
+        png = '16de57bfce3.png',
+        price = 100,
+        area = {38, 35},
+        align = {x = -17, y = -19},
+        name = 'pumpkin',
+        qpPrice = 2,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [19] = { -- spiderweb
+        image = '16de5881d9e.png',
+        png = '16de58c9497.png',
+        price = 100,
+        area = {100, 100},
+        align = {x = -45, y = -60},
+        name = 'spiderweb',
+        credits = 'Iho#5679',
+        qpPrice = 2,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [20] = { -- candle-Left
+        image = '16de590d1f5.png',
+        png = '16de593a900.png',
+        price = 100,
+        area = {70, 70},
+        align = {x = -40, y = -100},
+        name = 'candle',
+        qpPrice = 1,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [21] = { -- candle-Right
+        image = '16de59085fd.png',
+        png = '16de58e577d.png',
+        price = 100,
+        area = {70, 70},
+        align = {x = -35, y = -100},
+        name = 'candle',
+        qpPrice = 1,
+        type = 'limited-halloween2019',
+        limitedTime = os.time{day=11, year=2019, month=11},
+    },
+    [22] = { -- christmasSocks
+        image = '16eef7f6dcf.png',
+        png = '16ef9dd8e4d.png',
+        price = 100,
+        area = {25, 52},
+        align = {x = -10, y = -65},
+        name = 'christmasSocks',
+        qpPrice = 1,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [23] = { -- christmasWreath
+        image = '16ef9fa5b73.png',
+        png = '16efa0210d1.png',
+        price = 100,
+        area = {41, 40},
+        align = {x = -20, y = -70},
+        name = 'christmasWreath',
+        qpPrice = 2,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [24] = { -- christmasGift
+        image = '16eef7eb241.png',
+        png = '16f1a0c1c4e.png',
+        price = 100,
+        area = {37, 36},
+        align = {x = -20, y = -20},
+        name = 'christmasGift',
+        qpPrice = 2,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [25] = { -- christmasSnowman
+        image = '16eef7f1007.png',
+        png = '16f1a10d79f.png',
+        price = 100,
+        area = {75, 75},
+        align = {x = -40, y = -57},
+        name = 'christmasSnowman',
+        qpPrice = 2,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [26] = { -- christmasFireplace
+        image = '16f1a26cfb8.png',
+        png = '16f1a29f857.png',
+        price = 500,
+        area = {123, 53},
+        align = {x = -55, y = -40},
+        name = 'christmasFireplace',
+        credits = 'Fofinhoppp#0000',
+        qpPrice = 5,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [27] = { -- christmasCandyBowl
+        image = '16f23c7c3dd.png',
+        png = '16f23bed04e.png',
+        price = 500,
+        area = {42, 60},
+        align = {x = -20, y = -41},
+        name = 'christmasCandyBowl',
+        credits = 'Iho#5679',
+        qpPrice = 2,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [28] = { -- christmasCarnivorousPlant
+        image = '16f23c49466.png',
+        png = '16f23bf897f.png',
+        price = 500,
+        area = {50, 60},
+        align = {x = -20, y = -40},
+        name = 'christmasCarnivorousPlant',
+        credits = 'Iho#5679',
+        qpPrice = 2,
+        type = 'limited-christmas2019',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [29] = { -- apiary
+        image = '1704e32c2df.png',
+        png = '1704e327d8a.png',
+        price = 500,
+        area = {56, 48},
+        align = {x = -20, y = -31},
+        name = 'apiary',
+        credits = 'Iho#5679',
+        qpPrice = 200000,
+        type = 'locked-quest05',
+        npcShop = '-',
+    },
+    [30] = { -- hayWagon
+        image = '17257bee13d.png',
+        png = '17257c6d698.png',
+        price = 0,
+        area = {89, 60},
+        align = {x = -40, y = -45},
+        name = 'hayWagon',
+        qpPrice = 10,
+        npcShop = 'marcus',
+    },
+    [31] = { -- scarecrow
+        image = '17257b96953.png',
+        png = '17257c6f891.png',
+        price = 0,
+        area = {74, 100},
+        align = {x = -40, y = -80},
+        name = 'scarecrow',
+        qpPrice = 10,
+        npcShop = 'marcus',
+    },
+    [32] = { -- derp
+        image = '17257cb03da.png',
+        png = '17257ceff0a.png',
+        price = 150,
+        area = {39, 30},
+        align = {x = -20, y = -14},
+        name = 'derp',
+    },
+    [33] = { -- testTubes
+        image = '17257e3ad59.png',
+        png = '17257e7ef02.png',
+        price = 150,
+        area = {70, 40},
+        align = {x = -35, y = -20},
+        name = 'testTubes',
+    },
+    [34] = { -- bookcase
+        image = '172584f6afe.png',
+        png = '172586d18fd.png',
+        price = 300,
+        area = {100, 100},
+        align = {x = -50, y = -84},
+        name = 'bookcase',
+    },
+    [35] = { -- bed1
+        image = '17258599c04.png',
+        png = '172586a69c2.png',
+        price = 500,
+        area = {109, 80},
+        align = {x = -50, y = -65},
+        name = 'bed',
+        grounds = function(x, y, id)
+            addGround(id, 55+x, 64+y, {type = 14, height = 30, width = 109, friction = 0.3, restitution = 0.4})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 6)
+        end,
+    },
+    [36] = { -- bed2
+        image = '172585ca7c0.png',
+        png = '172586a99c7.png',
+        price = 500,
+        area = {113, 80},
+        align = {x = -58, y = -64},
+        name = 'bed',
+        grounds = function(x, y, id)
+            addGround(id, 57+x, 68+y, {type = 14, height = 30, width = 109, friction = 0.3, restitution = 0.4})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 6)
+        end,
+    },
+    [37] = { -- bed3
+        image = '172585e3f6b.png',
+        png = '172586abe28.png',
+        price = 500,
+        area = {122, 75},
+        align = {x = -60, y = -57},
+        name = 'bed',
+        grounds = function(x, y, id)
+            addGround(id, 60+x, 61+y, {type = 14, height = 30, width = 115, friction = 0.3, restitution = 0.4})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 6)
+        end,
+    },
+    [38] = { -- bed4
+        image = '17258605b47.png',
+        png = '172586adf72.png',
+        price = 500,
+        area = {122, 90},
+        align = {x = -60, y = -70},
+        name = 'bed',
+        grounds = function(x, y, id)
+            addGround(id, 60+x, 76+y, {type = 14, height = 30, width = 109, friction = 0.3, restitution = 0.4})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 6)
+        end,
+    },
+    [39] = { -- oven
+        image = '1727c2f76d0.png',
+        png = '1727c532471.png',
+        qpPrice = 30,
+        area = {47, 50},
+        align = {x = -24, y = -32},
+        name = 'oven',
+        usable = function(player) 
+            eventTextAreaCallback(0, player, 'recipes', true)
+        end,
+        npcShop = 'lucas',
+    },
+    [40] = { -- shelf
+        image = '1727c37313a.png',
+        png = '1727c51929b.png',
+        qpPrice = 5,
+        area = {78, 40},
+        align = {x = -40, y = -80},
+        name = 'shelf',
+        npcShop = 'lucas',
+    },
+    [41] = { -- shelf
+        image = '1727c3b69e2.png',
+        png = '1727c51ad48.png',
+        qpPrice = 5,
+        area = {83, 40},
+        align = {x = -41, y = -80},
+        name = 'shelf',
+        npcShop = 'lucas',
+    },
+    [42] = { -- kitchenCabinet
+        image = '1727c3f228a.png',
+        png = '1727c55b85f.png',
+        qpPrice = 7,
+        area = {38, 45},
+        align = {x = -20, y = -30},
+        name = 'kitchenCabinet',
+        npcShop = 'lucas',
+    },
+    [43] = { -- kitchenCabinet
+        image = '1727c41f8b8.png',
+        png = '1727c557c96.png',
+        qpPrice = 7,
+        area = {38, 45},
+        align = {x = -20, y = -30},
+        name = 'kitchenCabinet',
+        npcShop = 'lucas',
+    },
+    [44] = { -- diningTable
+        image = '1727c4dcf4d.png',
+        png = '1727c56f612.png',
+        qpPrice = 20,
+        area = {100, 52},
+        align = {x = -50, y = -36},
+        name = 'diningTable',
+        npcShop = 'lucas',
+        grounds = function(x, y, id)
+            addGround(id, 48+x, 39+y, {type = 14, height = 20, width = 95, friction = 0.3, restitution = 0.2})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 8)
+        end,
+    },
+    [45] = { -- orders list
+        image = '17280c6fc9c.png',
+        png = '17280c6fc9c.png',
+        qpPrice = 100,
+        area = {100, 90},
+        align = {x = -50, y = -140},
+        name = 'ordersList',
+        limitedTime = os.time{day=15, year=2020, month=1},
+    },
+    [46] = { -- fence
+        image = '17280f28298.png',
+        png = '17280f7c480.png',
+        qpPrice = 5,
+        area = {100, 60},
+        align = {x = -50, y = -43},
+        name = 'fence',
+        npcShop = 'marcus',
+    },
+    [47] = { -- white fence
+        image = '17281365ac1.png',
+        png = '172814c4d8b.png',
+        qpPrice = 7,
+        area = {100, 60},
+        align = {x = -50, y = -43},
+        name = 'fence',
+        npcShop = 'marcus',
+    },
+    [48] = { -- nightstand
+        image = '172bdbcce08.png',
+        png = '172bdeb85a5.png',
+        price = 300,
+        area = {113, 100},
+        align = {x = -50, y = -84},
+        name = 'nightstand',
+    },
+    [49] = { -- nightstand
+        image = '172bdc069fd.png',
+        png = '172bdeba88a.png',
+        price = 170,
+        area = {61, 100},
+        align = {x = -30, y = -84},
+        name = 'nightstand',
+    },
+    [50] = { -- armchair
+        image = '172bdc787db.png',
+        png = '172bdea7a74.png',
+        price = 100,
+        area = {86, 62},
+        align = {x = -43, y = -46},
+        name = 'armchair',
+        grounds = function(x, y, id)
+            addGround(id, 43+x, 53+y, {type = 14, height = 18, width = 82, friction = 0.3, restitution = 0.2})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 8)
+        end,
+    },
+    [51] = { -- bush
+        image = '172bde4589f.png',
+        png = '172bdecc84c.png',
+        qpPrice = 2,
+        area = {85, 70},
+        align = {x = -45, y = -53},
+        name = 'bush',
+        npcShop = 'marcus',
+    },
+}
+
+--[[ houseSystem/_houses.lua ]]--
+mainAssets.__houses = {
+    [1] = {
+        properties = {
+            price   = 7000,
+            png     = '1729fd5cfd0.png',
+        },
+        inside = {
+            image   = '172566957cc.png',
+        },
+        outside = {
+            icon    = '1729fd367cb.png',
+            axis    = {8, 4},
+        },
+    },
+    [2] = {
+        properties = {
+            price   = 13000,
+            png     = '16c2524d88c.png',
+        },
+        inside = {
+            image   = '172566a7a66.png',
+            grounds = function(terrainID)
+                addGround(-6500+terrainID*20, 290 + (terrainID-1)*1500 + 60, 1397 + 65, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30})
+                addGround(-6501+terrainID*20, 225 + (terrainID-1)*1500 + 60, 1397 + 200, {type = 12, friction = 0.3, restitution = 0.2, width = 350, height = 15})
+                addGround(-6502+terrainID*20, 055 + (terrainID-1)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
+                addGround(-6503+terrainID*20, 525 + (terrainID-1)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
+                addGround(-6504+terrainID*20, 480 + (terrainID-1)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 0.9, width = 105, height = 20})
+            end
+        },
+        outside = {
+            icon    = '15909c0372a.png',
+            axis    = {0, 0},
+        },
+    },
+    [3] = {
+        properties = {
+            price   = 10000,
+            png     = '16c2525f7c5.png',
+        },
+        inside = {
+            image   = '172566a4e82.png',
+            grounds = function(terrainID)
+                addGround(-6500+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
+                addGround(-6501+terrainID*20, 118 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
+                addGround(-6502+terrainID*20, 188 + (terrainID-1)*1500 + 60, 1397 + 182, {type = 12, friction = 0.3, restitution = 0.2, width = 260})
+                addGround(-6503+terrainID*20, 460 + (terrainID-1)*1500 + 60, 1397 + 170, {type = 12, friction = 0.3, restitution = 0.2, width = 180})       
+            end
+        },
+        outside = {
+            icon    = '15ef7b94b7f.png',
+            axis    = {0, -50},
+        },
+    },
+    [4] = {
+        properties = {
+            price = 13000,
+            png = '16c795c65e8.png',
+            limitedTime = os.time{day=1, year=2020, month=1},
+        },
+        inside = {
+            image   = '172566a23a6.png',
+        },
+        outside = {
+            icon    = '16c7957eefd.png',
+            axis    = {0, -31},
+        },
+    },
+    [5] = { -- Halloween2019
+        properties = {
+            price   = 20000,
+            png     = '16dd75fa5a1.png',
+            limitedTime = os.time{day=11, year=2019, month=11},
+        },
+        inside = {
+            image   = '1725669f804.png',
+            grounds = function(terrainID)
+                addGround(-6500+terrainID*20, 201 + (terrainID-1)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 280, height = 20})
+                addGround(-6501+terrainID*20, 463 + (terrainID-1)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 130, height = 20})
+                addGround(-6502+terrainID*20, 290 + (terrainID-1)*1500 + 60, 1397 + 038, {type = 12, friction = 0.3, restitution = 0.2, width = 180, height = 20})
+                addGround(-6503+terrainID*20, 373 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
+                addGround(-6504+terrainID*20, 505 + (terrainID-1)*1500 + 60, 1397 + 114, {type = 13, friction = 0.3, restitution = 1, width = 20})  
+            end
+        },
+        outside = {
+            icon    = '16dd74f0f44.png',
+            axis    = {0, -32},
+        },
+    },
+    [6] = { -- Christmas2019
+        properties = {
+            price = 25000,
+            png = '16ee526d8a3.png',
+            limitedTime = os.time{day=15, year=2020, month=1},
+        },
+        inside = {
+            image   = '1725669cbbb.png',
+            grounds = function(terrainID)
+                addGround(-6500+terrainID*20, 230 + (terrainID-1)*1500 + 60, 1397 + 140, {type = 12, friction = 0.3, restitution = 0.2, width = 346, height = 20})
+                addGround(-6501+terrainID*20, 315 + (terrainID-1)*1500 + 60, 1397 + -52, {type = 12, friction = 0.3, restitution = 0.2, width = 170, height = 20})
+                addGround(-6502+terrainID*20, 458 + (terrainID-1)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 1, width = 107, height = 30})
+                addGround(-6503+terrainID*20, 195 + (terrainID-1)*1500 + 60, 1397 + 127, {type = 12, friction = 0.3, restitution = 1, width = 43, height = 30})
+                addGround(-6504+terrainID*20, 420 + (terrainID-1)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = 58})
+                addGround(-6505+terrainID*20, 155 + (terrainID-1)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = -58})
+            end
+        },
+        outside = {
+            icon    = '16ee521a785.png',
+            axis    = {0, -49},
+        },
+    },
+    [7] = { -- Treehouse
+        properties = {
+            price = 50000,
+            png = '1714cb5c23b.png',
+        },
+        inside = {
+            image   = '172572b0a32.png',
+            grounds = function(terrainID)
+                addGround(-6500+terrainID*20, 235 + (terrainID-1)*1500 + 60, 1397 + 001, {type = 12, friction = 0.3, restitution = 0.2, width = 460, height = 20})
+                addGround(-6501+terrainID*20, 440 + (terrainID-1)*1500 + 60, 1397 + 151, {type = 12, friction = 0.3, restitution = 0.2, width = 220, height = 20})
+                addGround(-6502+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 210, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
+                addGround(-6503+terrainID*20, 445 + (terrainID-1)*1500 + 60, 1397 + 050, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 90})
+                addGround(-6504+terrainID*20, 399 + (terrainID-1)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 300, height = 20})
+                addGround(-6505+terrainID*20, 091 + (terrainID-1)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 145, height = 20})
+                addGround(-6506+terrainID*20, 149 + (terrainID-1)*1500 + 60, 1397 + -110, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
+            end
+        },
+        outside = {
+            icon    = '1714cb20371.png',
+            axis    = {0, -30},
+        },
+    },
+    [8] = { -- Spongebob House
+        properties = {
+            price = 25000000,
+            png = '171b4158ba5.png',
+            limitedTime = os.time{day=25, year=2020, month=4},
+        },
+        inside = {
+            image   = '17256699f73.png',
+        },
+        outside = {
+            icon    = '171b40ef58c.png',
+            axis    = {0, -49},
+        },
+    },
+    [9] = { -- Restaurant
+        properties = {
+            price = 25,
+            png = '1727ba2f8dd.png',
+            limitedTime = os.time{day=25, year=2020, month=4},
+        },
+        inside = {
+            image   = '1727b98abb7.png',
+        },
+        outside = {
+            icon    = '1727ba0e8b2.png',
+            axis    = {0, -50},
+        },
+    },
+}
+
+--[[ houseSystem/_terrainsPositions.lua ]]--
+mainAssets.__terrainsPositions = {
+    {0100, 1596+room.y-12},
+    {0265, 1596+room.y-12},
+    {0660, 1596+room.y-12},
+    {0825, 1596+room.y-12},
+    {2330, 1796+room.y-12},
+    {2330+165, 1796+room.y-12},
+    {2900, 1796+room.y-12},
+    {3065, 1796+room.y-12},
+    {3065+165, 1796+room.y-12},
+    {113000, 1796+room.y-12}, -- REMI
+    {113000, 1796+room.y-12}, -- OLIVER
+    {12100, 1796+room.y-12},
+    {12265, 1796+room.y-12},
+    {12265+165, 1796+room.y-12},
+    {12595, 1796+room.y-12},
+}
+
 --[[ houseSystem/_new.lua ]]--
 HouseSystem = { }
 HouseSystem.__index = HouseSystem
@@ -8793,6 +8473,9 @@ do
 		local buttonAlign = totalButtons > 0 and totalButtons*25 - 10 or 0
 		
 		local backgrounds = {
+			[120] = {
+				[120] = '172cec377fb.png',
+			},
 			[200] = {
 				[200] = '1729faa10a0.png',
 			},
@@ -9394,12 +9077,13 @@ modernUI.showHouses = function(self, selectedTerrain)
 								eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 								players[player].casas[#players[player].casas+1] = _
 								giveCoin(-v.properties.price, player)
-								sendMenu(99, player, '', 400 - 120 * 0.5, (300 * 0.5), 100, 100, 1, true)
 								ui.removeTextArea(24 + selectedTerrain)
 								ui.removeTextArea(44 + selectedTerrain)
 								ui.removeTextArea(selectedTerrain)
 
-								players[player].images[#players[player].images+1] = addImage(v.properties.png, "&70", 400 - 50 * 0.5, 180, player)
+								modernUI.new(player, 120, 120)
+								:build()
+								players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(v.properties.png, "&70", 400 - 50 * 0.5, 180, player)
 
 								equipHouse(player, _, selectedTerrain)
 							end
@@ -10541,6 +10225,473 @@ alert_Error = function(player, title, text, args)
 	:build()
 end
 
+--[[ jobs/jobData.lua ]]--
+jobs = {
+    fisher = {
+        color   = '32CD32',
+        coins   = '15 - $10.000</font>',
+        working = {},
+        players = 0,
+        icon = '171d2134def.png', 
+    }, 
+    police = {
+        color   = '4169E1',
+        coins   = 120,
+        working = {},
+        players = 10,
+        icon = '171d1f8d911.png',
+    },
+    thief = {
+        color   = 'CB546B',
+        coins   = 250,
+        bankRobCoins = 1100,
+        working = {},
+        players = 0,
+        icon = '171d20cca72.png',
+    },
+    miner = {
+        color   = 'B8860B',
+        coins   = 0,
+        working = {},
+        players = 0,
+        icon = '171d21cd12d.png',
+    },
+    farmer = {
+        color   = '9ACD32',
+        coins   = '10 - $10.000</font>',
+        working = {},
+        players = 0,
+        icon = '171d1e559be.png',
+        specialAssets = function(player)
+            for i = 1, 4 do
+                if players['Oliver'].houseTerrainAdd[i] >= #houseTerrainsAdd.plants[players['Oliver'].houseTerrainPlants[i]].stages then
+                    local y = 1500 + 90
+                    ui.addTextArea('-730'..(tonumber(i)..tonumber(players['Oliver'].houseData.houseid)*10), '<a href="event:harvest_'..tonumber(i)..'"><p align="center"><font size="15">'..translate('harvest', player)..'</font></p></a>', player, ((tonumber(11)-1)%tonumber(11))*1500+738-(175/2)-2 + (tonumber(i)-1)*175, y+150, 175, 150, 0xff0000, 0xff0000, 0)
+                end
+            end
+        end,
+    },
+    chef = {
+        color   = '00CED1',
+        coins   = '10 - $10.000</font>',
+        working = {},
+        players = 0,
+        icon = '171d20548bd.png',
+    },
+    ghostbuster = {
+        color   = 'FFE4B5',
+        coins   = 300,
+        players = 0,
+    },
+    ghost = {
+        color   = 'A020F0',
+        coins   = 100,
+        players = 0,
+    },
+}
+
+--[[ jobs/jobState.lua ]]--
+job_fire = function(i)
+	if not players[i] then return end
+	if not ROOM.playerList[i] then return end
+	removeImages(i)
+	TFM.setNameColor(i, 0)
+
+	local job = players[i].job
+	if not job then return end
+	jobs[job].working[i] = nil
+	for index, player in next, jobs[job].working do
+		if player == i then 
+			table.remove(jobs[job].working, index)
+			break
+		end
+	end
+	players[i].job = nil
+	local images = players[i].temporaryImages.jobDisplay
+	if images[1] then 
+		for i = 1, #images do 
+			removeImage(images[i])
+		end 
+		players[i].temporaryImages.jobDisplay = {}
+		ui.removeTextArea(1012, i)
+	end
+	if job == 'farmer' then 
+		for i = 1, 4 do
+			ui.removeTextArea('-730'..(i..tonumber(players['Oliver'].houseData.houseid)*10), i)
+		end
+	end
+end
+
+job_invite = function(job, player)
+	local playerData = players[player]
+	if not jobs[job] or not playerData then return end
+	if playerData.job == job then return end 
+	modernUI.new(player, 240, 220)
+	:build()
+	:jobInterface(job)
+	:addConfirmButton(function(player, job) job_hire(job, player) end, translate('confirmButton_Work', player), job)
+end
+
+job_hire = function(job, player)
+	local playerData = players[player]
+	if not playerData or playerData.robbery.robbing then return end
+	
+	if playerData.job then 
+		job_fire(player)
+	end
+	players[player].temporaryImages.jobDisplay[#players[player].temporaryImages.jobDisplay+1] = addImage("171d301df6c.png", ":1", 0, 22, player)
+	players[player].temporaryImages.jobDisplay[#players[player].temporaryImages.jobDisplay+1] = addImage(jobs[job].icon, ":2", 107, 22, player)
+	ui.addTextArea(1012, '<p align="center"><b><font size="14" color="#371616">'..translate(job, player), player, 0, 29, 110, 30, 0x1, 0x1, 0, true)
+
+	if job ~= 'thief' then
+		TFM.setNameColor(player, '0x'..jobs[job].color)
+		if jobs[job].specialAssets then 
+			jobs[job].specialAssets(player)
+		end
+	else 
+		TFM.setNameColor(player, 0)
+	end
+		
+	local image = playerData.callbackImages
+	if image[1] then
+		for i = 1, #image do
+			removeImage(image[i])
+		end
+		players[player].callbackImages = {}
+	end
+
+	players[player].job = job
+	jobs[job].working[#jobs[job].working+1] = player
+end
+
+job_updatePlayerStats = function(player, type, quant)
+	if not quant then quant = 1 end
+	local playerData = players[player]
+	players[player].jobs[type] = playerData.jobs[type] + quant
+
+	if playerData.jobs[4] >= 1000 then
+		giveBadge(player, 3)
+	end
+	if playerData.jobs[3] >= 500 then
+		giveBadge(player, 2)
+	end
+	if playerData.jobs[5] >= 500 then
+		giveBadge(player, 4)
+	end
+	if playerData.jobs[6] >= 500 then
+		giveBadge(player, 8)
+	end
+	if playerData.jobs[2] >= 500 then -- THIEF
+		giveBadge(player, 5)
+	end
+	if playerData.jobs[1] >= 500 then -- COP
+		giveBadge(player, 10)
+	end
+	if playerData.jobs[9] >= 500 then -- CHEF
+		giveBadge(player, 9)
+	end
+	savedata(player)
+end
+
+--[[ jobs/cop/arrest.lua ]]--
+arrestPlayer = function(thief, cop, command)
+	local i = thief
+	local player = cop
+	local thiefData = players[thief]
+	local copData = players[cop]
+	if not copData then
+		eventNewPlayer(cop)
+		return arrestPlayer(thief, cop, command)
+	elseif not thiefData then
+		eventNewPlayer(thief)
+		return arrestPlayer(thief, cop, command)
+	end
+
+	checkIfPlayerIsDriving(thief)
+	removeImages(thief)
+	ui.removeTextArea(1012, thief)
+	ui.removeTextArea(5001, thief)
+	closeMenu(920, thief)
+	removeTimer(thiefData.timer)
+	job_fire(thief)
+	eventTextAreaCallback(1, thief, 'closeVaultPassword', true) 
+
+	players[thief].place = 'police'
+	players[thief].blockScreen = true
+	players[thief].robbery.arrested = true
+	players[thief].robbery.robbing = false
+	players[thief].robbery.usingShield = false
+	players[thief].robbery.whenWasArrested = os.time()
+	players[thief].robbery.escaped = false
+	players[thief].timer = {}
+	players[thief].bankPassword = nil
+
+	if thief ~= 'Robber' then 
+		closeInterface(thief, nil, nil, nil, nil, nil, true)
+		players[thief].timer = addTimer(function(j)
+			local time = room.robbing.prisonTimer - j
+			local thiefPosition = ROOM.playerList[thief]
+
+			ui.addTextArea(98900000000, string.format("<b><font color='#371616'><p align='center'>"..translate('looseMgs', thief), time), thief, 253, 368, 290, nil, 1, 1, 0, true)
+			if j == room.robbing.prisonTimer then
+				removeTimer(thiefData.timer)
+				players[thief].robbery.arrested = false
+				players[thief].blockScreen = false
+				players[thief].timer = {}
+				TFM.movePlayer(thief, 8020, 6400, false)
+				showOptions(thief)
+			end
+
+			if thiefPosition.x > 8040 and thiefPosition.y > 6260 and thiefPosition.x < 8500 and thiefPosition.y < 6420 then return end
+	 		TFM.movePlayer(thief, math.random(8055, 8330), 6400, false)
+		end, 1000, command and 30 or room.robbing.prisonTimer)
+	end
+	giveExperiencePoints(thief, 10)
+	giveExperiencePoints(cop, 30)
+	local complement = i:gmatch('(.-)#[0-9]+$')()
+	if not i:match('#0000') then
+		complement = i:gsub('#', '<g>#')
+	end
+	for name in next, ROOM.playerList do
+		if name ~= cop then 
+    		TFM.chatMessage(string.format(translate('captured', name), complement), name)
+    	end
+	end
+	TFM.chatMessage(string.format(translate('arrestedPlayer', cop), complement), cop)
+
+	local sidequest = sideQuests[copData.sideQuests[1]].type
+	if string.find(sidequest, 'type:arrest') then
+		sideQuest_update(cop, 1)
+	end
+
+	giveCoin(jobs['police'].coins, cop, true)
+	job_updatePlayerStats(cop, 1)
+	players[cop].time = os.time() + 10000
+end
+
+--[[ jobs/thief/rob.lua ]]--
+startRobbery = function(player, character)
+	local npcTimer = gameNpcs.robbing[character].cooldown
+	addTimer(function(j)
+		gameNpcs.removeNPC(character)
+		if j == npcTimer then
+			gameNpcs.reAddNPC(character)
+		end
+	end, 1000, npcTimer)
+
+	local shield = addImage('1566af4f852.png', '$'..player, -45, -45)
+	players[player].robbery.usingShield = true
+	players[player].robbery.robbing = true
+	players[player].timer = addTimer(function(j)
+		local time = room.robbing.robbingTimer - j
+		ui.addTextArea(98900000000, "<b><font color='#371616'><p align='center'>"..translate('runAway', player):format(time)..'\n<vp><font size="10">'..translate('runAwayCoinInfo', player):format('$'..jobs['thief'].coins), player, 253, 364, 290, nil, 1, 1, 0, true)
+		if j == 10 then
+			removeImage(shield)
+			players[player].robbery.usingShield = false
+		elseif j == room.robbing.robbingTimer then 
+			local sidequest = sideQuests[players[player].sideQuests[1]].type
+			if string.find(sidequest, 'type:rob') then
+				sideQuest_update(player, 1)
+			end
+			players[player].robbery.robbing = false
+			ui.removeTextArea(98900000000, player)
+			showOptions(player)
+			giveExperiencePoints(player, 100)
+			job_updatePlayerStats(player, 2)
+			giveCoin(jobs['thief'].coins, player, true)
+			TFM.setNameColor(player, 0)
+		end
+	end, 1000, room.robbing.robbingTimer)
+	closeInterface(player, nil, nil, nil, nil, nil, true)
+
+	TFM.chatMessage('<j>'..translate('copAlerted', player), player)
+	TFM.setNameColor(player, 0xFF0000)
+
+	for _, cop in next, jobs['police'].working do
+		TFM.chatMessage('<vp>['..translate('alert', cop)..'] <v>'.. player, cop)
+	end
+end
+
+--[[ jobs/fisher/fish.lua ]]--
+playerFishing = function(name, x, y, biome)
+	local player = players[name]
+	local playerStatus = ROOM.playerList[name]
+
+	math.randomseed(os.time())
+	local chances = math.random(1, 10000)
+	local counter = 0
+	local rarityFished = 'normal'
+
+	for rarity, percentage in next, player.lucky[1] do
+		counter = counter + (percentage * 100)
+		if (percentage * 100) >= chances then 
+			rarityFished = rarity
+			break
+		end
+	end
+
+	player.fishing[1] = true 
+	TFM.playEmote(name, 26)
+	player.fishing[3][#player.fishing[3]+1] = addImage(playerStatus.isFacingRight and '170b1daa3ed.png' or '170b1daccfb.png', '$'..name, playerStatus.isFacingRight and 0 or -40, -42)
+
+	player.fishing[2] = addTimer(function(j)
+		if j == 2 then 
+			playerStatus = ROOM.playerList[name]
+			if not players[name].canDrive and biome == 'sea' then
+				checkIfPlayerIsDriving(name)
+				TFM.movePlayer(name, playerStatus.x, playerStatus.y, false)
+				addGround(77777 + playerStatus.id, playerStatus.x + (playerStatus.isFacingRight and 40 or -40), playerStatus.y - 40, {type = 14, miceCollision = false, groundCollision = false})
+				addGround(77777 + playerStatus.id+1, playerStatus.x + (playerStatus.isFacingRight and 70 or -70), playerStatus.y - 30, {type = 14, dynamic = true, miceCollision = false})
+
+				TFM.addJoint(77777 + playerStatus.id, 77777 + playerStatus.id, 77777 + playerStatus.id+1, {type = 0, color = 0xc1c1c1, line = 1, frequency = 0.2})
+				for i = 1, #player.fishing[3] do 
+					removeImage(player.fishing[3][i])
+				end
+				player.fishing[3] = {}
+				player.fishing[3][#player.fishing[3]+1] = addImage(playerStatus.isFacingRight and '170b1daa3ed.png' or '170b1daccfb.png', '$'..name, playerStatus.isFacingRight and 0 or -40, -42)
+
+			else
+				player.fishing[3][#player.fishing[3]+1] = addImage('170b66954aa.png', '$'..name, playerStatus.isFacingRight and 35 or -40, -35)
+			end
+			
+		elseif j == 28 then 
+			player.fishing[1] = false
+			TFM.playEmote(name, 9)
+			job_updatePlayerStats(name, 3)
+
+			local align = playerStatus.isFacingRight and 20 or -90
+			for particles = 1, 10 do
+				TFM.displayParticle(14, particles * 3 + x + align, y + 50,  math.random(-5, 5), math.random(-2, 0.5), math.random(-0.7, 0.1))
+			end
+
+			math.randomseed(os.time())
+			local willFish = room.fishing.biomes[biome].fishes[rarityFished][math.random(#room.fishing.biomes[biome].fishes[rarityFished])]
+			local willFishInfo = bagItems[willFish]
+
+			if rarityFished == 'normal' then 
+				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] - .5
+				players[name].lucky[1]['rare'] = player.lucky[1]['rare'] + .5
+				giveExperiencePoints(name, 10)
+			elseif rarityFished == 'rare' then 
+				players[name].lucky[1]['rare'] = player.lucky[1]['rare'] - .25
+				players[name].lucky[1]['mythical'] = player.lucky[1]['mythical'] + .25	
+				giveExperiencePoints(name, 100)
+			elseif rarityFished == 'mythical' then 
+				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] + player.lucky[1]['mythical']/2
+				players[name].lucky[1]['legendary'] = player.lucky[1]['legendary'] + player.lucky[1]['mythical']/2
+				players[name].lucky[1]['mythical'] = 0
+				giveExperiencePoints(name, 500)
+			else
+				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
+				giveExperiencePoints(name, 2000)		
+			end
+			addItem(willFish, 1, name)
+
+			modernUI.new(name, 120, 120)
+			:build()
+			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, "&70", 400 - 50 * 0.5, 180, name)
+
+			local sidequest = sideQuests[player.sideQuests[1]].type
+			if sidequest == 'type:fish' or string.find(sidequest, willFish) then
+				sideQuest_update(name, 1)
+			end
+			for id, properties in next, player.questLocalData.other do 
+				if id:find('fish_') then
+					if type(properties) == 'boolean' then 
+						quest_updateStep(name)
+					else 
+						player.questLocalData.other[id] = properties - 1
+						if player.questLocalData.other[id] == 0 then 
+							quest_updateStep(name)
+						end
+					end
+					break
+				end
+			end
+			for i = 1, #player.fishing[3] do 
+				removeImage(player.fishing[3][i])
+			end
+			players[name].fishing[3] = {}
+			for i = 77777 + playerStatus.id, 77777 + playerStatus.id+2 do 
+				removeGround(i)
+			end
+			setLifeStat(name, 1, math.random(-11, -8))
+		end
+	end, 1000, 28)
+end
+
+stopFishing = function(player)
+	local playerStatus = ROOM.playerList[player]
+	if not playerStatus then return end
+	players[player].fishing[1] = false
+	removeTimer(players[player].fishing[2])
+	TFM.chatMessage('<r>'..translate('fishingError', player), player)
+	for i = 1, #players[player].fishing[3] do 
+		removeImage(players[player].fishing[3][i])
+	end
+	players[player].fishing[3] = {}
+	for i = 77777 + playerStatus.id, 77777 + playerStatus.id+2 do 
+		removeGround(i)
+	end
+end
+
+--[[ jobs/fisher/_biomes.lua ]]--
+room.fishing = {
+    biomes = {
+        sea = {
+            canUseBoat = true,
+            between = {'town', 'island'},
+            location = {
+                {x = 6400-70, y = 7775-70}, {x = 6400-70, y = 8000}, {x = 9160+70, y = 7775-70}, {x = 9160+70, y = 8000},
+            },
+            fishes = {
+                normal      = {'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy'},
+                rare        = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish'},
+                mythical    = {'fish_Lobster',},
+                legendary   = {'fish_Goldenmare',},
+            },
+        },
+        bridge = {
+            location = {
+                {x = 10760, y = 7775-70}, {x = 10915, y = 7775-70}, {x = 10915, y = 7828}, {x = 10760, y = 7828},
+            },
+            fishes = {
+                normal      = {'fish_Frog', 'fish_RuntyGuppy'},
+                rare        = {'fish_Dogfish', 'fish_Catfish', 'lemonSeed'},
+                mythical    = {'fish_Lobster',},
+                legendary   = {'fish_Goldenmare',},           
+            },
+        },
+        sewer = {
+            canUseBoat = true,
+            between = {'mine_labyrinth', 'mine_escavation'},
+            location = {
+                {x = 2837-70, y = 8662-70}, {x = 2837-70, y = 8800}, {x = 4325+70, y = 8662-70}, {x = 4325+70, y = 8800},
+            },
+            fishes = {
+                normal      = {'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy'},
+                rare        = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish'},
+                mythical    = {'fish_Lobster',},
+                legendary   = {'fish_Goldenmare',},
+            },
+        },
+    },
+    fishes = {
+        normal = {
+            'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy', 'fish_Frog'
+        },
+        rare = {
+            'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish',
+        },
+        mythical = {
+            'fish_Lobster',
+        },
+        legendary = {
+            'fish_Goldenmare',
+        },
+    },
+}
+
 --[[ npcs/npcDialogs.lua ]]--
 for commu, v in next, lang do
 	for id, message in next, v do 
@@ -10579,6 +10730,54 @@ local gameNpcs = {characters = {}, robbing = {}, orders = {canOrder = {}, orderL
 system.looping(function()
 	updateDialogs(4)
 end, 10)
+
+--[[ npcs/gameNpcs/daveOffers.lua ]]--
+mainAssets.__farmOffers = {
+    [1] = {
+        item = {'lettuce', 5},
+        requires = {'oregano', 10},
+    },
+    [2] = {
+        item = {'lettuce', 5},
+        requires = {'tomato', 10},
+    },
+    [3] = {
+        item = {'egg', 2},
+        requires = {'wheat', 15},
+    },
+    [4] = {
+        item = {'honey', 2},
+        requires = {'bread', 3},
+    },
+    [5] = {
+        item = {'honey', 2},
+        requires = {'lemon', 5},
+    },
+    [6] = {
+        item = {'garlic', 3},
+        requires = {'wheat', 15},
+    },
+    [7] = {
+        item = {'potato', 5},
+        requires = {'tomato', 10},
+    },
+    [8] = {
+        item = {'pumpkin', 1},
+        requires = {'chocolateCake', 2},
+    },
+    [9] = {
+        item = {'egg', 1},
+        requires = {'lemon', 2},
+    },
+    [10] = {
+        item = {'wheatFlour', 5},
+        requires = {'salad', 2},
+    },
+    [11] = {
+        item = {'wheatFlour', 3},
+        requires = {'lemonade', 1},
+    },
+}
 
 --[[ npcs/gameNpcs/addCharacter.lua ]]--
 gameNpcs.addCharacter = function(name, image, player, x, y, properties)
@@ -12138,7 +12337,7 @@ syncFiles = function()
         unrankedPlayers[#unrankedPlayers+1] = player..',0'
     end
 
-    system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';'), 1)
+    system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';')..'|'..table.concat(mainAssets.roles.admin, ';')..'|'..table.concat(mainAssets.roles.mod, ';')..'|'..table.concat(mainAssets.roles.helper, ';'), 1)
 end
 
 saveGameData = function(bot)
@@ -12306,351 +12505,6 @@ saveRanking = function()
 
 	-------------------------------------------
 	system.saveFile(table.concat(newRanking, ';'), 5)
-end
-
---[[ jobs/jobState.lua ]]--
-job_fire = function(i)
-	if not players[i] then return end
-	if not ROOM.playerList[i] then return end
-	removeImages(i)
-	TFM.setNameColor(i, 0)
-
-	local job = players[i].job
-	if not job then return end
-	jobs[job].working[i] = nil
-	for index, player in next, jobs[job].working do
-		if player == i then 
-			table.remove(jobs[job].working, index)
-			break
-		end
-	end
-	players[i].job = nil
-	local images = players[i].temporaryImages.jobDisplay
-	if images[1] then 
-		for i = 1, #images do 
-			removeImage(images[i])
-		end 
-		players[i].temporaryImages.jobDisplay = {}
-		ui.removeTextArea(1012, i)
-	end
-	if job == 'farmer' then 
-		for i = 1, 4 do
-			ui.removeTextArea('-730'..(i..tonumber(players['Oliver'].houseData.houseid)*10), i)
-		end
-	end
-end
-
-job_invite = function(job, player)
-	local playerData = players[player]
-	if not jobs[job] or not playerData then return end
-	if playerData.job == job then return end 
-	modernUI.new(player, 240, 220)
-	:build()
-	:jobInterface(job)
-	:addConfirmButton(function(player, job) job_hire(job, player) end, translate('confirmButton_Work', player), job)
-end
-
-job_hire = function(job, player)
-	local playerData = players[player]
-	if not playerData or playerData.robbery.robbing then return end
-	
-	if playerData.job then 
-		job_fire(player)
-	end
-	players[player].temporaryImages.jobDisplay[#players[player].temporaryImages.jobDisplay+1] = addImage("171d301df6c.png", ":1", 0, 22, player)
-	players[player].temporaryImages.jobDisplay[#players[player].temporaryImages.jobDisplay+1] = addImage(jobs[job].icon, ":2", 107, 22, player)
-	ui.addTextArea(1012, '<p align="center"><b><font size="14" color="#371616">'..translate(job, player), player, 0, 29, 110, 30, 0x1, 0x1, 0, true)
-
-	if job ~= 'thief' then
-		TFM.setNameColor(player, '0x'..jobs[job].color)
-		if jobs[job].specialAssets then 
-			jobs[job].specialAssets(player)
-		end
-	else 
-		TFM.setNameColor(player, 0)
-	end
-		
-	local image = playerData.callbackImages
-	if image[1] then
-		for i = 1, #image do
-			removeImage(image[i])
-		end
-		players[player].callbackImages = {}
-	end
-
-	players[player].job = job
-	jobs[job].working[#jobs[job].working+1] = player
-end
-
-job_updatePlayerStats = function(player, type, quant)
-	if not quant then quant = 1 end
-	local playerData = players[player]
-	players[player].jobs[type] = playerData.jobs[type] + quant
-
-	if playerData.jobs[4] >= 1000 then
-		giveBadge(player, 3)
-	end
-	if playerData.jobs[3] >= 500 then
-		giveBadge(player, 2)
-	end
-	if playerData.jobs[5] >= 500 then
-		giveBadge(player, 4)
-	end
-	if playerData.jobs[6] >= 500 then
-		giveBadge(player, 8)
-	end
-	if playerData.jobs[2] >= 500 then -- THIEF
-		giveBadge(player, 5)
-	end
-	if playerData.jobs[1] >= 500 then -- COP
-		giveBadge(player, 10)
-	end
-	if playerData.jobs[9] >= 500 then -- CHEF
-		giveBadge(player, 9)
-	end
-	savedata(player)
-end
-
---[[ jobs/cop/arrest.lua ]]--
-arrestPlayer = function(thief, cop, command)
-	local i = thief
-	local player = cop
-	local thiefData = players[thief]
-	local copData = players[cop]
-	if not copData then
-		eventNewPlayer(cop)
-		return arrestPlayer(thief, cop, command)
-	elseif not thiefData then
-		eventNewPlayer(thief)
-		return arrestPlayer(thief, cop, command)
-	end
-
-	checkIfPlayerIsDriving(thief)
-	removeImages(thief)
-	ui.removeTextArea(1012, thief)
-	ui.removeTextArea(5001, thief)
-	closeMenu(920, thief)
-	removeTimer(thiefData.timer)
-	job_fire(thief)
-	eventTextAreaCallback(1, thief, 'closeVaultPassword', true) 
-
-	players[thief].place = 'police'
-	players[thief].blockScreen = true
-	players[thief].robbery.arrested = true
-	players[thief].robbery.robbing = false
-	players[thief].robbery.usingShield = false
-	players[thief].robbery.whenWasArrested = os.time()
-	players[thief].robbery.escaped = false
-	players[thief].timer = {}
-	players[thief].bankPassword = nil
-
-	if thief ~= 'Robber' then 
-		closeInterface(thief, nil, nil, nil, nil, nil, true)
-		players[thief].timer = addTimer(function(j)
-			local time = room.robbing.prisonTimer - j
-			local thiefPosition = ROOM.playerList[thief]
-
-			ui.addTextArea(98900000000, string.format("<b><font color='#371616'><p align='center'>"..translate('looseMgs', thief), time), thief, 253, 368, 290, nil, 1, 1, 0, true)
-			if j == room.robbing.prisonTimer then
-				removeTimer(thiefData.timer)
-				players[thief].robbery.arrested = false
-				players[thief].blockScreen = false
-				players[thief].timer = {}
-				TFM.movePlayer(thief, 8020, 6400, false)
-				showOptions(thief)
-			end
-
-			if thiefPosition.x > 8040 and thiefPosition.y > 6260 and thiefPosition.x < 8500 and thiefPosition.y < 6420 then return end
-	 		TFM.movePlayer(thief, math.random(8055, 8330), 6400, false)
-		end, 1000, command and 30 or room.robbing.prisonTimer)
-	end
-	giveExperiencePoints(thief, 10)
-	giveExperiencePoints(cop, 30)
-	local complement = i:gmatch('(.-)#[0-9]+$')()
-	if not i:match('#0000') then
-		complement = i:gsub('#', '<g>#')
-	end
-	for name in next, ROOM.playerList do
-		if name ~= cop then 
-    		TFM.chatMessage(string.format(translate('captured', name), complement), name)
-    	end
-	end
-	TFM.chatMessage(string.format(translate('arrestedPlayer', cop), complement), cop)
-
-	local sidequest = sideQuests[copData.sideQuests[1]].type
-	if string.find(sidequest, 'type:arrest') then
-		sideQuest_update(cop, 1)
-	end
-
-	giveCoin(jobs['police'].coins, cop, true)
-	job_updatePlayerStats(cop, 1)
-	players[cop].time = os.time() + 10000
-end
-
---[[ jobs/thief/rob.lua ]]--
-startRobbery = function(player, character)
-	local npcTimer = gameNpcs.robbing[character].cooldown
-	addTimer(function(j)
-		gameNpcs.removeNPC(character)
-		if j == npcTimer then
-			gameNpcs.reAddNPC(character)
-		end
-	end, 1000, npcTimer)
-
-	local shield = addImage('1566af4f852.png', '$'..player, -45, -45)
-	players[player].robbery.usingShield = true
-	players[player].robbery.robbing = true
-	players[player].timer = addTimer(function(j)
-		local time = room.robbing.robbingTimer - j
-		ui.addTextArea(98900000000, "<b><font color='#371616'><p align='center'>"..translate('runAway', player):format(time)..'\n<vp><font size="10">'..translate('runAwayCoinInfo', player):format('$'..jobs['thief'].coins), player, 253, 364, 290, nil, 1, 1, 0, true)
-		if j == 10 then
-			removeImage(shield)
-			players[player].robbery.usingShield = false
-		elseif j == room.robbing.robbingTimer then 
-			local sidequest = sideQuests[players[player].sideQuests[1]].type
-			if string.find(sidequest, 'type:rob') then
-				sideQuest_update(player, 1)
-			end
-			players[player].robbery.robbing = false
-			ui.removeTextArea(98900000000, player)
-			showOptions(player)
-			giveExperiencePoints(player, 100)
-			job_updatePlayerStats(player, 2)
-			giveCoin(jobs['thief'].coins, player, true)
-			TFM.setNameColor(player, 0)
-		end
-	end, 1000, room.robbing.robbingTimer)
-	closeInterface(player, nil, nil, nil, nil, nil, true)
-
-	TFM.chatMessage('<j>'..translate('copAlerted', player), player)
-	TFM.setNameColor(player, 0xFF0000)
-
-	for _, cop in next, jobs['police'].working do
-		TFM.chatMessage('<vp>['..translate('alert', cop)..'] <v>'.. player, cop)
-	end
-end
-
---[[ jobs/fisher/fish.lua ]]--
-playerFishing = function(name, x, y, biome)
-	local player = players[name]
-	local playerStatus = ROOM.playerList[name]
-
-	math.randomseed(os.time())
-	local chances = math.random(1, 10000)
-	local counter = 0
-	local rarityFished = 'normal'
-
-	for rarity, percentage in next, player.lucky[1] do
-		counter = counter + (percentage * 100)
-		if (percentage * 100) >= chances then 
-			rarityFished = rarity
-			break
-		end
-	end
-
-	player.fishing[1] = true 
-	TFM.playEmote(name, 26)
-	player.fishing[3][#player.fishing[3]+1] = addImage(playerStatus.isFacingRight and '170b1daa3ed.png' or '170b1daccfb.png', '$'..name, playerStatus.isFacingRight and 0 or -40, -42)
-
-	player.fishing[2] = addTimer(function(j)
-		if j == 2 then 
-			playerStatus = ROOM.playerList[name]
-			if not players[name].canDrive and biome == 'sea' then
-				checkIfPlayerIsDriving(name)
-				TFM.movePlayer(name, playerStatus.x, playerStatus.y, false)
-				addGround(77777 + playerStatus.id, playerStatus.x + (playerStatus.isFacingRight and 40 or -40), playerStatus.y - 40, {type = 14, miceCollision = false, groundCollision = false})
-				addGround(77777 + playerStatus.id+1, playerStatus.x + (playerStatus.isFacingRight and 70 or -70), playerStatus.y - 30, {type = 14, dynamic = true, miceCollision = false})
-
-				TFM.addJoint(77777 + playerStatus.id, 77777 + playerStatus.id, 77777 + playerStatus.id+1, {type = 0, color = 0xc1c1c1, line = 1, frequency = 0.2})
-				for i = 1, #player.fishing[3] do 
-					removeImage(player.fishing[3][i])
-				end
-				player.fishing[3] = {}
-				player.fishing[3][#player.fishing[3]+1] = addImage(playerStatus.isFacingRight and '170b1daa3ed.png' or '170b1daccfb.png', '$'..name, playerStatus.isFacingRight and 0 or -40, -42)
-
-			else
-				player.fishing[3][#player.fishing[3]+1] = addImage('170b66954aa.png', '$'..name, playerStatus.isFacingRight and 35 or -40, -35)
-			end
-			
-		elseif j == 28 then 
-			player.fishing[1] = false
-			TFM.playEmote(name, 9)
-			job_updatePlayerStats(name, 3)
-
-			local align = playerStatus.isFacingRight and 20 or -90
-			for particles = 1, 10 do
-				TFM.displayParticle(14, particles * 3 + x + align, y + 50,  math.random(-5, 5), math.random(-2, 0.5), math.random(-0.7, 0.1))
-			end
-
-			math.randomseed(os.time())
-			local willFish = room.fishing.biomes[biome].fishes[rarityFished][math.random(#room.fishing.biomes[biome].fishes[rarityFished])]
-			local willFishInfo = bagItems[willFish]
-
-			if rarityFished == 'normal' then 
-				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] - .5
-				players[name].lucky[1]['rare'] = player.lucky[1]['rare'] + .5
-				giveExperiencePoints(name, 10)
-			elseif rarityFished == 'rare' then 
-				players[name].lucky[1]['rare'] = player.lucky[1]['rare'] - .25
-				players[name].lucky[1]['mythical'] = player.lucky[1]['mythical'] + .25	
-				giveExperiencePoints(name, 100)
-			elseif rarityFished == 'mythical' then 
-				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] + player.lucky[1]['mythical']/2
-				players[name].lucky[1]['legendary'] = player.lucky[1]['legendary'] + player.lucky[1]['mythical']/2
-				players[name].lucky[1]['mythical'] = 0
-				giveExperiencePoints(name, 500)
-			else
-				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
-				giveExperiencePoints(name, 2000)		
-			end
-
-			sendMenu(99, name, '', 400 - 120 * 0.5, (300 * 0.5), 100, 100, 1, true)
-			addItem(willFish, 1, name)
-			player.images[#player.images+1] = addImage(willFishInfo.png and willFishInfo.png or '16bc368f352.png', "&70", 400 - 50 * 0.5, 180, name)
-	
-
-			local sidequest = sideQuests[player.sideQuests[1]].type
-			if sidequest == 'type:fish' or string.find(sidequest, willFish) then
-				sideQuest_update(name, 1)
-			end
-			for id, properties in next, player.questLocalData.other do 
-				if id:find('fish_') then
-					if type(properties) == 'boolean' then 
-						quest_updateStep(name)
-					else 
-						player.questLocalData.other[id] = properties - 1
-						if player.questLocalData.other[id] == 0 then 
-							quest_updateStep(name)
-						end
-					end
-					break
-				end
-			end
-			for i = 1, #player.fishing[3] do 
-				removeImage(player.fishing[3][i])
-			end
-			players[name].fishing[3] = {}
-			for i = 77777 + playerStatus.id, 77777 + playerStatus.id+2 do 
-				removeGround(i)
-			end
-			setLifeStat(name, 1, math.random(-11, -8))
-		end
-	end, 1000, 28)
-end
-
-stopFishing = function(player)
-	local playerStatus = ROOM.playerList[player]
-	if not playerStatus then return end
-	players[player].fishing[1] = false
-	removeTimer(players[player].fishing[2])
-	TFM.chatMessage('<r>'..translate('fishingError', player), player)
-	for i = 1, #players[player].fishing[3] do 
-		removeImage(players[player].fishing[3][i])
-	end
-	players[player].fishing[3] = {}
-	for i = 77777 + playerStatus.id, 77777 + playerStatus.id+2 do 
-		removeGround(i)
-	end
 end
 
 --[[ items/itemList/bagIds.lua ]]--
@@ -13901,7 +13755,7 @@ item_drop = function(item, player, amount)
 		y = player.y-10
 		player = 'Oliver'
 	end
-	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_700', x, y)}
+	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_70000', x, y)}
 	ui.addTextArea(-40000-#room.droppedItems, "<textformat leftmargin='1' rightmargin='1'><a href='event:collectDroppedItem_"..#room.droppedItems.."'>"..string.rep('\n', 5), nil, x, y, 50, 50, 1, 1, 0, false)
 	item_droppedEvent(#room.droppedItems, player)
 end
@@ -13935,12 +13789,15 @@ item_droppedEvent = function(id, player)
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
 		for chestID, v in next, players[player].houseData.chests.position do
-			if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 50 then
-				if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
-				item_addToChest(item, amount, player, chestID)
-				savedata(player)
-				TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)
-				canRemove = true
+			if v.x then
+				if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 50 then
+					if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
+					item_addToChest(item, amount, player, chestID)
+					savedata(player)
+					TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)
+					canRemove = true
+					break
+				end
 			end
 		end
 	elseif players[player].job == 'farmer' and tonumber(players[player].place:sub(7)) == 11 and string.find(item, 'Seed') then
@@ -14308,6 +14165,9 @@ onEvent("FileLoaded", function(file, data)
 	elseif tonumber(file) == 1 then
 		local bannedPlayers = datas[1] or table.concat(room.bannedPlayers, ';')
 		local unrankedPlayers = datas[2] or table.concat(room.unranked, ';')
+		local admin = datas[3] or ''
+		local mod = datas[4] or ''
+		local helper = datas[5] or ''
 
 		room.bannedPlayers = {}
 		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do
@@ -14320,6 +14180,17 @@ onEvent("FileLoaded", function(file, data)
 		room.unranked = {}
 		for player in string.gmatch(unrankedPlayers, '([%w_+]+#%d+),(%w+)') do
 			room.unranked[#room.unranked+1] = player
+		end
+
+		mainAssets.roles.admin = {}
+		mainAssets.roles.mod = {}
+		mainAssets.roles.helper = {}
+
+		for index, role in next, {admin, mod, helper} do 
+			for player in string.gmatch(role, '([%w_+]+#%d+)') do
+				local _role = (index == 1 and 'admin') or (index == 2 and 'mod') or (index == 3 and 'helper')
+				mainAssets.roles[_role][#mainAssets.roles[_role]+1] = player
+			end
 		end
 	end
 end)
@@ -15718,6 +15589,110 @@ mine_drawGrid = function(grid, size, x, y)
     end
 end
 
+--[[ places/mine/_properties.lua ]]--
+Mine = {
+    position = {4536, 8643},
+    area = {10, 60},
+    availableRocks = {},
+    blocks = {},
+    blockLength = 60,
+    ores = {
+        yellow = {
+            img = '1722e1e84dc.png',
+            rarity = 12,
+        },
+        blue = {
+            img = '1722e1eccc0.png',
+            rarity = 7,
+        },
+        purple = {
+            img = '1722e1e56b7.png',
+            rarity = 4,
+        },
+        green = {
+            img = '1722e1eab1c.png',
+            rarity = 3,
+        },
+        red = {
+            img = '1722e1e3389.png',
+            rarity = 2,
+        },
+    },
+    stones = {
+        {
+            name = 'sand',
+            health = 2,
+            ground = 7,
+            image = '171fa7a17c1.png',
+        },
+        {
+            name = 'dirt',
+            health = 5,
+            ground = 5,
+            image = '171fa80941f.jpg',
+        },
+        {
+            name = 'coal',
+            health = 20,
+            ground = 4,
+            image = '1721aa68210.png',
+            ores = {'yellow', 'blue'},
+        },
+        {
+            name = 'stone',
+            health = 50,
+            ground = 10,
+            image = '171fa7cdbc2.png',
+            ores = {'yellow', 'blue', 'purple'},
+        },
+        {
+            name = 'lava',
+            health = 200,
+            ground = 3,
+            image = '171fa832ec8.png',
+            ores = {'yellow', 'blue', 'purple', 'green'},
+        },
+        {
+            name = 'diamont',
+            health = 500,
+            ground = 1,
+            image = '171fa8b16dd.jpg',
+            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
+        },
+        {
+            name = 'tiplonium',
+            health = 1000,
+            ground = 11,
+            image = '1722e396406.png',
+            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
+        },
+        {
+            name = 'chernobyl',
+            health = 2000,
+            ground = 11,
+            image = '1722e4b0bfb.png',
+            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
+        },
+        {
+            name = 'chernobyl2',
+            health = 5000,
+            ground = 15,
+            image = '1722e5fe753.png',
+            ores = {'yellow', 'blue', 'purple', 'green', 'red'},
+        },
+    },
+}
+
+--[[ places/hospital/_properties.lua ]]--
+room.hospital = {}
+
+for floor = 1, 9 do
+	room.hospital[floor] = {}
+    for bed = 1, 2 do
+        room.hospital[floor][bed] = {name = nil}
+    end
+end
+
 --[[ places/hospital/hospitalize.lua ]]--
 hospitalize = function(player)
 	giveCoin(-600 * #players[player].hospital.diseases, player)
@@ -15804,6 +15779,37 @@ loadHospital = function(player, elevador)
 		TFM.movePlayer(player, 4400, 3640, false)
 	end
 end
+
+--[[ places/bank/_properties.lua ]]--
+room.bank  = {
+    paperCurrentPlace = math.random(1, 13),
+    paperImages = {},
+    paperPlaces = {
+        {x = 500, y = 240}, -- Jason's Workshop
+        {x = 7150, y = 6085}, -- Police Station, next to sherlock
+        {x = 7300, y = 5960}, -- Police Station, office
+        {x = 8200, y = 6400}, -- Police Station, jail
+        {x = 4980, y = 240}, -- Market
+        {x = 14700, y = 240}, -- Pizzeria
+        {x = 13130, y = 240}, -- Fish Shop
+        {x = 16000, y = 1710}, -- Oliver's Farm, garden
+        {x = 12120, y = 240}, -- Seed Store
+        {x = 6480, y = 240}, -- Café
+        {x = 10750, y = 240}, -- Potion Shop
+        {x = 11000, y = 7770}, -- Island, next to bridge
+        {x = 14470, y = 1705}, -- Remi's restaurant
+        {x = 700, y = 8180}, -- Mine
+        {x = 5800, y = 5235}, -- Bank
+    },
+}
+
+room.bankBeingRobbed     = false
+room.bankRobbingTime     = 60
+room.bankImages          = {}
+room.bankTrashImages     = {}
+room.bankRobStep         = nil
+room.bankDoors           = {'', '', '', '', ''}
+room.bankVaultPassword   = math.random(0,9) .. math.random(0,9) .. math.random(0,9) .. math.random(0,9)
 
 --[[ places/bank/robbingAssets.lua ]]--
 reloadBankAssets = function()
@@ -16769,6 +16775,24 @@ newDishPrice = function(recipe)
 	bagItems[recipe].orderValue = math.floor(price + price/4)
 	return bagItems[recipe].orderValue
 end
+
+--[[ specialFounds.lua ]]--
+room.specialFounds   = {
+    christmas2019 = {
+        evening     = '16ee11c6a13.jpg',
+        dawn        = '16ee11d3516.jpg',
+        night       = '16ee11b36c4.jpg',
+        day         = '16ee11b1f00.png',
+        align       = 1919,
+    },
+    halloween2019 = {
+        evening     = '16dd5d7c4e1.jpg',
+        dawn        = '16dd5d78f0d.jpg',
+        night       = '16dd5d7ad6f.jpg',
+        day         = '16dd5d7738e.jpg',
+        align       = 1919,
+    },
+}
 
 --[[ init.lua ]]--
 startRoom = function()
