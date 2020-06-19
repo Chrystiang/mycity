@@ -17,8 +17,8 @@ onEvent("FileLoaded", function(file, data)
 		loadRanking()
 
 	elseif tonumber(file) == 1 then
-		local bannedPlayers = datas[1]
-		local unrankedPlayers = datas[2]
+		local bannedPlayers = datas[1] or table.concat(room.bannedPlayers, ';')
+		local unrankedPlayers = datas[2] or table.concat(room.unranked, ';')
 
 		room.bannedPlayers = {}
 		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do

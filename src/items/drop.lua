@@ -17,17 +17,16 @@ end
 item_collect = function(item, target, amount)
 	if room.droppedItems[item].amount <= 0 then return end
 	if not amount then amount = 1 end
-	room.droppedItems[item].amount = room.droppedItems[item].amount - amount
 
 	local xx = target and ROOM.playerList[target].x or room.droppedItems[item].x
 	local yy = target and ROOM.playerList[target].y or room.droppedItems[item].y
-	if math.hypo(room.droppedItems[item].x, room.droppedItems[item].y, xx, yy) <= 50 then
-		if target then 
-			local data = room.droppedItems[item]
-			addItem(data.item, amount, target)
-			TFM.chatMessage('Collected...')
-		end
+	if math.hypo(room.droppedItems[item].x, room.droppedItems[item].y, xx, yy) > 60 then return end
+
+	if target then 
+		local data = room.droppedItems[item]
+		addItem(data.item, amount, target)
 	end
+	room.droppedItems[item].amount = room.droppedItems[item].amount - amount
 
 	if room.droppedItems[item].amount <= 0 then 
 		removeImage(room.droppedItems[item].image)
@@ -44,7 +43,7 @@ item_droppedEvent = function(id, player)
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
 		for chestID, v in next, players[player].houseData.chests.position do
-			if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 40 then
+			if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 50 then
 				if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
 				item_addToChest(item, amount, player, chestID)
 				TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)

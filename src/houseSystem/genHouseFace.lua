@@ -13,12 +13,12 @@ HouseSystem.genHouseFace = function(self, guest)
 
 	ui.addTextArea(44 + terrainID, '<p align="center"><font size="12"><a href="event:joinHouse_'..terrainID..'">'..complement..'\n', guest, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2]+176+23, 150, nil, 0x1, 0x1, 0)
 	ui.addTextArea(terrainID, '<p align="center">' .. terrainID, guest, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2]+176+11, 150, nil, 0, 0)
-	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage(mainAssets.__houses[houseType].inside.image, "?100", ((terrainID-1)%terrainID)*1500 + 60, 847, guest)
-	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('17256286356.jpg', '?901', ((terrainID-1)%terrainID)*1500 + 317, 1616, guest) -- door
-	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('1725d43cb08.png', '_9020', ((terrainID-1)%terrainID)*1500 + 317, 1616, guest) -- handle
+	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage(mainAssets.__houses[houseType].inside.image, "?100", (terrainID-1)*1500 + 60, 847, guest)
+	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('17256286356.jpg', '?901', (terrainID-1)*1500 + 317, 1616, guest) -- door
+	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('1725d43cb08.png', '_9020', (terrainID-1)*1500 + 317, 1616, guest) -- handle
 
 	for i, v in next, ownerData.houseData.furnitures.placed do 
-		local x = v.x + ((terrainID-1)%terrainID)*1500
+		local x = v.x + (terrainID-1)*1500
 		local y = v.y + 1000
 		room.houseImgs[terrainID].furnitures[#room.houseImgs[terrainID].furnitures+1] = addImage(mainAssets.__furnitures[v.type].image, '?1000'..i, x, y, guest)
 		local furniture = mainAssets.__furnitures[v.type]

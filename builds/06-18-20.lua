@@ -13881,7 +13881,7 @@ item_collect = function(item, target, amount)
 		if target then 
 			local data = room.droppedItems[item]
 			addItem(data.item, amount, target)
-			TFM.chatMessage('Collected...')
+			--TFM.chatMessage('Collected...')
 		end
 	end
 
@@ -14277,8 +14277,8 @@ onEvent("FileLoaded", function(file, data)
 		loadRanking()
 
 	elseif tonumber(file) == 1 then
-		local bannedPlayers = datas[1]
-		local unrankedPlayers = datas[2]
+		local bannedPlayers = datas[1] or table.concat(room.bannedPlayers, ';')
+		local unrankedPlayers = datas[2] or table.concat(room.unranked, ';')
 
 		room.bannedPlayers = {}
 		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do
@@ -16032,6 +16032,7 @@ end
 --[[ social/freezePlayer.lua ]]--
 freezePlayer = function(player, freeze)
 	TFM.freezePlayer(player, freeze)
+	if not players[player] then return end
 	players[player].isFrozen = freeze
 end
 

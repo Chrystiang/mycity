@@ -220,11 +220,11 @@ local mainAssets = { -- Assets that dont change while the script runs
 			inside = {
 				image 	= '172566a7a66.png',
 				grounds = function(terrainID)
-					addGround(-6500+terrainID*20, 290 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 65, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30})
-					addGround(-6501+terrainID*20, 225 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 200, {type = 12, friction = 0.3, restitution = 0.2, width = 350, height = 15})
-					addGround(-6502+terrainID*20, 055 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
-					addGround(-6503+terrainID*20, 525 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
-					addGround(-6504+terrainID*20, 480 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 0.9, width = 105, height = 20})
+					addGround(-6500+terrainID*20, 290 + (terrainID-1)*1500 + 60, 1397 + 65, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30})
+					addGround(-6501+terrainID*20, 225 + (terrainID-1)*1500 + 60, 1397 + 200, {type = 12, friction = 0.3, restitution = 0.2, width = 350, height = 15})
+					addGround(-6502+terrainID*20, 055 + (terrainID-1)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
+					addGround(-6503+terrainID*20, 525 + (terrainID-1)*1500 + 60, 1397 + 160, {type = 12, friction = 0.3, restitution = 0.2, height = 190})
+					addGround(-6504+terrainID*20, 480 + (terrainID-1)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 0.9, width = 105, height = 20})
 				end
 			},
 			outside = {
@@ -240,10 +240,10 @@ local mainAssets = { -- Assets that dont change while the script runs
 			inside = {
 				image 	= '172566a4e82.png',
 				grounds = function(terrainID)
-					addGround(-6500+terrainID*20, 345 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-					addGround(-6501+terrainID*20, 118 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-					addGround(-6502+terrainID*20, 188 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 182, {type = 12, friction = 0.3, restitution = 0.2, width = 260})
-					addGround(-6503+terrainID*20, 460 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 170, {type = 12, friction = 0.3, restitution = 0.2, width = 180})		
+					addGround(-6500+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
+					addGround(-6501+terrainID*20, 118 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
+					addGround(-6502+terrainID*20, 188 + (terrainID-1)*1500 + 60, 1397 + 182, {type = 12, friction = 0.3, restitution = 0.2, width = 260})
+					addGround(-6503+terrainID*20, 460 + (terrainID-1)*1500 + 60, 1397 + 170, {type = 12, friction = 0.3, restitution = 0.2, width = 180})		
 				end
 			},
 			outside = {
@@ -274,11 +274,11 @@ local mainAssets = { -- Assets that dont change while the script runs
 			inside = {
 				image 	= '1725669f804.png',
 				grounds = function(terrainID)
-					addGround(-6500+terrainID*20, 201 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 280, height = 20})
-					addGround(-6501+terrainID*20, 463 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 130, height = 20})
-					addGround(-6502+terrainID*20, 290 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 038, {type = 12, friction = 0.3, restitution = 0.2, width = 180, height = 20})
-					addGround(-6503+terrainID*20, 373 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-					addGround(-6504+terrainID*20, 505 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 114, {type = 13, friction = 0.3, restitution = 1, width = 20})	
+					addGround(-6500+terrainID*20, 201 + (terrainID-1)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 280, height = 20})
+					addGround(-6501+terrainID*20, 463 + (terrainID-1)*1500 + 60, 1397 + 138, {type = 12, friction = 0.3, restitution = 0.2, width = 130, height = 20})
+					addGround(-6502+terrainID*20, 290 + (terrainID-1)*1500 + 60, 1397 + 038, {type = 12, friction = 0.3, restitution = 0.2, width = 180, height = 20})
+					addGround(-6503+terrainID*20, 373 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
+					addGround(-6504+terrainID*20, 505 + (terrainID-1)*1500 + 60, 1397 + 114, {type = 13, friction = 0.3, restitution = 1, width = 20})	
 				end
 			},
 			outside = {
@@ -295,12 +295,12 @@ local mainAssets = { -- Assets that dont change while the script runs
 			inside = {
 				image 	= '1725669cbbb.png',
 				grounds = function(terrainID)
-					addGround(-6500+terrainID*20, 230 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 140, {type = 12, friction = 0.3, restitution = 0.2, width = 346, height = 20})
-					addGround(-6501+terrainID*20, 315 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + -52, {type = 12, friction = 0.3, restitution = 0.2, width = 170, height = 20})
-					addGround(-6502+terrainID*20, 458 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 1, width = 107, height = 30})
-					addGround(-6503+terrainID*20, 195 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 127, {type = 12, friction = 0.3, restitution = 1, width = 43, height = 30})
-					addGround(-6504+terrainID*20, 420 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = 58})
-					addGround(-6505+terrainID*20, 155 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = -58})
+					addGround(-6500+terrainID*20, 230 + (terrainID-1)*1500 + 60, 1397 + 140, {type = 12, friction = 0.3, restitution = 0.2, width = 346, height = 20})
+					addGround(-6501+terrainID*20, 315 + (terrainID-1)*1500 + 60, 1397 + -52, {type = 12, friction = 0.3, restitution = 0.2, width = 170, height = 20})
+					addGround(-6502+terrainID*20, 458 + (terrainID-1)*1500 + 60, 1397 + 310, {type = 12, friction = 0.3, restitution = 1, width = 107, height = 30})
+					addGround(-6503+terrainID*20, 195 + (terrainID-1)*1500 + 60, 1397 + 127, {type = 12, friction = 0.3, restitution = 1, width = 43, height = 30})
+					addGround(-6504+terrainID*20, 420 + (terrainID-1)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = 58})
+					addGround(-6505+terrainID*20, 155 + (terrainID-1)*1500 + 60, 1397 + -50, {type = 12, friction = 0.3, restitution = 0.2, width = 480, height = 30, angle = -58})
 				end
 			},
 			outside = {
@@ -316,13 +316,13 @@ local mainAssets = { -- Assets that dont change while the script runs
 			inside = {
 				image 	= '172572b0a32.png',
 				grounds = function(terrainID)
-					addGround(-6500+terrainID*20, 235 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 001, {type = 12, friction = 0.3, restitution = 0.2, width = 460, height = 20})
-					addGround(-6501+terrainID*20, 440 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 151, {type = 12, friction = 0.3, restitution = 0.2, width = 220, height = 20})
-					addGround(-6502+terrainID*20, 345 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 210, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
-					addGround(-6503+terrainID*20, 445 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + 050, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 90})
-					addGround(-6504+terrainID*20, 399 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 300, height = 20})
-					addGround(-6505+terrainID*20, 091 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 145, height = 20})
-					addGround(-6506+terrainID*20, 149 + ((terrainID-1)%terrainID)*1500 + 60, 1397 + -110, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
+					addGround(-6500+terrainID*20, 235 + (terrainID-1)*1500 + 60, 1397 + 001, {type = 12, friction = 0.3, restitution = 0.2, width = 460, height = 20})
+					addGround(-6501+terrainID*20, 440 + (terrainID-1)*1500 + 60, 1397 + 151, {type = 12, friction = 0.3, restitution = 0.2, width = 220, height = 20})
+					addGround(-6502+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 210, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
+					addGround(-6503+terrainID*20, 445 + (terrainID-1)*1500 + 60, 1397 + 050, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 90})
+					addGround(-6504+terrainID*20, 399 + (terrainID-1)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 300, height = 20})
+					addGround(-6505+terrainID*20, 091 + (terrainID-1)*1500 + 60, 1397 + -182, {type = 12, friction = 0.3, restitution = 0.2, width = 145, height = 20})
+					addGround(-6506+terrainID*20, 149 + (terrainID-1)*1500 + 60, 1397 + -110, {type = 12, friction = 20, restitution = 0.2, width = 30, height = 130})
 				end
 			},
 			outside = {
@@ -1138,7 +1138,7 @@ local mainAssets = { -- Assets that dont change while the script runs
 	roles = {
 		admin = {'Fofinhoppp#0000', 'Lucasrslv#0000'},
 		mod = {},
-		helper = {},
+		helper = {'Weth#9837'},
 	},
 }
 local npcsStores = {
@@ -1269,8 +1269,8 @@ local houseTerrains = {
 		png = '16c0abef269.png',
 		price = 100,
 		add = function(owner, y, terrainID, plotID, guest)
-			addGround(- 2000 - (terrainID-1)*30 - plotID, ((terrainID-1)%terrainID)*1500+737 + (plotID-1)*175, y+170, {type = 5, width = 175, height = 90, friction = 0.3})
-			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bce83f116.jpg', '!1', ((terrainID-1)%terrainID)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
+			addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 5, width = 175, height = 90, friction = 0.3})
+			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bce83f116.jpg', '!1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
 		end,
 	},
 	[1] = {
@@ -1278,8 +1278,8 @@ local houseTerrains = {
 		png = '16c0abf2610.png',
 		price = 2000,
 		add = function(owner, y, terrainID, plotID, guest)
-			addGround(- 2000 - (terrainID-1)*30 - plotID, ((terrainID-1)%terrainID)*1500+737 + (plotID-1)*175, y+170, {type = 12, miceCollision = false, color = 0x00CED1, width = 175, height = 90})
-			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bc4577c60.png', '!1', ((terrainID-1)%terrainID)*1500+737-(175/2) + (plotID-1)*175, y+170-30, guest)
+			addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 12, miceCollision = false, color = 0x00CED1, width = 175, height = 90})
+			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bc4577c60.png', '!1', (terrainID-1)*1500+737-(175/2) + (plotID-1)*175, y+170-30, guest)
 		end,
 	},
 	[2] = {
@@ -1287,11 +1287,11 @@ local houseTerrains = {
 		png = '16c0abf41c9.png',
 		price = 4000,
 		add = function(owner, y, terrainID, plotID, guest)
-			addGround(- 2000 - (terrainID-1)*30 - plotID, ((terrainID-1)%terrainID)*1500+737 + (plotID-1)*175, y+170, {type = 5, width = 175, height = 90, friction = 0.3})
+			addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 5, width = 175, height = 90, friction = 0.3})
 			if players[owner].houseTerrainPlants[plotID] == 0 then players[owner].houseTerrainPlants[plotID] = 1 end
 			local stage = houseTerrainsAdd.plants[players[owner].houseTerrainPlants[plotID]].stages[players[owner].houseTerrainAdd[plotID]]
-			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bf5b9e800.jpg', '!1', ((terrainID-1)%terrainID)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
-			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '!2', ((terrainID-1)%terrainID)*1500+738-(175/2) + (plotID-1)*175, y+170-45-280, guest)
+			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bf5b9e800.jpg', '!1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
+			room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '!2', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45-280, guest)
 			if owner == 'Oliver' then 
 				room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '?10', 11330 + (plotID-1)*65, 7470+30, guest)
 			end
@@ -1718,7 +1718,6 @@ local versionLogs = {
 }
 
 local imgsToLoad = {'1721ee7d5b9.png', '17184484e6b.png', '1718435fa5c.png', '171843a9f21.png', '171d2134def.png', '171d20cca72.png', '171d1f8d911.png', '171d21cd12d.png', '171d1e559be.png', '171d20548bd.png', '171d1933add.png', '1717aae387a.jpg', '1717a86b38f.png', '171d2a2e21a.png', '171d28150ea.png', '171d6f313c8.png',}
-local lang = {}
 
 local questsAvailable = 4
 local sideQuests = {

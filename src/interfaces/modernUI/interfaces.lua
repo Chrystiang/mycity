@@ -286,7 +286,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if usedSomething then return end
 								if quanty > 0 then
 									if itemName == 'cheese' then 
-										if players[player].whenJoined < os.time() then 
+										if players[player].whenJoined > os.time() then 
 											return alert_Error(player, 'error', 'limitedItemBlock', '120')
 										else 
 											players[player].whenJoined = os.time() + 120*10000
@@ -613,7 +613,7 @@ modernUI.showHouseSettings = function(self)
 				if playerFurnitures[index].quanty <= 0 then return end
 				local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
 				if y < 1000 or y > 2000 then return end
-				if x > ((terrainID-1)%terrainID)*1500 or x < ((terrainID-2)%terrainID)*1500 then return end
+				if x > terrainID*1500 or x < (terrainID-1)*1500+100 then return end
 
 				playerFurnitures[index].quanty = playerFurnitures[index].quanty - 1
 				totalOfPlacedFurnitures = totalOfPlacedFurnitures + 1
@@ -628,7 +628,7 @@ modernUI.showHouseSettings = function(self)
 				local furniture_X = x + furniture.align.x 
 				local furniture_Y = y + furniture.align.y
 				local idd = #playerPlacedFurnitures+1
-				playerPlacedFurnitures[idd] = {type = data.type, x = furniture_X - ((id-1)%id)*1500, y = furniture_Y - 1000, image = addImage(furniture.image, '?1000', furniture_X, furniture_Y, player)}
+				playerPlacedFurnitures[idd] = {type = data.type, x = furniture_X - (id-1)*1500, y = furniture_Y - 1000, image = addImage(furniture.image, '?1000', furniture_X, furniture_Y, player)}
 				ui.addTextArea(- 85000 - (id*200 + idd), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', furniture.area[2]/8), player, furniture_X, furniture_Y, furniture.area[1], furniture.area[2], 1, 0xfff000, 0, false, 
 					function()
 						removeFurniture(idd)

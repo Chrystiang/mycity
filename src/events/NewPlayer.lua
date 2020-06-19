@@ -1,4 +1,4 @@
-onEvent("NewPlayer", function(player)
+eventNewPlayer = function(player)
 	ui.setMapName('Mycity')
 	TFM.setPlayerScore(player, 0)
 	ui.addTextArea(8500, '', player, 805, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
@@ -36,9 +36,6 @@ onEvent("NewPlayer", function(player)
 		['hu'] = '16f1ef2fd1d.png',
 	}
 
-	-- Trees 
-		--addImage('16bca7433f7.png', '?1', 0, 1710+room.y, player)
-		--addImage('16bca7433f7.png', '?1', 2700, 1710+room.y, player)
 	-- PLACE: Jason's Workshop
 		addImage(buildShopImages[players[player].lang] or buildShopImages['en'], "?7", 440, 1601+room.y, player)
 	-- PLACE: Police Station 
@@ -130,10 +127,6 @@ onEvent("NewPlayer", function(player)
 	addImage("16c06b726bd.png", '?51', 14000, 4, player)
 	-- furnitureStore
 	addImage("16c3547311b.png", '?55', 16000, 4+10, player)
-
-	for i = 1, 4 do
-		addImage("16c5991006b.png", "!800", (i-1)*4299 + 16500, 6858, player) -- dealership's lights
-	end
 	-- oliver
 	addImage("16d9986258c.png", '_81', 15550, 1625, player)
 	addImage("16d99863ceb.png", '!82', 15495, 1622, player)
@@ -231,4 +224,4 @@ onEvent("NewPlayer", function(player)
 			end
 		end
 	end
-end)
+end

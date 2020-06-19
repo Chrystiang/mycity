@@ -17,7 +17,7 @@ genMap = function()
 	elseif room.event == 'christmas2019' then
 		largeGrass = '16f19d53238.jpg'
 	end
-    for i = 1, 16 do
+    for i = 1, 17 do
 		xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="1400" L="10" X="'..room.groundsPosition[3]..'" Y="1100" m="" T="5" P="0,0,0,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
 		for i = 1, 3 do
 			room.groundsPosition[i] = room.groundsPosition[i] + 1500
