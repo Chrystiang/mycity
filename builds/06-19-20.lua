@@ -1,19 +1,32 @@
 --[[ main.lua ]]--
-local TFM 			= tfm.exec
-local ROOM 			= tfm.get.room
-local string 		= string
-local math 			= math
-local table 		= table 
-local gsub 			= string.gsub
+--[[
+#Mycity.lua
 
-local addGround 	= TFM.addPhysicObject
-local removeGround 	= TFM.removePhysicObjec
-local addTextArea 	= ui.addTextArea
-local move 			= TFM.movePlayer
+MIT License
 
-local addImage 		= TFM.addImage
-local removeImage 	= TFM.removeImage
+Copyright (c) 2020 Chrystian Gabriel
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+]]--
+
+local TFM, ROOM = tfm.exec, tfm.get.room
+local string, math, table, gsub, addGround, removeGround, addTextArea, move, addImage, removeImage = string, math, table, string.gsub, TFM.addPhysicObject, TFM.removePhysicObject, ui.addTextArea, TFM.movePlayer, TFM.addImage, TFM.removeImage
 local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter
 
 local chatCommands = {}
