@@ -9581,7 +9581,7 @@ modernUI.showHouseSettings = function(self)
 
 		eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 		for i = 0, 3 do
-			if players[player].houseTerrainAdd[i+1] == 1 then
+			if players[player].houseTerrainAdd[i+1] <= 1 then
 				ui.addTextArea(id..(885+i), '<p align="center"><fc>'..translate('houseSettings_changeExpansion', player)..'\n', player, (terrainID-1)*1500 + 650 + i*175, 1740, 175, nil, 0x24474D, 0xff0000, 0, false,
 					function()
 						if images.expansions[1] then return end
