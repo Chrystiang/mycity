@@ -1,7 +1,24 @@
-local TFM, ROOM = tfm.exec, tfm.get.room
-local string, math, table, gsub, addGround, removeGround, addTextArea, move, addImage, removeImage = string, math, table, string.gsub, TFM.addPhysicObject, TFM.removePhysicObject, ui.addTextArea, TFM.movePlayer, TFM.addImage, TFM.removeImage
+local TFM 			= tfm.exec
+local ROOM 			= tfm.get.room
+local string 		= string
+local math 			= math
+local table 		= table 
+local gsub 			= string.gsub
+
+local addGround 	= TFM.addPhysicObject
+local removeGround 	= TFM.removePhysicObjec
+local addTextArea 	= ui.addTextArea
+local move 			= TFM.movePlayer
+
+local addImage 		= TFM.addImage
+local removeImage 	= TFM.removeImage
+
 local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter
+
 local chatCommands = {}
+
+math.randomseed(os.time())
+
 TFM.disableAutoShaman()
 TFM.disableAfkDeath()
 TFM.disableWatchCommand()
@@ -13,7 +30,6 @@ TFM.disablePhysicalConsumables()
 TFM.disableAutoScore()
 system.disableChatCommandDisplay()
 
-math.randomseed(os.time())
 local players = {}
 local room = { -- Assets that can change while the script runs
 	maxPlayers = 15,
@@ -1822,10 +1838,6 @@ local sideQuests = {
 		points = 2,
 	},
 }
-local img = ''
-local typeimg = '!100'
-local imgAtual = '15ae9936899.png'
-local pos = {x = 0, y = 0}
 
 local codesIds = {
 	[0] = {n = 'WELCOME'},
