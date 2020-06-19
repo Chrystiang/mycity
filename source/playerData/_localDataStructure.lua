@@ -21,7 +21,7 @@ setPlayerData = function(player)
 			},
 			chests = {
 				storage = {{}, {}},
-				position= {},
+				position= {{}, {}},
 			},
 		},
 		codigo    	= {},

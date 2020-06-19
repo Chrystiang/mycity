@@ -4,12 +4,10 @@ item_addToChest = function(item, amount, player, chest)
 	for i, v in next, players[player].houseData.chests.storage[chest] do
 		if v.name == item then
 			v.qt = v.qt + amount
-			savedata(player)
 			return
 		end
 	end
 	players[player].houseData.chests.storage[chest][#players[player].houseData.chests.storage[chest]+1] = {name = item, qt = amount}
-	savedata(player)
 end
 
 item_removeFromChest = function(item, amount, player, chest)

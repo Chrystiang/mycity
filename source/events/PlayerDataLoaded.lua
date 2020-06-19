@@ -36,9 +36,6 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	players[name].bag = {}
 	players[name].totalOfStoredItems.bag = 0
-	players[name].houseData.chests.storage = {{}, {}}
-	players[name].totalOfStoredItems.chest[1] = 0
-	players[name].totalOfStoredItems.chest[2] = 0
 
 	for i, v in next, item do
 		if quanty[i] > 0 then
@@ -91,9 +88,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	local playerLogs = playerData:get(name, 'playerLog')
 	players[name].favoriteCars = playerLogs[4] or players[name].favoriteCars
-	players[name].dataLoaded = true
 
 	syncVersion(name, playerLogs[3])
+	players[name].dataLoaded = true
+
 	if players[name].questStep[1] <= questsAvailable then
 		_QuestControlCenter[players[name].questStep[1]].active(name, players[name].questStep[2])
 	end

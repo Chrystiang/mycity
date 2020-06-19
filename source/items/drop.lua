@@ -46,6 +46,7 @@ item_droppedEvent = function(id, player)
 			if math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, v.x+20, v.y+20) <= 50 then
 				if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
 				item_addToChest(item, amount, player, chestID)
+				savedata(player)
 				TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)
 				canRemove = true
 			end
