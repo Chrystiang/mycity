@@ -7,10 +7,10 @@ translate = function(message, name)
     end
     if message == '$VersionText' then
         local playerVersion = 'v'..table.concat(version, '.')
-        return versionLogs[playerVersion][cmm] and versionLogs[playerVersion][cmm]['_'..players[name].joinMenuPage] or (versionLogs[playerVersion].EN['_'..players[name].joinMenuPage] or message)
+        return versionLogs[playerVersion][cmm] and versionLogs[playerVersion][cmm]['_'..players[name].joinMenuPage] or (versionLogs[playerVersion].en['_'..players[name].joinMenuPage] or message)
     elseif message == '$VersionName' then
         local playerVersion = 'v'..table.concat(version, '.')
-        return versionLogs[playerVersion][cmm] and versionLogs[playerVersion][cmm].name or (versionLogs[playerVersion].EN.name or message)
+        return versionLogs[playerVersion][cmm] and versionLogs[playerVersion][cmm].name or (versionLogs[playerVersion].en.name or message)
     end
     return lang[cmm][message] and lang[cmm][message] or '$txt_'..message
 end

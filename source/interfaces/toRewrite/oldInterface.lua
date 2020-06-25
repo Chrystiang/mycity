@@ -1,16 +1,16 @@
 ui.addTextArea = function(id, text, player, x, y, width, height, color1, color2, alpha, followPlayer, callback, args)
-		if players[player] and players[player].settings.mirroredMode == 1 then
-			if not text:find('align="center"') and not text:find('align="left"') and not text:find('align="right"') then 
-				text = '<p align="right">'..text
-			elseif text:find('align="right"') or text:find("align='right'") then 
-				text = text:gsub('right', 'left')
-			end
+	if players[player] and players[player].settings.mirroredMode == 1 then
+		if not text:find('align="center"') and not text:find('align="left"') and not text:find('align="right"') then 
+			text = '<p align="right">'..text
+		elseif text:find('align="right"') or text:find("align='right'") then 
+			text = text:gsub('right', 'left')
 		end
-		if callback and players[player] then 
-			players[player]._modernUIOtherCallbacks[#players[player]._modernUIOtherCallbacks+1] = {event = callback, callbacks = args}
-			text = '<a href="event:modernUI_CallbackEvent_'..#players[player]._modernUIOtherCallbacks..'">'..text
-		end
-		return addTextArea(id, text, player, x, y, width, height, color1, color2, alpha, followPlayer)
+	end
+	if callback and players[player] then 
+		players[player]._modernUIOtherCallbacks[#players[player]._modernUIOtherCallbacks+1] = {event = callback, callbacks = args}
+		text = '<a href="event:modernUI_CallbackEvent_'..#players[player]._modernUIOtherCallbacks..'">'..text
+	end
+	return addTextArea(id, text, player, x, y, width, height, color1, color2, alpha, followPlayer)
 end
 removeImages = function(player)
     if not players[player] then return end
@@ -68,7 +68,7 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
     	ui.addTextArea(id..'894', '', player, x +width/1.7 - 10, y+height-20+25, width -5 -width/2, 15, 0x97a6aa, 0x97a6aa, 1, true)
 		ui.addTextArea(id..'895', '', player, x +width/1.7 + 2 - 10, y+height-20+27, width -5 -width/2, 15, 0x1, 0x1, 1, true)
     	ui.addTextArea(id..'896', '<p align="center"><a href="event:close3_'..id..'"><N>'..translate('cancel', player)..'</a>', player, x +width/1.7 +1 - 10, y+height-20+26, width -5 -width/2, 15, 0x314e57, 0x314e57, 1, true)
-	elseif tostring(type):sub(1, 1) == '9' then ----------------- RESPONSÁVEL POR CARREGAR AS LOJAS DE ITENS
+	elseif tostring(type):sub(1, 1) == '9' then
 		local whatToSell = tonumber(type:sub(3))
 		if type:sub(3, 3) == '-' then
 			whatToSell = 0

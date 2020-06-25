@@ -289,7 +289,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 										if players[player].whenJoined > os.time() then 
 											return alert_Error(player, 'error', 'limitedItemBlock', '120')
 										else 
-											players[player].whenJoined = os.time() + 120*10000
+											players[player].whenJoined = os.time() + 120*1000
 										end
 									end
 									eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)

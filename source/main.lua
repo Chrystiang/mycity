@@ -66,7 +66,7 @@ TFM.disableAutoScore()
 system.disableChatCommandDisplay()
 
 local room = { -- Assets that change while the script runs
-    maxPlayers      = 15,
+    maxPlayers      = 12,
     gameLoadedTimes = 0,
     fileUpdated     = false,
     dayCounter      = 0,
@@ -273,8 +273,8 @@ local houseTerrains = {
         png = '16c0abef269.png',
         price = 100,
         add = function(owner, y, terrainID, plotID, guest)
-            addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 5, width = 175, height = 90, friction = 0.3})
-            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bce83f116.jpg', '!1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
+            addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 14, width = 175, height = 90, friction = 0.3})
+            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bce83f116.jpg', '?1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
         end,
     },
     [1] = {
@@ -291,10 +291,10 @@ local houseTerrains = {
         png = '16c0abf41c9.png',
         price = 4000,
         add = function(owner, y, terrainID, plotID, guest)
-            addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 5, width = 175, height = 90, friction = 0.3})
+            addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 14, width = 175, height = 90, friction = 0.3})
             if players[owner].houseTerrainPlants[plotID] == 0 then players[owner].houseTerrainPlants[plotID] = 1 end
             local stage = houseTerrainsAdd.plants[players[owner].houseTerrainPlants[plotID]].stages[players[owner].houseTerrainAdd[plotID]]
-            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bf5b9e800.jpg', '!1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
+            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bf5b9e800.jpg', '?1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
             room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '!2', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45-280, guest)
             if owner == 'Oliver' then 
                 room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '?10', 11330 + (plotID-1)*65, 7470+30, guest)
@@ -530,31 +530,31 @@ local versionLogs = {
         releaseDate = '12/06/2020', -- dd/mm/yy
         maxPages = 1,
         images = {'172a97d8145.png'},
-        BR = {
+        br = {
             name = 'A nova atualização chegou!',
             _1 = '<rose>Novo:</rose> Mapa redesenhado!\n\n<rose>Novos lugares:</rose> Restaurante, Loja de barcos e Loja de pesca!\n\n<rose>Novo trabalho:</rose> Cozinheiro!\nFale com Remi e comece a fazer pratos deliciosos!\n\n<rose>Nova mina:</rose> Novas áreas: labirinto, esgoto e zona de escavação!\nAdicionado um novo sistema de mineração.\n\nE muito mais!',
         },
-        EN = {
+        en = {
             name = 'Our newest update is here!',
             _1 = '<rose>New:</rose> Map update!\n\n<rose>New places:</rose> Restaurant, Boat shop and Fish shop!\n\n<rose>New job:</rose> Chef!\nTalk with Remi and start cooking delicious dishes!\n\n<rose>New mine:</rose> New places: labyrinth, sewer, and excavation area!\nAdded a new mining system.\n\nAnd a lot more!'
         },
-        HU = {
+        hu = {
             name = 'Itt a legújabb frissítésünk!',
             _1 = '<rose>Új:</rose> Pálya frissítés!\n\n<rose>Új helyek:</rose> Étterem, Hajóbolt és Halbolt!\n\n<rose>Új munka:</rose> Séf!\nBeszélj Remi-vel és kezdj el finom ételeket főzni!\n\n<rose> Új helyek: labirintus, szennyvízcsatorna, és ásatási terület!\nHozzáadva egy új bányászati rendszer.\n\nÉs még sok más!'
         },
-        FR = {
+        fr = {
              name = 'Notre dernière mise à jour est arrivée!',
              _1 = '<rose>Nouveauté:</rose> Mise à jour de la carte!\n\n<rose>Nouveaux lieux:</rose> Restaurant, Boutique de bâteaux and Poissonnerie!\n\n<rose>Nouveau métier:</rose> Chef!\nParlez avec Remi et commencez à cuisiner de délicieux plats!\n\n<rose>Nouvelle mine:</rose> Nouveaux lieux: labyrinthe, égouts, et zone d\'excavation!\nAjout d\'un nouveau système de minage.\n\nEt bien plus!'
         },
-        HE = {
+        he = {
             name = 'העדכון הכי חדש שלנו כאן!',
             _1 = '<rose>חדש:</rose> עדכון מפה!\n\n<rose>מקומות חדשים:</rose> מסעדה, חנות סירות וחנות דגים!\n\n<rose>עבודה חדשה:</rose> שף!\nדברו עם רמי והתחילו לבשל מאכלים טעימים!\n\n<rose>מכרה חדש:</rose> מקומות חדשים: לבירינת, ביוב, ואיזור חפירה!\nנוספה מערכת חציבה חדשה.\n\nועוד הרבה יותר!'
         },
-        TR = {
+        tr = {
             name = 'Yeni güncellememiz çıktı!',
             _1 = '<rose>Yeni:</rose> Harita güncellemesi!\n\n<rose>Yeni mekanlar:</rose> Restorant, Tekne dükkanı ve Balık dükkanı!\n\n<rose>Yeni meslek:</rose> Şef!\nRemi ile konuş ve şahane yiyecekler pişir!\n\n<rose>Yeni maden:</rose> Yeni mekanlar: labirent, lağım ve kazı alanı!\nYeni madencilik sistemi eklendi.\n\nVe çok daha fazlası!'
         },
-        AR = {
+        ar = {
             name = '!آخر تحديث لدينا هنا',
             _1 = '<rose>جديد:</rose>تحديث الخريطة!\n\n<rose>أماكن جديدة:</rose> مطعم ، متجر قوارب ومتجر أسماك!\n\n<rose>وظيفة جديدة:</rose> طاهٍ!\nتحدث مع ريمي وابدأ في طهي أطباق لذيذة!\n\n<rose>مَنجم جديد:</rose> المتاهة والصرف الصحي ومنطقة الحفر!\n.تمت إضافة نظام تعدين جديد\n\n!والكثير'
         },

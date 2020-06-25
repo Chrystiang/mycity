@@ -69,7 +69,7 @@ end
 TFM.setRoomMaxPlayers(room.maxPlayers)
 system.loadFile(1)
 
-local lastFile = 1
+local lastFile = 5
 addTimer(function()
 	if lastFile == 5 then
 		if room.fileUpdated then
@@ -83,7 +83,7 @@ addTimer(function()
 		system.loadFile(5)
 		lastFile = 5
 	end
-end, 70000, 0)
+end, 90000, 0)
 
 mine_generate()
 
