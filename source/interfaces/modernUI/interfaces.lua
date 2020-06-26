@@ -975,7 +975,6 @@ modernUI.showNPCShop = function(self, items)
 					ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..name, player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 					local description = item_getDescription(mainAssets.__furnitures[data[1]] and data[1] or data[2], player, mainAssets.__furnitures[data[1]])
 					ui.addTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
-					ui.addTextArea(id..'892', '<font color="#cef1c3">'..translate('confirmButton_Select', player), player, x+337, y+151, nil, nil, 0x24474D, 0x314e5, 0, true)
 					ui.addTextArea(id..'894', '', player, x + 3 + (i%5)*63, y + 3 + math.floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true)
 
 					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(v.png, "&26", 542, 125, player)
@@ -1054,6 +1053,7 @@ modernUI.showNPCShop = function(self, items)
 							end, 507, 295, 120, 13, blockClick)
 					end
 					if not blockClick and not v.stockLimit then
+						ui.addTextArea(id..'892', '<font color="#cef1c3">'..translate('confirmButton_Select', player), player, x+337, y+151, nil, nil, 0x24474D, 0x314e5, 0, true)
 						ui.addTextArea(id..'893', '<font color="#cef1c3">01', player, x+425, y+151, nil, nil, 0x24474D, 0x314e5, 0, true)
 						for i = 1, 2 do 
 							button(i, i == 1 and '-' or '+', 
@@ -1246,7 +1246,7 @@ modernUI.showMill = function(self)
 	local y = (200 - height/2)
 
 	for i = 1, 3 do
-		local amount = (i-1)*3
+		local amount = i > 1 and i*i or i
 		local amount2 = amount*5
 
 		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage("1717eaef706.png", ":20", 288, y+65 + (i-1)*45, player) -- Background
