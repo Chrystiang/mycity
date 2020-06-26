@@ -637,4 +637,9 @@ lang.en = {
 	furniture_nightstand = 'Nightstand',
 	furniture_bush = 'Bush',
 	furniture_armchair = 'Armchair',
+	furniture_books = 'Books',
+	furniture_mirror = 'Mirror',
+	furniture_broom = 'Broom',
+	furniture_piggy = 'Piggy',
+	furniture_sink = 'Sink',
 }

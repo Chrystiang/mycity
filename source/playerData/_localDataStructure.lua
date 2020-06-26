@@ -129,6 +129,7 @@ setPlayerData = function(player)
 		lang			= playerLanguage,
 		whenJoined 		= os.time(),
 		settings 		= {mirroredMode = 0, language = playerLanguage},
+		inRoom 			= false,
 	}
 
 	if player == 'Oliver' then

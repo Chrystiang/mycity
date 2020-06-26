@@ -22,6 +22,7 @@ eventNewPlayer = function(player)
 	TFM.changePlayerSize(player, 1)
 	TFM.lowerSyncDelay(player)
 	setPlayerData(player)
+	players[player].inRoom = true
 	
 	for i = 1, #imgsToLoad do
 		local pngLoad = addImage(imgsToLoad[i], "!0", 0, 0, player)
@@ -187,6 +188,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Bruna', {'172af626b89.png'}, player, 13890, 1597, {type = '_', blockClick = true})
 	gameNpcs.addCharacter('Bill', {'171b7b0d0a2.png', '171b81a2307.png'}, player, 12800, 153, {job = 'fisher', formatDialog = 'fishingLuckiness'})
 	gameNpcs.addCharacter('Mrsbritt87', {'172b9645b79.png', '172b98d0d52.png'}, player, 9400, 7645, {type = '_', donator = true})
+	gameNpcs.addCharacter('Anny', {'172f185dccf.png'}, player, 15950, 1618, {job = 'farmer', callback = function(name) modernUI.new(name, 240, 220):build():showMill() end})
 
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)

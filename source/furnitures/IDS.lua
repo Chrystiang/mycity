@@ -4,7 +4,7 @@ mainAssets.__furnitures = {
         png = '16c1f82b594.png',
         price = 600,
         area = {48, 50},
-        align = {x = -24, y = -32},
+        align = {x = -24, y = -31},
         name = 'oven',
         usable = function(player) 
             eventTextAreaCallback(0, player, 'recipes', true)
@@ -103,6 +103,7 @@ mainAssets.__furnitures = {
             :build()
             :showPlayerItems(players[player].houseData.chests.storage[1], 1)
         end,
+        uniqueID = 1,
         npcShop = 'marcus',
         stockLimit = 1,
     },
@@ -443,7 +444,7 @@ mainAssets.__furnitures = {
         png = '1727c532471.png',
         qpPrice = 30,
         area = {47, 50},
-        align = {x = -24, y = -32},
+        align = {x = -24, y = -35},
         name = 'oven',
         usable = function(player) 
             eventTextAreaCallback(0, player, 'recipes', true)
@@ -571,24 +572,24 @@ mainAssets.__furnitures = {
         image = '172ec8c005a.png',
         png = '172ec984e49.png',
         price = 100,
-        area = {0, 0},
-        align = {x = -45, y = -53},
+        area = {54, 41},
+        align = {x = -30, y = -50},
         name = 'sink',
     },
     [53] = { -- piggy
         image = '172ec8ca5d8.png',
         png = '172ec979e32.png',
         price = 200,
-        area = {0, 0},
-        align = {x = -45, y = -53},
+        area = {53, 36},
+        align = {x = -30, y = -20},
         name = 'piggy',
     },
     [54] = { -- broom
-        image = '172ec8cd27f.png',
+        image = '172f1048429.png',
         png = '172ec971745.png',
         qpPrice = 3,
-        area = {0, 0},
-        align = {x = -45, y = -53},
+        area = {39, 98},
+        align = {x = -40, y = -71},
         name = 'broom',
         npcShop = 'marcus',
     },
@@ -596,8 +597,34 @@ mainAssets.__furnitures = {
         image = '172ec8c2266.png',
         png = '172ec973a14.png',
         price = 100,
-        area = {0, 0},
-        align = {x = -45, y = -53},
+        area = {56, 54},
+        align = {x = -25, y = -70},
         name = 'mirror',
+    },
+    [56] = { -- chest 2
+        image = '172f1082658.png',
+        png = '172f1124593.png',
+        price = 100,
+        area = {46, 40},
+        align = {x = -23, y = -24},
+        name = 'chest',
+        type = 'especial',
+        qpPrice = 300,
+        usable = function(player)
+            modernUI.new(player, 520, 300, translate('furniture_chest', player))
+            :build()
+            :showPlayerItems(players[player].houseData.chests.storage[2], 2)
+        end,
+        uniqueID = 2,
+        npcShop = 'john',
+        stockLimit = 1,
+    },
+    [57] = { -- books
+        image = '172f1142717.png',
+        png = '172f1122396.png',
+        price = 100,
+        area = {37, 30},
+        align = {x = -20, y = -15},
+        name = 'books',
     },
 }

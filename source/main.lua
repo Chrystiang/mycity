@@ -66,7 +66,7 @@ TFM.disableAutoScore()
 system.disableChatCommandDisplay()
 
 local room = { -- Assets that change while the script runs
-    maxPlayers      = 12,
+    maxPlayers      = 15,
     gameLoadedTimes = 0,
     fileUpdated     = false,
     dayCounter      = 0,
@@ -274,7 +274,7 @@ local houseTerrains = {
         price = 100,
         add = function(owner, y, terrainID, plotID, guest)
             addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 14, width = 175, height = 90, friction = 0.3})
-            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bce83f116.jpg', '?1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
+            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bce83f116.jpg', '_99991', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
         end,
     },
     [1] = {
@@ -294,8 +294,8 @@ local houseTerrains = {
             addGround(- 2000 - (terrainID-1)*30 - plotID, (terrainID-1)*1500+737 + (plotID-1)*175, y+170, {type = 14, width = 175, height = 90, friction = 0.3})
             if players[owner].houseTerrainPlants[plotID] == 0 then players[owner].houseTerrainPlants[plotID] = 1 end
             local stage = houseTerrainsAdd.plants[players[owner].houseTerrainPlants[plotID]].stages[players[owner].houseTerrainAdd[plotID]]
-            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bf5b9e800.jpg', '?1', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
-            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '!2', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45-280, guest)
+            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage('16bf5b9e800.jpg', '_99991', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45, guest)
+            room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '!200000', (terrainID-1)*1500+738-(175/2) + (plotID-1)*175, y+170-45-280, guest)
             if owner == 'Oliver' then 
                 room.houseImgs[terrainID].expansions[#room.houseImgs[terrainID].expansions+1] = addImage(stage, '?10', 11330 + (plotID-1)*65, 7470+30, guest)
             end
@@ -524,9 +524,9 @@ local places        = {
 }
 local jobs          = {}
 
-local version = {3, 0, 1}
+local version = {3, 0, 2}
 local versionLogs = {
-    ['v3.0.1'] = {
+    ['v3.0.2'] = {
         releaseDate = '12/06/2020', -- dd/mm/yy
         maxPages = 1,
         images = {'172a97d8145.png'},

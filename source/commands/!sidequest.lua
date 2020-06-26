@@ -9,5 +9,6 @@ chatCommands.sidequest = {
 		players[target].sideQuests[1] = nextQuest
 		players[target].sideQuests[2] = 0
 		savedata(target)
+		TFM.chatMessage('<g>[•] Done! Quest '..nextQuest..' set to '..target..'.', player)
 	end
 }

@@ -693,4 +693,9 @@ lang.fr = {
     furniture_nightstand = 'Table de Nuit',
 	furniture_bush = 'Buisson',
 	furniture_armchair = 'Fauteuil',
+    furniture_books = 'Livres',
+    furniture_mirror = 'Miroir',
+    furniture_broom = 'Balai',
+    furniture_piggy = 'Cochon',
+    furniture_sink = 'Évier',
 }

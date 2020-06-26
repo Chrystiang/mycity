@@ -42,8 +42,8 @@ mainAssets.__houses = {
             grounds = function(terrainID)
                 addGround(-6500+terrainID*20, 345 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
                 addGround(-6501+terrainID*20, 118 + (terrainID-1)*1500 + 60, 1397 + 307, {type = 13, friction = 0.3, restitution = 1, width = 20})
-                addGround(-6502+terrainID*20, 188 + (terrainID-1)*1500 + 60, 1397 + 182, {type = 12, friction = 0.3, restitution = 0.2, width = 260})
-                addGround(-6503+terrainID*20, 460 + (terrainID-1)*1500 + 60, 1397 + 170, {type = 12, friction = 0.3, restitution = 0.2, width = 180})       
+                addGround(-6502+terrainID*20, 188 + (terrainID-1)*1500 + 60, 1397 + 182, {type = 12, color = 0x46474a, friction = 0.3, restitution = 0.2, width = 260})
+                addGround(-6503+terrainID*20, 460 + (terrainID-1)*1500 + 60, 1397 + 170, {type = 12, color = 0x46474a, friction = 0.3, restitution = 0.2, width = 180})       
             end
         },
         outside = {
@@ -155,7 +155,7 @@ mainAssets.__houses = {
         },
         outside = {
             icon    = '1727ba0e8b2.png',
-            axis    = {0, -50},
+            axis    = {0, -35},
         },
     },
 }

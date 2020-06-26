@@ -53,6 +53,11 @@ playerFishing = function(name, x, y, biome)
 			local willFish = room.fishing.biomes[biome].fishes[rarityFished][math.random(#room.fishing.biomes[biome].fishes[rarityFished])]
 			local willFishInfo = bagItems[willFish]
 
+			modernUI.new(name, 120, 120)
+			:build()
+			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, "&70", 400 - 50 * 0.5, 180, name)
+
+			addItem(willFish, 1, name)
 			if rarityFished == 'normal' then 
 				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] - .5
 				players[name].lucky[1]['rare'] = player.lucky[1]['rare'] + .5
@@ -70,11 +75,6 @@ playerFishing = function(name, x, y, biome)
 				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
 				giveExperiencePoints(name, 2000)		
 			end
-			addItem(willFish, 1, name)
-
-			modernUI.new(name, 120, 120)
-			:build()
-			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, "&70", 400 - 50 * 0.5, 180, name)
 
 			local sidequest = sideQuests[player.sideQuests[1]].type
 			if sidequest == 'type:fish' or string.find(sidequest, willFish) then

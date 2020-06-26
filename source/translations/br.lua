@@ -629,4 +629,9 @@ lang.br = {
 	furniture_nightstand = 'Mesa de Cabeceira',
 	furniture_bush = 'Arbusto',
 	furniture_armchair = 'Poltrona',
+	furniture_books = 'Pilha de livros',
+	furniture_mirror = 'Espelho',
+	furniture_broom = 'Vassoura',
+	furniture_piggy = 'Porquinho',
+	furniture_sink = 'Pia',
 }

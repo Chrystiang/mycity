@@ -8,7 +8,7 @@ do
 	local events = {}
 	local scheduled = {_count = 0, _pointer = 1}
 	local paused = false
-	local runtime_threshold = 45
+	local runtime_threshold = 50
 	local _paused = false
 	local lastErrorLog = ''
 

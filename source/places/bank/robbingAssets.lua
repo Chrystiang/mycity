@@ -37,14 +37,14 @@ addBankRobbingAssets = function()
 	room.bankDoors[2] = addImage("16bb46e2a7c.png", "!36", 5243, 4718)
 	room.bankDoors[3] = addImage("16bb46e2a7c.png", "!37", 5792, 4926)
 	room.bankDoors[4] = addImage("16bb98e5d8f.png", "!38", 5988, 4930) -- lever
-	room.bankDoors[5] = addImage("16bb493c28e.png", "!36", 5275, 4812) -- lazers
+	room.bankDoors[5] = addImage("16bb493c28e.png", "!36", 5275, 4812) -- lasers
 
 
-	addGround(9999, 7+5791, 66+30+4596, {type = 14, width = 12, height = 190}) -- porta do cofre
-	addGround(9997, 260+5000, 135+4555, {type = 14, width = 25, height = 200}) -- porta 3o andar
-	addGround(9996, 88+5275, 80+4812, {type = 14, width = 200, angle = 45, restitution = 999}) -- lazer
-	addGround(9995, 232+5275, 80+4812, {type = 14, width = 200, angle = -45, restitution = 999}) -- lazer
-	addGround(9994, 809+5000, 338+4555, {type = 14, width = 25, height = 200}) -- porta da sala do colt fechada
+	addGround(9999, 7+5791, 66+30+4596, {type = 14, width = 12, height = 190})
+	addGround(9997, 260+5000, 135+4555, {type = 14, width = 25, height = 200})
+	addGround(9996, 88+5275, 80+4812, {type = 14, width = 200, angle = 45, restitution = 999}) -- laser
+	addGround(9995, 232+5275, 80+4812, {type = 14, width = 200, angle = -45, restitution = 999}) -- laser
+	addGround(9994, 809+5000, 338+4555, {type = 14, width = 25, height = 200})
 
 	ui.addTextArea(-5950, '<a href="event:lever">'..string.rep('\n', 5), nil, 5990, 4935, 25, 25, 0x324650, 0x0, 0)
 
