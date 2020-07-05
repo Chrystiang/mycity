@@ -22,6 +22,7 @@ updateHour = function(player, arg)
 		return time
 	else
 		ui.addTextArea(1457, '<p align="center"><b><font size="32" face="Arial">'..time, player, 2100-2, 8718-1185+11, 120, 70, 0x1, 0x1, 0)
+		TFM.setUIMapName('Mycity <g>|</g> <n>'..translate('currentTime',player)..':</n> <v>'..time..'</v>')
 		if time == '17:00' then
 			loadDayTimeEffects('evening')
 		elseif time == '19:00' then
