@@ -73,7 +73,10 @@ playerFishing = function(name, x, y, biome)
 				giveExperiencePoints(name, 500)
 			else
 				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
-				giveExperiencePoints(name, 2000)		
+				giveExperiencePoints(name, 2000)
+				for name in next, ROOM.playerList do
+					TFM.chatMessage(translate('caught_goldenmare',name):format(player), name)
+				end
 			end
 
 			local sidequest = sideQuests[player.sideQuests[1]].type
