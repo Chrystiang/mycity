@@ -632,4 +632,9 @@ lang.pl = {
     settings_gameHour = "Godzina gry",
     settings_donateText2 = 'Darczyncy otrzymaja ekskluzywnego NPC na czesc za darowizne. Pamietaj, aby wysać swoją nazwe z Transformice, dzieki czemu bede mogl uzyskac twoj obecny stroj.',
     npcDialog_Bill = 'Heyo! Czy chcesz sprawdzic, czy masz szczescie na obecnym lowisku? \nHmmm ... Pozwol mi zobaczyc ... \nMasz% s szans na zdobycie zwyklej ryby,% s na rzadka rybe i% s na mityczna rybe. \nMasz rowniez % s na zdobycie legendarnej ryby!',
+    furniture_books = 'ksiazki',
+    furniture_mirror = 'Lustro',
+    furniture_broom = 'Miotla',
+    furniture_piggy = 'Swinka',
+    furniture_sink = 'Umywalka',
 }

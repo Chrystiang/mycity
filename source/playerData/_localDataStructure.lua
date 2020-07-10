@@ -7,6 +7,7 @@ setPlayerData = function(player)
 		isFrozen	= false,
 		isBlind 	= false,
 		level		= {1, 0},
+		starIcons 	= {owned = {1}, selected = 1},
 		badges		= {},
 		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		--------- HOUSE ---------

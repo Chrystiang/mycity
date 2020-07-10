@@ -25,9 +25,11 @@ syncVersion = function(player, vs)
     players[player].totalOfStoredItems.chest[2] = 0
 
 	if playerVersion < 300 then
-		for i, v in next, chest_Item do
-			item_addToChest(bagIds[v].n, chest_Quanty[i], player, 1)
-		end
+        if type(chest_Item) ~= 'table' then
+    		for i, v in next, chest_Item do
+    			item_addToChest(bagIds[v].n, chest_Quanty[i], player, 1)
+    		end
+        end
 	else
 		for counter = 1, 2 do
 			for i, v in next, chest_Item[counter] do
@@ -35,6 +37,15 @@ syncVersion = function(player, vs)
 			end
 		end
 	end
+    if players[player].seasonStats[1][1] ~= mainAssets.season then
+        if mainAssets.fileCopy._ranking:find(player) then
+            giveBadge(player, 11)
+        end
+        players[player].starIcons.owned[#players[player].starIcons.owned+1] = 2
+        players[player].starIcons.selected = 2
+        players[player].seasonStats[1][1] = mainAssets.season
+        players[player].seasonStats[1][2] = 0
+    end
 	players[player].gameVersion = 'v'..table.concat(version, '.')
 end
 

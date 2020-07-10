@@ -9,7 +9,7 @@ saveRanking = function()
 
 	for i = #localRanking, 1, -1 do
 		local name = localRanking[i].name
-        if ROOM.playerList[name] and players[name].inRoom then
+        if players[name] and players[name].inRoom then
             table.remove(localRanking, i)
         end
     end
@@ -25,9 +25,9 @@ saveRanking = function()
     end
 	table.sort(localRanking, function(a, b) return tonumber(a.experience) > tonumber(b.experience) end)
 
-	if #localRanking > 10 then
+	if #localRanking > 20 then
         local len = #localRanking
-        for i = len, 11, -1 do
+        for i = len, 21, -1 do
             table.remove(localRanking, i)
         end
     end
@@ -37,5 +37,5 @@ saveRanking = function()
     end
 
 	-------------------------------------------
-	system.saveFile(table.concat(newRanking, ';'), 5)
+	system.saveFile(mainAssets.fileCopy._ranking..'|'..table.concat(newRanking, ';')..'|', 5)
 end

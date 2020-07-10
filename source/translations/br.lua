@@ -394,7 +394,7 @@ lang.br = {
 	furniture_bed = 'Cama',
 	furniture_scarecrow = 'Espantalho',
 	furniture_fence = 'Cerca',
-	furniture_hayWagon = 'Hay Wagon',
+	furniture_hayWagon = 'Carroça',
 	furniture_diningTable = 'Mesa de Restaurante',
 	furniture_bookcase = 'Estante',
 	syncingGame = '<r>Sincronizando dados com o servidor. O jogo pode ficar lento por alguns segundos.', 
@@ -624,7 +624,6 @@ lang.br = {
 	},
 	daveOffers = 'Ofertas de hoje',
 	placedFurnitures = 'Móveis colocados: %s',
-	settings_donateText2 = 'Doadores ganharão um NPC exclusivo no mapa como agradecimento. Lembre-se de enviar o seu nome do Transformice para que eu possa adicionar um NPC do seu ratinho.',
 	npcDialog_Bill = 'Olá! Você gostaria que eu avaliasse a sua sorte em pescar?\nHmmm... Deixa eu conferir...\nVocê tem %s de chance de pescar um peixe comum, %s de pescar um peixe raro e %s de pescar um peixe mítico.\nVocê também tem %s de chance de pescar um peixe lendário!',
 	furniture_nightstand = 'Mesa de Cabeceira',
 	furniture_bush = 'Arbusto',
@@ -634,4 +633,6 @@ lang.br = {
 	furniture_broom = 'Vassoura',
 	furniture_piggy = 'Porquinho',
 	furniture_sink = 'Pia',
+	badgeDesc_11 = 'Top 10 da temporada 1',
+	caught_goldenmare = '<v>%s</v> <j>pescou um Goldenmare!</j>',
 }

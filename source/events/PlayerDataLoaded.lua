@@ -11,6 +11,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	local playerSettings = playerData:get(name, 'playerLog')
 	players[name].settings.mirroredMode = playerSettings[2][1] or 0
 	players[name].lang = langIDS[playerSettings[2][2]] or 'en'
+	players[name].seasonStats[1][1] = playerSettings[1][1] or 0
 	players[name].seasonStats[1][2] = playerSettings[1][2] or 0
 
 	players[name].coins = playerData:get(name, 'coins')
@@ -88,6 +89,12 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	local playerLogs = playerData:get(name, 'playerLog')
 	players[name].favoriteCars = playerLogs[4] or players[name].favoriteCars
+
+	local starIcons = playerData:get(name, 'starIcons')
+	for i, v in next, starIcons[1] do
+		players[name].starIcons.owned[i] = v
+	end
+	players[name].starIcons.selected = starIcons[2]
 
 	syncVersion(name, playerLogs[3])
 	players[name].dataLoaded = true

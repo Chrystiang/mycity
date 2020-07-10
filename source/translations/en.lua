@@ -632,7 +632,6 @@ lang.en = {
 	itemInfo_miningPower = 'Rock damage: %s',
 	daveOffers = 'Today\'s offers',
 	placedFurnitures = 'Placed furnitures: %s',
-	settings_donateText2 = 'Donators will get an exclusive NPC in honor for donating. Remember to send your Transformice nickname so I will be able to get your current outfit.',
 	npcDialog_Bill = 'Heyo! Do you want to check your current fishing lucky?\nHmmm... Lemme see...\nYou have %s chance for getting a common fish, %s for a rare fish and %s for a mythical fish.\nYou also have %s chance for getting a legendary fish!',
 	furniture_nightstand = 'Nightstand',
 	furniture_bush = 'Bush',
@@ -642,4 +641,6 @@ lang.en = {
 	furniture_broom = 'Broom',
 	furniture_piggy = 'Piggy',
 	furniture_sink = 'Sink',
+	badgeDesc_11 = 'Top 10 of season 1',
+	caught_goldenmare = '<v>%s</v> <j>fished a Goldenmare!</j>',
 }

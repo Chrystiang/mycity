@@ -1,135 +1,238 @@
 lang.hu = {
-	daveOffers = 'Mai ajánlatok',
-    placedFurnitures = 'Lehelyezett bútorok: %s',
-    item_crystal_green = "Zöld Kristály",
-    item_fish_RuntyGuppy = "Runty Guppy",
-    landVehicles = "Szárazföldi",
-    item_pumpkinSeed = "Tökmag",
-    item_garlic = "Fokhagyma",
-    item_fish_Dogfish = "Kutyahal",
-    boats = "Hajók",
-    item_blueberries = "Áfonyák",
-    furniture_christmasCandyBowl = "Cukros Tál",
-    enterQuestPlace = "Ez a hely a <vp>%s</vp> teljesítése után lesz elérhető.",
-    houseSettings_placeFurniture = "Lehelyez",
-    item_lemon = "Citrom",
-    _2ndquest = "Mellékküldetés",
-    vehicle_11 = "Jacht",
-    itemDesc_pickaxe = "Törj sziklákat",
-    item_cornFlakes = "Kukoricapehely",
-    furnitures = "Bútorok",
-    item_tomato = "Paradicsom",
-    item_cheese = "Sajt",
-    hospital = "Kórház",
-    playerBannedFromRoom = "%s ki lett tiltva ebből a szobából.",
-    newLevel = "Új szint!",
-    houseSettings_reset = "Visszaállít",
-    permissions_blocked = "Zárolt",
-    item_coffee = "Kávé",
-    goTo = "Belépés",
-    elevator = "Lift",
-    fishingError = "Most már nem horgászol.",
-    noMissions = "Nincsenek elérhető küldetések.",
-    ranking_Season = "Évad %s",
-    job = "Munka",
-    houseSettings_permissions = "Jogosultságok",
-    item_fish_Lobster = "Homár",
-    sell = "Eladás",
-    furniture_christmasSnowman = "Hóember",
-    furniture_christmasSocks = "Karácsonyi Zokni",
-    runAwayCoinInfo = "A rablás befejezése után %s-t kapsz.",
-    item_sauce = "Szósz",
-    houseSettings_lockHouse = "Ház bezárása",
-    houseDescription_3 = "Csak a legbátrabbak élhetnek ebben a házban. Ooooo!",
-    settings_config_lang = "Nyelv",
-    item_wheat = "Búza",
-    House4 = "Istálló",
-    remove = "Eltávolítás",
-    itemDesc_clock = "Egyszerű óra, mely egyszer használható",
-    rewardNotFound = "A jutalom nem található.",
-    badgeDesc_4 = "Takaríts be 500 növényt",
-    cook = "Főzés",
-    furniture_bed = "Ágy",
-    seeItems = "Tárgyak mutatása",
-    furniture_painting = "Festmény",
-    furniture_christmasGift = "Ajándékdoboz",
-    item_fish_Frog = "Béka",
-    settingsText_availablePlaces = "Elérhető helyek: <vp>%s</vp>",
-    yes = "Igen",
-    houseDescription_5 = "A szellemek valódi otthona. Légy óvatos!",
-    permissions_guest = "Vendég",
-    newUpdate = "Új frissítés!",
-    expansion_pool = "Medence",
-    itemAddedToChest = "A(z) %s hozzáadva a ládához.",
-    fishWarning = "Itt nem tudsz horgászni.",
-    furniture_derp = "Galamb",
-    closed_bank = "A Bank zárva van.\nGyere vissza 07:00-kor!",
-    profile_arrestedPlayers = "Letartóztatott játékosok",
-    item_lemonSeed = "Citrommag",
-    receiveQuestReward = "Jutalom begyűjtése",
-    settings_helpText2 = "Meglévő parancsok:",
-    item_salt = "Só",
-    hungerInfo = "<v>%s</v> étel",
-    codeNotAvailable = "A kód nem érhető el.",
-    item_frogSandwich = "Béka szendvics",
-    buy = "Vásárlás",
-    using = "Használatban",
-    npcDialog_Alexa = "Helló. Mi újság?",
-    robberyInProgress = "Rablás folyamatban",
-    settingsText_grounds = "Generált területek: %s/509",
-    confirmButton_Buy = "Vásárlás %s",
-    itemDesc_shrinkPotion = "Használd ezt a bájitalt, hogy összezsugorodj %s másodpercre!",
-    badgeDesc_9 = "Teljesítettél 500 megrendelést",
-    moneyError = "Nincs elég pénzed.",
-    bagError = "Nincs elég hely a táskádban!",
-    playerUnbannedFromRoom = "El lett távolítva %s kitiltása, így újra játszhat.",
-    npc_mine6msg = "Ez bármikor beomolhat, de senki sem hallgat rám.",
-    hunger = "Éhség",
-    passwordError = "Min. 1 karakter",
-    House6 = "Karácsonyi Ház",
-    no = "Nem",
-    item_bruschetta = "Bruschetta",
-    vehicle_6 = "Halászhajó",
-    npcDialog_Santih = "Sok ember még mindig mer horgászni ebben a tóban.",
-    item_water = "Vizesvödör",
-    houseDescription_1 = "Egy kis ház.",
-    profile_purchasedCars = "Vásárolt járművek",
-    item_fish_Lionfish = "Oroszlán hal",
-    item_fertilizer = "Trágya",
-    furniture_spiderweb = "Pókháló",
-    item_fish_Goldenmare = "Aranyhal",
-    itemDesc_minerpack = "%s csákányt tartalmaz.",
-    sellFurnitureWarning = "Biztosan eladod ezt a bútort?\n<r>A művelet nem visszavonható!</r>",
-    profile_completedQuests = "Küldetések",
-    pickaxeError = "Csákányra lesz szükséged!",
+    -- profile
+    profile_basicStats = "Általános adatok",
     profile_coins = "Érmék",
-    house = "Ház",
-    closed_market = "A Bolt zárva van.\nGyere vissza 08:00-kor!",
-    pizzaMaker = "Pizzakészítő",
-    use = "Használ",
-    item_sugar = "Cukor",
-    item_clock = "Óra",
-    rewardText = "Hihetetlen jutalmakat kaptál!",
-    furniture_christmasFireplace = "Kandalló",
-    price = "Ár: %s",
-    House2 = "Családi Ház",
-    settings_donate = "Adományozás",
-    furniture_candle = "Gyertya",
-    item_tomatoSeed = "Paradicsommag",
-    newBadge = "Új jelvény",
-    speed = "Sebesség: %s",
-    furniture_chest = "Láda",
-    itemDesc_goldNugget = "Fényes és drága.",
-    confirmButton_Sell = "Eladás %s -ért",
+    profile_spentCoins = "Elköltött érmék",
+    profile_purchasedHouses = "Vásárolt házak",
+    profile_purchasedCars = "Vásárolt járművek",
+    profile_completedQuests = "Küldetések",
+    profile_completedSideQuests = "Mellékküldetések",
+    profile_questCoins = "Küldetéspontok",
+    profile_jobs = "Munkák",
+    profile_arrestedPlayers = "Letartóztatott játékosok",
+    profile_robbery = "Rablások",
+    profile_fishes = "Horgászások",
+    profile_gold = "Gyűjtött aranyrög",
+    profile_seedsPlanted = "Learatott növények",
+    profile_seedsSold = "Eladott magok",
+    profile_cookedDishes = "Megfőzött ételek",
+    profile_fulfilledOrders = "Teljesített megrendelések",
+    profile_capturedGhosts = "Elfogott szellemek",
+    profile_badges = "Kitűzők",
+    -- quests
+    questsName = "Küldetések",
+    quests = {
+        [1] = {
+            name = "Küldetés 01: Csónaképítés",
+            [0] = {
+                _add = "Beszélj vele: Kane",
+                dialog = "Hé! Hogy vagy? Nemrég valaki felfedezett egy kis szigetet a tenger után. Sok fa van ott néhány épülettel.\nAhogyan te is tudod, nincs repülőtér a városban. Jelen pillanatban csak egy csónakkal lehet oda eljutni.\nÉpíthetek neked egyet, de először egy kis segítségre lesz szükségem.\nA következő kalandom során meg szeretném tudni, mi található a Bánya másik oldalán. Van néhány elméletem, és ezekről kell meggyőződnöm.\nAzt hiszem hosszú felfedezés lesz, szóval sok ételre lesz szükségem.\nTudsz nekem fogni 5 halat?"
+            },
+            [1] = {
+                _add = "Fogj %s halat"
+            },
+            [2] = {
+                _add = "Beszélj vele: Kane",
+                dialog = "Hűha! Köszönöm a halakat! Alig várom, hogy megehessem őket a felfedezésemen.\nMost hozz nekem 3 darab Coca-cola-t. A Boltban tudod megvásárolni."
+            },
+            [3] = {
+                _add = "Vásárolj %s Coca-Cola-t"
+            },
+            [4] = {
+                _add = "Beszélj vele: Kane",
+                dialog = "Köszönöm, hogy hoztál nekem valamennyi élelmet! Most rajtam a sor, hogy viszonozzam a szivességed.\nDe először szükségem lesz néhány fa deszkára a csónakod megépítéséhez.\nNemrég láttam, hogy Chrystian fákat vág ki. Kérdezd meg, hogy adna-e néhány deszkát!"
+            },
+            [5] = {
+                _add = "Beszélj vele: Chrystian",
+                dialog = "Szóval deszkákat akarsz? Tudok adni néhányat, de előtte szükségem van egy gabonapehelyre.\nTudnál hozni?"
+            },
+            [6] = {
+                _add = "Vásárolj egy gabonapelyhet"
+            },
+            [7] = {
+                _add = "Beszélj vele: Chrystian",
+                dialog = "Köszönöm, hogy segítettél! Itt vannak a deszkák, amiket kértél. Vedd jó hasznukat!"
+            },
+            [8] = {
+                _add = "Beszélj vele: Kane",
+                dialog = "Túl sokáig tartott... Már azt hittem, hogy elfelejtetted beszerezni a deszkákat...\nEgybébként, most már megépíthetem a csónakod...\nKész is van! Érezd jól magad a szigeten, és ne felejts el óvatos maradni!"
+            }
+        },
+        [2] = {
+            name = "Küldetés 02: Az elveszett kulcsok",
+            [0] = {
+                _add = "Menj a szigetre"
+            },
+            [1] = {
+                _add = "Beszélj vele: Indy",
+                dialog = "Hé! Te meg ki vagy? Még soha sem láttalak ez előtt...\nA nevem Indy! Hosszú ideje ezen a szigeten élek. Nagyszerű helyekkel találkozhatsz itt.\nA Bájitalbolt tulajdonosa vagyok. Meghívnálak, hogy megismerd az ütletem, de van egy nagy problémám: elvesztettem az üzletem kulcsait!!\nTalán a bányászatom során vesztettem el. Tudsz nekem segíteni?"
+            },
+            [2] = {
+                _add = "Menj a Bányába"
+            },
+            [3] = {
+                _add = "Keresd meg Indy kulcsát"
+            },
+            [4] = {
+                _add = "Vidd el neki a kulcsot: Indy",
+                dialog = "Köszönöm! Most már visszamehetek az üzletbe!\nVárjunk csak...\n1 kulcs hiányzik: az üzlet kulcsa! Vissza tudnál menni?"
+            },
+            [5] = {
+                _add = "Menj vissza a Bányába"
+            },
+            [6] = {
+                _add = "Keresd meg Indy hiányzó kulcsát"
+            },
+            [7] = {
+                _add = "Vidd el neki a kulcsot: Indy",
+                dialog = "Végre! Jobban kéne figyelned, mert akár egy filmet is megnézhettem volna, amíg vártam rád.\nMég mindig akarsz találkozni az üzletnél? Megyek oda!"
+            }
+        },
+        [3] = {
+            name = "Küldetés 03: A Rablás",
+            [0] = {
+                _add = "Menj a Rendőrségre"
+            },
+            [1] = {
+                _add = "Beszélj vele: Sherlock",
+                dialog = "Szia. Nincsenek rendőröktisztek a városban, ezért a te segítségedre van szükségem, de nem túl nehéz a feladat.\nEgy titokzatos rablás volt a Bankban, de eddig nem találtak gyanusítottat...\nAzt hiszem, van néhány nyom ott.\nColt-nak többet kell tudnia a történtekről. Beszélj vele."
+            },
+            [2] = {
+                _add = "Menj a Bankba"
+            },
+            [3] = {
+                _add = "Beszélj vele: Colt",
+                dialog = "MICSODA?! Sherlock küldött ide? Mondtam neki, hogy gondoskodom az ügyről.\nAdd át neki, hogy nincs szükségem segítségetekre! Boldogulok egyedül!"
+            },
+            [4] = {
+                _add = "Menj vissza a Rendőrségre"
+            },
+            [5] = {
+                _add = "Beszélj vele: Sherlock",
+                dialog = "Tudtam, hogy nem akar segíteni nekünk...\nNélküle kell nyomokat keresnünk.\nA Bankba kell mennünk, amikor Colt nincs ott. Meg tudod csinálni, igaz?"
+            },
+            [6] = {
+                _add = "Lépj be a Bankba, amikor kirabolják"
+            },
+            [7] = {
+                _add = "Keress néhány nyomot a Bankban"
+            },
+            [8] = {
+                _add = "Menj a Rendőrségre"
+            },
+            [9] = {
+                _add = "Beszélj vele: Sherlock",
+                dialog = "Nagyon jó! Ez a ruha segíthet megtalálni a gyanusítottat.\nBeszélj Indy-vel. Ő segíteni fog nekünk."
+            },
+            [10] = {
+                _add = "Beszélj vele: Indy.",
+                dialog = "Szóval... Szükséged van a segítségemre ebben a nyomozásban?\nHmm... Hadd lássam azt a ruhát...\nLáttam már ezt valahol! A Kórházban használják! Menj, nézd meg!"
+            },
+            [11] = {
+                _add = "Menj a Kórházba"
+            },
+            [12] = {
+                _add = "Keress valami gyanúsat a Kórházban"
+            },
+            [13] = {
+                _add = "Menj a Bányába"
+            },
+            [14] = {
+                _add = "Keresd meg a gyanusítottat és tartóztasd le"
+            },
+            [15] = {
+                _add = "Menj a Rendőrségre"
+            },
+            [16] = {
+                _add = "Beszélj vele: Sherlock",
+                dialog = "Szép munka! Igazán ügyes vagy.\nTudok egy nagyszerű helyet az energiád feltöltésére: a Kávézó!"
+            }
+        },
+        [4] = {
+            name = "Küldetés 04: Az elveszett szósz!",
+            [0] = {
+                _add = "Beszélj vele: Kariina",
+                dialog = "Helló! Szeretnél valamilyen pizzát enni?\nNos... Rossz hírem van a számodra.\nKorábban elkezdtem készíteni néhány pizzát, majd észrevettem, hogy az összes szósz eltűnt!\nMegpróbáltam vásárolni néhány paradicsomot a Boltban, de nyilván nem árulnak.\nNéhány héttel ez előtt költöztem ebbe a városba és sajnos nem ismerek itt senkit, aki segíteni tudna.\nSzóval, te tudsz nekem segíteni, kérlek? Csak szószra van szükségem, hogy megnyithassam a Pizzériám."
+            },
+            [1] = {
+                _add = "Menj a szigetre"
+            },
+            [2] = {
+                _add = "Menj a Magboltba"
+            },
+            [3] = {
+                _add = "Vásárolj egy magot"
+            },
+            [4] = {
+                _add = "Menj a házadba"
+            },
+            [5] = {
+                _add = "Ültess egy rejtélyes magot a házadba (Szükséged lesz egy kertre!)"
+            },
+            [6] = {
+                _add = "Takarítsd be a paradicsomot"
+            },
+            [7] = {
+                _add = "Menj a Magboltba"
+            },
+            [8] = {
+                _add = "Vegyél egy Vizesvödröt"
+            },
+            [9] = {
+                _add = "Menj a Boltba"
+            },
+            [10] = {
+                _add = "Várásolj néhány sót"
+            },
+            [11] = {
+                _add = "Főzz egy szószt (Szükséged lesz egy sütőre!)"
+            },
+            [12] = {
+                _add = "Add oda a szószt neki: Kariina",
+                dialog = "Azta! Köszönöm! Most már csak egy csípős szószra lesz szükségem. Készítenél egyet?"
+            },
+            [13] = {
+                _add = "Ültess egy rejtélyes magot a házadba"
+            },
+            [14] = {
+                _add = "Takarítsd be a paprikát"
+            },
+            [15] = {
+                _add = "Főzz egy csípős szószt"
+            },
+            [16] = {
+                _add = "Add oda a csípős szószt neki: Kariina",
+                dialog = "ÚR ISTEN! Megcsináltad! Köszönöm!\nAmíg távol voltál, rájöttem, hogy több búzára van szükségem, hogy tésztát tudjak készíteni... Hoznál nekem néhány búzát?"
+            },
+            [17] = {
+                _add = "Ültess egy rejtélyes magot a házadba"
+            },
+            [18] = {
+                _add = "Takarítsd be a búzát"
+            },
+            [19] = {
+                _add = "Add oda a búzát neki: Kariina",
+                dialog = "Ismét köszönöm! Dolgozhatnál velem, ha új alkalmazottra lesz szükségem.\nKöszönöm a segítséget. Most megyek és befejezem a pizzákat!"
+            }
+        },
+        [5] = {
+            name = "Küldetés 05: ???",
+            [0] = {
+                _add = "???"
+            }
+        }
+    },
+    -- side quests
+    _2ndquest = "Mellékküldetés",
     sideQuests = {
         [1] = "Ültess %s magot Oliver kertjébe.",
-        [2] = "Trágyázd be a %s növényeket Oliver kertjében.",
+        [2] = "Trágyázd be a növényeket %s alkalommal Oliver kertjében.",
         [3] = "Gyűjts %s érmét.",
         [4] = "Tartóztass le egy tolvajt %s alkalommal.",
         [5] = "Használj %s tárgyat.",
         [6] = "Költs el %s érmét.",
         [7] = "Horgássz %s alkalommal.",
-        [8] = "Bányássz %s Aranyrögöt.",
+        [8] = "Bányássz %s aranyrögöt.",
         [9] = "Rabold ki a bankot anélkül, hogy letartóztatnának.",
         [10] = "Teljesíts %s rablást.",
         [11] = "Főzz %s alkalommal.",
@@ -143,497 +246,424 @@ lang.hu = {
         [19] = "Készíts egy limonádét.",
         [20] = "Készíts egy béka szendvicset."
     },
-    npcDialog_Paulo = "Ez a doboz igazán nehéz...\nJó lenne, ha itt volna egy targonca.",
-    item_luckyFlowerSeed = "Szerencsevirág mag",
-    item_seed = "Mag",
-    settingsText_hour = "Aktuális idő: <vp>%s</vp>",
-    sellGold = "%s aranyrög eladása <vp>%s</vp>-ért",
-    houseDescription_6 = "Ez az otthonos ház még a hideg napokban is kényelmet nyújt számodra.",
-    itemInfo_Seed = "Növekedési idő: <vp>%s perc</vp>\nMagonkénti ár: <vp>$%s</vp>",
-    levelUp = "%s elérte a(z) %s. szintet!",
-    sleep = "Alvás",
-    item_superFertilizer = "Szupertrágya",
-    newQuestSoon = "A Küldetés %s még nem érhető el:/\n<font size=\"11\">Fejlesztési stádium: %s%%",
-    settings_help = "Segítség",
-    badgeDesc_1 = "Találkozz a #mycity alkotójával",
-    ranking_spentCoins = "Elköltött érme",
-    profile_jobs = "Munkák",
-    placeDynamite = "Dinamit elhelyezése",
-    npcDialog_Natasha = "Szia!",
-    vehicle_5 = "Csónak",
-    quest = "Küldetés",
-    closed_furnitureStore = "A Bútorbolt zárva van.\nGyere vissza később!",
-    furniture_hayWagon = "Szénás Kocsi",
-    experiencePoints = "Tapasztalati pont",
-    permissions_owner = "Tulajdonos",
-    item_milkShake = "Tejturmix",
-    confirmButton_Select = "Kiválaszt",
-    command_profile = "<g>!profile</g> <v>[játékosNév]</v>\n   Megmutatja <i>játékosNév</i> profilját.",
-    noEnergy = "Több energiára lesz szükséged, hogy újra munkába állj.",
-    item_pierogies = "Pierogies",
-    runAway = "Menekülj %s másodpercig.",
-    maxFurnitureDepot = "A bútorraktár megtelt.",
-    npcDialog_Billy = "Alig várom, hogy ma este kiraboljam a bankot!",
-    vehicleError = "Ezen a helyen nem használhatod ezt a járművet.",
-    item_oregano = "Oregánó",
-    npcDialog_Pablo = "Szóval, rabló akarsz lenni? Úgy érzem, titkos zsaru vagy...\nOh, nem vagy? Rendben, akkor hiszek neked.\nMost már rabló vagy. Rabolj a rózsaszín névvel ellátott karakterektől a SPACE gombot lenyomva. Ne felejts el távol maradni a zsaruktól!",    expansion_garden = "Kert",
-    syncingGame = "<r>A játék adatainak szinkronizálása. A játék néhány másodpercre leáll.",
-    settings_creditsText2 = "Különleges köszönet <v>%s</v>-nek a modul fontos erőforrásainak segítéséért.",
-    permissions_coowner = "Társtulajdonos",
-    furniture_apiary = "Méh doboz",
-    House5 = "Kísértet Kastély",
-    saveChanges = "Változtatások Mentése",
-    item_honey = "Méz",
-    furniture_rip = "RIP",
-    houseSetting_storeFurnitures = "Az összes bútor áthelyezése a bútorraktárba",
-    quests = {
-        [2] = {
-            [0] = {
-                _add = "Menj a szigetre."
-            },
-            [7] = {
-                dialog = "Végre! Jobban kell figyelned, mert akár egy filmet is nézhettem volna, amíg vártam rád.\nMég mindig akarsz találkozni az üzletnél? Megyek oda!",
-                _add = "Vidd el neki a kulcsot: Indy."
-            },
-            [1] = {
-                dialog = "Hé! Te meg ki vagy? Még soha sem láttalak ez előtt...\nA nevem Indy! Hosszú ideje ezen a szigeten élek. Nagyszerű helyekkel találkozhatsz itt.\nA Bájitalbolt tulajdonosa vagyok. Meghívnálak, hogy találkozz az ütlettel, de van egy nagy problémám: Elvesztettem az üzletem kulcsait!!\nTalán a bányászatom során veszítettem el. Tudsz nekem segíteni?",
-                _add = "Bezsélj vele: Indy"
-            },
-            [2] = {
-                _add = "Menj a Bányába."
-            },
-            [4] = {
-                dialog = "Köszönöm! Most már visszamehetek az üzletbe!\nVárjunk csak...\n1 kulcs hiányzik: az üzlet kulcsa! Nehéznek tűnik?",
-                _add = "Vidd el neki a kulcsot: Indy."
-            },
-            [5] = {
-                _add = "Menj vissza a Bányába."
-            },
-            name = "Küldetés 02: Az elveszett kulcsok",
-            [3] = {
-                _add = "Keresd meg Indy kulcsait."
-            },
-            [6] = {
-                _add = "Keresd meg Indy kulcsait."
-            }
-        },
-        [3] = {
-            [0] = {
-                _add = "Menj a Rendőrségre."
-            },
-            [2] = {
-                _add = "Menj a Bankba."
-            },
-            [4] = {
-                _add = "Menj vissza a Rendőrségre."
-            },
-            [8] = {
-                _add = "Menj a Rendőrségre."
-            },
-            [16] = {
-                dialog = "Szép munka! Igazán ügyes vagy.\nTudok egy nagyszerű helyet az energiád feltöltésére a hosszú nyomozás után: a Kávézó!",
-                _add = "Beszélj vele: Sherlock."
-            },
-            [9] = {
-                dialog = "Nagyon jó! Ez a ruha segíthet megtalálni a gyanusítottat.\nBeszélj Indy-vel. Ő segíteni fog nekünk.",
-                _add = "Beszélj vele: Sherlock."
-            },
-            [5] = {
-                dialog = "Tudtam, hogy nem akar segíteni nekünk...\nNélküle kell nyomokat keresnünk.\nA Bankba kell mennünk, amikor Colt nincs ott. Meg tudod csinálni, igaz?",
-                _add = "Beszélj vele: Sherlock."
-            },
-            [10] = {
-                dialog = "Szóval... Szükséged van a segítségemre ebben a nyomozásban?\nHmm... Hadd lássam azt a ruhát...\nLáttam már ezt valahol. A Kórházban használják! Menj, nézd meg!",
-                _add = "Beszélj vele: Indy."
-            },
-            [11] = {
-                _add = "Menj a Kórházba."
-            },
-            [3] = {
-                dialog = "MICSODA? Sherlock küldött ide? Mondtam neki, hogy gondoskodom az ügyről.\nMondd meg neki, hogy nincs szükségem segítségre. Boldogulok egyedül.",
-                _add = "Beszélj vele: Colt."
-            },
-            [6] = {
-                _add = "Lépj be a Bankba, amikor kirabolják."
-            },
-            [12] = {
-                _add = "Keress valami gyanúsat a Kórházban."
-            },
-            [13] = {
-                _add = "Menj a Bányába."
-            },
-            name = "Küldetés 03: A rablás",
-            [14] = {
-                _add = "Keresd meg a gyanusítottat és tartóztasd le."
-            },
-            [1] = {
-                dialog = "Szia. Nincsenek rendőröktisztek a városban, ezért a te segítségedre van szükségem, de nem túl nehéz a feladat.\nEgy titokzatos rablás volt a Bankban, de eddig nem találtak gyanusítottat...\nAzt hiszem, van néhány nyom a Bankban.\nColt-nak többet kell tudnia a történtekről. Beszélj vele.",
-                _add = "Beszélj vele: Sherlock"
-            },
-            [7] = {
-                _add = "Keress néhány nyomot a Bankban."
-            },
-            [15] = {
-                _add = "Menj a Rendőrségre."
-            }
-        },
-        [1] = {
-            [0] = {
-                dialog = "Hé! Hogy vagy? Nemrég valaki felfedezett egy kis szigetet a tenger után. Sok fa van ott néhány épülettel.\nAhogyan te is tudod, nincs repülőtér a városban. Jelen pillanatban csak egy csónakkal lehet oda eljutni.\nÉpíthetek neked egyet, de először egy kis segítségre lesz szükségem.\nA következő kalandom során meg szeretném tudni, mi található a Bánya másik oldalán. Van néhány elméletem, és ezekről kell meggyőződnöm.\nAzt hiszem hosszú felfedezés lesz, szóval sok ételre lesz szükségem.\nTudsz nekem fogni 5 halat?",
-                _add = "Beszélj vele: Kane"
-            },
-            [7] = {
-                dialog = "Köszönöm, hogy segítettél! Itt vannak a fa deszkák, amiket kértél. Vedd jó hasznukat!",
-                _add = "Beszélj vele: Chrystian"
-            },
-            [1] = {
-                _add = "Fogj %s halat"
-            },
-            [2] = {
-                dialog = "Hűha! Köszönöm a halakat! Alig várom, hogy megehessem őket a felfedezésemen.\nMost hozz nekem 3 darab Coca-cola-t. Megvásárolhatod a Boltban.",
-                _add = "Beszélj vele: Kane"
-            },
-            [4] = {
-                dialog = "Köszönöm, hogy hoztál nekem néhány ennivalót! Most rajtam a sor, hogy viszonozzam a szivességed.\nDe először szükségem lesz néhány fa deszkára a csónakod megépítéséhez.\nNemrég láttam, hogy Chrystian fákat vág ki. Kérdezd meg, hogy adna-e néhány deszkát.",
-                _add = "Beszélj vele: Kane"
-            },
-            [8] = {
-                dialog = "Túl sokáig tartott... Már azt hittem, hogy elfelejtetted beszerezni a deszkákat...\nEgybébként, most már megépíthetem a csónakod...\nItt a csónakod! Érezd jól magad az új szigeten, és ne felejts el óvatos maradni!",
-                _add = "Beszélj vele: Kane"
-            },
-            [5] = {
-                dialog = "Szóval deszkákat akarsz? Tudok adni néhányat, de hoznod kell nekem egy gabonapelyhet.\nMegtennéd?",
-                _add = "Beszélj vele: Chrystian"
-            },
-            name = "Küldetés 01: Építs egy csónakot",
-            [3] = {
-                _add = "Vásárolj %s Coca-Cola-t"
-            },
-            [6] = {
-                _add = "Vásárolj egy gabonapelyhet"
-            }
-        },
-        [4] = {
-            [0] = {
-                dialog = "Helló! Szeretnél valamilyen pizzát enni?\nNos... Rossz hírem van a számodra.\nKorábban elkezdtem készíteni néhány pizzát, majd észrevettem, hogy az összes szósz eltűnt!\nMegpróbáltam vásárolni néhány paradicsomot a Boltban, de nyilván nem árulnak.\nNéhány héttel ez előtt költöztem ebbe a városba, és nem ismerek itt senkit, aki segíteni tudna.\nSzóval kérlek, tudsz nekem segíteni? Csak szószra van szükségem, hogy megnyithassam a Pizzériám.",
-                _add = "Beszélj vele: Kariina."
-            },
-            [2] = {
-                _add = "Menj a Magboltba."
-            },
-            [4] = {
-                _add = "Menj a házadba."
-            },
-            [8] = {
-                _add = "Vegyél egy Vizesvödröt."
-            },
-            [16] = {
-                dialog = "ÚR ISTEN! Megcsináltad! Köszönöm!\nAmíg távol voltál, rájöttem, hogy több búzára van szükségem, hogy több tésztát tudjak készíteni... Hoznál nekem néhány búzát?",
-                _add = "Add oda a csípős szószt neki: Kariina."
-            },
-            [17] = {
-                _add = "Ültess egy magot a házadba."
-            },
-            [9] = {
-                _add = "Menj a Boltba."
-            },
-            [18] = {
-                _add = "Takarítsd be a búzát."
-            },
-            [5] = {
-                _add = "Ültess egy magot a házadba. (Szükséged lesz egy kertre!)"
-            },
-            [10] = {
-                _add = "Várásolj néhány sót."
-            },
-            [11] = {
-                _add = "Főzz egy szószt. (Szükséged lesz egy sütőre!)"
-            },
-            [3] = {
-                _add = "Vásárolj egy magot."
-            },
-            [6] = {
-                _add = "Takarítsd be a paradicsomot."
-            },
-            [12] = {
-                dialog = "Azta! Köszönöm! Most már csak egy csípős szószra lesz szükségem. Készítenél egyet?",
-                _add = "Add oda a szószt neki: Kariina."
-            },
-            [13] = {
-                _add = "Ültess egy magot a házadba."
-            },
-            name = "Küldetés 04: Az elveszett szósz!",
-            [14] = {
-                _add = "Takarítsd be a paprikát."
-            },
-            [1] = {
-                _add = "Menj a szigetre."
-            },
-            [7] = {
-                _add = "Menj a Magboltba."
-            },
-            [15] = {
-                _add = "Főzz egy csípős szószt."
-            },
-            [19] = {
-                dialog = "Ismét köszönöm! Dolgozhatnál velem, ha új alkalmazottra lesz szükségem.\nKöszönöm a segítséget. Most megyek és befejezem a pizzákat!",
-                _add = "Add oda a tésztát neki: Kariina."
-            }
-        },
-        [5] = {
-            name = "Küldetés 03: A rablás",
-            [0] = {
-                _add = "Menj a Rendőrségre."
-            }
-        }
-    },
-    bag = "Táska",
-    furniture_shelf = "Polc",
-    item_potato = "Krumpli",
-    emergencyMode_able = "<r>Vészleállás kezdeményezése, új játékosok nem engedélyezettek. Kérjük, menj egy másik #mycity szobába.",
-    arrestedPlayer = "Letartóztattad <v>%s</v> -t!",
-    item_lobsterBisque = "Homár Krémleves",
-    item_hotChocolate = "Forró csokoládé",
-    confirmButton_Work = "Munkára fel!",
-    chef = "Séf",
-    item_waffles = "Gofri",
-    item_frenchFries = "Sültkrumpli",
-    npcDialog_Weth = "Puding *-*",
-    minerpack = "Bányászcsomag %s",
-    badgeDesc_2 = "Fogj 500 halat",
-    settings_credits = "Kreditek",
-    timeOut = "Nem elérhető hely.",
-    error_maxStorage = "Maximum mennyiség megvásárolva.",
-    percentageFormat = "%s%%",
-    furniture_diningTable = "Ebédlő Asztal",
-    badgeDesc_10 = "Letartóztattál 500 rablót",
-    badgeDesc_3 = "Bányásztál 1000 aranyrögöt",
-    closed_dealership = "Az Autókereskedés zárva van.\nGyere vissza 08:00-kor!",
-    houseSettings_finish = "Befejez!",
-    profile_badges = "Jelvények",
-    item_pudding = "Puding",
-    eatItem = "Megesz",
-    bankRobAlert = "A Bankot kirabolták. Védd meg!",
-    item_shrinkPotion = "Zsugorító bájital",
-    item_bread = "Kenyér",
-    item_crystal_yellow = "Citromsárga Kristály",
-    npcDialog_Julie = "Légy óvatos. Ez a szupermarket nagyon veszélyes.",
-    vehicle_12 = "Bugatti",
-    profile_basicStats = "Általános adatok",
-    item_milk = "Üveg tej",
-    unlockedBadge = "Egy új Jelvényt szereztél!",
-    item_wheatSeed = "Búzamag",
-    incorrect = "Helytelen",
-    profile_seedsPlanted = "Learatott",
-    recipes = "Receptek",
-    npcDialog_Goldie = "Akarsz eladni egy kristályt? Dobd le mellém, hogy megbecsülhessem az árát.",
-    soon = "Hamarosan!",
-    furniture_bookcase = "Könyvespolc",
-    item_energyDrink_Ultra = "Coca-Cola",
-    profile_completedSideQuests = "Mellékküldetések",
-    expansion_grass = "Fű",
-    item_hotsauce = "Csípős szósz",
-    badgeDesc_7 = "Vásárold meg a Szánt.",
-    houseSettings = "Házbeállítások",
-    error_boatInIsland = "Nem használhatsz csónakot messze a tengertől.",
-    House3 = "Kísértetház",
-    itemDesc_fertilizer = "Felgyorsítja a növények növekedési idejét!",
-    error_houseUnderEdit = "%s szerkeszti a házat.",
-    furnitureRewarded = "Feloldott bútor: %s",
-    item_garlicBread = "Fokhagymás Kenyér",
-    createdBy = "Készítette %s",
-    healing = "Az életszinted %s másodpercen belül fel lesz töltve.",
-    emergencyMode_pause = "<cep><b>[Figyelem!]</b> <r>A modul elérte a kritikus határát, így szüneteltetés alatt áll.",
-    vehicles = "Járművek",
-    profile_purchasedHouses = "Vásárolt házak",
-    chestIsFull = "A láda megtelt.",
-    profile_capturedGhosts = "Elfogott szellemek",
-    codeLevelError = "Ha kód használatához el kell érned a(z) %s szintet.",
-    settings_donateText = "<j>#Mycity</j> egy <b><cep>2014</cep></b>-ben indult projekt, de egy másik játékmenettel: <v>építs egy várost</v>! Azonban ez a projekt nem haladt előre, és hónapokkal később törölve lett.\n <b><cep>2017</cep></b>-ben úgy döntöttem, hogy helyrehozom egy új céllal: <v>élj egy városban</v>!\n\n A rendelkezésre álló funkciók nagy részét én készítettem <v>hosszú és fárasztó</v> időn keresztül.\n\n Ha képes vagy nekem segíteni, adományozz! Ez nagyban ösztönöz az új frissítések elkészítésében!",
-    npcDialog_Davi = "Sajnálom, de nem engedhetem, hogy itt tovább menj.",
-    confirmButton_Great = "Nagyszerű!",
-    captured = "<g>A rabló (<v>%s</v>) le lett tartóztatva!",
-    copError = "10 másodpercet várnod kell, hogy újra elkaphass valakit.",
-    itemInfo_miningPower = "Kő sebzés: %s",
-    item_crystal_red = "Piros Kristály",
-    waitUntilUpdate = "<rose>Kérlek várj.</rose>",
-    permissions_roommate = "Szobatárs",
-    collectorItem = "Gyűjtő tárgy",
-    settings_creditsText = "A <j>#Mycity</j>-t <v>%s</v> készítette, a rajzokban <v>%s</v> segített, és ők fordították:",
-    npcDialog_Marie = "Imáááááááádom a sajtot *-*",
-    houseDescription_2 = "Nagy ház, nagy családoknak, nagy problémákkal.",
-    closed_police = "A Rendőrség zárva van.\nGyere vissza 08:00-kor!",
-    item_energyDrink_Basic = "Sprite",
-    setPermission = "Jog: %s",
-    closed_seedStore = "A Magbolt zárva van.\nGyere vissza később.",
-    settings_helpText = "Üdvözöl a <j>#Mycity</j>!\n Ha tudni akarod, hogyan kell játszani, akkor kattints az alábbi gombra:",
-    error_blockedFromHouse = "Ki vagy zárva %s házából.",
-    farmer = "Farmer",
-    daysLeft2 = "%s nap",
-    item_blueberriesSeed = "Áfonya mag",
-    furniture_christmasCarnivorousPlant = "Húsevő Növény",
-    reward = "Jutalom",
-    pickaxes = "Csákányok",
-    furniture = "Bútor",
-    houseSettings_buildMode = "Építési Mód",
-    item_salad = "Saláta",
-    itemDesc_superFertilizer = "Ez 2x hatékonyabb, mint a rendes trágya.",
-    item_dynamite = "Dinamit",
-    item_lettuce = "Saláta",
-    settings_settings = "Beállítások",
-    multiTextFormating = "{0}: {1}",
-    npcDialog_Rupe = "Egyértelmű, hogy a kőből készült csákány nem jó választás a kövek törésére.",
-    npcDialog_Jason = "Hé... Az üzletemben még nincsenek eladó dolgok.\nKérlek, gyere vissza később!",
-    energyInfo = "<v>%s</v> energia",
-    houseDescription_7 = "Egy ház azoknak, akik szeretnek a természethez közelebb ébredni!",
-    npcDialog_Kapo = "Mindig idejövök, hogy ellenőrizzem Dave napi ajánlatát.\nNéha olyan tárgyakat kapok, amik csak az ő tulajdonában vannak!",
-    miner = "Bányász",
-    copAlerted = "A zsaruk riasztva lettek.",
-    item_oreganoSeed = "Oregánó mag",
-    waterVehicles = "Vízi",
-    settings_config_mirror = "Tükrözött Szöveg",
-    item_egg = "Tojás",
-    houseDescription_4 = "Unalmas a városban élni? Mi tudjuk, mire van szükséged.",
-    House1 = "Klasszikus Ház",
-    open = "Nyit",
-    furniture_cauldron = "Üst",
-    houseSettings_changeExpansion = "Bővítés Módosítása",
-    closed_fishShop = "A Halbolt zárva van.\nGyere vissza később!",
-    questCompleted = "Teljesítetted a következő küldetést:\n%s!\nA jutalmad:",
-    furniture_scarecrow = "Madárijesztő",
-    profile_fulfilledOrders = "Teljesített megrendelések",
-    item_grilledLobster = "Grillezett Homár",
-    transferedItem = "A(z) %s áthelyezve a táskádba.",
-    npcDialog_Cassy = "Szép napot!",
-    itemAmount = "Tárgyak: %s",
-    cancel = "Mégse",
-    npcDialog_Lauren = "Imádja a sajtot.",
-    close = "Bezárás",
-    updateWarning = "<font size=\"10\"><rose><p align=\"center\">Figyelem!</p></rose>\nÚj frissítés:\n%s:%s perc múlva",
-    badgeDesc_5 = "500 teljesített lopás",
-    confirmButton_Buy = "Vásárlás %s -ért",
-    looseMgs = "Megmenekülsz %s másodpercen belül.",
-    item_bag = "Táska",
-    settings_gamePlaces = "Helyek",
-    npcDialog_Louis = "Mondtam neki, hogy ne rakjon olajbogyót...",
-    wordSeparator = " és ",
-    confirmButton_tip = "Tipp",
-    tip_vehicle = "Kattints a jármű melletti csillag ikonra, hogy a kedvenceid közé tedd! A kedvenc jármű meghívásához nyomd meg az F(szárazföldi) vagy G(vízi) gombot.",
-    speed_knots = "nmi",
-    codeInfo = "Írj be egy érvényes kódot, majd kattints az Elfogadra, hogy megkapd a jutalmad.\nÚj kódokat kaphatsz, ha csatlakozol a Discord szerverünkhöz!\n<a href=\"event:getDiscordLink\"><v>(Kattints ide a meghívó linkért)</v></a>",
-    sellFurniture = "Bútor Eladása",
-    profile_cookedDishes = "Főtt ételek",
+    -- jobs
+    job = "Munka",
     police = "Rendőr",
-    profile_questCoins = "Küldetéspontok",
-    item_wheatFlour = "Búzaliszt",
-    alreadyLand = "Valaki már megszerezte ezt a területet.",
-    furniture_fence = "Kerítés",
-    orderCompleted = "Kiszállítottad %s rendelését és %s-t kaptál!",
-    ranking_coins = "Összegyűjtött érme",
-    limitedItemBlock = "Várnod kell %s másodpercet, hogy használhasd ezt a tárgyat .",
-    settingsText_createdAt = "A szoba <vp>%s</vp> perccel ezelőtt lett létrehozva.",
-    settingsText_currentRuntime = "Futási idő: <r>%s</r>/60ms",
-    furniture_oven = "Sütő",
-    item_fish_SmoltFry = "Ponty",
-    energy = "Energia",
-    item_fish_Catfish = "Macskahal",
-    emergencyMode_resume = "<r>A modul folytatódik.",
-    itemDesc_cheese = "Használd ezt a tárgyat, hogy sajtot kapj a Transformice boltban!",
-    item_lemonade = "Limonádé",
-    houses = "Házak",
-    locked_quest = "Küldetés %s",
-    House7 = "Faház",
-    expansion = "Bővítések",
-    profile_seedsSold = "Eladott",
-    vehicle_9 = "Szán",
-    furniture_testTubes = "Kémcsövek",
-    newLevelMessage = "Gratulálunk!\nSzintet léptél!",
-    itemDesc_bag = "+%s kapacitás a táskában",
-    itemDesc_growthPotion = "Használd ezt a bájitalt, hogy megnövekedj %s másodpercre!",
-    questsName = "Küldetések",
-    itemDesc_seed = "Egy rejtélyes mag.",
-    badgeDesc_0 = "Halloween 2019",
-    item_chocolateCake = "Csokoládé Torta",
-    profile_robbery = "Rablások",
-    event_halloween2019 = "Halloween 2019",
-    settingsText_placeWithMorePlayers = "Több játékossal való hely: <vp>%s</vp> <r>(%s)</r>",
     thief = "Rabló",
+    fisher = "Horgász",
+    miner = "Bányász",
+    farmer = "Farmer",
+    chef = "Séf",
+    ghostbuster = "Szellemírtó",
+    ghost = "Szellem",
+    -- badge Descs
+    badgeDesc_0 = "Halloween 2019",
+    badgeDesc_1 = "Találkoztál a #mycity alkotójával!",
+    badgeDesc_2 = "500 kifogott hal",
+    badgeDesc_3 = "1000 bányászott aranyrög",
+    badgeDesc_4 = "500 betakarított növény",
+    badgeDesc_5 = "500 teljesített lopás",
+    badgeDesc_6 = "Karácsony 2019",
+    badgeDesc_7 = "Megvásároltad a Szánt!",
+    badgeDesc_9 = "500 teljesített megrendelés",
+    badgeDesc_10 = "500 letartóztatott rabló",
+    -- fish
+    item_fish_SmoltFry = "Ponty",
+    item_fish_Frog = "Béka",
+    item_fish_RuntyGuppy = "Runty Guppy",
+    item_fish_Dogfish = "Kutyahal",
+    item_fish_Catfish = "Macskahal",
+    item_fish_Lionfish = "Oroszlán hal",
+    item_fish_Lobster = "Homár",
+    item_fish_Goldenmare = "Aranyhal",
+    -- furnitures
+    furniture = "Bútor",
+    furnitures = "Bútorok",
+    furniture_bed = "Ágy",
+    furniture_painting = "Festmény",
+    furniture_derp = "Galamb",
+    furniture_spiderweb = "Pókháló",
+    furniture_candle = "Gyertya",
+    furniture_chest = "Láda",
+    furniture_hayWagon = "Szénás Kocsi",
+    furniture_apiary = "Méh doboz",
+    furniture_rip = "RIP",
+    furniture_shelf = "Polc",
+    furniture_diningTable = "Ebédlő Asztal",
+    furniture_bookcase = "Könyvespolc",
+    furniture_cauldron = "Üst",
+    furniture_scarecrow = "Madárijesztő",
+    furniture_fence = "Kerítés",
+    furniture_oven = "Sütő",
+    furniture_testTubes = "Kémcsövek",
     furniture_pumpkin = "Tök",
     furniture_cross = "Kereszt",
-    ghostbuster = "Szellemírtó",
-    npcDialog_Blank = "Szükséged van valamire?",
-    furniture_christmasWreath = "Karácsonyi Koszorú",
-    daysLeft = "Még %s napig.",
     furniture_hay = "Széna",
-    codeAlreadyReceived = "Használt kód.",
-    level = "Szint %s",
-    badgeDesc_6 = "Karácsony 2019",
-    item_crystal_blue = "Kék Kristály",
-    profile_gold = "Gyűjtött Arany",
-   	seedSold = "%s eladva ennyiért: %s.",
-    ghost = "Szellem",
-    code = "írd be a kódot",
-    sidequestCompleted = "Teljesítetted a Mellékküldetést!\nA jutalmad:",
-    profile_spentCoins = "Elköltött érmék",
-    waitingForPlayers = "Várakozás játékosokra...",
-    item_pizza = "Pizza",
-    profile_fishes = "Horgászások",
-    item_growthPotion = "Növekedési bájital",
-    item_pickaxe = "Csákány",
-    item_crystal_purple = "Lila Kristály",
-    passToBag = "Táskába helyezés",
-    item_goldNugget = "Aranyrög",
     furniture_tv = "Televízió",
     furniture_sofa = "Kanapé",
-    settings = "Beállítások",
-    submit = "Elfogad",
-    itemDesc_water = "A magok gyorsabban nőnek!",
-    maxFurnitureStorage = "Csak %s bútor lehet a házadban.",
-    error_houseClosed = "%s bezárta ezt a házat.",
-    item_pumpkin = "Tök",
-    vehicle_8 = "Járőrhajó",
-    sale = "Eladó",
-    item_dough = "Tészta",
-    houseSettings_unlockHouse = "Ház kinyitása",
-    item_pepperSeed = "Paprika mag",
-    item_luckyFlower = "Szerencsevirág",
-    item_pepper = "Paprika",
     furniture_kitchenCabinet = "Konyhaszekrény",
     furniture_flowerVase = "Virágcserép",
-    frozenLake = "A tó befagyott. Várnod kell tél végéig, hogy újra használhass hajót.",
-    chooseExpansion = "Válassz ki egy bővítést",
-    drop = "Kidobás",
-    owned = "Birtokolva",
-    npcDialog_Sebastian = "Hé haver.\n...\nNem Colt vagyok.",
-    npcDialog_Heinrich = "Huh... Szóval Bányász akarsz lenni? Ha igen, akkor légy óvatos. Amikor kisegér voltam, eltévedtem ebben a labirintusban.",
-    item_chocolate = "Csokoládé",
-    closed_potionShop = "A Bájitalbolt zárva van.\nGyere vissza később!",
-    mouseSizeError = "Túl kicsi vagy ahhoz, hogy ezt tedd.",
-    codeReceived = "A jutalmad: %s.",
-    chooseOption = "Válassz egy lehetőséget",
-    shop = "Bolt",
-    item_energyDrink_Mega = "Fanta",
-    npcDialog_Derek = "Psszt.. Ma este valami nagy eredményt szerzünk: kiraboljuk a Bankot.\nHa csatlakozni akarsz hozzánk, jobb, ha beszélsz a főnökünkkel, Pablo-val.",
-    harvest = "Betakarítás",
-    atmMachine = "ATM",
-    hey = "Hé! Állj!",
-    itemDesc_dynamite = "Bumm!",
-    password = "Jelszó",
-    goldAdded = "A bányászott aranyrög hozzáadva a táskádhoz.",
-    mine5error = "A Bánya beomlott.",
-    fisher = "Horgász",
-    completedQuest = "Küldetés befejezve",
-    item_cookies = "Sütemény",
-    items = "Tárgyak:",
-    speed_km = "Km/h",
-    leisure = "Szórakozás",
-    closed_buildshop = "Az Építészeti Bolt zárva van.\nGyere vissza 08:00-kor!",
-    alert = "RIADÓ!",
-    error = "Hiba",
-    settings_gameHour = "Játékóra",
-    settings_donateText2 = 'Az adományozók exkluzív NPC-ket kapnak az adományozásért. Ne felejtsd el elküldeni a Transformice felhasználóneved, így fogom tudni megszerezni az aktuális kinézeted.',
-    npcDialog_Bill = 'Heyyo! Szeretnéd ellenőrizni az aktuális horgászszerencséd?\nHmmm... Lássuk csak..\n%s esélyed van egy közönséges hal megszerzésére, %s esélyed egy ritka hal megszerzésére és %s esélyed egy mitikus hal megszerzésére.\n... És %s esélyed van egy legendás hal megszerzésére!',
     furniture_nightstand = 'Éjjeli szekrény',
     furniture_bush = 'Bokor',
     furniture_armchair = 'Fotel',
+    furniture_christmasSnowman = "Hóember",
+    furniture_christmasSocks = "Karácsonyi Zokni",
+    furniture_christmasGift = "Ajándékdoboz",
+    furniture_christmasFireplace = "Kandalló",
+    furniture_christmasWreath = "Karácsonyi Koszorú",
+    furniture_christmasCandyBowl = "Cukros Tál",
+    furniture_christmasCarnivorousPlant = "Húsevő Növény",
+    -- items
+    items = "Tárgyak:",
+    item_cheese = "Sajt",
+    item_coffee = "Kávé",
+    --
+    item_clock = "Óra",
+    item_dynamite = "Dinamit",
+    item_pickaxe = "Csákány",
+    --
+    item_salt = "Só",
+    item_milk = "Tej",
+    item_chocolate = "Csokoládé",
+    item_cornFlakes = "Gabonapehely",
+    item_sugar = "Cukor",
+    item_bag = "Táska",
+    --
+    item_water = "Vizesvödör",
+    item_fertilizer = "Trágya",
+    item_superFertilizer = "Szupertrágya",
+    item_wheatFlour = "Búzaliszt",
+    --
+    item_potato = "Krumpli",
+    item_honey = "Méz",
+    item_salad = "Saláta",
+    item_egg = "Tojás",
+    item_garlic = "Fokhagyma",
+    --
+    item_shrinkPotion = "Zsugorító bájital",
+    item_growthPotion = "Növekedési bájital",
+    --
+    item_energyDrink_Ultra = "Coca-Cola",
+    item_energyDrink_Mega = "Fanta",
+    item_energyDrink_Basic = "Sprite",
+    --
+    item_crystal_yellow = "Citromsárga Kristály",
+    item_crystal_blue = "Kék Kristály",
+    item_crystal_purple = "Lila Kristály",
+    item_crystal_green = "Zöld Kristály",
+    item_crystal_red = "Piros Kristály",
+    --
+    item_milkShake = "Tejturmix",
+    item_hotChocolate = "Forró csokoládé",
+    item_waffles = "Gofri",
+    item_chocolateCake = "Csokoládé Torta",
+    item_sauce = "Szósz",
+    item_bread = "Kenyér",
+    item_lobsterBisque = "Homár Krémleves",
+    item_frenchFries = "Sültkrumpli",
+    item_frogSandwich = "Béka szendvics",
+    item_hotsauce = "Csípős szósz",
+    item_bruschetta = "Bruschetta",
+    item_grilledLobster = "Grillezett Homár",
+    item_lettuce = "Saláta",
+    item_garlicBread = "Fokhagymás Kenyér",
+    item_cookies = "Sütemény",
+    item_pizza = "Pizza",
+    item_lemonade = "Limonádé",
+    item_pudding = "Puding",
+    item_pierogies = "Pierogies",
+    --
+    item_goldNugget = "Aranyrög",
+    item_dough = "Tészta",
+    -- item descs
+    itemDesc_dynamite = "Bumm!",
+    itemDesc_pickaxe = "Törj sziklákat",
+    itemDesc_seed = "Egy rejtélyes mag.",
+    itemDesc_goldNugget = "Fényes és drága.",
+    itemDesc_bag = "+%s kapacitás a táskában",
+    itemDesc_minerpack = "%s csákányt tartalmaz.",
+    itemDesc_water = "Ettől a magok gyorsabban nőnek!",
+    itemDesc_clock = "Egyszerű óra, mely egyszer használható",
+    itemDesc_fertilizer = "Felgyorsítja a növények növekedési idejét!",
+    itemDesc_superFertilizer = "Ez 2x hatékonyabb, mint a rendes trágya.",
+    itemInfo_Seed = "Növekedési idő: <vp>%s perc</vp>\nMagonkénti ár: <vp>$%s</vp>",
+    itemInfo_miningPower = "Kő sebzés: %s",
+    itemDesc_cheese = "Használd ezt a tárgyat, hogy sajtot kapj a Transformice boltban!",
+    itemDesc_shrinkPotion = "Használd ezt a bájitalt, hogy összezsugorodj %s másodpercre!",
+    itemDesc_growthPotion = "Használd ezt a bájitalt, hogy megnövekedj %s másodpercre!",
+    -- houses and descriptions
+    house = "Ház",
+    houses = "Házak",
+    House1 = "Klasszikus Ház",
+    houseDescription_1 = "Egy kis ház.",
+    House2 = "Családi Ház",
+    houseDescription_2 = "Nagy ház, nagy családoknak, nagy problémákkal.",
+    House3 = "Kísértetház",
+    houseDescription_3 = "Csak a legbátrabbak élhetnek ebben a házban. Ooooo!",
+    House4 = "Istálló",
+    houseDescription_4 = "Unalmas a városban élni? Mi tudjuk, mire van szükséged.",
+    House5 = "Kísértet Kastély",
+    houseDescription_5 = "A szellemek valódi otthona. Légy óvatos!",
+    House6 = "Karácsonyi Ház",
+    houseDescription_6 = "Ez az otthonos ház még a hideg napokban is kényelmet nyújt számodra.",
+    House7 = "Faház",
+    houseDescription_7 = "Egy ház azoknak, akik szeretnek a természethez közelebb ébredni!",
+    -- plants and seeds
+    item_seed = "Mag",
+    item_tomato = "Paradicsom",
+    item_tomatoSeed = "Paradicsommag",
+    item_oregano = "Oregánó",
+    item_oreganoSeed = "Oregánó mag",
+    item_wheat = "Búza",
+    item_wheatSeed = "Búzamag",
+    item_pepper = "Paprika",
+    item_pepperSeed = "Paprika mag",
+    item_lemon = "Citrom",
+    item_lemonSeed = "Citrommag",
+    item_pumpkin = "Tök",
+    item_pumpkinSeed = "Tökmag",
+    item_blueberries = "Áfonya",
+    item_blueberriesSeed = "Áfonya mag",
+    item_luckyFlower = "Szerencsevirág",
+    item_luckyFlowerSeed = "Szerencsevirág mag",
+    -- vehicles
+    vehicles = "Járművek",
+    boats = "Hajók",
+    landVehicles = "Szárazföldi",
+    vehicle_9 = "Szán",
+    vehicle_12 = "Bugatti",
+    waterVehicles = "Vízi",
+    vehicle_5 = "Csónak",
+    vehicle_6 = "Halászhajó",
+    vehicle_8 = "Járőrhajó",
+    vehicle_11 = "Jacht",
+    -- settings
+    settings = "Beállítások",
+    houseSettings = "Házbeállítások",
+    houseSettings_unlockHouse = "Ház kinyitása",
+    houseSettings_placeFurniture = "Lehelyez",
+    houseSettings_finish = "Befejez!",
+    houseSettings_reset = "Visszaállít",
+    houseSettings_permissions = "Jogosultságok",
+    houseSettings_lockHouse = "Ház bezárása",
+    houseSettings_buildMode = "Építési Mód",
+    houseSettings_changeExpansion = "Bővítés Módosítása",
+    houseSetting_storeFurnitures = "Az összes bútor áthelyezése a bútorraktárba",
+    placedFurnitures = 'Lehelyezett bútorok: %s',
+    sellFurnitureWarning = "Biztosan eladod ezt a bútort?\n<r>A művelet nem visszavonható!</r>",
+    settings_help = "Segítség",
+    settings_helpText = "Üdvözöl a <j>#Mycity</j>!\n Ha tudni akarod, hogyan kell játszani, akkor kattints az alábbi gombra:",
+    settings_helpText2 = "Meglévő parancsok:",
+    command_profile = "<g>!profile</g> <v>[játékosNév]</v>\n   Megmutatja <i>játékosNév</i> profilját.",
+    settings_settings = "Beállítások",
+    settings_config_mirror = "Tükrözött Szöveg",
+    settings_config_lang = "Nyelv",
+    settings_credits = "Kreditek",
+    settings_creditsText = "A <j>#Mycity</j>-t <v>%s</v> készítette, a rajzokban <v>%s</v> segített, és ők fordították:",
+    settings_creditsText2 = "Különleges köszönet <v>%s</v>-nek a modul fontos erőforrásainak segítéséért.",
+    settings_donate = "Adományozás",
+    settings_donateText = "<j>#Mycity</j> egy <b><cep>2014</cep></b>-ben indult projekt, de egy másik játékmenettel: <v>építs egy várost</v>! Azonban ez a projekt nem haladt előre, és hónapokkal később törölve lett.\n <b><cep>2017</cep></b>-ben úgy döntöttem, hogy helyrehozom egy új céllal: <v>élj egy városban</v>!\n\n A rendelkezésre álló funkciók nagy részét én készítettem <v>hosszú és fárasztó</v> időn keresztül.\n\n Ha képes vagy nekem segíteni, adományozz! Ez nagyban ösztönöz az új frissítések elkészítésében!",
+    settings_donateText2 = 'Az adományozók exkluzív NPC-ket kapnak az adományozásért. Ne felejtsd el elküldeni a Transformice felhasználóneved, így fogom tudni megszerezni az aktuális kinézeted.',
+    settings_gamePlaces = "Helyek",
+    settings_gameHour = "Játékóra",
+    settingsText_createdAt = "A szoba <vp>%s</vp> perccel ezelőtt lett létrehozva.",
+    settingsText_currentRuntime = "Futási idő: <r>%s</r>/60ms",
+    settingsText_placeWithMorePlayers = "Több játékossal való hely: <vp>%s</vp> <r>(%s)</r>",
+    settingsText_availablePlaces = "Elérhető helyek: <vp>%s</vp>",
+    settingsText_grounds = "Generált területek: %s/509",
+    settingsText_hour = "Aktuális idő: <vp>%s</vp>",
+    -- closed shops
+    closed_buildshop = "Az Építészeti Bolt zárva van.\nGyere vissza 08:00-kor!",
+    closed_police = "A Rendőrség zárva van.\nGyere vissza 08:00-kor!",
+    closed_bank = "A Bank zárva van.\nGyere vissza 07:00-kor!",
+    closed_market = "A Bolt zárva van.\nGyere vissza 08:00-kor!",
+    closed_dealership = "Az Autókereskedés zárva van.\nGyere vissza 08:00-kor!",
+    closed_furnitureStore = "A Bútorbolt zárva van.\nGyere vissza később!",
+    closed_fishShop = "A Horgászbolt zárva van.\nGyere vissza később!",
+    closed_potionShop = "A Bájitalbolt zárva van.\nGyere vissza később!",
+    closed_seedStore = "A Magbolt zárva van.\nGyere vissza később.",
+    -- errors
+    error = "Hiba",
+    timeOut = "Nem elérhető hely.",
+    error_maxStorage = "Maximum mennyiség megvásárolva.",
+    error_boatInIsland = "Nem használhatsz csónakot messze a tengertől.",
+    error_houseUnderEdit = "%s szerkeszti a házat.",
+    error_blockedFromHouse = "Ki vagy zárva %s házából.",
+    error_houseClosed = "%s bezárta ezt a házat.",
+    fishingError = "Most már nem horgászol.",
+    moneyError = "Nincs elég pénzed.",
+    bagError = "Nincs elég hely a táskádban!",
+    passwordError = "Min. 1 karakter",
+    pickaxeError = "Csákányra lesz szükséged!",
+    vehicleError = "Ezen a helyen nem használhatod ezt a járművet.",
+    codeLevelError = "Ha kód használatához el kell érned a(z) %s szintet.",
+    copError = "10 másodpercet várnod kell, hogy újra elkaphass valakit.",
+    mouseSizeError = "Túl kicsi vagy ahhoz, hogy ezt tedd.",
+    mine5error = "A Bánya beomlott.",
+    rewardNotFound = "A jutalom nem található.",
+    noMissions = "Nincsenek elérhető küldetések.",
+    fishWarning = "Itt nem tudsz horgászni.",
+    codeNotAvailable = "A kód nem érhető el.",
+    codeAlreadyReceived = "Használt kód.",
+    incorrect = "Helytelen",
+    noEnergy = "Több energiára lesz szükséged, hogy újra munkába állj.",
+    chestIsFull = "A láda megtelt.",
+    alreadyLand = "Valaki már megszerezte ezt a területet.",
+    limitedItemBlock = "Várnod kell %s másodpercet, hogy használhasd ezt a tárgyat.",
+    maxFurnitureStorage = "Csak %s bútor lehet a házadban.",
+    frozenLake = "A tó befagyott. Várnod kell tél végéig, hogy újra használhass hajót.",
+    enterQuestPlace = "Ez a hely a <vp>%s</vp> teljesítése után lesz elérhető.",
+    maxFurnitureDepot = "A bútorraktár megtelt.",
+    -- NPC dialogs
+    npcDialog_Paulo = "Ez a doboz igazán nehéz...\nJó lenne, ha itt volna egy targonca.",
+    npcDialog_Natasha = "Szia!",
+    npcDialog_Billy = "Alig várom, hogy ma este kiraboljam a bankot!",
+    npcDialog_Pablo = "Szóval, rabló akarsz lenni? Úgy érzem, titkos zsaru vagy...\nOh, nem vagy? Rendben, akkor hiszek neked.\nMost már rabló vagy. Rabolj a rózsaszín névvel ellátott karakterektől a SPACE gombot lenyomva. Ne felejts el távol maradni a zsaruktól!",
+    npcDialog_Weth = "Puding *-*",
+    npcDialog_Julie = "Légy óvatos. Ez a szupermarket nagyon veszélyes.",
+    npcDialog_Goldie = "Akarsz eladni egy kristályt? Dobd le mellém, hogy megbecsülhessem az árát.",
+    npcDialog_Davi = "Sajnálom, de nem engedhetem, hogy itt tovább menj.",
+    npcDialog_Marie = "Imáááááááádom a sajtot *-*",
+    npcDialog_Rupe = "Egyértelmű, hogy a kőből készült csákány nem jó választás a kövek törésére.",
+    npcDialog_Jason = "Hé... Az üzletemben még nincsenek eladó dolgok.\nKérlek, gyere vissza később!",
+    npcDialog_Kapo = "Mindig idejövök, hogy ellenőrizzem Dave napi ajánlatát.\nNéha olyan tárgyakat kapok, amik csak az ő tulajdonában vannak!",
+    npcDialog_Cassy = "Szép napot!",
+    npcDialog_Lauren = "Imádja a sajtot.",
+    npcDialog_Louis = "Mondtam neki, hogy ne rakjon olajbogyót...",
+    npcDialog_Blank = "Szükséged van valamire?",
+    npcDialog_Sebastian = "Hé haver.\n...\nNem Colt vagyok.",
+    npcDialog_Heinrich = "Huh... Szóval Bányász akarsz lenni? Ha igen, akkor légy óvatos. Amikor kisegér voltam, eltévedtem ebben a labirintusban.",
+    npcDialog_Derek = "Psszt.. Ma este valami nagy eredményt szerzünk: kiraboljuk a Bankot.\nHa csatlakozni akarsz hozzánk, jobb, ha beszélsz a főnökünkkel, Pablo-val.",
+    npcDialog_Bill = 'Heyyo! Szeretnéd ellenőrizni az aktuális horgászszerencséd?\nHmmm... Lássuk csak..\n%s esélyed van egy közönséges hal megszerzésére, %s esélyed egy ritka hal megszerzésére és %s esélyed egy mitikus hal megszerzésére.\n... És %s esélyed van egy legendás hal megszerzésére!',
+    npcDialog_Alexa = "Helló. Mi újság?",
+    npcDialog_Santih = "Sok ember még mindig mer horgászni ebben a tóban.",
+    npc_mine6msg = "Ez bármikor beomolhat, de senki sem hallgat rám.",
+    -- chat messages
+    playerBannedFromRoom = "%s ki lett tiltva ebből a szobából.",
+    playerUnbannedFromRoom = "El lett távolítva %s kitiltása, így újra játszhat.",
+    arrestedPlayer = "Letartóztattad <v>%s</v> -t!",
+    captured = "<g>A rabló (<v>%s</v>) le lett tartóztatva!",
+    copAlerted = "A zsaruk riasztva lettek.",
+    levelUp = "%s elérte a(z) %s. szintet!",
+    seedSold = "%s eladva ennyiért: %s.",
+    orderCompleted = "Kiszállítottad %s rendelését és %s-t kaptál!",
+    transferedItem = "A(z) %s áthelyezve a táskádba.",
+    bankRobAlert = "A Bankot kirabolták. Védd meg!",
+    itemAddedToChest = "%s hozzáadva a ládához.",
+    furnitureRewarded = "Feloldott bútor: %s",
+    goldAdded = "A bányászott aranyrög hozzáadva a táskádhoz.",
+    alert = "RIADÓ!",
+    -- UI messages
+    reward = "Jutalom",
+    newUpdate = "Új frissítés!",
+    robberyInProgress = "Rablás folyamatban",
+    chooseExpansion = "Válassz ki egy bővítést",
+    chooseOption = "Válassz egy lehetőséget",
+    daveOffers = 'Mai ajánlatok',
+    completedQuest = "Küldetés befejezve",
+    newLevel = "Új szint!",
+    ranking_Season = "Évad %s",
+    using = "Használatban",
+    daysLeft = "Még %s napig.",
+    level = "Szint %s",
+    code = "írd be a kódot",
+    owned = "Birtokolva",
+    codeReceived = "A jutalmad: %s.",
+    waitingForPlayers = "Várakozás játékosokra...",
+    newBadge = "Új kitűző",
+    createdBy = "Készítette %s",
+    unlockedBadge = "Egy új Kitűzőt szereztél!",
+    newLevelMessage = "Gratulálunk!\nSzintet léptél!",
+    runAway = "Menekülj %s másodpercig.",
+    runAwayCoinInfo = "A rablás befejezése után %s-t kapsz.",
+    looseMgs = "Megmenekülsz %s másodpercen belül.",
+    healing = "Az életszinted %s másodpercen belül feltöltődik.",
+    newQuestSoon = "A Küldetés %s még nem érhető el:/\n<font size=\"11\">Fejlesztési stádium: %s%%",
+    sidequestCompleted = "Teljesítetted a Mellékküldetést!\nA jutalmad:",
+    questCompleted = "Teljesítetted a következő küldetést:\n%s!\nA jutalmad:",
+    rewardText = "Hihetetlen jutalmakat kaptál!",
+    updateWarning = "<font size=\"10\"><rose><p align=\"center\">Figyelem!</p></rose>\nÚj frissítés:\n%s:%s perc múlva",
+    tip_vehicle = "Kattints a jármű melletti csillag ikonra, hogy a kedvenceid közé tedd! A kedvenc jármű meghívásához nyomd meg az F(szárazföldi) vagy G(vízi) gombot.",
+    codeInfo = "Írj be egy érvényes kódot, majd kattints az Elfogadra, hogy megkapd a jutalmad.\nÚj kódokat kaphatsz, ha csatlakozol a Discord szerverünkhöz!\n<a href=\"event:getDiscordLink\"><v>(Kattints ide a meghívó linkért)</v></a>",
+    -- emergency messages
+    emergencyMode_able = "<r>Vészleállás kezdeményezése, új játékosok nem engedélyezettek. Kérjük, menj egy másik #mycity szobába.",
+    syncingGame = "<r>A játék adatainak szinkronizálása. A játék néhány másodpercre leáll.",
+    emergencyMode_pause = "<cep><b>[Figyelem!]</b> <r>A modul elérte a kritikus határát, így szüneteltetés alatt áll.",
+    emergencyMode_resume = "<r>A modul folytatódik.",
+    -- buttons
+    goTo = "Belépés",
+    sell = "Eladás",
+    remove = "Eltávolítás",
+    cook = "Főzés",
+    seeItems = "Tárgyak mutatása",
+    yes = "Igen",
+    no = "Nem",
+    expansion_pool = "Medence",
+    receiveQuestReward = "Jutalom begyűjtése",
+    buy = "Vásárlás",
+    confirmButton_Buy = "Vásárlás %s",
+    confirmButton_Sell = "Eladás %s -ért",
+    sellGold = "%s aranyrög eladása <vp>%s</vp>-ért",
+    use = "Használ",
+    saveChanges = "Változtatások Mentése",
+    confirmButton_Work = "Munkára fel!",
+    eatItem = "Megesz",
+    recipes = "Receptek",
+    confirmButton_Great = "Nagyszerű!",
+    open = "Nyit",
+    cancel = "Mégse",
+    close = "Bezárás",
+    confirmButton_tip = "Tipp",
+    passToBag = "Táskába helyezés",
+    submit = "Elfogad",
+    sellFurniture = "Bútor eladása",
+    sale = "Eladó",
+    drop = "Kidobás",
+    harvest = "Betakarítás",
+    permissions_guest = "Vendég",
+    permissions_roommate = "Szobatárs",
+    permissions_blocked = "Zárolt",
+    permissions_owner = "Tulajdonos",
+    permissions_coowner = "Társtulajdonos",
+    setPermission = "Jog: %s",
+    -- other
+    hospital = "Kórház",
+    elevator = "Lift",
+    hungerInfo = "<v>%s</v> étel",
+    hunger = "Éhség",
+    pizzaMaker = "Pizzakészítő",
+    price = "Ár: %s",
+    speed = "Sebesség: %s",
+    sleep = "Alvás",
+    ranking_spentCoins = "Elköltött érme",
+    placeDynamite = "Dinamit elhelyezése",
+    quest = "Küldetés",
+    experiencePoints = "Tapasztalati pont",
+    confirmButton_Select = "Kiválaszt",
+    expansion_garden = "Kert",
+    bag = "Táska",
+    minerpack = "Bányászcsomag %s",
+    percentageFormat = "%s%%",
+    soon = "Hamarosan!",
+    expansion_grass = "Fű",
+    waitUntilUpdate = "<rose>Kérlek várj.</rose>",
+    collectorItem = "Gyűjtő tárgy",
+    daysLeft2 = "%s nap",
+    pickaxes = "Csákányok",
+    multiTextFormating = "{0}: {1}",
+    energyInfo = "<v>%s</v> energia",
+    itemAmount = "Tárgyak: %s",
+    wordSeparator = " és ",
+    speed_knots = "nmi",
+    ranking_coins = "Összegyűjtött érme",
+    energy = "Energia",
+    locked_quest = "Küldetés %s",
+    expansion = "Bővítések",
+    event_halloween2019 = "Halloween 2019",
+    shop = "Bolt",
+    atmMachine = "ATM",
+    hey = "Hé! Állj!",
+    password = "Jelszó",
+    speed_km = "Km/h",
+    leisure = "Szórakozás",
 }

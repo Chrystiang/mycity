@@ -635,4 +635,9 @@ lang.ar = {
     furniture_nightstand = 'منضدة سرير',
     furniture_bush = 'شجيرة',
     furniture_armchair = 'أريكة',
+    furniture_books = 'كتب',
+    furniture_mirror = 'مرآة',
+    furniture_broom = 'مكنسة',
+    furniture_piggy = 'خنزير',
+    furniture_sink = 'مغسلة',
 }

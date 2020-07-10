@@ -73,7 +73,8 @@ playerFishing = function(name, x, y, biome)
 				giveExperiencePoints(name, 500)
 			else
 				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
-				giveExperiencePoints(name, 2000)		
+				giveExperiencePoints(name, 2000)
+				translatedMessage('caught_goldenmare', name)
 			end
 
 			local sidequest = sideQuests[player.sideQuests[1]].type

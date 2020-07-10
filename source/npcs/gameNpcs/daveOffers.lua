@@ -36,11 +36,7 @@ mainAssets.__farmOffers = {
         requires = {'lemon', 2},
     },
     [10] = {
-        item = {'wheatFlour', 5},
-        requires = {'salad', 2},
-    },
-    [11] = {
-        item = {'wheatFlour', 3},
-        requires = {'lemonade', 1},
+        item = {'potato', 1},
+        requires = {'pepper', 2},
     },
 }

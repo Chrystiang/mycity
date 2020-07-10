@@ -97,7 +97,10 @@ local room = { -- Assets that change while the script runs
     temporaryTimer  = nil,
 }
 local mainAssets = { -- Assets that rarely changes while the script runs
-    season = 1,
+    season = 2,
+    fileCopy = {
+        _ranking = '',
+    },
     roles = {
         admin = {},
         mod = {},
@@ -112,7 +115,10 @@ local mainAssets = { -- Assets that rarely changes while the script runs
         [3] = 'owner',
     },
     levelIcons = {
-        star = {},
+        star = {
+            '1733a811072.png',
+            '1733a815fb4.png',
+        },
         lvl = {
             {'1716449ea8f.png'},
             {'171644abf4d.png'},
@@ -336,6 +342,9 @@ local badges        = {
     [10] = { -- Arrest 500 players
         png = '171db99a9e3.png',
     },
+    [11] = { -- Season 1 reward
+        png = '1733ad217ba.png',
+    },
 }
 local places        = {
     market = {
@@ -524,9 +533,9 @@ local places        = {
 }
 local jobs          = {}
 
-local version = {3, 0, 2}
+local version = {3, 0, 3}
 local versionLogs = {
-    ['v3.0.2'] = {
+    ['v3.0.3'] = {
         releaseDate = '12/06/2020', -- dd/mm/yy
         maxPages = 1,
         images = {'172a97d8145.png'},
@@ -540,7 +549,7 @@ local versionLogs = {
         },
         hu = {
             name = 'Itt a legújabb frissítésünk!',
-            _1 = '<rose>Új:</rose> Pálya frissítés!\n\n<rose>Új helyek:</rose> Étterem, Hajóbolt és Halbolt!\n\n<rose>Új munka:</rose> Séf!\nBeszélj Remi-vel és kezdj el finom ételeket főzni!\n\n<rose> Új helyek: labirintus, szennyvízcsatorna, és ásatási terület!\nHozzáadva egy új bányászati rendszer.\n\nÉs még sok más!'
+            _1 = '<rose>Új:</rose> Pálya frissítés!\n\n<rose>Új helyek:</rose> Étterem, Hajóbolt és Halbolt!\n\n<rose>Új munka:</rose> Séf!\nBeszélj Remi-vel és kezdj el finom ételeket főzni!\n\n<rose>Új helyek:</rose> labirintus, szennyvízcsatorna, és ásatási terület!\nHozzáadva egy új bányászati rendszer.\n\nÉs még sok más!'
         },
         fr = {
              name = 'Notre dernière mise à jour est arrivée!',
@@ -630,10 +639,10 @@ local sideQuests = {
         quanty = 10,
         points = 3,
     },
-    [14] = { -- Fish 3 Lionfishes
+    [14] = { -- Fish a Lionfish
         type = 'type:fish;fish_Lionfish',
-        quanty = 3,
-        points = 10,
+        quanty = 1,
+        points = 5,
     },
     [15] = { -- Deliver 5 orders
         type = 'type:deliver',

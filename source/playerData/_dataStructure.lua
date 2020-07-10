@@ -160,6 +160,13 @@ local playerData = DataHandler.new('myc', {
 			return {{mainAssets.season, 0}, {0, lang[ROOM.community] and langIDS[ROOM.community] or '0', 0, 0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}} -- Season Data| Player Settings| Current Version| Favorite Vehicles
 		end
 	},
+	starIcons = {
+		index = 24,
+		type = 'table',
+		default = function()
+			return {{1}, 1, {1}, 1} -- Star Icons| Selected Star Icon| Level Icons| Selected Level Icon
+		end
+	},
 })
 
 local sharpieData = DataHandler.new('sync', {

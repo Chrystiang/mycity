@@ -141,6 +141,11 @@ savedata = function(name)
 	end
 	playerData:set(name, 'playerLog', playerLogs)
 
-	table.concat(playerData:get(name, 'badges'), '.')
+	local starIcons = playerData:get(name, 'starIcons')
+	for i, v in next, playerInfos.starIcons.owned do
+		starIcons[1][i] = v
+	end
+	starIcons[2] = playerInfos.starIcons.selected
+
 	playerData:save(name)
 end

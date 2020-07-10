@@ -4,7 +4,8 @@ onEvent("FileLoaded", function(file, data)
         datas[#datas+1] = _data
     end
 	if tonumber(file) == 5 then -- RANKING
-		local rankData = datas[1]
+		mainAssets.fileCopy._ranking = datas[1]
+		local rankData = datas[2]
 		room.globalRanking = {}
 
         if rankData then
@@ -12,7 +13,7 @@ onEvent("FileLoaded", function(file, data)
                 room.globalRanking[#room.globalRanking+1] = {name = name, level = level, experience = experience, commu = commu, id = id}
             end
         end
-		saveRanking()
+        saveRanking()
 		player_removeImages(room.rankingImages)
 		loadRanking()
 

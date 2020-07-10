@@ -13,7 +13,7 @@ generateLevelImage = function(player, level, requested)
 		end 
 		playerImage[player] = {}
 	end
-	playerImage[player][#playerImage[player]+1] = addImage("1716206af81.png", "$"..player, -10, requested ~= player and -70 or -80, requested)
+	playerImage[player][#playerImage[player]+1] = addImage(mainAssets.levelIcons.star[players[requested].starIcons.selected], "$"..player, -17, requested ~= player and -77 or -87, requested)
 	for i = 1, #level do 
 		local id = tonumber(level:sub(i, i))+1
 		playerImage[player][#playerImage[player]+1] = addImage(iconImage[id][1], "$"..player, (i-1)*8 - (#level*8)/2 -5, requested ~= player and -69 or -79, requested)
