@@ -40,9 +40,11 @@ syncVersion = function(player, vs)
     if players[player].seasonStats[1][1] ~= mainAssets.season then
         if mainAssets.fileCopy._ranking:find(player) then
             giveBadge(player, 11)
+            if not table.contains(players[player].starIcons.owned, 11) then
+                players[player].starIcons.owned[#players[player].starIcons.owned+1] = 2
+                players[player].starIcons.selected = 2
+            end
         end
-        players[player].starIcons.owned[#players[player].starIcons.owned+1] = 2
-        players[player].starIcons.selected = 2
         players[player].seasonStats[1][1] = mainAssets.season
         players[player].seasonStats[1][2] = 0
     end
