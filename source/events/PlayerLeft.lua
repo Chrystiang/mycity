@@ -17,5 +17,8 @@ onEvent("PlayerLeft", function(player)
 	if playerData.dataLoaded then
 		savedata(player)
 	end
+	if players[player].place == 'bank' then
+		players[player].place = 'town'
+	end
 	setPlayerData(player)
 end)
