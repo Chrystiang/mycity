@@ -119,4 +119,14 @@ mainAssets.__cars = {
                     players[player].carLeds[#players[player].carLeds+1] = addImage(lights[math.random(#lights)], '$'..player, -130, -20)
                 end,
     },
+    [13] = {
+        type    = 'car',
+        price   = 1000000000,
+        maxVel  = 210,
+        image   = {'16beb3ebb56.png', '16beb3e7f19.png'},
+        x       = -90,
+        y       = -30,
+        name    = 'Green Lamborghini',
+        icon    = '1733b04eb29.png',
+    },
 }

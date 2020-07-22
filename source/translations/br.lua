@@ -635,4 +635,7 @@ lang.br = {
 	furniture_sink = 'Pia',
 	badgeDesc_11 = 'Top 10 da temporada 1',
 	caught_goldenmare = '<v>%s</v> <j>pescou um Goldenmare!</j>',
+	newCar = 'Novo Carro',
+	unlockedCar = 'Parabéns! Você desbloqueou um novo carro!',
+	seasonReward = 'Prêmio de temporada',
 }

@@ -643,4 +643,7 @@ lang.en = {
 	furniture_sink = 'Sink',
 	badgeDesc_11 = 'Top 10 of season 1',
 	caught_goldenmare = '<v>%s</v> <j>fished a Goldenmare!</j>',
+	newCar = 'New Car',
+	unlockedCar = 'Congrats! You have unlocked a new car!',
+	seasonReward = 'Season Reward',
 }
