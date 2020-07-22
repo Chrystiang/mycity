@@ -8,7 +8,7 @@ chatCommands.move = {
 			if players[target2] then
 				TFM.chatMessage('[•] ['..target1 .. '] teleporting to ['.. target2 ..'] ('..players[target2].place..')...', player)
 				TFM.movePlayer(target1, ROOM.playerList[target2].x, ROOM.playerList[target2].y, false)
-				players[target2].place = players[target2].place
+				players[target1].place = players[target2].place
 			else
 				TFM.chatMessage('<g>[•] $playerName not found. ('..target2..')', player)
 			end
