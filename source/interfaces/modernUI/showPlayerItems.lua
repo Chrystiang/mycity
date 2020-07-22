@@ -1,0 +1,159 @@
+modernUI.showPlayerItems = function(self, items, chest)
+	local id = self.id
+	local player = self.player
+	local width = self.width 
+	local height = self.height
+	local x = (400 - width/2) + 20
+	local y = (200 - height/2) + 65
+	local currentPage = 1
+	if not items then return alert_error(player, 'error', 'emptyBag') end
+	local maxPages = math.ceil(#items/15)
+	local usedSomething = false
+	local storageLimits = {chest and players[player].totalOfStoredItems.chest[chest] or players[player].totalOfStoredItems.bag, chest and 50 or players[player].bagLimit}
+	local storageAmount = storageLimits[1]..'/'..storageLimits[2]
+
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
+	ui.addTextArea(id..'895', '<font color="#95d44d">'..translate('itemAmount', player):format('<cs>'..storageAmount..'</cs>'), player, x, y -20, 312, nil, 0xff0000, 0xff0000, 0, true)
+	local function showItems()
+		local minn = 15 * (currentPage-1) + 1
+		local maxx = currentPage * 15
+		local i = 0
+		for _ = 1, #items do 
+			i = i + 1
+			local v = items[_]
+			if i >= minn and i <= maxx then
+				local i = i - 15 * (currentPage-1)
+				local image = bagItems[v.name].png or '16bc368f352.png'
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1722d2d8234.jpg', ":26", x + ((i-1)%5)*63, y + math.floor((i-1)/5)*65, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(image, ":26", x + 5 + ((i-1)%5)*63, y + 5 + math.floor((i-1)/5)*65, player)
+				ui.addTextArea(id..(895+i*2), '<p align="right"><font color="#95d44d" size="13"><b>x'..v.qt, player, x + 5 + ((i-1)%5)*63, y + 42 + math.floor((i-1)/5)*65, 55, nil, 0xff0000, 0xff0000, 0, true)
+				ui.addTextArea(id..(896+i*2), '\n\n\n\n', player, x + 3 + ((i-1)%5)*63, y + 3 + math.floor((i-1)/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true,
+					function(player)
+						local itemName = v.name 
+						local quanty = v.qt 
+						local itemData = bagItems[v.name]
+						local itemType = itemData.type
+						local power = itemData.power or 0
+						local hunger = itemData.hunger or 0
+						local blockUse = not itemData.func
+						if itemType == 'food' then blockUse = false end
+						local selectedQuanty = 1
+						player_removeImages(players[player]._modernUISelectedItemImages[1])
+						for i = 0, 3 do 
+							ui.removeTextArea(id..(930+i), player)
+						end
+						local description = item_getDescription(itemName, player)
+						ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..itemName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
+						ui.addTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
+						ui.addTextArea(id..'892', '<font color="#cef1c3">'..translate('confirmButton_Select', player), player, x+337, y+121 + (blockUse and 30 or 0), nil, nil, 0x24474D, 0x314e5, 0, true)
+						ui.addTextArea(id..'893', '<font color="#cef1c3">01', player, x+425, y+121 + (blockUse and 30 or 0), nil, nil, 0x24474D, 0x314e5, 0, true)
+
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(image, "&26", 542, 125, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('1722d33f76a.png', ":26", x + ((i-1)%5)*63-3, y + math.floor((i-1)/5)*65-3, player)
+
+						local function button(i, text, callback, x, y, width, height)
+							ui.addTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
+							ui.addTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+							ui.addTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
+							ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
+						end
+						if not blockUse then
+							button(0, translate(itemType == 'food' and 'eatItem' or 'use', player), 
+							function(player) 
+								if usedSomething then return end
+								if quanty > 0 then
+									if itemName == 'cheese' then 
+										if players[player].whenJoined > os.time() then 
+											return alert_Error(player, 'error', 'limitedItemBlock', '120')
+										else 
+											players[player].whenJoined = os.time() + 120*1000
+										end
+									end
+									eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
+									local condition = itemData.func and -1 or -selectedQuanty
+									if not chest then 
+										removeBagItem(v.name, condition, player)
+									else 
+										item_removeFromChest(v.name, condition, player, chest)
+									end
+									if itemType == 'food' then 
+										setLifeStat(player, 1, power * selectedQuanty)
+										setLifeStat(player, 2, hunger * selectedQuanty)
+									else
+										itemData.func(player)
+									end
+									local sidequest = sideQuests[players[player].sideQuests[1]].type
+									if string.find(sidequest, 'type:items') then
+										if string.find(sidequest, 'use') then
+											sideQuest_update(player, 1)
+									 	end
+									end
+									usedSomething = true
+									savedata(player)
+									return
+								end
+							end, 507, 265, 120, 13)
+						end
+						button(1, translate(chest and 'passToBag' or 'drop', player), 
+							function(player)
+								eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
+								if usedSomething then return end
+								if quanty > 0 then
+									if not chest then
+										removeBagItem(v.name, -selectedQuanty, player)
+										item_drop(v.name, player, selectedQuanty)
+									else
+										item_removeFromChest(v.name, selectedQuanty, player, chest)
+										addItem(v.name, selectedQuanty, player)
+									end
+									usedSomething = true
+									savedata(player)
+								end
+							end, 507, 295, 120, 13)
+
+						for i = 1, 2 do 
+							button(1+i, i == 1 and '-' or '+', 
+								function(player) 
+									local calc = i == 1 and -1 or 1
+									if (selectedQuanty + calc) > quanty or (selectedQuanty + calc) < 1 then return end
+									selectedQuanty = selectedQuanty + calc
+									ui.updateTextArea(id..'893', '<font color="#cef1c3">'..string.format("%.2d", selectedQuanty), player)
+								end, 565 + (i-1)*50, 240 + (blockUse and 30 or 0), 10, 10)
+						end
+					end)
+			end
+		end
+	end
+	local function updateScrollbar()
+		local function updatePage(count)
+			if currentPage + count > maxPages or currentPage + count < 1 then return end 
+			currentPage = currentPage + count
+			player_removeImages(players[player]._modernUISelectedItemImages[1])
+			player_removeImages(players[player]._modernUISelectedItemImages[3])
+			for i = 897, 929 do 
+				ui.removeTextArea(id..i, player)
+			end
+			updateScrollbar()
+			showItems()
+		end
+		ui.addTextArea(id..'888', string.rep('\n', 10), player, x+2, y+200, 155, 10, 0x24474D, 0xff0000, 0, true, 
+			function()
+				updatePage(-1)
+			end)
+		ui.addTextArea(id..'889', string.rep('\n', 10), player, x+157, y+200, 155, 10, 0x24474D, 0xff0000, 0, true, 
+			function()
+				updatePage(1)
+			end)
+
+		player_removeImages(players[player]._modernUISelectedItemImages[2])
+		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', ":26", x+2, y+205, player)
+		for i = 1, (10 - math.min(8, maxPages)+1) do 
+			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', ":27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
+		end
+	end
+	if maxPages > 1 then 
+		updateScrollbar()
+	end
+	showItems(currentPage)
+	return setmetatable(self, modernUI)
+end

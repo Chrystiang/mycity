@@ -1,0 +1,48 @@
+modernUI.questInterface = function(self)
+	local id = self.id
+	local player = self.player
+	local width = self.width 
+	local height = self.height
+	local x = (400 - 270/2)
+	local y = (200 - 90/2) - 30
+
+	local images = {'171d71ed2cf.png', '171d724975e.png'} -- available, unavailaible
+
+	local playerData = players[player]
+	local getLang = playerData.lang
+
+	for i = 1, 2 do
+		local icon = 1
+		local title, min, max, goal = '', 0, 100, '<p align="center"><font color="#999999">'..translate('newQuestSoon', player):format(questsAvailable+1, '<CE>'..syncData.quests.newQuestDevelopmentStage)
+		if i == 1 then 
+			if playerData.questStep[1] > questsAvailable then
+				icon = 2
+			else
+				title = lang[getLang].quests[playerData.questStep[1]].name
+				min = playerData.questStep[2]
+				max = #lang['en'].quests[playerData.questStep[1]]
+				goal = string.format(lang[getLang].quests[playerData.questStep[1]][playerData.questStep[2]]._add, quest_formatText(player, playerData.questStep[1], playerData.questStep[2]))
+			end
+		else 
+			title = '['..translate('_2ndquest', player)..']'
+			min = playerData.sideQuests[2] 
+			max = sideQuests[playerData.sideQuests[1]].quanty
+			goal = lang[getLang].sideQuests[playerData.sideQuests[1]]:format(playerData.sideQuests[2] .. '/' .. sideQuests[playerData.sideQuests[1]].quanty)
+		end
+		local progress = math.floor(min / max * 100)
+		local progress2 = math.floor(min / max * 250/11.5)
+		ui.addTextArea(id..(890+i), '<font color="#caed87" size="15"><b>'..title, player, x+10, y+5 + (i-1)*100, 250, nil, 0, 0x24474, 0, true)
+		ui.addTextArea(id..(892+i), '<font color="#ebddc3" size="13">'..goal, player, x+10, y+30 + (i-1)*100, 250, 40, 0x1, 0x1, 0, true)
+
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(images[icon], ":26", x, y + (i-1)*100, player)
+		for ii = 1, progress2 do 
+			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171d74086d8.png', ":25", x+17 + (ii-1)*11, y+77 + (i-1)*100, player)
+		end
+		ui.addTextArea(id..(900+i), '<p align="center"><font color="#000000" size="14"><b>'..translate('percentageFormat', player):format(progress), player, x+11, y+73 + (i-1)*100, 250, nil, 0, 0x24474, 0, true)
+		ui.addTextArea(id..(902+i), '<p align="center"><font color="#c6bb8c" size="14"><b>'..translate('percentageFormat', player):format(progress), player, x+10, y+72 + (i-1)*100, 250, nil, 0, 0x24474, 0, true)
+
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171d736325c.png', ":27", x+10, y+70 + (i-1)*100, player)
+	end 
+
+	return setmetatable(self, modernUI)
+end
