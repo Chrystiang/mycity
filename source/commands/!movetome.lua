@@ -1,4 +1,4 @@
-chatCommands.moveme = {
+chatCommands.movetome = {
 	permissions = {'admin', 'mod', 'helper'},
 	event = function(player, args)
 		if not args[1] then return end
