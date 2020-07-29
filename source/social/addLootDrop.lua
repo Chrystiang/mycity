@@ -1,7 +1,6 @@
 addLootDrop = function(x, y, wind)
 	for i = 1, 51 do
-		local a = TFM.addShamanObject(1, -500, 2800)
-		TFM.removeObject(a)
+		TFM.removeObject(TFM.addShamanObject(1, -500, 2800))
 	end
 	local fallingSpeed = 5
 	local id = 1
