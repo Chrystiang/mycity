@@ -571,7 +571,7 @@ local versionLogs = {
     ['v3.0.4'] = {
         releaseDate = '30/07/2020', -- dd/mm/yy
         maxPages = 1,
-        images = {'172a97d8145.png'},
+        images = {'1739f65fc94.png'},
         br = {
             name = 'Hora de plantar bananeira! (A planta mesmo)',
             _1 = 'Novos móveis adicionados.\nNovas missões secundárias adicionadas.\nNovas ofertas diárias do Dave adicionadas.\n<rose>Nova plantação:</rose> Pé de banana!\n<rose>Novos itens:</rose> Moqueca, Banana e Muda de Banana\n\nCorreção de erros e melhorias gráficas.',
@@ -579,6 +579,10 @@ local versionLogs = {
         en = {
             name = 'New crop!',
             _1 = 'New furnitures added.\nNew side quests added.\nNew Dave\'s Daily Offers.\n<rose>New crop:</rose> Banana tree!\n<rose>New Items:</rose> Moqueca, Banana and Banana Seedling!\n\nBug fixes and graphic improvements.',
+        },
+        hu = {
+            name = 'Új termés!',
+            _1 = 'Új bútorok hozzáadva.\nÚj mellékküldetés hozzáadva.\nDave új Napi Ajánlatai.\n<rose>Új termés:</rose> Banán fa!\n<rose>Új tárgyak:</rose> Halpaprikás, Banán és Banán Palánta!\n\nHibák javítva és grafikai fejlesztések.',
         },
     },
 }
