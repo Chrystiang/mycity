@@ -584,6 +584,14 @@ local versionLogs = {
             name = 'Új termés!',
             _1 = 'Új bútorok hozzáadva.\nÚj mellékküldetés hozzáadva.\nDave új Napi Ajánlatai.\n<rose>Új termés:</rose> Banán fa!\n<rose>Új tárgyak:</rose> Halpaprikás, Banán és Banán Palánta!\n\nHibák javítva és grafikai fejlesztések.',
         },
+        fr = {
+            name = 'Nouvelle culture!',
+            _1 = 'Nouveaux meubles ajoutés.\nNouvelles quêtes annexes ajoutées.\nNouvelles Offres Quotidiennes de Dave.\n<rose>Nouvelle culture:</rose> Bananier!\n<rose>Nouveaux Objets:</rose> Moqueca, Banane et Planture de Banane!\n\nCorrections de bugs et améliorations graphiques.',
+        },
+        pl= {
+            name = 'Nowa aktualizacja!',
+            _1 = 'Nowe meble dodane.\nNowe zadania poboczne dodane .\nNowe dzienne oferty Dave'a.\n<rose>nowy croop:</rose> Drzewo bananowca!\n<rose>Nowe przedmioty:</rose> Gulasz, Banan i nasiono banana!\n\nNaprawiono bledy i poprawiono grafike.',
+        },
     },
 }
 
