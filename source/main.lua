@@ -154,7 +154,7 @@ local syncData = {
 local npcsStores = {
     items = {},
     shops = {
-        marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, all = {},
+        marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, all = {},
     },
 }
 local community = {

@@ -189,6 +189,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Bill', {'171b7b0d0a2.png', '171b81a2307.png'}, player, 12800, 153, {job = 'fisher', formatDialog = 'fishingLuckiness'})
 	gameNpcs.addCharacter('Mrsbritt87', {'172b9645b79.png', '172b98d0d52.png'}, player, 9400, 7645, {type = '_', donator = true})
 	gameNpcs.addCharacter('Anny', {'172f185dccf.png'}, player, 15950, 1618, {job = 'farmer', callback = function(name) modernUI.new(name, 240, 220):build():showMill() end})
+	gameNpcs.addCharacter('Iho', {'1739eb491e8.png'}, player, 16620, 153, {color = '20B2AA', sellingItems = true})
 
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)

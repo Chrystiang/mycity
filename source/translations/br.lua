@@ -638,4 +638,10 @@ lang.br = {
 	newCar = 'Novo Carro',
 	unlockedCar = 'Parabéns! Você desbloqueou um novo carro!',
 	seasonReward = 'Prêmio de temporada',
+	furniture_inflatableDuck = 'Pato de Borracha',
+	furniture_lifesaverChair = 'Cadeira Salva-Vidas',
+	furniture_coolBox = 'Cooler',
+	furniture_bbqGrill = 'Churrasqueira',
+	furniture_shower = 'Ducha',
+	furniture_flamingo = 'Flamingo',
 }

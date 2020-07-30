@@ -646,4 +646,10 @@ lang.en = {
 	newCar = 'New Car',
 	unlockedCar = 'Congrats! You have unlocked a new car!',
 	seasonReward = 'Season Reward',
+	furniture_inflatableDuck = 'Inflatable Duck',
+	furniture_lifesaverChair = 'Lifesaver Chair',
+	furniture_coolBox = 'Cool Box',
+	furniture_bbqGrill = 'Barbecue Grill',
+	furniture_shower = 'Shower',
+	furniture_flamingo = 'Flamingo',
 }
