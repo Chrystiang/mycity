@@ -574,11 +574,11 @@ local versionLogs = {
         images = {'172a97d8145.png'},
         br = {
             name = 'Hora de plantar bananeira! (A planta mesmo)',
-            _1 = 'Novos móveis adicionados.\nNovas missões secundárias adicionadas.\nNovas ofertas diárias do Dave adicionadas.\n<rose>Nova plantação:</rose> Pé de banana!\n\nCorreção de erros e melhorias gráficas.',
+            _1 = 'Novos móveis adicionados.\nNovas missões secundárias adicionadas.\nNovas ofertas diárias do Dave adicionadas.\n<rose>Nova plantação:</rose> Pé de banana!\n<rose>Novos itens:</rose> Moqueca, Banana e Muda de Banana\n\nCorreção de erros e melhorias gráficas.',
         },
         en = {
-            name = 'Our newest update is here!',
-            _1 = '<rose>New:</rose> Map update!\n\n<rose>New places:</rose> Restaurant, Boat shop and Fish shop!\n\n<rose>New job:</rose> Chef!\nTalk with Remi and start cooking delicious dishes!\n\n<rose>New mine:</rose> New places: labyrinth, sewer, and excavation area!\nAdded a new mining system.\n\nAnd a lot more!'
+            name = 'New crop!',
+            _1 = 'New furnitures added.\nNew side quests added.\nNew Dave\'s Daily Offers.\n<rose>New crop:</rose> Banana tree!\n<rose>New Items:</rose> Moqueca, Banana and Banana Seedling!\n\nBug fixes and graphic improvements.',
         },
     },
 }
