@@ -654,5 +654,5 @@ lang.en = {
 	furniture_flamingo = 'Flamingo',
 	item_bananaSeed = 'Banana Seedling',
 	item_banana = 'Banana',
-	item_moqueca = 'Moqueca',
+	item_moqueca = 'Fish Stew',
 }

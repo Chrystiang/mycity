@@ -590,7 +590,11 @@ local versionLogs = {
         },
         pl= {
             name = 'Nowa aktualizacja!',
-            _1 = 'Nowe meble dodane.\nNowe zadania poboczne dodane .\nNowe dzienne oferty Dave'a.\n<rose>nowy croop:</rose> Drzewo bananowca!\n<rose>Nowe przedmioty:</rose> Gulasz, Banan i nasiono banana!\n\nNaprawiono bledy i poprawiono grafike.',
+            _1 = 'Nowe meble dodane.\nNowe zadania poboczne dodane .\nNowe dzienne oferty Dave\'a.\n<rose>nowy croop:</rose> Drzewo bananowca!\n<rose>Nowe przedmioty:</rose> Gulasz, Banan i nasiono banana!\n\nNaprawiono bledy i poprawiono grafike.',
+        },
+        ar = {
+            name = '!محصول جديد',
+            _1 = 'تمت إضافة أثاث جديد\n.تمت إضافة مهمات ثانوية جديدة\nعروض يومية جديدة لدى ديف\n<rose>محاصيل جديدة:</rose> شجرة موز!\n<rose>أغراض جديدة:</rose>!حساء أسماك،موز،شتلة من الموز\n\n.إصلاح الأخطاء وتحسين الرسومات',
         },
     },
 }
