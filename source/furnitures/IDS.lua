@@ -646,6 +646,12 @@ mainAssets.__furnitures = {
         name = 'lifesaverChair',
         credits = 'Iho#5679',
         npcShop = 'iho',
+        grounds = function(x, y, id)
+            addGround(id, 22+x, 45+y, {type = 14, height = 30, width = 45, friction = 0.3, restitution = 0.2})
+        end,
+        usable = function(player) 
+            TFM.playEmote(player, 8)
+        end,
     },
     [60] = { 
         image = '1739e8e4e0d.png',

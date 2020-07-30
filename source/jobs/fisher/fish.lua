@@ -55,7 +55,7 @@ playerFishing = function(name, x, y, biome)
 
 			modernUI.new(name, 120, 120)
 			:build()
-			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, "&70", 400 - 50 * 0.5, 180, name)
+			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, ":70", 400 - 50 * 0.5, 180, name)
 
 			addItem(willFish, 1, name)
 			if rarityFished == 'normal' then 

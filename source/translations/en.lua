@@ -652,4 +652,7 @@ lang.en = {
 	furniture_bbqGrill = 'Barbecue Grill',
 	furniture_shower = 'Shower',
 	furniture_flamingo = 'Flamingo',
+	item_bananaSeed = 'Banana Seedling',
+	item_banana = 'Banana',
+	item_moqueca = 'Moqueca',
 }

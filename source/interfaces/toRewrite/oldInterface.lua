@@ -276,45 +276,6 @@ sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, pr
 		ui.addTextArea(id..'080', '<p align="left">'..translate('$VersionText', player), player, x+6, y+70, 430, height+-2, 0x122528, 0xff0000, 0, true)
 		addButton(id..'097', playerData.joinMenuPage..'/'..versionLogs[playerData.gameVersion].maxPages, player, 575, 325, 100, 10, true)
 		playerData.joinMenuImages[#playerData.joinMenuImages+1] = addImage(versionLogs[playerData.gameVersion].images[playerData.joinMenuPage], '&1', 550, 100, player)
-	elseif type == 18 then -- RECIPES
-		if playerData.callbackImages[1] then
-			for i, v in next, playerData.callbackImages do
-				removeImage(playerData.callbackImages[i])
-			end
-			playerData.callbackImages = {}
-		end
-		local txt1 = ''
-		local txt2 = ''
-		local minn = (9 * playerData.callbackPages.recipes - 9) + 1
-		local maxx = playerData.callbackPages.recipes * 9
-		local i = 0
-		local ii = 0
-		x = x + 10
-		y = y + 30
-		for item, v in next, recipes do
-			i = i + 1
-			ii = ii + 1
-			if ii >= minn and ii <= maxx then 
-				if i > 9 then
-					i = i - (9 * playerData.callbackPages.recipes - 9)
-				end
-				sendMenu(id+i, player, '', ((i-1)%3)*105+x-1, y+26 + math.floor((i-1)/3)*85, 70, 60, 1)
-				addButton(id..'0'..(10+(i-1)*5), '<a href="event:showRecipe_'..item..'">+', player, x+7 + 63 +((i-1)%3)*105, y+98+ math.floor((i-1)/3)*85, 10, 10)
-				playerData.callbackImages[#playerData.callbackImages+1] = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', "&70", x+17+((i-1)%3)*105, y+math.floor((i-1)/3)*85+48, player)
-			end
-		end
-		local totalPages = math.ceil(ii/9)
-		if playerData.callbackPages.recipes == 1 then
-			addButton(id..'081', '«', player, 500, 315, 10, 10, true)
-		else
-			addButton(id..'081', '<a href="event:changePage_recipes_back_'..totalPages..'">«', player, 500, 315, 10, 10)
-		end
-		if playerData.callbackPages.recipes == totalPages then
-			addButton(id..'086', '»', player, 600, 315, 10, 10, true)
-		else
-			addButton(id..'086', '<a href="event:changePage_recipes_next_'..totalPages..'">»', player, 600, 315, 10, 10)
-		end
-		addButton(id..'091', playerData.callbackPages.recipes..'/'..totalPages, player, 525, 315, 60, 10, true)
 	end
 end
 showVehiclesButton = function(player, expandedInterface)

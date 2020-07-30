@@ -212,7 +212,7 @@ bagItems = {
 		png = '16bf5c783fe.png',
 		type = 'holdingItem',
 		holdingImages = {'16bf622f30a.png', '16bf622a802.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
+		holdingAlign = {{-20, 0}, {0, -5}}, -- left, right
 		func = function(player)
 			players[player].holdingItem = 'seed'
 			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
@@ -455,9 +455,9 @@ bagItems = {
 		id = 25,
 		price = 2,
 		type = 'holdingItem',
-		png = '16c25a8b729.png',
-		holdingImages = {'16c00db153d.png', '16c00db153d.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
+		png = '1739ecf9ca7.png',
+		holdingImages = {'1739ecf9ca7.png', '1739ecf9ca7.png'}, -- left, right
+		holdingAlign = {{-50, -15}, {0, -15}}, -- left, right
 		func = function(player)
 			players[player].holdingItem = 'pepperSeed'
 			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
@@ -897,5 +897,30 @@ bagItems = {
 		id = 76,
 		type = 'crystal',
 		png = '172373f3f04.png',
+	},
+	banana = {
+		id = 77,
+		type = 'food',
+		png = '1739ecd37b8.png',
+		power = 7,
+		hunger = 13,
+	},
+	bananaSeed = {
+		id = 78,
+		price = 2,
+		type = 'holdingItem',
+		png = '1739ed5e5fc.png',
+		holdingImages = {'1739ed5e5fc.png', '1739ed5e5fc.png'}, -- left, right
+		holdingAlign = {{-50, -20}, {0, -20}}, -- left, right
+		func = function(player)
+			players[player].holdingItem = 'bananaSeed'
+			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
+			closeInterface(player, false, false, true)
+		end,
+	},
+	moqueca = {
+		id = 79,
+		type = 'food',
+		png = '1739f4c8a00.png',
 	},
 }

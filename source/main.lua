@@ -260,9 +260,9 @@ local houseTerrainsAdd = {
         [9] = { -- banana
             name = 'banana',
             growingTime = 60*12.5,
-            stages = {'16bf63634a0.png', '16bf63b93cf.png', '17276940ecb.png', '1727693f16f.png', '1727693d907.png', "1727693bc5b.png"},
-            quantyOfSeeds = 5,
-            pricePerSeed = 0,
+            stages = {'16bf63634a0.png', '16bf64806c6.png', '17276940ecb.png', '1727693f16f.png', '1727693d907.png', "1727693bc5b.png"},
+            quantyOfSeeds = 2,
+            pricePerSeed = 800,
         },
     },
     --[[
@@ -533,7 +533,7 @@ local places        = {
 }
 local jobs          = {}
 
-local version = {3, 0, 3}
+local version = {3, 0, 4}
 local versionLogs = {
     ['v3.0.3'] = {
         releaseDate = '12/06/2020', -- dd/mm/yy
@@ -568,6 +568,19 @@ local versionLogs = {
             _1 = '<rose>جديد:</rose>تحديث الخريطة!\n\n<rose>أماكن جديدة:</rose> مطعم ، متجر قوارب ومتجر أسماك!\n\n<rose>وظيفة جديدة:</rose> طاهٍ!\nتحدث مع ريمي وابدأ في طهي أطباق لذيذة!\n\n<rose>مَنجم جديد:</rose> المتاهة والصرف الصحي ومنطقة الحفر!\n.تمت إضافة نظام تعدين جديد\n\n!والكثير'
         },
     },
+    ['v3.0.4'] = {
+        releaseDate = '30/07/2020', -- dd/mm/yy
+        maxPages = 1,
+        images = {'172a97d8145.png'},
+        br = {
+            name = 'Hora de plantar bananeira! (A planta mesmo)',
+            _1 = 'Novos móveis adicionados.\nNovas missões secundárias adicionadas.\nNovas ofertas diárias do Dave adicionadas.\n<rose>Nova plantação:</rose> Pé de banana!\n\nCorreção de erros e melhorias gráficas.',
+        },
+        en = {
+            name = 'Our newest update is here!',
+            _1 = '<rose>New:</rose> Map update!\n\n<rose>New places:</rose> Restaurant, Boat shop and Fish shop!\n\n<rose>New job:</rose> Chef!\nTalk with Remi and start cooking delicious dishes!\n\n<rose>New mine:</rose> New places: labyrinth, sewer, and excavation area!\nAdded a new mining system.\n\nAnd a lot more!'
+        },
+    },
 }
 
 local imgsToLoad = {'1721ee7d5b9.png', '17184484e6b.png', '1718435fa5c.png', '171843a9f21.png', '171d2134def.png', '171d20cca72.png', '171d1f8d911.png', '171d21cd12d.png', '171d1e559be.png', '171d20548bd.png', '171d1933add.png', '1717aae387a.jpg', '1717a86b38f.png', '171d2a2e21a.png', '171d28150ea.png', '171d6f313c8.png',}
@@ -577,9 +590,9 @@ local sideQuests = {
     [1] = { -- Plant 5 seeds in oliver's house
         type = 'type:plant;oliver',
         quanty = 5,
-        points = 2,
+        points = 6,
     },
-    [2] = { -- Fertilize 3 plants in oliver's house
+    [2] = { -- Fertilize 5 plants in oliver's house
         type = 'type:fertilize;oliver',
         quanty = 5,
         points = 2,
@@ -674,7 +687,53 @@ local sideQuests = {
         quanty = 1,
         points = 2,
     },
+    [21] = { -- Plant 2 seeds in oliver's house
+        quanty = 2,
+        points = 1,
+        alias = 1,
+    },
+    [22] = { -- Plant 10 seeds in oliver's house
+        quanty = 10,
+        points = 10,
+        alias = 1,
+    },
+    [23] = { -- Fertilize 3 plants in oliver's house
+        quanty = 3,
+        points = 2,
+        alias = 2,
+    },
+    [24] = { -- Fertilize 10 plants in oliver's house
+        quanty = 10,
+        points = 6,
+        alias = 2,
+    },
+    [25] = { -- Get 1000 coins
+        quanty = 1000,
+        points = 2,
+        alias  = 3,
+    },
+    [26] = { -- Get 10000 coins
+        quanty = 10000,
+        points = 20,
+        alias  = 3,
+    },
+    [27] = { -- Fish 3 times
+        quanty = 3,
+        points = 1,
+        alias = 7,
+    },
+    [28] = { -- Arrest a thief 6 times
+        quanty = 6,
+        points = 6,
+        alias = 4,
+    },
 }
+
+for i, v in next, sideQuests do
+    if v.alias then
+        v.type = sideQuests[v.alias].type
+    end
+end
 
 local codesIds = {
     [0] = {n = 'WELCOME'},

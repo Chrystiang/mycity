@@ -439,84 +439,9 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			end
 		end
 	elseif callback == 'recipes' then
-		if players[player].selectedItem.image then
-			removeImage(players[player].selectedItem.image)
-			players[player].selectedItem.image = nil
-		end
-		sendMenu(99, player, '<p align="center"><font size="16">'.. translate('recipes', player), 400 - 465 *0.5, 10, 445, 300, 1, false, 1, false, false, false, 18)
-		ui.addTextArea(2040, '<p align="center"><font size="15" color="#ff0000"><a href="event:closebag"><b>X', player, 590, 30, 60, 50, 0x122528, 0x122528, 0, true)
-	elseif callback:sub(1, 11) == 'showRecipe_' then
-		if players[player].selectedItem.images[1] then
-			for i, v in next, players[player].selectedItem.images do
-				removeImage(players[player].selectedItem.images[i])
-			end
-			players[player].selectedItem.images = {}
-		end
-		if players[player].selectedItem.image then
-			removeImage(players[player].selectedItem.image)
-			players[player].selectedItem.image = nil
-		end
-		local item = callback:sub(12)
-
-		ui.addTextArea(99106, '<p align="center"><CE>'..translate('item_'..item, player), player, 500, 85, 110, 190, 0x24474D, 0x314e57, 1, true)
-		local canCook = true
-		local counter = 0
-		for i, v in next, recipes[item].require do
-			counter = counter + 1
-			players[player].selectedItem.images[#players[player].selectedItem.images+1] = addImage(bagItems[i].png, "&70", ((counter-1)%2)*55+485, math.floor((counter-1)/2)*30+160, player)
-			if checkItemQuanty(i, v, player) then
-				ui.addTextArea(99106+counter, '<vp>'..v, player, ((counter-1)%2)*55+530, math.floor((counter-1)/2)*30+177, nil, nil, 0x24474D, 0xff0000, 0, true)
-			else
-				ui.addTextArea(99106+counter, '<r>'..v, player, ((counter-1)%2)*55+530, math.floor((counter-1)/2)*30+177, nil, nil, 0x24474D, 0xff0000, 0, true)
-			end
-		end
-		for i, v in next, recipes[item].require do
-			if not checkItemQuanty(i, v, player) then
-				canCook = false
-				break
-			end
-		end
-		if canCook then
-			addButton(99096, '<a href="event:cook_'..item..'">'..translate('cook', player), player, 500, 240+40, 110, 10)
-		else
-			addButton(99096, translate('cook', player), player, 500, 240+40, 110, 10, true)
-		end
-		players[player].selectedItem.images[#players[player].selectedItem.images+1] = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', "&70", 530, 120, player)
-	elseif event == 'cook' then
-		local item = args[1]
-		for i, v in next, recipes[item].require do
-			if not checkItemQuanty(i, v, player) then return end
-			removeBagItem(i, v, player)
-		end
-		eventTextAreaCallback(0, player, 'closebag', true)
-		sendMenu(99, player, '', 400 - 120 * 0.5, (300 * 0.5), 100, 100, 1, true)
-		addItem(item, 1, player)
-		players[player].images[#players[player].images+1] = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', "&70", 400 - 50 * 0.5, 180, player)
-
-		if players[player].job == 'chef' then
-			job_updatePlayerStats(player, 10)
-		end
-
-		local sidequest = sideQuests[players[player].sideQuests[1]].type
-		if sidequest == 'type:cook' or string.find(sidequest, item) then
-			sideQuest_update(player, 1)
-		end
-
-		for id, properties in next, playerData.questLocalData.other do 
-			if id:find('cook') then
-				if id:lower():find(item:lower()) then 
-					if type(properties) == 'boolean' then 
-						quest_updateStep(player)
-					else 
-						playerData.questLocalData.other[id] = properties - 1
-						if playerData.questLocalData.other[id] == 0 then 
-							quest_updateStep(player)
-						end
-					end
-					break
-				end
-			end
-		end
+		modernUI.new(player, 520, 300, translate('recipes', player))
+			:build()
+			:showRecipes()
 	elseif callback:sub(1, 15) == 'joiningMessage_' then
 		local type = callback:sub(16)
 		player_removeImages(players[player].joinMenuImages)

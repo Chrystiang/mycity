@@ -146,4 +146,14 @@ recipes = {
 			salt = 1,
 		},
 	},
+	moqueca = {
+		require = {
+			tomato = 2,
+			garlic = 1,
+			salt = 1,
+			pepper = 1,
+			milk = 1,
+			fish_Lionfish = 1,
+		},
+	},
 }

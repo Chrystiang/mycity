@@ -75,4 +75,8 @@ bagIds = {
 	[74] = {n = 'crystal_purple', blockUse = true},
 	[75] = {n = 'crystal_green', blockUse = true},
 	[76] = {n = 'crystal_red', blockUse = true},
+	[77] = {n = 'banana'},
+	[78] = {n = 'bananaSeed'},
+	[79] = {n = 'moqueca'},
+
 }

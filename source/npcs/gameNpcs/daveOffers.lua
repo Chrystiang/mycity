@@ -1,7 +1,7 @@
 mainAssets.__farmOffers = {
     [1] = {
-        item = {'lettuce', 5},
-        requires = {'oregano', 10},
+        item = {'bananaSeed', 1},
+        requires = {'grilledLobster', 3},
     },
     [2] = {
         item = {'lettuce', 5},
@@ -38,5 +38,17 @@ mainAssets.__farmOffers = {
     [10] = {
         item = {'potato', 1},
         requires = {'pepper', 2},
+    },
+    [11] = {
+        item = {'lettuce', 5},
+        requires = {'oregano', 10},
+    },
+    [12] = {
+        item = {'banana', 5},
+        requires = {'lemon', 3},
+    },
+    [13] = {
+        item = {'bananaSeed', 1},
+        requires = {'chocolateCake', 5},
     },
 }
