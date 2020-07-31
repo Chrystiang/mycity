@@ -9,6 +9,9 @@ chatCommands.move = {
 				TFM.chatMessage('[•] ['..target1 .. '] teleporting to ['.. target2 ..'] ('..players[target2].place..')...', player)
 				TFM.movePlayer(target1, ROOM.playerList[target2].x, ROOM.playerList[target2].y, false)
 				players[target1].place = players[target2].place
+			elseif gameNpcs.characters[args[2]] then
+				TFM.chatMessage('[•] teleporting to <v>[NPC]</v> '..args[2]..'...', player)
+				TFM.movePlayer(player, gameNpcs.characters[args[2]].x+50, gameNpcs.characters[args[2]].y+50, false)
 			else
 				TFM.chatMessage('<g>[•] $playerName not found. ('..target2..')', player)
 			end
