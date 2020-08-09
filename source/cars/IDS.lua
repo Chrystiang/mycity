@@ -129,4 +129,21 @@ mainAssets.__cars = {
         name    = 'Green Lamborghini',
         icon    = '1733b04eb29.png',
     },
+    [14] = {
+        type    = 'car',
+        price   = 1000000000,
+        maxVel  = 500,
+        image   = {'173d50d7ad9.png', '173d50d525c.png'},
+        x       = -100,
+        y       = -35,
+        name    = 'Koenigsegg Agera',
+        icon    = '173d50d2a11.png',
+        effects = function(player)
+                    local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
+                    player_removeImages(players[player].carLeds)
+                    local light = lights[math.random(#lights)]
+                    players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
+                    players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
+                end,
+    },
 }

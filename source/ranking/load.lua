@@ -55,6 +55,6 @@ loadRanking = function(player)
 		ui.addTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Season', player):format(mainAssets.season), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
 		ui.addTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Season', player):format(mainAssets.season), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
 
-		ui.addTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os.time{day=10, year=2020, month=8})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		ui.addTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os.time{day=10, year=2020, month=9})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
 	end
 end

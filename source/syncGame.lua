@@ -42,13 +42,13 @@ syncVersion = function(player, vs)
         players[player].seasonStats[1][2] = 0
     end
     if mainAssets.fileCopy._ranking:find(player) then
-        if not table.contains(players[player].starIcons.owned, 2) then
-            giveBadge(player, 11)
-            players[player].starIcons.owned[#players[player].starIcons.owned+1] = 2
-            players[player].starIcons.selected = 2
+        if not table.contains(players[player].starIcons.owned, 3) then
+            giveBadge(player, 12)
+            players[player].starIcons.owned[#players[player].starIcons.owned+1] = 3
+            players[player].starIcons.selected = 3
         end
-        if not table.contains(players[player].cars, 13) then
-            players[player].cars[#players[player].cars+1] = 13
+        if not table.contains(players[player].cars, 14) then
+            players[player].cars[#players[player].cars+1] = 14
             modernUI.new(player, 240, 220, translate('seasonReward', player), translate('unlockedCar', player))
             :build()
             :addConfirmButton(function() end, translate('confirmButton_Great', player))

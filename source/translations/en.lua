@@ -655,4 +655,5 @@ lang.en = {
 	item_bananaSeed = 'Banana Seedling',
 	item_banana = 'Banana',
 	item_moqueca = 'Fish Stew',
+	badgeDesc_12 = 'Top 10 of season 2',
 }

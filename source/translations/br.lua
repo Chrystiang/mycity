@@ -647,4 +647,5 @@ lang.br = {
 	item_bananaSeed = 'Muda de Banana',
 	item_banana = 'Banana',
 	item_moqueca = 'Moqueca',
+	badgeDesc_12 = 'Top 10 da temporada 2',
 }

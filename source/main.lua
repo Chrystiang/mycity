@@ -97,9 +97,9 @@ local room = { -- Assets that change while the script runs
     temporaryTimer  = nil,
 }
 local mainAssets = { -- Assets that rarely changes while the script runs
-    season = 2,
+    season = 3,
     fileCopy = {
-        _ranking = '',
+        _ranking = 'Xzowtx#0000, Saugha#0000, Okxyautumn#8940, Emirfaresi#0000, Luquinhas#3157, Q_lt#0000, Brunadrr#0000, Kb65#0000, Kjbondetomjk#0000, Ratagominha#0000,',
     },
     roles = {
         admin = {},
@@ -117,6 +117,7 @@ local mainAssets = { -- Assets that rarely changes while the script runs
     levelIcons = {
         star = {
             '1733a811072.png',
+            '1733a815fb4.png',
             '1733a815fb4.png',
         },
         lvl = {
@@ -344,6 +345,9 @@ local badges        = {
     },
     [11] = { -- Season 1 reward
         png = '1733ad217ba.png',
+    },
+    [12] = { -- Season 2 reward
+        png = '1733ad23324.png',
     },
 }
 local places        = {
