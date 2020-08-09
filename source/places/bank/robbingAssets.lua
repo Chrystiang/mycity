@@ -109,7 +109,9 @@ addBankRobbingAssets = function()
 				ui.addTextArea(1029, '<font size="15"><p align="center"><a href="event:enter_bank">' .. translate('goTo', i) .. '</a>', i, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
 				if players[i].place == 'bank' then
 					if players[i].job == 'thief' then
-						arrestPlayer(i, 'Colt')
+						if players[i].inRoom then
+							arrestPlayer(i, 'Colt')
+						end
 					end
 				end
 				eventTextAreaCallback(1, i, 'closeVaultPassword', true)
