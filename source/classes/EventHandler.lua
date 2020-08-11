@@ -1,5 +1,6 @@
 -- EventHandler, made by Tocutoeltuco#0000
 local runtime = 0
+local runtime_threshold = 50
 local onEvent
 do
 	local os_time = os.time
@@ -8,7 +9,6 @@ do
 	local events = {}
 	local scheduled = {_count = 0, _pointer = 1}
 	local paused = false
-	local runtime_threshold = 50
 	local _paused = false
 	local lastErrorLog = ''
 

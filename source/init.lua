@@ -56,16 +56,16 @@ if ROOM.name == "*#fofinho" or ROOM.community == 'sk' then
 	room.requiredPlayers = 0
 else
 	TFM.setRoomPassword('')
-	for player in next, ROOM.playerList do
-		if ROOM.name:sub(1,1) == '*' and ROOM.name:find(player) then 
-			system.bindMouse(player, true)
-			room.requiredPlayers = 0
-			TFM.setRoomMaxPlayers(1)
-			TFM.setRoomPassword('blankRoom')
-			TFM.chatMessage('You can teleport in this room!!!1', player)
+	if ROOM.community == 'en' then
+		local roomID = tonumber(ROOM.name:sub(8, 9))
+		if roomID and roomID <= 10 then
+			room.requiredPlayers = math.floor(room.requiredPlayers/2)
+			room.maxPlayers = math.ceil(room.maxPlayers/2)
+			runtime_threshold = runtime_threshold - 5
 		end
 	end
 end
+
 TFM.setRoomMaxPlayers(room.maxPlayers)
 system.loadFile(1)
 
