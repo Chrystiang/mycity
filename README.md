@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Chrystiang/mycity/">
-    <img width="900px" src="https://imgur.com/tJDvtaf.png?raw=true" alt="Mycity logo">
+	<img width="900px" src="https://imgur.com/tJDvtaf.png?raw=true" alt="Mycity logo">
   </a>
 </p>
 

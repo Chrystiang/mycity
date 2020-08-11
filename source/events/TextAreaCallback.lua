@@ -2,23 +2,23 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	if room.isInLobby then return end
 	local playerData = players[player]
 	if not playerData then return end
-	if not serverRequest then 
+	if not serverRequest then
 		if players[player].lastCallback.when > os.time()-1000 then
 			if players[player].lastCallback.when > os.time()-100 then
 				players[player].lastCallback.when = os.time()
 			end
-			return 
+			return
 		end
 	end
 	players[player].lastCallback.when = os.time()
 
 	local args = {}
-    for i in callback:gmatch('[^_]+') do
-        args[#args+1] = i
-    end
+	for i in callback:gmatch('[^_]+') do
+		args[#args+1] = i
+	end
 	-------------- REWRITTEN PART
 	local event = table.remove(args, 1)
-	if event == 'changePage' then 
+	if event == 'changePage' then
 		local menu = args[1]
 		local button = args[2]
 		local totalPages = tonumber(args[3])
@@ -38,7 +38,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			local action = playerData._modernUIHistory[tonumber(args[2])][tonumber(args[3])]
 			action.toggleEvent(player, action.args)
 			if action.warningUI then return end
-		elseif args[1] == 'CallbackEvent' then 
+		elseif args[1] == 'CallbackEvent' then
 			return playerData._modernUIOtherCallbacks[tonumber(args[2])].event(player, playerData._modernUIOtherCallbacks[tonumber(args[2])].callbacks)
 		end
 
@@ -65,34 +65,34 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			local currentPage = tonumber(args[5])
 			local dialog = false
 			local lang = playerData.lang
-			if isQuest ~= 'not' then 
+			if isQuest ~= 'not' then
 				dialog = npcDialogs
 					.quests
 					  [lang]
-					    [playerData.questStep[1]]
-					     [playerData.questStep[2]]
-					      [currentPage]
-			else 
+						[playerData.questStep[1]]
+						 [playerData.questStep[2]]
+						  [currentPage]
+			else
 				dialog = dialogs[player].text[currentPage]
 			end
-			if dialog then 
+			if dialog then
 				dialogs[player].running = true
-			else 
-				for i = -88002, -88000 do 
+			else
+				for i = -88002, -88000 do
 					ui.removeTextArea(i, player)
 				end
-				for i = 1, #players[player]._npcDialogImages do 
+				for i = 1, #players[player]._npcDialogImages do
 					removeImage(players[player]._npcDialogImages[i])
-				end 
+				end
 				players[player]._npcDialogImages = {}
-				if playerData._npcsCallbacks.ending[npcID] then 
+				if playerData._npcsCallbacks.ending[npcID] then
 					playerData._npcsCallbacks.ending[npcID].callback(player)
 				end
-				if isQuest ~= 'not' then 
+				if isQuest ~= 'not' then
 					quest_updateStep(player)
 				end
 			end
-		elseif args[1] == 'skipAnimation' then 
+		elseif args[1] == 'skipAnimation' then
 			dialogs[player].length = 1000
 		elseif args[1] == 'talkWith' then
 			local npcID = tonumber(args[2])
@@ -101,15 +101,15 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			if math.hypo(npcRange[1], npcRange[2], location.x, location.y) <= 60 then
 				local npcName = npcRange[3]
 				local order = gameNpcs.orders.orderList[npcName]
-				if order and order.fulfilled[player] then 
-					if not order.fulfilled[player].completed then 
-						if checkItemQuanty(order.order, 1, player) then 
+				if order and order.fulfilled[player] then
+					if not order.fulfilled[player].completed then
+						if checkItemQuanty(order.order, 1, player) then
 							removeBagItem(order.order, 1, player)
 							job_updatePlayerStats(player, 9)
 							order.fulfilled[player].completed = true
-							for i = 1, #order.fulfilled[player].icons do 
+							for i = 1, #order.fulfilled[player].icons do
 								removeImage(order.fulfilled[player].icons[i])
-							end 
+							end
 							local sidequest = sideQuests[players[player].sideQuests[1]].type
 							if string.find(sidequest, 'type:deliver') then
 								sideQuest_update(player, 1)
@@ -121,7 +121,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 						end
 					end
 				end
-				if playerData._npcsCallbacks.starting[npcID] then 
+				if playerData._npcsCallbacks.starting[npcID] then
 					playerData._npcsCallbacks.starting[npcID].callback(player)
 				else
 					local npc = args[3]
@@ -131,7 +131,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				end
 			end
 		end
-	elseif event == 'collectDroppedItem' then 
+	elseif event == 'collectDroppedItem' then
 		item_collect(tonumber(args[1]), player)
 	elseif event == 'updateBlock' then
 		local blockID = tonumber(args[1])
@@ -139,12 +139,12 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local x = tfm.get.room.playerList[player].x
 		local y = tfm.get.room.playerList[player].y
 		local hit = 1
-		if math.hypo(x, y, blockData.x, blockData.y) <= Mine.blockLength+Mine.blockLength/2 and not blockData.removed then 
+		if math.hypo(x, y, blockData.x, blockData.y) <= Mine.blockLength+Mine.blockLength/2 and not blockData.removed then
 			blockData.life[1] = blockData.life[1] + hit
 			mine_updateBlockLife(blockID)
-			if blockData.life[1] >= blockData.life[2] then 
+			if blockData.life[1] >= blockData.life[2] then
 				player_removeImages(blockData.images)
-				if blockData.ore then 
+				if blockData.ore then
 					player_removeImages(blockData.oreImages)
 					for i = 1, 4 do
 						item_drop('crystal_'..blockData.ore, {x = blockData.x - 50 + (i-1)*20, y = blockData.y + 3})
@@ -152,15 +152,15 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				end
 				Mine.blocks[blockID].removed = true
 				Mine.availableRocks[blockID] = false
-				for i = 0, 10 do 
+				for i = 0, 10 do
 					ui.removeTextArea(blockID..(40028922+i))
 				end
 
 				local xx = Mine.blocks[blockID].column
 				local yy = Mine.blocks[blockID].line
-				for i = 1, #groundIDS do 
+				for i = 1, #groundIDS do
 					removeGround(groundIDS[i])
-				end 
+				end
 				groundIDS = {}
 				grid_height = mine_removeBlock(grid, grid_width, grid_height, xx, yy)
 				mine_drawGrid(mine_optimizeGrid(grid, grid_width, grid_height), 60, Mine.position[1], Mine.position[2])
@@ -186,7 +186,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		goToHouse(player, id)
 	end
 	if playerData.editingHouse then return end
-	---------- TO REWRITE 
+	---------- TO REWRITE
 	if callback:sub(1,4) == 'BUY_' then
 		local item = callback:sub(5)
 		local complement = tonumber(item) and '' or '-'
@@ -230,7 +230,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		else
 			alert_Error(player, 'timeOut', 'closed_'..place)
 		end
-	elseif callback == 'elevator' then 
+	elseif callback == 'elevator' then
 		if players[player].hospital.hospitalized then return end
 		local andar = players[player].hospital.currentFloor
 		local calc = ((andar-1)%andar)*900+4388
@@ -249,7 +249,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		eventTextAreaCallback(0, player, 'close3_5', true)
 		showOptions(player)
 		checkIfPlayerIsDriving(player)
-		if place == 'bank' then 
+		if place == 'bank' then
 			if room.bankBeingRobbed then
 				local shield = addImage('1566af4f852.png', '$'..player, -45, -45)
 				players[player].robbery.usingShield = true
@@ -275,7 +275,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				end
 			end
 			if codes[code].available then
-				if codes[code].level then 
+				if codes[code].level then
 					if codes[code].level > players[player].level[1] then
 						return alert_Error(player, 'error', 'codeLevelError', codes[code].level)
 					end
@@ -368,14 +368,14 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			else
 				addItem(item, 1, player, bagItems[item].price)
 			end
-			for id, properties in next, playerData.questLocalData.other do 
+			for id, properties in next, playerData.questLocalData.other do
 				if id:find('BUY_') then
-					if id:lower():find(item:lower()) then 
-						if type(properties) == 'boolean' then 
+					if id:lower():find(item:lower()) then
+						if type(properties) == 'boolean' then
 							quest_updateStep(player)
-						else 
+						else
 							playerData.questLocalData.other[id] = properties - 1
-							if playerData.questLocalData.other[id] == 0 then 
+							if playerData.questLocalData.other[id] == 0 then
 								quest_updateStep(player)
 							end
 						end
@@ -398,7 +398,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				eventTextAreaCallback(0, player, 'closebag', true)
 			end
 		end
-		savedata(player)			
+		savedata(player)
 	elseif callback == 'closebag' then
 		ui.removeTextArea(2040, player)
 		eventTextAreaCallback(0, player, 'close2', true)
@@ -420,8 +420,8 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		if players[owner].houseTerrainPlants[id] == 0 then return end
 		local crop = houseTerrainsAdd.plants[players[owner].houseTerrainPlants[id]]
 
-		for id, properties in next, players[player].questLocalData.other do 
-			if id:lower():find(crop.name) then 
+		for id, properties in next, players[player].questLocalData.other do
+			if id:lower():find(crop.name) then
 				quest_updateStep(player)
 			end
 		end
@@ -472,7 +472,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				players[player].joinMenuPage = players[player].joinMenuPage - 1
 			end
 			sendMenu(99, player, '<p align="center"><font size="16"><vp>'..currentVersion..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
-		end			
+		end
 	elseif callback:sub(1,5) == 'andar' then
 		if players[player].place ~= 'hospital' then eventTextAreaCallback(0, player, 'closeInfo_33', true) return end
 		local i = tonumber(callback:sub(6))
@@ -496,7 +496,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	------------------ NPCS ------------------
 	elseif callback == 'NPC_coffeeShop' then
 		showPopup(5, player, nil, '', 400 - 250 *0.5, 200 - 250 * 0.5, 250, 250, false, '9_5')
-	----------------- QUESTS -----------------			
+	----------------- QUESTS -----------------
 	elseif callback:sub(1,6) == 'Quest_' then
 		if callback:sub(7, 8) == '02' then
 			if callback:sub(10) == 'key' then
@@ -603,9 +603,9 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			if not seedToDrop then return end
 			addItem(seedToDrop, 1, player)
 			eventTextAreaCallback(0, player, 'closebag', true)
-		else 
-			for id, properties in next, players[player].questLocalData.other do 
-				if id:find('plant_') then 
+		else
+			for id, properties in next, players[player].questLocalData.other do
+				if id:find('plant_') then
 					if id:lower():find(seedToDrop:lower()) then
 						quest_updateStep(player)
 					end
@@ -619,6 +619,6 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		ui.removeTextArea(9901327, player)
 		ui.removeTextArea(98900000019, player)
 		showOptions(player)
-		savedata(player)		
+		savedata(player)
 	end
 end)

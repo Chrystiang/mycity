@@ -2,12 +2,12 @@ gameNpcs.talk = function(npc, player)
 	local playerData = players[player]
 	local lang = playerData.lang
 	local npcText = npcDialogs.normal[lang][npc.name] and npcDialogs.normal[lang][npc.name] or (npc.name:find('Souris') and {' '} or npcDialogs.normal[lang]['Natasha'])
-	if npc.questDialog then 
+	if npc.questDialog then
 		npcText = npcDialogs
 			.quests
 			  [lang]
-			    [playerData.questStep[1]]
-			      [playerData.questStep[2]]
+				[playerData.questStep[1]]
+				  [playerData.questStep[2]]
 	end
 	local dialog = npc.text or npcText
 	dialog = table.copy(dialog)
@@ -20,23 +20,23 @@ gameNpcs.talk = function(npc, player)
 	end
 
 	dialogs[player] = {name = npc.name, text = dialog, length = 0, currentPage = 1, running = true, npcID = npc.npcID, isQuest = npc.questDialog}
-    local tbl = players[player]._npcDialogImages
+	local tbl = players[player]._npcDialogImages
 
-    local alignFix = gameNpcs.characters[npc.name].fixAlign
-    if not npcDialogs.normal[lang][npc.name] and npc.image ~= gameNpcs.characters[npc.name].image2 then
-    	alignFix = {0, -23}
-    end
-    tbl[#tbl+1] = addImage('17184484e6b.png', ":0", 0, 0, player)
-    tbl[#tbl+1] = addImage('1718435fa5c.png', ":1", 300, 250, player)
-    tbl[#tbl+1] = addImage(npc.image, ":2", 270+alignFix[1], 260+alignFix[2], player) 
-    tbl[#tbl+1] = addImage('171843a9f21.png', ":3", 270, 330, player)
-    npc.name = npc.name:gsub('$', '')
-    local font = 15
-    if #npc.name > 8 then 
-    	font = 12
-    elseif #npc.name > 13 then
-    	font = 10
-    end
+	local alignFix = gameNpcs.characters[npc.name].fixAlign
+	if not npcDialogs.normal[lang][npc.name] and npc.image ~= gameNpcs.characters[npc.name].image2 then
+		alignFix = {0, -23}
+	end
+	tbl[#tbl+1] = addImage('17184484e6b.png', ":0", 0, 0, player)
+	tbl[#tbl+1] = addImage('1718435fa5c.png', ":1", 300, 250, player)
+	tbl[#tbl+1] = addImage(npc.image, ":2", 270+alignFix[1], 260+alignFix[2], player)
+	tbl[#tbl+1] = addImage('171843a9f21.png', ":3", 270, 330, player)
+	npc.name = npc.name:gsub('$', '')
+	local font = 15
+	if #npc.name > 8 then
+		font = 12
+	elseif #npc.name > 13 then
+		font = 10
+	end
 	ui.addTextArea(-88000, '<p align="center"><font size="'..font..'" color="#ffffea"><b>'..npc.name, player, 275, 335 + (15-font), 90, 30, 1, 1, 0, true)
 	ui.addTextArea(-88001, '', player, 380, 260, 210, 75, 1, 1, 0, true)
 	ui.addTextArea(-88002, "<textformat leftmargin='1' rightmargin='1'><a href='event:npcDialog_skipAnimation'>" .. string.rep('\n', 10), player, 300, 250, 300, 100, nil, 1, 0, true)

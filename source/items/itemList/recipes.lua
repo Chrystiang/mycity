@@ -1,28 +1,28 @@
 recipes = {
-    sauce = {
-        require = {
-            tomato = 3,
-            water = 1,
-            salt = 1,
-        },
-    },
+	sauce = {
+		require = {
+			tomato = 3,
+			water = 1,
+			salt = 1,
+		},
+	},
 	hotsauce = {
-        require = {
-            tomato = 3,
+		require = {
+			tomato = 3,
 			pepper = 2,
-            water = 1,
-            salt = 1,
-        },
-    },
+			water = 1,
+			salt = 1,
+		},
+	},
 	pizza = {
 		require = {
 			wheatFlour = 1,
-            tomato = 2,
+			tomato = 2,
 			sauce = 1,
 			oregano = 2,
 			milk = 2,
 			cheese = 1,
-        },
+		},
 	},
 	cookies = {
 		require = {
@@ -30,20 +30,20 @@ recipes = {
 			milk = 1,
 			sugar = 1,
 			chocolate = 1,
-        },
+		},
 	},
 	hotChocolate = {
 		require = {
 			milk = 1,
 			chocolate = 2,
-        },
+		},
 	},
 	milkShake = {
 		require = {
 			blueberries = 1,
 			milk = 1,
 			sugar = 1,
-        },
+		},
 	},
 	lemonade = {
 		require = {

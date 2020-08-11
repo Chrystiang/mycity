@@ -377,9 +377,9 @@ lang.br = {
 	houseDescription_6 = 'Essa casa aconchegante lhe trará conforto nos dias mais frios!',
 	houseDescription_7 = 'Uma casa para quem gosta de acordar ao lado da natureza!',
 	houseSettings = 'Configurar Casa',
-	houseSettings_permissions = 'Permissões', 
+	houseSettings_permissions = 'Permissões',
 	houseSettings_buildMode = 'Modo de Construção',
-	houseSettings_finish = 'Terminar!', 
+	houseSettings_finish = 'Terminar!',
 	error_houseUnderEdit = '%s está editando a casa.',
 	sellFurniture = 'Vender móvel',
 	sellFurnitureWarning = 'Você tem certeza que deseja vender esse móvel?\n<r>Essa ação não pode ser desfeita!</r>',
@@ -397,7 +397,7 @@ lang.br = {
 	furniture_hayWagon = 'Carroça',
 	furniture_diningTable = 'Mesa de Restaurante',
 	furniture_bookcase = 'Estante',
-	syncingGame = '<r>Sincronizando dados com o servidor. O jogo pode ficar lento por alguns segundos.', 
+	syncingGame = '<r>Sincronizando dados com o servidor. O jogo pode ficar lento por alguns segundos.',
 	item_crystal_yellow = 'Cristal Amarelo',
 	item_crystal_blue = 'Cristal Azul',
 	item_crystal_purple = 'Cristal Roxo',
@@ -492,7 +492,7 @@ lang.br = {
 				dialog = 'Finalmente! Você deveria prestar mais atenção, eu poderia ter assistido um filme enquanto você as procurava.\nVocê ainda quer ver a loja? Estou indo para lá!',
 				_add = 'Leve a chave para Indy.',
 			},
-		},	
+		},
 		[3] = {
 			name = 'Missão 03: O roubo',
 			[0] = {
@@ -555,71 +555,71 @@ lang.br = {
 			},
 		},
 		[4] = {
-		    name = 'Missão 04: O molho acabou!',
-		    [0] = {
+			name = 'Missão 04: O molho acabou!',
+			[0] = {
 				dialog = 'Olá! Você quer comer uma pizza?\nBom... trago más notícias.\nOntem mais cedo comecei a fazer algumas pizzas, mas notei que todo molho que eu tinha acabou.\nTentei comprar tomates no mercado, mas aparentemente eles não vendem.\nEu comecei a morar aqui algumas semanas atrás e eu não conheço ninguém que possa me ajudar.\nEntão você pode me ajudar? Só preciso de molho para abrir a pizzaria.',
 				_add = 'Fale com Kariina.',
-		    },
-		    [1] = {
-		        _add = 'Vá para a ilha.',
-		    },
-		    [2] = {
-		        _add = 'Vá para a loja de sementes.',
-		    },
-		    [3] = {
-		        _add = 'Compre uma semente.',
-		    },
-		    [4] = {
-		        _add = 'Vá para sua casa.',
-		    },
-		    [5] = {
-		        _add = 'Plante a semente na sua casa. (Você precisa ter um jardim!)',
-		    },
-		    [6] = {
-		        _add = 'Recolha os tomates.',
-		    },
-		    [7] = {
-		        _add = 'Vá para a loja de sementes.',
-		    },
-		    [8] = {
-		        _add = 'Compre um balde de água.',
-		    },
-		    [9] = {
-		        _add = 'Vá para o mercado.',
-		    },
-		    [10] = {
-		        _add = 'Compre sal.',
-		    },
-		    [11] = {
-		        _add = 'Cozinhe um molho. (Você precisa ter um fogão!)',
-		    },
-		    [12] = {
-		        dialog = 'Wow! Obrigada! Agora eu preciso de molho picante. Você pode me fazer um?',
-		        _add = 'Entregue o molho para Kariina.',
-		    },
-		    [13] = {
-		        _add = 'Plante uma semente na sua casa.',
-		    },
-		    [14] = {
-		        _add = 'Reolha as pimentas',
-		    },
-		    [15] = {
-		        _add = 'Cozinhe um molho picante.',
-		    },
-		    [16] = {
-		        dialog = '!!! Você fez isso! Obrigada!\nEnquanto você não estava, percebi que preciso de mais trigo para fazer a massa... Você pode me fazer trigo?',
-		        _add = 'Entregue o molho picante para Kariina.',
-		    },
-		    [17] = {
-		        _add = 'Plante uma semente na sua casa.',
-		    },
-		    [18] = {
-		        _add = 'Recolha o trigo.',
-		    },
-		    [19] = {
+			},
+			[1] = {
+				_add = 'Vá para a ilha.',
+			},
+			[2] = {
+				_add = 'Vá para a loja de sementes.',
+			},
+			[3] = {
+				_add = 'Compre uma semente.',
+			},
+			[4] = {
+				_add = 'Vá para sua casa.',
+			},
+			[5] = {
+				_add = 'Plante a semente na sua casa. (Você precisa ter um jardim!)',
+			},
+			[6] = {
+				_add = 'Recolha os tomates.',
+			},
+			[7] = {
+				_add = 'Vá para a loja de sementes.',
+			},
+			[8] = {
+				_add = 'Compre um balde de água.',
+			},
+			[9] = {
+				_add = 'Vá para o mercado.',
+			},
+			[10] = {
+				_add = 'Compre sal.',
+			},
+			[11] = {
+				_add = 'Cozinhe um molho. (Você precisa ter um fogão!)',
+			},
+			[12] = {
+				dialog = 'Wow! Obrigada! Agora eu preciso de molho picante. Você pode me fazer um?',
+				_add = 'Entregue o molho para Kariina.',
+			},
+			[13] = {
+				_add = 'Plante uma semente na sua casa.',
+			},
+			[14] = {
+				_add = 'Reolha as pimentas',
+			},
+			[15] = {
+				_add = 'Cozinhe um molho picante.',
+			},
+			[16] = {
+				dialog = '!!! Você fez isso! Obrigada!\nEnquanto você não estava, percebi que preciso de mais trigo para fazer a massa... Você pode me fazer trigo?',
+				_add = 'Entregue o molho picante para Kariina.',
+			},
+			[17] = {
+				_add = 'Plante uma semente na sua casa.',
+			},
+			[18] = {
+				_add = 'Recolha o trigo.',
+			},
+			[19] = {
 				dialog = 'Wow! Obrigado! Você pode trabalhar comigo quando eu precisar de empregados.\nObrigada por me ajudar. Agora eu posso terminar essas pizzas!',
-		        _add = 'Entregue trigo para Kariina.',
-		    },
+				_add = 'Entregue trigo para Kariina.',
+			},
 		},
 	},
 	daveOffers = 'Ofertas de hoje',

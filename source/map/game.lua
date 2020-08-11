@@ -1,10 +1,10 @@
 genMap = function()
 	room.groundsPosition = {250, 749+250, 50}
 	room.isInLobby = false
-    local xml = {}
-    local xml2 = {}
-    local obj = {}
-    local spawn = {}
+	local xml = {}
+	local xml2 = {}
+	local obj = {}
+	local spawn = {}
 	local aps = '16bb480f649.png,1,5791,4596,205,200,5791,4596;16f8fd6e0e9.png,1,8505,6230,2000,500,8498,5950'
 
 	--16bf16a367a.png -- original
@@ -17,7 +17,7 @@ genMap = function()
 	elseif room.event == 'christmas2019' then
 		largeGrass = '16f19d53238.jpg'
 	end
-    for i = 1, 17 do
+	for i = 1, 17 do
 		xml[#xml+1] = '<S H="10" L="3000" X="'..room.groundsPosition[2]..'" c="3" Y="800" m="" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="1400" L="10" X="'..room.groundsPosition[3]..'" Y="1100" m="" T="5" P="0,0,0,0,0,0,0,0" /><S H="110" L="800" X="'..room.groundsPosition[2]..'" c="3" m="" Y="1790" T="9" P="0,0,0.3,0,0,0,0,0" /><S H="150" L="800" i="0,0,'..largeEarth..'" X="'..room.groundsPosition[2]..'" c="3" Y="1870" T="5" P="0,0,0.3,0,0,0,0,0" /><S H="220" L="800" i="0,0,'..largeGrass..'" X="'..room.groundsPosition[1]..'" Y="1825" T="6" P="0,0,0.3,0,0,0,0,0" />'
 		for i = 1, 3 do
 			room.groundsPosition[i] = room.groundsPosition[i] + 1500
@@ -39,13 +39,13 @@ genMap = function()
 		xml[#xml+1] = '<S T="12" L="40" H="400" X="14000" Y="50" P="0,0,0,0,0,0,0,0" o="4b2400"/><S T="12" L="400" N="" H="400" X="15200" Y="50" P="0,0,0,0,0,0,0,0" o="4b2400"/>'
 	-- Furniture Store
 		xml[#xml+1] = '<S T="12" L="40" H="400" X="16000" Y="50" P="0,0,0,0,0,0,0,0" o="f0f0f0"/><S T="12" L="40" H="400" X="17015" Y="50" P="0,0,0,0,0,0,0,0" o="f0f0f0"/>'
-	-- Fish Shop 
+	-- Fish Shop
 		xml[#xml+1] = '<S T="14" L="50" H="300" X="12585" Y="100" P="0,0,0,0,0,0,0,0"/><S T="14" L="50" H="300" X="13200" Y="100" P="0,0,0,0,0,0,0,0"/>'
 
-	-- Police Station 
-		-- Jail 
+	-- Police Station
+		-- Jail
 		local aps2 = {}
-		for i = 1, 18 do 
+		for i = 1, 18 do
 			aps2[#aps2+1] = '16f9672ce4a.png,1,' .. (8045 + (i-1)*25) .. ',6260,30,174,' .. (8045 + (i-1)*25) .. ',6260;16f96805a4f.png,1,0,0,30,174,' .. (8045 + (i-1)*25) .. ',6260;'
 		end
 		spawn[#spawn+1] = '<P P="1,0" C="e8e9eb,cf8531" Y="6405" T="119" X="8475" />'
@@ -68,16 +68,16 @@ genMap = function()
 		xml[#xml+1] = barriers[1][2] .. barriers[1][3]
 	elseif step1 == 2 then -- mid barrier
 		xml[#xml+1] = barriers[1][1] .. barriers[1][3]
-	else 
-		xml[#xml+1] = barriers[1][1] .. barriers[1][2]			
+	else
+		xml[#xml+1] = barriers[1][1] .. barriers[1][2]
 	end
 	math.randomseed(room.mathSeed * step1); math.randomseed(room.mathSeed * step1 * math.random())
 	local step3 = math.random(1, #allowedPaths[step1])
-	for i = 1, 4 do 
-		if not table.contains(allowedPaths[step1][step3], i) then 
+	for i = 1, 4 do
+		if not table.contains(allowedPaths[step1][step3], i) then
 			xml[#xml+1] = barriers[2][i]
 		end
-	end		
+	end
 	math.randomseed(os.time())
 
 	aps2[#aps2+1] = '170f0b9e5b1.png,1,0,7670,1765,1200,0,7625;'

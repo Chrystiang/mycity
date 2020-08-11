@@ -1,19 +1,19 @@
 onEvent("FileLoaded", function(file, data)
 	local datas = {}
-    for _data in string.gmatch(data, '[^%|]+') do
-        datas[#datas+1] = _data
-    end
+	for _data in string.gmatch(data, '[^%|]+') do
+		datas[#datas+1] = _data
+	end
 	if tonumber(file) == 5 then -- RANKING
 		mainAssets.fileCopy._ranking = datas[2]
 		local rankData = datas[1]
 		room.globalRanking = {}
 
-        if rankData then
-            for name, level, experience, commu, id in string.gmatch(rankData, '([%w_+]+#%d+),(%d+),(%d+),(%w+),(%d+)') do
-                room.globalRanking[#room.globalRanking+1] = {name = name, level = level, experience = experience, commu = commu, id = id}
-            end
-        end
-        saveRanking()
+		if rankData then
+			for name, level, experience, commu, id in string.gmatch(rankData, '([%w_+]+#%d+),(%d+),(%d+),(%w+),(%d+)') do
+				room.globalRanking[#room.globalRanking+1] = {name = name, level = level, experience = experience, commu = commu, id = id}
+			end
+		end
+		saveRanking()
 		player_removeImages(room.rankingImages)
 		loadRanking()
 
@@ -41,7 +41,7 @@ onEvent("FileLoaded", function(file, data)
 		mainAssets.roles.mod = {}
 		mainAssets.roles.helper = {}
 
-		for index, role in next, {admin, mod, helper} do 
+		for index, role in next, {admin, mod, helper} do
 			for player in string.gmatch(role, '([%w_+]+#%d+)') do
 				local _role = (index == 1 and 'admin') or (index == 2 and 'mod') or (index == 3 and 'helper')
 				mainAssets.roles[_role][#mainAssets.roles[_role]+1] = player
