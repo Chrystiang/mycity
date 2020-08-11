@@ -2,10 +2,10 @@ onEvent("ChatCommand", function(player, command)
 	if room.isInLobby then return end
 
 	local args = {}
-    for i in command:gmatch('%S+') do
-        args[#args+1] = i
-    end
-    local command = table.remove(args, 1):lower()
+	for i in command:gmatch('%S+') do
+		args[#args+1] = i
+	end
+	local command = table.remove(args, 1):lower()
 	if chatCommands[command] then
 		local continue = false
 		if not chatCommands[command].permissions then

@@ -1,7 +1,7 @@
 modernUI.showNPCShop = function(self, items)
 	local id = self.id
 	local player = self.player
-	local width = self.width 
+	local width = self.width
 	local height = self.height
 	local x = (400 - width/2) + 20
 	local y = (200 - height/2) + 65
@@ -14,7 +14,7 @@ modernUI.showNPCShop = function(self, items)
 		local minn = 15 * (currentPage-1) + 1
 		local maxx = currentPage * 15
 		local i = 0
-		for _ = minn, maxx do 
+		for _ = minn, maxx do
 			local data = items[_]
 			if not data then break end
 			local selectedQuanty = 1
@@ -42,7 +42,7 @@ modernUI.showNPCShop = function(self, items)
 							button_confirmBg = 0x95d44d,
 							button_confirmFront = 0x44662c
 						}
-						if blockClick then 
+						if blockClick then
 							colorPallete.button_confirmBg = 0xbdbdbd
 							colorPallete.button_confirmFront = 0x5b5b5b
 						end
@@ -52,40 +52,40 @@ modernUI.showNPCShop = function(self, items)
 						ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, not blockClick and callback or nil)
 					end
 					local currency = v.qpPrice and {players[player].sideQuests[4], v.qpPrice*selectedQuanty} or {players[player].coins, v.price*selectedQuanty}
-					local buttonTxt = nil 
+					local buttonTxt = nil
 					local blockClick = false
-				    if currency[1] >= currency[2] then
-			    		buttonTxt = '<font size="11">'..translate('confirmButton_Buy', player):format('<b><fc>'..(v.qpPrice and 'QP$'..(v.qpPrice*selectedQuanty) or '$'..(v.price*selectedQuanty)))
+					if currency[1] >= currency[2] then
+						buttonTxt = '<font size="11">'..translate('confirmButton_Buy', player):format('<b><fc>'..(v.qpPrice and 'QP$'..(v.qpPrice*selectedQuanty) or '$'..(v.price*selectedQuanty)))
 					else
 						blockClick = true
-			    		buttonTxt = '<r>'..(v.qpPrice and 'QP$'..v.qpPrice or '$'..v.price)
+						buttonTxt = '<r>'..(v.qpPrice and 'QP$'..v.qpPrice or '$'..v.price)
 					end
 					local function buyItem()
 						if boughtSomething then return end
 						if currency[1] < currency[2] then return alert_Error(player, 'error', 'error') end
-						if mainAssets.__furnitures[data[1]] then 
+						if mainAssets.__furnitures[data[1]] then
 							local total_of_storedFurnitures = 0
-							for _, v in next, players[player].houseData.furnitures.stored do 
+							for _, v in next, players[player].houseData.furnitures.stored do
 								total_of_storedFurnitures = total_of_storedFurnitures + v.quanty
 							end
 							if (total_of_storedFurnitures + selectedQuanty) > maxFurnitureDepot then return alert_Error(player, 'error', 'maxFurnitureDepot', maxFurnitureDepot) end
-							if not players[player].houseData.furnitures.stored[data[1]] then 
+							if not players[player].houseData.furnitures.stored[data[1]] then
 								players[player].houseData.furnitures.stored[data[1]] = {quanty = selectedQuanty, type = data[1]}
-							else 
+							else
 								players[player].houseData.furnitures.stored[data[1]].quanty = players[player].houseData.furnitures.stored[data[1]].quanty + selectedQuanty
 							end
 						else
 							if (players[player].totalOfStoredItems.bag + selectedQuanty) > players[player].bagLimit then return alert_Error(player, 'error', 'bagError') end
 							local item = data[2]
-							addItem(item, selectedQuanty, player) 
-							for id, properties in next, players[player].questLocalData.other do 
+							addItem(item, selectedQuanty, player)
+							for id, properties in next, players[player].questLocalData.other do
 								if id:find('BUY_') then
-									if id:lower():find(item:lower()) then 
-										if type(properties) == 'boolean' then 
+									if id:lower():find(item:lower()) then
+										if type(properties) == 'boolean' then
 											quest_updateStep(player)
-										else 
+										else
 											players[player].questLocalData.other[id] = properties - selectedQuanty
-											if players[player].questLocalData.other[id] <= 0 then 
+											if players[player].questLocalData.other[id] <= 0 then
 												quest_updateStep(player)
 											end
 										end
@@ -105,7 +105,7 @@ modernUI.showNPCShop = function(self, items)
 						eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 					end
 					local function addBuyButton(buttonTxt)
-						button(0, buttonTxt, 
+						button(0, buttonTxt,
 							function()
 								buyItem()
 							end, 507, 295, 120, 13, blockClick)
@@ -113,9 +113,9 @@ modernUI.showNPCShop = function(self, items)
 					if not blockClick and not v.stockLimit then
 						ui.addTextArea(id..'892', '<font color="#cef1c3">'..translate('confirmButton_Select', player), player, x+337, y+151, nil, nil, 0x24474D, 0x314e5, 0, true)
 						ui.addTextArea(id..'893', '<font color="#cef1c3">01', player, x+425, y+151, nil, nil, 0x24474D, 0x314e5, 0, true)
-						for i = 1, 2 do 
-							button(i, i == 1 and '-' or '+', 
-								function(player) 
+						for i = 1, 2 do
+							button(i, i == 1 and '-' or '+',
+								function(player)
 									local calc = i == 1 and -1 or 1
 									if (selectedQuanty + calc) > 50 or (selectedQuanty + calc) < 1 then return end
 									selectedQuanty = selectedQuanty + calc
@@ -127,39 +127,39 @@ modernUI.showNPCShop = function(self, items)
 						end
 					end
 					addBuyButton(buttonTxt)
-				end, i)	
+				end, i)
 			end
 			i = i + 1
 		end
 	end
 	local function updateScrollbar()
 		local function updatePage(count)
-			if currentPage + count > maxPages or currentPage + count < 1 then return end 
+			if currentPage + count > maxPages or currentPage + count < 1 then return end
 			currentPage = currentPage + count
 			player_removeImages(players[player]._modernUISelectedItemImages[1])
 			player_removeImages(players[player]._modernUISelectedItemImages[3])
-			for i = 897, 929 do 
+			for i = 897, 929 do
 				ui.removeTextArea(id..i, player)
 			end
 			updateScrollbar()
 			showItems()
 		end
-		ui.addTextArea(id..'888', string.rep('\n', 10), player, x+2, y+200, 155, 10, 0x24474D, 0xff0000, 0, true, 
+		ui.addTextArea(id..'888', string.rep('\n', 10), player, x+2, y+200, 155, 10, 0x24474D, 0xff0000, 0, true,
 			function()
 				updatePage(-1)
 			end)
-		ui.addTextArea(id..'889', string.rep('\n', 10), player, x+157, y+200, 155, 10, 0x24474D, 0xff0000, 0, true, 
+		ui.addTextArea(id..'889', string.rep('\n', 10), player, x+157, y+200, 155, 10, 0x24474D, 0xff0000, 0, true,
 			function()
 				updatePage(1)
 			end)
 
 		player_removeImages(players[player]._modernUISelectedItemImages[2])
 		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', ":26", x+2, y+205, player)
-		for i = 1, (10 - math.min(8, maxPages)+1) do 
+		for i = 1, (10 - math.min(8, maxPages)+1) do
 			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', ":27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
 		end
 	end
-	if maxPages > 1 then 
+	if maxPages > 1 then
 		updateScrollbar()
 	end
 	showItems()

@@ -71,21 +71,21 @@ end
 
 removeCarImages = function(player)
 	if not players[player] then return end
-    player_removeImages(players[player].carImages)
-    player_removeImages(players[player].carLeds)
+	player_removeImages(players[player].carImages)
+	player_removeImages(players[player].carLeds)
 end
 
 showBoatShop = function(player, floor)
 	if not room.boatShop2ndFloor then
 		addGround(7777777777, 1125, 9280, {type = 14, height = 300, width = 20})
-	else 
-		ui.addTextArea(5005, string.rep('\n', 20), player, 1000, 9290, 121, 120, 0x1, 0x1, 0, false, 
+	else
+		ui.addTextArea(5005, string.rep('\n', 20), player, 1000, 9290, 121, 120, 0x1, 0x1, 0, false,
 			function(player)
 				TFM.movePlayer(player, 1060, 9710)
 				players[player].place = 'boatShop_2'
 				showBoatShop(player, 2)
 			end)
-		ui.addTextArea(5006, string.rep('\n', 20), player, 1000, 9590, 121, 120, 0x1, 0x1, 0, false, 
+		ui.addTextArea(5006, string.rep('\n', 20), player, 1000, 9590, 121, 120, 0x1, 0x1, 0, false,
 			function(player)
 				TFM.movePlayer(player, 1060, 9410)
 				players[player].place = 'boatShop'
@@ -95,13 +95,13 @@ showBoatShop = function(player, floor)
 	local vehicles = {{6, 8}, {12, 11}}
 	local position = {{1510, 1710}, {775, 1150}}
 	local width = {{180, 180}, {180, 580}}
-	for i, v in next, vehicles[floor] do 
+	for i, v in next, vehicles[floor] do
 		local carInfo = mainAssets.__cars[v]
 		ui.addTextArea(5005+i*5, '<p align="center"><font color="#000000" size="14">'..translate('vehicle_'..v, player), player, position[floor][i], 9425+(floor-1)*300, width[floor][i], 80, 0x46585e, 0x46585e, 1)
 		ui.addTextArea(5006+i*5, ''..translate('speed', player):format(math.floor(carInfo.maxVel/(carInfo.type == 'boat' and 1.85 or 1)))..' '..translate(carInfo.type == 'boat' and 'speed_knots' or 'speed_km', player), player, position[floor][i], 9445+(floor-1)*300, width[floor][i], nil, 0x46585e, 0x00ff00, 0)
 		if not table.contains(players[player].cars, v) then
 			if carInfo.price <= players[player].coins then
-				ui.addTextArea(5007+i*5, '<p align="center"><vp>$'..carInfo.price..'\n', player, position[floor][i], 9485+(floor-1)*300, width[floor][i], nil, nil, 0x00ff00, 0.5, false, 
+				ui.addTextArea(5007+i*5, '<p align="center"><vp>$'..carInfo.price..'\n', player, position[floor][i], 9485+(floor-1)*300, width[floor][i], nil, nil, 0x00ff00, 0.5, false,
 					function(player)
 						if table.contains(players[player].cars, v) then return end
 						players[player].cars[#players[player].cars+1] = v
@@ -129,7 +129,7 @@ showCarShop = function(player)
 
 				if not table.contains(players[player].cars, v) then
 					if carInfo.price <= players[player].coins then
-						ui.addTextArea(5007+v*counter, '<p align="center"><vp>$'..carInfo.price..'\n', player, (currentCount)*200 + 8805, 130+200, 180, nil, nil, 0x00ff00, 0.5, false, 
+						ui.addTextArea(5007+v*counter, '<p align="center"><vp>$'..carInfo.price..'\n', player, (currentCount)*200 + 8805, 130+200, 180, nil, nil, 0x00ff00, 0.5, false,
 							function(player)
 								if table.contains(players[player].cars, v) then return end
 								players[player].cars[#players[player].cars+1] = v

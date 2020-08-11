@@ -1,12 +1,12 @@
 onEvent("PlayerDataLoaded", function(name, data)
-	if name == 'Sharpiebot#0000' then 
+	if name == 'Sharpiebot#0000' then
 		return syncGameData(data, name)
 	end
 	if table.contains(room.bannedPlayers, name) then
 		return TFM.chatMessage('You can not play #mycity anymore.', name)
 	end
 	if #data > 1500 then return TFM.chatMessage('You have reached your data limit. Please contact Fofinhoppp#0000 for more info.', name) end
-    playerData:newPlayer(name, data)
+	playerData:newPlayer(name, data)
 	------- setting data values to players[name]
 	local playerSettings = playerData:get(name, 'playerLog')
 	players[name].settings.mirroredMode = playerSettings[2][1] or 0
@@ -27,10 +27,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 	local counter = 0
 	local vehicles = playerData:get(name, 'cars')
 	for i, v in next, vehicles do
-		if mainAssets.__cars[v] and not table.contains(players[name].cars, v) then 
+		if mainAssets.__cars[v] and not table.contains(players[name].cars, v) then
 			players[name].cars[#players[name].cars+1] = v
-		end 
-	end 
+		end
+	end
 	players[name].questStep = playerData:get(name, 'quests')
 	local item = playerData:get(name, 'bagItem')
 	local quanty = playerData:get(name, 'bagQuant')
@@ -54,7 +54,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	local furnitures, storedFurnitures = playerData:get(name, 'houseObjects'), playerData:get(name, 'storedFurnitures')
 	do
 		local function storeFurniture(v)
-			if not players[name].houseData.furnitures.stored[v] then 
+			if not players[name].houseData.furnitures.stored[v] then
 				players[name].houseData.furnitures.stored[v] = {quanty = 1, type = v}
 			else
 				players[name].houseData.furnitures.stored[v].quanty = players[name].houseData.furnitures.stored[v].quanty + 1
@@ -78,7 +78,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].sideQuests = playerData:get(name, 'sideQuests')
 	players[name].level = playerData:get(name, 'level')
 	local jobStats = playerData:get(name, 'jobStats')
-	for i, v in next, jobStats do 
+	for i, v in next, jobStats do
 		players[name].jobs[i] = v
 	end
 	players[name].badges = playerData:get(name, 'badges')

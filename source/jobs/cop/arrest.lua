@@ -18,7 +18,7 @@ arrestPlayer = function(thief, cop, command)
 	closeMenu(920, thief)
 	removeTimer(thiefData.timer)
 	job_fire(thief)
-	eventTextAreaCallback(1, thief, 'closeVaultPassword', true) 
+	eventTextAreaCallback(1, thief, 'closeVaultPassword', true)
 
 	players[thief].place = 'police'
 	players[thief].blockScreen = true
@@ -30,7 +30,7 @@ arrestPlayer = function(thief, cop, command)
 	players[thief].timer = {}
 	players[thief].bankPassword = nil
 
-	if thief ~= 'Robber' then 
+	if thief ~= 'Robber' then
 		closeInterface(thief, nil, nil, nil, nil, nil, true)
 		players[thief].timer = addTimer(function(j)
 			local time = room.robbing.prisonTimer - j
@@ -57,9 +57,9 @@ arrestPlayer = function(thief, cop, command)
 		complement = i:gsub('#', '<g>#')
 	end
 	for name in next, ROOM.playerList do
-		if name ~= cop then 
-    		TFM.chatMessage(string.format(translate('captured', name), complement), name)
-    	end
+		if name ~= cop then
+			TFM.chatMessage(string.format(translate('captured', name), complement), name)
+		end
 	end
 	TFM.chatMessage(string.format(translate('arrestedPlayer', cop), complement), cop)
 

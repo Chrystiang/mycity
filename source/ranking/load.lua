@@ -3,8 +3,8 @@ loadRanking = function(player)
 	local maxx = 10
 
 	local playerList = {}
-    local playerLevel = {{}, {}}
-    local playerExperience = {{}, {}}
+	local playerLevel = {{}, {}}
+	local playerExperience = {{}, {}}
 
 	local color = ''
 	local xAlign = 3710
@@ -14,7 +14,7 @@ loadRanking = function(player)
 		if not room.globalRanking[i] then break end
 		local name = room.globalRanking[i].name
 		local level = room.globalRanking[i].level
-		local experience = room.globalRanking[i].experience 
+		local experience = room.globalRanking[i].experience
 		local commu = room.globalRanking[i].commu
 		if not room.globalRanking[i].commu then
 			room.globalRanking[i].commu = 'xx'
@@ -51,7 +51,7 @@ loadRanking = function(player)
 	ui.addTextArea(5435, table.concat(playerExperience[1], '\n'), player, 276+65+ xAlign, 101 + yAlign, 70, 130, 0x324650, 0x0, 0)
 	ui.addTextArea(5436, table.concat(playerExperience[2], '\n'), player, 275+65+ xAlign, 100 + yAlign, 70, 130, 0x324650, 0x0, 0)
 
-	if player then 
+	if player then
 		ui.addTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Season', player):format(mainAssets.season), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
 		ui.addTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Season', player):format(mainAssets.season), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
 

@@ -32,7 +32,7 @@ setPlayerData = function(player)
 		houseTerrainPlants = {0, 0, 0, 0},
 		seeds = {
 				[1] = {rarity = 2995}, -- tomato
-			    [2] = {rarity = 2000}, -- oregano
+				[2] = {rarity = 2000}, -- oregano
 				[3] = {rarity = 1000}, -- lemon
 				[4] = {rarity = 2500}, -- pepper
 				[5] = {rarity = 5}, -- luckyFlower

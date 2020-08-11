@@ -72,24 +72,24 @@ do
 
 	  -- Take the weighted average between all 8 unit cube coordinates
 	  return self.lerp(w,
-	      self.lerp(v,
-	          self.lerp(u,
-	              self:grad(AAA,x,y,z),
-	              self:grad(BAA,x-1,y,z)
-	          ),
-	          self.lerp(u,
-	              self:grad(ABA,x,y-1,z),
-	              self:grad(BBA,x-1,y-1,z)
-	          )
-	      ),
-	      self.lerp(v,
-	          self.lerp(u,
-	              self:grad(AAB,x,y,z-1), self:grad(BAB,x-1,y,z-1)
-	          ),
-	          self.lerp(u,
-	              self:grad(ABB,x,y-1,z-1), self:grad(BBB,x-1,y-1,z-1)
-	          )
-	      )
+		  self.lerp(v,
+			  self.lerp(u,
+				  self:grad(AAA,x,y,z),
+				  self:grad(BAA,x-1,y,z)
+			  ),
+			  self.lerp(u,
+				  self:grad(ABA,x,y-1,z),
+				  self:grad(BBA,x-1,y-1,z)
+			  )
+		  ),
+		  self.lerp(v,
+			  self.lerp(u,
+				  self:grad(AAB,x,y,z-1), self:grad(BAB,x-1,y,z-1)
+			  ),
+			  self.lerp(u,
+				  self:grad(ABB,x,y-1,z-1), self:grad(BBB,x-1,y-1,z-1)
+			  )
+		  )
 	  )
 	end
 

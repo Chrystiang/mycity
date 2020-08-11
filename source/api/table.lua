@@ -1,8 +1,8 @@
 table.contains = function(table, val)
    for i = 1, #table do
-      if table[i] == val then
-         return true
-      end
+	  if table[i] == val then
+		 return true
+	  end
    end
    return false
 end
@@ -13,7 +13,7 @@ table.copy = function(obj, seen)
 	local s = seen or {}
 	local res = setmetatable({}, getmetatable(obj))
 	s[obj] = res
-	for k, v in next, obj do 
+	for k, v in next, obj do
 		res[table.copy(k, s)] = table.copy(v, s)
 	end
 	return res
@@ -27,7 +27,7 @@ end
 
 table.getLength = function(tbl)
 	local length = 0
-	for _ in next, tbl do 
+	for _ in next, tbl do
 		length = length + 1
 	end
 	return length
@@ -49,13 +49,13 @@ table.merge = function(this, src)
 end
 
 table.randomKey = function(tbl)
-    local key
-    local counter = 0
-    for k in next, tbl do
-        counter = counter + 1
-        if math.random() < (1 / counter) then
-            key = k
-        end
-    end
-    return key
+	local key
+	local counter = 0
+	for k in next, tbl do
+		counter = counter + 1
+		if math.random() < (1 / counter) then
+			key = k
+		end
+	end
+	return key
 end

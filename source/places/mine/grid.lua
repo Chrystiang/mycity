@@ -13,11 +13,11 @@ mine_setStoneType = function(depth, frequency)
 	for i, v in next, ores do
 		if v >= rarity then
 			return i
-		else 
+		else
 			for other in next, ores do
-				if other ~= i then 
-					return other 
-				end 
+				if other ~= i then
+					return other
+				end
 			end
 		end
 		return i
@@ -26,11 +26,11 @@ mine_setStoneType = function(depth, frequency)
 end
 
 mine_setOre = function(rockType)
-	if Mine.stones[rockType].ores then 
+	if Mine.stones[rockType].ores then
 		for i = #Mine.stones[rockType].ores, 1, -1 do
 			local random = math.random(0, 100)
 			local ore = Mine.stones[rockType].ores[i]
-			if random <= Mine.ores[ore].rarity then 
+			if random <= Mine.ores[ore].rarity then
 				return ore
 			end
 		end
@@ -39,14 +39,14 @@ mine_setOre = function(rockType)
 end
 
 mine_generate = function(player)
-	for i = 1, (Mine.area[1] * Mine.area[2]) do 
+	for i = 1, (Mine.area[1] * Mine.area[2]) do
 		local depth = math.floor((i-1)/Mine.area[1])
 		local x = Mine.position[1] + Mine.blockLength/2 + ((i-1)%Mine.area[1]) * Mine.blockLength
 		local y = Mine.position[2] + Mine.blockLength/2 + depth * Mine.blockLength
 		local stone = mine_setStoneType(depth, perlin:noise(x/10.101, y/10.101, perlin:noise(i/10.101*math.random(0, 10))))
 		local ore = mine_setOre(stone)
 		Mine.blocks[i] = {type = stone, ore = ore, images = {}, oreImages = {}, size = 0, x = x, y = y, removed = false, life = {0, Mine.stones[stone].health, nil}, column = 1 + (i - 1)%Mine.area[1], line = 1 + math.floor((i - 1)/Mine.area[1])}
-		if i <= 10 then 
+		if i <= 10 then
 			Mine.blocks[i].images[#Mine.blocks[i].images+1] = addImage(Mine.stones[stone].image, '_100'..i, x-Mine.blockLength/2, y-Mine.blockLength/2, player)
 			mine_updateBlockLife(i, player)
 			grid[i] = true
@@ -69,13 +69,13 @@ end
 mine_generateBlockAssets = function(groundID)
 	local blocksAround = {}
 	local corner = {}
-	for i = -1, 1 do 
+	for i = -1, 1 do
 		for j = -1, 1 do
 			local id = groundID + j + Mine.area[1]*i
 			if Mine.blocks[id] and id ~= groundID and not Mine.blocks[id].removed then
-				if math.hypo(Mine.blocks[id].x, Mine.blocks[id].y, Mine.blocks[groundID].x, Mine.blocks[groundID].y) <= 100 then 
+				if math.hypo(Mine.blocks[id].x, Mine.blocks[id].y, Mine.blocks[groundID].x, Mine.blocks[groundID].y) <= 100 then
 					blocksAround[#blocksAround+1] = id
-					if i ~= 0 and j ~= 0 then 
+					if i ~= 0 and j ~= 0 then
 						corner[id] = true
 					end
 				end
@@ -96,10 +96,10 @@ mine_reloadBlock = function(block, player)
 	local x = Mine.blocks[v].x
 	local y = Mine.blocks[v].y
 	Mine.blocks[v].images[#Mine.blocks[v].images+1] = addImage(Mine.stones[Mine.blocks[v].type].image, '_100'..v, x-Mine.blockLength/2, y-Mine.blockLength/2, player)
-	if Mine.blocks[v].ore then 
+	if Mine.blocks[v].ore then
 		Mine.blocks[v].oreImages[#Mine.blocks[v].oreImages+1] = addImage(Mine.ores[Mine.blocks[v].ore].img, '_100'..v, x-Mine.blockLength/2, y-Mine.blockLength/2, player)
 	end
-	if Mine.availableRocks[v] ~= 'corner' then 
+	if Mine.availableRocks[v] ~= 'corner' then
 		mine_updateBlockLife(v, player)
 	end
 end
@@ -119,7 +119,7 @@ mine_removeBlock = function(blocks, width, height, x, y)
 		blocks[position + 1] = true
 	end
 	for i, v in next, {(position - Mine.area[1]), (position - Mine.area[1]-1), (position - Mine.area[1]+1), (position + Mine.area[1]-1), (position + Mine.area[1]+1)} do
-		if blocks[v] == false then 
+		if blocks[v] == false then
 			blocks[v] = true
 		end
 	end
@@ -182,7 +182,7 @@ mine_optimizeGrid = function(grid, width, height)
 														-- (so the vertical batch is not optimized twice)
 					-- and check with the next column
 				else -- if the next column doesn't have the same vertical batch
-					break 
+					break
 				end
 			end
 
@@ -194,24 +194,24 @@ mine_optimizeGrid = function(grid, width, height)
 end
 
 mine_drawGrid = function(grid, size, x, y)
-    local ground_data = { -- don't set width and height as it will be ignored!
-        type 		= 14,
-        friction 	= 20,
-        restitution = .6,
-    }
+	local ground_data = { -- don't set width and height as it will be ignored!
+		type 		= 14,
+		friction 	= 20,
+		restitution = .6,
+	}
 
-    local step, left, top, right, bottom
-    for ground = 1, #grid do
-        step = grid[ground]
+	local step, left, top, right, bottom
+	for ground = 1, #grid do
+		step = grid[ground]
 
-        left = (step[1] - 1) * size
-        top = (step[2] - 1) * size
-        right = step[3] * size
-        bottom = step[4] * size
+		left = (step[1] - 1) * size
+		top = (step[2] - 1) * size
+		right = step[3] * size
+		bottom = step[4] * size
 
-        ground_data.width = right - left
-        ground_data.height = bottom - top
-        groundIDS[#groundIDS+1] = ground
-        addGround(ground, x + (right + left) / 2, y + (bottom + top) / 2, ground_data)
-    end
+		ground_data.width = right - left
+		ground_data.height = bottom - top
+		groundIDS[#groundIDS+1] = ground
+		addGround(ground, x + (right + left) / 2, y + (bottom + top) / 2, ground_data)
+	end
 end

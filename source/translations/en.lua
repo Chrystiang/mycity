@@ -130,7 +130,7 @@ lang.en = {
 				dialog = 'Finally! You should pay more attention, I could have watched a movie while I was waiting for you.\nDo you still want to meet the store? I\'m going there!',
 				_add = 'Bring the key to Indy.',
 			},
-		},	
+		},
 		[3] = {
 			name = 'Quest 03: Theft',
 			[0] = {
@@ -193,71 +193,71 @@ lang.en = {
 			},
 		},
 		[4] = {
-		    name = 'Quest 04: The sauce is gone!',
-		    [0] = {
+			name = 'Quest 04: The sauce is gone!',
+			[0] = {
 				dialog = 'Hi! Do you want to eat some pizza?\nWell... I have bad news for you.\nToday earlier I\'ve started making some pizzas, but I noticed that all the sauce had gone.\nI tried to buy some tomatoes in the market but aparently they don\'t sell it.\nI started to live in this town a few weeks ago, and I don\'t know anyone that can help me.\nSo please, can you help me? I just need the sauce to open my pizzeria.',
 				_add = 'Talk with Kariina.',
-		    },
-		    [1] = {
-		        _add = 'Go to the island.',
-		    },
-		    [2] = {
-		        _add = 'Go to the seed store.',
-		    },
-		    [3] = {
-		        _add = 'Buy a seed.',
-		    },
-		    [4] = {
-		        _add = 'Go to your house.',
-		    },
-		    [5] = {
-		        _add = 'Plant a seed in your house. (You\'ll need to use a garden!)',
-		    },
-		    [6] = {
-		        _add = 'Harvest a tomato plant.',
-		    },
-		    [7] = {
-		        _add = 'Go to the seed store.',
-		    },
-		    [8] = {
-		        _add = 'Buy a water bucket.',
-		    },
-		    [9] = {
-		        _add = 'Go to the market.',
-		    },
-		    [10] = {
-		        _add = 'Buy some salt.',
-		    },
-		    [11] = {
-		        _add = 'Cook a sauce. (You\'ll need to use an oven!)',
-		    },
-		    [12] = {
-		        dialog = 'Wow! Thank you! Now I just need a spicy sauce. Could you make one?',
-		        _add = 'Give the sauce to Kariina.',
-		    },
-		    [13] = {
-		        _add = 'Plant a seed in your house.',
-		    },
-		    [14] = {
-		        _add = 'Harvest a pepper plant',
-		    },
-		    [15] = {
-		        _add = 'Cook a spicy sauce.',
-		    },
-		    [16] = {
-		        dialog = 'OMG! You did it! Thank you!\nWhile you were gone, I realized that I need more wheat to make more dough... Could you bring me some wheat?',
-		        _add = 'Give the spicy sauce to Kariina.',
-		    },
-		    [17] = {
-		        _add = 'Plant a seed in your house.',
-		    },
-		    [18] = {
-		        _add = 'Harvest wheat.',
-		    },
-		    [19] = {
+			},
+			[1] = {
+				_add = 'Go to the island.',
+			},
+			[2] = {
+				_add = 'Go to the seed store.',
+			},
+			[3] = {
+				_add = 'Buy a seed.',
+			},
+			[4] = {
+				_add = 'Go to your house.',
+			},
+			[5] = {
+				_add = 'Plant a seed in your house. (You\'ll need to use a garden!)',
+			},
+			[6] = {
+				_add = 'Harvest a tomato plant.',
+			},
+			[7] = {
+				_add = 'Go to the seed store.',
+			},
+			[8] = {
+				_add = 'Buy a water bucket.',
+			},
+			[9] = {
+				_add = 'Go to the market.',
+			},
+			[10] = {
+				_add = 'Buy some salt.',
+			},
+			[11] = {
+				_add = 'Cook a sauce. (You\'ll need to use an oven!)',
+			},
+			[12] = {
+				dialog = 'Wow! Thank you! Now I just need a spicy sauce. Could you make one?',
+				_add = 'Give the sauce to Kariina.',
+			},
+			[13] = {
+				_add = 'Plant a seed in your house.',
+			},
+			[14] = {
+				_add = 'Harvest a pepper plant',
+			},
+			[15] = {
+				_add = 'Cook a spicy sauce.',
+			},
+			[16] = {
+				dialog = 'OMG! You did it! Thank you!\nWhile you were gone, I realized that I need more wheat to make more dough... Could you bring me some wheat?',
+				_add = 'Give the spicy sauce to Kariina.',
+			},
+			[17] = {
+				_add = 'Plant a seed in your house.',
+			},
+			[18] = {
+				_add = 'Harvest wheat.',
+			},
+			[19] = {
 				dialog = 'Wow! Thank you! You could work with me when I need a new employee.\nThank you for helping me. Now I can finish those pizzas!',
-		        _add = 'Give the wheat to Kariina.',
-		    },
+				_add = 'Give the wheat to Kariina.',
+			},
 		},
 		[5] = {
 			name = 'Quest 05: ????',
@@ -502,7 +502,7 @@ lang.en = {
 	settings_creditsText = '<j>#Mycity</j> was created by <v>%s</v>, using arts from <v>%s</v> and translated by:',
 	settings_creditsText2 = 'Special thanks to <v>%s</v> for helping with important resources for the module.',
 	settings_donateText = '<j>#Mycity</j> is a project started in <b><cep>2014</cep></b>, but with another gameplay: <v>build a city</v>! However, this project did not go forward and it was canceled months later.\n In <b><cep>2017</cep></b>, I decided to redo it with a new objective: <v>live in a city</v>!\n\n The most part of the available functions were made by me for a <v>long and tiring</v> time.\n\n If you could and you are able to help me, make a donation. This encourages me to bring new updates!',
-	wordSeparator = ' and ', -- a text separator. example: {1, 2, 3, AND 4}, {'apple, banana AND lemon'} 
+	wordSeparator = ' and ', -- a text separator. example: {1, 2, 3, AND 4}, {'apple, banana AND lemon'}
 	settings_config_lang = 'Language',
 	settings_config_mirror = 'Mirrored Text',
 	settings_helpText = 'Welcome to <j>#Mycity</j>!\n If you want to know how to play, press the button below:',
@@ -535,7 +535,7 @@ lang.en = {
 	npcDialog_Kapo = 'I always come here to check Dave\'s daily offers.\nSometimes I get rare items that only him owns!',
 	npcDialog_Santih = 'There are a lot of people that still dare to fish in this pond.',
 	npcDialog_Louis = 'I told her to not put olives...',
-	npcDialog_Heinrich = 'Huh... So you want to be a miner? If so, you must be careful. When I was a little mouse, I used to get lost in this labyrinth.', 
+	npcDialog_Heinrich = 'Huh... So you want to be a miner? If so, you must be careful. When I was a little mouse, I used to get lost in this labyrinth.',
 	npcDialog_Davi = 'I\'m sorry but I can\'t let you go that way.',
 	npcDialog_Alexa = 'Hey. What\'s new?',
 	npcDialog_Sebastian = 'Hey dude.\n...\nI\'m not Colt.',
@@ -579,7 +579,7 @@ lang.en = {
 	houseDescription_6 = 'This cozy house will bring you comfort even in the coldest days.',
 	houseDescription_7 = 'A house for those who love waking up closer to nature!',
 	houseSettings = 'House Settings',
-	houseSettings_permissions = 'Permissions', 
+	houseSettings_permissions = 'Permissions',
 	houseSettings_buildMode = 'Build Mode',
 	houseSettings_finish = 'Finish!',
 	error_houseUnderEdit = '%s is editing the house.',

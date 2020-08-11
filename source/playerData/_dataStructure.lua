@@ -170,18 +170,18 @@ local playerData = DataHandler.new('myc', {
 })
 
 local sharpieData = DataHandler.new('sync', {
-    questDevelopmentStage = {
-        index = 1,
-        type = 'number',
-        default = function()
-            return 0
-        end
-    },
-    canUpdate = {
-        index = 2,
-        type = 'string',
-        default = function()
-            return ''
-        end
-    },
+	questDevelopmentStage = {
+		index = 1,
+		type = 'number',
+		default = function()
+			return 0
+		end
+	},
+	canUpdate = {
+		index = 2,
+		type = 'string',
+		default = function()
+			return ''
+		end
+	},
 })
