@@ -10,8 +10,8 @@ loadMap = function(name) -- TO REWRITE
 	ui.addTextArea(1024, '<font size="5" color="#ff0000"><b><p align="center"><a href="event:BUY_1">--------', name, 4463, 186, 15, nil, 0x1, 0x1, 0)
 	ui.addTextArea(1035, "<textformat leftmargin='1' rightmargin='1'><a href='event:BUY_salt'>" .. string.rep('\n', 3), name, 4600, 190, 40, 20, 0x122528, 0x122528, 0)
 	ui.addTextArea(1018, "<textformat leftmargin='1' rightmargin='1'><a href='event:BUY_cornFlakes'>" .. string.rep('\n', 15), name, 4130, 140, 130, 40, 0x122528, 0x122528, 0)
-	ui.addTextArea(459, '<font size="15"><p align="center"><a href="event:joinHouse_11">' .. translate('goTo', name) .. '\n</a>', name, 11177, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)	
-	ui.addTextArea(458, '<font size="15"><p align="center"><a href="event:joinHouse_10">' .. translate('goTo', name) .. '\n</a>', name, 10027, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)	
+	ui.addTextArea(459, '<font size="15"><p align="center"><a href="event:joinHouse_12">' .. translate('goTo', name) .. '\n</a>', name, 11177, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)	
+	ui.addTextArea(458, '<font size="15"><p align="center"><a href="event:joinHouse_11">' .. translate('goTo', name) .. '\n</a>', name, 10027, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)	
 
 	ui.addTextArea(1039, "<textformat leftmargin='1' rightmargin='1'><a href='event:BUY_sugar'>" .. string.rep('\n', 15), name, 4608, 220, 90, 30, 0x122528, 0x122528, 0)
 	ui.addTextArea(1049, "<textformat leftmargin='1' rightmargin='1'><a href='event:BUY_chocolate'>" .. string.rep('\n', 15), name, 4600, 140, 40, 40, 0x122528, 0x122528, 0)

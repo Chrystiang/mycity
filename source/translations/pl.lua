@@ -637,7 +637,7 @@ lang.pl = {
 	furniture_broom = 'Miotla',
 	furniture_piggy = 'Swinka',
 	furniture_sink = 'Umywalka',
-	badgeDesc_11 = 'Top 10 sezonu 1',
+	badgeDesc_11 = 'Top 10 sezonu %s',
 	caught_goldenmare = '<v>%s</v> <j>Zlowil Goldenmare!</j>',
 	newCar = 'Nowe auto!',
 	unlockedCar = 'Gratulacje! Odblokowales nowe auto!',
@@ -651,4 +651,7 @@ lang.pl = {
 	item_bananaSeed = 'nasiono banana',
 	item_banana = 'Banan',
 	item_moqueca = 'gulasz ',
+	item_grilledCheese = 'Grillowany ser',
+	item_fishBurger = 'Rybny burger',
+	item_sushi = 'Sushi',
 }

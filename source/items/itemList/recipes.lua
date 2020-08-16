@@ -156,4 +156,24 @@ recipes = {
 			fish_Lionfish = 1,
 		},
 	},
+	grilledCheese = {
+		require = {
+			cheese = 1,
+			bread = 1,
+		},
+	},
+	fishBurger = {
+		require = {
+			bread = 1,
+			cheese = 1,
+			fish_Dogfish = 1,
+			lemon = 1,
+		},
+	},
+	sushi = {
+		require = {
+			fish_Goldenmare = 1,
+			lemon = 2,
+		},
+	},
 }

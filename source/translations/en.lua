@@ -641,7 +641,7 @@ lang.en = {
 	furniture_broom = 'Broom',
 	furniture_piggy = 'Piggy',
 	furniture_sink = 'Sink',
-	badgeDesc_11 = 'Top 10 of season 1',
+	badgeDesc_11 = 'Top 10 of season %s',
 	caught_goldenmare = '<v>%s</v> <j>fished a Goldenmare!</j>',
 	newCar = 'New Car',
 	unlockedCar = 'Congrats! You have unlocked a new car!',
@@ -656,4 +656,7 @@ lang.en = {
 	item_banana = 'Banana',
 	item_moqueca = 'Fish Stew',
 	badgeDesc_12 = 'Top 10 of season 2',
+	item_grilledCheese = 'Grilled Cheese',
+	item_fishBurger = 'Fish Burger',
+	item_sushi = 'Sushi',
 }

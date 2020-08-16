@@ -38,10 +38,15 @@ loadRanking = function(player)
 
 		room.rankingImages[#room.rankingImages+1] = addImage('1711870c79c.jpg', '?1000', 95 + xAlign, (i-1)*12+102 + yAlign, player)
 		room.rankingImages[#room.rankingImages+1] = addImage((community[commu] and community[commu] or community['xx']), '?1001', 109 + xAlign, (i-1)*12+102 + yAlign, player)
-
+		room.rankingImages[#room.rankingImages+1] = addImage('173f47ce384.png', '?1002', 97 + xAlign, (i-1)*12+103 + yAlign, player)
+		playerFinder.checkIfIsOnline(name, 
+				function()
+					room.rankingImages[#room.rankingImages+1] = addImage('173f47cffe1.png', '?1002', 97 + xAlign, (i-1)*12+103 + yAlign, player)
+				end
+			)
 	end
 	if not room.globalRanking[1] then
-		playerList[#playerList+1] = '\n\nLoading...'
+		playerList[#playerList+1] = '\n\nConnecting...'
 	end
 
 	ui.addTextArea(5432, table.concat(playerList, '\n'), player, 128 + xAlign, 100 + yAlign, 180, 130, 0x324650, 0x0, 0)

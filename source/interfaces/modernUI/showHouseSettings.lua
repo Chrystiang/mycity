@@ -183,7 +183,7 @@ modernUI.showHouseSettings = function(self)
 						end
 						images.expansions[#images.expansions+1] = addImage('171d2a2e21a.png', ":25", 280, 140, player)
 						ui.addTextArea(id..'890', string.rep('\n', 4), player, 487, 150, 25, 25, 0xff0000, 0xff0000, 0, true, function() closeExpansionMenu() end)
-						for expansionID, v in next, houseTerrains do
+						for expansionID, v in next, HouseSystem.expansions do
 							if players[player].houseTerrain[i+1] ~= expansionID then
 								images.expansions[#images.expansions+1] = addImage(v.png, ":26", counter*109 + 324, 150, player)
 								button(counter, translate('confirmButton_Buy2', player):format('<fc>'..translate('expansion_'..v.name, player)..'</fc>','<fc>$'..v.price..'</fc>'), 

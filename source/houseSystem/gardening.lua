@@ -1,7 +1,7 @@
-gardening = function()
+HouseSystem.gardening = function()
 	for i, v in ipairs(room.gardens) do
-		if players[v.owner].houseTerrainAdd[v.terrain] < #houseTerrainsAdd.plants[players[v.owner].houseTerrainPlants[v.terrain]].stages then
-			if os.time() - v.timer >= houseTerrainsAdd.plants[players[v.owner].houseTerrainPlants[v.terrain]].growingTime*1000 then
+		if players[v.owner].houseTerrainAdd[v.terrain] < #HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].stages then
+			if os.time() - v.timer >= HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].growingTime*1000 then
 				players[v.owner].houseTerrainAdd[v.terrain] = players[v.owner].houseTerrainAdd[v.terrain]+1
 				v.timer = os.time()
 				HouseSystem.new(v.owner):genHouseGrounds()

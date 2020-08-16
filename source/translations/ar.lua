@@ -654,4 +654,7 @@ lang.ar = {
 	item_bananaSeed = 'شتلة الموز',
 	item_banana = 'موزة',
 	item_moqueca = 'حساء الأسماك',
+	item_grilledCheese = 'جبن مشوي',
+	item_fishBurger = 'شطيرة سمك',
+	item_sushi = 'سوشي',
 }

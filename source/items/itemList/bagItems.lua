@@ -234,7 +234,7 @@ bagItems = {
 			if string.find(players[player].place, 'house_') then
 				local house_ = tonumber(players[player].place:sub(7))
 				local owner = player
-				if house_ == 11 then
+				if house_ == 12 then
 					owner = 'Oliver'
 					if players[player].job ~= 'farmer' then
 						return
@@ -284,7 +284,7 @@ bagItems = {
 			if string.find(players[player].place, 'house_') then
 				local house_ = tonumber(players[player].place:sub(7))
 				local owner = player
-				if house_ == 11 then
+				if house_ == 12 then
 					owner = 'Oliver'
 					if players[player].job ~= 'farmer' then
 						return
@@ -338,7 +338,7 @@ bagItems = {
 			if string.find(players[player].place, 'house_') then
 				local house_ = tonumber(players[player].place:sub(7))
 				local owner = player
-				if house_ == 11 then
+				if house_ == 12 then
 					owner = 'Oliver'
 					if players[player].job ~= 'farmer' then
 						return
@@ -580,7 +580,7 @@ bagItems = {
 			if string.find(players[player].place, 'house_') then
 				local house_ = tonumber(players[player].place:sub(7))
 				local owner = player
-				if house_ == 11 then
+				if house_ == 12 then
 					owner = 'Oliver'
 					if players[player].job ~= 'farmer' then
 						return
@@ -732,16 +732,16 @@ bagItems = {
 		price = 10000,
 		type = 'food',
 		png = '170b7904d24.png',
-		power = -20,
-		hunger = -20,
+		power = -60,
+		hunger = -40,
 	},
 	fish_Frog = {
 		id = 51,
 		price = 15,
 		type = 'food',
 		png = '170c186188b.png',
-		power = -20,
-		hunger = -40,
+		power = -1,
+		hunger = -1,
 	},
 	lemonade = {
 		id = 52,
@@ -922,5 +922,20 @@ bagItems = {
 		id = 79,
 		type = 'food',
 		png = '1739f4c8a00.png',
+	},
+	grilledCheese = {
+		id = 80,
+		type = 'food',
+		png = '173f8126cf7.png',
+	},
+	fishBurger = {
+		id = 81,
+		type = 'food',
+		png = '173f814d309.png',
+	},
+	sushi = {
+		id = 82,
+		type = 'food',
+		png = '173f81bb164.png',
 	},
 }

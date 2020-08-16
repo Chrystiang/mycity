@@ -14,7 +14,7 @@ item_getDescription = function(item, player, isFurniture)
 			description = description .. translate('itemInfo_miningPower', player):format('<vp>0</vp>')
 		elseif item:find('Seed') and not isFurniture then 
 			local txt = translate('itemInfo_Seed', player)
-			for i, v in next, houseTerrainsAdd.plants do 
+			for i, v in next, HouseSystem.plants do 
 				if item:lower():find(v.name:lower()) then 
 					txt = txt:format((v.growingTime * (#v.stages-2)/60), v.pricePerSeed)..'\n'
 					break

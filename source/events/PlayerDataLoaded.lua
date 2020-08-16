@@ -2,10 +2,15 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if name == 'Sharpiebot#0000' then
 		return syncGameData(data, name)
 	end
+	if playerFinder.requests[name] then
+		playerFinder.requests[name](data)
+		playerFinder.requests[name] = nil
+		return
+	end
 	if table.contains(room.bannedPlayers, name) then
 		return TFM.chatMessage('You can not play #mycity anymore.', name)
 	end
-	if #data > 1500 then return TFM.chatMessage('You have reached your data limit. Please contact Fofinhoppp#0000 for more info.', name) end
+	if #data > 1600 then return TFM.chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more info.', name) end
 	playerData:newPlayer(name, data)
 	------- setting data values to players[name]
 	local playerSettings = playerData:get(name, 'playerLog')

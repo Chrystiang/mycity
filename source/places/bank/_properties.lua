@@ -9,12 +9,12 @@ room.bank  = {
 		{x = 4980, y = 240}, -- Market
 		{x = 14700, y = 240}, -- Pizzeria
 		{x = 13130, y = 240}, -- Fish Shop
-		{x = 16000, y = 1710}, -- Oliver's Farm, garden
+		{x = 17500, y = 1710}, -- Oliver's Farm, garden
 		{x = 12120, y = 240}, -- Seed Store
 		{x = 6480, y = 240}, -- Café
 		{x = 10750, y = 240}, -- Potion Shop
 		{x = 11000, y = 7770}, -- Island, next to bridge
-		{x = 14470, y = 1705}, -- Remi's restaurant
+		{x = 15970, y = 1705}, -- Remi's restaurant
 		{x = 700, y = 8180}, -- Mine
 		{x = 5800, y = 5235}, -- Bank
 	},

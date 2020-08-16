@@ -413,12 +413,12 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local owner = player
 		if string.find(players[player].place, 'house_') then
 			local house_ = tonumber(players[player].place:sub(7))
-			if house_ == 11 then
+			if house_ == 12 then
 				owner = 'Oliver'
 			end
 		end
 		if players[owner].houseTerrainPlants[id] == 0 then return end
-		local crop = houseTerrainsAdd.plants[players[owner].houseTerrainPlants[id]]
+		local crop = HouseSystem.plants[players[owner].houseTerrainPlants[id]]
 
 		for id, properties in next, players[player].questLocalData.other do
 			if id:lower():find(crop.name) then
@@ -591,7 +591,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local seed = nil
 		local seedToDrop = item
 		if string.find(item, 'Seed') then
-			for i, v in next, houseTerrainsAdd.plants do
+			for i, v in next, HouseSystem.plants do
 				if string.find(item, v.name) then
 					seedToDrop = item
 					item = 'seed'

@@ -62,7 +62,9 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties)
 	end
 
 		if not gameNpcs.characters[name] then 
-			if canOrder then gameNpcs.orders.canOrder[name] = true end
+			if canOrder then
+				gameNpcs.orders.canOrder[name] = properties.place or 'town' 
+			end
 
 			gameNpcs.characters[name] = {visible = true, x = x, y = y, type = type, players = {}, runningImages = nil, image = image[1], image2 = image[2], callback = callback, color = color, fixAlign = imageFixAlign}
 			if properties.canRob then 

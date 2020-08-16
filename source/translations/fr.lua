@@ -712,4 +712,7 @@ lang.fr = {
 	item_bananaSeed = 'Plantule de Banane',
 	item_banana = 'Banane',
 	item_moqueca = 'Moqueca',
+	item_grilledCheese = 'Fromage Grillé',
+	item_fishBurger = 'Burger au Poisson',
+	item_sushi = 'Sushi',
 }

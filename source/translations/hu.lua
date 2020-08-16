@@ -682,4 +682,8 @@ lang.hu = {
 	item_bananaSeed = 'Banán Palánta',
 	item_banana = 'Banán',
 	item_moqueca = 'Halpaprikás',
+	--- V3.0.5
+	item_grilledCheese = 'Grillezett Sajt',
+	item_fishBurger = 'Hal Burger',
+	item_sushi = 'Sushi',
 }

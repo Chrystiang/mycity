@@ -648,4 +648,7 @@ lang.br = {
 	item_banana = 'Banana',
 	item_moqueca = 'Moqueca',
 	badgeDesc_12 = 'Top 10 da temporada 2',
+	item_grilledCheese = 'Queijo Quente',
+	item_fishBurger = 'Hambúrguer de Peixe',
+	item_sushi = 'Sushi',
 }

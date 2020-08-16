@@ -6,7 +6,7 @@ gameNpcs.setOrder = function(npcName)
 	local y = npc.y
 	local character = gameNpcs.orders
 	local order = table.randomKey(recipes)
-	--TFM.chatMessage('O escolhido é: '..npcName)
+	local place = character.canOrder[npcName]
 	character.orderList[npcName] = {order = order, fulfilled = {}}
 	character.canOrder[npcName] = nil
 	do
@@ -15,10 +15,10 @@ gameNpcs.setOrder = function(npcName)
 		player_removeImages(character.trashImages)
 		for i, v in next, character.orderList do
 			orderPaperList = orderPaperList .. i..'\n\n'
-			character.trashImages[#character.trashImages+1] = addImage(bagItems[v.order].png, "_1000", 14455, 1560+counter*28)
+			character.trashImages[#character.trashImages+1] = addImage(bagItems[v.order].png, "_1000", 15955, 1560+counter*28)
 			counter = counter + 1
 		end
-		ui.addTextArea(4444441, '<font size="10">'..orderPaperList, nil, 14495, 1580, nil, nil, 1, 1, 0)
+		ui.addTextArea(4444441, '<font size="10">'..orderPaperList, nil, 15995, 1580, nil, nil, 1, 1, 0)
 	end
 	local images = character.orderList[npcName].fulfilled
 	for _, player in next, jobs['chef'].working do
@@ -40,8 +40,21 @@ gameNpcs.setOrder = function(npcName)
 				end
 			end
 			character.orderList[npcName] = nil
-			gameNpcs.setOrder(table.randomKey(character.canOrder))
-			character.canOrder[npcName] = true
+			character.canOrder[npcName] = place
+			local nextOrder
+			while true do
+				nextOrder = table.randomKey(character.canOrder)
+				--TFM.chatMessage('<CS>Trying to choose '..nextOrder)
+				local isOpened = places[character.canOrder[nextOrder]].opened
+				if checkGameHour(isOpened) or isOpened == '-' then
+					--TFM.chatMessage('<rose>'..character.canOrder[nextOrder]..' is opened!')
+					break
+				end
+				--TFM.chatMessage('<rose>'..character.canOrder[nextOrder]..' is closed!')
+			end
+
+			--TFM.chatMessage('<FC>'..nextOrder..' was chosen!')
+			gameNpcs.setOrder(nextOrder)
 		end
 	end, 1000, orderTime)
 end

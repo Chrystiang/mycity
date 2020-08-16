@@ -36,7 +36,7 @@ goToHouse = function(player, terrainID)
 	if room.terrains[terrainID].owner ~= player then 
 		room.terrains[terrainID].guests[player] = true
 	end
-	if players[player].questLocalData.other.goToHouse or (terrainID == 11 and players[player].questLocalData.other.goToOliver) then
+	if players[player].questLocalData.other.goToHouse or (terrainID == 12 and players[player].questLocalData.other.goToOliver) then
 		quest_updateStep(player)
 	end
 
@@ -48,9 +48,9 @@ end
 
 getOutHouse = function(player, terrainID)
 	if not string.find(players[player].place, 'house_') or players[player].editingHouse then return end
-	if terrainID == 11 then -- Oliver's Farm
+	if terrainID == 12 then -- Oliver's Farm
 		TFM.movePlayer(player, 11275, 7770, false)
-	elseif terrainID == 10 then -- Remi's Restaurant
+	elseif terrainID == 11 then -- Remi's Restaurant
 		TFM.movePlayer(player, 10200, 7770, false)
 	else
 		TFM.movePlayer(player, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2]+184, false)

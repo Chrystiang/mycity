@@ -54,8 +54,8 @@ item_droppedEvent = function(id, player)
 				end
 			end
 		end
-	elseif players[player].job == 'farmer' and tonumber(players[player].place:sub(7)) == 11 and string.find(item, 'Seed') then
-		for i, v in next, houseTerrainsAdd.plants do
+	elseif players[player].job == 'farmer' and tonumber(players[player].place:sub(7)) == 12 and string.find(item, 'Seed') then
+		for i, v in next, HouseSystem.plants do
 			if string.find(item, v.name) then
 				canRemove = true
 				giveCoin(v.pricePerSeed * amount, player, true)
