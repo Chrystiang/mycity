@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 0, 4}
+local version       = {3, 0, 5}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local string        = string
