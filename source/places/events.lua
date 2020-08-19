@@ -36,7 +36,7 @@ goToHouse = function(player, terrainID)
 	if room.terrains[terrainID].owner ~= player then 
 		room.terrains[terrainID].guests[player] = true
 	end
-	if players[player].questLocalData.other.goToHouse or (terrainID == 12 and players[player].questLocalData.other.goToOliver) then
+	if players[player].questLocalData.other.goToHouse or (terrainID == 12 and players[player].questLocalData.other.goToOliver) or (terrainID == 11 and players[player].questLocalData.other.goToRestaurant) then
 		quest_updateStep(player)
 	end
 
