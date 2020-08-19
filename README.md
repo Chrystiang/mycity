@@ -31,10 +31,20 @@
 ### changelog
 
 > ☑️ First build launched
+>
 > ☑️ Added a new crop: Banana Plant
+>
 > ☑️ V3.0.4 released
+>
 > ☑️ Season 2 ended
+>
 > ☑️ V3.0.4b released
+>
 > ☑️ Indentation fixes (blank spaces)
+>
 > ☑️ Added 9 new files
+>
 > ☑️ V3.0.5 released
+>
+> ☑️ Added Quest 05 files
+>
