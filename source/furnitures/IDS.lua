@@ -696,4 +696,22 @@ mainAssets.__furnitures = {
 		credits = 'Iho#5679',
 		npcShop = 'iho',
 	},
+	[64] = {
+		image = '174045a9c99.png',
+		png = '174045b5cf1.png',
+		qpPrice = 200,
+		area = {56, 100},
+		align = {x = -28, y = -85},
+		name = 'freezer',
+		npcShop = 'lucas',
+		type = 'especial',
+		usable = function(player)
+			modernUI.new(player, 520, 300, translate('furniture_freezer', player))
+			:build()
+			:showPlayerItems(players[player].houseData.chests.storage[3], 3)
+		end,
+		uniqueID = 3,
+		stockLimit = 1,
+		quest = 5,
+	},
 }
