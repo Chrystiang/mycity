@@ -31,7 +31,7 @@ HouseSystem.genHouseFace = function(self, guest)
 					function(player)
 						furniture.usable(player)
 					end)
-				if furniture.name == 'chest' then
+				if furniture.name == 'chest' or furniture.name == 'freezer' then
 					players[self.houseOwner].houseData.chests.position[furniture.uniqueID] = {x = x, y = y}
 				end
 			end
