@@ -114,6 +114,21 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 							if string.find(sidequest, 'type:deliver') then
 								sideQuest_update(player, 1)
 							end
+							for id, properties in next, players[player].questLocalData.other do 
+								if id:find('deliverOrder') then
+									if type(properties) == 'boolean' then 
+										quest_updateStep(player)
+									else
+										players[player].questStep[3] = players[player].questStep[3] - 1
+										players[player].questLocalData.other[id] = players[player].questStep[3]
+										if players[player].questLocalData.other[id] == 0 then 
+											quest_updateStep(player)
+										end
+									end
+									break
+								end
+							end
+
 							giveExperiencePoints(player, 200)
 							giveCoin(bagItems[order.order].orderValue, player, true)
 							TFM.chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].orderValue..'</vp>', player), player)
