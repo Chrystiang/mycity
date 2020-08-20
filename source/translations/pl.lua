@@ -386,12 +386,69 @@ lang.pl = {
 				_add = "Daj ciasto Kariina."
 			}
 		},
-		[5] = {
-			name = "Quest 03: Kradziez",
+		[5] = { 	
+			name = 'Quest 05: Koszmary kuchni!',
 			[0] = {
-				_add = "Idz na posterunek policji."
-			}
-		}
+				_add = 'Idz na wyspe.',	
+			},
+			[1] = {
+				_add = 'Idz do restauracji.',
+			}, 
+			[2] = {
+				dialog = 'Czesc. potrzebuje twojej pomocy zeby naprawic wielki blad...\nNie jestesmy w stanie przyjmowac i dostarczac zamowien ze wzgledu na duzu popyt w restauracji.\nCzy mozesz mi pomoc w prawidłowym skladaniu zamowien?\nWspaniale! Poniewaz sprzedajemy wiele dan, najpierw musisz nauczyc sie przepisow na niektore dania. Dobrze?',
+				_add = 'Porozmawiaj z Remi.',
+			},
+			[3] = {
+				_add = 'Zrob bochenek chleba.',
+			},
+			[4] = {	
+				_add = 'Zrob salatke.',
+			},
+			[5] = {
+				_add = 'Zrob ciasto czekoladowe.',
+			},
+			[6] = {
+				_add = 'Zrob Frogwich.', -- "Frog Sandwich"
+			}, 
+			[7] = {
+				_add = 'Zrob troche frytek.',
+			},
+			[8] = {
+				_add = 'zrob Pudding.',
+			},
+			[9] = {
+				_add = 'Zrob chleb czosnkowy.',
+			},
+			[10] = {
+				_add = 'Zrob gulasz rybny.',
+			},
+			[11] = {
+				_add = 'Zrob grillowany ser.',
+			},
+			[12] = {
+				_add = 'Zrob rybnego burgera.',
+			},
+			[13] = {
+				_add = 'Zrob Bruschette.',
+			},
+			[14] = {
+				_add = 'Zrob lemoniade.',
+			},
+			[15] = {
+				_add = 'Zrob troche Pierogow.',
+			},
+			[16] = {
+				dialog = 'Zajelo ci to zbyt duzo czasu...\n W każdym razie, teraz, gdy nauczyles sie skladnikow kazdego przepisu, bede potrzebowac cie do dostarczenia zamowien, ktore zostana pokazane na tej tablicy zamowien.',
+				_add = 'Porozmawiaj z Remi.',
+			},
+			[17] = {
+				_add = 'Dostarcz %s zamowien.',
+			},
+			[18] = {
+				dialog = 'Jestem bardzo wdzięczny za pomoc! Klienci sa zadowoleni, a ja jeszcze bardziej!\nW ramach podziekowania zostawiłem w Twoim domu mala niespodzianke: zamrazarke!\nMozesz przechowywać w domu jeszcze wiecej rzeczy!',
+				_add = 'Porozmawiaj z Remi.',
+			},
+		},
 	},
 	harvest = "Zbierz",
 	item_waffles = "Gofry",
@@ -654,4 +711,12 @@ lang.pl = {
 	item_grilledCheese = 'Grillowany ser',
 	item_fishBurger = 'Rybny burger',
 	item_sushi = 'Sushi',
+	--- V3.1.0
+	furniture_freezer = 'Zamrazarka',
+	confirmButton_skipQuest = 'Zatwierdz!',
+	skipQuest = 'Pomin zadanie',
+	skipQuestTxt = 'Czy jestes pewny ze chcesz pominac to zadanie? <r>Mozesz to zrobic raz na dzien.</r>',
+	item_bananaCake = 'Bananowe ciasto',
+	item_croquettes = 'Krokiety ziemniaczane',
+	itemInfo_sellingPrice = 'Cena sprzedazy: %s',
 }

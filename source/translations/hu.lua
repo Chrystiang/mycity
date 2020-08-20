@@ -216,11 +216,68 @@ lang.hu = {
 			}
 		},
 		[5] = {
-			name = "Küldetés 05: ???",
+			name = 'Küldetés 05: Konyhai Rémálmok!',
 			[0] = {
-				_add = "???"
-			}
-		}
+				_add = 'Menj a szigetre',
+			},
+			[1] = {
+				_add = 'Menj az Étterembe',
+			},
+			[2] = {
+				dialog = 'Szia. Szükségem van a segítségedre egy nagy probléma elhárításában...\nNem tudunk felvenni és kiszállítani rendeléseket az étterem nagy kereslete miatt.\nTudnál nekem segíteni a rendelések megfelelő kiszállításában?\nNagyszerű! Mivel sok ételt árusítunk, ezért nem árt, ha tudod néhány ételnek a receptjét. Rendben van?',
+				_add = 'Beszélj vele: Remi',
+			},
+			[3] = {
+				_add = 'Készíts egy Kenyeret',
+			},
+			[4] = {
+				_add = 'Készíts egy Salátát',
+			},
+			[5] = {
+				_add = 'Készíts egy Csokoládé Tortát',
+			},
+			[6] = {
+				_add = 'Készíts egy Béka Szendvicset', -- "Frog Sandwich"
+			},
+			[7] = {
+				_add = 'Készíts néhány Sültkrumplit',
+			},
+			[8] = {
+				_add = 'Készíts egy Pudingot',
+			},
+			[9] = {
+				_add = 'Készíts egy Fokhagymás Kenyeret',
+			},
+			[10] = {
+				_add = 'Készíts egy Halpaprikást',
+			},
+			[11] = {
+				_add = 'Készíts egy Grillezett Sajtot',
+			},
+			[12] = {
+				_add = 'Készíts egy Hal Burgert',
+			},
+			[13] = {
+				_add = 'Készíts egy Bruschettát',
+			},
+			[14] = {
+				_add = 'Készíts egy Limonádét',
+			},
+			[15] = {
+				_add = 'Készíts néhány Pierogiest',
+			},
+			[16] = {
+				dialog = 'Túl sokáig tartott...\nMindenesetre, most, hogy megtanultad néhány ételnek a receptjét, szükségem lesz arra, hogy szállíts ki a rendeléseket. Ezek a rendelési táblán jelennek meg.',
+				_add = 'Beszélj vele: Remi',
+			},
+			[17] = {
+				_add = 'Szállíts ki %s rendelést',
+			},
+			[18] = {
+				dialog = 'Nagyon hálás vagyok a segítségedért! A vásárlók boldogok, és én még jobban!\nKöszönetül egy kis meglepetést hagytam a házadban: Egy Fagyasztót!\nMost már még több tárgyat vagy képes tárolni az otthonodban.\nRemélem, hamarosan ismét látlak!',
+				_add = 'Beszélj vele: Remi',
+			},
+		},
 	},
 	-- side quests
 	_2ndquest = "Mellékküldetés",
@@ -686,4 +743,11 @@ lang.hu = {
 	item_grilledCheese = 'Grillezett Sajt',
 	item_fishBurger = 'Hal Burger',
 	item_sushi = 'Sushi',
+	--- V3.1.0
+	furniture_freezer = 'Fagyasztó',
+	confirmButton_skipQuest = 'Kihagyás!',
+	skipQuest = 'Mellékküldetés Kihagyása',
+	skipQuestTxt = 'Biztosan ki akarod hagyni ezt a Mellékküldetést? <r>Naponta csak egyszer teheted meg.</r>',
+	item_bananaCake = 'Banántorta',
+	item_croquettes = 'Burgonya Krokett',
 }

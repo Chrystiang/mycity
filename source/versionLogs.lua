@@ -118,5 +118,13 @@ versionLogs = {
 			name = 'Quest 5!',
 			_1 = '<rose>New:</rose> Quest 05: Kitchen Nightmares!\nHelp Remi deliver orders!\n\n<rose>New Recipes:</rose> Banana Cake and Potato Croquettes!\n\n<rose>New:</rose> Skip side quests!\nYou can only skip a side quest once a day.\nSkipped side quests will not appear again until 19:00 (CDT).\n\nThe restaurant has been redrawn.\nA timer next to the orders list will indicate the time that the order is still active.',
 		},
+		hu = {
+		  name = 'Küldetés 05!',
+		  _1 = '<rose>Új:</rose> Küldetés 05: Konyhai Rémálmok!\nSegíts Remi-nek a rendelések kiszállításában!\n\n<rose>Új receptek:</rose> Banántorta és Burgonya krokett!\n\n<rose>Új:</rose> Mellékküldetések kihagyása!\nNaponta csak egy Mellékküldetést hagyhatsz ki.\nA kihagyott Mellékküldetések 19:00-ig (CDT) nem jelennek meg újra.\n\nAz Étterem újra lett rajzolva.\nA megrendelések melletti időzítő jelzi azt az időt, ameddig a rendelés aktív, tehát ki lehet szállítani.',
+		},
+		pl = {
+		  name = 'Quest 5!',
+		  _1 = '<rose>Nowosc: </rose>Quest 05: Koszmary kuchni!\nPomóż Remiemu dostarczac zamowienia!\n\n<rose>Nowe przepisy: </rose>Ciasto bananowe i Krokiety ziemniaczane!\n\n<rose>Nowosc: </rose>Pomin zadania poboczne!\nMozesz pominac zadanie poboczne tylko raz dziennie.\nOpuszczone zadania poboczne pojawia sie ponownie dopiero o 19:00 (CDT).\n\nRestauracja zostala odswiezona.\nA licznik czasu obok listy zlecen wskazs czas, w ktorym zlecenie jest nadal aktywne.',
+		},
 	},
 }
