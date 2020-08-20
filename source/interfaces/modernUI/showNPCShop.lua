@@ -24,6 +24,9 @@ modernUI.showNPCShop = function(self, items)
 			if v.stockLimit and checkIfPlayerHasFurniture(player, data[1]) then
 				ui.addTextArea(id..(900+i), '<p align="center"><font size="9"><r>'..translate('error_maxStorage', player), player, x + (i%5)*63, y + 3 + math.floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + math.floor(i/5)*65, player)
+			elseif v.requireQuest and players[player].questStep[1] <= v.requireQuest then
+				ui.addTextArea(id..(900+i), '<p align="center"><font size="9"><r>'..translate('locked_quest', player):format(v.requireQuest), player, x + (i%5)*63, y + 3 + math.floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + math.floor(i/5)*65, player)
 			else
 				ui.addTextArea(id..(900+i), '\n\n\n\n', player, x + 3 + (i%5)*63, y + 3 + math.floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true,
 				function(player, i)

@@ -55,11 +55,11 @@ modernUI.showRecipes = function(self)
 					local counter = 0
 					for i, v in next, v.require do
 						counter = counter + 1
-						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[i].png, "&70", ((counter-1)%2)*55+500, math.floor((counter-1)/2)*30+180, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[i].png, "&70", ((counter-1)%2)*55+500, math.floor((counter-1)/2)*30+187, player)
 						if checkItemQuanty(i, v, player) then
-							ui.addTextArea(id..(934+counter), '<vp>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*30+197, nil, nil, 0x24474D, 0xff0000, 0, true)
+							ui.addTextArea(id..(934+counter), '<vp>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*30+204, nil, nil, 0x24474D, 0xff0000, 0, true)
 						else
-							ui.addTextArea(id..(934+counter), '<r>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*30+197, nil, nil, 0x24474D, 0xff0000, 0, true)
+							ui.addTextArea(id..(934+counter), '<r>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*30+204, nil, nil, 0x24474D, 0xff0000, 0, true)
 							canCook = false
 						end
 					end
