@@ -16,7 +16,8 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties)
 	if properties.job then
 		color = jobs[properties.job].color 
 		if properties.jobConfirm then 
-			properties.callback = function(player) job_invite(properties.job, player) end 
+			properties.callback = function(player) job_invite(properties.job, player) end
+			addImage('17408124c64.png', "!30", x+38, y+20, player)
 		end
 	elseif properties.color then
 		color = properties.color
@@ -57,6 +58,7 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties)
 	elseif properties.sellingItems then 
 		callback = 'npcDialog_talkWith_'..npcID..'_otherCallback'
 		playerData._npcsCallbacks.starting[npcID] = {callback = function(player) showNPCShop(player, name) end, name = name}
+		addImage('174080a7702.png', "!30", x+38, y+20, player)
 	elseif properties.questNPC then 
 		callback = callback .. '_questDialog'
 	end
