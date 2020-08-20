@@ -178,8 +178,8 @@ eventNewPlayer = function(player)
 				end
 			end
 		end})
-	gameNpcs.addCharacter('Remi', {'1727bfa1d1a.png', '1727bf9fc49.png'}, player, 15850, 1618, {job = 'chef', jobConfirm = true})
-	gameNpcs.addCharacter('Lucas', {'1727c604ce6.png'}, player, 16060, 1618, {job = 'chef', sellingItems = true})
+	gameNpcs.addCharacter('Remi', {'1727bfa1d1a.png', '1727bf9fc49.png'}, player, 16000, 1618, {job = 'chef', jobConfirm = true})
+	gameNpcs.addCharacter('Lucas', {'1727c604ce6.png'}, player, 16250, 1618, {job = 'chef', sellingItems = true})
 	gameNpcs.addCharacter('Weth', {'172a03553a1.png', '172a0351254.png'}, player, 15495, 1597, {type = '_', canRob = {cooldown = 100}})
 	gameNpcs.addCharacter('Ana', {'172ab8366bb.png'}, player, 15670, 1597, {type = '_', blockClick = true})
 	gameNpcs.addCharacter('Gui', {'172ab830075.png'}, player, 15600, 1597, {type = '_', blockClick = true})
@@ -207,7 +207,7 @@ eventNewPlayer = function(player)
 	if player:find('*') then
 		ui.addTextArea(54215, '', player, -5, -10, 850, 500, 1, 1, 1, true)
 	end
-	ui.addTextArea(4444440, string.rep('\n', 5), player, 15955, 1668, 90, 45, 1, 1, 0, false, 
+	ui.addTextArea(4444440, string.rep('\n', 5), player, 16075, 1668, 90, 45, 1, 1, 0, false, 
 		function()
 			eventTextAreaCallback(0, player, 'recipes', true)
 		end)
