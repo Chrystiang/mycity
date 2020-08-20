@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 0, 5}
+local version       = {3, 1, 0}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local string        = string
@@ -53,7 +53,7 @@ local jobs          = {}
 
 local maxFurnitureStorage   = 50
 local maxFurnitureDepot     = 60
-local questsAvailable       = 04
+local questsAvailable       =  5
 
 math.randomseed(os.time())
 
@@ -149,7 +149,7 @@ local syncData = {
 	connected = false,
 	players   = {},
 	quests    = {
-		newQuestDevelopmentStage = 0,
+		newQuestDevelopmentStage = 60,
 	},
 	updating  = {
 		isUpdating    = false,
