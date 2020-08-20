@@ -1,6 +1,6 @@
 item_getDescription = function(item, player, isFurniture)
 	local itemData = isFurniture and mainAssets.__furnitures[item] or bagItems[item]
-	local description = lang.en['itemDesc_'..item] and '<p align="center"><i>"'..translate('itemDesc_'..item, player)..'"</i><v><p align="left">\n' or ''
+	local description = lang.en['itemDesc_'..item] and '<p align="center"><i>"'..translate('itemDesc_'..item, player)..'"</i><v><p align="left">\n' or '<v>'
 	if not isFurniture then
 		local itemType = itemData.type
 		local power = itemData.power or 0
@@ -9,7 +9,10 @@ item_getDescription = function(item, player, isFurniture)
 			description = '<p align="center"><i>"'..translate('itemDesc_'..item, player):format(itemData.complement)..'"</i><v><p align="left">\n'
 		end
 		if itemType == 'food' then 
-			description = description .. '<font size="10"><v>'..string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player), '<vp>'..power..'</vp>', '<vp>'..hunger..'</vp>')
+			description = description ..string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player), '<vp>'..power..'</vp>', '<vp>'..hunger..'</vp>')
+			if itemData.orderValue then
+				description = description .. '\n' .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.orderValue..'</vp>')
+			end
 		elseif itemData.miningPower then 
 			description = description .. translate('itemInfo_miningPower', player):format('<vp>0</vp>')
 		elseif item:find('Seed') and not isFurniture then 
@@ -24,7 +27,7 @@ item_getDescription = function(item, player, isFurniture)
 		end
 	end
 	if itemData.credits then
-		description = description ..translate('createdBy', player):format('<v>'..itemData.credits)..'\n'
+		description = description ..translate('createdBy', player):format('<vp>'..itemData.credits..'</vp>')..'\n'
 	end
 	return description
 end
