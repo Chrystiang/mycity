@@ -47,8 +47,3 @@
 > ☑️ V3.0.5 released
 >
 > ☑️ Added Quest 05 files
-<<<<<<< HEAD
->
-=======
->
->>>>>>> a58d76bca78afe3db3246dbcf7d86a9357006ea4
