@@ -149,7 +149,7 @@ local syncData = {
 	connected = false,
 	players   = {},
 	quests    = {
-		newQuestDevelopmentStage = 60,
+		newQuestDevelopmentStage = 0,
 	},
 	updating  = {
 		isUpdating    = false,
