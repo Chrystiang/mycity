@@ -20,9 +20,10 @@ syncVersion = function(player, vs)
 	local chest_Item = playerData:get(player, 'chestStorage')
 	local chest_Quanty = playerData:get(player, 'chestStorageQuanty')
 
-	players[player].houseData.chests.storage = {{}, {}}
+	players[player].houseData.chests.storage = {{}, {}, {}}
 	players[player].totalOfStoredItems.chest[1] = 0
 	players[player].totalOfStoredItems.chest[2] = 0
+	players[player].totalOfStoredItems.chest[3] = 0
 
 	if playerVersion < 300 then
 		if type(chest_Item) ~= 'table' then
@@ -30,8 +31,16 @@ syncVersion = function(player, vs)
 				item_addToChest(bagIds[v].n, chest_Quanty[i], player, 1)
 			end
 		end
-	else
-		for counter = 1, 2 do
+		savedata(player)
+		players[player].gameVersion = 'v'..table.concat(version, '.')
+		return
+	end
+	if playerVersion < 310 then
+		chest_Item[3] = {}
+		chest_Quanty[3] = {}
+	end
+	if playerVersion >= 300 then
+		for counter = 1, 3 do
 			for i, v in next, chest_Item[counter] do
 				item_addToChest(bagIds[v].n, chest_Quanty[counter][i], player, counter)
 			end
