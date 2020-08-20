@@ -72,9 +72,9 @@ savedata = function(name)
 	playerData:set(name, 'bagItem', item)
 	playerData:set(name, 'bagQuant', quanty)
 
-	local chestStorage = {{}, {}}
-	local chestStorageQuanty = {{}, {}}
-	for counter = 1, 2 do
+	local chestStorage = {{}, {}, {}}
+	local chestStorageQuanty = {{}, {}, {}}
+	for counter = 1, 3 do
 		for i, v in next, playerInfos.houseData.chests.storage[counter] do
 			chestStorage[counter][i] = bagItems[v.name].id
 			chestStorageQuanty[counter][i] = v.qt

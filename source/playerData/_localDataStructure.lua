@@ -21,8 +21,8 @@ setPlayerData = function(player)
 				placedCounter = 0,
 			},
 			chests = {
-				storage = {{}, {}},
-				position= {{}, {}},
+				storage = {{}, {}, {}},
+				position= {{}, {}, {}},
 			},
 		},
 		codigo    	= {},
@@ -83,17 +83,17 @@ setPlayerData = function(player)
 		bag			= {},
 		totalOfStoredItems = {
 			bag = 0,
-			chest = {0, 0},
+			chest = {0, 0, 0, 0},
 		},
 		selectedItem = {name = nil, image = nil, images = {}},
 		bagLimit	= 20,
 		holdingItem = false,
 		holdingImage = nil,
 		holdingDirection = nil,
-		-------------------
+		---------- QUESTS ----------
 		questLocalData = {images = {}, other = {}, step = 1},
 		questStep	= {1, 0},
-		sideQuests	= {1, 0, 0, 0},
+		sideQuests	= {1, 0, 0, 0, 0, 0}, -- current quest, progress, completed side quests, QP$, When Skipped, Skipped Quest
 		-------------------
 		callbackImages 	= {},
 		callbackPages 	= {recipes = 1},
@@ -142,7 +142,7 @@ setPlayerData = function(player)
 		equipHouse(player, 4, 12)
 	elseif player == 'Remi' then
 		players[player].lastCallback.when = 0
-		players[player].houseData.furnitures.placed = {[1] = {y = 664,x = 423,type = 44},[2] = {y = 664,x = 527,type = 44},[3] = {y = 664,x = 632,type = 44},[4] = {y = 663,x = 738,type = 44},[5] = {y = 670,x = 916,type = 42},[6] = {y = 667,x = 954,type = 39},[7] = {y = 667,x = 1000,type = 39},[8] = {y = 670,x = 1047,type = 42},[9] = {y = 670,x = 1081,type = 42},[10] = {y = 620,x = 878,type = 40},[11] = {y = 670,x = 880,type = 43},[12] = {y = 620,x = 1043,type = 41},[13] = {y = 559,x = 952,type = 45}}
+		players[player].houseData.furnitures.placed = {{type = 44, x = 423, y = 664}, {type = 44, x = 527, y = 664}, {type = 44, x = 632, y = 664}, {type = 44, x = 738, y = 663}, {type = 2, x = 922, y = 663}, {type = 2, x = 876, y = 663}, {type = 1, x = 967, y = 665}, {type = 2, x = 1012, y = 663}, {type = 41, x = 1201, y = 564}, {type = 45, x = 895, y = 559}, {type = 54, x = 829, y = 629}, {type = 64, x = 1232, y = 614}, {type = 64, x = 1175, y = 614}, {type = 0, x = 1123, y = 669}, {type = 0, x = 1068, y = 668}}
 		equipHouse(player, 9, 11)
 	end
 end

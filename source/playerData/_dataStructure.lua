@@ -108,14 +108,14 @@ local playerData = DataHandler.new('myc', {
 		index = 16,
 		type = 'table',
 		default = function()
-			return {{}, {}}
+			return {{}, {}, {}, {}}
 		end
 	},
 	chestStorageQuanty = {
 		index = 17,
 		type = 'table',
 		default = function()
-			return {{}, {}}
+			return {{}, {}, {}, {}}
 		end
 	},
 	sideQuests = {
