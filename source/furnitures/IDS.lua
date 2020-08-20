@@ -503,10 +503,10 @@ mainAssets.__furnitures = {
 		end,
 	},
 	[45] = { -- orders list
-		image = '17280c6fc9c.png',
-		png = '17280c6fc9c.png',
+		image = '1740861bcb3.png',
+		png = '1740861bcb3.png',
 		qpPrice = 100,
-		area = {100, 90},
+		area = {150, 90},
 		align = {x = -50, y = -140},
 		name = 'ordersList',
 		limitedTime = os.time{day=15, year=2020, month=1},
@@ -712,6 +712,6 @@ mainAssets.__furnitures = {
 		end,
 		uniqueID = 3,
 		stockLimit = 1,
-		quest = 5,
+		requireQuest = 5,
 	},
 }
