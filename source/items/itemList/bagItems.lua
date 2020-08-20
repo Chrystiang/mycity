@@ -902,8 +902,8 @@ bagItems = {
 		id = 77,
 		type = 'food',
 		png = '1739ecd37b8.png',
-		power = 7,
-		hunger = 13,
+		power = 4,
+		hunger = 4,
 	},
 	bananaSeed = {
 		id = 78,
@@ -937,5 +937,15 @@ bagItems = {
 		id = 82,
 		type = 'food',
 		png = '173f81bb164.png',
+	},
+	bananaCake = {
+		id = 83,
+		type = 'food',
+		png = '1740da36102.png',
+	},
+	croquettes = {
+		id = 84,
+		type = 'food',
+		png = '1740db2a66d.png',
 	},
 }

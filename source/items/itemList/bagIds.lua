@@ -81,4 +81,6 @@ bagIds = {
 	[80] = {n = 'grilledCheese'},
 	[81] = {n = 'fishBurger'},
 	[82] = {n = 'sushi'},
+	[83] = {n = 'bananaCake'},
+	[84] = {n = 'croquettes'},
 }

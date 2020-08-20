@@ -176,4 +176,23 @@ recipes = {
 			lemon = 2,
 		},
 	},
+	bananaCake = {
+		require = {
+			banana = 2,
+			milk = 1,
+			egg = 2,
+			sugar = 2,
+			wheatFlour = 3,
+		},
+	},
+	croquettes = {
+		require = {
+			potato = 3,
+			milk = 1,
+			egg = 2,
+			salt = 1,
+			wheatFlour = 2,
+			cheese = 1,
+		},
+	},
 }
