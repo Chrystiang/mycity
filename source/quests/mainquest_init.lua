@@ -1,3 +1,64 @@
+local _QuestSteps = {
+	[3] = {
+		[ 0] = "goToPolice",
+		[ 1] = nil,
+		[ 2] = "goToBank",
+		[ 3] = nil,
+		[ 4] = "goToPolice",
+		[ 5] = nil,
+		[ 6] = "goToBankRob",
+		[ 7] = nil,
+		[ 8] = "goToPolice",
+		[ 9] = nil,
+		[10] = nil,
+		[11] = "goToHospital",
+		[12] = nil,
+		[13] = "goToMine",
+		[14] = nil,
+		[15] = "goToPolice",
+	},
+	[4] = {
+		[ 0] = nil,
+	    [ 1] = "goToIsland",
+	    [ 2] = "goToSeedStore",
+	    [ 3] = "BUY_seed",
+	    [ 4] = "goToHouse",
+	    [ 5] = "plant_seed",
+	    [ 6] = "harvestTomato",
+	    [ 7] = "goToSeedStore",
+	    [ 8] = "BUY_water",
+	    [ 9] = "goToMarket",
+	    [10] = "BUY_salt",
+	    [11] = "cookSauce",
+	    [12] = nil,
+	    [13] = "plant_seed",
+	    [14] = "harvestPepper",
+	    [15] = "cookHotSauce",
+	    [16] = nil,
+	    [17] = "plant_seed",
+	    [18] = "harvestWheat",
+	},
+	[5] = {
+	    [ 0] = "goToIsland",
+	    [ 1] = "goToRestaurant",
+	    [ 2] = nil,
+	    [ 3] = "cookBread",
+	    [ 4] = "cookSalad",
+	    [ 5] = "cookChocolateCake",
+	    [ 6] = "cookfrogSandwich",
+	    [ 7] = "cookfrenchFries",
+	    [ 8] = "cookPudding",
+	    [ 9] = "cookGarlicBread",
+	    [10] = "cookMoqueca",
+	    [11] = "cookGrilledCheese",
+	    [12] = "cookfishBurger",
+	    [13] = "cookBruschetta",
+	    [14] = "cookLemonade",
+	    [15] = "cookPierogies",
+	    [16] = nil,
+	},
+}
+
 _QuestControlCenter = {
 	[1] = {
 		npcs = {'Kane$', 'Chrystian$'},
@@ -40,115 +101,87 @@ _QuestControlCenter = {
 				addQuestAsset(player, '_key2')
 				players[player].questLocalData.other['findKeys'] = true
 			end
-		end, 
-		reward = function(player)
-			return
 		end
 	},
 	[3] = {
 		npcs = {'Sherlock$', 'Colt$', 'Indy$', 'Robber$'},
 		active = function(player, questStep)
 			local playerData = players[player]
-
-			if questStep == 0 then 
-				playerData.questLocalData.other['goToPolice'] = true
-			elseif questStep == 1 then 
+			local localData = _QuestSteps[3]
+			
+			if questStep == 1 then 
 				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
-			elseif questStep == 2 then 
-				playerData.questLocalData.other['goToBank'] = true
 			elseif questStep == 3 then 
 				gameNpcs.addCharacter('Colt$', {}, player, 0, 0, {questNPC = true})
-			elseif questStep == 4 then 
-				playerData.questLocalData.other['goToPolice'] = true
 			elseif questStep == 5 then 
 				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
-			elseif questStep == 6 then 
-				playerData.questLocalData.other['goToBankRob'] = true
 			elseif questStep == 7 then 
 				addQuestAsset(player, '_cloth')
-			elseif questStep == 8 then 
-				playerData.questLocalData.other['goToPolice'] = true
 			elseif questStep == 9 then 
 				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
 			elseif questStep == 10 then 
 				gameNpcs.addCharacter('Indy$', {}, player, 0, 0, {questNPC = true})
-			elseif questStep == 11 then 
-				playerData.questLocalData.other['goToHospital'] = true
 			elseif questStep == 12 then
 				addQuestAsset(player, '_paper')
-			elseif questStep == 13 then 
-				playerData.questLocalData.other['goToMine'] = true
 			elseif questStep == 14 then
 				gameNpcs.addCharacter('Robber$', {'171a4cfc218.png'}, player, 1880, 8480, {questNPC = true})
 				playerData.questLocalData.other['arrestRobber'] = true
-			elseif questStep == 15 then 
-				playerData.questLocalData.other['goToPolice'] = true
 			elseif questStep == 16 then 
 				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
+			elseif localData[questStep] then
+			    playerData.questLocalData.other[localData[questStep]] = true
 			end
-		end, 
-		reward = function(player)
-			return
 		end
 	},
 	[4] = {
 		npcs = {'Kariina$'},
 		active = function(player, questStep)
 			local playerData = players[player]
+			local localData = _QuestSteps[4]
 
 			gameNpcs.addCharacter('Kariina$', {'17193fda8a1.png', '171a8679a0c.png'}, player, 4360, 7677, {questNPC = true})
-			if questStep == 1 then 
-				playerData.questLocalData.other['goToIsland'] = true
-			elseif questStep == 2 then 
-				playerData.questLocalData.other['goToSeedStore'] = true
-			elseif questStep == 3 then 
-				playerData.questLocalData.other['BUY_seed'] = true
-			elseif questStep == 4 then 
-				playerData.questLocalData.other['goToHouse'] = true
-			elseif questStep == 5 then 
-				playerData.questLocalData.other['plant_seed'] = true
-			elseif questStep == 6 then 
-				playerData.questLocalData.other['harvestTomato'] = true
-			elseif questStep == 7 then 
-				playerData.questLocalData.other['goToSeedStore'] = true
-			elseif questStep == 8 then 
-				playerData.questLocalData.other['BUY_water'] = true
-			elseif questStep == 9 then 
-				playerData.questLocalData.other['goToMarket'] = true
-			elseif questStep == 10 then 
-				playerData.questLocalData.other['BUY_salt'] = true
-			elseif questStep == 11 then 
-				playerData.questLocalData.other['cookSauce'] = true				
-			elseif questStep == 13 then 
-				playerData.questLocalData.other['plant_seed'] = true
-			elseif questStep == 14 then 
-				playerData.questLocalData.other['harvestPepper'] = true
-			elseif questStep == 15 then 
-				playerData.questLocalData.other['cookHotSauce'] = true				
-			elseif questStep == 17 then 
-				playerData.questLocalData.other['plant_seed'] = true
-			elseif questStep == 18 then 
-				playerData.questLocalData.other['harvestWheat'] = true
+
+			if localData[questStep] then
+			    playerData.questLocalData.other[localData[questStep]] = true
 			end
-		end, 
-		reward = function(player)
-			return
 		end
 	},
 	[5] = {
+		npcs = {'Remi$'},
+		active = function(player, questStep)
+			local playerData = players[player]
+			local localData = _QuestSteps[5]
+
+			if questStep == 2 or questStep == 16 or questStep == 18 then 
+				gameNpcs.addCharacter('Remi$', {}, player, 0, 0, {questNPC = true})
+			elseif questStep == 17 then
+				if not players[player].questStep[3] then
+					players[player].questStep[3] = 20
+				end
+				players[player].questLocalData.other['deliverOrder'] = players[player].questStep[3]
+			elseif localData[questStep] then
+			    playerData.questLocalData.other[localData[questStep]] = true
+			end
+		end,
+		reward = function(player)
+			players[player].houseData.furnitures.stored[64] = {quanty = 1, type = 64}
+		end
+	},
+
+	[99] = {
 		npcs = {'Bill$', 'Oliver$'},
 		active = function(player, questStep)
 			local playerData = players[player]
 
 			gameNpcs.addCharacter('Bill$', {'171b7b0d0a2.png', '171b81a2307.png'}, player, 13400, 7514, {questNPC = true})
 
-			if questStep == 0 then 
+			if questStep == 0 then
 				playerData.questLocalData.other['goToIsland'] = true
 			elseif questStep == 1 then 
 				playerData.questLocalData.other['goToOliver'] = true
 			elseif questStep == 2 then 
 				gameNpcs.addCharacter('Oliver$', {}, player, 0, 0, {questNPC = true})
-			elseif questStep == 4 then 
+			elseif questStep == 4 then
 				playerData.questLocalData.other['goToSeedStore'] = true
 			elseif questStep == 5 then 
 				playerData.questLocalData.other['BUY_seed'] = true
@@ -165,9 +198,6 @@ _QuestControlCenter = {
 			elseif questStep == 13 then 
 				gameNpcs.addCharacter('Indy$', {}, player, 0, 0, {questNPC = true})
 			end
-		end, 
-		reward = function(player)
-			return
 		end
 	},
 
@@ -184,9 +214,6 @@ _QuestControlCenter = {
 			elseif questStep == 5 then 
 				playerData.questLocalData.other['fish_blueprint'] = true
 			end
-		end, 
-		reward = function(player)
-			return
 		end
 	},
 }

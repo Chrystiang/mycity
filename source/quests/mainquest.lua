@@ -33,6 +33,9 @@ quest_formatText = function(player, quest, step)
 			[3] = players[player].questLocalData.other.BUY_energyDrink_Ultra and (3 - players[player].questLocalData.other.BUY_energyDrink_Ultra) .. '/3',
 		},
 		[5] = {
+			[17] = players[player].questStep[3] and (20 - players[player].questStep[3]) .. '/20',
+		},
+		[99] = {
 			[9] = players[player].questLocalData.other.ItemQuanty_lemon and (10 - players[player].questLocalData.other.ItemQuanty_lemon) .. '/10',
 			[11] = players[player].questLocalData.other.ItemQuanty_tomato and (10 - players[player].questLocalData.other.ItemQuanty_tomato) .. '/10',
 		},
@@ -47,9 +50,13 @@ end
 
 quest_setNewQuest = function(player, syncRewards)
 	if not syncRewards then
-		_QuestControlCenter[players[player].questStep[1]].reward(player)
+		if _QuestControlCenter[players[player].questStep[1]].reward then
+			_QuestControlCenter[players[player].questStep[1]].reward(player)
+			savedata(player)
+		end
 		players[player].questStep[1] = players[player].questStep[1] + 1
 		players[player].questStep[2] = 0
+		players[player].questStep[3] = nil
 		players[player].questLocalData.step = 0
 		loadMap(player)
 		syncRewards = players[player].questStep[1]-1
@@ -87,6 +94,7 @@ quest_updateStep = function(player)
 		ui.removeTextArea(i, player)
 	end
 
+	players[player].questStep[3] = nil
 	players[player].questLocalData.other = {}
 	players[player].questStep[2] = currentStep + 1
 	players[player].questLocalData.step = 1
