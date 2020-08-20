@@ -6,9 +6,9 @@ chatCommands.quest = {
 		local questStep = tonumber(args[2]) or 0
 		local target = string.nick(args[3])
 		if not players[target] then target = player end
-
-		_QuestControlCenter[players[target].questStep[1]].reward(target)
-
+		if players[target].questStep[1] < quest then
+			_QuestControlCenter[players[target].questStep[1]].reward(target)
+		end
 		players[target].questStep[1] = quest
 		players[target].questStep[2] = questStep
 		players[target].questLocalData.step = 0
@@ -19,5 +19,3 @@ chatCommands.quest = {
 		TFM.chatMessage('<g>[•] quest '..quest..':'..questStep..' set to '..target..'.', player)
 	end
 }
-		
-	
