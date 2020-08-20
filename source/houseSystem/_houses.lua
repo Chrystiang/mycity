@@ -133,7 +133,7 @@ mainAssets.__houses = {
 	[8] = { -- Spongebob House
 		properties = {
 			price = 25000000,
-			png = '171b4158ba5.png',
+			png = '',
 			limitedTime = os.time{day=25, year=2020, month=4},
 		},
 		inside = {
@@ -151,7 +151,7 @@ mainAssets.__houses = {
 			limitedTime = os.time{day=25, year=2020, month=4},
 		},
 		inside = {
-			image   = '1727b98abb7.png',
+			image   = '174085c9366.png',
 		},
 		outside = {
 			icon    = '1727ba0e8b2.png',
