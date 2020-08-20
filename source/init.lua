@@ -44,13 +44,14 @@ for i, v in next, recipes do
 	newDishPrice(i)
 end
 
-
 npcsStores.items = mergeItemsWithFurnitures(mainAssets.__furnitures, bagIds)
 buildNpcsShopItems()
 
 for item, data in next, Mine.ores do 
 	bagItems['crystal_'..item].price = math.floor(200*(12/data.rarity))
 end
+
+mine_generate()
 
 if ROOM.name == "*#fofinho" or ROOM.community == 'sk' then
 	room.requiredPlayers = 0
@@ -59,7 +60,7 @@ else
 	if string.match(ROOM.name, "^en%-#mycity[1-9]$") then
 		room.requiredPlayers = 0
 		room.maxPlayers = math.ceil(room.maxPlayers/2)
-		runtime_threshold = 40
+		RUNTIME_LIMIT = 40
 	end
 end
 
@@ -82,8 +83,6 @@ addTimer(function()
 	end
 end, 90000, 0)
 
-mine_generate()
-
 if ROOM.uniquePlayers >= room.requiredPlayers then
 	genMap()
 else
@@ -95,3 +94,5 @@ local syncTimer = system.newTimer(function()
 		system.loadPlayerData('Sharpiebot#0000')
 	end
 end, 1000, true)
+
+initializingModule = false
