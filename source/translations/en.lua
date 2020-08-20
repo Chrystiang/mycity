@@ -260,7 +260,70 @@ lang.en = {
 			},
 		},
 		[5] = {
-			name = 'Quest 05: ????',
+			name = 'Quest 05: Kitchen Nightmares!',
+			[0] = {
+				_add = 'Go to the island.',
+			},
+			[1] = {
+				_add = 'Go to the restaurant.',
+			},
+			[2] = {
+				dialog = 'Hi. I need your help to fix a big trouble...\nWe are unable to manage and deliver orders due to the high demand in the restaurant.\nCould you help me to place orders properly?\nGreat! As we sell a lot of dishes, you will need to learn the recipes of some dishes first. Ok?',
+				_add = 'Talk with Remi.',
+			},
+			[3] = {
+				_add = 'Make a Loaf of Bread.',
+			},
+			[4] = {
+				_add = 'Make a Salad.',
+			},
+			[5] = {
+				_add = 'Make a Chocolate Cake.',
+			},
+			[6] = {
+				_add = 'Make a Frogwich.', -- "Frog Sandwich"
+			},
+			[7] = {
+				_add = 'Make some Fries.',
+			},
+			[8] = {
+				_add = 'Make a Pudding.',
+			},
+			[9] = {
+				_add = 'Make a Garlic Bread.',
+			},
+			[10] = {
+				_add = 'Make a Fish Stew.',
+			},
+			[11] = {
+				_add = 'Make a Grilled Cheese.',
+			},
+			[12] = {
+				_add = 'Make a Fish Burger.',
+			},
+			[13] = {
+				_add = 'Make a Bruschetta.',
+			},
+			[14] = {
+				_add = 'Make a Lemonade.',
+			},
+			[15] = {
+				_add = 'Make some Pierogies.',
+			},
+			[16] = {
+				dialog = 'You took too long...\nAnyway, now that you have learned the ingredients of each recipe, I will need you to deliver the orders that will be shown in this order board.',
+				_add = 'Talk with Remi.',
+			},
+			[17] = {
+				_add = 'Deliver %s orders.',
+			},
+			[18] = {
+				dialog = 'I am very grateful for your help! The customers are happy and I even more!\nAs a thank you, I left a little surprise at your house: A freezer!\nYou will be able to store even more items in your home!\nHope to see you soon!',
+				_add = 'Talk with Remi.',
+			},
+		},
+		[6] = {
+			name = 'Quest 06: ????',
 			[0] = {},
 		},
 	},
@@ -658,5 +721,12 @@ lang.en = {
 	badgeDesc_12 = 'Top 10 of season 2',
 	item_grilledCheese = 'Grilled Cheese',
 	item_fishBurger = 'Fish Burger',
-	item_sushi = 'Sushi',
+	item_sushi = 'Sashimi', -- I thought it was called sushi lol
+	furniture_freezer = 'Freezer',
+	confirmButton_skipQuest = 'Skip Quest!',
+	skipQuest = 'Skip Quest',
+	skipQuestTxt = 'Are you sure do you want to skip this quest? <r>You can only do this once a day.</r>',
+	item_bananaCake = 'Banana Cake',
+	item_croquettes = 'Potato Croquettes',
+	itemInfo_sellingPrice = 'Selling price: %s',
 }

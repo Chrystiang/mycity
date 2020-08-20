@@ -324,7 +324,7 @@ lang.br = {
 	item_lettuce = 'Alface',
 	item_pierogies = 'Pierogies',
 	item_potato = 'Batata',
-	item_frenchFries = 'Batata Frita',
+	item_frenchFries = 'Batatas Fritas',
 	item_pudding = 'Pudim',
 	item_garlicBread = 'Pão de Alho',
 	item_garlic = 'Alho',
@@ -333,7 +333,7 @@ lang.br = {
 	vehicle_8 = 'Barco de Patrulha',
 	npcDialog_Kapo = 'Eu venho sempre aqui para conferir as ofertas diárias do Dave.\nÀs vezes eu consigo itens raros e que apenas ele tem!',
 	npcDialog_Santih = 'Tem muita gente que ainda se atreve a pescar nesse laguinho.',
-	npcDialog_Louis = 'Eu falei para ela não colocar azeitonas...',
+	npcDialog_Louis = 'EuFalei para ela não colocar azeitonas...',
 	npcDialog_Heinrich = 'Hmmm... Então você quer ser um mineiro? Se sim, tenho que avisá-lo para ser cuidadoso. Quando eu era um ratinho pequeno, eu me perdia bastante naquele labirinto.',
 	npcDialog_Davi = 'Me desculpe, mas não posso deixar você passar por aqui.',
 	npcDialog_Alexa = 'Olá! Qual a nova?',
@@ -430,37 +430,37 @@ lang.br = {
 		[1] = {
 			name = 'Missão 01: Construindo um barco',
 			[0] = {
-				dialog = 'Olá! Como você está? Recentemente, algumas pessoas descobriram uma pequena ilha depois do mar. Lá tem algumas árvores e cosntruções também.\nComo você sabe, não temos um aeroporto na cidade. Por enquanto, o único modo de chegar lá é com um barco.\nEu posso construir um para você, mas vou precisar de ajuda primeiro.\nNa minha próxima aventura, quero descobrir o que tem do outro lado da mina. Eu tenho algumas teorias e preciso confirmá-las.\nEu acho que vai ser uma expedição longa, então vou precisar de muita comida.\nVocê pode pescar 5 peixes para mim?',
-				_add = ' Fale com Kane',
+				dialog = 'Olá! Como você está? Recentemente, algumas pessoas descobriram uma pequena ilha depois do rio. Lá tem algumas árvores e construções também.\nComo você sabe, não temos um aeroporto na cidade. Por enquanto, o único modo de chegar lá é com um barco.\nEu posso construir um para você, mas vou precisar de ajuda primeiro.\nNa minha próxima aventura, quero descobrir o que tem do outro lado da mina.\nEu tenho algumas teorias e preciso confirmá-las.\nEu acho que vai ser uma expedição longa, então vou precisar de muita comida.\nVocê pode pescar 5 peixes para mim?',
+				_add = 'Fale com Kane',
 			},
 			[1] = {
 				_add = 'Pesque %s peixes',
 			},
 			[2] = {
 				dialog = 'Wow! Obrigado por esses peixes! Eu não posso esperar para comê-los na minha expedição.\nAgora, você terá que me trazer 3 Coca-Cola. Você pode comprá-las no mercado.',
-				_add = ' Fale com Kane',
+				_add = 'Fale com Kane',
 			},
 			[3] = {
 				_add = 'Compre %s Coca-Cola',
 			},
 			[4] = {
 				dialog = 'Obrigado por me trazer comida! Agora é minha vez de retribuir o favor.\nMas para fazer isso vou precisar de algumas tábuas, para que eu possa construir o bote.\nRecentemente, eu vi o Chrystian cortando árvores e coletando madeira. Pergunte a ele se ele pode lhe dar algumas.',
-				_add = ' Fale com Kane',
+				_add = 'Fale com Kane',
 			},
 			[5] = {
 				dialog = 'Então você quer tábuas? Eu posso te dar algumas, mas você terá de me trazer flocos de milho.\nVocê pode fazer isso?',
-				_add = ' Fale com Chrystian',
+				_add = 'Fale com Chrystian',
 			},
 			[6] = {
 				_add = 'Compre floco de milho.',
 			},
 			[7] = {
 				dialog = 'Obrigado por me ajudar! Aqui está as tábuas que você me pediu. Faça um bom uso delas!',
-				_add = ' Fale com Chrystian',
+				_add = 'Fale com Chrystian',
 			},
 			[8] = {
 				dialog = 'Você demorou muito... Achei que você tivesse esquecido de pegar as tábuas...\nDe qualquer forma, agora posso construir seu barco...\nAqui está o seu barco! Divirta-se na nova ilha e tenha cuidado!',
-				_add = ' Fale com Kane',
+				_add = 'Fale com Kane',
 			},
 		},
 		[2] = {
@@ -469,8 +469,8 @@ lang.br = {
 				_add = 'Vá para a ilha.',
 			},
 			[1] = {
-				dialog = 'Olá! Quem é você? Nunca te vi antes...\nMeu nome é Indy! Eu vivo nessa ilha a muito tempo. Tem muitos lugares legais aqui.\nEu sou dona da loja de poções. Eu poderia te chamar para conhecer a loja, mas eu tenho um grande problema: Eu perdi as chaves da loja!\nEu devo ter deixado cair na mina. Você pode me ajudar?',
-				_add = ' Fale com Indy',
+				dialog = 'Olá! Quem é você? Nunca te vi antes...\nMeu nome é Indy! Eu vivo nessa ilha a muito tempo. Tem muitos lugares legais aqui.\nEu sou dono da loja de poções. Eu poderia te chamar para conhecer a loja, mas eu tenho um grande problema: Eu perdi as chaves da loja!\nEu devo ter deixado cair na mina. Você pode me ajudar?',
+				_add = 'Fale com Indy',
 			},
 			[2] = {
 				_add = 'Vá para a mina.',
@@ -479,7 +479,7 @@ lang.br = {
 				_add = 'Encontre as chaves de Indy',
 			},
 			[4] = {
-				dialog = 'Obrigada! Agora eu posso voltar ao trabalho!\nEspere um segundo...\nEstá faltando uma: a chave da loja! Você procurou direito?',
+				dialog = 'Obrigado! Agora eu posso voltar ao trabalho!\nEspere um segundo...\nEstá faltando uma: a chave da loja! Você procurou direito?',
 				_add = 'Leve as chaves para Indy.',
 			},
 			[5] = {
@@ -499,25 +499,25 @@ lang.br = {
 				_add = 'Vá para a delegacia.',
 			},
 			[1] = {
-				dialog = 'Oi. Estão faltando policias na cidade e eu preciso da sua ajuda, nada muito difícil.\nTivemos um misterioso roubo ao banco, tanto que nenhuma suspeita foi encontrada...\nSuponho que haja alguma pista no banco.\nColt deve saber o que pode ter acontecido. Fale com ele.',
-				_add = ' Fale com Sherlock',
+				dialog = 'Oi. Estão faltando policias na cidade e eu preciso da sua ajuda, nada muito difícil.\nTivemos um misterioso roubo ao banco, tanto que nenhuma suspeita foi encontrada...\nSuponho que haja alguma pista no banco.\nColt deve saber o que pode ter acontecido.Fale com ele.',
+				_add = 'Fale com Sherlock',
 			},
 			[2] = {
 				_add = 'Vá para o banco.',
 			},
 			[3] = {
 				dialog = 'QUÊ? Sherlock pediu que viesse aqui? Eu disse a ele que estou cuidando desse caso.\nDiga a ele que eu não preciso de ajuda. Eu consigo sozinho.',
-				_add = ' Fale com Colt.',
+				_add = 'Fale com Colt.',
 			},
 			[4] = {
 				_add = 'Vá para a delegacia.',
 			},
 			[5] = {
 				dialog = 'Eu sabia que ele não ajudaria...\nVamos ter que procurar pistas sem ele.\nIremos ao banco quando ele não estiver lá, você pode fazer isso, certo?',
-				_add = ' Fale com Sherlock.',
+				_add = 'Fale com Sherlock.',
 			},
 			[6] = {
-				_add = 'Entre no banco enquanto está sendo roubado',
+				_add = 'Participe de um roubo ao banco.',
 			},
 			[7] = {
 				_add = 'Procure por pistas no banco.',
@@ -525,7 +525,6 @@ lang.br = {
 			[8] = {
 				_add = 'Vá para a delegacia.',
 			},
-
 			[9] = {
 				dialog = 'Muito bem! Este tecido vai nos ajudar a encontrar um suspeito.\nFale com Indy. Ele vai nos ajudar.',
 				_add = 'Fale com Sherlock.',
@@ -551,7 +550,7 @@ lang.br = {
 			},
 			[16] = {
 				dialog = 'Muito bem! Você é realmente muito bom nisso.\nEu conheço um bom lugar para repôr as energias depois de uma longa investigação: a cafeteria!',
-				_add = 'Talk with Sherlock.',
+				_add = 'Fale com Sherlock.',
 			},
 		},
 		[4] = {
@@ -573,7 +572,7 @@ lang.br = {
 				_add = 'Vá para sua casa.',
 			},
 			[5] = {
-				_add = 'Plante a semente na sua casa. (Você precisa ter um jardim!)',
+				_add = 'Plante a semente.',
 			},
 			[6] = {
 				_add = 'Recolha os tomates.',
@@ -591,7 +590,7 @@ lang.br = {
 				_add = 'Compre sal.',
 			},
 			[11] = {
-				_add = 'Cozinhe um molho. (Você precisa ter um fogão!)',
+				_add = 'Cozinhe um molho.',
 			},
 			[12] = {
 				dialog = 'Wow! Obrigada! Agora eu preciso de molho picante. Você pode me fazer um?',
@@ -601,24 +600,87 @@ lang.br = {
 				_add = 'Plante uma semente na sua casa.',
 			},
 			[14] = {
-				_add = 'Reolha as pimentas',
+				_add = 'Recolha as pimentas.',
 			},
 			[15] = {
 				_add = 'Cozinhe um molho picante.',
 			},
 			[16] = {
-				dialog = '!!! Você fez isso! Obrigada!\nEnquanto você não estava, percebi que preciso de mais trigo para fazer a massa... Você pode me fazer trigo?',
+				dialog = '!!! Você conseguiu! Obrigada!\nEnquanto você não estava, percebi que preciso de mais trigo para fazer a massa... Você pode me trazer trigo?',
 				_add = 'Entregue o molho picante para Kariina.',
 			},
 			[17] = {
-				_add = 'Plante uma semente na sua casa.',
+				_add = 'Plante uma semente.',
 			},
 			[18] = {
 				_add = 'Recolha o trigo.',
 			},
 			[19] = {
-				dialog = 'Wow! Obrigado! Você pode trabalhar comigo quando eu precisar de empregados.\nObrigada por me ajudar. Agora eu posso terminar essas pizzas!',
-				_add = 'Entregue trigo para Kariina.',
+				dialog = 'Wow! Obrigado! Você poderia trabalhar comigo quando eu precisar de funcionários.\nObrigada por me ajudar. Agora eu posso terminar essas pizzas!',
+				_add = 'Entregue o trigo para Kariina.',
+			},
+		},
+		[5] = {
+			name = 'Missão 05: Pesadelo na Cozinha!',
+			[0] = {
+				_add = 'Vá para a ilha.',
+			},
+			[1] = {
+				_add = 'Vá para o restaurante.',
+			},
+			[2] = {
+				dialog = 'Olá, eu preciso de sua ajuda para resolver um grande problema...\nNão param de chegar pedidos no restaurante e não estamos conseguindo dar conta da alta demanda.\nVocê pode me ajudar a realizar os pedidos corretamente?\nÓtimo! Como vendemos diversos pratos, preciso lhe ensinar as receitas de alguns pratos. Ok?',
+				_add = 'Fale com Remi.',
+			},
+			[3] = {
+				_add = 'Prepare um Pão de Forma.',
+			},
+			[4] = {
+				_add = 'Prepare uma Salada.',
+			},
+			[5] = {
+				_add = 'Prepare um Bolo de Chocolate.',
+			},
+			[6] = {
+				_add = 'Prepare um Sanduíche de Sapo.',
+			},
+			[7] = {
+				_add = 'Prepare Batatas Fritas.',
+			},
+			[8] = {
+				_add = 'Prepare um Pudim.',
+			},
+			[9] = {
+				_add = 'Prepare um Pão de Alho.',
+			},
+			[10] = {
+				_add = 'Prepare uma Moqueca.',
+			},
+			[11] = {
+				_add = 'Prepare um Queijo Quente.',
+			},
+			[12] = {
+				_add = 'Prepare um Hambúrguer de Peixe.',
+			},
+			[13] = {
+				_add = 'Prepare uma Brusqueta.',
+			},
+			[14] = {
+				_add = 'Prepare uma Limonada.',
+			},
+			[15] = {
+				_add = 'Prepare Pierogies.',
+			},
+			[16] = {
+				dialog = 'Que demora!\n...\nAgora que você aprendeu os ingredientes de cada receita, preciso que você entregue os pedidos que estão sendo solicitados no quadro de receitas.',
+				_add = 'Fale com Remi.',
+			},
+			[17] = {
+				_add = 'Entregue %s pedidos.',
+			},
+			[18] = {
+				dialog = 'Muito obrigado pela ajuda! Os clientes estão satisfeitos e eu mais ainda!\nComo agradecimento, deixei uma surpresinha na sua casa: Uma geladeira!\nVocê poderá armazenar ainda mais itens em sua casa!\nAté a próxima!',
+				_add = 'Fale com Remi.',
 			},
 		},
 	},
@@ -650,5 +712,12 @@ lang.br = {
 	badgeDesc_12 = 'Top 10 da temporada 2',
 	item_grilledCheese = 'Queijo Quente',
 	item_fishBurger = 'Hambúrguer de Peixe',
-	item_sushi = 'Sushi',
+	item_sushi = 'Sashimi',
+	furniture_freezer = 'Geladeira',
+	confirmButton_skipQuest = 'Pular Missão!',
+	skipQuest = 'Pular Missão',
+	skipQuestTxt = 'Você tem certeza de que deseja pular essa missão? <r>Você só pode pular 1 missão por dia.</r>',
+	item_bananaCake = 'Bolo de Banana',
+	item_croquettes = 'Croquete de Batata',
+	itemInfo_sellingPrice = 'Preço de venda: %s',
 }
