@@ -106,4 +106,17 @@ versionLogs = {
 			_1 = '<rose>Новые рецепты:</rose> Суши, Тост с сыром и Рыбный Бургер!\n\nНПС больше не будут делать заказы, если их место закрыто.\n\nДобавлен новый участок для дома возле полицейской станции.\n\nПшеница у Oliver будет расти с первой стадии в новых комнатах.\n\nТеперь возможно узнать, кто в сети, на таблице лидеров сезона.',
 		},
 	},
+	['v3.1.0'] = {
+		releaseDate = '__/08/2020', -- dd/mm/yy
+		maxPages = 1,
+		images = {'1739f65fc94.png'},
+		br = {
+			name = 'Missão 5!',
+			_1 = '<rose>Novo:</rose> Missão 05: Pesadelo na Cozinha!\nAjude Remi a entregar os pedidos!\n\n<rose>Novas Receitas:</rose> Bolo de Banana e Croquete de Batata!\n\n<rose>Novo:</rose> Pular missões secundárias!\nVocê pode pular 1 missão secundária por dia.\nMissões puladas não serão reprisadas até às 21h (Horário de Brasília).\n\nO restaurante foi remodelado.\nUm timer próximo aos pedidos indicará o tempo que o pedido ainda está ativo.',
+		},
+		en = {
+			name = 'Quest 5!',
+			_1 = '<rose>New:</rose> Quest 05: Kitchen Nightmares!\nHelp Remi deliver orders!\n\n<rose>New Recipes:</rose> Banana Cake and Potato Croquettes!\n\n<rose>New:</rose> Skip side quests!\nYou can only skip a side quest once a day.\nSkipped side quests will not appear again until 19:00 (CDT).\n\nThe restaurant has been redrawn.\nA timer next to the orders list will indicate the time that the order is still active.',
+		},
+	},
 }
