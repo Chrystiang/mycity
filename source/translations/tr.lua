@@ -571,11 +571,68 @@ lang.tr = {
 			}
 		},
 		[5] = {
-			name = "Görev 03: Hırsızlık",
+			name = 'Görev 05: Mutfak Kabusları!',
 			[0] = {
-				_add = "Karakola git."
-			}
-		}
+				_add = 'Adaya git.',
+			},
+			[1] = {
+				_add = 'Restoranta git.',
+			},
+			[2] = {
+				dialog = 'Selamm. Büyük bir kargaşayı çözmek için yardımın gerek...\nRestoranttaki yoğunluktan ötürü siparişleri yönetip gönderemiyoruz.\nŞey, rica etsem siparişleri düzene sokmamda yardımcı olur musun?\nŞahane! Çok fazla yemek sattığımız için, önce bazı yemekleri pişirmeyi ögrenmelisin. Tamam mı?',
+				_add = 'Remi ile konuş.',
+			},
+			[3] = {
+				_add = 'Bir somun ekmek pişir.',
+			},
+			[4] = {
+				_add = 'Bir salata yap.',
+			},
+			[5] = {
+				_add = 'Bir çikolatalı pasta yap.',
+			},
+			[6] = {
+				_add = 'Bir kurbağa sandviçi yap.', -- "Kurbağa Sandviçi"
+			},
+			[7] = {
+				_add = 'Biraz patates kızart.',
+			},
+			[8] = {
+				_add = 'Bir puding yap.',
+			},
+			[9] = {
+				_add = 'Bir sarımsaklı ekmek yap.',
+			},
+			[10] = {
+				_add = 'Bir balık yahnisi yap.',
+			},
+			[11] = {
+				_add = 'Bir kızarmış peynir yap.',
+			},
+			[12] = {
+				_add = 'Bir balık burger yap.',
+			},
+			[13] = {
+				_add = 'Bir bruschetta yap.',
+			},
+			[14] = {
+				_add = 'Bir bardak limonata yap.',
+			},
+			[15] = {
+				_add = 'Biraz piruhi yap.',
+			},
+			[16] = {
+				dialog = 'Çok uzun sürdü...\nNeyse artık, şimdi her tarif için gereken malzemeleri biliyorsun, şimdi de panoda görülen siparişleri teslim etmek için yardımına ihtiyacım var.',
+				_add = 'Remi ile konuş.',
+			},
+			[17] = {
+				_add = '%s sipariş teslim et.',
+			},
+			[18] = {
+				dialog = 'Allah senden razı olsun! Müşteriler çok mutlu ve buna bağlı olarak ben de!\nKüçük bir teşekkür hediyesi olarak, evine bir sürpriz bıraktım: Bir Dondurucu!\nArtık evinde daha fazla eşya depolayabileceksin!\nUmarım en kısa sürede tekrar görüşürüz!',
+				_add = 'Remi ile konuş.',
+			},
+		},
 	},
 	profile_fishes = "Avlanan balık",
 	furniture_apiary = "Arı Kovanı",
@@ -644,6 +701,7 @@ lang.tr = {
 	furniture_broom = 'Süpürge',
 	furniture_piggy = 'Domuzcuk',
 	furniture_sink = 'Lavabo',
+	--- V3.0.4
 	badgeDesc_11 = 'Sezon 1 ilk 10',
 	caught_goldenmare = '<v>%s</v> <j>bir Goldenmare yakaladı!</j>',
 	newCar = 'Yeni Araba',
@@ -658,7 +716,15 @@ lang.tr = {
 	item_bananaSeed = 'Muz Tohumu',
 	item_banana = 'Muz',
 	item_moqueca = 'Balık Yemeği',
+	--- V3.0.5
 	item_grilledCheese = 'Kızarmış Peynir',
 	item_fishBurger = 'Balık Burger',
 	item_sushi = 'Suşi',
+	--- V3.1.0
+	furniture_freezer = 'Dondurucu',
+	confirmButton_skipQuest = 'Görevi Geç!',
+	skipQuest = 'Görevi Geç',
+	skipQuestTxt = 'Bunu yapmak istediğinden emin misin? <r>Günde sadece bir kez yapabilirsin.</r>',
+	item_bananaCake = 'Muzlu Pasta',
+	item_croquettes = 'Patates Kroket',
 }

@@ -750,4 +750,5 @@ lang.hu = {
 	skipQuestTxt = 'Biztosan ki akarod hagyni ezt a Mellékküldetést? <r>Naponta csak egyszer teheted meg.</r>',
 	item_bananaCake = 'Banántorta',
 	item_croquettes = 'Burgonya Krokett',
+	itemInfo_sellingPrice = 'Eladási ár: %s',
 }

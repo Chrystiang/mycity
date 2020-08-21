@@ -164,7 +164,9 @@ _QuestControlCenter = {
 			end
 		end,
 		reward = function(player)
-			players[player].houseData.furnitures.stored[64] = {quanty = 1, type = 64}
+			if not checkIfPlayerHasFurniture(player, 64) then
+				players[player].houseData.furnitures.stored[64] = {quanty = 1, type = 64}
+			end
 		end
 	},
 

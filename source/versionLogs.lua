@@ -107,9 +107,9 @@ versionLogs = {
 		},
 	},
 	['v3.1.0'] = {
-		releaseDate = '__/08/2020', -- dd/mm/yy
+		releaseDate = '21/08/2020', -- dd/mm/yy
 		maxPages = 1,
-		images = {'1739f65fc94.png'},
+		images = {'1741134fbce.png'},
 		br = {
 			name = 'Missão 5!',
 			_1 = '<rose>Novo:</rose> Missão 05: Pesadelo na Cozinha!\nAjude Remi a entregar os pedidos!\n\n<rose>Novas Receitas:</rose> Bolo de Banana e Croquete de Batata!\n\n<rose>Novo:</rose> Pular missões secundárias!\nVocê pode pular 1 missão secundária por dia.\nMissões puladas não serão reprisadas até às 21h (Horário de Brasília).\n\nO restaurante foi remodelado.\nUm timer próximo aos pedidos indicará o tempo que o pedido ainda está ativo.',
@@ -119,12 +119,16 @@ versionLogs = {
 			_1 = '<rose>New:</rose> Quest 05: Kitchen Nightmares!\nHelp Remi deliver orders!\n\n<rose>New Recipes:</rose> Banana Cake and Potato Croquettes!\n\n<rose>New:</rose> Skip side quests!\nYou can only skip a side quest once a day.\nSkipped side quests will not appear again until 19:00 (CDT).\n\nThe restaurant has been redrawn.\nA timer next to the orders list will indicate the time that the order is still active.',
 		},
 		hu = {
-		  name = 'Küldetés 05!',
-		  _1 = '<rose>Új:</rose> Küldetés 05: Konyhai Rémálmok!\nSegíts Remi-nek a rendelések kiszállításában!\n\n<rose>Új receptek:</rose> Banántorta és Burgonya krokett!\n\n<rose>Új:</rose> Mellékküldetések kihagyása!\nNaponta csak egy Mellékküldetést hagyhatsz ki.\nA kihagyott Mellékküldetések 19:00-ig (CDT) nem jelennek meg újra.\n\nAz Étterem újra lett rajzolva.\nA megrendelések melletti időzítő jelzi azt az időt, ameddig a rendelés aktív, tehát ki lehet szállítani.',
+			name = 'Küldetés 05!',
+			_1 = '<rose>Új:</rose> Küldetés 05: Konyhai Rémálmok!\nSegíts Remi-nek a rendelések kiszállításában!\n\n<rose>Új receptek:</rose> Banántorta és Burgonya krokett!\n\n<rose>Új:</rose> Mellékküldetések kihagyása!\nNaponta csak egy Mellékküldetést hagyhatsz ki.\nA kihagyott Mellékküldetések 19:00-ig (CDT) nem jelennek meg újra.\n\nAz Étterem újra lett rajzolva.\nA megrendelések melletti időzítő jelzi azt az időt, ameddig a rendelés aktív, tehát ki lehet szállítani.',
 		},
 		pl = {
-		  name = 'Quest 5!',
-		  _1 = '<rose>Nowosc: </rose>Quest 05: Koszmary kuchni!\nPomóż Remiemu dostarczac zamowienia!\n\n<rose>Nowe przepisy: </rose>Ciasto bananowe i Krokiety ziemniaczane!\n\n<rose>Nowosc: </rose>Pomin zadania poboczne!\nMozesz pominac zadanie poboczne tylko raz dziennie.\nOpuszczone zadania poboczne pojawia sie ponownie dopiero o 19:00 (CDT).\n\nRestauracja zostala odswiezona.\nA licznik czasu obok listy zlecen wskazs czas, w ktorym zlecenie jest nadal aktywne.',
+			name = 'Quest 5!',
+			_1 = '<rose>Nowosc: </rose>Quest 05: Koszmary kuchni!\nPomóż Remiemu dostarczac zamowienia!\n\n<rose>Nowe przepisy: </rose>Ciasto bananowe i Krokiety ziemniaczane!\n\n<rose>Nowosc: </rose>Pomin zadania poboczne!\nMozesz pominac zadanie poboczne tylko raz dziennie.\nOpuszczone zadania poboczne pojawia sie ponownie dopiero o 19:00 (CDT).\n\nRestauracja zostala odswiezona.\nA licznik czasu obok listy zlecen wskazs czas, w ktorym zlecenie jest nadal aktywne.',
+		},
+		tr = {
+			name = 'Görev 5!',
+			_1 = '<rose>Yeni:</rose> Görev 05: Mutfak Kabusları!\nRemi\'ye siparişleri göndermesi için yardım et!\n\n<rose>Yeni Tarifler:</rose> Muzlu Pasta ve Patates Kroket!\n\n<rose>Yeni:</rose> Yan görevleri geçebilme!\nGünde bir defa bir yan görevi geçebilirsin.\nGeçilmiş yan görevler Türkiye saati ile 03:00\'e kadar tekrar karşıma çıkmayacak.\n\nRestorant yeniden çizildi.\nSiparişlerin ne kadar zamanı kaldığını göstermek için siparişin yanına bir zamanlayıcı eklendi.',
 		},
 	},
 }
