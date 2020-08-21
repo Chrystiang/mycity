@@ -529,12 +529,6 @@ lang.fr = {
 				_add = "Donnez la pâte à Kariina."
 			}
 		},
-		[5] = {
-			name = "Quête 03: Braquage",
-			[0] = {
-				_add = "Allez au commissariat."
-			}
-		}
 	},
 	item_lemonade = "Limonade",
 	houses = "Maisons",

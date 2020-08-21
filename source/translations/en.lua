@@ -729,4 +729,7 @@ lang.en = {
 	item_bananaCake = 'Banana Cake',
 	item_croquettes = 'Potato Croquettes',
 	itemInfo_sellingPrice = 'Selling price: %s',
+	--- V3.1.1
+	House8 = 'Modern House',
+	houseDescription_8 = 'It is not a mansion, but it is big as one.',
 }

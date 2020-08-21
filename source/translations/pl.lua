@@ -719,4 +719,7 @@ lang.pl = {
 	item_bananaCake = 'Bananowe ciasto',
 	item_croquettes = 'Krokiety ziemniaczane',
 	itemInfo_sellingPrice = 'Cena sprzedazy: %s',
+	--- V3.1.1
+	House8 = 'Nowoczesny dom',
+	houseDescription_8 = 'To nie jest dwor, ale jest duzy jak jeden.',
 }

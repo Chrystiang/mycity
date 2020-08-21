@@ -130,5 +130,10 @@ versionLogs = {
 			name = 'Görev 5!',
 			_1 = '<rose>Yeni:</rose> Görev 05: Mutfak Kabusları!\nRemi\'ye siparişleri göndermesi için yardım et!\n\n<rose>Yeni Tarifler:</rose> Muzlu Pasta ve Patates Kroket!\n\n<rose>Yeni:</rose> Yan görevleri geçebilme!\nGünde bir defa bir yan görevi geçebilirsin.\nGeçilmiş yan görevler Türkiye saati ile 03:00\'e kadar tekrar karşıma çıkmayacak.\n\nRestorant yeniden çizildi.\nSiparişlerin ne kadar zamanı kaldığını göstermek için siparişin yanına bir zamanlayıcı eklendi.',
 		},
+		ar = {
+			name = '!المهمة 5',
+			_1 = '!المهمة 05: كوابيس المطبخ <rose>:جديد</rose>\n!ساعد ريمي في توصيل طلبات الطعام\n\n!كعكة الموز و كروكيت بالبطاطا<rose>:وصفات جديدة</rose>\n\n!تخطي المهمات الثانوية <rose>:جديد</rose>\n!يمكنك فقط تخطي المهمات الثانوية مرة واحدة في اليوم\n(CDT) 19:00 لن تظهر المهام الجانبية التي تم تخطيها مرة أخرى حتى الساعة\n\n.تم إعادة رسم المطعم\n.سيشير العداد الذي بجانب قائمة طلبات الطعام إلى الوقت الذي لا يزال فيه الطلب نشطًا',
+		},
 	},
 }
+versionLogs['v3.1.1'] = versionLogs['v3.1.0']

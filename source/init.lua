@@ -58,9 +58,9 @@ if ROOM.name == "*#fofinho" or ROOM.community == 'sk' then
 else
 	TFM.setRoomPassword('')
 	if string.match(ROOM.name, "^en%-#mycity[1-9]$") then
-		room.requiredPlayers = 0
+		room.requiredPlayers = 2
 		room.maxPlayers = math.ceil(room.maxPlayers/2)
-		RUNTIME_LIMIT = 40
+		RUNTIME_LIMIT = 35
 	end
 end
 

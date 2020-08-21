@@ -130,18 +130,31 @@ mainAssets.__houses = {
 			axis    = {0, -30},
 		},
 	},
-	[8] = { -- Spongebob House
+	[8] = { -- Mansion
 		properties = {
-			price = 25000000,
-			png = '',
-			limitedTime = os.time{day=25, year=2020, month=4},
+			price = 100000,
+			png = '174129c8f60.png',
 		},
 		inside = {
-			image   = '17256699f73.png',
+			image   = '17413067048.png',
+			grounds = function(terrainID)
+				addGround(-6500+terrainID*20, 76 + (terrainID-1)*1500 + 60, 1397 -550 + 706, {type = 12, color = 0xb8947c, height = 22, width = 150, friction = 0.3, restitution = 0.2})
+				addGround(-6501+terrainID*20, 400 + (terrainID-1)*1500 + 60, 1397 -550 + 706, {type = 12, color = 0xb8947c, height = 22, width = 360, friction = 0.3, restitution = 0.2})
+				addGround(-6502+terrainID*20, 180 + (terrainID-1)*1500 + 60, 1397 -550 + 548, {type = 12, color = 0xb8947c, height = 24, width = 332, friction = 0.3})
+				addGround(-6503+terrainID*20, 492 + (terrainID-1)*1500 + 60, 1397 -550 + 548, {type = 12, color = 0xb8947c, height = 24, width = 152, friction = 0.3})
+				addGround(-6504+terrainID*20, 153 + (terrainID-1)*1500 + 60, 1397 -550 + 480, {type = 14, height = 145, width = 10, friction = 0.3})
+				addGround(-6505+terrainID*20, 423 + (terrainID-1)*1500 + 60, 1397 -550 + 482, {type = 14, height = 148, width = 10, friction = 0.3})
+				addGround(-6506+terrainID*20, 353 + (terrainID-1)*1500 + 60, 1397 -550 + 346, {type = 14, height = 15, width = 200, angle = 45})
+				addGround(-6507+terrainID*20, 223 + (terrainID-1)*1500 + 60, 1397 -550 + 346, {type = 14, height = 15, width = 200, angle = -45})
+				addGround(-6508+terrainID*20, 527 + (terrainID-1)*1500 + 60, 1397 -550 + 626, {type = 14, height = 160, width = 10, friction = 0.3})
+				addGround(-6509+terrainID*20, 53 + (terrainID-1)*1500 + 60, 1397 -550 + 626, {type = 14, height = 160, width = 10, friction = 0.3})
+				addGround(-6510+terrainID*20, 186 + (terrainID-1)*1500 + 60, 1397 -550 + 866, {type = 12, color = 0xb8947c, height = 10, width = 74, friction = 0.3, restitution = 1.2})
+				addGround(-6511+terrainID*20, 381 + (terrainID-1)*1500 + 60, 1397 -550 + 692, {type = 12, color = 0xb8947c, height = 10, width = 72, friction = 0.3, restitution = 1.2})
+			end
 		},
 		outside = {
-			icon    = '171b40ef58c.png',
-			axis    = {0, -49},
+			icon	= '174129a5ee3.png',
+			axis	= {0, -28},
 		},
 	},
 	[9] = { -- Restaurant
@@ -155,7 +168,7 @@ mainAssets.__houses = {
 		},
 		outside = {
 			icon    = '1727ba0e8b2.png',
-			axis    = {0, -35},
+			axis    = {0, -50},
 		},
 	},
 }

@@ -318,7 +318,7 @@ lang.br = {
 	item_honey = 'Mel',
 	item_grilledLobster = 'Lagosta Grelhada',
 	item_frogSandwich = 'Sapoíche',
-	item_chocolateCake = 'Torta de Chocolate',
+	item_chocolateCake = 'Bolo de Chocolate',
 	item_wheatFlour = 'Farinha de Trigo',
 	item_salad = 'Salada',
 	item_lettuce = 'Alface',
@@ -720,4 +720,7 @@ lang.br = {
 	item_bananaCake = 'Bolo de Banana',
 	item_croquettes = 'Croquete de Batata',
 	itemInfo_sellingPrice = 'Preço de venda: %s',
+	--- V3.1.1
+	House8 = 'Casa Moderna',
+	houseDescription_8 = 'Não é uma mansão, mas é tão grande quanto.',
 }

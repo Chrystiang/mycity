@@ -450,7 +450,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			savedata(player)
 			if players[player].job == 'farmer' then
 				job_updatePlayerStats(player, 5)
-				giveExperiencePoints(player, 250)
+				giveExperiencePoints(player, owner == 'Oliver' and 62 or 250)
 			end
 		end
 	elseif callback == 'recipes' then

@@ -35,17 +35,18 @@ end
 
 sideQuest_new = function(player)
 	local nextQuest
+	local currentQuestType = sideQuests[players[player].sideQuests[1]].alias or players[player].sideQuests[1]
 	while true do
 		nextQuest = math.random(#sideQuests)
 		if players[player].sideQuests[5] == math.floor(os.time() / (24*60*60*1000)) then
-			if nextQuest ~= players[player].sideQuests[1] then
+			if nextQuest ~= currentQuestType then
 				if sideQuest_checkAlias(nextQuest, players[player].sideQuests[6]) then
 					break
 				end
 			end
 		else
-			if nextQuest ~= players[player].sideQuests[1] and nextQuest ~= 8 then
-				if sideQuest_checkAlias(nextQuest, players[player].sideQuests[1]) then
+			if nextQuest ~= currentQuestType and nextQuest ~= 8 then
+				if sideQuest_checkAlias(nextQuest, currentQuestType) then
 					break
 				end
 			end

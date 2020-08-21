@@ -746,9 +746,12 @@ lang.hu = {
 	--- V3.1.0
 	furniture_freezer = 'Fagyasztó',
 	confirmButton_skipQuest = 'Kihagyás!',
-	skipQuest = 'Mellékküldetés Kihagyása',
+	skipQuest = '<font size="9">Mellékküldetés Kihagyása</font>',
 	skipQuestTxt = 'Biztosan ki akarod hagyni ezt a Mellékküldetést? <r>Naponta csak egyszer teheted meg.</r>',
 	item_bananaCake = 'Banántorta',
 	item_croquettes = 'Burgonya Krokett',
 	itemInfo_sellingPrice = 'Eladási ár: %s',
+	--- V3.1.1
+	House8 = 'Modern Ház',
+	houseDescription_8 = 'Ez nem egy kastély, de ettől még nagy.',
 }

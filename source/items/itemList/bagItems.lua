@@ -187,7 +187,7 @@ bagItems = {
 	},
 	coffee = {
 		id = 11,
-		price = 90,
+		price = 100,
 		power = 25,
 		hunger = 1,
 		png = '16c00e1f53b.png',
@@ -195,13 +195,13 @@ bagItems = {
 	},
 	hotChocolate = {
 		id = 12,
-		price = 100,
+		price = 168,
 		png = '17157e81a35.png',
 		type = 'food',
 	},
 	milkShake = {
 		id = 13,
-		price = 110,
+		price = 260,
 		png = '17157f95ae1.png',
 		type = 'food',
 		npcShop = 'kariina',
@@ -489,14 +489,14 @@ bagItems = {
 	},
 	sauce = {
 		id = 28,
-		price = 20,
+		price = 30,
 		type = 'food',
 		png = '17157debbd9.png',
 		npcShop = 'kariina',
 	},
 	hotsauce = {
 		id = 29,
-		price = 20,
+		price = 30,
 		type = 'food',
 		png = '17157e02ea4.png',
 		npcShop = 'kariina',
@@ -529,7 +529,7 @@ bagItems = {
 	},
 	pizza = {
 		id = 33,
-		price = 350,
+		price = 286,
 		type = 'food',
 		png = '171576bbb9e.png',
 		power = 20,

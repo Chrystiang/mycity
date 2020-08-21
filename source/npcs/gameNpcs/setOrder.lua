@@ -46,6 +46,14 @@ gameNpcs.setOrder = function(npcName)
 			completed = false,
 		}
 	end
+	local stopwatch = addImage('174082ea765.png', "_1001", 16020, 1577 + (orderList[npcName]-1)*40)
+	local stopwatchTimer 
+	stopwatchTimer = addTimer(function(time)
+		slice = slice - 1
+		removeImage(stopwatch)
+		stopwatch = addImage(circleSlices[slice], "_1001", 16020, 1577 + (orderList[npcName]-1)*40)
+	end, sliceDuration * 1000, 8)
+
 	addTimer(function(time)
 		if time == orderTime then
 			local images = character.orderList[npcName].fulfilled
@@ -69,18 +77,9 @@ gameNpcs.setOrder = function(npcName)
 			end
 
 			--TFM.chatMessage('<FC>'..nextOrder..' was chosen!')
+			removeTimer(stopwatchTimer)
+			removeImage(stopwatch)
 			gameNpcs.setOrder(nextOrder)
 		end
 	end, 1000, orderTime)
-
-	local stopwatch = addImage('174082ea765.png', "_1001", 16020, 1577 + (orderList[npcName]-1)*40)
-	addTimer(function(time)
-		if time ~= 8 then
-			slice = slice - 1
-			removeImage(stopwatch)
-			stopwatch = addImage(circleSlices[slice], "_1001", 16020, 1577 + (orderList[npcName]-1)*40)
-		else
-			removeImage(stopwatch)
-		end
-	end, sliceDuration * 1000, 8)
 end
