@@ -754,4 +754,5 @@ lang.hu = {
 	--- V3.1.1
 	House8 = 'Modern Ház',
 	houseDescription_8 = 'Ez nem egy kastély, de ettől még nagy.',
+	welcomeMsg = '<vp>[•] Mycity hu (törzs) <g>-<fc> Csatlakozz a magyar közösség egyetlen hivatalos #mycity törzséhez! Rendszeres játékok, nagyszerű jutalmak! Vedd fel a kapcsolatot egy törzstaggal!',
 }

@@ -53,7 +53,7 @@ end
 
 mine_generate()
 
-if ROOM.name == "*#fofinho" or ROOM.community == 'sk' then
+if ROOM.name == "*#fofinho" or ROOM.community == 'sk' or ROOM.name == "*Mycity hu" then
 	room.requiredPlayers = 0
 else
 	TFM.setRoomPassword('')

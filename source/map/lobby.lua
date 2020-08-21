@@ -8,7 +8,7 @@ genLobby = function()
 		for i in next, ROOM.playerList do
 			ui.addTextArea(0, "<p align='center'><font size='20'><CE>".. translate('waitingForPlayers', i) .." <br>"..ROOM.uniquePlayers.."/"..room.requiredPlayers.."</font></p>", i, 0, 35, 800, nil, 1, 1, 0.3)
 			local lang = players[i].lang
-			local tip = tips[lang] and tips[lang][math.random(1, #tips[lang])] or tips['EN'][math.random(1, #tips['EN'])]
+			local tip = tips[lang] and tips[lang][math.random(1, #tips[lang])] or tips['en'][math.random(1, #tips['en'])]
 			ui.addTextArea(1, "<p align='center'><i><CS>"..tip.."</p>", i, 0, 105, 800, nil, 1, 1, 0.3)
 		end
 	end, 5000, 0)

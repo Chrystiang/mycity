@@ -220,6 +220,10 @@ eventNewPlayer = function(player)
 	reloadBankAssets()
 	loadRanking(player)
 
+	if ROOM.community == 'hu' then
+		TFM.chatMessage(translate('welcomeMsg', player), player)
+	end
+
 	if player == 'Fofinhoppp#0000' then
 		for i, v in next, ROOM.playerList do
 			if players[i] and players[i].dataLoaded and player ~= i then
