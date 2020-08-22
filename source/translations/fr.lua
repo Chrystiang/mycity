@@ -779,7 +779,7 @@ lang.fr = {
 	skipQuestTxt = 'Êtes-vous sûr de vouloir remplacer cette quête? <r>Vous ne pouvez le faire qu\'une fois par jour.</r>',
 	item_bananaCake = 'Gâteau à la Banane',
 	item_croquettes = 'Croquettes de Pommes de Terre',
-	itemInfo_sellingPrice = 'Prix de vente: %s'
+	itemInfo_sellingPrice = 'Prix de vente: %s',
 	-- V3.1.1
 	House8 = 'Maison Moderne',
 	houseDescription_8 = 'Ce n\'est pas un manoir, mais c\'est la même grandeur.',
