@@ -529,6 +529,69 @@ lang.fr = {
 				_add = "Donnez la pâte à Kariina."
 			}
 		},
+		[5] = {
+			name = 'Quête 05: Cauchemars en Cuisine!',
+			[0] = {
+				_add = 'Allez sur l\'île.',
+			},
+			[1] = {
+				_add = 'Allez au restaurant.',
+			},
+			[2] = {
+				dialog = 'Salut. J\'ai besoin de ton aide pour résoudre un gros problème...\nNous ne sommes pas en mesure de gérer et de livrer les commandes en raison de la forte demande dans le restaurant.\nPouvez-vous m\'aider à passer des commandes correctement?\nGénial! Comme nous vendons beaucoup de plats, tu devras d\'abord apprendre les recettes de certains plats. D\'accord?',
+				_add = 'Parlez à Remi.',
+			},
+			[3] = {
+				_add = 'Faites une Miche de Pain.',
+			},
+			[4] = {
+				_add = 'Préparez une Salade.',
+			},
+			[5] = {
+				_add = 'Faites un Gâteau au Chocolat.',
+			},
+			[6] = {
+				_add = 'Préparez un Gren-wich.', -- "Sandwich à la Grenouille"
+			},
+			[7] = {
+				_add = 'Faites des Frites.',
+			},
+			[8] = {
+				_add = 'Faites un Pudding.',
+			},
+			[9] = {
+				_add = 'Faites un Pain à l\'Ail.',
+			},
+			[10] = {
+				_add = 'Faites un Ragoût de Poisson.',
+			},
+			[11] = {
+				_add = 'Préparez un Fromage Grillé.',
+			},
+			[12] = {
+				_add = 'Préparez un Burger de Poisson.',
+			},
+			[13] = {
+				_add = 'Faites une Bruschetta.',
+			},
+			[14] = {
+				_add = 'Faites une Limonade.',
+			},
+			[15] = {
+				_add = 'Faites des Pierogis.',
+			},
+			[16] = {
+				dialog = 'Tu as mis trop de temps...\nQuoi qu\'il en soit, maintenant que tu as appris les ingrédients de chaque recette, j\'aurai besoin de toi pour livrer les commandes qui seront affichées dans ce tableau de commande.',
+				_add = 'Parlez àRemi..',
+			},
+			[17] = {
+				_add = 'Livrez %s commandes.',
+			},
+			[18] = {
+				dialog = 'Je te suis très reconnaissant pour ton aide! Les clients sont contents et moi encore plus!\nPour te remercier, j\'ai laissé une petite surprise chez toi: Un congélateur!\nTu pourras stocker encore plus d\'objets dans ta maison!\nÀ bientôt, j\'espère!',
+				_add = 'Parlez à Remi.',
+			},
+		},
 	},
 	item_lemonade = "Limonade",
 	houses = "Maisons",
@@ -709,4 +772,15 @@ lang.fr = {
 	item_grilledCheese = 'Fromage Grillé',
 	item_fishBurger = 'Burger au Poisson',
 	item_sushi = 'Sushi',
+	--- V3.1.0
+	furniture_freezer = 'Congélateur.',
+	confirmButton_skipQuest = 'Remplacer la Quête!',
+	skipQuest = 'Remplacer la Quête',
+	skipQuestTxt = 'Êtes-vous sûr de vouloir remplacer cette quête? <r>Vous ne pouvez le faire qu\'une fois par jour.</r>',
+	item_bananaCake = 'Gâteau à la Banane',
+	item_croquettes = 'Croquettes de Pommes de Terre',
+	itemInfo_sellingPrice = 'Prix de vente: %s'
+	-- V3.1.1
+	House8 = 'Maison Moderne',
+	houseDescription_8 = 'Ce n\'est pas un manoir, mais c\'est la même grandeur.',
 }

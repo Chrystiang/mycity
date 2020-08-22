@@ -134,6 +134,10 @@ versionLogs = {
 			name = '!المهمة 5',
 			_1 = '!المهمة 05: كوابيس المطبخ <rose>:جديد</rose>\n!ساعد ريمي في توصيل طلبات الطعام\n\n!كعكة الموز و كروكيت بالبطاطا<rose>:وصفات جديدة</rose>\n\n!تخطي المهمات الثانوية <rose>:جديد</rose>\n!يمكنك فقط تخطي المهمات الثانوية مرة واحدة في اليوم\n(CDT) 19:00 لن تظهر المهام الجانبية التي تم تخطيها مرة أخرى حتى الساعة\n\n.تم إعادة رسم المطعم\n.سيشير العداد الذي بجانب قائمة طلبات الطعام إلى الوقت الذي لا يزال فيه الطلب نشطًا',
 		},
+		fr = {
+			name = 'Quête 5!',
+			_1 = '<rose>Nouveauté:</rose> Quête 05: Cauchemars en Cuisine!\nAide Remi à livrer les commandes!\n\n<rose>Nouvelles recettes:</rose> Gâteau à la Banane et Croquettes de Pommes de Terre!\n\n<rose>Nouveauté:</rose> Remplacer des quêtes annexes!\nVous ne pouvez remplacer une quête annexe qu\'une fois par jour.\nLe remplacement de quêtes annexes n\'apparaîtra pas avant 02:00 (UTC+2).\n\nLe restaurant a été redessiné.\nUn minuteur à côté de la liste des commandes indiquera l\'heure à laquelle la commande est toujours active.',
+		},
 	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']

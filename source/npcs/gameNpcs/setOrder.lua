@@ -52,7 +52,7 @@ gameNpcs.setOrder = function(npcName)
 		slice = slice - 1
 		removeImage(stopwatch)
 		stopwatch = addImage(circleSlices[slice], "_1001", 16020, 1577 + (orderList[npcName]-1)*40)
-	end, sliceDuration * 1000, 8)
+	end, sliceDuration * 1000, 7)
 
 	addTimer(function(time)
 		if time == orderTime then
