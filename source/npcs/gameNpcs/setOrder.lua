@@ -64,6 +64,7 @@ gameNpcs.setOrder = function(npcName)
 			end
 			character.orderList[npcName] = nil
 			character.canOrder[npcName] = place
+			orderList[npcName] = nil
 			local nextOrder
 			while true do
 				nextOrder = table.randomKey(character.canOrder)
@@ -78,7 +79,6 @@ gameNpcs.setOrder = function(npcName)
 
 			--TFM.chatMessage('<FC>'..nextOrder..' was chosen!')
 			removeTimer(stopwatchTimer)
-			removeImage(stopwatch)
 			gameNpcs.setOrder(nextOrder)
 		end
 	end, 1000, orderTime)
