@@ -22,7 +22,7 @@ sideQuests = {
 	[5] = { -- Use 15 items
 		type = 'type:items;use',
 		quanty = 15,
-		points = 2,
+		points = 5,
 	},
 	[6] = { -- Spend 2000 coins
 		type = 'type:coins;use',
@@ -34,15 +34,15 @@ sideQuests = {
 		quanty = 10,
 		points = 3,
 	},
-	[8] = { -- Get 5 Gold Nuggets
-		type = 'type:goldNugget',
-		quanty = 0,
-		points = 4,
+	[8] = { -- Get 5 Gold Nuggets [removed]
+		quanty = 1,
+		points = 1,
+		alias = 5
 	},
 	[9] = { -- Rob the bank without getting arrested
 		type = 'type:bank',
 		quanty = 1,
-		points = 7,
+		points = 13,
 	},
 	[10] = { -- Rob 3 times
 		type = 'type:rob',
@@ -138,6 +138,16 @@ sideQuests = {
 		quanty = 6,
 		points = 6,
 		alias = 4,
+	},
+	[29] = { -- Deliver 2 orders
+		quanty = 2,
+		points = 2,
+		alias = 16,
+	},
+	[30] = { -- Use 5 items
+		quanty = 5,
+		points = 1,
+		alias = 5,
 	},
 }
 
