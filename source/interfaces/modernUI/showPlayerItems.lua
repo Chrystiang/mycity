@@ -59,8 +59,9 @@ modernUI.showPlayerItems = function(self, items, chest)
 						end
 						if not blockUse then
 							button(0, translate(itemType == 'food' and 'eatItem' or 'use', player), 
-							function(player) 
+							function(player)
 								if usedSomething then return end
+								if players[player].canDrive then return alert_Error(player, 'error', 'error') end
 								if quanty > 0 then
 									if itemName == 'cheese' then 
 										if players[player].whenJoined > os.time() then 

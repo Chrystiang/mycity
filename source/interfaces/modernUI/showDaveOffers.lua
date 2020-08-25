@@ -1,4 +1,4 @@
-modernUI.tradeInterface = function(self)
+modernUI.showDaveOffers = function(self)
 	local id = self.id
 	local player = self.player
 	local width = self.width 

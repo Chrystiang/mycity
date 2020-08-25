@@ -46,9 +46,9 @@ modernUI.questInterface = function(self)
 		if i == 2 then -- Skip Side Quest
 			-- If the player already skipped a quest today, end the function
 			if players[player].sideQuests[5] == math.floor(os.time() / (24*60*60*1000)) then return end
-
-			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('174077c73af.png', ":28", x + 246, y + 8 + (i-1)*100, player)
-			ui.addTextArea(id..(905), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, x + 246, y + 8 + (i-1)*100, 20, 20, 0, 0x24474, 0, true,
+			local mirrorButton = players[player].settings.mirroredMode == 1 and 10 or 246
+			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('174077c73af.png', ":28", x + mirrorButton, y + 8 + (i-1)*100, player)
+			ui.addTextArea(id..(905), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, x + mirrorButton, y + 8 + (i-1)*100, 20, 20, 0, 0x24474, 0, true,
 				function()
 					-- If the player already skipped a quest today, end the function to avoid double click
 					if players[player].sideQuests[5] == math.floor(os.time() / (24*60*60*1000)) then return end

@@ -106,7 +106,6 @@ modernUI.showSettingsMenu = function(self)
 		elseif selectedWindow == 4 then
 			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17136fe68cc.png', ":26", 520, y - 20, player)
 			ui.addTextArea(id..900, '<font color="#ebddc3" size="10"> '..translate('settings_donateText', player), player, x, y -23, 365, 200, 0xff0000, 0xff0000, 0, true)
-			--ui.addTextArea(id..901, '<font size="10"><rose>'..translate('settings_donateText2', player), player, x, y +112, 485, nil, 0xff0000, 0xff0000, 0, true)
 
 			button(5, translate('settings_donate', player), function(player) TFM.chatMessage('<rose>https://a801-luadev.github.io/?redirect=mycity', player) end, x+50, y+150, 250)
 		end
