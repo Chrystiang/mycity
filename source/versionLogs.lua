@@ -141,3 +141,4 @@ versionLogs = {
 	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
+versionLogs['v3.1.2'] = versionLogs['v3.1.1']

@@ -732,4 +732,10 @@ lang.en = {
 	--- V3.1.1
 	House8 = 'Modern House',
 	houseDescription_8 = 'It is not a mansion, but it is big as one.',
+	--- V3.2.0
+	confirmButton_trade = 'Trade',
+	confirmButton_cancel = 'Cancel',
+	trade_cancelled = '%s cancelled the trade.',
+	trade_cancelled_title = 'Trade cancelled',
+	trade_invite = '%s wants to start a trade.',
 }

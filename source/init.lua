@@ -94,5 +94,3 @@ local syncTimer = system.newTimer(function()
 		system.loadPlayerData('Sharpiebot#0000')
 	end
 end, 1000, true)
-
-initializingModule = false

@@ -723,4 +723,11 @@ lang.br = {
 	--- V3.1.1
 	House8 = 'Casa Moderna',
 	houseDescription_8 = 'Não é uma mansão, mas é tão grande quanto.',
+	--- V3.2.0
+	confirmButton_trade = 'Trocar',
+	confirmButton_cancel = 'Cancelar',
+	trade_cancelled = '%s cancelou a troca.',
+	trade_cancelled_title = 'Troca cancelada',
+	trade_invite = '%s deseja iniciar uma troca.',
+	trade_invite_title = 'Proposta de troca',
 }

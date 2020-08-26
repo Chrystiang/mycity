@@ -23,7 +23,9 @@ sideQuest_reward = function(player)
 end
 
 sideQuest_checkAlias = function(nextQuest, currentQuest)
-	if sideQuests[nextQuest].alias then
+	if nextQuest == players[player].sideQuests[6] or nextQuest == 8 then
+		return false
+	elseif sideQuests[nextQuest].alias then
 		if sideQuests[nextQuest].alias ~= currentQuest then
 			return true
 		end
@@ -39,13 +41,13 @@ sideQuest_new = function(player)
 	while true do
 		nextQuest = math.random(#sideQuests)
 		if players[player].sideQuests[5] == math.floor(os.time() / (24*60*60*1000)) then
-			if nextQuest ~= currentQuestType and nextQuest ~= 8 then
+			if nextQuest ~= currentQuestType then
 				if sideQuest_checkAlias(nextQuest, players[player].sideQuests[6]) then
 					break
 				end
 			end
 		else
-			if nextQuest ~= currentQuestType and nextQuest ~= 8 then
+			if nextQuest ~= currentQuestType then
 				if sideQuest_checkAlias(nextQuest, currentQuestType) then
 					break
 				end

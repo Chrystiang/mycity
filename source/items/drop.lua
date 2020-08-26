@@ -1,10 +1,10 @@
 item_drop = function(item, player, amount)
 	local x, y
 	amount = amount or 1
-	if type(player) == 'string' then 
+	if type(player) == 'string' then  -- if is from a player
 		x = ROOM.playerList[player].x
 		y = ROOM.playerList[player].y-10
-	else -- or a table, with x and y values
+	else -- or the game, with x and y values
 		x = player.x 
 		y = player.y-10
 		player = 'Oliver'

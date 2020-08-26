@@ -43,7 +43,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		end
 
 		local ui_ID = tonumber(args[2])
-		for i = 876, 995 do
+		for i = 876, 1200 do
 			ui.removeTextArea(ui_ID..i, player)
 		end
 		player_removeImages(playerData._modernUIImages[ui_ID])

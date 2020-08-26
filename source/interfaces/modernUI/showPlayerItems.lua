@@ -7,27 +7,46 @@ modernUI.showPlayerItems = function(self, items, chest)
 	local y = (200 - height/2) + 65
 	local currentPage = 1
 	if not items then return alert_error(player, 'error', 'emptyBag') end
-	local maxPages = math.ceil(#items/15)
 	local usedSomething = false
 	local storageLimits = {chest and players[player].totalOfStoredItems.chest[chest] or players[player].totalOfStoredItems.bag, chest and 50 or players[player].bagLimit}
 	local storageAmount = storageLimits[1]..'/'..storageLimits[2]
+	local sizeScale = {}
+	if #items > 15 then
+		--[[
+			[1] Max items per page, 
+			[2] itemSize, 
+			[3] background image, 
+			[4] selected image,
+			[5] items per line, 
+			[6] item image align,
+			[7] item amount align,
+			[8] item amount text size
+		]]
+		sizeScale = {32, 42, '174283c22c9.jpg', '174284cb5fc.png', 8, -5, 27, 10}
+	else
+		sizeScale = {15, 62, '1722d2d8234.jpg', '1742b444b05.png', 5, 5, 42, 13}
+	end
+	local maxPages = math.ceil(#items/sizeScale[1])
 
 	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
 	ui.addTextArea(id..'895', '<font color="#95d44d">'..translate('itemAmount', player):format('<cs>'..storageAmount..'</cs>'), player, x, y -20, 312, nil, 0xff0000, 0xff0000, 0, true)
 	local function showItems()
-		local minn = 15 * (currentPage-1) + 1
-		local maxx = currentPage * 15
+		local minn = 32 * (currentPage-1) + 1
+		local maxx = currentPage * 32
 		local i = 0
 		for _ = 1, #items do 
-			i = i + 1
+			i = i + 1 
 			local v = items[_]
 			if i >= minn and i <= maxx then
-				local i = i - 15 * (currentPage-1)
+				local i = i - 32 * (currentPage-1)
 				local image = bagItems[v.name].png or '16bc368f352.png'
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1722d2d8234.jpg', ":26", x + ((i-1)%5)*63, y + math.floor((i-1)/5)*65, player)
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(image, ":26", x + 5 + ((i-1)%5)*63, y + 5 + math.floor((i-1)/5)*65, player)
-				ui.addTextArea(id..(895+i*2), '<p align="right"><font color="#95d44d" size="13"><b>x'..v.qt, player, x + 5 + ((i-1)%5)*63, y + 42 + math.floor((i-1)/5)*65, 55, nil, 0xff0000, 0xff0000, 0, true)
-				ui.addTextArea(id..(896+i*2), '\n\n\n\n', player, x + 3 + ((i-1)%5)*63, y + 3 + math.floor((i-1)/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true,
+				local _x = x + ((i-1)%sizeScale[5]) * sizeScale[2]
+				local _y = y + math.floor((i-1)/sizeScale[5]) * sizeScale[2]
+
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(sizeScale[3], ":26", _x, _y, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(image, ":26", _x + sizeScale[6], _y + sizeScale[6], player)
+				ui.addTextArea(id..(895+i*2), '<p align="right"><font color="#95d44d" size="'..sizeScale[8]..'"><b>x'..v.qt, player, _x, _y + sizeScale[7], sizeScale[2] - 2, nil, 0xff0000, 0xff0000, 0, true)
+				ui.addTextArea(id..(896+i*2), '\n\n\n\n', player, _x + 3, _y + 3, sizeScale[2] - 2, sizeScale[2] -2, 0xff0000, 0xff0000, 0, true,
 					function(player)
 						local itemName = v.name 
 						local quanty = v.qt 
@@ -40,7 +59,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 						local selectedQuanty = 1
 						player_removeImages(players[player]._modernUISelectedItemImages[1])
 						for i = 0, 3 do 
-							ui.removeTextArea(id..(930+i), player)
+							ui.removeTextArea(id..(990+i), player)
 						end
 						local description = item_getDescription(itemName, player)
 						ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..itemName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
@@ -49,13 +68,13 @@ modernUI.showPlayerItems = function(self, items, chest)
 						ui.addTextArea(id..'893', '<font color="#cef1c3">01', player, x+425, y+121 + (blockUse and 30 or 0), nil, nil, 0x24474D, 0x314e5, 0, true)
 
 						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(image, "&26", 542, 125, player)
-						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('1722d33f76a.png', ":26", x + ((i-1)%5)*63-3, y + math.floor((i-1)/5)*65-3, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(sizeScale[4], ":26", _x - 1, _y - 1, player)
 
 						local function button(i, text, callback, x, y, width, height)
-							ui.addTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
-							ui.addTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-							ui.addTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
-							ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
+							ui.addTextArea(id..(990+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
+							ui.addTextArea(id..(991+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+							ui.addTextArea(id..(992+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
+							ui.addTextArea(id..(993+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
 						end
 						if not blockUse then
 							button(0, translate(itemType == 'food' and 'eatItem' or 'use', player), 
@@ -131,7 +150,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 			currentPage = currentPage + count
 			player_removeImages(players[player]._modernUISelectedItemImages[1])
 			player_removeImages(players[player]._modernUISelectedItemImages[3])
-			for i = 897, 929 do 
+			for i = 897, 1020 do 
 				ui.removeTextArea(id..i, player)
 			end
 			updateScrollbar()
