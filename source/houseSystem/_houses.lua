@@ -136,7 +136,7 @@ mainAssets.__houses = {
 			png = '174129c8f60.png',
 		},
 		inside = {
-			image   = '17413067048.png',
+			image   = '1742c1f74e9.png',
 			grounds = function(terrainID)
 				addGround(-6500+terrainID*20, 76 + (terrainID-1)*1500 + 60, 1397 -550 + 706, {type = 12, color = 0xb8947c, height = 22, width = 150, friction = 0.3, restitution = 0.2})
 				addGround(-6501+terrainID*20, 400 + (terrainID-1)*1500 + 60, 1397 -550 + 706, {type = 12, color = 0xb8947c, height = 22, width = 360, friction = 0.3, restitution = 0.2})

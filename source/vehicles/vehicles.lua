@@ -1,6 +1,7 @@
 drive = function(name, vehicle)
 	local playerData = players[name]
 	if playerData.canDrive or playerData.place == 'mine' or not playerData.cars[1] then return end
+	if playerData.holdingItem then return end
 	local car = mainAssets.__cars[vehicle]
 	if not car then return end
 	if car.type ~= 'boat' and (ROOM.playerList[name].y < 7000 or ROOM.playerList[name].y > 7800 or players[name].place ~= 'town' and players[name].place ~= 'island') then return end

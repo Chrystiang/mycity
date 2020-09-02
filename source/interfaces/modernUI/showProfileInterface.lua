@@ -29,7 +29,7 @@ modernUI.profileInterface = function(self, target)
    	local text_General =
    		string.replace(player, {["{0}"] = 'profile_coins', ["{1}"] = '$'..targetData.coins}) ..'\n' ..
    		string.replace(player, {["{0}"] = 'profile_spentCoins', ["{1}"] = '$'..targetData.spentCoins}) ..'\n' ..
-   		string.replace(player, {["{0}"] = 'profile_purchasedHouses', ["{1}"] = #targetData.casas..'/'..#mainAssets.__houses-3}) ..'\n' ..
+   		string.replace(player, {["{0}"] = 'profile_purchasedHouses', ["{1}"] = #targetData.casas..'/'..#mainAssets.__houses-2}) ..'\n' ..
    		string.replace(player, {["{0}"] = 'profile_purchasedCars', ["{1}"] = #targetData.cars..'/'..#mainAssets.__cars-1}) ..'\n' ..
    		string.replace(player, {["{0}"] = 'profile_completedQuests', ["{1}"] = (targetData.questStep[1]-1)..'/'..questsAvailable}) ..'\n' ..
    		string.replace(player, {["{0}"] = 'profile_completedSideQuests', ["{1}"] = targetData.sideQuests[3]}) ..'\n' ..

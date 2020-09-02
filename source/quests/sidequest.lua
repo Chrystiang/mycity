@@ -23,7 +23,7 @@ sideQuest_reward = function(player)
 end
 
 sideQuest_checkAlias = function(nextQuest, currentQuest)
-	if nextQuest == players[player].sideQuests[6] or nextQuest == 8 then
+	if nextQuest == currentQuest or nextQuest == 8 then
 		return false
 	elseif sideQuests[nextQuest].alias then
 		if sideQuests[nextQuest].alias ~= currentQuest then
@@ -33,8 +33,8 @@ sideQuest_checkAlias = function(nextQuest, currentQuest)
 		return true
 	end
 	return false
-end
-
+end 
+ 
 sideQuest_new = function(player)
 	local nextQuest
 	local currentQuestType = sideQuests[players[player].sideQuests[1]].alias or players[player].sideQuests[1]

@@ -144,7 +144,9 @@ bagItems = {
 			players[i].mouseSize = players[i].mouseSize - 0.7
 			TFM.changePlayerSize(i, players[i].mouseSize)
 			ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
-			addTimer(function(time)
+			local _timer
+			_timer = addTimer(function(time)
+				if not players[i].inRoom then removeTimer(_timer) end
 				local width = 84 - math.floor(time/30 * 80)
 				ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
 				if players[i].place == 'bank' then
@@ -172,7 +174,9 @@ bagItems = {
 			players[i].mouseSize = players[i].mouseSize + 2
 			TFM.changePlayerSize(i, players[i].mouseSize)
 			ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0xf169ef, 0xf169ef, 0.5, true)
-			addTimer(function(time)
+			local _timer
+			_timer = addTimer(function(time)
+				if not players[i].inRoom then removeTimer(_timer) end
 				local width = 84 - math.floor(time/30 * 80)
 				ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0xf169ef, 0xf169ef, 0.5, true)
 				if time == 30 then
