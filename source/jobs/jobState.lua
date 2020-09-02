@@ -42,7 +42,10 @@ end
 job_hire = function(job, player)
 	local playerData = players[player]
 	if not playerData or playerData.robbery.robbing then return end
-	
+	if job == 'police' and playerData.place ~= 'police' then 
+		return alert_Error(player, 'error', 'error')
+	end
+
 	if playerData.job then 
 		job_fire(player)
 	end
