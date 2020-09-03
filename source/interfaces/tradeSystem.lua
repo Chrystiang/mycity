@@ -39,7 +39,11 @@ tradeSystem.playerInterface = function(tradeInfo, player)
 	greenButton(200, 1, translate('confirmButton_cancel', player), player, 
 		function()
 			if tradeInfo.tradeData.finished then return end
-			tradeSystem.endTrade(tradeInfo, player)
+			if not tradeInfo.tradeData.confirmed[player] then
+				tradeSystem.endTrade(tradeInfo, player)
+			else
+				--tradeInfo.tradeData.confirmed[player] = false
+			end
 		end, 
 	372, 222, 60, 12)
 end
@@ -87,7 +91,7 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 			ui.addTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player, x + ((i-1)%4)*43, y + 24 + math.floor((i-1)/4)*43, 40, nil, 0xff0000, 0xff0000, 0, true)
 			ui.addTextArea(id..(801+i*2), '\n\n\n\n', player, x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, 40, 40, 0xff0000, 0xff0000, 0, true,
 				function()
-					if v.qt <= 0 then return end
+					if v.qt <= 0 or tradeInfo.tradeData.confirmed[player] then return end
 					v.qt = v.qt - 1
 					tradeSystem.insertItem(tradeInfo, v.name, player)
 					ui.updateTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player)
