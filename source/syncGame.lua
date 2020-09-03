@@ -77,10 +77,11 @@ syncFiles = function()
 		unrankedPlayers[#unrankedPlayers+1] = player..',0'
 	end
 
-	system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';')..'|'..table.concat(mainAssets.roles.admin, ';')..'|'..table.concat(mainAssets.roles.mod, ';')..'|'..table.concat(mainAssets.roles.helper, ';'), 1)
+	system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';')..'|'..table.concat(mainAssets.roles.admin, ';')..'|'..table.concat(mainAssets.roles.mod, ';')..'|'..table.concat(mainAssets.roles.helper, ';')..'|'..table.concat(mainAssets.roles.moduleTeam, ';'), 1)
 end
 
 saveGameData = function(bot)
+	if not syncData.connected then return end
 	sharpieData:set(bot, 'canUpdate', syncData.updating.updateMessage)
 	sharpieData:save(bot)
 end
