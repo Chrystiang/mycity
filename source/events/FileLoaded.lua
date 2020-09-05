@@ -23,6 +23,7 @@ onEvent("FileLoaded", function(file, data)
 		local admin = datas[3] or ''
 		local mod = datas[4] or ''
 		local helper = datas[5] or ''
+		local moduleTeam = datas[6] or ''
 
 		room.bannedPlayers = {}
 		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do
@@ -37,13 +38,10 @@ onEvent("FileLoaded", function(file, data)
 			room.unranked[#room.unranked+1] = player
 		end
 
-		mainAssets.roles.admin = {}
-		mainAssets.roles.mod = {}
-		mainAssets.roles.helper = {}
-
-		for index, role in next, {admin, mod, helper} do
+		for index, role in next, {admin, mod, helper, moduleTeam} do
+			local _role = (index == 1 and 'admin') or (index == 2 and 'mod') or (index == 3 and 'helper') or 'moduleTeam'
+			mainAssets.roles[_role] = {}
 			for player in string.gmatch(role, '([%w_+]+#%d+)') do
-				local _role = (index == 1 and 'admin') or (index == 2 and 'mod') or (index == 3 and 'helper')
 				mainAssets.roles[_role][#mainAssets.roles[_role]+1] = player
 			end
 		end
