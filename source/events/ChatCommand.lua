@@ -1,6 +1,7 @@
 onEvent("ChatCommand", function(player, command)
 	if room.isInLobby then return end
-
+	if not players[player].dataLoaded then return end
+	
 	local args = {}
 	for i in command:gmatch('%S+') do
 		args[#args+1] = i
