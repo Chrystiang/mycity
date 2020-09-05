@@ -25,6 +25,14 @@ end
 sideQuest_checkAlias = function(nextQuest, currentQuest)
 	if nextQuest == currentQuest or nextQuest == 8 then
 		return false
+	elseif sideQuests[currentQuest].alias then
+		if sideQuests[currentQuest].alias ~= nextQuest then
+			if sideQuests[nextQuest].alias and sideQuests[nextQuest].alias == sideQuests[currentQuest].alias then
+				return false
+			else 
+				return true
+			end
+		end
 	elseif sideQuests[nextQuest].alias then
 		if sideQuests[nextQuest].alias ~= currentQuest then
 			return true
