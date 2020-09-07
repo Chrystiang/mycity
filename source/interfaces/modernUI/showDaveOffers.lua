@@ -6,9 +6,7 @@ modernUI.showDaveOffers = function(self)
 	local x = (400 - width/2) - 12
 	local y = (200 - height/2)
 
-	for i = 1, 3 do 
-		math.randomseed(room.mathSeed * i^2)
-		local offerID = math.random(1, #mainAssets.__farmOffers)
+	for i, offerID in next, daveOffers do 
 		local offer = mainAssets.__farmOffers[offerID]
 
 		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage("1717eaef706.png", ":20", 288, y+65 + (i-1)*45, player) -- Background
