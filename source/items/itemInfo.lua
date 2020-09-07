@@ -10,9 +10,6 @@ item_getDescription = function(item, player, isFurniture)
 		end
 		if itemType == 'food' then 
 			description = description ..string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player), '<vp>'..power..'</vp>', '<vp>'..hunger..'</vp>')
-			if itemData.orderValue then
-				description = description .. '\n' .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.orderValue..'</vp>')
-			end
 		elseif itemData.miningPower then 
 			description = description .. translate('itemInfo_miningPower', player):format('<vp>0</vp>')
 		elseif item:find('Seed') and not isFurniture then 
@@ -24,6 +21,9 @@ item_getDescription = function(item, player, isFurniture)
 				end
 			end
 			description = description .. txt
+		end
+		if itemData.sellingPrice then
+			description = description .. '\n' .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.sellingPrice..'</vp>')
 		end
 	end
 	if itemData.credits then
