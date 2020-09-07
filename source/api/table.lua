@@ -1,6 +1,6 @@
-table.contains = function(table, val)
-   for i = 1, #table do
-	  if table[i] == val then
+table.contains = function(tbl, val)
+   for i = 1, #tbl do
+	  if tbl[i] == val then
 		 return true
 	  end
    end
@@ -23,6 +23,14 @@ table.concatFancy = function(tbl, sepMiddle, sepFinal, j)
 	sepFinal = sepFinal or sepMiddle or ''
 	j = j or #tbl
 	return table.concat(tbl, sepMiddle, 1, j - 1) .. sepFinal .. tbl[j]
+end
+
+table.getIndex = function(tbl, val)
+   for k, v in next, tbl do
+	  if v == val then
+		 return k
+	  end
+   end
 end
 
 table.getLength = function(tbl)
