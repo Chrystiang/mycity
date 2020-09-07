@@ -69,3 +69,7 @@ HouseSystem.plants = {
 		pricePerSeed = 800,
 	},
 }
+for i, v in next, HouseSystem.plants do
+	bagItems[v.name].sellingPrice = v.pricePerSeed/10
+	bagItems[v.name].isPlant = true
+end
