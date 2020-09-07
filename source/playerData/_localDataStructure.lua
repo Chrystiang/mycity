@@ -10,6 +10,9 @@ setPlayerData = function(player)
 		starIcons 	= {owned = {1}, selected = 1},
 		badges		= {},
 		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		--------- TRADE ---------
+		isTrading 	= false,
+		wishList 	= {},
 		--------- HOUSE ---------
 		editingHouse= false,
 		houseData	= {
