@@ -38,14 +38,44 @@ startRoom = function()
 	end
 end
 
+genDaveOffers = function()
+	daveOffers = {}
+	local i = 1
+	while #daveOffers < 3 do
+		math.randomseed(room.mathSeed * i^2)
+		local offerID = math.random(1, #mainAssets.__farmOffers)
+		local nextItem = mainAssets.__farmOffers[offerID].item[1]
+		local alreadySelling = false
+		for id, offer in next, daveOffers do
+			local item = mainAssets.__farmOffers[offer].item[1]
+			if item == nextItem then
+				alreadySelling = true
+			end
+		end
+		if not alreadySelling then
+			daveOffers[#daveOffers+1] = offerID
+		end
+		i = i + 1
+	end
+	math.randomseed(os.time())
+end
+
 for i, v in next, recipes do
 	newFoodValue(i)
 	newEnergyValue(i)
 	newDishPrice(i)
 end
 
+for i, v in next, HouseSystem.plants do
+	if bagItems[v.name] then
+		bagItems[v.name].sellingPrice = v.pricePerSeed/10
+		bagItems[v.name].isFruit = true
+	end
+end
+
 npcsStores.items = mergeItemsWithFurnitures(mainAssets.__furnitures, bagIds)
 buildNpcsShopItems()
+genDaveOffers()
 
 for item, data in next, Mine.ores do 
 	bagItems['crystal_'..item].price = math.floor(200*(12/data.rarity))
