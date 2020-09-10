@@ -11,10 +11,10 @@ modernUI.showSettingsMenu = function(self, donate)
 	local function button(i, text, callback, x, y, width, height)
 		local width = width or 146
 		local height = height or 15
-		ui.addTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
-		ui.addTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-		ui.addTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
-		ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
+		ui.addTextArea(id..(960+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
+		ui.addTextArea(id..(961+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+		ui.addTextArea(id..(962+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
+		ui.addTextArea(id..(963+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
 	end
 	local buttons = {}
 	local function addToggleButton(setting, name, state, _id)
@@ -23,7 +23,7 @@ modernUI.showSettingsMenu = function(self, donate)
 		buttons[buttonType] = {state = state}
 		local buttonID = buttonType
 		local x = x + 15
-		local y = y + 5 + (#buttons-1)*20
+		local y = y + 5 + (_id and (_id-1)*20 or (#buttons-1)*20)
 		ui.addTextArea(id..(900+(buttonID-1)*6), "", player, x-1, y-1, 2, 2, 1, 1, 1, true)
 		ui.addTextArea(id..(901+(buttonID-1)*6), "", player, x, y, 2, 2, 0x3A5A66, 0x3A5A66, 1, true)
 		ui.addTextArea(id..(902+(buttonID-1)*6), "", player, x, y, 1, 1, 0x233238, 0x233238, 1, true)
@@ -38,14 +38,14 @@ modernUI.showSettingsMenu = function(self, donate)
 	local selectedLang = players[player].lang:upper()
 	local function addLangSwitch()
 		for i = 0, 20 do 
-			ui.removeTextArea(id..(910+i), player)
+			ui.removeTextArea(id..(920+i), player)
 		end 
 		player_removeImages(players[player]._modernUISelectedItemImages[1])
 		local x = x + 15
-		local y = y + 50
-		ui.addTextArea(id..'910', '', player, x-1, y-1, 70, 15, 1, 1, 1, true)
+		local y = y + 70
+		ui.addTextArea(id..'920', '', player, x-1, y-1, 70, 15, 1, 1, 1, true)
 		players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(community[selectedLang:lower()], "&26", x+5, y+3, player)
-		ui.addTextArea(id..'911', '<n2>'..selectedLang..'\t↓', player, x+22, y-1, nil, nil, 1, 1, 0, true,
+		ui.addTextArea(id..'921', '<n2>'..selectedLang..'\t↓', player, x+22, y-1, nil, nil, 1, 1, 0, true,
 			function()
 				local toChoose = {}
 				for i, v in next, langIDS do
@@ -54,13 +54,13 @@ modernUI.showSettingsMenu = function(self, donate)
 					end 
 				end
 				local txt = '\n'..table.concat(toChoose, '\n')
-				ui.addTextArea(id..'910', '<font color="#000000">'..txt, player, x-1, y-1, 70, nil, 1, 1, 1, true)
-				ui.addTextArea(id..'911', '<n2>'..selectedLang..'\t↑', player, x+22, y-1, nil, nil, 1, 1, 0, true, function()
+				ui.addTextArea(id..'920', '<font color="#000000">'..txt, player, x-1, y-1, 70, nil, 1, 1, 1, true)
+				ui.addTextArea(id..'921', '<n2>'..selectedLang..'\t↑', player, x+22, y-1, nil, nil, 1, 1, 0, true, function()
 						addLangSwitch()
 					end)
 				for i, v in next, toChoose do
 					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(community[v:lower()], "&26", x+5, y+17 + (i-1)*14, player)
-					ui.addTextArea(id..(911+i), v, player, x+22, y+14 + (i-1)*14, nil, nil, 1, 1, 0, true, function()
+					ui.addTextArea(id..(921+i), v, player, x+22, y+14 + (i-1)*14, nil, nil, 1, 1, 0, true, function()
 						selectedLang = v
 						players[player].lang = lang[v:lower()] and v:lower() or 'en'
 						addLangSwitch()
@@ -80,8 +80,9 @@ modernUI.showSettingsMenu = function(self, donate)
 			button(5, 'Mycity Wiki', function(player) TFM.chatMessage('<rose>https://transformice.fandom.com/wiki/Mycity', player) end, x+22, y+30, 435, 12)
 		elseif selectedWindow == 2 then
 			buttons = {}
-			ui.addTextArea(id..931, '<font color="#ebddc3" size="13">\n\n\n'..translate('settings_config_lang', player), player, x, y -23, 485, nil, 0xff0000, 0xff0000, 0, true)
+			ui.addTextArea(id..951, '<font color="#ebddc3" size="13">'..translate('settings_config_lang', player), player, x, y+35, 485, nil, 0xff0000, 0xff0000, 0, true)
 			addToggleButton('mirroredMode', translate('settings_config_mirror', player))
+			addToggleButton('disableTrades', translate('settings_config_disableTrades', player))
 			addLangSwitch()
 		elseif selectedWindow == 3 then
 			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17281d1a0f9.png', ":26", 505, y+10, player)
@@ -107,7 +108,7 @@ modernUI.showSettingsMenu = function(self, donate)
 		elseif selectedWindow == 4 then
 			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('17281987ff2.jpg', ":24", x-3, y+5, player)
 			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17136fe68cc.png', ":26", 520, y, player)
-			ui.addTextArea(id..900, '<font color="#ebddc3" size="10"> '..translate('settings_donateText', player), player, x, y -23, 365, 200, 0xff0000, 0xff0000, 0, true)
+			ui.addTextArea(id..900, '<font color="#ebddc3"> '..translate('settings_donateText', player), player, x, y -23, 365, 200, 0xff0000, 0xff0000, 0, true)
 
 			button(5, translate('settings_donate', player), function(player) TFM.chatMessage('<rose>https://a801-luadev.github.io/?redirect=mycity', player) end, x, y+190, 480)
 		end
@@ -121,9 +122,9 @@ modernUI.showSettingsMenu = function(self, donate)
 				if i == selectedWindow then return end
 				player_removeImages(players[player]._modernUISelectedItemImages[1])
 				for i = 0, 3 do 
-					ui.removeTextArea(id..(955+i), player)
+					ui.removeTextArea(id..(985+i), player)
 				end
-				for i = 899, 931 do 
+				for i = 899, 959 do 
 					ui.removeTextArea(id..i, player)
 				end
 				showOptions(i)
