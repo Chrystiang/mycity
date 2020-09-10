@@ -29,7 +29,9 @@ addItem = function(item, amount, player, coin)
 
 	if players[player].totalOfStoredItems.bag + amount > players[player].bagLimit then
 		alert_Error(player, 'error', 'bagError')
-		item_drop(item, player, amount)
+		if coin == 0 then
+			item_drop(item, player, amount)
+		end
 		return
 	else
 		players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag + amount
