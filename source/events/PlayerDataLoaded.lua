@@ -15,6 +15,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	------- setting data values to players[name]
 	local playerSettings = playerData:get(name, 'playerLog')
 	players[name].settings.mirroredMode = playerSettings[2][1] or 0
+	players[name].settings.disableTrades = playerSettings[2][3] or 0
 	players[name].lang = langIDS[playerSettings[2][2]] or 'en'
 	players[name].seasonStats[1][1] = playerSettings[1][1] or 0
 	players[name].seasonStats[1][2] = playerSettings[1][2] or 0

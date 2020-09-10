@@ -130,8 +130,8 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 							end
 
 							giveExperiencePoints(player, 200)
-							giveCoin(bagItems[order.order].orderValue, player, true)
-							TFM.chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].orderValue..'</vp>', player), player)
+							giveCoin(bagItems[order.order].sellingPrice, player, true)
+							TFM.chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].sellingPrice..'</vp>', player), player)
 							return
 						end
 					end
@@ -467,6 +467,8 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			eventTextAreaCallback(0, player, 'close2', true)
 			removeImage(players[player].bannerLogin)
 			system.loadPlayerData(player)
+
+			showDishOrders(player)
 			mine_drawGrid(mine_optimizeGrid(grid, grid_width, grid_height), 60, Mine.position[1], Mine.position[2])
 			addImage("170fef3117d.png", ":1", 660, 365, player)
 			ui.addTextArea(999997, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 660, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) openProfile(player) end)
@@ -476,6 +478,12 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 
 			addImage("170f8ccde22.png", ":3", 750, 365, player)
 			ui.addTextArea(999999, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 750, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 520, 300, nil, nil, 'configMenu'):build():showSettingsMenu() end)
+
+			addImage("1744cc60c32.png", ":4", 750, 330, player)
+			ui.addTextArea(999996, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 750, 330, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 520, 300):build():showSettingsMenu(true) end)
+			
+			addImage("1744cf82bac.png", ":5", 705, 330, player)
+			ui.addTextArea(999995, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 705, 330, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 380, 280, translate('tradeSystem_title', player)):build():showAvailableTradingPlayers() end)
 
 		elseif type == 'next' then
 			if players[player].joinMenuPage < versionLogs[currentVersion].maxPages then
