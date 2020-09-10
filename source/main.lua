@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 1, 2}
+local version       = {3, 2, 0}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local string        = string
@@ -50,6 +50,7 @@ local grid_height   =  1
 local groundIDS     = {}
 local players       = {}
 local jobs          = {}
+local daveOffers 	= {}
 
 local maxFurnitureStorage   = 50
 local maxFurnitureDepot     = 60
@@ -103,14 +104,15 @@ local room = { -- Assets that change while the script runs
 local mainAssets = { -- Assets that rarely changes while the script runs
 	season = 3,
 	fileCopy = {
-		_ranking = 'Xzowtx#0000, Saugha#0000, Okxyautumn#8940, Emirfaresi#0000, Luquinhas#3157, Q_lt#0000, Brunadrr#0000, Kb65#0000, Kjbondetomjk#0000, Ratagominha#0000,',
+		_ranking = '',
 	},
 	roles = {
 		admin = {},
 		mod = {},
 		helper = {},
+		moduleTeam = {},
 	},
-	supportedCommunity = {'en', 'br', 'es', 'ar', 'tr', 'hu', 'pl', 'ru', 'fr', 'e2', 'sk'},
+	supportedCommunity = {'en', 'br', 'es', 'ar', 'tr', 'hu', 'pl', 'ru', 'fr', 'e2', 'sk', 'pt'},
 	housePermissions = {
 		[-1] = 'blocked',
 		[ 0] = 'guest',
@@ -138,7 +140,7 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 		},
 	},
 	credits = {
-		translations = {['Bodykudo#0000'] = 'ar', ['Chamelinct#0000'] = 'es', ['Zielony_olii#8526'] = 'pl', ['Melikefn#0000'] = 'tr', ['Danielthemouse#6206'] = 'il', ['Francio2582#3155'] = 'fr', ['Godzi#0941'] = 'pl', ['Noooooooorr#0000'] = 'ar', ['Tocutoeltuco#0000'] = 'es', ['Weth#9837'] = 'hu', ['Zigwin#0000'] = 'ru'},
+		translations = {['Bodykudo#0000'] = 'ar', ['Chamelinct#0000'] = 'es', ['Zielony_olii#8526'] = 'pl', ['Melikefn#0000'] = 'tr', ['Danielthemouse#6206'] = 'il', ['Francio2582#3155'] = 'fr', ['Godzi#0941'] = 'pl', ['Noooooooorr#0000'] = 'ar', ['Tocutoeltuco#0000'] = 'es', ['Weth#9837'] = 'hu', ['Zigwin#0000'] = 'ru', ['Ppabcd#0000'] = 'id'},
 		arts = {'Iho#5679', 'Kariina#0000', 'Mescouleur#0000'},
 		creator = {'Fofinhoppp#0000'},
 		help = {'Bolodefchoco#0000', 'Laagaadoo#0000', 'Lucasrslv#0000', 'Tocutoeltuco#0000'},
@@ -157,7 +159,7 @@ local syncData = {
 	},
 }
 
-local imgsToLoad = {'1721ee7d5b9.png', '17184484e6b.png', '1718435fa5c.png', '171843a9f21.png', '171d2134def.png', '171d20cca72.png', '171d1f8d911.png', '171d21cd12d.png', '171d1e559be.png', '171d20548bd.png', '171d1933add.png', '1717aae387a.jpg', '1717a86b38f.png', '171d2a2e21a.png', '171d28150ea.png', '171d6f313c8.png',}
+local imgsToLoad = {'1721ee7d5b9.png', '17184484e6b.png', '1718435fa5c.png', '171843a9f21.png', '171d2134def.png', '171d20cca72.png', '171d1f8d911.png', '171d21cd12d.png', '171d1e559be.png', '171d20548bd.png', '171d1933add.png', '1717aae387a.jpg', '1717a86b38f.png', '171d2a2e21a.png', '171d28150ea.png', '171d6f313c8.png', '174558f6393.png', '1745588b429.png', '17455904362.png', '17455876d27.png', '1745590f162.png', '17455847e27.png', '1745591a12a.png', '1745581e99b.png', '174559244ca.png', '1745572fc55.png', '1745592d979.png', '174557c2791.png', '17455936450.png', '174557f051a.png',}
 
 local npcsStores = {
 	items = {},

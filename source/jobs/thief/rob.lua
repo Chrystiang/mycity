@@ -22,6 +22,8 @@ startRobbery = function(player, character)
 				sideQuest_update(player, 1)
 			end
 			players[player].robbery.robbing = false
+			removeTimer(players[player].timer)
+			players[player].timer = {}
 			ui.removeTextArea(98900000000, player)
 			showOptions(player)
 			giveExperiencePoints(player, 100)

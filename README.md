@@ -21,6 +21,7 @@
 > FR
 > HE
 > HU
+> ID
 > PL
 > RU
 > TR
@@ -53,3 +54,5 @@
 > ☑️ Quest 05 released
 >
 > ☑️ V3.1.1 released
+>
+> ☑️ V3.2.0 released

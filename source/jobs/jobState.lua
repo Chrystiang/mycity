@@ -100,5 +100,6 @@ job_updatePlayerStats = function(player, type, quant)
 	if playerData.jobs[9] >= 500 then -- CHEF
 		giveBadge(player, 9)
 	end
+	--11: Amount of fruits sold
 	savedata(player)
 end
