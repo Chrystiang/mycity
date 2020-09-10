@@ -983,7 +983,7 @@ bagItems = {
 	},
 	garlicMashedPotatoes = {
 		id = 90,	
-		png = '1745f8e52ca.png',
+		png = '17479fb35b3.png',
 		type = 'food',
 	},
 	mushroomBurger = {
