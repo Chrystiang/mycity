@@ -41,7 +41,8 @@ modernUI.profileInterface = function(self, target)
 		fisher 	= 	string.replace(player, {["{0}"] = 'profile_fishes', ["{1}"] = targetData.jobs[3]}),
 		miner 	= 	string.replace(player, {["{0}"] = 'profile_gold', ["{1}"] = targetData.jobs[4]}),
 		farmer 	= 	string.replace(player, {["{0}"] = 'profile_seedsPlanted', ["{1}"] = targetData.jobs[5]}) ..'\n' ..
-					string.replace(player, {["{0}"] = 'profile_seedsSold', ["{1}"] = targetData.jobs[6]}),
+					string.replace(player, {["{0}"] = 'profile_seedsSold', ["{1}"] = targetData.jobs[6]}) ..'\n' ..
+					string.replace(player, {["{0}"] = 'profile_fruitsSold', ["{1}"] = targetData.jobs[11]}),
 		chef 	= 	string.replace(player, {["{0}"] = 'profile_cookedDishes', ["{1}"] = targetData.jobs[10]}) ..'\n' ..
 					string.replace(player, {["{0}"] = 'profile_fulfilledOrders', ["{1}"] = targetData.jobs[9]}),
 		ghostbuster = string.replace(player, {["{0}"] = 'profile_capturedGhosts', ["{1}"] = targetData.jobs[7]}),
@@ -53,7 +54,7 @@ modernUI.profileInterface = function(self, target)
 		ui.addTextArea(id..(911+i), '<p align="left"><font size="11" color="#'..jobs[v].color..'">'..translate(v, player), player, 323, y+133 + (i-1)*17, 150, nil, 0x152d30, 0x152d3, 0, true)
 		ui.addTextArea(id..(921+i), '<p align="left"><font size="11" color="#caed87">→', player, 460, y+133 + (i-1)*17, nil, nil, 0x152d30, 0x152d3, 0, true,
 			function(player, args)
-				ui.addTextArea(args.id..'930', '<font size="14" color="#'..jobs[args.title].color..'"><p align="center">'..translate(args.title, player)..'</p></font>\n'..args.data,
+				ui.addTextArea(args.id..'930', '<font size="14" color="#'..jobs[args.title].color..'"><p align="center">'..translate(args.title, player)..'</p></font>\n'..args.data:gsub('7bbd40',jobs[args.title].color),
 					player, 480, 180 + args.y*17, 150, nil, 0x432c04, 0x7a5817, 1, true)
 				ui.addTextArea(args.id..'931', '<textformat leftmargin="1" rightmargin="1">'..string.rep('\n', 10),
 					player, 480, 180 + args.y*17, 150, nil, 0x432c04, 0x7a5817, 0, true,
