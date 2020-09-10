@@ -165,7 +165,6 @@ recipes = {
 	fishBurger = {
 		require = {
 			bread = 1,
-			cheese = 1,
 			fish_Dogfish = 1,
 			lemon = 1,
 		},
@@ -194,5 +193,84 @@ recipes = {
 			wheatFlour = 2,
 			cheese = 1,
 		},
+	},
+	cheeseburger = {
+		require = {
+			bread = 1,
+			cheese = 1,
+			meat = 2,
+		},
+	},
+	lasagna = {
+		require = {
+			cheese = 2,
+			meat = 2,
+			sauce = 1,
+			water = 1,
+			wheatFlour = 1,
+			salt = 1,
+		},
+	},
+	meatballs = {
+		require = {
+			meat = 3,
+			salt = 1,
+			hotsauce = 1,
+		},
+	},
+	garlicMashedPotatoes = {
+		require = {
+			garlic = 2,
+			salt = 1,
+			milk = 1,
+			potato = 2,
+		},
+	},
+	mushroomBurger = {
+		require = {
+			bread = 1,
+			garlic = 1,
+			mushroom = 2,
+		}
+	},
+	creamOfMushroom = {
+		require = {
+			salt = 1,
+			milk = 1,
+			mushroom = 2,
+		}
+	},
+	pumpkinPie = {
+		require = {
+			pumpkin = 1,
+			egg = 2,
+			sugar = 1,
+			honey = 1,
+			wheatFlour = 2,
+		}
+	},
+	steakFrites = {
+		require = {
+			meat = 2,
+			frenchFries = 1,
+			salt = 1,
+		}
+	},
+	breadedCutlet = {
+		require = {
+			meat = 2,
+			salt = 1,
+			egg = 2,
+			wheatFlour = 1,
+			garlic = 1,
+			pepper = 1,
+		}
+	},
+	fishAndChips = {
+		require = {
+			fish_Catfish = 1,
+			frenchFries = 1,
+			wheatFlour = 1,
+		}
 	},
 }
