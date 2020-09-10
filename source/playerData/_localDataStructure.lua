@@ -132,7 +132,7 @@ setPlayerData = function(player)
 		lastCallback 	= {when = os.time(), callback = nil},
 		lang			= playerLanguage,
 		whenJoined 		= os.time(),
-		settings 		= {mirroredMode = 0, language = playerLanguage},
+		settings 		= {mirroredMode = 0, language = playerLanguage, disableTrades = 0},
 		inRoom 			= false,
 	}
 

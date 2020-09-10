@@ -133,6 +133,7 @@ savedata = function(name)
 	local playerLogs = {{mainAssets.season, playerInfos.seasonStats[1][2]}, {}, version, playerInfos.favoriteCars}
 
 	playerLogs[2][1] = playerInfos.settings.mirroredMode
+	playerLogs[2][3] = playerInfos.settings.disableTrades
 	for id, v in next, langIDS do 
 		if v == playerInfos.lang then
 			playerLogs[2][2] = id
