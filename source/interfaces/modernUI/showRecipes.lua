@@ -6,22 +6,22 @@ modernUI.showRecipes = function(self)
 	local x = (400 - width/2) + 20
 	local y = (200 - height/2) + 65
 	local currentPage = 1
-	local maxPages = math.ceil(table.getLength(recipes)/32)
+	local maxPages = math.ceil(table.getLength(recipes)/40)
 	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
 
 	local cookedSomething = false
 	local function showItems()
-		local minn = 32 * (currentPage-1)
-		local maxx = currentPage * 32 - 1
+		local minn = 40 * (currentPage-1)
+		local maxx = currentPage * 40 - 1
 		local i = -1
 		for recipeName, v in next, recipes do
 			i = i + 1
 			if i >= minn and i <= maxx then
-				local i = i - 32 * (currentPage-1)
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('174283c22c9.jpg', ":26", x + (i%8)*42, y + math.floor(i/8)*42, player)
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(bagItems[recipeName].png, ":26", x - 5 + (i%8)*42, y - 5 + math.floor(i/8)*42, player)
+				local i = i - 40 * (currentPage-1)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('174283c22c9.jpg', ":26", x + (i%8)*42, -12 + y + math.floor(i/8)*42, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(bagItems[recipeName].png, ":26", x - 5 + (i%8)*42 , -12 + y - 5 + math.floor(i/8)*42, player)
 
-				ui.addTextArea(id..(900+i), '\n\n\n\n', player, x + (i%8)*42, y + 3 + math.floor(i/8)*42, 40, 40, 0xff0000, 0xff0000, 0, true,
+				ui.addTextArea(id..(900+i), '\n\n\n\n', player, x + (i%8)*42, -12 + y + 3 + math.floor(i/8)*42, 40, 40, 0xff0000, 0xff0000, 0, true,
 				function(player, i)
 					player_removeImages(players[player]._modernUISelectedItemImages[1])
 					for i = 935, 945 do 
@@ -30,12 +30,12 @@ modernUI.showRecipes = function(self)
 					local selectedQuanty = 1
 					local name = translate('item_'..recipeName, player)
 					local description = item_getDescription(recipeName, player)
-					ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..recipeName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
+					ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..recipeName, player), player, x+340, y-12, 135, 215, 0x24474D, 0x314e57, 0, true)
 					ui.addTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
-					ui.addTextArea(id..'894', '', player, x + 3 + (i%8)*42, y + 3 + math.floor(i/8)*42, 55, 55, 0xff0000, 0xff0000, 0, true)
+					ui.addTextArea(id..'894', '', player, x + 3 + (i%8)*42, -12 + y + 3 + math.floor(i/8)*42, 40, 40, 0xff0000, 0xff0000, 0, true)
 
 					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[recipeName].png, "&26", 542, 125, player)
-					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('174284cb5fc.png', ":26", x + (i%8)*42-3, y + math.floor(i/8)*42-3, player)
+					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('174284cb5fc.png', ":26", x + (i%8)*42-3, -12 + y + math.floor(i/8)*42-3, player)
 					local function button(i, text, callback, x, y, width, height, blockClick)
 						local colorPallete = {
 							button_confirmBg = 0x95d44d,
@@ -55,11 +55,11 @@ modernUI.showRecipes = function(self)
 					local counter = 0
 					for i, v in next, v.require do
 						counter = counter + 1
-						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[i].png, "&70", ((counter-1)%2)*55+500, math.floor((counter-1)/2)*30+187, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[i].png, "&70", ((counter-1)%2)*55+500, math.floor((counter-1)/2)*29+190, player)
 						if checkItemQuanty(i, v, player) then
-							ui.addTextArea(id..(934+counter), '<vp>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*30+204, nil, nil, 0x24474D, 0xff0000, 0, true)
+							ui.addTextArea(id..(934+counter), '<vp>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*29+207, nil, nil, 0x24474D, 0xff0000, 0, true)
 						else
-							ui.addTextArea(id..(934+counter), '<r>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*30+204, nil, nil, 0x24474D, 0xff0000, 0, true)
+							ui.addTextArea(id..(934+counter), '<r>'..v, player, ((counter-1)%2)*55+545, math.floor((counter-1)/2)*29+207, nil, nil, 0x24474D, 0xff0000, 0, true)
 							canCook = false
 						end
 					end
@@ -104,7 +104,7 @@ modernUI.showRecipes = function(self)
 							end
 						end
 					end
-					button(0, translate('cook', player),
+					button(5, translate('cook', player),
 						function()
 							cook()
 						end, 507, 295, 120, 13, not canCook)
@@ -118,7 +118,7 @@ modernUI.showRecipes = function(self)
 			currentPage = currentPage + count
 			player_removeImages(players[player]._modernUISelectedItemImages[1])
 			player_removeImages(players[player]._modernUISelectedItemImages[3])
-			for i = 890, 945 do 
+			for i = 890, 958 do 
 				if i ~= 896 then
 					ui.removeTextArea(id..i, player)
 				end
