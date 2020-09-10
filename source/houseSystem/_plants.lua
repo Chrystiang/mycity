@@ -52,7 +52,7 @@ HouseSystem.plants = {
 		growingTime = 60*5,
 		stages = {'16bf63634a0.png', '16bf63b93cf.png', '16da90fd0ad.png', '16da90fe81f.png', "16da905bd71.png"},
 		quantyOfSeeds = 1,
-		pricePerSeed = 150,
+		pricePerSeed = 1500,
 	},
 	[8] = { -- blueberries
 		name = 'blueberries',
@@ -69,7 +69,3 @@ HouseSystem.plants = {
 		pricePerSeed = 800,
 	},
 }
-for i, v in next, HouseSystem.plants do
-	bagItems[v.name].sellingPrice = v.pricePerSeed/10
-	bagItems[v.name].isPlant = true
-end
