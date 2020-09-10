@@ -102,9 +102,9 @@ local room = { -- Assets that change while the script runs
 }
 
 local mainAssets = { -- Assets that rarely changes while the script runs
-	season = 3,
+	season = 4,
 	fileCopy = {
-		_ranking = '',
+		_ranking = 'Xzowtx#0000, Dedektifyy#0000, Luquinhas#3157, Brunadrr#0000, Gothic_girl#7500, Millionaires#0928, Epicninja7#0000, Estronda002#0000, Anaxs0#4480, Ratagominha#0000',
 	},
 	roles = {
 		admin = {},
@@ -122,9 +122,10 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 	},
 	levelIcons = {
 		star = {
-			'1733a811072.png',
-			'1733a815fb4.png',
-			'1733a815fb4.png',
+			'17479edf863.png',
+			'17479ee69ad.png',
+			'17479ee3dbc.png',
+			'17479ee148d.png',
 		},
 		lvl = {
 			{'1716449ea8f.png'},
