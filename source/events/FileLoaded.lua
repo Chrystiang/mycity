@@ -3,9 +3,10 @@ onEvent("FileLoaded", function(file, data)
 	for _data in string.gmatch(data, '[^%|]+') do
 		datas[#datas+1] = _data
 	end
+
 	if tonumber(file) == 5 then -- RANKING
-		mainAssets.fileCopy._ranking = datas[2]
-		local rankData = datas[1]
+		mainAssets.fileCopy._ranking = datas[1]
+		local rankData = datas[2]
 		room.globalRanking = {}
 
 		if rankData then
