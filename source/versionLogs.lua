@@ -139,6 +139,43 @@ versionLogs = {
 			_1 = '<rose>Nouveauté:</rose> Quête 05: Cauchemars en Cuisine!\nAide Remi à livrer les commandes!\n\n<rose>Nouvelles recettes:</rose> Gâteau à la Banane et Croquettes de Pommes de Terre!\n\n<rose>Nouveauté:</rose> Remplacer des quêtes annexes!\nVous ne pouvez remplacer une quête annexe qu\'une fois par jour.\nLe remplacement de quêtes annexes n\'apparaîtra pas avant 02:00 (UTC+2).\n\nLe restaurant a été redessiné.\nUn minuteur à côté de la liste des commandes indiquera l\'heure à laquelle la commande est toujours active.',
 		},
 	},
+	['v3.2.0'] = {
+		releaseDate = '09/09/2020', -- dd/mm/yy
+		maxPages = 1,
+		images = {''},
+		br = {
+			name = 'Sistema de troca!',
+			_1 = '<rose>Novo:</rose> Sistema de troca!\n<li>Uma forma mais segura de vender seus itens chegou! Clique no botão acima do livro de missões para abrir o menu de trocas.</li>\n<rose>Novas receitas:</rose> 10 novas receitas foram adicionadas!\n\nDave está trazendo novas ofertas!\n<li>Ele também não venderá mais o mesmo item mais de uma vez no mesmo dia.\nUma nova fazendeira está interessada em comprar diversos frutos.</li>\nLista de pedidos do restaurante corrigida.\n\nVocê pode encontrar mais informações sobre a atualização no nosso servidor no Discord.',
+		},
+		en = {
+			name = 'Trade system!',
+			_1 = '<rose>New:</rose> Trade system!\n<li>The safest way to sell your items with other players is here! Press the trade button above the quests book to open the trade menu.</li>\n<rose>New recipes:</rose> 10 new recipes were added!\n\nDave is bringing you new offers!\n<li>He will not sell the same item more than once a day.\nA new farmer is interested in buying several fruits.</li>\nOrders list fixed.\n<fc>Added Indonesian translations!</fc>',
+		},
+		es = {
+			name = '¡Sistema de intercambios!',
+			_1 = '<rose>Nuevo:</rose> ¡Sistema de intercambios!\n<li>¡La forma más segura de vender tus items a otros jugadores ya está aquí! Presiona el botón de intercambio sobre las misiones para abrir el menú de intercambios.</li>\n<rose>Nuevas recetas:</rose> ¡Se añadieron 10 nuevas recetas!\n\n¡Dave te trae nuevas ofertas!\n<li>No te venderá el item más de una vez al día.\nUn nuevo granjero está interesado en comprar muchas frutas.</li>\nSe arregló la lista de órdenes.',
+		},
+		pl = {
+			name = 'System handlu!',
+			_1 = '<rose> Nowosc: </rose> System handlu!\n<li>Najbezpieczniejszy sposób sprzedania swoich przedmiotow innym graczom juz jest! Nacisnij przycisk handlu nad ksiazka zadan, aby otworzyc menu handlu.</li>\n<rose> Nowe przepisy: </rose>dodano 10 nowych przepisow!\n\nDave przedstawia nowe oferty!\n<li>Nie bedzie sprzedawal tego samego przedmiotu czesciej niz raz dziennie.\nNowy rolnik jest zainteresowany kupnem kilku owocow.</li>\nLista zamowien naprawiona.',
+		},
+		tr = {
+			name = 'Takas sistemi!',
+			_1 = '<rose>Yeni:</rose> Takas sistemi!\n<li>Eşyalarınızı diğer oyunculara satmanın en güvenli yolu! Takas menüsünü açmak için görev kitabının üstündeki takas butonuna basın.</li>\n<rose>Yeni tarifler:</rose> 10 yeni tarif eklendi!\n\nDave size yeni teklifler getiriyor!\n<li>Bir günde aynı eşyadan birden fazla satmayacak.\nYeni bir çiftçi bazı meyveleri almak istiyor.</li>\nSipariş listesi düzeltildi.',
+		},
+		hu = {
+			name = 'Csere rendszer!',
+			_1 = '<rose>Új:</rose> Csere rendszer!\n<li>Ez a legbiztonságosabb mód arra, hogy eladd más játékosoknak a tárgyaid! A csere menü megnyitásához nyomd meg a csere gombot a Küldetéskönyv felett.</li>\n<rose>Új receptek:</rose> 10 új recept hozzáadva!\n\nDave-nak vannak új ajánlatai számodra!\n<li>Naponta csak egyszer adja el ugyan azt a terméket.\nEgy új farmer érdeklődik számos gyümölcs iránt.</li>\nRendelési lista javítva.',
+		},
+		ar = {
+			name = '!نظام المبادلة',
+			_1 = '!نظام المبادلة<rose>:جديد</rose>\n<li>الطريقة الأكثر أمانًا لمبادلة أغراضك مع لاعبين آخرين هنا! اضغط على زر المبادلة أعلى كتاب المهام لفتح قائمة المبادلة</li>\n !تمت إضافة 10 وصفات طعام جديدة<rose>:وصفات طعام جديدة</rose>\n\n!ديف يجلب لكم عروض جديدة\n<li>.لن يبيع نفس الشيء أكثر من مرة في اليوم\n.تمت إضافة مزارع جديد مهتم بشراء الفواكه</li>\n.تم تصليح قائمة طلبات الطعام',
+		},
+		fr = {
+			name = 'Système d\'échange!',
+			_1 = '<rose>Nouveauté:</rose> Système d\'échange!\n<li>La façon la plus sûre pour vendre vos objets à d\'autres joueurs est arrivée! Appuyez sur le bouton d\'échange au-dessus du livre de quêtes pour ouvrir le menu d\'échange.</li>\n<rose>Nouvelles recettes:</rose> 10 nouvelles recettes ont été ajoutées!\n\nDave vous propose de nouvelles offres!\n<li>Il ne vendra plus le même article plus d\'une fois par jour.\nUn nouvel agriculteur est intéressé pour acheter plusieurs fruits.</li>\nListe des commandes corrigée.',
+		},
+	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']
