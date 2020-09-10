@@ -39,6 +39,7 @@ item_droppedEvent = function(id, player)
 	local canRemove = false
 	local item = room.droppedItems[id].item
 	local amount = room.droppedItems[id].amount
+	local itemData = bagItems[item]
 	if amount <= 0 then return end
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
@@ -54,15 +55,25 @@ item_droppedEvent = function(id, player)
 				end
 			end
 		end
-	elseif players[player].job == 'farmer' and tonumber(players[player].place:sub(7)) == 12 and string.find(item, 'Seed') then
-		for i, v in next, HouseSystem.plants do
-			if string.find(item, v.name) then
+	elseif players[player].job == 'farmer' then
+		if tonumber(players[player].place:sub(7)) == 12 and string.find(item, 'Seed') then
+			for i, v in next, HouseSystem.plants do
+				if string.find(item, v.name) then
+					canRemove = true
+					giveCoin(v.pricePerSeed * amount, player, true)
+					TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..v.name..'Seed', player)..'</vp>', '<fc>$'..v.pricePerSeed..'</fc> <CE>('..amount..')</CE>'), player)
+					job_updatePlayerStats(player, 6, amount)
+					giveExperiencePoints(player, 2 * amount)
+					break
+				end
+			end
+		elseif math.hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, 11650, 7645) <= 200 then
+			if itemData.isFruit then
 				canRemove = true
-				giveCoin(v.pricePerSeed * amount, player, true)
-				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..v.name..'Seed', player)..'</vp>', '<fc>$'..v.pricePerSeed..'</fc> <CE>('..amount..')</CE>'), player)
-				job_updatePlayerStats(player, 6, amount)
+				giveCoin(itemData.sellingPrice * amount, player, true)
+				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..item, player)..'</vp>', '<fc>$'..itemData.sellingPrice..'</fc> <CE>('..amount..')</CE>'), player)
+				job_updatePlayerStats(player, 11, amount)
 				giveExperiencePoints(player, 2 * amount)
-				break
 			end
 		end
 	elseif players[player].job == 'fisher' and players[player].place == 'fishShop' and string.find(item, 'fish_') then
