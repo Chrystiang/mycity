@@ -549,7 +549,7 @@ bagItems = {
 	},
 	pumpkin = {
 		id = 35,
-		price = 1000,
+		price = 500,
 		png = '16de6657786.png',
 		type = 'food',
 		power = 30,
@@ -557,7 +557,6 @@ bagItems = {
 	},
 	pumpkinSeed = {
 		id = 36,
-		price = 1000,
 		type = 'holdingItem',
 		png = '16db258644e.png',
 		holdingImages = {'16db258644e.png', '16db258644e.png'}, -- left, right
@@ -841,7 +840,7 @@ bagItems = {
 	potato = {
 		id = 66,	
 		price = 20,
-		png = '1715af76cee.png',
+		png = '1745f7c79bf.png',
 		type = 'food',
 		hunger = 0.7,
 	},
@@ -866,7 +865,7 @@ bagItems = {
 	garlic = {
 		id = 70,	
 		price = 20,
-		png = '1715f38e713.png',
+		png = '1745fc72f96.png',
 		type = 'food',
 		power = 4,
 		hunger = 1,
@@ -951,5 +950,70 @@ bagItems = {
 		id = 84,
 		type = 'food',
 		png = '1740db2a66d.png',
+	},
+	meat = {
+		id = 85,	
+		price = 200,
+		png = '1745f80713e.png',
+		type = 'food',
+		hunger = -10,
+	},
+	mushroom = {
+		id = 86,
+		png = '1745f93d2df.png',
+		type = 'food',
+		price = 200,
+		energy = 9,
+		hunger = 4,
+	},
+	cheeseburger = {
+		id = 87,	
+		png = '1745f8487c1.png',
+		type = 'food',
+	},
+	lasagna = {
+		id = 88,	
+		png = '1745f84a7f0.png',
+		type = 'food',
+	},
+	meatballs = {
+		id = 89,	
+		png = '1745f8ed295.png',
+		type = 'food',
+	},
+	garlicMashedPotatoes = {
+		id = 90,	
+		png = '1745f8e52ca.png',
+		type = 'food',
+	},
+	mushroomBurger = {
+		id = 91,	
+		png = '1745f96c2ba.png',
+		type = 'food',
+	},
+	creamOfMushroom = {
+		id = 92,	
+		png = '1745f9a16e2.png',
+		type = 'food',
+	},
+	pumpkinPie = {
+		id = 93,	
+		png = '1747006faae.png',
+		type = 'food',
+	},
+	steakFrites = {
+		id = 94,	
+		png = '1747006cf6d.png',
+		type = 'food',
+	},
+	breadedCutlet = {
+		id = 95,	
+		png = '1747006a7b5.png',
+		type = 'food',
+	},
+	fishAndChips = {
+		id = 96,	
+		png = '174700680f4.png',
+		type = 'food',
 	},
 }
