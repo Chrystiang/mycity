@@ -36,6 +36,9 @@ badges = {
 		png = '1733ad217ba.png',
 	},
 	[12] = { -- Season 2 reward
-		png = '1733ad23324.png',
+		png = '17479ba02f4.png',
+	},
+	[13] = { -- Season 3 reward
+		png = '17479ba7052.png',
 	},
 }
