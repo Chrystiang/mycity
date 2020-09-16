@@ -18,7 +18,7 @@ saveRanking = function()
 		if player and player.inRoom and players[name].dataLoaded then
 			if player.seasonStats[1][1] == mainAssets.season then
 				if not table.contains(room.unranked, name) then
-					localRanking[#localRanking+1] = {name = name, level = player.level[1], experience = player.seasonStats[1][2], commu = ROOM.playerList[name].community, id = ROOM.playerList[name].id}
+					localRanking[#localRanking+1] = {name = name, level = player.level[1], experience = player.seasonStats[1][2], commu = ROOM.playerList[name].language, id = ROOM.playerList[name].id}
 				end
 			end
 		end
