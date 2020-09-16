@@ -1,5 +1,5 @@
 community = {
-	xx = "1651b327097.png",
+	xx = "174971ff384.png",
 	ar = "1651b32290a.png",
 	bg = "1651b300203.png",
 	br = "1651b3019c0.png",
