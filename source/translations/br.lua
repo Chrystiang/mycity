@@ -750,4 +750,10 @@ lang.br = {
 	tradeSystem_title = 'Sistema de Trocas',
 	txt_openProfile = 'Ver perfil',
 	profile_fruitsSold = 'Frutos vendidos',
+	profile_crystalsSold = 'Cristais Vendidos:<li>',
+	profile_crystal_yellow = '<j>Amarelo',
+	profile_crystal_blue = '<bv>Azul',
+	profile_crystal_purple = '<vi>Roxo',
+	profile_crystal_green = '<pt>Verde',
+	profile_crystal_red = '<r>Vermelho',
 }
