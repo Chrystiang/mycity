@@ -41,8 +41,8 @@ end
 genDaveOffers = function()
 	daveOffers = {}
 	local i = 1
-	while #daveOffers < 3 do
-		math.randomseed(room.mathSeed * i^2)
+	while #daveOffers < 5 do
+		math.randomseed(math.floor((room.mathSeed/100) * i^2))
 		local offerID = math.random(1, #mainAssets.__farmOffers)
 		local nextItem = mainAssets.__farmOffers[offerID].item[1]
 		local alreadySelling = false
@@ -87,11 +87,11 @@ if ROOM.name == "*#fofinho" or ROOM.community == 'sk' or ROOM.name == "*Mycity 
 	room.requiredPlayers = 0
 else
 	TFM.setRoomPassword('')
-	if string.match(ROOM.name, "^en%-#mycity[1-9]$") then
+	--[[if string.match(ROOM.name, "^en%-#mycity[1-9]$") then
 		room.requiredPlayers = 2
 		room.maxPlayers = math.ceil(room.maxPlayers/2)
 		RUNTIME_LIMIT = 35
-	end
+	end]]--
 end
 
 TFM.setRoomMaxPlayers(room.maxPlayers)
