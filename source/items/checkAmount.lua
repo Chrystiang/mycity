@@ -10,3 +10,19 @@ checkItemQuanty = function(item, quant, player)
 	end
 	return false
 end
+
+checkItemInChest = function(item, quant, player)
+	local playerChests = players[player].houseData.chests.storage
+	local amount = 0
+	for chest = 1, #playerChests do
+		for i, v in next, playerChests[chest] do
+			if v.name == item then
+				amount = amount + v.qt
+			end
+		end
+	end
+	if amount >= quant then
+		return amount
+	end
+	return false
+end

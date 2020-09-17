@@ -50,6 +50,9 @@ removeBagItem = function(item, amount, player)
 	amount = math.abs(amount)
 	for i, v in next, players[player].bag do
 		if v.name == item then
+			if amount > v.qt then
+				amount = v.qt
+			end
 			v.qt = v.qt - amount
 			if v.qt <= 0 then
 				table.remove(players[player].bag, i)

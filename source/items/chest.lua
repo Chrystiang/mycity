@@ -12,15 +12,30 @@ end
 
 item_removeFromChest = function(item, amount, player, chest)
 	amount = math.abs(amount)
-	for i, v in next, players[player].houseData.chests.storage[chest] do
-		if v.name == item then
-			v.qt = v.qt - amount
-			if v.qt <= 0 then
-				table.remove(players[player].houseData.chests.storage[chest], i)
+	if chest then
+		for i, v in next, players[player].houseData.chests.storage[chest] do
+			if v.name == item then
+				v.qt = v.qt - amount
+				if v.qt <= 0 then
+					table.remove(players[player].houseData.chests.storage[chest], i)
+				end
+				break
 			end
-			break
+		end
+		players[player].totalOfStoredItems.chest[chest] = players[player].totalOfStoredItems.chest[chest] - amount
+	else
+		local playerChests = players[player].houseData.chests.storage
+		for chest = 1, #playerChests do
+			local _amount = 0
+			for i, v in next, playerChests[chest] do
+				if v.name == item then
+					_amount = _amount + v.qt
+					table.remove(players[player].houseData.chests.storage[chest], i)
+					break
+				end
+			end
+			players[player].totalOfStoredItems.chest[chest] = players[player].totalOfStoredItems.chest[chest] - _amount
 		end
 	end
-	players[player].totalOfStoredItems.chest[chest] = players[player].totalOfStoredItems.chest[chest] - amount
 	savedata(player)
 end

@@ -87,6 +87,9 @@ item_droppedEvent = function(id, player)
 				giveCoin(bagItems[item].price * amount, player)
 				giveExperiencePoints(player, 40 * amount)
 				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..item, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
+				if item:find('crystal_') then
+					job_updatePlayerStats(player, bagItems[item].jobStatID, amount)
+				end
 			end
 		end
 	end

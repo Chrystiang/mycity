@@ -880,26 +880,31 @@ bagItems = {
 		id = 72,
 		type = 'crystal',
 		png = '172373f61f1.png',
+		jobStatID = 12,
 	},
 	crystal_blue = {
 		id = 73,
 		type = 'crystal',
 		png = '172373eddec.png',
+		jobStatID = 13,
 	},
 	crystal_purple = {
 		id = 74,
 		type = 'crystal',
 		png = '172373f2060.png',
+		jobStatID = 14,
 	},
 	crystal_green = {
 		id = 75,
 		type = 'crystal',
 		png = '172373f009d.png',
+		jobStatID = 15,
 	},
 	crystal_red = {
 		id = 76,
 		type = 'crystal',
 		png = '172373f3f04.png',
+		jobStatID = 16,
 	},
 	banana = {
 		id = 77,
