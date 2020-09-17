@@ -140,9 +140,9 @@ versionLogs = {
 		},
 	},
 	['v3.2.0'] = {
-		releaseDate = '09/09/2020', -- dd/mm/yy
+		releaseDate = '10/09/2020', -- dd/mm/yy
 		maxPages = 1,
-		images = {''},
+		images = {'1747ee70536.png'},
 		br = {
 			name = 'Sistema de troca!',
 			_1 = '<rose>Novo:</rose> Sistema de troca!\n<li>Uma forma mais segura de vender seus itens chegou! Clique no botão acima do livro de missões para abrir o menu de trocas.</li>\n<rose>Novas receitas:</rose> 10 novas receitas foram adicionadas!\n\nDave está trazendo novas ofertas!\n<li>Ele também não venderá mais o mesmo item mais de uma vez no mesmo dia.\nUma nova fazendeira está interessada em comprar diversos frutos.</li>\nLista de pedidos do restaurante corrigida.\n\nVocê pode encontrar mais informações sobre a atualização no nosso servidor no Discord.',
@@ -179,3 +179,4 @@ versionLogs = {
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']
+versionLogs['v3.2.1'] = versionLogs['v3.2.0']

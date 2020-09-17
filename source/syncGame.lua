@@ -35,10 +35,6 @@ syncVersion = function(player, vs)
 		players[player].gameVersion = 'v'..table.concat(version, '.')
 		return
 	end
-	if playerVersion < 310 then
-		chest_Item[3] = {}
-		chest_Quanty[3] = {}
-	end
 	if playerVersion >= 300 then
 		for counter = 1, 3 do
 			for i, v in next, chest_Item[counter] do
@@ -46,6 +42,70 @@ syncVersion = function(player, vs)
 			end
 		end
 	end
+	if playerVersion < 310 then
+		chest_Item[3] = {}
+		chest_Quanty[3] = {}
+	end
+
+	if playerVersion <= 320 then
+		if table.contains(players[player].cars, 15) and not mainAssets.fileCopy._ranking:find(player) then
+			TFM.chatMessage('<g>Due to an error, your season 3 rewards given incorrectly have been removed.', player)
+			players[player].favoriteCars[1] = 0
+			for i, v in next, players[player].cars do
+				if v == 15 then
+					table.remove(players[player].cars, i)
+					break
+				end
+			end
+			for i, v in next, players[player].starIcons.owned do
+				if v == 4 then
+					table.remove(players[player].starIcons.owned, i)
+					players[player].starIcons.selected = 1
+					break
+				end
+			end
+			for i, v in next, players[player].badges do
+				if v == 13 then
+					table.remove(players[player].badges, i)
+					break
+				end
+			end
+			savedata(player)
+		end
+
+		local refund = 0
+		local inBag = checkItemQuanty('luckyFlowerSeed', 1, player)
+		if inBag then
+			removeBagItem('luckyFlowerSeed', 50, player)
+			refund = refund + inBag * 10000
+		end
+
+		local inChest = checkItemInChest('luckyFlowerSeed', 1, player)
+		if inChest then
+			item_removeFromChest('luckyFlowerSeed', inChest, player)
+			refund = refund + inChest * 10000
+		end
+		for i = 1, 4 do
+			if players[player].houseTerrainPlants[i] == 5 then
+				players[player].houseTerrainPlants[i] = 0
+				players[player].houseTerrainAdd[i] = 1
+				refund = refund + 12000
+			end
+		end
+		if refund > 0 then
+			if refund > 50000 then refund = 50000 end
+			giveCoin(refund, player)
+			TFM.chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.1 and it was needed to remove them from your bag.', player)
+			TFM.chatMessage(string.format('<pt>You just received <fc>$%s</fc> as refund.', refund), player)
+		end
+		if players[player].spentCoins > 100000000 then 
+			players[player].spentCoins = players[player].spentCoins - 100000000
+		end
+		players[player].houseTerrain[5] = 0
+		players[player].houseTerrainAdd[5] = 1
+		players[player].houseTerrainPlants[5] = 0
+	end
+
 	if players[player].seasonStats[1][1] ~= mainAssets.season then
 		players[player].seasonStats[1][1] = mainAssets.season
 		players[player].seasonStats[1][2] = 0
