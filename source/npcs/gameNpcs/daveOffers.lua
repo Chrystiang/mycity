@@ -56,11 +56,19 @@ mainAssets.__farmOffers = {
 		requires = {'cheese', 3},
 	},
 	[15] = {
-		item = {'meat', 1},
-		requires = {'fish_SmoltFry', 3},
+		item = {'garlic', 3},
+		requires = {'banana', 3},
 	},
 	[16] = {
 		item = {'mushroom', 3},
 		requires = {'fish_Frog', 2},
+	},
+	[17] = {
+		item = {'garlic', 5},
+		requires = {'frenchFries', 3},
+	},
+	[18] = {
+		item = {'meat', 1},
+		requires = {'fish_SmoltFry', 3},
 	},
 }
