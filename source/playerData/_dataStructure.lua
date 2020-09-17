@@ -66,21 +66,21 @@ local playerData = DataHandler.new('myc', {
 		index = 10,
 		type = 'table',
 		default = function()
-			return {0,0,0,0}
+			return {0,0,0,0,0}
 		end
 	},
 	housesTerrainsAdd = {
 		index = 11,
 		type = 'table',
 		default = function()
-			return {1,1,1,1}
+			return {1,1,1,1,1}
 		end
 	},
 	housesTerrainsPlants = {
 		index = 12,
 		type = 'table',
 		default = function()
-			return {0,0,0,0}
+			return {0,0,0,0,0}
 		end
 	},
 	bagStorage = {

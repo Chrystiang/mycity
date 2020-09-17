@@ -9,7 +9,7 @@ setPlayerData = function(player)
 		level		= {1, 0},
 		starIcons 	= {owned = {1}, selected = 1},
 		badges		= {},
-		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
 		--------- TRADE ---------
 		isTrading 	= false,
 		wishList 	= {},
@@ -30,9 +30,9 @@ setPlayerData = function(player)
 		},
 		codigo    	= {},
 		casas		= {},
-		houseTerrain = {0, 0, 0, 0},
-		houseTerrainAdd = {1, 1, 1, 1},
-		houseTerrainPlants = {0, 0, 0, 0},
+		houseTerrain = {0, 0, 0, 0, 0},
+		houseTerrainAdd = {1, 1, 1, 1, 1},
+		houseTerrainPlants = {0, 0, 0, 0, 0},
 		seeds = {
 				[1] = {rarity = 2995}, -- tomato
 				[2] = {rarity = 2000}, -- oregano
@@ -138,9 +138,9 @@ setPlayerData = function(player)
 
 	if player == 'Oliver' then
 		players[player].lastCallback.when = 0
-		players[player].houseTerrain = {2, 2, 2, 2}
-		players[player].houseTerrainAdd = {2, 2, 2, 2}
-		players[player].houseTerrainPlants = {6, 6, 6, 6}
+		players[player].houseTerrain = {2, 2, 2, 2, 2}
+		players[player].houseTerrainAdd = {2, 2, 2, 2, 2}
+		players[player].houseTerrainPlants = {6, 6, 6, 6, 6}
 		players[player].houseData.furnitures.placed = {[1] = {y = 656,x = 958,type = 46},[2] = {y = 656,x = 1036,type = 46},[3] = {y = 656,x = 1114,type = 46},[4] = {y = 656,x = 1192,type = 46},[5] = {y = 656,x = 1270,type = 46},[6] = {y = 656,x = 1348,type = 46},[7] = {y = 656,x = 1426,type = 46},[8] = {y = 670,x = 34,type = 12},[9] = {y = 670,x = 120,type = 12},[10] = {y = 632,x = 96,type = 12},[11] = {y = 676,x = 218,type = 9},[12] = {y = 609,x = 127,type = 32},[13] = {y = 657,x = 1334,type = 3},[14] = {y = 654,x = 1140,type = 30},[15] = {y = 655,x = 1456,type = 30},[16] = {y = 574,x = 971,type = 31},[17] = {y = 656,x = 802,type = 46},[18] = {y = 657,x = 880,type = 46},[19] = {y = 657,x = 724,type = 46},[20] = {y = 656,x = 646,type = 46},[21] = {y = 657,x = 568,type = 46}}
 		equipHouse(player, 4, 12)
 	elseif player == 'Remi' then

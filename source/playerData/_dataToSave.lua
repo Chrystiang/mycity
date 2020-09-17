@@ -1,23 +1,19 @@
 savedata = function(name)
 	local playerInfos = players[name]
 	if not playerInfos.dataLoaded then return end
-	if ROOM.name ~= '*#fofinho' and ROOM.name ~= '*#fofinho1' then
-		if string.find(ROOM.name:sub(1,1), '*') then
-			TFM.chatMessage('<R>Stats are not saved in rooms with "*".', name)
-			return
-		elseif ROOM.uniquePlayers < room.requiredPlayers then
-			TFM.chatMessage('<R>Stats are not saved if the room have less than 6 players.', name)
+	if not ROOM.name:find('fofinho') then
+		if ROOM.uniquePlayers < room.requiredPlayers then
+			TFM.chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
 			return
 		elseif ROOM.passwordProtected then
 			TFM.chatMessage('<R>Stats are not saved if the room is protected with a password.', name)
 			return
-		elseif not table.contains(mainAssets.supportedCommunity, ROOM.community) then
+		elseif not table.contains(mainAssets.supportedCommunity, ROOM.language) then
 			TFM.chatMessage('<R>Data save is not available in this community.', name)
 			return
 		end
-	else
-		--return TFM.chatMessage('ops! failed to save your data.', name)
 	end
+
 	playerData:set(name, 'coins', playerInfos.coins)
 	playerData:set(name, 'spentCoins', playerInfos.spentCoins)
 	playerData:set(name, 'bagStorage', playerInfos.bagLimit)
