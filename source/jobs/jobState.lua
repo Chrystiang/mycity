@@ -77,6 +77,7 @@ end
 job_updatePlayerStats = function(player, type, quant)
 	if not quant then quant = 1 end
 	local playerData = players[player]
+	if not players[player].jobs[type] then players[player].jobs[type] = 0 end
 	players[player].jobs[type] = playerData.jobs[type] + quant
 
 	if playerData.jobs[4] >= 1000 then
@@ -101,5 +102,6 @@ job_updatePlayerStats = function(player, type, quant)
 		giveBadge(player, 9)
 	end
 	--11: Amount of fruits sold
+	--12 - 16: Crystals sold
 	savedata(player)
 end

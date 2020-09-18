@@ -58,7 +58,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 						if itemType == 'food' then blockUse = false end
 						local selectedQuanty = 1
 						player_removeImages(players[player]._modernUISelectedItemImages[1])
-						for i = 0, 3 do 
+						for i = 0, 8 do 
 							ui.removeTextArea(id..(990+i), player)
 						end
 						local description = item_getDescription(itemName, player)
@@ -80,6 +80,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 							button(0, translate(itemType == 'food' and 'eatItem' or 'use', player), 
 							function(player)
 								if usedSomething then return end
+								if players[player].isTrading then return alert_Error(player, 'error', 'error') end
 								if players[player].canDrive then return alert_Error(player, 'error', 'error') end
 								if quanty > 0 then
 									if itemName == 'cheese' then 
@@ -118,6 +119,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 							function(player)
 								eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 								if usedSomething then return end
+								if players[player].isTrading then return alert_Error(player, 'error', 'error') end
 								if quanty > 0 then
 									if not chest then
 										removeBagItem(v.name, -selectedQuanty, player)
@@ -130,7 +132,6 @@ modernUI.showPlayerItems = function(self, items, chest)
 									savedata(player)
 								end
 							end, 507, 295, 120, 13)
-
 						for i = 1, 2 do 
 							button(1+i, i == 1 and '-' or '+', 
 								function(player) 

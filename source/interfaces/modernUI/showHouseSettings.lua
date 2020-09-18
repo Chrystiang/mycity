@@ -169,14 +169,14 @@ modernUI.showHouseSettings = function(self)
 		room.terrains[terrainID].guests = {}
 
 		eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
-		for i = 0, 3 do
+		for i = 0, 4 do
 			if players[player].houseTerrainAdd[i+1] <= 1 then
 				ui.addTextArea(id..(885+i), '<p align="center"><fc>'..translate('houseSettings_changeExpansion', player)..'\n', player, (terrainID-1)*1500 + 650 + i*175, 1740, 175, nil, 0x24474D, 0xff0000, 0, false,
 					function()
 						if images.expansions[1] then return end
 						ui.addTextArea(id..'889', '', player, 0, 0, 800, 400, 0x24474D, 0xff0000, 0, true)
 						local counter = 0
-						for _ = 0, 3 do
+						for _ = 0, 4 do
 							if _ ~= i then 
 								images.expansions[#images.expansions+1] = addImage('17285e3d8e1.png', "!1000", (terrainID-1)*1500 + 650 + _*175, 1715, player)
 							end

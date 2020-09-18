@@ -4,7 +4,7 @@ modernUI.showDaveOffers = function(self)
 	local width = self.width 
 	local height = self.height
 	local x = (400 - width/2) - 12
-	local y = (200 - height/2)
+	local y = (200 - height/2) - 20
 
 	for i, offerID in next, daveOffers do 
 		local offer = mainAssets.__farmOffers[offerID]

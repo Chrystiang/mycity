@@ -9,7 +9,7 @@ modernUI.showAvailableTradingPlayers = function(self)
 	local i = 1
 
 	for user in next, ROOM.playerList do
-		if user ~= player and players[user] and players[user].inRoom then
+		if user ~= player and players[user] and players[user].dataLoaded and players[user].inRoom then
 			ui.addTextArea(id..(896+i), user, player, x+4 + (i-1)%2*173, y + math.floor((i-1)/2)*15, nil, nil, -1, 0xff0000, 0, true, 
 				function(player, i)
 					ui.addTextArea(id..'930', '<p align="center"><ce>'..user..'</ce>', player, x+4 + (i-1)%2*173, y + math.floor((i-1)/2)*15, 150, 70, 0x432c04, 0x7a5817, 1, true)

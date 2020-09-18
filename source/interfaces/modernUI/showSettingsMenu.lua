@@ -44,7 +44,7 @@ modernUI.showSettingsMenu = function(self, donate)
 		local x = x + 15
 		local y = y + 70
 		ui.addTextArea(id..'920', '', player, x-1, y-1, 70, 15, 1, 1, 1, true)
-		players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(community[selectedLang:lower()], "&26", x+5, y+3, player)
+		players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(community[selectedLang:lower()], "&26", x+5, y+1, player)
 		ui.addTextArea(id..'921', '<n2>'..selectedLang..'\t↓', player, x+22, y-1, nil, nil, 1, 1, 0, true,
 			function()
 				local toChoose = {}
@@ -59,7 +59,7 @@ modernUI.showSettingsMenu = function(self, donate)
 						addLangSwitch()
 					end)
 				for i, v in next, toChoose do
-					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(community[v:lower()], "&26", x+5, y+17 + (i-1)*14, player)
+					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(community[v:lower()], "&26", x+5, y+16 + (i-1)*14, player)
 					ui.addTextArea(id..(921+i), v, player, x+22, y+14 + (i-1)*14, nil, nil, 1, 1, 0, true, function()
 						selectedLang = v
 						players[player].lang = lang[v:lower()] and v:lower() or 'en'
