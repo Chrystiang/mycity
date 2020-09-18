@@ -390,7 +390,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 							quest_updateStep(player)
 						else
 							playerData.questLocalData.other[id] = properties - 1
-							if playerData.questLocalData.other[id] == 0 then
+							if playerData.questLocalData.other[id] <= 0 then
 								quest_updateStep(player)
 							end
 						end

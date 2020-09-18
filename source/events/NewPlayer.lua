@@ -5,7 +5,7 @@ eventNewPlayer = function(player)
 	ui.addTextArea(8501, '', player, -15005, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
 	ui.addTextArea(8502, '', player, -100, -1000, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
 	ui.addTextArea(8503, '', player, -100, 600, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
-	local playerLanguage = ROOM.playerList[player] and lang[ROOM.playerList[player].community] and ROOM.playerList[player].community or 'en'
+	local playerLanguage = ROOM.playerList[player] and lang[ROOM.playerList[player].language] and ROOM.playerList[player].language or 'en'
 	if room.isInLobby then
 		addImage("16d888d9074.jpg", "?1", 0, 0, player)
 		addImage("16d88917a35.png", "!1", 0, 0, player)
@@ -141,7 +141,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Heinrich', {'1719454397f.png', '171930c5cda.png'}, player, 670, 8509, {job = 'miner', endEvent = function(name) job_invite('miner', name) end})
 	gameNpcs.addCharacter('Paulo', {'1719452167a.png', '17193169110.png'}, player, 590, 8509, {job = 'miner'})
 	gameNpcs.addCharacter('Goldie', {'17193b5b818.png', '172a0261c76.png'}, player, 540, 8092, {job = 'miner'})
-	gameNpcs.addCharacter('Dave', {'17193cb4903.png'}, player, 11670, 7677, {job = 'farmer', callback = function(name) modernUI.new(name, 240, 220, translate('daveOffers', player)):build():showDaveOffers() end})
+	gameNpcs.addCharacter('Dave', {'17193cb4903.png'}, player, 11670, 7677, {job = 'farmer', callback = function(name) modernUI.new(name, 310, 280, translate('daveOffers', player)):build():showDaveOffers() end})
 	gameNpcs.addCharacter('Marcus', {'17193d8cabe.png'}, player, 16780, 1468, {job = 'farmer', sellingItems = true})
 	gameNpcs.addCharacter('Body', {'17193e274cd.png'}, player, 11880, 153, {color = '20B2AA', sellingItems = true, place = 'seedStore'})
 	gameNpcs.addCharacter('Kariina', {'17193fda8a1.png'}, player, 14850, 153, {color = '20B2AA', sellingItems = true, place = 'pizzeria'})
