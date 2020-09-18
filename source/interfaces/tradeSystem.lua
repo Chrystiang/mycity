@@ -1,10 +1,10 @@
 local tradeSystem = {
 	trades = {},
 }
-
 greenButton = function(id, i, text, player, callback, x, y, width, height, blockClick)
-	local width = width or 180
-	local height = height or 15
+	width = width or 180
+	height = height or 15
+	
 	local colorPallete = {
 		button_confirmBg = 0x95d44d,
 		button_confirmFront = 0x44662c
@@ -198,6 +198,7 @@ tradeSystem.endTrade = function(tradeInfo, cancelled)
 	player_removeImages(tradeInfo.groupImages.temporary)
 	for player, v in next, tradeInfo.playerImages do
 		player_removeImages(v)
+		ui.removeTextArea(7100999, player)
 		for i = 800, 999 do
 			ui.removeTextArea((200)..i, player)
 		end
@@ -214,6 +215,11 @@ tradeSystem.endTrade = function(tradeInfo, cancelled)
 end
 
 tradeSystem.confirmTrade = function(tradeInfo)
+	for player, items in next, tradeInfo.tradeData.trading do
+		if not players[player].inRoom then
+			return alert_Error(tradeInfo.tradeData.players[player], 'error', 'error')
+		end
+	end
 	for player, items in next, tradeInfo.tradeData.trading do
 		for item, itemData in next, items do
 			removeBagItem(item,  itemData.amount, player)
@@ -253,6 +259,9 @@ tradeSystem.new = function(player1, player2)
 	}
 	players[player1].isTrading = player2
 	players[player2].isTrading = player1
+
+	ui.addTextArea(7100999, '', player1, -5, -5, 805, 405, 1, 1, 0, true)
+	ui.addTextArea(7100999, '', player2, -5, -5, 805, 405, 1, 1, 0, true)
 
 	local tradeInfo = tradeSystem.trades[tradeID]
 	-- Looping 2 elements in Transformice are heavier than simply duplicating the content of the loop
