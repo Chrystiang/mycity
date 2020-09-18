@@ -37,7 +37,7 @@ loadRanking = function(player)
 		playerExperience[1][#playerExperience[1]+1] = '<p align="right"><font size="10" color="#2F692F">'.. experience ..'xp'
 
 		room.rankingImages[#room.rankingImages+1] = addImage('1711870c79c.jpg', '?1000', 95 + xAlign, (i-1)*12+102 + yAlign, player)
-		room.rankingImages[#room.rankingImages+1] = addImage((community[commu] and community[commu] or community['xx']), '?1001', 109 + xAlign, (i-1)*12+102 + yAlign, player)
+		room.rankingImages[#room.rankingImages+1] = addImage((community[commu] and community[commu] or community['xx']), '?1001', 109 + xAlign, (i-1)*12+101 + yAlign, player)
 		room.rankingImages[#room.rankingImages+1] = addImage('173f47ce384.png', '?1002', 97 + xAlign, (i-1)*12+103 + yAlign, player)
 		playerFinder.checkIfIsOnline(name, 
 				function()

@@ -96,6 +96,7 @@ end
 
 openProfile = function(player, target)
 	if not target then target = player end
+	if not players[target].dataLoaded then return end
 	modernUI.new(player, 520, 300, '<font size="20">'..target)
 	:build()
 	:profileInterface(target)

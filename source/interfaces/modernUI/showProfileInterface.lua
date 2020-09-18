@@ -17,6 +17,12 @@ modernUI.profileInterface = function(self, target)
 	for i = 1, progress do
 		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc34c3f0.png', ":28", 155 + (i-1)*23.5, y+68, player)
 	end
+
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[targetData.lang], "&27", x+width-25, y+height-27, player)
+	if targetData.lang ~= ROOM.playerList[target].language then
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[ROOM.playerList[target].language], "&27", x+width-42, y+height-27, player)
+	end
+
    	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc59da98.png', ":28", 150, y+48, player)
 
    	ui.addTextArea(id..'900', '<p align="center"><font color="#c6bb8c" size="20"><b>'..level, player, 380, y+54, 40, 40, 0, 0x24474, 0, true)
@@ -39,7 +45,13 @@ modernUI.profileInterface = function(self, target)
 		police 	= 	string.replace(player, {["{0}"] = 'profile_arrestedPlayers', ["{1}"] = targetData.jobs[1]}),
 		thief 	= 	string.replace(player, {["{0}"] = 'profile_robbery', ["{1}"] = targetData.jobs[2]}),
 		fisher 	= 	string.replace(player, {["{0}"] = 'profile_fishes', ["{1}"] = targetData.jobs[3]}),
-		miner 	= 	string.replace(player, {["{0}"] = 'profile_gold', ["{1}"] = targetData.jobs[4]}),
+		miner 	= 	string.replace(player, {["{0}"] = 'profile_gold', ["{1}"] = targetData.jobs[4]}) ..'\n' ..
+					translate('profile_crystalsSold', player) .. '\n' ..
+					string.replace(player, {["{0}"] = 'profile_crystal_yellow', ["{1}"] = targetData.jobs[12]}) ..'\n' ..
+					string.replace(player, {["{0}"] = 'profile_crystal_blue', ["{1}"] = targetData.jobs[13]}) ..'\n' ..
+					string.replace(player, {["{0}"] = 'profile_crystal_purple', ["{1}"] = targetData.jobs[14]}) ..'\n' ..
+					string.replace(player, {["{0}"] = 'profile_crystal_green', ["{1}"] = targetData.jobs[15]}) ..'\n' ..
+					string.replace(player, {["{0}"] = 'profile_crystal_red', ["{1}"] = targetData.jobs[16]}),
 		farmer 	= 	string.replace(player, {["{0}"] = 'profile_seedsPlanted', ["{1}"] = targetData.jobs[5]}) ..'\n' ..
 					string.replace(player, {["{0}"] = 'profile_seedsSold', ["{1}"] = targetData.jobs[6]}) ..'\n' ..
 					string.replace(player, {["{0}"] = 'profile_fruitsSold', ["{1}"] = targetData.jobs[11]}),

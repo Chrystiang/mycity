@@ -1,15 +1,15 @@
 savedata = function(name)
 	local playerInfos = players[name]
 	if not playerInfos.dataLoaded then return end
-	if not ROOM.name:find('fofinho') then
+	if not ROOM.name == '*#fofinho' then
 		if ROOM.uniquePlayers < room.requiredPlayers then
 			TFM.chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
 			return
 		elseif ROOM.passwordProtected then
 			TFM.chatMessage('<R>Stats are not saved if the room is protected with a password.', name)
 			return
-		elseif not table.contains(mainAssets.supportedCommunity, ROOM.language) then
-			TFM.chatMessage('<R>Data save is not available in this community.', name)
+		elseif ROOM.isTribeHouse then
+			TFM.chatMessage('<R>Stats are not saved in tribe house.', name)
 			return
 		end
 	end

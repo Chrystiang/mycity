@@ -112,7 +112,6 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 		helper = {},
 		moduleTeam = {},
 	},
-	supportedCommunity = {'en', 'br', 'es', 'ar', 'tr', 'hu', 'pl', 'ru', 'fr', 'e2', 'sk', 'pt'},
 	housePermissions = {
 		[-1] = 'blocked',
 		[ 0] = 'guest',
