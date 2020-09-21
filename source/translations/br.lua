@@ -766,3 +766,4 @@ lang.br = {
 	badgeDesc_18 = 'Vendeu 30 cristais verdes',
 	badgeDesc_19 = 'Vendeu 10 cristais vermelhos',
 }
+lang.pt = lang.br

@@ -458,6 +458,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			:build()
 			:showRecipes()
 	elseif callback:sub(1, 15) == 'joiningMessage_' then
+		if players[player].dataLoaded then return end
 		local type = callback:sub(16)
 		player_removeImages(players[player].joinMenuImages)
 		local currentVersion = 'v'..table.concat(version, '.')

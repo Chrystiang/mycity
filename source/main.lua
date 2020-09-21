@@ -52,7 +52,7 @@ local players       = {}
 local jobs          = {}
 local daveOffers 	= {}
 
-local maxFurnitureStorage   = 50
+local maxFurnitureStorage   = 60
 local maxFurnitureDepot     = 60
 local questsAvailable       =  5
 
@@ -141,7 +141,7 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 		},
 	},
 	credits = {
-		translations = {['Bodykudo#0000'] = 'ar', ['Chamelinct#0000'] = 'es', ['Zielony_olii#8526'] = 'pl', ['Melikefn#0000'] = 'tr', ['Danielthemouse#6206'] = 'il', ['Francio2582#3155'] = 'fr', ['Godzi#0941'] = 'pl', ['Noooooooorr#0000'] = 'ar', ['Tocutoeltuco#0000'] = 'es', ['Weth#9837'] = 'hu', ['Zigwin#0000'] = 'ru', ['Ppabcd#0000'] = 'id'},
+		translations = {['Bodykudo#0000'] = 'ar', ['Chamelinct#0000'] = 'es', ['Zielony_olii#8526'] = 'pl', ['Melikefn#0000'] = 'tr', ['Danielthemouse#6206'] = 'he', ['Francio2582#3155'] = 'fr', ['Godzi#0941'] = 'pl', ['Noooooooorr#0000'] = 'ar', ['Tocutoeltuco#0000'] = 'es', ['Weth#9837'] = 'hu', ['Zigwin#0000'] = 'ru', ['Ppabcd#0000'] = 'id'},
 		arts = {'Iho#5679', 'Kariina#0000', 'Mescouleur#0000'},
 		creator = {'Fofinhoppp#0000'},
 		help = {'Bolodefchoco#0000', 'Laagaadoo#0000', 'Lucasrslv#0000', 'Tocutoeltuco#0000'},

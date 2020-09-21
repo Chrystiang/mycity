@@ -796,4 +796,13 @@ lang.hu = {
 	profile_crystal_purple = '<vi>Lila',
 	profile_crystal_green = '<pt>Zöld',
 	profile_crystal_red = '<r>Piros',
+	--- V3.2.2
+	item_shovel = 'Ásó',
+	itemDesc_shovel = 'Nem kívánt növények eltávolítása.',
+	badgeDesc_14 = '500 megfőzött étel',
+	badgeDesc_15 = '300 eladott citromsárga kristály',
+	badgeDesc_16 = '150 eladott kék kristály',
+	badgeDesc_17 = '75 eladott lila kristály',
+	badgeDesc_18 = '30 eladott zöld kristály',
+	badgeDesc_19 = '10 eladott piros kristály',
 }

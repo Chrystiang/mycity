@@ -819,4 +819,13 @@ lang.fr = {
 	profile_crystal_purple = '<vi>Violet',
 	profile_crystal_green = '<pt>Vert',
 	profile_crystal_red = '<r>Rouge',
+	--- V3.2.2
+	item_shovel = 'Pelle',
+	itemDesc_shovel = 'Pour éliminer les plantes indésirables.',
+	badgeDesc_14 = 'Préparer 500 plats',
+	badgeDesc_15 = 'Vendre 300 cristaux jaunes',
+	badgeDesc_16 = 'Vendre 150 cristaux bleus',
+	badgeDesc_17 = 'Vendre 75 cristaux violets',
+	badgeDesc_18 = 'Vendre 30 cristaux verts',
+	badgeDesc_19 = 'Vendre 10 cristaux rouges',
 }

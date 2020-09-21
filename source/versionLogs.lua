@@ -186,7 +186,19 @@ versionLogs = {
 		},
 		en = {
 			name = 'New lucky flower system!',
-			_1 = '<rose>New:</rose> Lucky flower seeds\' variations!\n\n<rose>New item:</rose> Shovel!\n<li>Remove unwanted plants!</li>\n\nA few new badges have been added!',
+			_1 = '<rose>New:</rose> Lucky flower seeds variations!\n\n<rose>New item:</rose> Shovel!\n<li>Remove unwanted plants!</li>\n\nA few new badges have been added!',
+		},
+		tr = {
+			name = 'Yeni şanslı çiçek sistemi!',
+			_1 = '<rose>Yeni:</rose> Şanslı çiçek tohumları\' çeşitleri!\n\n<rose>Yeni eşya:</rose> Kürek!\n<li>İstenmeyen ekinleri kaldır!</li>\n\nBirkaç yeni rozet eklendi!',
+		},
+		fr = {
+			name = 'Nouveau système pour la fleur de la chance!',
+			_1 = '<rose>Nouveaté:</rose> Variations des graines de fleurs de la chance!\n\n<rose>Nouvelle objet:</rose> Pelle!\n<li>Eliminez les plantes indésirables!</li>\n\nQuelques nouveaux badges ont été ajoutés!',
+		},
+		hu = {
+			name = 'Új Szerencsevirág rendszer!',
+			_1 = '<rose>Új:</rose> Szerencsevirág magok variációi!\n\n<rose>Új tárgy:</rose> Ásó!\n<li>Távolítsd el a nem kívánt növényeket.</li>\n\nNéhány új kitűző lett hozzáadva!',
 		},
 	},
 }

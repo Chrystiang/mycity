@@ -8,7 +8,7 @@ jobs = {
 	},
 	police = {
 		color   = '4169E1',
-		coins   = 120,
+		coins   = 150,
 		working = {},
 		players = 10,
 		icon = '171d1f8d911.png',

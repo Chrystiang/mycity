@@ -763,4 +763,13 @@ lang.tr = {
 	profile_crystal_purple = '<vi>Mor',
 	profile_crystal_green = '<pt>Yeşil',
 	profile_crystal_red = '<r>Kırmızı',
+	--- V3.2.2
+	item_shovel = 'Kürek',
+	itemDesc_shovel = 'İstenmeyen ekinleri kaldırmak için birebir.',
+	badgeDesc_14 = '500 yemek yapıldı',
+	badgeDesc_15 = '300 sarı kristal satıldı',
+	badgeDesc_16 = '150 mavi kristal satıldı',
+	badgeDesc_17 = '75 mor kristal satıldı',
+	badgeDesc_18 = '30 yeşil kristal satıldı',
+	badgeDesc_19 = '10 kırmızı kristal satıldı',
 }

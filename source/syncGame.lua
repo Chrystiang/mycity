@@ -99,7 +99,7 @@ syncVersion = function(player, vs)
 		if refund > 0 then
 			if refund > 50000 then refund = 50000 end
 			giveCoin(refund, player)
-			TFM.chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.1 and it was needed to remove them from your bag.', player)
+			TFM.chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.2 and it was needed to remove them from your bag.', player)
 			TFM.chatMessage(string.format('<pt>You just received <fc>$%s</fc> as refund.', refund), player)
 		end
 		if players[player].spentCoins > 100000000 then 
