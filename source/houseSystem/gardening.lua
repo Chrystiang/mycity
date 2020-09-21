@@ -1,9 +1,10 @@
 HouseSystem.gardening = function()
 	for i, v in ipairs(room.gardens) do
 		if players[v.owner].houseTerrainAdd[v.terrain] < #HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].stages then
-			if os.time() - v.timer >= HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].growingTime*1000 then
+			local growingTime = HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].growingTime*1000
+			if os.time() - v.timer >= growingTime then
 				players[v.owner].houseTerrainAdd[v.terrain] = players[v.owner].houseTerrainAdd[v.terrain]+1
-				v.timer = os.time()-- - (os.time() - v.timer)
+				v.timer = os.time()
 				HouseSystem.new(v.owner):genHouseGrounds()
 				savedata(v.owner)
 			end
@@ -70,7 +71,6 @@ HouseSystem.removeCrop = function(player)
 	local house = tonumber(players[player].place:sub(7))
 	local owner = player
 	if house == 12 then return end
-
 	if table.contains(players[owner].houseTerrain, 2) then
 		local x = ROOM.playerList[player].x
 		local y = ROOM.playerList[player].y
@@ -89,7 +89,7 @@ HouseSystem.removeCrop = function(player)
 									HouseSystem.new(owner):genHouseGrounds()
 									savedata(owner)
 									table.remove(room.gardens, ii)
-									break
+									return true
 								end
 							end
 						end
