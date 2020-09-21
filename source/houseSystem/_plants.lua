@@ -68,4 +68,47 @@ HouseSystem.plants = {
 		quantyOfSeeds = 2,
 		pricePerSeed = 800,
 	},
+	[10] = { -- luckyFlower - Cyan
+		name = 'cyan_luckyFlower',
+		growingTime = 60*15,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '174ae579dd0.png', '174ae577cbb.png', '17498099287.png', '174980a3dae.png', '174980a9917.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 10000,
+	},
+	[11] = { -- luckyFlower - Orange
+		name = 'orange_luckyFlower',
+		growingTime = 60*15,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '174ae5a6858.png', '174ae5a9cdb.png', '174980cf5b5.png', '174980d12c7.png', '174980d3513.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 10000,
+	},
+	[12] = { -- luckyFlower - Red
+		name = 'red_luckyFlower',
+		growingTime = 60*15,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '174ae624905.png', '174ae627aa2.png', '174980fdfd2.png', '174980ffc6e.png', '174981023d8.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 10000,
+	},
+	[13] = { -- luckyFlower - Purple
+		name = 'purple_luckyFlower',
+		growingTime = 60*15,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '174ae5d3846.png', '174ae5d79d3.png', '17498129a80.png', '1749812bbd2.png', '1749812dbd1.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 10000,
+	},
+	[14] = { -- luckyFlower - Green
+		name = 'green_luckyFlower',
+		growingTime = 60*15,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '174ae7aea00.png', '174ae7b0f48.png', '174ae7b30ba.png', '174ae7b4aed.png', '174ae7b70ee.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 10000,
+	},
+	[15] = { -- luckyFlower - Black
+		name = 'black_luckyFlower',
+		growingTime = 60*15,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '174ae734bda.png', '174ae736b60.png', '174ae70674d.png', '174ae707fed.png', '174ae709bc6.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 10000,
+	},
+
 }

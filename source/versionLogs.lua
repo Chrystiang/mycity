@@ -176,6 +176,19 @@ versionLogs = {
 			_1 = '<rose>Nouveauté:</rose> Système d\'échange!\n<li>La façon la plus sûre pour vendre vos objets à d\'autres joueurs est arrivée! Appuyez sur le bouton d\'échange au-dessus du livre de quêtes pour ouvrir le menu d\'échange.</li>\n<rose>Nouvelles recettes:</rose> 10 nouvelles recettes ont été ajoutées!\n\nDave vous propose de nouvelles offres!\n<li>Il ne vendra plus le même article plus d\'une fois par jour.\nUn nouvel agriculteur est intéressé pour acheter plusieurs fruits.</li>\nListe des commandes corrigée.',
 		},
 	},
+	['v3.2.2'] = {
+		releaseDate = '21/09/2020', -- dd/mm/yy
+		maxPages = 1,
+		images = {'174ae918342.png'},
+		br = {
+			name = 'Novo sistema de flores da sorte!',
+			_1 = '<rose>Novo:</rose> Sementes coloridas da flor da sorte!\n\n<rose>Novo item:</rose> Pá\n<li>Remova plantas indesejadas!</li>\n\nNovas medalhas adicionadas!',
+		},
+		en = {
+			name = 'New lucky flower system!',
+			_1 = '<rose>New:</rose> Lucky flower seeds\' variations!\n\n<rose>New item:</rose> Shovel!\n<li>Remove unwanted plants!</li>\n\nA few new badges have been added!',
+		},
+	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']

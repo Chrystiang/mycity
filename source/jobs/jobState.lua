@@ -98,8 +98,26 @@ job_updatePlayerStats = function(player, type, quant)
 	if playerData.jobs[1] >= 500 then -- COP
 		giveBadge(player, 10)
 	end
-	if playerData.jobs[9] >= 500 then -- CHEF
+	if playerData.jobs[9] >= 500 then -- Deliver 500 orders
 		giveBadge(player, 9)
+	end
+	if playerData.jobs[10] >= 500 then -- Cook 500 dishes
+		giveBadge(player, 14)
+	end
+	if playerData.jobs[12] >= 300 then -- Sold 300 yellow crystals
+		giveBadge(player, 15)
+	end
+	if playerData.jobs[13] >= 150 then -- Sold 150 blue crystals
+		giveBadge(player, 16)
+	end
+	if playerData.jobs[14] >= 75 then -- Sold 75 purple crystals
+		giveBadge(player, 17)
+	end
+	if playerData.jobs[15] >= 30 then -- Sold 30 green crystals
+		giveBadge(player, 18)
+	end
+	if playerData.jobs[16] >= 10 then -- Sold 10 red crystals
+		giveBadge(player, 19)
 	end
 	--11: Amount of fruits sold
 	--12 - 16: Crystals sold

@@ -733,7 +733,7 @@ lang.id = {
 	House8 = 'Rumah Modern',
 	houseDescription_8 = 'Ini bukan rumah besar, tapi ini yang terbesar.', -- Hmm not sure for this translation
 	--- V3.2.0
-	confirmButton_trade = 'Trade',
+	confirmButton_trade = 'Barter',
 	confirmButton_cancel = 'Batal',
 	trade_cancelled = '%s membatalkan trade.',
 	trade_cancelled_title = 'Trade dibatalkan',
@@ -749,4 +749,7 @@ lang.id = {
 	profile_crystal_purple = '<vi>Ungu',
 	profile_crystal_green = '<pt>Hijau',
 	profile_crystal_red = '<r>Merah',
+	trade_cancelled = '%s membatalkan barter.',
+	trade_cancelled_title = 'Barter dibatalkan',
+	trade_invite = '%s ingin memulai barter.',
 }

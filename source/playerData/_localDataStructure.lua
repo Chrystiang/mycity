@@ -34,11 +34,11 @@ setPlayerData = function(player)
 		houseTerrainAdd = {1, 1, 1, 1, 1},
 		houseTerrainPlants = {0, 0, 0, 0, 0},
 		seeds = {
-				[1] = {rarity = 2995}, -- tomato
+				[1] = {rarity = 2990}, -- tomato
 				[2] = {rarity = 2000}, -- oregano
 				[3] = {rarity = 1000}, -- lemon
 				[4] = {rarity = 2500}, -- pepper
-				[5] = {rarity = 5}, -- luckyFlower
+				[5] = {rarity = 10}, -- luckyFlower
 				[6] = {rarity = 1500}, -- wheat
 		},
 		--------- CARS ---------
@@ -73,6 +73,8 @@ setPlayerData = function(player)
 		lucky 		= {
 						-- Fishing
 						{normal = 100, rare = 0, mythical = 0, legendary = 0},
+						-- IsWhitelisted
+						false,
 					},
 		---------- LIFESTATS -------
 		hospital 	= {hospitalized = false, currentFloor = -1, diseases = {}},

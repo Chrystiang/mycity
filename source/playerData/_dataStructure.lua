@@ -150,7 +150,7 @@ local playerData = DataHandler.new('myc', {
 		index = 22,
 		type = 'table',
 		default = function()
-			return {{100, 0, 0, 0}, {}}
+			return {{100, 0, 0, 0}, false} -- Fishing luckiness, isWhitelisted
 		end
 	},
 	playerLog = {

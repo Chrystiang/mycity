@@ -37,6 +37,10 @@ syncVersion = function(player, vs)
 	end
 	if playerVersion >= 300 then
 		for counter = 1, 3 do
+			if not chest_Item[counter] then 
+				chest_Item[counter] = {} 
+				chest_Quanty[counter] = {}
+			end
 			for i, v in next, chest_Item[counter] do
 				item_addToChest(bagIds[v].n, chest_Quanty[counter][i], player, counter)
 			end

@@ -18,9 +18,9 @@ modernUI.profileInterface = function(self, target)
 		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc34c3f0.png', ":28", 155 + (i-1)*23.5, y+68, player)
 	end
 
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[targetData.lang], "&27", x+width-25, y+height-27, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[targetData.lang], ":27", x+width-25, y+height-27, player)
 	if targetData.lang ~= ROOM.playerList[target].language then
-		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[ROOM.playerList[target].language], "&27", x+width-42, y+height-27, player)
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[ROOM.playerList[target].language], ":27", x+width-42, y+height-27, player)
 	end
 
    	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc59da98.png', ":28", 150, y+48, player)
@@ -29,7 +29,7 @@ modernUI.profileInterface = function(self, target)
    	ui.addTextArea(id..'901', '<p align="center"><font color="#c6bb8c" size="12"><b>'..minXP..'/'..maxXP..'xp', player, 315, y+80, 170, nil, 0, 0x24474, 0, true)
 
    	for i, v in next, {translate('profile_basicStats', player), translate('profile_jobs', player), translate('profile_badges', player)} do
-   		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc5fbaf6.png', ":28", 150 + (i-1)*170, y+103, player)
+   		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc5fbaf6.png', "&28", 150 + (i-1)*170, y+103, player)
    		ui.addTextArea(id..(902+i), '<p align="center"><font color="#c6bb8c" size="12"><b>'..v, player, 145 + (i-1)*170, y+105, 170, nil, 0, 0x24474, 0, true)
    	end
    	local text_General =

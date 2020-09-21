@@ -26,6 +26,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].spentCoins = playerData:get(name, 'spentCoins')
 	players[name].lifeStats = playerData:get(name, 'lifeStats')
 	players[name].receivedCodes = playerData:get(name, 'codes')
+
 	local houses = playerData:get(name, 'houses')
 	for i, v in next, houses do
 		players[name].casas[i] = v
@@ -91,7 +92,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	local luckiness = playerData:get(name, 'luckiness')
 	local fishingLuckiness = luckiness[1]
-	players[name].lucky = {{normal = fishingLuckiness[1], rare = fishingLuckiness[2], mythical = fishingLuckiness[3], legendary = fishingLuckiness[4]}}
+	players[name].lucky = {{normal = fishingLuckiness[1], rare = fishingLuckiness[2], mythical = fishingLuckiness[3], legendary = fishingLuckiness[4]}, (type(luckiness[2]) == 'table' and false or luckiness[2])}
 
 	local playerLogs = playerData:get(name, 'playerLog')
 	players[name].favoriteCars = playerLogs[4] or players[name].favoriteCars
@@ -103,6 +104,18 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].starIcons.selected = starIcons[2]
 
 	syncVersion(name, playerLogs[3])
+
+	if (players[name].coins + players[name].spentCoins > 1000000 or checkItemQuanty('pumpkinSeed', 5, name)) and not players[name].lucky[2] then 
+		if players[name].level[1] <= 10 or players[name].sideQuests[3] < 10 then
+			setPlayerData(name)
+			room.bannedPlayers[#room.bannedPlayers+1] = name
+			TFM.killPlayer(name)
+			translatedMessage('playerBannedFromRoom', name)
+			TFM.chatMessage('<r>Reason: Bug Exploit')
+			room.fileUpdated = true
+			return TFM.chatMessage('Error: Bug exploit. If you think this is an error, please contact Fofinhoppp#0000.', name)
+		end
+	end
 	players[name].dataLoaded = true
 
 	if players[name].questStep[1] <= questsAvailable then

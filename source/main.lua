@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 2, 1}
+local version       = {3, 2, 2}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local string        = string
@@ -71,6 +71,7 @@ system.disableChatCommandDisplay()
 
 local room = { -- Assets that change while the script runs
 	maxPlayers      = 15,
+	errorLogs		= {},
 	gameLoadedTimes = 0,
 	fileUpdated     = false,
 	dayCounter      = 0,
