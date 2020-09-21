@@ -472,7 +472,7 @@ bagItems = {
 	sugar = {
 		id = 39,
 		price = 3,
-		png = '16f0571d9f9.png',
+		png = '174b29dfe45.png',
 		type = 'food',
 	},
 	chocolate = {
@@ -915,20 +915,19 @@ bagItems = {
 	},
 	shovel = {
 		id = 110,
-		price = 800,
+		price = 500,
 		png = '174b17580a1.png',
 		type = 'holdingItem',
 		npcShop = 'body',
 		holdingImages = {'174b17580a1.png', '174b17580a1.png'}, -- left, right
 		holdingAlign = {{-35, -20}, {-15, -20}}, -- left, right
-		fertilizingPower = 6,
 		func = function(player, amount)
 			players[player].holdingItem = 'shovel'
 			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
 			closeInterface(player, false, false, true)
 		end,
 		placementFunction = function(player)
-			HouseSystem.removeCrop(player)
+			return HouseSystem.removeCrop(player)
 		end,
 	},
 
