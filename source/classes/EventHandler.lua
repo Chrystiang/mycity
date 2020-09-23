@@ -101,6 +101,10 @@ do
 				if not done and lastErrorLog ~= result then
 					TFM.chatMessage(name .. ' - '.. result)
 					lastErrorLog = result
+					table.insert(room.errorLogs, 1, '<ch>['..os.date("%X")..']</ch> <v>'..name .. '</v> <j>-</j> <g>'.. result:gsub('Fofinhoppp#0000.lua', 'main'))
+					if #table.concat(room.errorLogs, '\n') >= 1900 then
+						room.errorLogs[#room.errorLogs] = nil
+					end
 					--return emergencyShutdown(true)
 				end
 

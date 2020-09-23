@@ -176,6 +176,43 @@ versionLogs = {
 			_1 = '<rose>Nouveauté:</rose> Système d\'échange!\n<li>La façon la plus sûre pour vendre vos objets à d\'autres joueurs est arrivée! Appuyez sur le bouton d\'échange au-dessus du livre de quêtes pour ouvrir le menu d\'échange.</li>\n<rose>Nouvelles recettes:</rose> 10 nouvelles recettes ont été ajoutées!\n\nDave vous propose de nouvelles offres!\n<li>Il ne vendra plus le même article plus d\'une fois par jour.\nUn nouvel agriculteur est intéressé pour acheter plusieurs fruits.</li>\nListe des commandes corrigée.',
 		},
 	},
+	['v3.2.2'] = {
+		releaseDate = '22/09/2020', -- dd/mm/yy
+		maxPages = 1,
+		images = {'174ae918342.png'},
+		br = {
+			name = 'Novo sistema de flores da sorte!',
+			_1 = '<rose>Novo:</rose> Sementes coloridas da flor da sorte!\n\n<rose>Novo item:</rose> Pá\n<li>Remova plantas indesejadas!</li>\n\nNovas medalhas adicionadas!',
+		},
+		en = {
+			name = 'New lucky flower system!',
+			_1 = '<rose>New:</rose> Lucky flower seeds variations!\n\n<rose>New item:</rose> Shovel!\n<li>Remove unwanted plants!</li>\n\nA few new badges have been added!',
+		},
+		tr = {
+			name = 'Yeni şanslı çiçek sistemi!',
+			_1 = '<rose>Yeni:</rose> Şanslı çiçek tohumları\' çeşitleri!\n\n<rose>Yeni eşya:</rose> Kürek!\n<li>İstenmeyen ekinleri kaldır!</li>\n\nBirkaç yeni rozet eklendi!',
+		},
+		fr = {
+			name = 'Nouveau système pour la fleur de la chance!',
+			_1 = '<rose>Nouveaté:</rose> Variations des graines de fleurs de la chance!\n\n<rose>Nouvelle objet:</rose> Pelle!\n<li>Eliminez les plantes indésirables!</li>\n\nQuelques nouveaux badges ont été ajoutés!',
+		},
+		hu = {
+			name = 'Új Szerencsevirág rendszer!',
+			_1 = '<rose>Új:</rose> Szerencsevirág magok variációi!\n\n<rose>Új tárgy:</rose> Ásó!\n<li>Távolítsd el a nem kívánt növényeket.</li>\n\nNéhány új kitűző lett hozzáadva!',
+		},
+		id = {
+			name = 'Sistem baru bunga keberuntungan!',
+			_1 = '<rose>Baru:</rose> Variasi benih bunga keberuntungan!\n\n<rose>Item baru:</rose> Sekop!\n<li>Menghilangkan tanaman yang tidak diinginkan!</li>\n\nBeberapa lencana baru telah ditambahkan!',
+		},
+		ar = {
+			name = '!نظام زهرة الحظ الجديد',
+			_1 = '.الإختلاف بين بذور زهرة الحظ <rose>:جديد</rose>\n\n !مجرفة <rose>:عنصر جديد</rose>\n<li>!إزالة النباتات الغير المرغوب فيها</li>\n\n!تم إضافة بعض الأوسمة الجديدة',
+		},
+		pl = {
+			name = 'Nowy system szczesliwego kwiata!',
+			_1 = '<rose>New:</rose>Warianty szczesliwego kwiata!\n\n<rose>Nowy przedmiot:</rose> Lopata!\n<li>Usun niechciane rosliny!</li>\n\nPiec nowych odznak zostalo dodanych!',
+		},
+	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']

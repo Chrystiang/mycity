@@ -37,6 +37,10 @@ syncVersion = function(player, vs)
 	end
 	if playerVersion >= 300 then
 		for counter = 1, 3 do
+			if not chest_Item[counter] then 
+				chest_Item[counter] = {} 
+				chest_Quanty[counter] = {}
+			end
 			for i, v in next, chest_Item[counter] do
 				item_addToChest(bagIds[v].n, chest_Quanty[counter][i], player, counter)
 			end
@@ -95,7 +99,7 @@ syncVersion = function(player, vs)
 		if refund > 0 then
 			if refund > 50000 then refund = 50000 end
 			giveCoin(refund, player)
-			TFM.chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.1 and it was needed to remove them from your bag.', player)
+			TFM.chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.2 and it was needed to remove them from your bag.', player)
 			TFM.chatMessage(string.format('<pt>You just received <fc>$%s</fc> as refund.', refund), player)
 		end
 		if players[player].spentCoins > 100000000 then 
@@ -104,6 +108,13 @@ syncVersion = function(player, vs)
 		players[player].houseTerrain[5] = 0
 		players[player].houseTerrainAdd[5] = 1
 		players[player].houseTerrainPlants[5] = 0
+	end
+	if playerVersion <= 322 then
+		local inBag = checkItemQuanty('pumpkinSeed', 5, player)
+		if inBag and players[player].jobs[7] <= 5 then
+			removeBagItem('pumpkinSeed', 50, player)
+			addItem('pumpkinSeed', 5, player)
+		end
 	end
 
 	if players[player].seasonStats[1][1] ~= mainAssets.season then

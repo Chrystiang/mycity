@@ -3,8 +3,8 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	local playerData = players[player]
 	if not playerData then return end
 	if not serverRequest then
-		if players[player].lastCallback.when > os.time()-1000 then
-			if players[player].lastCallback.when > os.time()-100 then
+		if players[player].lastCallback.when > os.time()-500 then
+			if players[player].lastCallback.when > os.time()-50 then
 				players[player].lastCallback.when = os.time()
 			end
 			return
@@ -458,6 +458,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			:build()
 			:showRecipes()
 	elseif callback:sub(1, 15) == 'joiningMessage_' then
+		if players[player].dataLoaded then return end
 		local type = callback:sub(16)
 		player_removeImages(players[player].joinMenuImages)
 		local currentVersion = 'v'..table.concat(version, '.')
@@ -613,32 +614,45 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local y = ROOM.playerList[player].y
 		local seed = nil
 		local seedToDrop = item
-		if string.find(item, 'Seed') then
-			for i, v in next, HouseSystem.plants do
-				if string.find(item, v.name) then
-					seedToDrop = item
-					item = 'seed'
-					seed = i
-				end
-			end
-		end
-		if not bagItems[item].placementFunction(player, x, y, seed) then
-			if not seedToDrop then return end
-			addItem(seedToDrop, 1, player)
-			eventTextAreaCallback(0, player, 'closebag', true)
+
+		if item == 'random_luckyFlowerSeed' then
+			local colors = {5, 10, 11, 12, 13, 14, 15}
+			seed = colors[math.random(#colors)]
+			item = 'seed'
 		else
-			for id, properties in next, players[player].questLocalData.other do
-				if id:find('plant_') then
-					if id:lower():find(seedToDrop:lower()) then
-						quest_updateStep(player)
+			if string.find(item, 'Seed') then
+				for i, v in next, HouseSystem.plants do
+					if string.find(v.name, item:gsub('Seed', '')) then
+						item = 'seed'
+						seed = i
 					end
 				end
 			end
 		end
+		
+		if not bagItems[item].fertilizingPower then 
+			if not bagItems[item].placementFunction(player, x, y, seed) then
+				if not seedToDrop then return end
+				addItem(seedToDrop, 1, player)
+				eventTextAreaCallback(0, player, 'closebag', true)
+			else
+				for id, properties in next, players[player].questLocalData.other do
+					if id:find('plant_') then
+						if id:lower():find(seedToDrop:lower()) then
+							quest_updateStep(player)
+						end
+					end
+				end
+			end
+		else
+			bagItems[item].placementFunction(player, players[player].holdingItem_amount * bagItems[item].fertilizingPower)
+		end
+
 		players[player].holdingDirection = nil
 		removeImage(players[player].holdingImage)
 		players[player].holdingImage = nil
 		players[player].holdingItem = false
+		players[player].holdingItem_amount = nil
 		ui.removeTextArea(9901327, player)
 		ui.removeTextArea(98900000019, player)
 		showOptions(player)

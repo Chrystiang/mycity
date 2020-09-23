@@ -167,9 +167,16 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Paul', {'171ae7460aa.png', '171ae74916a.png'}, player, 7650, 5997, {job = 'police'})
 	gameNpcs.addCharacter('John', {'1723790df64.png', '172379248f7.png'}, player, 4370, 8547, {job = 'miner', sellingItems = true})
 	gameNpcs.addCharacter('Blank', {'17275e43fe4.png', '17275e2a2f4.png'}, player, 1140, 9314, {endEvent = 
-		function(name) 
-			if checkItemQuanty('luckyFlower', 1, name) and checkItemQuanty('fish_Goldenmare', 1, name) then 
-				removeBagItem('luckyFlower', 1, name)
+		function(name)
+			local hasFlower = false
+			for i, v in next, {'luckyFlower', 'cyan_luckyFlower', 'orange_luckyFlower', 'red_luckyFlower', 'purple_luckyFlower', 'green_luckyFlower', 'black_luckyFlower'} do
+				if checkItemQuanty(v, 1, name) then
+					hasFlower = v
+					break
+				end
+			end
+			if hasFlower and checkItemQuanty('fish_Goldenmare', 1, name) then 
+				removeBagItem(hasFlower, 1, name)
 				removeBagItem('fish_Goldenmare', 1, name)
 				room.boatShop2ndFloor = true 
 				removeGround(7777777777) 

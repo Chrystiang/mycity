@@ -62,6 +62,11 @@ modernUI.showPlayerItems = function(self, items, chest)
 							ui.removeTextArea(id..(990+i), player)
 						end
 						local description = item_getDescription(itemName, player)
+						if itemName:find('_luckyFlowerSeed') then
+							itemName = 'luckyFlowerSeed'
+						elseif itemName:find('_luckyFlower') then
+							itemName = 'luckyFlower'
+						end
 						ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..itemName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 						ui.addTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
 						ui.addTextArea(id..'892', '<font color="#cef1c3">'..translate('confirmButton_Select', player), player, x+337, y+121 + (blockUse and 30 or 0), nil, nil, 0x24474D, 0x314e5, 0, true)
@@ -91,7 +96,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 										end
 									end
 									eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
-									local condition = itemData.func and -1 or -selectedQuanty
+									local condition = (itemData.func and not itemData.fertilizingPower) and -1 or -selectedQuanty
 									if not chest then 
 										removeBagItem(v.name, condition, player)
 									else 
@@ -101,7 +106,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 										setLifeStat(player, 1, power * selectedQuanty)
 										setLifeStat(player, 2, hunger * selectedQuanty)
 									else
-										itemData.func(player)
+										itemData.func(player, selectedQuanty)
 									end
 									local sidequest = sideQuests[players[player].sideQuests[1]].type
 									if string.find(sidequest, 'type:items') then
@@ -122,8 +127,10 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if players[player].isTrading then return alert_Error(player, 'error', 'error') end
 								if quanty > 0 then
 									if not chest then
-										removeBagItem(v.name, -selectedQuanty, player)
-										item_drop(v.name, player, selectedQuanty)
+										if checkItemQuanty(v.name, selectedQuanty, player) then
+											removeBagItem(v.name, -selectedQuanty, player)
+											item_drop(v.name, player, selectedQuanty)
+										end
 									else
 										item_removeFromChest(v.name, selectedQuanty, player, chest)
 										addItem(v.name, selectedQuanty, player)

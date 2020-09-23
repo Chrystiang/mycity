@@ -88,7 +88,6 @@ if ROOM.name == "*#fofinho" then
 else
 	TFM.setRoomPassword('')
 	if string.match(ROOM.name, "^*#mycity[1-9]$") then
-		TFM.chatMessage('Aplicável!')
 		room.requiredPlayers = 2
 		room.maxPlayers = math.ceil(room.maxPlayers/2)
 		RUNTIME_LIMIT = 35

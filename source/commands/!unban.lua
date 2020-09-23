@@ -1,17 +1,16 @@
 chatCommands.unban = {
-	permissions = {'admin', 'mod'},
+	permissions = {'admin'},
 	event = function(player, args)
-		local target = string.nick(args[1])
-		if not players[target] then return TFM.chatMessage('<g>[•] $playerName not found.', player) end
-		if not table.contains(room.bannedPlayers, target) then return end
-		for i, v in next, room.bannedPlayers do
-			if v == target then
+		local target = string.nick(args[1]) or args[1]
+		for i, banned in next, room.bannedPlayers do
+			if banned == target then
 				table.remove(room.bannedPlayers, i)
-				break
+				translatedMessage('playerUnbannedFromRoom', target)
+				TFM.respawnPlayer(target)
+				room.fileUpdated = true
+				return
 			end
 		end
-		TFM.respawnPlayer(target)
-		translatedMessage('playerUnbannedFromRoom', target)
-		room.fileUpdated = true
+		translatedMessage('<g>[•] '..target..' hadn\'t been banned.', player)
 	end
 }

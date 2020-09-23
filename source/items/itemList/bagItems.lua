@@ -44,7 +44,7 @@ bagItems = {
 	milk = {
 		id = 6,
 		price = 5,
-		png = '16c2cc5ea17.png',
+		png = '174acaef78b.png',
 		hunger = 1,
 		type = 'food',
 	},
@@ -227,14 +227,19 @@ bagItems = {
 				local numeroRandom = math.random(1, 10000)
 				local total = 0
 				seed = 1
-				for type, data in next, players[player].seeds do
+				for id, data in next, players[player].seeds do
 					total = total + data.rarity
 					if total >= numeroRandom then
-						seed = tonumber(type)
+						seed = id
+						if seed == 5 then
+							local colors = {5, 10, 11, 12, 13, 14, 15}
+							seed = colors[math.random(#colors)]
+						end
 						break
 					end
 				end
 			end
+
 			if string.find(players[player].place, 'house_') then
 				local house_ = tonumber(players[player].place:sub(7))
 				local owner = player
@@ -279,50 +284,15 @@ bagItems = {
 		type = 'holdingItem',
 		holdingImages = {'16bf5e01ec9.png', '16bf5e01ec9.png'}, -- left, right
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
-		func = function(player)
+		fertilizingPower = 3,
+		func = function(player, amount)
 			players[player].holdingItem = 'fertilizer'
+			players[player].holdingItem_amount = amount
 			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
 			closeInterface(player, false, false, true)
 		end,
-		placementFunction = function(player, x, y)
-			if string.find(players[player].place, 'house_') then
-				local house_ = tonumber(players[player].place:sub(7))
-				local owner = player
-				if house_ == 12 then
-					owner = 'Oliver'
-					if players[player].job ~= 'farmer' then
-						return
-					end
-				end
-				if table.contains(players[owner].houseTerrain, 2) then
-					local idx = tonumber(players[owner].houseData.houseid)
-					local yy = 1500 + 90
-					for i, v in next, players[owner].houseTerrain do
-						if v == 2 then
-							if math.hypo(((idx-1)%idx)*1500+737 + (i-1)*175, yy+170, x, y) <= 90 then
-								if players[owner].houseTerrainAdd[i] > 1 then
-									for ii, vv in next, room.gardens do
-										if vv.owner == owner then
-											if vv.terrain == i then
-												vv.timer = vv.timer - 60*3*1000
-												local sidequest = sideQuests[players[player].sideQuests[1]].type
-												if string.find(sidequest, 'type:fertilize') then
-													if string.find(sidequest, 'oliver') and owner == 'Oliver' then
-														sideQuest_update(player, 1)
-													elseif not string.find(sidequest, 'oliver') then
-														sideQuest_update(player, 1)
-													end
-												end
-												return true
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
+		placementFunction = function(player, speed)
+			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
 	},
@@ -333,50 +303,22 @@ bagItems = {
 		type = 'holdingItem',
 		holdingImages = {'16bf5e003db.png', '16bf5e003db.png'}, -- left, right
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
-		func = function(player)
+		fertilizingPower = 0.6,
+		func = function(player, amount)
 			players[player].holdingItem = 'water'
+			players[player].holdingItem_amount = amount
 			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
 			closeInterface(player, false, false, true)
 		end,
-		placementFunction = function(player, x, y)
-			if string.find(players[player].place, 'house_') then
-				local house_ = tonumber(players[player].place:sub(7))
-				local owner = player
-				if house_ == 12 then
-					owner = 'Oliver'
-					if players[player].job ~= 'farmer' then
-						return
-					end
-				end
-				--if not players[player].houseData.houseid == house_ and players[player].job ~= 'farmer' then return end
-				if table.contains(players[owner].houseTerrain, 2) then
-					local idx = tonumber(players[owner].houseData.houseid)
-					local yy = 1500 + 90
-					for i, v in next, players[owner].houseTerrain do
-						if v == 2 then
-							if math.hypo(((idx-1)%idx)*1500+737 + (i-1)*175, yy+170, x, y) <= 90 then
-								if players[owner].houseTerrainAdd[i] > 1 then
-									for ii, vv in next, room.gardens do
-										if vv.owner == owner then
-											if vv.terrain == i then
-												vv.timer = vv.timer - 40*1000
-												return true
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
+		placementFunction = function(player, speed)
+			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
 	},
 	tomato = {
 		id = 17,
 		price = 2,
-		png = '16f94cbed5e.png',
+		png = '174acaf266f.png',
 		hunger = .5,
 		type = 'food',
 	},
@@ -388,16 +330,7 @@ bagItems = {
 	},
 	tomatoSeed = {
 		id = 18,
-		price = 2,
 		png = '16c00dafc00.png',
-		type = 'holdingItem',
-		holdingImages = {'16c00dafc00.png', '16c00dafc00.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'tomatoSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	oregano = {
 		id = 19,
@@ -408,37 +341,19 @@ bagItems = {
 	},
 	oreganoSeed = {
 		id = 20,
-		price = 2,
-		type = 'holdingItem',
 		png = '16c258cc26c.png',
-		holdingImages = {'16c258cc26c.png', '16c258cc26c.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'oreganoSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	lemon = {
 		id = 21,
 		price = 2,
-		png = '16f9568e434.png',
+		png = '174acae248f.png',
 		power = 2,
 		hunger = 3,
 		type = 'food',
 	},
 	lemonSeed = {
 		id = 22,
-		price = 2,
-		type = 'holdingItem',
 		png = '16c00db153d.png',
-		holdingImages = {'16c00db153d.png', '16c00db153d.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'lemonSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	salt = {
 		id = 23,
@@ -453,20 +368,11 @@ bagItems = {
 		power = 10,
 		hunger = -15,
 		type = 'food',
-		png = '16c2595316f.png',
+		png = '174acaf0efe.png',
 	},
 	pepperSeed = {
 		id = 25,
-		price = 2,
-		type = 'holdingItem',
 		png = '1739ecf9ca7.png',
-		holdingImages = {'1739ecf9ca7.png', '1739ecf9ca7.png'}, -- left, right
-		holdingAlign = {{-50, -15}, {0, -15}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'pepperSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	luckyFlower = {
 		id = 26,
@@ -474,22 +380,10 @@ bagItems = {
 		power = 100,
 		type = 'food',
 		png = '16c258971c0.png',
-		func = function(i)
-			setLifeStat(i, 1, 100)
-		end
 	},
 	luckyFlowerSeed = {
 		id = 27,
-		price = 2,
-		type = 'holdingItem',
-		png = '16c259c7198.png',
-		holdingImages = {'16c259c7198.png', '16c259c7198.png'}, -- left, right
-		holdingAlign = {{-35, -20}, {-15, -20}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'luckyFlowerSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
+		png = '174acaeb139.png',
 	},
 	sauce = {
 		id = 28,
@@ -520,16 +414,7 @@ bagItems = {
 	},
 	wheatSeed = {
 		id = 32,
-		price = 2,
-		type = 'holdingItem',
 		png = '16c2ae989c5.png',
-		holdingImages = {'16c2ae989c5.png', '16c2ae989c5.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'wheatSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	pizza = {
 		id = 33,
@@ -557,15 +442,7 @@ bagItems = {
 	},
 	pumpkinSeed = {
 		id = 36,
-		type = 'holdingItem',
 		png = '16db258644e.png',
-		holdingImages = {'16db258644e.png', '16db258644e.png'}, -- left, right
-		holdingAlign = {{-15, 0}, {0, 0}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'pumpkinSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	superFertilizer = {
 		id = 37,
@@ -574,50 +451,15 @@ bagItems = {
 		type = 'holdingItem',
 		holdingImages = {'16dcab532fa.png', '16dcab532fa.png'}, -- left, right
 		holdingAlign = {{-35, -15}, {-15, -15}}, -- left, right
-		func = function(player)
+		fertilizingPower = 6,
+		func = function(player, amount)
 			players[player].holdingItem = 'superFertilizer'
+			players[player].holdingItem_amount = amount
 			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
 			closeInterface(player, false, false, true)
 		end,
-		placementFunction = function(player, x, y)
-			if string.find(players[player].place, 'house_') then
-				local house_ = tonumber(players[player].place:sub(7))
-				local owner = player
-				if house_ == 12 then
-					owner = 'Oliver'
-					if players[player].job ~= 'farmer' then
-						return
-					end
-				end
-				if table.contains(players[owner].houseTerrain, 2) then
-					local idx = tonumber(players[owner].houseData.houseid)
-					local yy = 1500 + 90
-					for i, v in next, players[owner].houseTerrain do
-						if v == 2 then
-							if math.hypo(((idx-1)%idx)*1500+737 + (i-1)*175, yy+170, x, y) <= 90 then
-								if players[owner].houseTerrainAdd[i] > 1 then
-									for ii, vv in next, room.gardens do
-										if vv.owner == owner then
-											if vv.terrain == i then
-												vv.timer = vv.timer - 60*6*1000
-												local sidequest = sideQuests[players[player].sideQuests[1]].type
-												if string.find(sidequest, 'type:fertilize') then
-													if string.find(sidequest, 'oliver') and owner == 'Oliver' then
-														sideQuest_update(player, 1)
-													elseif not string.find(sidequest, 'oliver') then
-														sideQuest_update(player, 1)
-													end
-												end
-												return true
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
+		placementFunction = function(player, speed)
+			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'marcus',
 	},
@@ -630,7 +472,7 @@ bagItems = {
 	sugar = {
 		id = 39,
 		price = 3,
-		png = '16f0571d9f9.png',
+		png = '174b29dfe45.png',
 		type = 'food',
 	},
 	chocolate = {
@@ -651,19 +493,10 @@ bagItems = {
 	},
 	blueberriesSeed = {
 		id = 42,
-		price = 300,
 		qpPrice = 4,
 		png = '16f23b75123.png',
-		holdingImages = {'16f23b75123.png', '16f23b75123.png'}, -- left, right
-		holdingAlign = {{-35, -15}, {-15, -15}}, -- left, right
-		type = 'holdingItem',
 		type2 = 'limited-christmas2019',
 		limitedTime = os.time{day=15, year=2020, month=1},
-		func = function(player)
-			players[player].holdingItem = 'blueberriesSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	cheese = {
 		id = 43,
@@ -779,7 +612,7 @@ bagItems = {
 	egg = {
 		id = 57,
 		price = 10,
-		png = '171984833f2.png',
+		png = '174acae0d21.png',
 		type = 'food',
 		power = 1,
 		hunger = 1,
@@ -827,7 +660,7 @@ bagItems = {
 	lettuce = {
 		id = 64,	
 		price = 20,
-		png = '17198461537.png',
+		png = '174acea1435.png',
 		type = 'food',
 		hunger = .1,
 	},
@@ -915,16 +748,7 @@ bagItems = {
 	},
 	bananaSeed = {
 		id = 78,
-		price = 2,
-		type = 'holdingItem',
 		png = '1739ed5e5fc.png',
-		holdingImages = {'1739ed5e5fc.png', '1739ed5e5fc.png'}, -- left, right
-		holdingAlign = {{-50, -20}, {0, -20}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'bananaSeed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 	},
 	moqueca = {
 		id = 79,
@@ -1021,4 +845,105 @@ bagItems = {
 		png = '174700680f4.png',
 		type = 'food',
 	},
+	cyan_luckyFlowerSeed = {
+		id = 97,
+		png = '174acae6ae4.png',
+	},
+	orange_luckyFlowerSeed = {
+		id = 98,
+		png = '174acae99c5.png',
+	},
+	red_luckyFlowerSeed = {
+		id = 99,
+		png = '174acaee01b.png',
+	},
+	purple_luckyFlowerSeed = {
+		id = 100,
+		png = '174acaec8aa.png',
+	},
+	green_luckyFlowerSeed = {
+		id = 101,
+		png = '174acae8254.png',
+	},
+	black_luckyFlowerSeed = {
+		id = 102,
+		png = '174acae5371.png',
+	},
+	random_luckyFlowerSeed = {
+		id = 103,
+		png = '174accc594d.png',
+	},
+	cyan_luckyFlower = {
+		id = 104,
+		png = '174acdb9149.png',
+		hunger = 100,
+		type = 'food',
+	},
+	orange_luckyFlower = {
+		id = 105,
+		png = '174ace760db.png',
+		power = 50,
+		hunger = 50,
+		type = 'food',
+	},
+	red_luckyFlower = {
+		id = 106,
+		png = '174ace85a8d.png',
+		hunger = 90,
+		power = 10,
+		type = 'food',
+	},
+	purple_luckyFlower = {
+		id = 107,
+		png = '174acda2e71.png',
+		hunger = 10,
+		power = 90,
+		type = 'food',
+	},
+	green_luckyFlower = {
+		id = 108,
+		png = '174acda4d8c.png',
+		power = -666,
+		type = 'food',
+	},
+	black_luckyFlower = {
+		id = 109,
+		png = '174ace61bcb.png',
+		hunger = 100,
+		power = 100,
+		type = 'food',
+	},
+	shovel = {
+		id = 110,
+		price = 250,
+		png = '174b17580a1.png',
+		type = 'holdingItem',
+		npcShop = 'body',
+		holdingImages = {'174b17580a1.png', '174b17580a1.png'}, -- left, right
+		holdingAlign = {{-35, -20}, {-15, -20}}, -- left, right
+		func = function(player, amount)
+			players[player].holdingItem = 'shovel'
+			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
+			closeInterface(player, false, false, true)
+		end,
+		placementFunction = function(player)
+			return HouseSystem.removeCrop(player)
+		end,
+	},
+
 }
+
+for item, data in next, bagItems do
+	if item:find('Seed') then
+		if not data.holdingImages then
+			data.type = 'holdingItem'
+			data.holdingImages = {data.png, data.png}
+			data.holdingAlign = {{-35, -20}, {-15, -20}}
+			data.func = function(player)
+				players[player].holdingItem = item
+				players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
+				closeInterface(player, false, false, true)
+			end
+		end
+	end
+end

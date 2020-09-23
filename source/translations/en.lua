@@ -768,4 +768,16 @@ lang.en = {
 	profile_crystal_purple = '<vi>Purple',
 	profile_crystal_green = '<pt>Green',
 	profile_crystal_red = '<r>Red',
+	--- V3.2.2
+	item_shovel = 'Shovel',
+	itemDesc_shovel = 'To remove unwanted plants.',
+	badgeDesc_14 = 'Cooked 500 dishes',
+	badgeDesc_15 = 'Sold 300 yellow crystals',
+	badgeDesc_16 = 'Sold 150 blue crystals',
+	badgeDesc_17 = 'Sold 75 purple crystals',
+	badgeDesc_18 = 'Sold 30 green crystals',
+	badgeDesc_19 = 'Sold 10 red crystals',
+	--- V3.2.3
+	trade_error_quest = 'Trades are available after completing %s.', -- Will print: "Trades are available after completing Quest 01: Building a boat!"
+	trade_error_quest2 = '%s needs to finish %s in order to accept trades.',
 }

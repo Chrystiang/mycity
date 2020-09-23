@@ -930,4 +930,13 @@ lang.pl = {
     profile_crystal_purple = '<vi>Fioletowy',
     profile_crystal_green = '<pt>Zielony',
     profile_crystal_red = '<r>Czerwony',
+    --- V3.2.2
+    item_shovel = 'Lopata',
+    itemDesc_shovel = 'Zeby usunac niechciane rosliny.',
+    badgeDesc_14 = 'Ugotuj 500 potraw',
+    badgeDesc_15 = 'Sprzedaj 300 zoltych krysztalow',
+    badgeDesc_16 = 'Sprzedaj 150 niebieskich krysztalow',
+    badgeDesc_17 = 'Sprzedaj 75 filoetowych krysztalow',
+    badgeDesc_18 = 'Sprzedaj 30 zielonych krysztalow',
+    badgeDesc_19 = 'Sprzedaj 10 czerwonych krysztalow',
 }

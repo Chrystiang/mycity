@@ -266,7 +266,7 @@ lang.br = {
 	furniture_christmasSnowman = 'Boneco de Neve',
 	furniture_christmasGift = 'Caixa de Presente',
 	vehicle_9 = 'Trenó',
-	badgeDesc_5 = '500 roubos completados',
+	badgeDesc_5 = 'Roubou 500 vezes',
 	badgeDesc_6 = 'Natal 2019',
 	badgeDesc_7 = 'Comprou o trenó',
 	frozenLake = 'O lago está congelado. Aguarde o fim do inverno para poder usar um barco.',
@@ -756,4 +756,17 @@ lang.br = {
 	profile_crystal_purple = '<vi>Roxo',
 	profile_crystal_green = '<pt>Verde',
 	profile_crystal_red = '<r>Vermelho',
+	--- V3.2.2
+	item_shovel = 'Pá',
+	itemDesc_shovel = 'Para remover plantas indesejadas.',
+	badgeDesc_14 = 'Cozinhou 500 pratos',
+	badgeDesc_15 = 'Vendeu 300 cristais amarelos',
+	badgeDesc_16 = 'Vendeu 150 cristais azuis',
+	badgeDesc_17 = 'Vendeu 75 cristais roxos',
+	badgeDesc_18 = 'Vendeu 30 cristais verdes',
+	badgeDesc_19 = 'Vendeu 10 cristais vermelhos',
+	--- V3.2.3
+	trade_error_quest = 'Trocas estão disponíveis após completar %s.',
+	trade_error_quest2 = '%s precisa completar %s para poder aceitar trocas.',
 }
+lang.pt = lang.br
