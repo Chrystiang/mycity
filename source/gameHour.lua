@@ -30,8 +30,6 @@ updateHour = function(player, arg)
 			loadDayTimeEffects('dawn')
 		elseif time == '07:00' then
 			loadDayTimeEffects('day')
-		elseif time == '21:00' then
-			kickPlayersFromPlace('market')
 		end
 	end
 end

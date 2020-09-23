@@ -765,5 +765,8 @@ lang.br = {
 	badgeDesc_17 = 'Vendeu 75 cristais roxos',
 	badgeDesc_18 = 'Vendeu 30 cristais verdes',
 	badgeDesc_19 = 'Vendeu 10 cristais vermelhos',
+	--- V3.2.3
+	trade_error_quest = 'Trocas estão disponíveis após completar %s.',
+	trade_error_quest2 = '%s precisa completar %s para poder aceitar trocas.',
 }
 lang.pt = lang.br

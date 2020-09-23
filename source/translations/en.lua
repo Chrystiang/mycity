@@ -777,4 +777,7 @@ lang.en = {
 	badgeDesc_17 = 'Sold 75 purple crystals',
 	badgeDesc_18 = 'Sold 30 green crystals',
 	badgeDesc_19 = 'Sold 10 red crystals',
+	--- V3.2.3
+	trade_error_quest = 'Trades are available after completing %s.', -- Will print: "Trades are available after completing Quest 01: Building a boat!"
+	trade_error_quest2 = '%s needs to finish %s in order to accept trades.',
 }

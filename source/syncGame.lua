@@ -109,6 +109,13 @@ syncVersion = function(player, vs)
 		players[player].houseTerrainAdd[5] = 1
 		players[player].houseTerrainPlants[5] = 0
 	end
+	if playerVersion <= 322 then
+		local inBag = checkItemQuanty('pumpkinSeed', 5, player)
+		if inBag and players[player].jobs[7] <= 5 then
+			removeBagItem('pumpkinSeed', 50, player)
+			addItem('pumpkinSeed', 5, player)
+		end
+	end
 
 	if players[player].seasonStats[1][1] ~= mainAssets.season then
 		players[player].seasonStats[1][1] = mainAssets.season

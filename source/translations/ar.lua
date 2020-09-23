@@ -761,4 +761,13 @@ lang.ar = {
 	profile_crystal_purple = '<vi>بنفسجية',
 	profile_crystal_green = '<pt>خضراء',
 	profile_crystal_red = '<r>حمراء',
+	--- V3.2.2
+	item_shovel = 'مجرفة',
+	itemDesc_shovel = '.لإزالة النباتات الغير المرغوب فيها',
+	badgeDesc_14 = '500 طبق مطبوخ',
+	badgeDesc_15 = 'بيع 300 من الكريستالات الصفراء',
+	badgeDesc_16 = 'بيع 150 من الكريستالات الزرقاء',
+	badgeDesc_17 = 'بيع 75 كريستالة بنفسجية',
+	badgeDesc_18 = 'بيع 30 كريستالة خضراء',
+	badgeDesc_19 = 'بيع 10 كريستالات حمراء',
 }

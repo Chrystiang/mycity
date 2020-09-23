@@ -915,7 +915,7 @@ bagItems = {
 	},
 	shovel = {
 		id = 110,
-		price = 500,
+		price = 250,
 		png = '174b17580a1.png',
 		type = 'holdingItem',
 		npcShop = 'body',

@@ -752,4 +752,13 @@ lang.id = {
 	trade_cancelled = '%s membatalkan barter.',
 	trade_cancelled_title = 'Barter dibatalkan',
 	trade_invite = '%s ingin memulai barter.',
+	--- V3.2.2
+	item_shovel = 'Sekop',
+	itemDesc_shovel = 'Untuk menghilangkan tanaman yang tidak diinginkan.',
+	badgeDesc_14 = 'Memasak 500 hidangan',
+	badgeDesc_15 = 'Menjual 300 kristal kuning',
+	badgeDesc_16 = 'Menjual 150 kristal biru',
+	badgeDesc_17 = 'Menjual 75 kristal ungu',
+	badgeDesc_18 = 'Menjual 30 kristal hijau',
+	badgeDesc_19 = 'Menjual 10 kristal merah',
 }

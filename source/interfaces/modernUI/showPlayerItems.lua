@@ -127,8 +127,10 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if players[player].isTrading then return alert_Error(player, 'error', 'error') end
 								if quanty > 0 then
 									if not chest then
-										removeBagItem(v.name, -selectedQuanty, player)
-										item_drop(v.name, player, selectedQuanty)
+										if checkItemQuanty(v.name, selectedQuanty, player) then
+											removeBagItem(v.name, -selectedQuanty, player)
+											item_drop(v.name, player, selectedQuanty)
+										end
 									else
 										item_removeFromChest(v.name, selectedQuanty, player, chest)
 										addItem(v.name, selectedQuanty, player)

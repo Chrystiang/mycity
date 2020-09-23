@@ -177,7 +177,7 @@ versionLogs = {
 		},
 	},
 	['v3.2.2'] = {
-		releaseDate = '21/09/2020', -- dd/mm/yy
+		releaseDate = '22/09/2020', -- dd/mm/yy
 		maxPages = 1,
 		images = {'174ae918342.png'},
 		br = {
@@ -199,6 +199,18 @@ versionLogs = {
 		hu = {
 			name = 'Új Szerencsevirág rendszer!',
 			_1 = '<rose>Új:</rose> Szerencsevirág magok variációi!\n\n<rose>Új tárgy:</rose> Ásó!\n<li>Távolítsd el a nem kívánt növényeket.</li>\n\nNéhány új kitűző lett hozzáadva!',
+		},
+		id = {
+			name = 'Sistem baru bunga keberuntungan!',
+			_1 = '<rose>Baru:</rose> Variasi benih bunga keberuntungan!\n\n<rose>Item baru:</rose> Sekop!\n<li>Menghilangkan tanaman yang tidak diinginkan!</li>\n\nBeberapa lencana baru telah ditambahkan!',
+		},
+		ar = {
+			name = '!نظام زهرة الحظ الجديد',
+			_1 = '.الإختلاف بين بذور زهرة الحظ <rose>:جديد</rose>\n\n !مجرفة <rose>:عنصر جديد</rose>\n<li>!إزالة النباتات الغير المرغوب فيها</li>\n\n!تم إضافة بعض الأوسمة الجديدة',
+		},
+		pl = {
+			name = 'Nowy system szczesliwego kwiata!',
+			_1 = '<rose>New:</rose>Warianty szczesliwego kwiata!\n\n<rose>Nowy przedmiot:</rose> Lopata!\n<li>Usun niechciane rosliny!</li>\n\nPiec nowych odznak zostalo dodanych!',
 		},
 	},
 }

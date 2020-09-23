@@ -222,8 +222,10 @@ tradeSystem.confirmTrade = function(tradeInfo)
 	end
 	for player, items in next, tradeInfo.tradeData.trading do
 		for item, itemData in next, items do
-			removeBagItem(item,  itemData.amount, player)
-			addItem(item, itemData.amount, tradeInfo.tradeData.players[player])
+			if checkItemQuanty(item, itemData.amount, player) then
+				removeBagItem(item,  itemData.amount, player)
+				addItem(item, itemData.amount, tradeInfo.tradeData.players[player])
+			end
 		end
 		alert_Error(player, 'trade_title', 'trade_success')
 	end
