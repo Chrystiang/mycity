@@ -59,9 +59,9 @@ sideQuests = {
 		quanty = 1000,
 		points = 10,
 	},
-	[13] = { -- Fish 10 frogs
+	[13] = { -- Fish 4 frogs
 		type = 'type:fish;fish_Frog',
-		quanty = 10,
+		quanty = 4,
 		points = 3,
 	},
 	[14] = { -- Fish a Lionfish

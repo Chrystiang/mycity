@@ -212,7 +212,7 @@ eventNewPlayer = function(player)
 			mine_reloadBlock(block, player)
 		end 
 	end
-	if player:find('*') then
+	if player:find('*') or table.contains(room.bannedPlayers, player)  then
 		ui.addTextArea(54215, '', player, -5, -10, 850, 500, 1, 1, 1, true)
 	end
 	ui.addTextArea(4444440, string.rep('\n', 5), player, 16075, 1668, 90, 45, 1, 1, 0, false, 

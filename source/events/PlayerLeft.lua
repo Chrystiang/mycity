@@ -15,7 +15,7 @@ onEvent("PlayerLeft", function(player)
 		stopFishing(player)
 	end
 	if playerData.dataLoaded then
-		savedata(player)
+		savedata(player, true)
 	end
 	setPlayerData(player)
 end)
