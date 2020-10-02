@@ -97,9 +97,10 @@ modernUI.showPlayerItems = function(self, items, chest)
 									end
 									eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 									local condition = (itemData.func and not itemData.fertilizingPower) and -1 or -selectedQuanty
-									if not chest then 
+									if not chest then
+										if not checkItemQuanty(v.name, condition*-1, player) then return end
 										removeBagItem(v.name, condition, player)
-									else 
+									else
 										item_removeFromChest(v.name, condition, player, chest)
 									end
 									if itemType == 'food' then 
