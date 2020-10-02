@@ -714,4 +714,60 @@ mainAssets.__furnitures = {
 		stockLimit = 1,
 		requireQuest = 5,
 	},
+	[65] = {
+		image = '174c1f1fbf3.png', -- right
+		png = '174c1f97787.png',
+		price = 100,
+		area = {47, 58},
+		align = {x = -29, y = -41},
+		name = 'toilet',
+		grounds = function(x, y, id)
+			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+		end,
+		usable = function(player)
+			TFM.playEmote(player, 8)
+		end,
+	},
+	[66] = {
+		image = '174c1f1c41a.png', -- left
+		png = '174c1fade8b.png',
+		price = 100,
+		area = {47, 58},
+		align = {x = -29, y = -41},
+		name = 'toilet',
+		grounds = function(x, y, id)
+			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+		end,
+		usable = function(player)
+			TFM.playEmote(player, 8)
+		end,
+	},
+	[67] = {
+		image = '174c1f1c41a.png', -- Right
+		png = '174c1f99393.png',
+		price = 100,
+		area = {47, 58},
+		align = {x = -29, y = -42},
+		name = 'toilet',
+		grounds = function(x, y, id)
+			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+		end,
+		usable = function(player)
+			TFM.playEmote(player, 8)
+		end,
+	},
+	[68] = {
+		image = '174c1f21dc4.png', -- Left
+		png = '174c1fafa5f.png',
+		price = 100,
+		area = {47, 58},
+		align = {x = -29, y = -42},
+		name = 'toilet',
+		grounds = function(x, y, id)
+			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+		end,
+		usable = function(player)
+			TFM.playEmote(player, 8)
+		end,
+	},
 }
