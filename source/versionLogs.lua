@@ -177,7 +177,7 @@ versionLogs = {
 		},
 	},
 	['v3.2.2'] = {
-		releaseDate = '22/09/2020', -- dd/mm/yy
+		releaseDate = '24/09/2020', -- dd/mm/yy
 		maxPages = 1,
 		images = {'174ae918342.png'},
 		br = {

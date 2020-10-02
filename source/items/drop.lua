@@ -1,16 +1,17 @@
 item_drop = function(item, player, amount)
-	local x, y
+	local x, y, _player
 	amount = amount or 1
 	if type(player) == 'string' then  -- if is from a player
 		x = ROOM.playerList[player].x
 		y = ROOM.playerList[player].y-10
+		_player = player
 	else -- or the game, with x and y values
 		x = player.x 
 		y = player.y-10
 		player = 'Oliver'
 	end
-	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_70000', x, y)}
-	ui.addTextArea(-40000-#room.droppedItems, "<textformat leftmargin='1' rightmargin='1'><a href='event:collectDroppedItem_"..#room.droppedItems.."'>"..string.rep('\n', 5), nil, x, y, 50, 50, 1, 1, 0, false)
+	room.droppedItems[#room.droppedItems+1] = {owner = player, amount = amount, x = x, y = y, item = item, id = bagItems[item].id, collected = false, image = addImage(bagItems[item].png and bagItems[item].png or '16bc368f352.png', '_70000', x, y, _player)}
+	ui.addTextArea(-40000-#room.droppedItems, "<textformat leftmargin='1' rightmargin='1'><a href='event:collectDroppedItem_"..#room.droppedItems.."'>"..string.rep('\n', 5), _player, x, y, 50, 50, 1, 1, 0, false)
 	item_droppedEvent(#room.droppedItems, player)
 end
 

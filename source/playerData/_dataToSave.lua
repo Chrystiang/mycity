@@ -1,6 +1,7 @@
-savedata = function(name)
+savedata = function(name, forceSave)
 	local playerInfos = players[name]
 	if not playerInfos.dataLoaded then return end
+	--if playerInfos.lastDataSave > os.time() and not forceSave then return end
 	if ROOM.name ~= '*#fofinho' then
 		if ROOM.uniquePlayers < room.requiredPlayers then
 			TFM.chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
@@ -13,7 +14,8 @@ savedata = function(name)
 			return
 		end
 	end
-
+	players[name].lastDataSave = os.time() + 10000
+	
 	playerData:set(name, 'coins', playerInfos.coins)
 	playerData:set(name, 'spentCoins', playerInfos.spentCoins)
 	playerData:set(name, 'bagStorage', playerInfos.bagLimit)

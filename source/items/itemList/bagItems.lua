@@ -231,9 +231,13 @@ bagItems = {
 					total = total + data.rarity
 					if total >= numeroRandom then
 						seed = id
-						if seed == 5 then
-							local colors = {5, 10, 11, 12, 13, 14, 15}
-							seed = colors[math.random(#colors)]
+						if seed == 5 then 
+							if players[player].jobs[5] >= 1000 then
+								local colors = {5, 10, 11, 12, 13, 14, 15}
+								seed = colors[math.random(#colors)]
+							else
+								seed = 1
+							end
 						end
 						break
 					end

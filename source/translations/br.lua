@@ -768,5 +768,6 @@ lang.br = {
 	--- V3.2.3
 	trade_error_quest = 'Trocas estão disponíveis após completar %s.',
 	trade_error_quest2 = '%s precisa completar %s para poder aceitar trocas.',
+	furniture_toilet = 'Vaso Sanitário',
 }
 lang.pt = lang.br

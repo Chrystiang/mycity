@@ -780,4 +780,5 @@ lang.en = {
 	--- V3.2.3
 	trade_error_quest = 'Trades are available after completing %s.', -- Will print: "Trades are available after completing Quest 01: Building a boat!"
 	trade_error_quest2 = '%s needs to finish %s in order to accept trades.',
+	furniture_toilet = 'Toilet',
 }

@@ -172,22 +172,26 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 
 			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage('174283c22c9.jpg', ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
 			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(image, ":26", x - 5 + ((i-1)%4)*43, y - 5 + math.floor((i-1)/4)*43, player)
-			ui.addTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player, x + ((i-1)%4)*43, y + 24 + math.floor((i-1)/4)*43, 40, nil, 0xff0000, 0xff0000, 0, true)
-			ui.addTextArea(id..(801+i*2), '\n\n\n\n', player, x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, 40, 40, 0xff0000, 0xff0000, 0, true,
-				function()
-					if v.qt <= 0 or tradeInfo.tradeData.confirmed[player] then return end
-					local counter = 0
-					if not tradeInfo.tradeData.trading[player][v.name] then
-						for _, data in next, tradeInfo.tradeData.trading[player] do
-							counter = counter + 1
-							if counter >= 4 then return end
+			if v.name:find('FlowerSeed') and players[tradeInfo.tradeData.players[player]].jobs[5] < 1000 and not table.contains(mainAssets.roles.admin, player) then
+				tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage('174bc80c9bd.png', ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
+			else
+				ui.addTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player, x + ((i-1)%4)*43, y + 24 + math.floor((i-1)/4)*43, 40, nil, 0xff0000, 0xff0000, 0, true)
+				ui.addTextArea(id..(801+i*2), '\n\n\n\n', player, x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, 40, 40, 0xff0000, 0xff0000, 0, true,
+					function()
+						if v.qt <= 0 or tradeInfo.tradeData.confirmed[player] then return end
+						local counter = 0
+						if not tradeInfo.tradeData.trading[player][v.name] then
+							for _, data in next, tradeInfo.tradeData.trading[player] do
+								counter = counter + 1
+								if counter >= 4 then return end
+							end
 						end
+						v.qt = v.qt - 1
+						tradeSystem.insertItem(tradeInfo, v.name, player, {v, id..(800+i*2)})
+						ui.updateTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player)
 					end
-					v.qt = v.qt - 1
-					tradeSystem.insertItem(tradeInfo, v.name, player, {v, id..(800+i*2)})
-					ui.updateTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player)
-				end
-			)
+				)
+			end
 		end
 	end
 end
