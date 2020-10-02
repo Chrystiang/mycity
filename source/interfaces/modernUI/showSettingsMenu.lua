@@ -77,7 +77,7 @@ modernUI.showSettingsMenu = function(self, donate)
 				..translate('settings_helpText2', player)
 				..'</font>\n'
 				..translate('command_profile', player), player, x, y -23, 485, 200, 0xff0000, 0xff0000, 0, true)
-			button(5, 'Mycity Wiki', function(player) TFM.chatMessage('<rose>https://transformice.fandom.com/wiki/Mycity', player) end, x+22, y+30, 435, 12)
+			button(5, 'Mycity Wiki', function(player) TFM.chatMessage('<rose>https://transformice.fandom.com/wiki/Mycity', player) end, x+22, y+50, 435, 12)
 		elseif selectedWindow == 2 then
 			buttons = {}
 			ui.addTextArea(id..951, '<font color="#ebddc3" size="13">'..translate('settings_config_lang', player), player, x, y+35, 485, nil, 0xff0000, 0xff0000, 0, true)
