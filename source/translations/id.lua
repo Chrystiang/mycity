@@ -239,7 +239,7 @@ lang.id = {
 				_add = 'Tanam sebuah benih di rumahmu.',
 			},
 			[14] = {
-				_add = 'Panen tanaman lada',
+				_add = 'Panen tanaman cabai',
 			},
 			[15] = {
 				_add = 'Masak sebuah saus pedas.',
@@ -412,9 +412,9 @@ lang.id = {
 	expansion_garden = 'Kebun',
 	expansion_grass = 'Rumput',
 	chooseExpansion = 'Pilih sebuah ekspansi',
-	item_pepper = 'Lada',
+	item_pepper = 'Cabai',
 	item_luckyFlower = 'Bunga Keberuntungan',
-	item_pepperSeed = 'Benih Lada',
+	item_pepperSeed = 'Benih Cabai',
 	item_luckyFlowerSeed = 'Benih Bunga Keberuntungan',
 	closed_seedStore = 'Toko benih tutup. Kembali lagi nanti!',
 	item_salt = 'Garam',
