@@ -25,30 +25,35 @@ giveCoin = function(coin, name, work)
 end
 
 giveBadge = function(player, id)
-	for i, v in next, players[player].badges do
-		if v == id then
-			return
-		end
-	end
-	if players[player].callbackImages[1] then
-		for i, v in next, players[player].callbackImages do
-			removeImage(players[player].callbackImages[i])
-		end
-		players[player].callbackImages = {}
-	end
+	if table.contains(players[player].badges, id) then return end
+
 	players[player].badges[#players[player].badges+1] = id
 
-	modernUI.new(player, 240, 220, translate('newBadge', player), translate('unlockedBadge', player))
+	modernUI.new(player, 240, 220, translate('newBadge', player))
 	:build()
 	:badgeInterface(id)
 	:addConfirmButton(function() end, translate('confirmButton_Great', player))
 
-	if id == 0 then
+	if id == 20 then
 		removeImage(players[player].questScreenIcon)
 		players[player].questScreenIcon = nil
 		ui.removeTextArea(8541584, player)
+		giveLevelOrb(player, 6)
 	end
 	savedata(player)
+end
+
+giveLevelOrb = function(player, orb)
+	if table.contains(players[player].starIcons.owned, orb) then return end
+	if not mainAssets.levelIcons.star[orb] then return end
+
+	players[player].starIcons.owned[#players[player].starIcons.owned+1] = orb
+	savedata(player)
+	
+	modernUI.new(player, 240, 220, translate('newLevelOrb', player))
+	:build()
+	:showNewLevelOrb(orb)
+	:addConfirmButton(function() end, translate('confirmButton_Great', player))
 end
 
 giveExperiencePoints = function(player, xp)

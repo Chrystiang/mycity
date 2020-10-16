@@ -41,6 +41,13 @@ item_droppedEvent = function(id, player)
 	local item = room.droppedItems[id].item
 	local amount = room.droppedItems[id].amount
 	local itemData = bagItems[item]
+	local itemName = item
+	if itemName:find('_luckyFlowerSeed') then
+		itemName = 'luckyFlowerSeed'
+	elseif itemName:find('_luckyFlower') then
+		itemName = 'luckyFlower'
+	end
+						
 	if amount <= 0 then return end
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
@@ -50,7 +57,7 @@ item_droppedEvent = function(id, player)
 					if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return TFM.chatMessage('<r>'.. translate('chestIsFull', player), player) end
 					item_addToChest(item, amount, player, chestID)
 					savedata(player)
-					TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..item, player) ..'</vp> <CE>('..amount..')</CE>'), player)
+					TFM.chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..itemName, player) ..'</vp> <CE>('..amount..')</CE>'), player)
 					canRemove = true
 					break
 				end
@@ -72,7 +79,7 @@ item_droppedEvent = function(id, player)
 			if itemData.isFruit then
 				canRemove = true
 				giveCoin(itemData.sellingPrice * amount, player, true)
-				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..item, player)..'</vp>', '<fc>$'..itemData.sellingPrice..'</fc> <CE>('..amount..')</CE>'), player)
+				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..itemData.sellingPrice..'</fc> <CE>('..amount..')</CE>'), player)
 				job_updatePlayerStats(player, 11, amount)
 				giveExperiencePoints(player, 2 * amount)
 			end
@@ -80,14 +87,14 @@ item_droppedEvent = function(id, player)
 	elseif players[player].job == 'fisher' and players[player].place == 'fishShop' and string.find(item, 'fish_') then
 		canRemove = true
 		giveCoin(bagItems[item].price * amount, player)
-		TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..item, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
+		TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
 	elseif players[player].job == 'miner' and players[player].place == 'mine' then
 		if item:find('crystal_') or item:find('goldNugget') then
 			if ROOM.playerList[player].x > 475 and ROOM.playerList[player].x < 745 and ROOM.playerList[player].y > 8070 and ROOM.playerList[player].y < 8230 then
 				canRemove = true
 				giveCoin(bagItems[item].price * amount, player)
 				giveExperiencePoints(player, 40 * amount)
-				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..item, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
+				TFM.chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
 				if item:find('crystal_') then
 					job_updatePlayerStats(player, bagItems[item].jobStatID, amount)
 				end

@@ -7,9 +7,10 @@ modernUI.showNPCShop = function(self, items)
 	local y = (200 - height/2) + 65
 	local currentPage = 1
 	local maxPages = math.ceil(#items/15)
-	local boughtSomething = false -- for prevent players from duplicating rare items
+	local boughtSomething = false -- for prevent players from duplicating items
 	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
 
+	
 	local function showItems()
 		local minn = 15 * (currentPage-1) + 1
 		local maxx = currentPage * 15
@@ -19,6 +20,7 @@ modernUI.showNPCShop = function(self, items)
 			if not data then break end
 			local selectedQuanty = 1
 			local v = mainAssets.__furnitures[data[1]] or bagItems[data[2]]
+
 			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1722d2d8234.jpg', ":26", x + (i%5)*63, y + math.floor(i/5)*65, player)
 			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(v.png, ":26", x + 5 + (i%5)*63, y + 5 + math.floor(i/5)*65, player)
 			if v.stockLimit and checkIfPlayerHasFurniture(player, data[1]) then
@@ -28,7 +30,11 @@ modernUI.showNPCShop = function(self, items)
 				ui.addTextArea(id..(900+i), '<p align="center"><font size="9"><r>'..translate('locked_quest', player):format(v.requireQuest), player, x + (i%5)*63, y + 3 + math.floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + math.floor(i/5)*65, player)
 			else
-				ui.addTextArea(id..(900+i), '\n\n\n\n', player, x + 3 + (i%5)*63, y + 3 + math.floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true,
+				if v.limitedTime and not formatDaysRemaining(v.limitedTime, true) then
+					ui.addTextArea(id..(901+i*2), '<p align="center"><font size="9"><r>'..translate('daysLeft2', player):format(formatDaysRemaining(v.limitedTime)), player, x + 3 + (i%5)*63, y + 49 + math.floor(i/5)*65, 55, nil, 0xff0000, 0xff0000, 0, true)
+				end
+
+				ui.addTextArea(id..(900+i*2), '\n\n\n\n', player, x + 3 + (i%5)*63, y + 3 + math.floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true,
 				function(player, i)
 					local name = mainAssets.__furnitures[data[1]] and translate('furniture_'..v.name, player) or translate('item_'..data[2], player)
 					player_removeImages(players[player]._modernUISelectedItemImages[1])
@@ -49,10 +55,10 @@ modernUI.showNPCShop = function(self, items)
 							colorPallete.button_confirmBg = 0xbdbdbd
 							colorPallete.button_confirmFront = 0x5b5b5b
 						end
-						ui.addTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, colorPallete.button_confirmBg, colorPallete.button_confirmBg, 1, true)
-						ui.addTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-						ui.addTextArea(id..(932+i*5), '', player, x, y, width, height, colorPallete.button_confirmFront, colorPallete.button_confirmFront, 1, true)
-						ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, not blockClick and callback or nil)
+						ui.addTextArea(id..(990+i*5), '', player, x-1, y-1, width, height, colorPallete.button_confirmBg, colorPallete.button_confirmBg, 1, true)
+						ui.addTextArea(id..(991+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+						ui.addTextArea(id..(992+i*5), '', player, x, y, width, height, colorPallete.button_confirmFront, colorPallete.button_confirmFront, 1, true)
+						ui.addTextArea(id..(993+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, not blockClick and callback or nil)
 					end
 					local currency = v.qpPrice and {players[player].sideQuests[4], v.qpPrice*selectedQuanty} or {players[player].coins, v.price*selectedQuanty}
 					local buttonTxt = nil
@@ -141,7 +147,7 @@ modernUI.showNPCShop = function(self, items)
 			currentPage = currentPage + count
 			player_removeImages(players[player]._modernUISelectedItemImages[1])
 			player_removeImages(players[player]._modernUISelectedItemImages[3])
-			for i = 897, 929 do
+			for i = 897, 1020 do
 				ui.removeTextArea(id..i, player)
 			end
 			updateScrollbar()

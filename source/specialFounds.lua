@@ -13,4 +13,11 @@ room.specialFounds   = {
 		day         = '16dd5d7738e.jpg',
 		align       = 1919,
 	},
+	halloween2020 = {
+		evening     = '1752efbedd0.jpg',
+		dawn        = '174f9c1ecf5.jpg',
+		night       = '174f9c1ecf5.jpg',
+		day         = '1752efbedd0.jpg',
+		align       = 1373,
+	},
 }

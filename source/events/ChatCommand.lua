@@ -1,4 +1,5 @@
 onEvent("ChatCommand", function(player, command)
+	if room.gameMode then return end
 	if room.isInLobby then return end
 	if not players[player].dataLoaded then return end
 	

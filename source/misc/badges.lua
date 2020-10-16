@@ -1,3 +1,7 @@
+local badgesPriority = {
+	10, 5, 2, 3, 15, 16, 17, 18, 19, 4, 8, 9, 14, 0, 6, 7, 20, 1, 11, 12, 13, 21
+}
+
 badges = {
 	[0] = { -- Halloween2019
 		png = '16de63ec86f.png',
@@ -58,5 +62,11 @@ badges = {
 	},
 	[19] = { -- Sold 10 red crystals
 		png = '174b22294f7.png',
+	},
+	[20] = { -- Halloween2020
+		png = '17529b1fabe.png',
+	},
+	[21] = { -- Season 4 reward
+		png = '17529b1df9b.png',
 	},
 }

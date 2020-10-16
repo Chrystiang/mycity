@@ -109,5 +109,7 @@ bagIds = {
 	[108] = {n = 'green_luckyFlower'},
 	[109] = {n = 'black_luckyFlower'},
 	[110] = {n = 'shovel'},
-
+	[111] = {n = 'strangePumpkin', blockTrades = true},
+	[112] = {n = 'strangePumpkinSeed', blockTrades = true},
+	[113] = {n = 'candyBucket', blockTrades = true},
 }

@@ -110,5 +110,11 @@ HouseSystem.plants = {
 		quantyOfSeeds = 1,
 		pricePerSeed = 10000,
 	},
-
+	[16] = { -- strange pumpkin
+		name = 'strangePumpkin',
+		growingTime = 60*7,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '16da90fd0ad.png', '1750fd174d4.png', "1750fd1904b.png", '1750fd156cf.png', '1750fd1ad00.png'},
+		quantyOfSeeds = 1,
+		pricePerSeed = 1000,
+	},
 }

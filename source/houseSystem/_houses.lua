@@ -173,4 +173,18 @@ mainAssets.__houses = {
 			axis    = {0, -50},
 		},
 	},
+	[10] = { -- Pumpkin House
+		properties = {
+			price = 100000000,
+			png = '1750410633b.png',
+			limitedTime = os.time{day=16, year=2020, month=11},
+		},
+		inside = {
+			image   = '',
+		},
+		outside = {
+			icon    = '17503e6b5ac.png',
+			axis    = {0, -32},
+		},
+	},
 }

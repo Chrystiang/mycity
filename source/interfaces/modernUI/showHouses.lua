@@ -28,11 +28,11 @@ modernUI.showHouses = function(self, selectedTerrain)
 					local itemName = translate('House'.._, player)
 					player_removeImages(players[player]._modernUISelectedItemImages[1])
 					ui.addTextArea(id..'890', '<p align="center"><font size="13"><fc>'..itemName, player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
-					local description = '<p align="center"><i>"'..translate('houseDescription_'.._, player)..'"</i>\n\n<p align="left">'
+					local description = '<p align="center"><i>"'..translate('houseDescription_'.._, player)..'"</i>\n\n'
 					if isLimitedTime and table.contains(players[player].casas, _) then
 						description = description..'<r>'..translate('collectorItem', player)
 					end
-					ui.addTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+80, 135, nil, 0x24474D, 0x314e5, 0, true)
+					ui.addTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+65, 135, nil, 0x24474D, 0x314e5, 0, true)
 					ui.addTextArea(id..'894', '', player, x + 3 + ((i-1)%5)*63, y + 3 + math.floor((i-1)/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true)
 
 					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(image, "&26", 542, 125, player)

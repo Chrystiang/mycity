@@ -1,6 +1,9 @@
 item_getDescription = function(item, player, isFurniture)
 	local itemData = isFurniture and mainAssets.__furnitures[item] or bagItems[item]
 	local description = lang.en['itemDesc_'..item] and '<p align="center"><i>"'..translate('itemDesc_'..item, player)..'"</i><v><p align="left">\n' or '<v>'
+	local isLimitedTime = itemData.limitedTime
+	local isOutOfSale = isLimitedTime and formatDaysRemaining(isLimitedTime, true)
+
 	if not isFurniture then
 		local itemType = itemData.type
 		local power = itemData.power or 0
@@ -9,13 +12,13 @@ item_getDescription = function(item, player, isFurniture)
 			description = '<p align="center"><i>"'..translate('itemDesc_'..item, player):format(itemData.complement)..'"</i><v><p align="left">\n'
 		end
 		if itemType == 'food' then 
-			description = description ..string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player), '<vp>'..power..'</vp>', '<vp>'..hunger..'</vp>')
+			description = description ..string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player)..'\n', '<vp>'..power..'</vp>', '<vp>'..hunger..'</vp>')
 		elseif itemData.miningPower then 
 			description = description .. translate('itemInfo_miningPower', player):format('<vp>0</vp>')
 		elseif item:find('Seed') and not isFurniture then 
 			local txt = translate('itemInfo_Seed', player)
-			for i, v in next, HouseSystem.plants do 
-				if item:lower():find(v.name:lower()) then 
+			for i, v in next, HouseSystem.plants do
+				if v.name:find(item:gsub('Seed', '')) then 
 					txt = txt:format((v.growingTime * (#v.stages-2)/60), v.pricePerSeed)..'\n'
 					break
 				end
@@ -23,28 +26,18 @@ item_getDescription = function(item, player, isFurniture)
 			description = description .. txt
 		end
 		if itemData.sellingPrice then
-			description = description .. '\n' .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.sellingPrice..'</vp>')
+			description = description .. '\n' .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.sellingPrice..'</vp>')..'\n'
 		end
 	end
 	if itemData.credits then
 		description = description ..translate('createdBy', player):format('<vp>'..itemData.credits..'</vp>')..'\n'
 	end
-	return description
-end
 
-loadExtraItemInfo = function(v, player)
-	if players[player].selectedItem.images[1] then
-		for i, v in next, players[player].selectedItem.images do
-			removeImage(players[player].selectedItem.images[i])
-		end
-		players[player].selectedItem.images = {}
+	if isOutOfSale then
+		description = description ..'\n<p align="center"><font size="9"><r>'..translate('collectorItem', player)
+	elseif isLimitedTime then
+		description = description ..'\n<p align="center"><font size="9"><r>'..translate('daysLeft', player):format(formatDaysRemaining(isLimitedTime))
 	end
-	if v.limitedTime then
-		if not formatDaysRemaining(v.limitedTime, true) then
-			ui.addTextArea(99079, '<font size="9"><r>'..translate('daysLeft', player):format(formatDaysRemaining(v.limitedTime)), player, 525, 200, nil, nil, 0xff0000, 0xff0000, 0, true)
-			players[player].selectedItem.images[#players[player].selectedItem.images+1] = addImage('16ddbab9690.png', "&70",	510, 198, player)
-		else
-			ui.addTextArea(99079, '<font size="9"><r><p align="center">'..translate('collectorItem', player), player, 500, 200, 110, nil, 0xff0000, 0xff0000, 0, true)
-		end
-	end
+
+	return description
 end

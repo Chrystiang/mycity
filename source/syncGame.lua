@@ -116,24 +116,23 @@ syncVersion = function(player, vs)
 			addItem('pumpkinSeed', 5, player)
 		end
 	end
+	if playerVersion < 330 then
+		if players[player].favoriteCars[1] == 9 then
+			players[player].favoriteCars[1] = 0
+		end
+	end
 
 	if players[player].seasonStats[1][1] ~= mainAssets.season then
 		players[player].seasonStats[1][1] = mainAssets.season
 		players[player].seasonStats[1][2] = 0
 	end
-	if mainAssets.fileCopy._ranking:find(player) then
-		if not table.contains(players[player].starIcons.owned, 4) then
-			giveBadge(player, 13)
-			players[player].starIcons.owned[#players[player].starIcons.owned+1] = 4
-			players[player].starIcons.selected = 4
-		end
 
-		if not table.contains(players[player].cars, 15) then
-			players[player].cars[#players[player].cars+1] = 15
-			modernUI.new(player, 240, 220, translate('seasonReward', player), translate('unlockedCar', player))
-			:build()
-			:addConfirmButton(function() end, translate('confirmButton_Great', player))
+	if mainAssets.fileCopy._ranking:find(player) then
+		if not table.contains(players[player].starIcons.owned, 5) then
+			giveBadge(player, 21)
+			giveLevelOrb(player, 5)
 		end
+		giveCar(player, 16)
 	end
 	players[player].gameVersion = 'v'..table.concat(version, '.')
 end

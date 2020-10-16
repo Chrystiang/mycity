@@ -722,7 +722,7 @@ mainAssets.__furnitures = {
 		align = {x = -29, y = -41},
 		name = 'toilet',
 		grounds = function(x, y, id)
-			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+			addGround(id, 25+x, 37+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
 		end,
 		usable = function(player)
 			TFM.playEmote(player, 8)
@@ -736,7 +736,7 @@ mainAssets.__furnitures = {
 		align = {x = -29, y = -41},
 		name = 'toilet',
 		grounds = function(x, y, id)
-			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+			addGround(id, 25+x, 37+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
 		end,
 		usable = function(player)
 			TFM.playEmote(player, 8)
@@ -750,7 +750,7 @@ mainAssets.__furnitures = {
 		align = {x = -29, y = -42},
 		name = 'toilet',
 		grounds = function(x, y, id)
-			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+			addGround(id, 25+x, 37+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
 		end,
 		usable = function(player)
 			TFM.playEmote(player, 8)
@@ -764,10 +764,130 @@ mainAssets.__furnitures = {
 		align = {x = -29, y = -42},
 		name = 'toilet',
 		grounds = function(x, y, id)
-			addGround(id, 25+x, 34+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
+			addGround(id, 25+x, 37+y, {type = 14, height = 15, width = 24, friction = 0.3, restitution = 0.2})
 		end,
 		usable = function(player)
 			TFM.playEmote(player, 8)
 		end,
+	},
+	[69] = { -- lamp
+		image = '174f9dbbf18.png',
+		png = '174f9f68d6e.png',
+		area = {105, 104},
+		align = {x = -52, y = -58},
+		name = 'lamp',
+		qpPrice = 5,
+		limitedTime = os.time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+	},
+	[70] = { -- bloodstain
+		image = '174f9e2d3ef.png',
+		png = '174f9f8079b.png',
+		area = {36, 40},
+		align = {x = -18, y = -50},
+		name = 'bloodstain',
+		qpPrice = 3,
+		limitedTime = os.time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+		credits = 'Iho#5679',
+	},
+	[71] = { -- scarecrow
+		image = '174f9e9b06d.png',
+		png = '174f9f91a9e.png',
+		area = {63, 97},
+		align = {x = -31, y = -77},
+		name = 'scarecrow',
+		qpPrice = 5,
+		limitedTime = os.time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+		credits = 'Iho#5679',
+	},
+	[72] = { -- amongUs_medBay
+		image = '174f9ec88e3.png',
+		png = '174f9f5ac54.png',
+		area = {100, 100},
+		align = {x = -50, y = -81},
+		name = 'amongUs_medBay',
+		qpPrice = 10,
+		limitedTime = os.time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+		credits = '<CS>InnerSloth</CS>, Iho#5679',
+	},
+	[73] = { -- amongUs_vent
+		image = '174f9f262be.png',
+		png = '174f9f9deed.png',
+		area = {47, 28},
+		align = {x = -23, y = -10},
+		name = 'amongUs_vent',
+		qpPrice = 3,
+		limitedTime = os.time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+		credits = '<CS>InnerSloth</CS>, Iho#5679',
+	},
+	[74] = { -- cauldron
+		image = '1750fad0de9.png',
+		png = '1750facf67a.png',
+		area = {77, 72},
+		align = {x = -38, y = -50},
+		name = 'cauldron',
+		usable = function(player)
+			eventTextAreaCallback(0, player, 'recipes', true)
+		end,
+		qpPrice = 10,
+		npcShop = 'drekkemaus',
+		limitedTime = os.time{day=16, year=2020, month=11},
+		credits = 'Qadori#0000',
+	},
+	[75] = { -- dryTree
+		image = '1750fad255c.png',
+		png = '1750facdf06.png',
+		area = {249, 220},
+		align = {x = -124, y = -182},
+		name = 'dryTree',
+		price = 10000,
+		npcShop = 'drekkemaus',
+		limitedTime = os.time{day=16, year=2020, month=11},
+		credits = 'Lou#0010',
+	},
+	[76] = { -- dryTree
+		image = '1750fad3ccc.png',
+		png = '1750facc795.png',
+		area = {190, 220},
+		align = {x = -95, y = -187},
+		name = 'dryTree',
+		price = 3000,
+		npcShop = 'drekkemaus',
+		limitedTime = os.time{day=16, year=2020, month=11},
+		credits = 'Lou#0010',
+	},
+	[77] = { -- dryTree
+		image = '1750fad543e.png',
+		png = '1750facb023.png',
+		area = {160, 220},
+		align = {x = -80, y = -195},
+		name = 'dryTree',
+		price = 2000,
+		npcShop = 'drekkemaus',
+		limitedTime = os.time{day=16, year=2020, month=11},
+	},
+	[78] = { -- fence
+		image = '1750fad6baf.png',
+		png = '1750fac98b2.png',
+		area = {179, 81},
+		align = {x = -90, y = -58},
+		name = 'fence',
+		qpPrice = 3,
+		npcShop = 'drekkemaus',
+		limitedTime = os.time{day=16, year=2020, month=11},
+	},
+	[79] = { -- scarecrow
+		image = '1750fad9a95.png',
+		png = '1750fac69d2.png',
+		area = {110, 151},
+		align = {x = -55, y = -132},
+		name = 'scarecrow',
+		qpPrice = 7,
+		npcShop = 'drekkemaus',
+		limitedTime = os.time{day=16, year=2020, month=11},
 	},
 }

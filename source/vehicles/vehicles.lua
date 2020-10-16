@@ -49,7 +49,9 @@ drive = function(name, vehicle)
 	for i = 1021, 1051 do
 		ui.removeTextArea(i, name)
 	end
-	freezePlayer(name, true)
+	if car.type ~= 'air' then
+		freezePlayer(name, true)
+	end
 	playerData.selectedCar = vehicle
 	playerData.canDrive = true
 	removeCarImages(name)
@@ -105,7 +107,7 @@ showBoatShop = function(player, floor)
 				ui.addTextArea(5007+i*5, '<p align="center"><vp>$'..carInfo.price..'\n', player, position[floor][i], 9485+(floor-1)*300, width[floor][i], nil, nil, 0x00ff00, 0.5, false,
 					function(player)
 						if table.contains(players[player].cars, v) then return end
-						players[player].cars[#players[player].cars+1] = v
+						giveCar(player, v)
 						giveCoin(-mainAssets.__cars[v].price, player)
 						showBoatShop(player, floor)
 					end)
@@ -133,7 +135,7 @@ showCarShop = function(player)
 						ui.addTextArea(5007+v*counter, '<p align="center"><vp>$'..carInfo.price..'\n', player, (currentCount)*200 + 8805, 130+200, 180, nil, nil, 0x00ff00, 0.5, false,
 							function(player)
 								if table.contains(players[player].cars, v) then return end
-								players[player].cars[#players[player].cars+1] = v
+								giveCar(player, v)
 								players[player].selectedCar = v
 								players[player].place = 'town'
 
@@ -150,5 +152,30 @@ showCarShop = function(player)
 				currentCount = currentCount + 1
 			end
 		end
+	end
+
+	ui.addTextArea(5068, '<p align="center"><font color="#000000" size="14">'..translate('vehicle_17', player), player, 13520, 3231, 140, 80, 0x46585e, 0x46585e, 1)
+	ui.addTextArea(5069, translate('speed', player):format(mainAssets.__cars[17].maxVel)..' km/h', player, 13520, 3231+20, 140, nil, 0x46585e, 0x00ff00, 0)
+
+	local broomInfo = mainAssets.__cars[17]
+	if not table.contains(players[player].cars, 17) then
+		if broomInfo.price <= players[player].coins then
+			ui.addTextArea(5070, '<p align="center"><vp>$'..broomInfo.price, player, 13520, 3231+60, 140, nil, nil, 0xff0000, 0.5, false,
+				function(player)
+					if table.contains(players[player].cars, 17) then return end
+					giveCar(player, 17)
+					players[player].selectedCar = 17
+					players[player].place = 'island'
+
+					TFM.movePlayer(player, 13414, 7461, false)
+					giveCoin(-mainAssets.__cars[17].price, player)
+					drive(player, 17)
+					showCarShop(player)
+				end)
+		else
+			ui.addTextArea(5070, '<p align="center"><r>$'..broomInfo.price, player, 13520, 3231+60, 140, nil, nil, 0xff0000, 0.5)
+		end
+	else
+		ui.addTextArea(5070, '<p align="center">'..translate('owned', player), player, 13520, 3231+60, 140, nil, nil, 0xff0000, 0.5)
 	end
 end

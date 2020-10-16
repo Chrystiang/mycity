@@ -11,7 +11,7 @@ buildNpcsShopItems = function()
 		local newFormat = {}
 		for i, k in next, npcsStores.items do
 			local v = type(k) == 'table' and k or bagItems[k]
-			if not v.limitedTime then
+			if not v.limitedTime or not formatDaysRemaining(v.limitedTime, true) then
 				if npc ~= 'chrystian' then
 					if v.npcShop and v.npcShop:find(npc) then
 						newFormat[#newFormat+1] = {i, k}

@@ -9,7 +9,7 @@ setPlayerData = function(player)
 		level		= {1, 0},
 		starIcons 	= {owned = {1}, selected = 1},
 		badges		= {},
-		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
+		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		--------- TRADE ---------
 		isTrading 	= false,
 		wishList 	= {},
@@ -44,7 +44,7 @@ setPlayerData = function(player)
 		--------- CARS ---------
 		cars		= {},
 		carLeds 	= {},
-		favoriteCars= {0, 0},
+		favoriteCars= {0, 0, 0},
 		currentCar = {direction = nil},
 		selectedCar	= nil,
 		driving		= false,
@@ -125,16 +125,13 @@ setPlayerData = function(player)
 		playerNameIcons = {level = {}},
 		temporaryImages = {jobDisplay = {}},
 		-------------------
-		joinMenuPage 	= 1,
 		gameVersion 	= 'v'..table.concat(version, '.'),
-		joinMenuImages 	= {},
 		rankingImages 	= {},
 		dataLoaded 		= false,
 		roomLog 		= false,
 		lastCallback 	= {when = os.time(), callback = nil},
 		lang			= playerLanguage,
 		whenJoined 		= os.time(),
-		lastDataSave	= os.time(),
 		settings 		= {mirroredMode = 0, language = playerLanguage, disableTrades = 0},
 		inRoom 			= false,
 	}
