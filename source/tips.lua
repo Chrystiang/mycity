@@ -1,0 +1,5 @@
+local tips = {
+	br = {'Você consegue ir e voltar a pé pelo no mapa até 14 vezes em 1 hora!','O jogo começa quando estiverem presentes no mínimo 4 pessoas na sala com IPs diferentes.', 'A planta mais rara do jogo é a Flor-da-sorte!', 'Existem '..#bagIds..' itens no jogo!', 'Você pode plantar na horta de Oliver!', 'Digite <i>!perfil [jogador]</i> para ver perfis de diferentes jogadores!', 'Existem '..#sideQuests..' missões secundárias disponíveis!', 'Você sabia? #mycity foi criado em 2014!', 'Você sabia? A comunidade brasileira é a que mais joga #mycity!'},
+	en = {'There are '..#bagIds..' items in the game!', 'The rarest plant is the lucky flower!', 'You can plant in Oliver\'s house.', 'Type <i>!profile [playerName]</i> to see profiles from different players!', 'There are '..#sideQuests..' side quests available!'},
+	hu = {#bagIds..' tárgy van a játékban!', 'A legértékesebb növény a Szerencsevirág!', 'Tudsz ültetni Oliver házába.', 'Írd be a <i>!profile [játékosNév]</i> parancsot, hogy lásd mások profilját!', 'Jelenleg '..#sideQuests..' mellékküldetés érhető el!'},
+}
