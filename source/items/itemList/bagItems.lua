@@ -196,19 +196,21 @@ bagItems = {
 		hunger = 1,
 		png = '16c00e1f53b.png',
 		type = 'food',
+		npcShop = 'alicia',
 	},
 	hotChocolate = {
 		id = 12,
 		price = 168,
 		png = '17157e81a35.png',
 		type = 'food',
+		npcShop = 'alicia',
 	},
 	milkShake = {
 		id = 13,
 		price = 260,
 		png = '17157f95ae1.png',
 		type = 'food',
-		npcShop = 'kariina',
+		npcShop = 'kariina, alicia',
 	},
 	seed = {
 		id = 14,
@@ -447,6 +449,7 @@ bagItems = {
 	pumpkinSeed = {
 		id = 36,
 		png = '16db258644e.png',
+		limitedTime = os.time{day=11, year=2019, month=11},
 	},
 	superFertilizer = {
 		id = 37,
@@ -469,9 +472,10 @@ bagItems = {
 	},
 	cookies = {
 		id = 38,
-		price = 0,
+		price = 100,
 		png = '17157d3d7b0.png',
 		type = 'food',
+		npcShop = 'alicia',
 	},
 	sugar = {
 		id = 39,
@@ -609,9 +613,10 @@ bagItems = {
 	},
 	waffles = {
 		id = 56,
-		price = 0,
+		price = 150,
 		png = '171578aa546.png',
 		type = 'food',
+		npcShop = 'alicia',
 	},
 	egg = {
 		id = 57,
@@ -830,9 +835,11 @@ bagItems = {
 		type = 'food',
 	},
 	pumpkinPie = {
-		id = 93,	
+		id = 93,
+		qpPrice = 10,
 		png = '1747006faae.png',
 		type = 'food',
+		npcShop = 'alicia',
 	},
 	steakFrites = {
 		id = 94,	
@@ -934,7 +941,26 @@ bagItems = {
 			return HouseSystem.removeCrop(player)
 		end,
 	},
-
+	strangePumpkin = {
+		id = 111,
+		png = '17529e727b2.png',
+		type = 'food',
+		power = 30,
+		hunger = 20,
+		limitedTime = os.time{day=16, year=2020, month=11},
+	},
+	strangePumpkinSeed = {
+		id = 112,
+		qpPrice = 10,
+		png = '17529e77aa4.png',
+		limitedTime = os.time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+	},
+	candyBucket = {
+		id = 113,
+		png = '17529e757c5.png',
+		limitedTime = os.time{day=16, year=2020, month=11},
+	},
 }
 
 for item, data in next, bagItems do

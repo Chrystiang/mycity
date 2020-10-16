@@ -21,10 +21,11 @@ modernUI.showPlayerItems = function(self, items, chest)
 			[6] item image align,
 			[7] item amount align,
 			[8] item amount text size
+			[9] background image if is a collector's item
 		]]
-		sizeScale = {32, 42, '174283c22c9.jpg', '174284cb5fc.png', 8, -5, 27, 10}
+		sizeScale = {32, 42, '174283c22c9.jpg', '174284cb5fc.png', 8, -5, 27, 10, '174eae7e0e1.jpg'}
 	else
-		sizeScale = {15, 62, '1722d2d8234.jpg', '1742b444b05.png', 5, 5, 42, 13}
+		sizeScale = {15, 62, '1722d2d8234.jpg', '1742b444b05.png', 5, 5, 42, 13, '174eae7bca9.jpg'}
 	end
 	local maxPages = math.ceil(#items/sizeScale[1])
 
@@ -38,19 +39,20 @@ modernUI.showPlayerItems = function(self, items, chest)
 			i = i + 1 
 			local v = items[_]
 			if i >= minn and i <= maxx then
+				local itemData = bagItems[v.name]
 				local i = i - 32 * (currentPage-1)
-				local image = bagItems[v.name].png or '16bc368f352.png'
+				local image = itemData.png or '16bc368f352.png'
 				local _x = x + ((i-1)%sizeScale[5]) * sizeScale[2]
 				local _y = y + math.floor((i-1)/sizeScale[5]) * sizeScale[2]
+				local bgImage = (itemData.limitedTime and formatDaysRemaining(itemData.limitedTime, true)) and 9 or 3
 
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(sizeScale[3], ":26", _x, _y, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(sizeScale[bgImage], ":26", _x, _y, player)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(image, ":26", _x + sizeScale[6], _y + sizeScale[6], player)
 				ui.addTextArea(id..(895+i*2), '<p align="right"><font color="#95d44d" size="'..sizeScale[8]..'"><b>x'..v.qt, player, _x, _y + sizeScale[7], sizeScale[2] - 2, nil, 0xff0000, 0xff0000, 0, true)
 				ui.addTextArea(id..(896+i*2), '\n\n\n\n', player, _x + 3, _y + 3, sizeScale[2] - 2, sizeScale[2] -2, 0xff0000, 0xff0000, 0, true,
 					function(player)
 						local itemName = v.name 
 						local quanty = v.qt 
-						local itemData = bagItems[v.name]
 						local itemType = itemData.type
 						local power = itemData.power or 0
 						local hunger = itemData.hunger or 0

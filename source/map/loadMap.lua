@@ -50,7 +50,6 @@ loadMap = function(name) -- TO REWRITE
 	end
 	if players[name].questStep[1] > 3 then
 		ui.addTextArea(1026, '<font size="15"><p align="center"><a href="event:enter_cafe">' .. translate('goTo', name) .. '\n</a>', name, 10300, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
-		ui.addTextArea(-33, "<textformat leftmargin='1' rightmargin='1'><a href='event:NPC_coffeeShop'>" .. string.rep('\n', 10), name, 6835, 80, 205, 42, 1, 1, 0)
 	else
 		ui.addTextArea(1026, '<font size="10"><r>' .. translate('enterQuestPlace', name):format(translate('req_3', name)), name, 10300, 1800+room.y, 200, nil, 0x122528, 0x122528, 0.7)
 	end

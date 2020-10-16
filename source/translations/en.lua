@@ -495,7 +495,7 @@ lang.en = {
 	item_superFertilizer = 'Super Fertilizer',
 	itemDesc_superFertilizer = 'It is 2x more effective than a fertilizer.',
 	profile_badges = 'Badges',
-	daysLeft = '%sd left.', -- d: abbreviation of days
+	daysLeft = '%s days left.', -- d: abbreviation of days
 	daysLeft2 = '%sd', -- d: abbreviation of days
 	collectorItem = 'Collector\'s item',
 	House4 = 'Barn',
@@ -777,8 +777,26 @@ lang.en = {
 	badgeDesc_17 = 'Sold 75 purple crystals',
 	badgeDesc_18 = 'Sold 30 green crystals',
 	badgeDesc_19 = 'Sold 10 red crystals',
-	--- V3.2.3
+	--- V3.3.0
 	trade_error_quest = 'Trades are available after completing %s.', -- Will print: "Trades are available after completing Quest 01: Building a boat!"
 	trade_error_quest2 = '%s needs to finish %s in order to accept trades.',
 	furniture_toilet = 'Toilet',
+	profile_changeOrb = 'Change Level Orb',
+	House10 = 'Pumpkin House',
+	houseDescription_10 = 'Coming from an high dosage of super fertilizers, this pumpkin house offers the perfect comfort for the scariest nights.',
+	furniture_dryTree = 'Dry Tree',
+	confirmButton_Play = 'Play!',
+	newLevelOrb = 'New Level Orb',
+	newLevelOrb_info = 'You can change your level orb by opening your profile.',
+	item_strangePumpkin = 'Pumpkin Bucket',
+	item_strangePumpkinSeed = 'Strange Pumpkin Seed',
+	item_candyBucket = 'Candy Bucket',
+	airVehicles = 'Air',
+	vehicle_16 = 'Balloon',
+	vehicle_17 = 'Broom',
+	furniture_lamp = 'Lamp',
+	furniture_amongUs_vent = 'Among Us: Vent',
+	furniture_amongUs_medBay = 'Among Us: Med Bay',
+	tip_airVehicle = 'Press SPACE to stop using a flying vehicle.',
+	furniture_bloodstain = 'Bloodstain',
 }

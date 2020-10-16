@@ -1,8 +1,11 @@
 startRoom = function()
+	players = {}
+	for name in next, ROOM.playerList do 
+		eventNewPlayer(name)
+	end
 	if not room.isInLobby then
 		room.terrains = {}
 		room.houseImgs = {}
-		players = {}
 		room.gameLoadedTimes = room.gameLoadedTimes + 1
 		
 		for i = 1, #mainAssets.__terrainsPositions do
@@ -10,10 +13,6 @@ startRoom = function()
 			room.houseImgs[i] = {img = {}, furnitures = {}, expansions = {}}
 		end
 		room.started = true
-
-		for name in next, ROOM.playerList do 
-			eventNewPlayer(name)
-		end
 
 		eventNewPlayer('Oliver')
 		eventNewPlayer('Remi')
@@ -30,11 +29,6 @@ startRoom = function()
 				end
 			end, 60000, 0)
 		end
-	else
-		players = {}
-		for name in next, ROOM.playerList do 
-			eventNewPlayer(name)
-		end
 	end
 end
 
@@ -42,7 +36,7 @@ genDaveOffers = function()
 	daveOffers = {}
 	local i = 1
 	while #daveOffers < 5 do
-		math.randomseed(math.floor((room.mathSeed/100) * i^2))
+		math.randomseed(room.mathSeed * i^2)
 		local offerID = math.random(1, #mainAssets.__farmOffers)
 		local nextItem = mainAssets.__farmOffers[offerID].item[1]
 		local alreadySelling = false
@@ -57,7 +51,6 @@ genDaveOffers = function()
 		end
 		i = i + 1
 	end
-	math.randomseed(os.time())
 end
 
 for i, v in next, recipes do
@@ -81,20 +74,37 @@ for item, data in next, Mine.ores do
 	bagItems['crystal_'..item].price = math.floor(200*(12/data.rarity))
 end
 
-mine_generate()
-
-if ROOM.name == "*#fofinho" then
-	room.requiredPlayers = 0
-else
-	TFM.setRoomPassword('')
-	if string.match(ROOM.name, "^*#mycity[1-9]$") then
-		room.requiredPlayers = 2
-		room.maxPlayers = math.ceil(room.maxPlayers/2)
-		RUNTIME_LIMIT = 35
+do 
+	local modeName, argsPos = string.match(ROOM.name, "%d+([%a_]+)()")
+	local gameMode = mainAssets.gamemodes[modeName]
+	if gameMode then
+		for name in next, ROOM.playerList do 
+			eventNewPlayer(name)
+		end
+		room.gameMode = modeName
+		room.maxPlayers = gameMode.maxPlayers
+		room.requiredPlayers = gameMode.requiredPlayers
+		gameMode.init()
+	else
+		if ROOM.name == "*#fofinho" then
+			room.requiredPlayers = 0
+		else
+			TFM.setRoomPassword('')
+			if string.match(ROOM.name, "^*#mycity[1-9]$") then
+				room.requiredPlayers = 2
+				room.maxPlayers = 10
+			end
+		end
+		mine_generate()
+		if ROOM.uniquePlayers >= room.requiredPlayers then
+			genMap()
+		else
+			genLobby()
+		end
 	end
+	TFM.setRoomMaxPlayers(room.maxPlayers)
 end
 
-TFM.setRoomMaxPlayers(room.maxPlayers)
 system.loadFile(1)
 
 local lastFile = 5
@@ -113,14 +123,10 @@ addTimer(function()
 	end
 end, 90000, 0)
 
-if ROOM.uniquePlayers >= room.requiredPlayers then
-	genMap()
-else
-	genLobby()
-end
-
 local syncTimer = system.newTimer(function()
 	if tonumber(os.date('%S'))%10 == 0 then
 		system.loadPlayerData('Sharpiebot#0000')
 	end
 end, 1000, true)
+
+initializingModule = false

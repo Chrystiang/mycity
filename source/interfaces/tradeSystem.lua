@@ -73,7 +73,8 @@ end
 
 tradeSystem.insertItem = function(tradeInfo, item, player, originalID)
 	if tradeInfo.tradeData.finished then return end
-	local image = bagItems[item].png or '16bc368f352.png'
+	local itemData = bagItems[item]
+	local image = itemData.png or '16bc368f352.png'
 	local index, y
 
 	if not tradeInfo.tradeData.trading[player][item] then
@@ -104,7 +105,9 @@ tradeSystem.insertItem = function(tradeInfo, item, player, originalID)
 		local id = p == player and 900 or 910
 
 		if tradeInfo.tradeData.trading[player][item].amount == 1 then
-			tradeInfo.tradeData.trading[player][item].images[#tradeInfo.tradeData.trading[player][item].images+1] = addImage('174280ced34.jpg', ':50', x, y, p)
+			local bgImage = (itemData.limitedTime and formatDaysRemaining(itemData.limitedTime, true)) and '174eae7fde7.jpg' or '174280ced34.jpg'
+
+			tradeInfo.tradeData.trading[player][item].images[#tradeInfo.tradeData.trading[player][item].images+1] = addImage(bgImage, ':50', x, y, p)
 			tradeInfo.tradeData.trading[player][item].images[#tradeInfo.tradeData.trading[player][item].images+1] = addImage(image, ':50', x-2, y, p)
 		end
 		ui.addTextArea((200)..(id+index*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..tradeInfo.tradeData.trading[player][item].amount, p, x+4, y+29, 40, nil, 0xff0000, 0xff0000, 0, true)
@@ -168,11 +171,25 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 		local v = items[_]
 		if i >= minn and i <= maxx then
 			local i = i - 24 * (currentPage-1)
-			local image = bagItems[v.name].png or '16bc368f352.png'
+			local itemData = bagItems[v.name]
+			local image = itemData.png or '16bc368f352.png'
+			local bgImage = (itemData.limitedTime and formatDaysRemaining(itemData.limitedTime, true)) and '174eae7e0e1.jpg' or '174283c22c9.jpg'
 
-			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage('174283c22c9.jpg', ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
+			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(bgImage, ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
 			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(image, ":26", x - 5 + ((i-1)%4)*43, y - 5 + math.floor((i-1)/4)*43, player)
-			if v.name:find('FlowerSeed') and players[tradeInfo.tradeData.players[player]].jobs[5] < 1000 and not table.contains(mainAssets.roles.admin, player) then
+			local cannotTrade = false
+	
+			if not table.contains(mainAssets.roles.admin, player) then
+				if v.name:find('FlowerSeed') and players[tradeInfo.tradeData.players[player]].jobs[5] < 1000  then
+					cannotTrade = true
+				elseif v.name:find('Goldenmare') and players[player].jobs[3] < 50*v.qt then
+					cannotTrade = true
+				elseif bagIds[itemData.id].blockTrades then
+					cannotTrade = true
+				end
+			end
+
+			if cannotTrade then
 				tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage('174bc80c9bd.png', ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
 			else
 				ui.addTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player, x + ((i-1)%4)*43, y + 24 + math.floor((i-1)/4)*43, 40, nil, 0xff0000, 0xff0000, 0, true)

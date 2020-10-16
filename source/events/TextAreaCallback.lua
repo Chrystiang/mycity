@@ -273,47 +273,9 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 					players[player].robbery.usingShield = false
 				end, 7000, 1)
 			end
-		end
-	-----------RESGATAR CODIGOS--------------
-	elseif callback == 'enterCode' then
-		players[player].codigo = {}
-		showPopup(1, player, nil, '\n\n'..translate('codeInfo', player), 400 - 300 *0.5, 95, 300, 215, true, 10, '', true)
-		ui.addTextArea(1897, '<V><p align="center"><font size="13">'..translate('code', player), player, 400 - 300 *0.5, 120, 300, 20, 0x314e57, 0x314e57, 0.8, true)
-	elseif callback == 'getCode' then
-		local code = table.concat(players[player].codigo, '')
-		players[player].codigo = {}
-		if codes[code] then
-			for i, v in next, players[player].receivedCodes do
-				if v == codes[code].id then
-					ui.addTextArea(1897, '<R><p align="center"><font size="13">'..translate('codeAlreadyReceived', player), player, 400 - 300 *0.5, 120, 300, 20, 0x314e57, 0x314e57, 0.8, true)
-					return
-				end
-			end
-			if codes[code].available then
-				if codes[code].level then
-					if codes[code].level > players[player].level[1] then
-						return alert_Error(player, 'error', 'codeLevelError', codes[code].level)
-					end
-				end
-				eventTextAreaCallback(102, player, 'close3_1', true)
-				players[player].receivedCodes[#players[player].receivedCodes+1] = codes[code].id
-				codes[code].reward(player)
-				return
-			else
-				ui.addTextArea(1897, '<R><p align="center"><font size="13">'..translate('codeNotAvailable', player), player, 400 - 300 *0.5, 120, 300, 20, 0x314e57, 0x314e57, 0.8, true)
-				return
-			end
-		else
-			ui.addTextArea(1897, '<R><p align="center"><font size="13">'..translate('incorrect', player), player, 400 - 300 *0.5, 120, 300, 20, 0x314e57, 0x314e57, 0.8, true)
-		end
+		end		
 	elseif callback == 'getDiscordLink' then
 		TFM.chatMessage('<rose>'..room.discordServerUrl, player)
-	elseif callback:sub(1, 9) == 'keyboard_' then
-		local key = callback:sub(10)
-		if #players[player].codigo <= 14 then
-			players[player].codigo[#players[player].codigo+1] = key
-		end
-		ui.addTextArea(1897, '<V><p align="center"><font size="13">'..table.concat(players[player].codigo, ''), player, 400 - 300 *0.5, 120, 300, 20, 0x314e57, 0x314e57, 0.8, true)
 	-----------BANK-------------
 	elseif callback:sub(1,20) == 'insertVaultPassword_' then
 		local digit = callback:sub(21)
@@ -456,47 +418,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	elseif callback == 'recipes' then
 		modernUI.new(player, 520, 300, translate('recipes', player))
 			:build()
-			:showRecipes()
-	elseif callback:sub(1, 15) == 'joiningMessage_' then
-		if players[player].dataLoaded then return end
-		local type = callback:sub(16)
-		player_removeImages(players[player].joinMenuImages)
-		local currentVersion = 'v'..table.concat(version, '.')
-		players[player].joinMenuImages = {}
-		if type == 'close' then
-			ui.removeTextArea(20880, player)
-			eventTextAreaCallback(0, player, 'close2', true)
-			removeImage(players[player].bannerLogin)
-			system.loadPlayerData(player)
-
-			showDishOrders(player)
-			mine_drawGrid(mine_optimizeGrid(grid, grid_width, grid_height), 60, Mine.position[1], Mine.position[2])
-			addImage("170fef3117d.png", ":1", 660, 365, player)
-			ui.addTextArea(999997, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 660, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) openProfile(player) end)
-
-			addImage("170f8773bcb.png", ":2", 705, 365, player)
-			ui.addTextArea(999998, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 705, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 310, 280, translate('questsName', player)):build():questInterface() end)
-
-			addImage("170f8ccde22.png", ":3", 750, 365, player)
-			ui.addTextArea(999999, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 750, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 520, 300, nil, nil, 'configMenu'):build():showSettingsMenu() end)
-
-			addImage("1744cc60c32.png", ":4", 750, 330, player)
-			ui.addTextArea(999996, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 750, 330, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 520, 300):build():showSettingsMenu(true) end)
-			
-			addImage("1744cf82bac.png", ":5", 705, 330, player)
-			ui.addTextArea(999995, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 705, 330, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 380, 280, translate('tradeSystem_title', player)):build():showAvailableTradingPlayers() end)
-
-		elseif type == 'next' then
-			if players[player].joinMenuPage < versionLogs[currentVersion].maxPages then
-				players[player].joinMenuPage = players[player].joinMenuPage + 1
-			end
-			sendMenu(99, player, '<p align="center"><font size="16"><vp>'..currentVersion..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
-		elseif type == 'back' then
-			if players[player].joinMenuPage > 1 then
-				players[player].joinMenuPage = players[player].joinMenuPage - 1
-			end
-			sendMenu(99, player, '<p align="center"><font size="16"><vp>'..currentVersion..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
-		end
+			:showRecipes()		
 	elseif callback:sub(1,5) == 'andar' then
 		if players[player].place ~= 'hospital' then eventTextAreaCallback(0, player, 'closeInfo_33', true) return end
 		local i = tonumber(callback:sub(6))
@@ -517,9 +439,6 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		for i = v..'001', v..'012' do
 			ui.removeTextArea(i, player)
 		end
-	------------------ NPCS ------------------
-	elseif callback == 'NPC_coffeeShop' then
-		showPopup(5, player, nil, '', 400 - 250 *0.5, 200 - 250 * 0.5, 250, 250, false, '9_5')
 	----------------- QUESTS -----------------
 	elseif callback:sub(1,6) == 'Quest_' then
 		if callback:sub(7, 8) == '02' then

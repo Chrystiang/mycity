@@ -23,6 +23,7 @@ showLifeStats = function(player, lifeStat)
 end
 
 setLifeStat = function(player, lifeStat, quant)
+	if players[player].dataLoaded then return end
 	players[player].lifeStats[lifeStat] = players[player].lifeStats[lifeStat] + quant 
 	if players[player].lifeStats[lifeStat] > 100 then
 		players[player].lifeStats[lifeStat] = 100

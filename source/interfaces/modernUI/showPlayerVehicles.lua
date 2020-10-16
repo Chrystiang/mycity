@@ -6,7 +6,7 @@ modernUI.showPlayerVehicles = function(self)
 	local x = (400 - width/2) + 45
 	local y = (200 - height/2) + 70
 	local currentPage = 1
-	local filter = {'car', 'boat'}
+	local filter = {'car', 'boat', 'air'}
 	local pages = {'land', 'water', 'air'}
 	local favorites = players[player].favoriteCars
 	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('17238027fa4.jpg', ":26", x, y-16, player)
@@ -30,6 +30,10 @@ modernUI.showPlayerVehicles = function(self)
 						if currentPage ~= 2 and (ROOM.playerList[player].y < 7000 or ROOM.playerList[player].y > 7800 or players[player].place ~= 'town' and players[player].place ~= 'island') and not players[player].canDrive then return alert_Error(player, 'error', 'vehicleError') end
 						drive(player, car)
 						eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
+						if v.type == 'air' then
+							modernUI.new(player, 240, 120, translate('confirmButton_tip', player), translate('tip_airVehicle', player), 'errorUI')
+							:build()
+						end
 					end)
 				ui.addTextArea(id..(897+i*3), "<textformat leftmargin='1' rightmargin='1'>\n\n\n\n", player, x + 82 + ((i-1)%4)*107, y + 42 + math.floor((i-1)/4)*65, 20, 20, 0xff0000, 0xff0000, 0, true,
 					function(player)
@@ -44,7 +48,7 @@ modernUI.showPlayerVehicles = function(self)
 	end
 	local function updateScrollbar()
 		local function updatePage(count)
-			if currentPage + count > 2 or currentPage + count < 1 then return end 
+			if currentPage + count > 3 or currentPage + count < 1 then return end 
 			currentPage = currentPage + count
 			player_removeImages(players[player]._modernUISelectedItemImages[1])
 			player_removeImages(players[player]._modernUISelectedItemImages[3])
@@ -65,7 +69,7 @@ modernUI.showPlayerVehicles = function(self)
 
 		player_removeImages(players[player]._modernUISelectedItemImages[2])
 		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('172380798d8.jpg', ":26", x, y+205, player)
-		for i = 1, 4 do 
+		for i = 1, 3 do 
 			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('172383aa660.jpg', ":27", x + (i-1)*85 + (currentPage-1)*85, y+205, player)
 		end
 	end

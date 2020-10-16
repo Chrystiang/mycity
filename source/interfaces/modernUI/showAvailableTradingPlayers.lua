@@ -20,10 +20,10 @@ modernUI.showAvailableTradingPlayers = function(self)
 						end)
 					ui.addTextArea(id..'932', translate('trade_invitePlayer', player), player, x+4 + (i-1)%2*173, y + 25 + math.floor((i-1)/2)*15 + 15, nil, nil, 0x432c04, 0x7a5817, 0, true,
 						function()
+							eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 							if players[user].questStep[1] <= 4 then return alert_Error(player, 'error', 'trade_error_quest2', user, '<r>'..translate('req_4', player)..'</r>') end
 							if players[player].questStep[1] <= 4 then return alert_Error(player, 'error', 'trade_error_quest', '<r>'..translate('req_4', player)..'</r>') end
 							tradeSystem.invite(player, user)
-							eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 						end)
 				end, i)
 			i = i + 1

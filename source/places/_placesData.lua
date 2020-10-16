@@ -182,4 +182,14 @@ places = {
 			return true
 		end,
 	},
+	drekkeHouse = {
+		opened  = '-',
+		tp      = {12260, 3220},
+		saida   = {{12000, 12160}, {3135, 3230}},
+		saidaF  = function(player)
+			TFM.movePlayer(player, 13414, 7461, false)
+			players[player].place = 'island'
+			return true
+		end,
+	}
 }

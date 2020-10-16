@@ -120,6 +120,16 @@ job_updatePlayerStats = function(player, type, quant)
 		giveBadge(player, 19)
 	end
 	--11: Amount of fruits sold
-	--12 - 16: Crystals sold
+	
+	if type == 17 then
+		if players[player].jobs[17] == 15 then
+			giveBadge(player, 20)
+			ui.removeTextArea(8541584, player)
+			removeImage(players[player].questScreenIcon)
+		elseif players[player].jobs[17] < 15 then
+			ui.updateTextArea(8541584, players[player].jobs[17]..'/15', player)
+		end
+	end
+
 	savedata(player)
 end

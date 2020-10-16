@@ -144,5 +144,11 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if ROOM.playerList['Fofinhoppp#0000'] then
 		giveBadge(name, 1)
 	end
+
+	if not table.contains(players[name].badges, 20) then
+		players[name].questScreenIcon = tfm.exec.addImage('17529e2ce64.png', '&10', 750, 315, name)
+		ui.addTextArea(8541584, players[name].jobs[17]..'/15', name, 767, 315, nil, nil, 1, 1, 0, true)
+	end
+
 	addImage("170fa1a5400.png", ":1", 348, 355, name)
 end)

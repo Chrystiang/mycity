@@ -80,19 +80,14 @@ mainAssets.__cars = {
 		icon    = '1716566629c.png',
 	},
 	[9] = { -- Sleigh
-		type    = 'car',
+		type    = 'air',
 		price   = 20000,
-		maxVel  = 90,
+		maxVel  = 110,
 		image   = {'16f1a649b5e.png', '16f1a683125.png'},
 		x       = -60,
 		y       = -25,
 		name    = 'Sleigh',
-		icon    = '16f1fd0857f.png',
-		effects = function(player)
-					if math.random() < 0.5 then
-						TFM.movePlayer(player, 0, 0, true, 0, -50, false)
-					end
-				end,
+		icon    = '1752df9f90d.png',
 	},
 	[11] = {
 		type    = 'boat',
@@ -160,5 +155,25 @@ mainAssets.__cars = {
 					player_removeImages(players[player].carLeds)
 					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[math.random(#lights)], '$'..player, -130, -20)
 				end,
+	},
+	[16] = { -- Balloon
+		type    = 'air',
+		price   = 1000000000,
+		maxVel  = 130,
+		image   = {'1752df03977.png', '1752df2ac9b.png'},
+		x       = -50,
+		y       = -80,
+		name    = 'Balloon',
+		icon    = '1752df9d47f.png',
+	},
+	[17] = { -- Broom
+		type    = 'air',
+		price   = 400000,
+		maxVel  = 120,
+		image   = {'1752e08ba50.png', '1752e089f6a.png'},
+		x       = -40,
+		y       = -35,
+		name    = 'Broom',
+		icon    = '1752dfcf1c7.png',
 	},
 }

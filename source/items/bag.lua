@@ -36,7 +36,7 @@ addItem = function(item, amount, player, coin)
 	else
 		players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag + amount
 	end
-	if canAdd then 
+	if canAdd then
 		players[player].bag[canAdd].qt = players[player].bag[canAdd].qt + amount
 		giveCoin(-coin, player)
 		return

@@ -213,6 +213,12 @@ versionLogs = {
 			_1 = '<rose>New:</rose>Warianty szczesliwego kwiata!\n\n<rose>Nowy przedmiot:</rose> Lopata!\n<li>Usun niechciane rosliny!</li>\n\nPiec nowych odznak zostalo dodanych!',
 		},
 	},
+	['v3.3.0'] = {
+		releaseDate = '16/10/2020', -- dd/mm/yy
+		banner = '175131e729f.png',
+		br = 'Evento de Halloween!',
+		en = 'Halloween Event!',
+	}
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']

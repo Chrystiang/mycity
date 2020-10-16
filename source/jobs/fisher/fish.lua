@@ -57,7 +57,19 @@ playerFishing = function(name, x, y, biome)
 			:build()
 			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, ":70", 400 - 50 * 0.5, 180, name)
 
-			addItem(willFish, 1, name)
+			local canAddItem = true
+			if willFish:find('Goldenmare') then
+				local amount = (checkItemInChest('fish_Goldenmare', 1, name) or 0) + (checkItemQuanty('fish_Goldenmare', 1, name) or 0)
+				if amount > 10 then
+					canAddItem = false
+					giveCoin(10000, name)
+					TFM.chatMessage('<j>'..translate('seedSold', name):format('<vp>'..translate('item_fish_Goldenmare', name)..'</vp>', '<fc>$10000</fc>'), name)
+				end
+			end
+			if canAddItem then
+				addItem(willFish, 1, name)
+			end
+
 			if rarityFished == 'normal' then 
 				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] - .5
 				players[name].lucky[1]['rare'] = player.lucky[1]['rare'] + .5
@@ -73,7 +85,7 @@ playerFishing = function(name, x, y, biome)
 				giveExperiencePoints(name, 500)
 			else
 				players[name].lucky[1] = {normal = 100, rare = 0, mythical = 0, legendary = 0}	
-				giveExperiencePoints(name, 2000)
+				giveExperiencePoints(name, 1000)
 				translatedMessage('caught_goldenmare', name)
 			end
 

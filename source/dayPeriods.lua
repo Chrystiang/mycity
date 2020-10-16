@@ -1,12 +1,12 @@
 loadFound = function(player, house)
 	local id = tonumber(house)
-	local y = 1590
+	local align = room.event and room.specialFounds[room.event].align or 1919
 	for i = 1, #players[player].dayImgs do
 		removeImage(players[player].dayImgs[i])
 	end
 	local img = background(nil, nil, nil, true)
 	for i = 1, 3 do
-		players[player].dayImgs[#players[player].dayImgs+1] = addImage(img, '?1', ((id-1)%id)*1500 - 1200 + (i-1)*1919, 420, player)
+		players[player].dayImgs[#players[player].dayImgs+1] = addImage(img, '?1', ((id-1)%id)*1500 - 1200 + (i-1)*align, 320, player)
 	end
 end
 
@@ -43,13 +43,14 @@ background = function(player, period, rain, getPng)
 
 	if png then
 		for i = 1, 11 do
-			players[player].background[#players[player].background+1] = addImage(png, '?1', (i-1)*align, 1610 + room.y + yalign, player)
+			players[player].background[#players[player].background+1] = addImage(png, '?1', (i-1)*align, 6405, player)
 			players[player].background[#players[player].background+1] = addImage(png, '?1', (i-1)*align, 0 + yalign, player)
 		end
 		players[player].background[#players[player].background+1] = addImage(png, '?1', 4000, 3000, player)
 		players[player].background[#players[player].background+1] = addImage(png, '?1', 4000+align, 3000, player)
 
 		for i = 1, 3 do
+			players[player].background[#players[player].background+1] = addImage(png, '?1', 6700+(i-1)*align, 4830, player) -- police station
 			players[player].background[#players[player].background+1] = addImage(png, '?1', 4500+(i-1)*align, 4920 + yalign, player)
 		end
 		if period == 'night' then

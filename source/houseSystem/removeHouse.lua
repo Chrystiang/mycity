@@ -20,7 +20,7 @@ HouseSystem.removeHouse = function(self)
 				TFM.removePhysicObject(- 7000 - (terrainID-1)*200 - i)
 			end
 		end
-		room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('1708781ad73.png', "?" .. terrainID + 100, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2])
+		room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('174ea4a42d3.png', "?" .. terrainID + 100, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2])
 		for name in next, ROOM.playerList do
 			ui.addTextArea(terrainID + 44, "<a href='event:buyhouse_" .. terrainID .. "'><font color='#ffffff'>" .. translate("sale", name), name, mainAssets.__terrainsPositions[terrainID][1]+40, mainAssets.__terrainsPositions[terrainID][2]+114, nil, nil, 0xFF0000, 0xFF0000, 0)
 		end

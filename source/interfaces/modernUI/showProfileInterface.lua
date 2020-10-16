@@ -25,6 +25,15 @@ modernUI.profileInterface = function(self, target)
 
    	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc59da98.png', ":28", 150, y+48, player)
 
+	if target == player then
+   		ui.addTextArea(id..'899', '<p align="center"><v>['..translate('profile_changeOrb', player)..']', player, 300, y+35, 200, nil, 0, 0x24474, 0, true, 
+   			function()
+   				eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
+   				modernUI.new(player, 310, 280)
+				:build()
+				:showLevelOrb(target)
+   			end)
+   	end
    	ui.addTextArea(id..'900', '<p align="center"><font color="#c6bb8c" size="20"><b>'..level, player, 380, y+54, 40, 40, 0, 0x24474, 0, true)
    	ui.addTextArea(id..'901', '<p align="center"><font color="#c6bb8c" size="12"><b>'..minXP..'/'..maxXP..'xp', player, 315, y+80, 170, nil, 0, 0x24474, 0, true)
 
@@ -78,8 +87,12 @@ modernUI.profileInterface = function(self, target)
 	end
 	--ui.addTextArea(id..'912', text_Badges, player, 493, y+130, 150, 153, 0x152d30, 0x152d30, 1, true)
 
-	for i, v in next, players[target].badges do
-		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(badges[v].png, ":33", x+352+((i-1)%5)*31, y+140+math.floor((i-1)/5)*31, player)
+	local i = 0
+	for _, v in next, badgesPriority do
+		if table.contains(players[target].badges, v) then
+			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(badges[v].png, ":33", x+352+(i%5)*31, y+140+math.floor(i/5)*31, player)
+			i = i + 1
+		end
 	end
 
 	return setmetatable(self, modernUI)

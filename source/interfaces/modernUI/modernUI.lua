@@ -68,6 +68,9 @@ modernUI.build = function(self)
 		[520] = {
 			[300] = '171dbed9f91.png',
 		},
+		[800] = {
+			[400] = '175130b40ff.png',
+		},
 	}
 	local _UI = backgrounds[width][height]
 	local backgroundImage = _UI and _UI or error('Invalid modernUI size.')
@@ -87,8 +90,13 @@ modernUI.build = function(self)
 	if self.text then
 		ui.addTextArea(id..'882', '<font color="#ebddc3" size="13">'..self.text, player, x+25, y+47, width-30, height-65, 0x152d30, 0x152d30, 1, true)
 	end
-	ui.addTextArea(id..'896', "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_Close_"..id.."_"..self.errorUI.."'>\n\n", player, (x+width)-23, y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
-
+	if width ~= 800 then
+		ui.addTextArea(id..'896', "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_Close_"..id.."_"..self.errorUI.."'>\n\n", player, (x+width)-23, y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
+	else
+		self.width = 520
+		self.height = 300
+	end
+	
 	for i = 1, totalButtons do
 		createButton(i)
 	end

@@ -231,7 +231,7 @@ lang.br = {
 	item_superFertilizer = 'Super Fertilizante',
 	itemDesc_superFertilizer = 'Possui o dobro da eficácia de um fertilizante comum.',
 	profile_badges = 'Medalhas',
-	daysLeft = '%sd restantes.',-- d: abbreviation of days
+	daysLeft = '%s dias restantes',-- d: abbreviation of days
 	daysLeft2 = '%sd', -- d: abbreviation of days
 	collectorItem = 'Item de colecionador.',
 	House4 = 'Celeiro',
@@ -765,9 +765,27 @@ lang.br = {
 	badgeDesc_17 = 'Vendeu 75 cristais roxos',
 	badgeDesc_18 = 'Vendeu 30 cristais verdes',
 	badgeDesc_19 = 'Vendeu 10 cristais vermelhos',
-	--- V3.2.3
+	--- V3.3.0
 	trade_error_quest = 'Trocas estão disponíveis após completar %s.',
 	trade_error_quest2 = '%s precisa completar %s para poder aceitar trocas.',
 	furniture_toilet = 'Vaso Sanitário',
+	profile_changeOrb = 'Alterar Orbe De Nível',
+	House10 = 'Casa de Abóbora',
+	houseDescription_10 = 'Fruto de uma dosagem exagerada de super fertilizantes, essa abóbora oferece o conforto perfeito para as noites mais assustadoras.',
+	furniture_dryTree = 'Árvore Seca',
+	confirmButton_Play = 'Jogar!',
+	newLevelOrb = 'Nova Orbe de Nível',
+	newLevelOrb_info = 'Você pode alterar sua orbe de nível acessando o seu perfil.',
+	item_strangePumpkin = 'Balde de Abóbora',
+	item_strangePumpkinSeed = 'Estranha Semente de Abóbora',
+	item_candyBucket = 'Balde de Doces',
+	airVehicles = 'Aéreos',
+	vehicle_16 = 'Balão',
+	vehicle_17 = 'Vassoura',
+	furniture_lamp = 'Lamparina',
+	furniture_amongUs_vent = 'Among Us: Ventilação',
+	furniture_amongUs_medBay = 'Among Us: Enfermaria',
+	tip_airVehicle = 'Aperte ESPAÇO para parar de usar um veículo aéreo.',
+	furniture_bloodstain = 'Mancha de Sangue',
 }
 lang.pt = lang.br

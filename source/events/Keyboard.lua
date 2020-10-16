@@ -1,4 +1,5 @@
 onEvent("Keyboard", function(player, key, down, x, y)
+	if room.gameMode then return end
 	if room.isInLobby then return end
 	local playerInfo = players[player]
 	if not playerInfo then return end
@@ -11,22 +12,17 @@ onEvent("Keyboard", function(player, key, down, x, y)
 				playerInfo.carImages[#playerInfo.carImages+1] = addImage(mainAssets.__cars[playerInfo.selectedCar].image[playerInfo.currentCar.direction], "$"..player, mainAssets.__cars[playerInfo.selectedCar].x, mainAssets.__cars[playerInfo.selectedCar].y)
 			elseif key == 3 then
 				playerInfo.currentCar.direction = 0
-			else
-				if playerInfo.driving and key == 1 and mainAssets.__cars[playerInfo.selectedCar].type ~= 'boat' then
-					if mainAssets.__cars[playerInfo.selectedCar].type ~= 'helicopter' then
-						removeCarImages(player)
-						playerInfo.selectedCar = false
-						playerInfo.driving = false
-						playerInfo.canDrive = false
-						playerInfo.currentCar.direction = nil
-						freezePlayer(player, false)
-						loadMap(player)
-						showOptions(player)
+			elseif key == 1 then
+				if playerInfo.driving and mainAssets.__cars[playerInfo.selectedCar].type ~= 'boat' then
+					if mainAssets.__cars[playerInfo.selectedCar].type ~= 'air' then
+						checkIfPlayerIsDriving(player)
 					else
 						playerInfo.driving = true
 						playerInfo.currentCar.direction = 3
 					end
 				end
+			elseif key == 32 and mainAssets.__cars[playerInfo.selectedCar].type == 'air' then
+				checkIfPlayerIsDriving(player)
 			end
 		end
 		if key == 32 then
@@ -79,7 +75,7 @@ onEvent("Keyboard", function(player, key, down, x, y)
 			if playerInfo.fishing[1] then
 				stopFishing(player)
 			end
-		elseif key == 70 or key == 71 then 
+		elseif key >= 70 and key <= 72 then
 			local vehicleType = key-69
 			local car = playerInfo.favoriteCars[vehicleType]
 			drive(player, car)

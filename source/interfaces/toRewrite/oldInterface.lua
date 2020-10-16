@@ -79,7 +79,6 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 		local list = {
 			[0] = {type:sub(4)}, -- IF IS A SINGLE ITEM
 			[1] = {'energyDrink_Basic', 'energyDrink_Mega', 'energyDrink_Ultra'}, -- MARKET
-			[5] = {'coffee', 'hotChocolate', 'milkShake'}, -- CAFÉ
 			[6] = {'bag'}, -- BAG
 		}
 
@@ -108,29 +107,6 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 				ui.addTextArea(id..(895+(i-1)*3), '<font color="#999999">'.. translate('item_'..v, player), player, x+15, y+50 + (i-1)*68, width-10, 20, 0x22363c, 0x22363c, 1, true)
 				ui.addTextArea(id..(896+(i-1)*3), '<p align="right"><r>$'.. bagItems[v].price ..'</p>', player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e, 0, true)
 			end
-		end
-	elseif type == 10 then
-		ui.addTextArea(id..'891', '', player, x+8, y+height-20+25, width -5 -width/2, 15, 0x97a6aa, 0x97a6aa, 1, true)
-		ui.addTextArea(id..'892', '', player, x+10, y+height-20+27, width -5 -width/2, 15, 0x1, 0x1, 1, true)
-		ui.addTextArea(id..'893', '<p align="center"><a href="event:getCode"><N>'..translate('submit', player) ..'</a>', player, x+9, y+height-20+26, width -5 -width/2, 15, 0x314e57, 0x314e57, 1, true)
-		ui.addTextArea(id..'894', '', player, x +width/1.7 - 10, y+height-20+25, width -5 -width/2, 15, 0x97a6aa, 0x97a6aa, 1, true)
-		ui.addTextArea(id..'895', '', player, x +width/1.7 + 2 - 10, y+height-20+27, width -5 -width/2, 15, 0x1, 0x1, 1, true)
-		ui.addTextArea(id..'896', '<p align="center"><a href="event:close3_'..id..'"><N>'..translate('cancel', player)..'</a>', player, x +width/1.7 +1 - 10, y+height-20+26, width -5 -width/2, 15, 0x314e57, 0x314e57, 1, true)
-
-		local keys = {'QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'}
-		local x = 400 - 243 * 0.5
-		local y = 180
-		for i = 1, #keys[1] do
-			local letter = keys[1]:sub(i, i)
-			ui.addTextArea(id..(900+i), "<a href='event:keyboard_"..letter.."'><p align='center'>"..letter.."</p></a>", player, x + (i-1)*24 + 6, y+56, 15, 17, 0x122528, 0x183337, alpha, true)
-		end
-		for i = 1, #keys[2] do
-			local letter = keys[2]:sub(i, i)
-			ui.addTextArea(id..(913+i), "<a href='event:keyboard_"..letter.."'><p align='center'>"..letter.."</p></a>", player, x + (i-1)*24 + 17, y+81, 15, 17, 0x122528, 0x183337, alpha, true)
-		end
-		for i = 1, #keys[3] do
-			local letter = keys[3]:sub(i, i)
-			ui.addTextArea(id..(925+i), "<a href='event:keyboard_"..letter.."'><p align='center'>"..letter.."</p></a>", player, x + (i-1)*24 + 42, y+106, 15, 17, 0x122528, 0x183337, alpha, true)
 		end
 	elseif type == 18 then -- VAULT PASSWORD
 		if not players[player].place == 'bank' then return end
@@ -182,23 +158,6 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 			password = '_ _ _ _'
 		end
 		ui.addTextArea(id..(890+(8+4)*14), '<p align="center"><font color="#ffffff" size="15">'..password, player, x+10 , y+25, width, 40, 0xff0000, 0xff0000, 0, true)
-	end
-	if type == 6 or type == 5 then
-		local keys = {'QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'}
-		local x = 400 - 243 * 0.5
-		local y = 120
-		for i = 1, #keys[1] do
-			local letter = keys[1]:sub(i, i)
-			ui.addTextArea(id..(900+i), "<a href='event:keyboard_"..letter.."'><p align='center'>"..letter.."</p></a>", player, x + (i-1)*24 + 6, y+56, 15, 17, 0x122528, 0x183337, alpha, true)
-		end
-		for i = 1, #keys[2] do
-			local letter = keys[2]:sub(i, i)
-			ui.addTextArea(id..(913+i), "<a href='event:keyboard_"..letter.."'><p align='center'>"..letter.."</p></a>", player, x + (i-1)*24 + 17, y+81, 15, 17, 0x122528, 0x183337, alpha, true)
-		end
-		for i = 1, #keys[3] do
-			local letter = keys[3]:sub(i, i)
-			ui.addTextArea(id..(925+i), "<a href='event:keyboard_"..letter.."'><p align='center'>"..letter.."</p></a>", player, x + (i-1)*24 + 42, y+106, 15, 17, 0x122528, 0x183337, alpha, true)
-		end
 	end
 end
 sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, prof, interface, tela, type, coin, showCoin)
@@ -260,22 +219,6 @@ sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, pr
 		ui.addTextArea(id..'001', '<p align="right"><textformat leading="9">'..table.concat(names[1], '<br>'), player, 400 - 200 * 0.5, 225, 85, 120, 0xffff, 0xffff, 0, true)
 		ui.addTextArea(id..'002', '<textformat leading="9">'..table.concat(names[2], '<br>'), player, 515 - 200 * 0.5, 225, 85, 120, 0xffff, 0xffff, 0, true)
 		ui.addTextArea(1020, '<p align="center"><font size="15" color="#ff0000"><a href="event:closeInfo_33"><b>X', player, 470, 180, 60, 50, 0x122528, 0x122528, 0, true)
-	elseif type == 15 then
-		if playerData.joinMenuPage > 1 then
-			addButton(id..'081', '<a href="event:joiningMessage_back">«', player, 550, 325, 10, 10)
-		else
-			addButton(id..'081', '«', player, 550, 325, 10, 10, true)
-		end
-		if playerData.joinMenuPage == versionLogs[playerData.gameVersion].maxPages then
-			addButton(id..'091', '<a href="event:joiningMessage_close">'..translate('close', player), player, 550, 350, 150, 10)
-			addButton(id..'086', '»', player, 690, 325, 10, 10, true)
-		else
-			addButton(id..'091', translate('close', player), player, 550, 350, 150, 10, true)
-			addButton(id..'086', '<a href="event:joiningMessage_next">»', player, 690, 325, 10, 10)
-		end
-		ui.addTextArea(id..'080', '<p align="left">'..translate('$VersionText', player), player, x+6, y+70, 430, height+-2, 0x122528, 0xff0000, 0, true)
-		addButton(id..'097', playerData.joinMenuPage..'/'..versionLogs[playerData.gameVersion].maxPages, player, 575, 325, 100, 10, true)
-		playerData.joinMenuImages[#playerData.joinMenuImages+1] = addImage(versionLogs[playerData.gameVersion].images[playerData.joinMenuPage], '&1', 550, 100, player)
 	end
 end
 showVehiclesButton = function(player, expandedInterface)

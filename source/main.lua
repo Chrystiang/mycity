@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 2, 2}
+local version       = {3, 3, 0}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local string        = string
@@ -70,6 +70,7 @@ TFM.disableAutoScore()
 system.disableChatCommandDisplay()
 
 local room = { -- Assets that change while the script runs
+	gameMode 		= nil,
 	maxPlayers      = 15,
 	errorLogs		= {},
 	gameLoadedTimes = 0,
@@ -87,7 +88,7 @@ local room = { -- Assets that change while the script runs
 	requiredPlayers = 4,
 	discordServerUrl= 'https://discord.gg/uvGwa2y',
 	globalRanking   = {},
-	event           = nil,
+	event           = 'halloween2020',
 	gameDayStep     = 'day',
 	houseImgs       = {},
 	y               = 5815,
@@ -103,9 +104,10 @@ local room = { -- Assets that change while the script runs
 }
 
 local mainAssets = { -- Assets that rarely changes while the script runs
-	season = 4,
+	season = 5,
+	gamemodes = {},
 	fileCopy = {
-		_ranking = 'Xzowtx#0000, Dedektifyy#0000, Luquinhas#3157, Brunadrr#0000, Gothic_girl#7500, Millionaires#0928, Epicninja7#0000, Estronda002#0000, Anaxs0#4480, Ratagominha#0000',
+		_ranking = '',
 	},
 	roles = {
 		admin = {},
@@ -122,10 +124,12 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 	},
 	levelIcons = {
 		star = {
-			'17479edf863.png',
-			'17479ee69ad.png',
-			'17479ee3dbc.png',
-			'17479ee148d.png',
+			'17479edf863.png', -- Default
+			'17479ee69ad.png', -- Season 1
+			'17479ee3dbc.png', -- Season 2
+			'17479ee148d.png', -- Season 3
+			'17529b24a35.png', -- Season 4
+			'17529b280e3.png', -- Halloween2020
 		},
 		lvl = {
 			{'1716449ea8f.png'},
@@ -152,7 +156,7 @@ local syncData = {
 	connected = false,
 	players   = {},
 	quests    = {
-		newQuestDevelopmentStage = 0,
+		newQuestDevelopmentStage = 11,
 	},
 	updating  = {
 		isUpdating    = false,
@@ -160,12 +164,12 @@ local syncData = {
 	},
 }
 
-local imgsToLoad = {'1721ee7d5b9.png', '17184484e6b.png', '1718435fa5c.png', '171843a9f21.png', '171d2134def.png', '171d20cca72.png', '171d1f8d911.png', '171d21cd12d.png', '171d1e559be.png', '171d20548bd.png', '171d1933add.png', '1717aae387a.jpg', '1717a86b38f.png', '171d2a2e21a.png', '171d28150ea.png', '171d6f313c8.png', '174558f6393.png', '1745588b429.png', '17455904362.png', '17455876d27.png', '1745590f162.png', '17455847e27.png', '1745591a12a.png', '1745581e99b.png', '174559244ca.png', '1745572fc55.png', '1745592d979.png', '174557c2791.png', '17455936450.png', '174557f051a.png',}
+local imgsToLoad = {'175130b40ff.png', '1721ee7d5b9.png', '17184484e6b.png', '1718435fa5c.png', '171843a9f21.png', '171d2134def.png', '171d20cca72.png', '171d1f8d911.png', '171d21cd12d.png', '171d1e559be.png', '171d20548bd.png', '171d1933add.png', '1717aae387a.jpg', '1717a86b38f.png', '171d2a2e21a.png', '171d28150ea.png', '171d6f313c8.png', '174558f6393.png', '1745588b429.png', '17455904362.png', '17455876d27.png', '1745590f162.png', '17455847e27.png', '1745591a12a.png', '1745581e99b.png', '174559244ca.png', '1745572fc55.png', '1745592d979.png', '174557c2791.png', '17455936450.png', '174557f051a.png',}
 
 local npcsStores = {
 	items = {},
 	shops = {
-		marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, all = {},
+		marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, alicia = {}, drekkemaus = {}, all = {},
 	},
 }
 

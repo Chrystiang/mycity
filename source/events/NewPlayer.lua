@@ -24,6 +24,10 @@ eventNewPlayer = function(player)
 	setPlayerData(player)
 	players[player].inRoom = true
 	
+	modernUI.new(player, 800, 400)
+		:build()
+		:showUpdateLog()
+
 	for i = 1, #imgsToLoad do
 		local pngLoad = addImage(imgsToLoad[i], "!0", 0, 0, player)
 		removeImage(pngLoad)
@@ -89,8 +93,8 @@ eventNewPlayer = function(player)
 		end
 		addImage("16f1b804909.png", '?108', 4000, 3400, player)
 	-- PLACE: CAFÉ (INSIDE)
-		addImage("16bdefba853.png", "?109", 6000, 33, player)
-		addImage("16bdf046e52.png", "!103", 6000, 33, player)
+		addImage("174e9da7224.png", "?109", 6000, 31, player)
+		addImage("174e9dbed31.png", "!103", 6000, 31, player)
 	-- PLACE: POTION SHOP (INSIDE)
 		addImage("1709756104e.png", '?110', 10500, 30, player)
 	-- PLACE: BANK (INSIDE)
@@ -99,7 +103,16 @@ eventNewPlayer = function(player)
 		addImage("16bb495d6f9.png", "?113", 5275, 4973, player)
 		for i = 1, 5 do
 			addImage("16ba53983a1.jpg", "?114", (i-1)*55 + 5705, 5150, player)
-			ui.addTextArea(-500+i, '<a href="event:enterCode">'..string.rep('\n', 10), player, (i-1)*55 + 5705, 5150, 50, 100, 1, 1, 0)
+			ui.addTextArea(-500+i, string.rep('\n', 10), player, (i-1)*55 + 5705, 5150, 50, 100, 1, 1, 0, false, 
+				function(player)
+					modernUI.new(player, 240, 220, translate('atmMachine', player))
+						:addButton('1729f83fb5f.png', function()
+							modernUI.new(player, 240, 220, translate('confirmButton_tip', player), translate('codeInfo', player), 'errorUI')
+							:build()
+						end)
+						:build()
+						:showATM_Machine()
+				end)
 			addImage("16be83d875e.png", "_699", (i-1)*200 + 8800, 126+25, player)
 			-- Trees
 			addImage('170c16e6f4e.png', '?1', (i-1)*3300 - 100, -100, player)
@@ -150,7 +163,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Sherlock', {'171941d5222.png', '171a4910f9f.png'}, player, 7180, 5997, {job = 'police', jobConfirm = true})
 	gameNpcs.addCharacter('Oliver', {'171945c8816.png', '171b7af8508.png'}, player, 17120, 1618, {job = 'farmer', jobConfirm = true})
 	gameNpcs.addCharacter('Indy', {'171945ff967.png', '171a3de6a6d.png'}, player, 10820, 153, {color = '20B2AA', sellingItems = true, place = 'potionShop'})
-	gameNpcs.addCharacter('Davi', {'171989750b8.png', '17198988913.png'}, player, 13070, 7513)
+	gameNpcs.addCharacter('Davi', {'171989750b8.png', '17198988913.png'}, player, 13370, 7513)
 	gameNpcs.addCharacter('Pablo', {'17198a9903d.png', '1729ff740fd.png'}, player, 5090, 153, {job = 'thief', place = 'market', endEvent = function(name) job_invite('thief', name) end})
 	gameNpcs.addCharacter('Derek', {'17198af24b4.png', '1729ff71a42.png'}, player, 5000, 153, {job = 'thief', place = 'market'})
 	gameNpcs.addCharacter('Billy', {'17198b0df10.png', '1729ff6f7d2.png'}, player, 4955, 153, {job = 'thief', place = 'market'})
@@ -160,7 +173,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Cassy', {'171995ccbe9.png', '171eb2e7ae6.png'}, player, 3650, 125, {type = '_', place = 'market', canRob = {cooldown = 100}})
 	gameNpcs.addCharacter('Julie', {'171995ecdee.png', '171eb2eb8df.png'}, player, 3900, 125, {type = '_', place = 'market', canRob = {cooldown = 100}})
 	gameNpcs.addCharacter('Jason', {'17199cb7d8b.png', '1729ffd4116.png'}, player, 400, 153, {canRob = {cooldown = 100}, place = 'buildshop'})
-	gameNpcs.addCharacter('Alicia', {'17199d3b9b2.png', '172a027ee8c.png'}, player, 6800, 153, {canRob = {cooldown = 130}, place = 'cafe'})
+	gameNpcs.addCharacter('Alicia', {'17199d3b9b2.png', '172a027ee8c.png'}, player, 6880, 153, {sellingItems = true, place = 'cafe'})
 	gameNpcs.addCharacter('Colt', {'1719dc3bce6.png', '171a4adc2e1.png'}, player, 5250, 5147, {job = 'police', place = 'bank'})
 	gameNpcs.addCharacter('Alexa', {'171ae65bf52.png', '171ae65d8a1.png'}, player, 7740, 5997, {job = 'police'})
 	gameNpcs.addCharacter('Sebastian', {'171a497f4e2.png', '171a4adc2e1.png'}, player, 7195, 5852, {job = 'police'})
@@ -199,11 +212,18 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Iho', {'1739eb491e8.png'}, player, 16620, 153, {color = '20B2AA', sellingItems = true, place = 'furnitureStore'})
 	gameNpcs.addCharacter('Lindsey', {'17470458c9d.png'}, player, 11550, 7645, {type = '_', blockClick = true, job = 'farmer'})
 
+	--gameNpcs.addCharacter('Peter', {'17504532c06.png'}, player, 12650, 3130, {job = 'ghostbuster', jobConfirm = true})
+	gameNpcs.addCharacter('Drekkemaus', {'1750453019c.png'}, player, 13350, 2938, {sellingItems = true, place = 'drekkeHouse'})
+	addImage("1752eb3fdf0.png", "_1000", 13350, 7313, player) -- Drekkemaus House
+	addImage("1752e08ba50.png", "!1000", 13550, 3155, player) -- Broom
+	ui.addTextArea(-14454514, '<p align="center"><font size="12"><a href="event:enter_drekkeHouse">Drekkemaus\n', player, 13357, 7289+176+23, 150, nil, 0x1, 0x1, 0)
+	ui.addTextArea(-14454515, '<p align="center">17', player, 13357, 7289+176+11, 150, nil, 0, 0)
+
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)
 		ui.addTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), player, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
 	end
-	for _, key in next, {0, 1, 2, 3, 32, 70, 71} do 
+	for _, key in next, {0, 1, 2, 3, 32, 70, 71, 72} do 
 		system.bindKeyboard(player, key, true) 
 		system.bindKeyboard(player, key, false, true) 
 	end
@@ -219,8 +239,6 @@ eventNewPlayer = function(player)
 		function()
 			eventTextAreaCallback(0, player, 'recipes', true)
 		end)
-	ui.addTextArea(20880, '', player, 0, 0, 800, 400, 0x152d30, 0x152d30, 0.7, true)
-	sendMenu(99, player, '<p align="center"><font size="16"><vp>v'..table.concat(version, '.')..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
 
 	updateHour(player)
 

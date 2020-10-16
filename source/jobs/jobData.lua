@@ -53,7 +53,9 @@ jobs = {
 	ghostbuster = {
 		color   = 'FFE4B5',
 		coins   = 300,
+		working = {},
 		players = 0,
+		icon = '',
 	},
 	ghost = {
 		color   = 'A020F0',
