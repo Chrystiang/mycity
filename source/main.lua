@@ -107,7 +107,7 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 	season = 5,
 	gamemodes = {},
 	fileCopy = {
-		_ranking = '',
+		_ranking = 'Hakan#7572, Emirfaresi#0000, Gothic_girl#7500, Ddayyy#0000, Wolflidiwolf#0000, Darkknight#3569, Kb65#0000, Millionaires#0928, Beril#7474, Ratagominha#0000',
 	},
 	roles = {
 		admin = {},

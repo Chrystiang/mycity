@@ -44,7 +44,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 				local image = itemData.png or '16bc368f352.png'
 				local _x = x + ((i-1)%sizeScale[5]) * sizeScale[2]
 				local _y = y + math.floor((i-1)/sizeScale[5]) * sizeScale[2]
-				local bgImage = (itemData.limitedTime and formatDaysRemaining(itemData.limitedTime, true)) and 9 or 3
+				local bgImage = itemData.limitedTime and 9 or 3
 
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(sizeScale[bgImage], ":26", _x, _y, player)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(image, ":26", _x + sizeScale[6], _y + sizeScale[6], player)

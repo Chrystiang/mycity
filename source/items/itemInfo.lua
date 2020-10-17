@@ -33,10 +33,8 @@ item_getDescription = function(item, player, isFurniture)
 		description = description ..translate('createdBy', player):format('<vp>'..itemData.credits..'</vp>')..'\n'
 	end
 
-	if isOutOfSale then
+	if isLimitedTime then
 		description = description ..'\n<p align="center"><font size="9"><r>'..translate('collectorItem', player)
-	elseif isLimitedTime then
-		description = description ..'\n<p align="center"><font size="9"><r>'..translate('daysLeft', player):format(formatDaysRemaining(isLimitedTime))
 	end
 
 	return description

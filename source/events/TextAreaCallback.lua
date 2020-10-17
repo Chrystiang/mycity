@@ -105,33 +105,44 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 					if not order.fulfilled[player].completed then
 						if checkItemQuanty(order.order, 1, player) then
 							removeBagItem(order.order, 1, player)
-							job_updatePlayerStats(player, 9)
 							order.fulfilled[player].completed = true
 							for i = 1, #order.fulfilled[player].icons do
 								removeImage(order.fulfilled[player].icons[i])
 							end
-							local sidequest = sideQuests[players[player].sideQuests[1]].type
-							if string.find(sidequest, 'type:deliver') then
-								sideQuest_update(player, 1)
-							end
-							for id, properties in next, players[player].questLocalData.other do 
-								if id:find('deliverOrder') then
-									if type(properties) == 'boolean' then 
-										quest_updateStep(player)
-									else
-										players[player].questStep[3] = players[player].questStep[3] - 1
-										players[player].questLocalData.other[id] = players[player].questStep[3]
-										if players[player].questLocalData.other[id] == 0 then 
-											quest_updateStep(player)
-										end
-									end
-									break
-								end
-							end
+							local reactions = {'17537c7a6ea.png', '17537c7c444.png', '17537c7dd86.png'}
+							local npcEmoji = addImage(reactions[math.random(#reactions)], '!100', npcRange[1]-50, npcRange[2]-70, player)
+							addTimer(function(time)
+								removeImage(npcEmoji)
+							end, 2000, 0)
 
-							giveExperiencePoints(player, 200)
-							giveCoin(bagItems[order.order].sellingPrice, player, true)
-							TFM.chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].sellingPrice..'</vp>', player), player)
+							if order.order ~= 'strangePumpkin' then
+								job_updatePlayerStats(player, 9)
+								local sidequest = sideQuests[players[player].sideQuests[1]].type
+								if string.find(sidequest, 'type:deliver') then
+									sideQuest_update(player, 1)
+								end
+								for id, properties in next, players[player].questLocalData.other do 
+									if id:find('deliverOrder') then
+										if type(properties) == 'boolean' then 
+											quest_updateStep(player)
+										else
+											players[player].questStep[3] = players[player].questStep[3] - 1
+											players[player].questLocalData.other[id] = players[player].questStep[3]
+											if players[player].questLocalData.other[id] == 0 then 
+												quest_updateStep(player)
+											end
+										end
+										break
+									end
+								end
+
+								giveExperiencePoints(player, 200)
+								giveCoin(bagItems[order.order].sellingPrice, player, true)
+								TFM.chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].sellingPrice..'</vp>', player), player)
+							else
+								job_updatePlayerStats(player, 17)
+								addItem('candyBucket', 1, player)
+							end
 							return
 						end
 					end

@@ -2,10 +2,10 @@ savedata = function(name, forceSave)
 	local playerInfos = players[name]
 	if not playerInfos.dataLoaded then return end
 
-	if true then
+	--[[if true then
 		TFM.chatMessage('<R>Stats are not being saved in this room.', name)
 		return
-	end
+	end]]--
 	if ROOM.name ~= '*#fofinho' then
 		if ROOM.uniquePlayers < room.requiredPlayers then
 			TFM.chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)

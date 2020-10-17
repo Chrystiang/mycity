@@ -42,7 +42,7 @@ gameNpcs.setOrder = function(npcName)
 	local x = npc.x
 	local y = npc.y
 	local character = gameNpcs.orders
-	local order = table.randomKey(recipes)
+	local order = (math.random(1, 2) == 1 and (room.gameDayStep == 'night' or room.gameDayStep == 'dawn')) and 'strangePumpkin' or table.randomKey(recipes)
 	local place = character.canOrder[npcName]
 	local orderTime = math.random(60*2, 60*3)
 
@@ -54,7 +54,7 @@ gameNpcs.setOrder = function(npcName)
 	showDishOrders()
 
 	local images = character.orderList[npcName].fulfilled
-	for _, player in next, jobs['chef'].working do
+	local function addDataToPlayer(player)
 		images[player] = {
 			icons = {
 				addImage('171c7ac4232.png', type.."1000", x, y-20, player), 
@@ -62,6 +62,17 @@ gameNpcs.setOrder = function(npcName)
 			},
 			completed = false,
 		}
+	end
+	if order ~= 'strangePumpkin' then
+		for _, player in next, jobs['chef'].working do
+			addDataToPlayer(player)
+		end
+	else
+		for player in next, ROOM.playerList do
+			if players[player].inRoom then
+				addDataToPlayer(player)
+			end
+		end
 	end
 
 	local currentSlice = 14

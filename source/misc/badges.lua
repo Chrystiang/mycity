@@ -64,7 +64,7 @@ badges = {
 		png = '174b22294f7.png',
 	},
 	[20] = { -- Halloween2020
-		png = '17529b1fabe.png',
+		png = '17537f7806f.png',
 	},
 	[21] = { -- Season 4 reward
 		png = '17529b1df9b.png',

@@ -770,4 +770,26 @@ lang.ar = {
 	badgeDesc_17 = 'بيع 75 كريستالة بنفسجية',
 	badgeDesc_18 = 'بيع 30 كريستالة خضراء',
 	badgeDesc_19 = 'بيع 10 كريستالات حمراء',
+	--- V3.3.0
+	trade_error_quest = 'التبادلات متاحة بعد إنهاء %s.', -- Will print: "Trades are available after completing Quest 01: Building a boat!"
+    trade_error_quest2 = '%s يجب أن ينهي %s حتى يقبل التبادلات.',
+    furniture_toilet = 'مرحاض',
+    profile_changeOrb = 'تغيير بلورة المستوى',
+    House10 = 'بيت اليقطين',
+    houseDescription_10 = 'ناميًا من جرعة خارقة من السمادات، منزل اليقطينة هذا يوفر راحة ممتازة لأكثر الليالي رعبًا.',
+    furniture_dryTree = 'شجرة جافة',
+    confirmButton_Play = 'العب!',
+    newLevelOrb = 'بلورة مستوى جديدة',
+    newLevelOrb_info = 'يمكنك تغيير بلورة مستواك بفتح الملف الشخصي.',
+    item_strangePumpkin = 'دلو اليقطين',
+    item_strangePumpkinSeed = 'بذرة يقطين غريبة',
+    item_candyBucket = 'دلو الحلوى',
+    airVehicles = 'الهواء',
+    vehicle_16 = 'بالون',
+    vehicle_17 = 'مكنسة',
+    furniture_lamp = 'مصباح',
+    furniture_amongUs_vent = 'Among Us: Vent', --couldn't find a proper meaning in Arabic
+    furniture_amongUs_medBay = 'Among Us: Med Bay', --same thing, 
+    tip_airVehicle = 'اضغط مسافة لإيقاف استخدام المركبة الطائرة.',
+    furniture_bloodstain = 'لطخة دم',
 }

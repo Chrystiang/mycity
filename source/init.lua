@@ -54,9 +54,11 @@ genDaveOffers = function()
 end
 
 for i, v in next, recipes do
-	newFoodValue(i)
-	newEnergyValue(i)
-	newDishPrice(i)
+	if v.require then
+		newFoodValue(i)
+		newEnergyValue(i)
+		newDishPrice(i)
+	end
 end
 
 for i, v in next, HouseSystem.plants do
@@ -75,7 +77,7 @@ for item, data in next, Mine.ores do
 end
 
 do 
-	local modeName, argsPos = string.match(ROOM.name, "%d+([%a_]+)()")
+	--[[local modeName, argsPos = string.match(ROOM.name, "%d+([%a_]+)()")
 	local gameMode = mainAssets.gamemodes[modeName]
 	if gameMode then
 		for name in next, ROOM.playerList do 
@@ -85,7 +87,7 @@ do
 		room.maxPlayers = gameMode.maxPlayers
 		room.requiredPlayers = gameMode.requiredPlayers
 		gameMode.init()
-	else
+	else]]--
 		if ROOM.name == "*#fofinho" then
 			room.requiredPlayers = 0
 		else
@@ -101,7 +103,7 @@ do
 		else
 			genLobby()
 		end
-	end
+	--end
 	TFM.setRoomMaxPlayers(room.maxPlayers)
 end
 

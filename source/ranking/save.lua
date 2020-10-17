@@ -37,6 +37,6 @@ saveRanking = function()
 	end
 
 	-------------------------------------------
-	--system.saveFile(table.concat(newRanking, ';')..'|'..mainAssets.fileCopy._ranking..'|', 5)
-	system.saveFile(mainAssets.fileCopy._ranking..'|'..table.concat(newRanking, ';')..'|', 5)
+	system.saveFile(table.concat(newRanking, ';')..'|'..mainAssets.fileCopy._ranking..'|', 5)
+	--system.saveFile(mainAssets.fileCopy._ranking..'|'..table.concat(newRanking, ';')..'|', 5)
 end

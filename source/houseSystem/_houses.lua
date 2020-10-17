@@ -177,7 +177,7 @@ mainAssets.__houses = {
 		properties = {
 			price = 100000000,
 			png = '1750410633b.png',
-			limitedTime = os.time{day=16, year=2020, month=11},
+			limitedTime = os.time{day=16, year=2019, month=11},
 		},
 		inside = {
 			image   = '',
