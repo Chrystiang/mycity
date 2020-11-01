@@ -6,23 +6,23 @@ addQuestAsset = function(player, npc)
 	end
 	players[player].questLocalData.images = {}
 	for i = -50, -40 do
-		ui.removeTextArea(i, player)
+		removeTextArea(i, player)
 	end
 	if npc:find('_key') then
 		players[player].questLocalData.images[#players[player].questLocalData.images+1] = addImage("16bbd9655ca.png", "!30", 1400, 8753, player)
-		ui.addTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_02_key'>" .. string.rep('\n', 4), player, 1390, 8743, 25, 25, 1, 1, 0, false)
+		showTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_02_key'>" .. string.rep('\n', 4), player, 1390, 8743, 25, 25, 1, 1, 0, false)
 	end
 	if npc:find('_key2') then
 		players[player].questLocalData.images[#players[player].questLocalData.images+1] = addImage("16bbd9655ca.png", "!30", 1630, 8815, player)
-		ui.addTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_02_key'>" .. string.rep('\n', 4), player, 1620, 8805, 25, 25, 1, 1, 0, false)
+		showTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_02_key'>" .. string.rep('\n', 4), player, 1620, 8805, 25, 25, 1, 1, 0, false)
 	end
 	if npc:find('_cloth') then
 		players[player].questLocalData.images[#players[player].questLocalData.images+1] = addImage("16bca0b1f2e.png", "!30", 5700, 4990, player)
-		ui.addTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_03_cloth'>" .. string.rep('\n', 4), player, 5700, 4990, 25, 25, 1, 1, 0, false)
+		showTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_03_cloth'>" .. string.rep('\n', 4), player, 5700, 4990, 25, 25, 1, 1, 0, false)
 	end
 	if npc:find('_paper') then
 		players[player].questLocalData.images[#players[player].questLocalData.images+1] = addImage("16bbf3aa649.png", "!30", 6250, 3250, player)
-		ui.addTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_03_paper'>" .. string.rep('\n', 4), player, 6250, 3250, 25, 25, 1, 1, 0, false)
+		showTextArea(-46, "<textformat leftmargin='1' rightmargin='1'><a href='event:Quest_03_paper'>" .. string.rep('\n', 4), player, 6250, 3250, 25, 25, 1, 1, 0, false)
 	end
 end
 
@@ -91,7 +91,7 @@ quest_updateStep = function(player)
 	end
 	players[player].questLocalData.images = {}
 	for i = -50, -40 do
-		ui.removeTextArea(i, player)
+		removeTextArea(i, player)
 	end
 
 	players[player].questStep[3] = nil
@@ -99,7 +99,7 @@ quest_updateStep = function(player)
 	players[player].questStep[2] = currentStep + 1
 	players[player].questLocalData.step = 1
 
-	--TFM.chatMessage('<CS>[DEBUG]</CS> '..player..' completed a new quest step! Current step: <v>'..playerData.questStep[2])
+	--chatMessage('<CS>[DEBUG]</CS> '..player..' completed a new quest step! Current step: <v>'..playerData.questStep[2])
 	if players[player].questStep[2] == #lang['en'].quests[currentQuest]+1 then			
 		quest_setNewQuest(player)
 		if players[player].questStep[1] > questsAvailable then
