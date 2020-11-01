@@ -794,4 +794,8 @@ lang.tr = {
     furniture_amongUs_medBay = 'Among Us: Revir',
     tip_airVehicle = 'Uçan bir aracı durdurmak için SPACE tuşuna bas.',
     furniture_bloodstain = 'Kan Lekesi',
+    --- V3.3.2
+    trade_playerLeftRoom = '%s odayı terk etti.',
+	trade_playerUsingAnItem = '%s şu anda bir eşya kullanıyor.',
+	trade_unknownItems = 'Bilinmeyen eşyalar',
 }

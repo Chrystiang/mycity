@@ -783,4 +783,8 @@ lang.id = {
     furniture_amongUs_medBay = 'Among Us: Med Bay',
     tip_airVehicle = 'Tekan SPASI untuk menghentikan menggunakan kendaraan terbang.',
     furniture_bloodstain = 'Noda darah',
+    --- V3.3.2
+    trade_playerLeftRoom = '%s meninggalkan ruangan.',
+	trade_playerUsingAnItem = '%s saat ini menggunakan sebuah item.',
+	trade_unknownItems = 'Item tidak diketahui',
 }

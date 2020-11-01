@@ -799,4 +799,8 @@ lang.en = {
 	furniture_amongUs_medBay = 'Among Us: Med Bay',
 	tip_airVehicle = 'Press SPACE to stop using a flying vehicle.',
 	furniture_bloodstain = 'Bloodstain',
+	--- V3.3.2
+	trade_playerLeftRoom = '%s left the room.',
+	trade_playerUsingAnItem = '%s is currently using an item.',
+	trade_unknownItems = 'Unknown items',
 }

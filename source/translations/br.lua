@@ -787,5 +787,9 @@ lang.br = {
 	furniture_amongUs_medBay = 'Among Us: Enfermaria',
 	tip_airVehicle = 'Aperte ESPAÇO para parar de usar um veículo aéreo.',
 	furniture_bloodstain = 'Mancha de Sangue',
+	--- V3.3.2
+	trade_playerLeftRoom = '%s saiu da sala.',
+	trade_playerUsingAnItem = '%s está usando um item.',
+	trade_unknownItems = 'Itens desconhecidos.',
 }
 lang.pt = lang.br
