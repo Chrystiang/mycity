@@ -9,7 +9,7 @@ job_fire = function(i)
 	jobs[job].working[i] = nil
 	for index, player in next, jobs[job].working do
 		if player == i then 
-			table.remove(jobs[job].working, index)
+			table_remove(jobs[job].working, index)
 			break
 		end
 	end
@@ -20,11 +20,11 @@ job_fire = function(i)
 			removeImage(images[i])
 		end 
 		players[i].temporaryImages.jobDisplay = {}
-		ui.removeTextArea(1012, i)
+		removeTextArea(1012, i)
 	end
 	if job == 'farmer' then 
 		for i = 1, 4 do
-			ui.removeTextArea('-730'..(i..tonumber(players['Oliver'].houseData.houseid)*10), i)
+			removeTextArea('-730'..(i..tonumber(players['Oliver'].houseData.houseid)*10), i)
 		end
 	end
 end
@@ -51,7 +51,7 @@ job_hire = function(job, player)
 	end
 	players[player].temporaryImages.jobDisplay[#players[player].temporaryImages.jobDisplay+1] = addImage("171d301df6c.png", ":1", 0, 22, player)
 	players[player].temporaryImages.jobDisplay[#players[player].temporaryImages.jobDisplay+1] = addImage(jobs[job].icon, ":2", 107, 22, player)
-	ui.addTextArea(1012, '<p align="center"><b><font size="14" color="#371616">'..translate(job, player), player, 0, 29, 110, 30, 0x1, 0x1, 0, true)
+	showTextArea(1012, '<p align="center"><b><font size="14" color="#371616">'..translate(job, player), player, 0, 29, 110, 30, 0x1, 0x1, 0, true)
 
 	if job ~= 'thief' then
 		TFM.setNameColor(player, '0x'..jobs[job].color)
@@ -124,7 +124,7 @@ job_updatePlayerStats = function(player, type, quant)
 	if type == 17 then
 		if players[player].jobs[17] == 15 then
 			giveBadge(player, 20)
-			ui.removeTextArea(8541584, player)
+			removeTextArea(8541584, player)
 			removeImage(players[player].questScreenIcon)
 		elseif players[player].jobs[17] < 15 then
 			ui.updateTextArea(8541584, players[player].jobs[17]..'/15', player)

@@ -26,7 +26,7 @@ room.fishing = {
 		},
 		sewer = {
 			canUseBoat = true,
-			between = {'mine_labyrinth', 'mine_escavation'},
+			between = {'mine', 'mine_excavation'},
 			location = {
 				{x = 2837-70, y = 8662-70}, {x = 2837-70, y = 8800}, {x = 4325+70, y = 8662-70}, {x = 4325+70, y = 8800},
 			},

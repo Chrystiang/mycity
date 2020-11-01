@@ -2,8 +2,8 @@ playerFishing = function(name, x, y, biome)
 	local player = players[name]
 	local playerStatus = ROOM.playerList[name]
 
-	math.randomseed(os.time())
-	local chances = math.random(1, 10000)
+	randomseed(os_time())
+	local chances = random(1, 10000)
 	local counter = 0
 	local rarityFished = 'normal'
 
@@ -24,7 +24,7 @@ playerFishing = function(name, x, y, biome)
 			playerStatus = ROOM.playerList[name]
 			if not players[name].canDrive and biome == 'sea' then
 				checkIfPlayerIsDriving(name)
-				TFM.movePlayer(name, playerStatus.x, playerStatus.y, false)
+				movePlayer(name, playerStatus.x, playerStatus.y, false)
 				addGround(77777 + playerStatus.id, playerStatus.x + (playerStatus.isFacingRight and 40 or -40), playerStatus.y - 40, {type = 14, miceCollision = false, groundCollision = false})
 				addGround(77777 + playerStatus.id+1, playerStatus.x + (playerStatus.isFacingRight and 70 or -70), playerStatus.y - 30, {type = 14, dynamic = true, miceCollision = false})
 
@@ -46,11 +46,11 @@ playerFishing = function(name, x, y, biome)
 
 			local align = playerStatus.isFacingRight and 20 or -90
 			for particles = 1, 10 do
-				TFM.displayParticle(14, particles * 3 + x + align, y + 50,  math.random(-5, 5), math.random(-2, 0.5), math.random(-0.7, 0.1))
+				TFM.displayParticle(14, particles * 3 + x + align, y + 50,  random(-5, 5), random(-2, 0.5), random(-0.7, 0.1))
 			end
 
-			math.randomseed(os.time())
-			local willFish = room.fishing.biomes[biome].fishes[rarityFished][math.random(#room.fishing.biomes[biome].fishes[rarityFished])]
+			randomseed(os_time())
+			local willFish = room.fishing.biomes[biome].fishes[rarityFished][random(#room.fishing.biomes[biome].fishes[rarityFished])]
 			local willFishInfo = bagItems[willFish]
 
 			modernUI.new(name, 120, 120)
@@ -63,7 +63,7 @@ playerFishing = function(name, x, y, biome)
 				if amount > 10 then
 					canAddItem = false
 					giveCoin(10000, name)
-					TFM.chatMessage('<j>'..translate('seedSold', name):format('<vp>'..translate('item_fish_Goldenmare', name)..'</vp>', '<fc>$10000</fc>'), name)
+					chatMessage('<j>'..translate('seedSold', name):format('<vp>'..translate('item_fish_Goldenmare', name)..'</vp>', '<fc>$10000</fc>'), name)
 				end
 			end
 			if canAddItem then
@@ -90,7 +90,7 @@ playerFishing = function(name, x, y, biome)
 			end
 
 			local sidequest = sideQuests[player.sideQuests[1]].type
-			if sidequest == 'type:fish' or string.find(sidequest, willFish) then
+			if sidequest == 'type:fish' or string_find(sidequest, willFish) then
 				sideQuest_update(name, 1)
 			end
 			for id, properties in next, player.questLocalData.other do 
@@ -113,7 +113,7 @@ playerFishing = function(name, x, y, biome)
 			for i = 77777 + playerStatus.id, 77777 + playerStatus.id+2 do 
 				removeGround(i)
 			end
-			setLifeStat(name, 1, math.random(-11, -8))
+			setLifeStat(name, 1, random(-11, -8))
 		end
 	end, 1000, 28)
 end
@@ -123,7 +123,7 @@ stopFishing = function(player)
 	if not playerStatus then return end
 	players[player].fishing[1] = false
 	removeTimer(players[player].fishing[2])
-	TFM.chatMessage('<r>'..translate('fishingError', player), player)
+	chatMessage('<r>'..translate('fishingError', player), player)
 	for i = 1, #players[player].fishing[3] do 
 		removeImage(players[player].fishing[3][i])
 	end

@@ -38,7 +38,7 @@ jobs = {
 			for i = 1, 5 do
 				if players['Oliver'].houseTerrainAdd[i] >= #HouseSystem.plants[players['Oliver'].houseTerrainPlants[i]].stages then
 					local y = 1500 + 90
-					ui.addTextArea('-730'..(tonumber(i)..tonumber(players['Oliver'].houseData.houseid)*10), '<a href="event:harvest_'..tonumber(i)..'"><p align="center"><font size="15">'..translate('harvest', player)..'</font></p></a>', player, (11%12)*1500+738-(175/2)-2 + (tonumber(i)-1)*175, y+150, 175, 150, 0xff0000, 0xff0000, 0)
+					showTextArea('-730'..(tonumber(i)..tonumber(players['Oliver'].houseData.houseid)*10), '<a href="event:harvest_'..tonumber(i)..'"><p align="center"><font size="15">'..translate('harvest', player)..'</font></p></a>', player, (11%12)*1500+738-(175/2)-2 + (tonumber(i)-1)*175, y+150, 175, 150, 0xff0000, 0xff0000, 0)
 				end
 			end
 		end,
