@@ -6,7 +6,7 @@ translate = function(message, name)
 		return lang[cmm].quests[quest].name
 	end
 	if message == '$VersionName' then
-		local playerVersion = 'v'..table.concat(version, '.')
+		local playerVersion = 'v'..table_concat(version, '.')
 		return versionLogs[playerVersion][cmm] or versionLogs[playerVersion].en
 	end
 	return lang[cmm][message] and lang[cmm][message] or '$txt_'..message
@@ -14,6 +14,6 @@ end
 
 translatedMessage = function(msg, ...)
 	for name in next, ROOM.playerList do
-		TFM.chatMessage(string.format(translate(msg, name), ...), name)
+		chatMessage(string.format(translate(msg, name), ...), name)
 	end
 end
