@@ -1,9 +1,7 @@
 loadFound = function(player, house)
 	local id = tonumber(house)
-	local align = room.event and room.specialFounds[room.event].align or 1919
-	for i = 1, #players[player].dayImgs do
-		removeImage(players[player].dayImgs[i])
-	end
+	local align = room.event and room.specialBackgrounds[room.event].align or 1919
+	removeGroupImages(players[player].dayImgs)
 	local img = background(nil, nil, nil, true)
 	for i = 1, 3 do
 		players[player].dayImgs[#players[player].dayImgs+1] = addImage(img, '?1', ((id-1)%id)*1500 - 1200 + (i-1)*align, 320, player)
@@ -31,14 +29,12 @@ background = function(player, period, rain, getPng)
 		end
 
 	else
-		png = room.specialFounds[room.event][period]
-		align = room.specialFounds[room.event].align
+		png = room.specialBackgrounds[room.event][period]
+		align = room.specialBackgrounds[room.event].align
 	end
 	if getPng then return png end
 
-	for i = 1, #players[player].background do
-		removeImage(players[player].background[i])
-	end
+	removeGroupImages(players[player].background)
 	players[player].background = {}
 
 	if png then
@@ -64,22 +60,17 @@ loadDayTimeEffects = function(period)
 		gameNpcs.removeNPC('Colt')
 	elseif period == 'day' then
 		gameNpcs.reAddNPC('Colt')
+		removeGroupImages(room.bankImages)
+		removeGroupImages(room.bank.paperImages)
 		room.bankBeingRobbed = false
 		room.bankRobStep = nil
-		for i = 1, #room.bankImages do
-			removeImage(room.bankImages[i])
-		end
-		room.bankImages = {}
-		room.bankPassword = math.random(0,9) .. math.random(0,9) .. math.random(0,9) .. math.random(0,9)
-		for i = 1, #room.bank.paperImages do
-			removeImage(room.bank.paperImages[i])
-		end
+		room.bankPassword = random(0,9) .. random(0,9) .. random(0,9) .. random(0,9)
 		room.dayCounter = room.dayCounter + 1
 		if room.dayCounter > 0 then 
 			room.bank.paperImages = {}
-			room.bank.paperCurrentPlace = math.random(1, #room.bank.paperPlaces)
+			room.bank.paperCurrentPlace = random(1, #room.bank.paperPlaces)
 			room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y)
-			ui.addTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), nil, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
+			showTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), nil, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
 		end
 	end
 	room.gameDayStep = period
@@ -94,7 +85,7 @@ loadDayTimeEffects = function(period)
 			end
 		end
 		if period == 'day' then 
-			ui.addTextArea(1029, '<font size="15"><p align="center"><a href="event:enter_bank">' .. translate('goTo', i) .. '</a>', i, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
+			showTextArea(1029, '<font size="15"><p align="center"><a href="event:enter_bank">' .. translate('goTo', i) .. '</a>', i, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
 		end
 	end
 end
