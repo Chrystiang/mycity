@@ -14,21 +14,20 @@ greenButton = function(id, i, text, player, callback, x, y, width, height, block
 		colorPallete.button_confirmFront = 0x5b5b5b
 		text = '<r>'..text
 	end
-	ui.addTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, colorPallete.button_confirmBg, colorPallete.button_confirmBg, 1, true)
-	ui.addTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-	ui.addTextArea(id..(932+i*5), '', player, x, y, width, height, colorPallete.button_confirmFront, colorPallete.button_confirmFront, 1, true)
-	ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, not blockClick and callback or nil)
+	showTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, colorPallete.button_confirmBg, colorPallete.button_confirmBg, 1, true)
+	showTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+	showTextArea(id..(932+i*5), '', player, x, y, width, height, colorPallete.button_confirmFront, colorPallete.button_confirmFront, 1, true)
+	showTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, not blockClick and callback or nil)
 end
 
 tradeSystem.invite = function(player1, player2)
-	if players[player2].isTrading then return alert_Error(player1, 'error', 'trade_playerAlreadyTrading', player2) end
-	if not players[player2].dataLoaded or not players[player1].dataLoaded then return alert_Error(player1, 'error', 'error') end
-	if players[player2].settings.disableTrades == 1 then return alert_Error(player1, 'error', 'trade_invite_error', player2) end
+	if players[player2].isTrading then return alert_Error(player1, 'trade_cancelled_title', 'trade_playerAlreadyTrading', player2) end
+	if not players[player2].dataLoaded or not players[player1].dataLoaded then return alert_Error(player1, 'trade_cancelled_title', 'error') end
+	if players[player2].settings.disableTrades == 1 then return alert_Error(player1, 'trade_cancelled_title', 'trade_invite_error', player2) end
 
 	modernUI.new(player2, 240, 170, translate('trade_invite_title', player2), translate('trade_invite', player2):format(player1))
 	:build()
-	:addConfirmButton(function(player2)
-		if players[player1].isTrading then return alert_Error(player2, 'error', 'trade_playerAlreadyTrading', player1) end
+	:addConfirmButton(function()
 		tradeSystem.new(player1, player2)
 	end, translate('submit', player2), player1)
 end
@@ -45,7 +44,7 @@ tradeSystem.playerInterface = function(tradeInfo, player)
 			for p, tradingWith in next, tradeInfo.tradeData.players do
 				local x = p == player and 265 or 465
 				local id = p == player and 950 or 948
-				ui.addTextArea((200)..id, '', p, x, 115, 68, 200, 0x95d44d, 0x95d44d, 0.6, true)
+				showTextArea((200)..id, '', p, x, 115, 68, 200, 0x95d44d, 0x95d44d, 0.6, true)
 				if not tradeInfo.tradeData.confirmed[p] then
 					canFinish = false
 				end
@@ -110,9 +109,9 @@ tradeSystem.insertItem = function(tradeInfo, item, player, originalID)
 			tradeInfo.tradeData.trading[player][item].images[#tradeInfo.tradeData.trading[player][item].images+1] = addImage(bgImage, ':50', x, y, p)
 			tradeInfo.tradeData.trading[player][item].images[#tradeInfo.tradeData.trading[player][item].images+1] = addImage(image, ':50', x-2, y, p)
 		end
-		ui.addTextArea((200)..(id+index*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..tradeInfo.tradeData.trading[player][item].amount, p, x+4, y+29, 40, nil, 0xff0000, 0xff0000, 0, true)
+		showTextArea((200)..(id+index*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..tradeInfo.tradeData.trading[player][item].amount, p, x+4, y+29, 40, nil, 0xff0000, 0xff0000, 0, true)
 		if p == player then
-			ui.addTextArea((200)..(id+1+index*2), '\n\n\n\n', p, x+2, y+2, 40, 40, 0xff0000, 0xff0000, 0, true,
+			showTextArea((200)..(id+1+index*2), '\n\n\n\n', p, x+2, y+2, 40, 40, 0xff0000, 0xff0000, 0, true,
 				function()
 					if not tradeInfo.tradeData.trading[player][item] then return end
 					if tradeInfo.tradeData.trading[player][item].amount < 1 then return end
@@ -126,11 +125,11 @@ tradeSystem.insertItem = function(tradeInfo, item, player, originalID)
 					end
 
 					if tradeInfo.tradeData.trading[player][item].amount == 0 then
-						player_removeImages(tradeInfo.tradeData.trading[player][item].images)
+						removeGroupImages(tradeInfo.tradeData.trading[player][item].images)
 						tradeInfo.tradeData.trading[player][item] = nil
 						for pp, _tradingWith in next, tradeInfo.tradeData.players do
 							local id = pp == player and 900 or 910
-							ui.removeTextArea((200)..(id+index*2), pp)
+							removeTextArea((200)..(id+index*2), pp)
 						end
 					end
 				end
@@ -143,22 +142,22 @@ end
 tradeSystem.blockSubmitButton = function(tradeInfo, player)
 	for p, tradingWith in next, tradeInfo.tradeData.players do
 		tradeInfo.tradeData.confirmed[p] = false
-		ui.addTextArea(200999, '', p, 372, 197, 60, 12, 0x5b5b5b, 0x5b5b5b, .8, true)
+		showTextArea(200999, '', p, 372, 197, 60, 12, 0x5b5b5b, 0x5b5b5b, .8, true)
 		local id = p ~= player and 950 or 948
-		ui.removeTextArea((200)..id, p)
+		removeTextArea((200)..id, p)
 	end
 	if tradeInfo.tradeData.timer then
 		removeTimer(tradeInfo.tradeData.timer)
 	end
 	tradeInfo.tradeData.timer = addTimer(function()
-		ui.removeTextArea(200999, player)
-		ui.removeTextArea(200999, players[player].isTrading)
+		removeTextArea(200999, player)
+		removeTextArea(200999, players[player].isTrading)
 		tradeInfo.tradeData.timer = nil
 	end, 3000, 1)
 end
 
 tradeSystem.showPlayerItems = function(tradeInfo, player)
-	local items = table.copy(players[player].bag)
+	local items = table_copy(players[player].bag)
 
 	local currentPage = 1
 	local maxPages = math.ceil(#items/24)
@@ -175,11 +174,11 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 			local image = itemData.png or '16bc368f352.png'
 			local bgImage = (itemData.limitedTime and formatDaysRemaining(itemData.limitedTime, true)) and '174eae7e0e1.jpg' or '174283c22c9.jpg'
 
-			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(bgImage, ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
-			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(image, ":26", x - 5 + ((i-1)%4)*43, y - 5 + math.floor((i-1)/4)*43, player)
+			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(bgImage, ":26", x + ((i-1)%4)*43, y + floor((i-1)/4)*43, player)
+			tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage(image, ":26", x - 5 + ((i-1)%4)*43, y - 5 + floor((i-1)/4)*43, player)
 			local cannotTrade = false
 	
-			if not table.contains(mainAssets.roles.admin, player) then
+			if not table_find(mainAssets.roles.admin, player) then
 				if v.name:find('FlowerSeed') and players[tradeInfo.tradeData.players[player]].jobs[5] < 1000  then
 					cannotTrade = true
 				elseif v.name:find('Goldenmare') and players[player].jobs[3] < 50*v.qt then
@@ -190,10 +189,10 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 			end
 
 			if cannotTrade then
-				tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage('174bc80c9bd.png', ":26", x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, player)
+				tradeInfo.playerImages[player][#tradeInfo.playerImages[player]+1] = addImage('174bc80c9bd.png', ":26", x + ((i-1)%4)*43, y + floor((i-1)/4)*43, player)
 			else
-				ui.addTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player, x + ((i-1)%4)*43, y + 24 + math.floor((i-1)/4)*43, 40, nil, 0xff0000, 0xff0000, 0, true)
-				ui.addTextArea(id..(801+i*2), '\n\n\n\n', player, x + ((i-1)%4)*43, y + math.floor((i-1)/4)*43, 40, 40, 0xff0000, 0xff0000, 0, true,
+				showTextArea(id..(800+i*2), '<p align="right"><font color="#95d44d" size="10"><b>x'..v.qt, player, x + ((i-1)%4)*43, y + 24 + floor((i-1)/4)*43, 40, nil, 0xff0000, 0xff0000, 0, true)
+				showTextArea(id..(801+i*2), '\n\n\n\n', player, x + ((i-1)%4)*43, y + floor((i-1)/4)*43, 40, 40, 0xff0000, 0xff0000, 0, true,
 					function()
 						if v.qt <= 0 or tradeInfo.tradeData.confirmed[player] then return end
 						local counter = 0
@@ -213,46 +212,71 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 	end
 end
 
-tradeSystem.endTrade = function(tradeInfo, cancelled)
+tradeSystem.endTrade = function(tradeInfo, cancelled, playerLeft)
 	tradeInfo.tradeData.finished = true
-	player_removeImages(tradeInfo.groupImages.fixed)
-	player_removeImages(tradeInfo.groupImages.temporary)
+	removeGroupImages(tradeInfo.groupImages.fixed)
+	removeGroupImages(tradeInfo.groupImages.temporary)
 	for player, v in next, tradeInfo.playerImages do
-		player_removeImages(v)
-		ui.removeTextArea(7100999, player)
+		removeGroupImages(v)
+		removeTextArea(7100999, player)
 		for i = 800, 999 do
-			ui.removeTextArea((200)..i, player)
+			removeTextArea((200)..i, player)
 		end
 		players[player].isTrading = false
+		players[player].tradeId = nil
 		if cancelled and cancelled ~= player then
 			alert_Error(player, 'trade_cancelled_title', 'trade_cancelled', cancelled)
+		elseif playerLeft and playerLeft ~= player then
+			alert_Error(player, 'trade_cancelled_title', 'trade_playerLeftRoom', playerLeft)
 		end
 	end
 	for p, items in next, tradeInfo.tradeData.trading do
 		for item, data in next, items do
-			player_removeImages(data.images)
+			removeGroupImages(data.images)
 		end
 	end
 end
 
 tradeSystem.confirmTrade = function(tradeInfo)
 	for player, items in next, tradeInfo.tradeData.trading do
-		if not players[player].inRoom then
-			return alert_Error(tradeInfo.tradeData.players[player], 'error', 'error')
-		end
+		if not players[player].inRoom then return alert_Error(tradeInfo.tradeData.players[player], 'trade_cancelled_title', 'trade_playerLeftRoom', player) end
+		if players[player].holdingItem then return alert_Error(tradeInfo.tradeData.players[player], 'trade_cancelled_title', 'trade_playerUsingAnItem', player) end
 	end
+
 	for player, items in next, tradeInfo.tradeData.trading do
 		for item, itemData in next, items do
 			if checkItemQuanty(item, itemData.amount, player) then
-				removeBagItem(item,  itemData.amount, player)
-				addItem(item, itemData.amount, tradeInfo.tradeData.players[player])
+				if removeBagItem(item,  itemData.amount, player) then
+					addItem(item, itemData.amount, tradeInfo.tradeData.players[player])
+				end
 			end
 		end
-		alert_Error(player, 'trade_title', 'trade_success')
+		savedata(player)
+	end
+	local totalAmount = 0
+	for player in next, tradeInfo.tradeData.trading do
+		totalAmount = totalAmount + players[player].totalOfStoredItems.bag
+	end
+
+	for player in next, tradeInfo.tradeData.trading do
+		if tradeInfo.tradeData.totalItems ~= totalAmount then
+			players[player].bag = table_copy(tradeInfo.tradeData.bagBackup[player][1])
+			players[player].totalOfStoredItems.bag = tradeInfo.tradeData.bagBackup[player][2]
+			savedata(player)
+			alert_Error(player, 'trade_title', 'trade_unknownItems')
+		else
+			alert_Error(player, 'trade_title', 'trade_success')
+		end
 	end
 end
 
 tradeSystem.new = function(player1, player2)
+	for player, tradingWith in next, {[player1] = player2, [player2] = player1} do
+		if players[player].isTrading then return alert_Error(tradingWith, 'trade_cancelled_title', 'trade_playerAlreadyTrading', player) end
+		if players[player].holdingItem then return alert_Error(tradingWith, 'trade_cancelled_title', 'trade_playerUsingAnItem', player) end
+		if not players[player].inRoom then return alert_Error(tradingWith, 'trade_cancelled_title', 'trade_playerLeftRoom', player) end
+	end
+
 	tradeID = #tradeSystem.trades+1
 	tradeSystem.trades[tradeID] = {
 		tradeData = {
@@ -269,6 +293,11 @@ tradeSystem.new = function(player1, player2)
 				[player1] = {},
 				[player2] = {},
 			},
+			totalItems = players[player1].totalOfStoredItems.bag + players[player2].totalOfStoredItems.bag,
+			bagBackup = {
+				[player1] = {table_copy(players[player1].bag), players[player1].totalOfStoredItems.bag},
+				[player2] = {table_copy(players[player2].bag), players[player2].totalOfStoredItems.bag},
+			},
 			timer = nil,
 		},
 		groupImages	= {
@@ -280,17 +309,12 @@ tradeSystem.new = function(player1, player2)
 			[player2] = {},
 		},
 	}
-	players[player1].isTrading = player2
-	players[player2].isTrading = player1
-
-	ui.addTextArea(7100999, '', player1, -5, -5, 805, 405, 1, 1, 0, true)
-	ui.addTextArea(7100999, '', player2, -5, -5, 805, 405, 1, 1, 0, true)
-
 	local tradeInfo = tradeSystem.trades[tradeID]
-	-- Looping 2 elements in Transformice are heavier than simply duplicating the content of the loop
-	tradeInfo.groupImages.fixed[#tradeInfo.groupImages.fixed+1] = addImage('17428377d34.png', ':50', 0, 0, player1)
-	tradeInfo.groupImages.fixed[#tradeInfo.groupImages.fixed+1] = addImage('17428377d34.png', ':50', 0, 0, player2)
-
-	tradeSystem.playerInterface(tradeInfo, player1)
-	tradeSystem.playerInterface(tradeInfo, player2)
+	for player, tradingWith in next, {[player1] = player2, [player2] = player1} do
+		players[player].isTrading = tradingWith
+		players[player].tradeId = tradeID
+		showTextArea(7100999, '', player, -5, -5, 805, 405, 1, 1, 0, true)
+		tradeInfo.groupImages.fixed[#tradeInfo.groupImages.fixed+1] = addImage('17428377d34.png', ':50', 0, 0, player)
+		tradeSystem.playerInterface(tradeInfo, player)
+	end
 end
