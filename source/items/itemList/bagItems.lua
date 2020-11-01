@@ -37,7 +37,7 @@ bagItems = {
 		png = '16c00f60557.png',
 		type = 'item',
 		func = function(i)
-			TFM.chatMessage('<font color="#DAA520">'..updateHour(nil, true), i)
+			chatMessage('<font color="#DAA520">'..updateHour(nil, true), i)
 		end,
 		npcShop = 'john',
 	},
@@ -52,7 +52,7 @@ bagItems = {
 		id = 7,
 		price = 115,
 		png =  '16bc53d823f.png',
-		limitedTime = os.time{day = 20, year = 2020, month = 4},
+		limitedTime = os_time{day = 20, year = 2020, month = 4},
 	},
 	dynamite = {
 		id = 8,
@@ -62,11 +62,6 @@ bagItems = {
 		miningPower = 10,
 		holdingImages = {'16b94a559d7.png', '16b94a57834.png'}, -- left, right
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'dynamite'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 		placementFunction = function(player, x, y)
 			local y = y-20
 			if x > 5250 and x < 5310 and y > 5180 and y < 5250 then -- BANCO
@@ -77,9 +72,9 @@ bagItems = {
 					players[player].place = 'police'
 					addTimer(function(timer)
 						if timer == 1 then
-							ui.addTextArea(-32000, "<font color='#FF00000'><p align='center'>"..translate('hey', player), player, 5255, 5201-15, 100, nil, 1, 1, 0.5, false)
+							showTextArea(-32000, "<font color='#FF00000'><p align='center'>"..translate('hey', player), player, 5255, 5201-15, 100, nil, 1, 1, 0.5, false)
 						elseif timer == 3 then
-							ui.removeTextArea(-32000, player)
+							removeTextArea(-32000, player)
 							arrestPlayer(player, 'Colt')
 						end
 					end, 1000, 3)
@@ -118,9 +113,9 @@ bagItems = {
 					addTimer(function(timer)
 						for i, v in next, ROOM.playerList do
 							if players[i].job ~= 'police' then 
-								if math.hypo(x, y, v.x, v.y) <= 100 then
+								if math_hypo(x, y, v.x, v.y) <= 100 then
 									checkIfPlayerIsDriving(i)
-									TFM.movePlayer(i, places['bank'].tp[1], places['bank'].tp[2], false)
+									movePlayer(i, places['bank'].tp[1], places['bank'].tp[2], false)
 									players[i].place = 'bank'
 									showOptions(i)
 								end
@@ -140,15 +135,15 @@ bagItems = {
 		complement = 30,
 		type = 'complementItem',
 		func = function(i)
-			local random = math.random(0, 100)
+			local random = random(0, 100)
 			players[i].mouseSize = players[i].mouseSize - 0.7
-			TFM.changePlayerSize(i, players[i].mouseSize)
-			ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
+			changeSize(i, players[i].mouseSize)
+			showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
 			local _timer
 			_timer = addTimer(function(time)
 				if not players[i].inRoom then removeTimer(_timer) end
-				local width = 84 - math.floor(time/30 * 80)
-				ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
+				local width = 84 - floor(time/30 * 80)
+				showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
 				if players[i].place == 'bank' then
 					if room.bankRobStep == 'robStarted' then
 						room.bankRobStep = 'lazers'
@@ -156,8 +151,8 @@ bagItems = {
 				end
 				if time == 30 then
 					players[i].mouseSize = players[i].mouseSize + 0.7
-					TFM.changePlayerSize(i, players[i].mouseSize)
-					ui.removeTextArea(989000000020+random, i)
+					changeSize(i, players[i].mouseSize)
+					removeTextArea(989000000020+random, i)
 				end
 			end, 1000, 30)
 		end,
@@ -170,20 +165,20 @@ bagItems = {
 		complement = 30,
 		type = 'complementItem',
 		func = function(i)
-			local random = math.random(0, 100)
+			local random = random(0, 100)
 			players[i].mouseSize = players[i].mouseSize + 2
-			TFM.changePlayerSize(i, players[i].mouseSize)
-			ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0xf169ef, 0xf169ef, 0.5, true)
+			changeSize(i, players[i].mouseSize)
+			showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0xf169ef, 0xf169ef, 0.5, true)
 			local _timer
 			_timer = addTimer(function(time)
 				if not players[i].inRoom then removeTimer(_timer) end
-				local width = 84 - math.floor(time/30 * 80)
-				ui.addTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0xf169ef, 0xf169ef, 0.5, true)
+				local width = 84 - floor(time/30 * 80)
+				showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0xf169ef, 0xf169ef, 0.5, true)
 				if time == 30 then
-					TFM.changePlayerSize(i, 1)
+					changeSize(i, 1)
 					players[i].mouseSize = players[i].mouseSize - 2
-					TFM.changePlayerSize(i, players[i].mouseSize)
-					ui.removeTextArea(989000000020+random, i)
+					changeSize(i, players[i].mouseSize)
+					removeTextArea(989000000020+random, i)
 				end
 			end, 1000, 30)
 		end,
@@ -219,14 +214,9 @@ bagItems = {
 		type = 'holdingItem',
 		holdingImages = {'16bf622f30a.png', '16bf622a802.png'}, -- left, right
 		holdingAlign = {{-20, 0}, {0, -5}}, -- left, right
-		func = function(player)
-			players[player].holdingItem = 'seed'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 		placementFunction = function(player, x, y, seed)
 			if not seed then
-				local numeroRandom = math.random(1, 10000)
+				local numeroRandom = random(1, 10000)
 				local total = 0
 				seed = 1
 				for id, data in next, players[player].seeds do
@@ -236,7 +226,7 @@ bagItems = {
 						if seed == 5 then 
 							if players[player].jobs[5] >= 1000 then
 								local colors = {5, 10, 11, 12, 13, 14, 15}
-								seed = colors[math.random(#colors)]
+								seed = colors[random(#colors)]
 							else
 								seed = 1
 							end
@@ -246,7 +236,7 @@ bagItems = {
 				end
 			end
 
-			if string.find(players[player].place, 'house_') then
+			if string_find(players[player].place, 'house_') then
 				local house_ = tonumber(players[player].place:sub(7))
 				local owner = player
 				if house_ == 12 then
@@ -255,22 +245,22 @@ bagItems = {
 						return
 					end
 				end
-				if table.contains(players[owner].houseTerrain, 2) then
+				if table_find(players[owner].houseTerrain, 2) then
 					local idx = tonumber(players[owner].houseData.houseid)
 					local yy = 1500 + 90
 					for i, v in next, players[owner].houseTerrain do
 						if v == 2 then
-							if math.hypo(((idx-1)%idx)*1500+737 + (i-1)*175, yy+170, x, y) <= 90 then
+							if math_hypo(((idx-1)%idx)*1500+737 + (i-1)*175, yy+170, x, y) <= 90 then
 								if players[owner].houseTerrainAdd[i] > 1 then return end
 								players[owner].houseTerrainAdd[i] = 2
 								players[owner].houseTerrainPlants[i] = seed
 								HouseSystem.new(owner):genHouseGrounds()
-								room.gardens[#room.gardens+1] = {owner = owner, timer = os.time(), terrain = i, idx = idx, plant = seed}
+								room.gardens[#room.gardens+1] = {owner = owner, timer = os_time(), terrain = i, idx = idx, plant = seed}
 								local sidequest = sideQuests[players[player].sideQuests[1]].type
-								if string.find(sidequest, 'type:plant') then
-									if string.find(sidequest, 'oliver') and owner == 'Oliver' then
+								if string_find(sidequest, 'type:plant') then
+									if string_find(sidequest, 'oliver') and owner == 'Oliver' then
 										sideQuest_update(player, 1)
-									elseif not string.find(sidequest, 'oliver') then
+									elseif not string_find(sidequest, 'oliver') then
 										sideQuest_update(player, 1)
 									end
 								end
@@ -291,12 +281,6 @@ bagItems = {
 		holdingImages = {'16bf5e01ec9.png', '16bf5e01ec9.png'}, -- left, right
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
 		fertilizingPower = 3,
-		func = function(player, amount)
-			players[player].holdingItem = 'fertilizer'
-			players[player].holdingItem_amount = amount
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 		placementFunction = function(player, speed)
 			HouseSystem.fertilize(player, speed)
 		end,
@@ -310,12 +294,6 @@ bagItems = {
 		holdingImages = {'16bf5e003db.png', '16bf5e003db.png'}, -- left, right
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
 		fertilizingPower = 0.6,
-		func = function(player, amount)
-			players[player].holdingItem = 'water'
-			players[player].holdingItem_amount = amount
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 		placementFunction = function(player, speed)
 			HouseSystem.fertilize(player, speed)
 		end,
@@ -410,7 +388,7 @@ bagItems = {
 		price = 70,
 		type = 'food',
 		png = '1715f1bd94a.png',
-		limitedTime = os.time{day = 20, year = 2020, month = 4},
+		limitedTime = os_time{day = 20, year = 2020, month = 4},
 	},
 	wheat = {
 		id = 31,
@@ -449,7 +427,7 @@ bagItems = {
 	pumpkinSeed = {
 		id = 36,
 		png = '16db258644e.png',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	superFertilizer = {
 		id = 37,
@@ -459,12 +437,6 @@ bagItems = {
 		holdingImages = {'16dcab532fa.png', '16dcab532fa.png'}, -- left, right
 		holdingAlign = {{-35, -15}, {-15, -15}}, -- left, right
 		fertilizingPower = 6,
-		func = function(player, amount)
-			players[player].holdingItem = 'superFertilizer'
-			players[player].holdingItem_amount = amount
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 		placementFunction = function(player, speed)
 			HouseSystem.fertilize(player, speed)
 		end,
@@ -504,7 +476,7 @@ bagItems = {
 		qpPrice = 4,
 		png = '16f23b75123.png',
 		type2 = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	cheese = {
 		id = 43,
@@ -514,13 +486,11 @@ bagItems = {
 		func = function(i)
 			local oldPositions = {ROOM.playerList[i].x, ROOM.playerList[i].y}
 			TFM.giveCheese(i)
-			TFM.giveCheese(i)
-			TFM.giveCheese(i)
 			TFM.playerVictory(i)
-			TFM.respawnPlayer(i)
+			respawnPlayer(i)
 			if players[i].isBlind then setNightMode(i) end
 			if players[i].isFrozen then freezePlayer(i, true) end
-			TFM.movePlayer(i, oldPositions[1], oldPositions[2], false)
+			movePlayer(i, oldPositions[1], oldPositions[2], false)
 		end
 	},
 	fish_SmoltFry = {
@@ -932,11 +902,6 @@ bagItems = {
 		npcShop = 'body',
 		holdingImages = {'174b17580a1.png', '174b17580a1.png'}, -- left, right
 		holdingAlign = {{-35, -20}, {-15, -20}}, -- left, right
-		func = function(player, amount)
-			players[player].holdingItem = 'shovel'
-			players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-			closeInterface(player, false, false, true)
-		end,
 		placementFunction = function(player)
 			return HouseSystem.removeCrop(player)
 		end,
@@ -947,21 +912,24 @@ bagItems = {
 		type = 'food',
 		power = 30,
 		hunger = 20,
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 	},
 	strangePumpkinSeed = {
 		id = 112,
 		qpPrice = 10,
 		png = '17529e77aa4.png',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		npcShop = 'drekkemaus',
 	},
 	candyBucket = {
 		id = 113,
 		png = '17529e757c5.png',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		type = 'food',
+		power = 30,
+		hunger = 20,
+		limitedTime = os_time{day=16, year=2020, month=11},
 	},
-}
+}	
 
 for item, data in next, bagItems do
 	if item:find('Seed') then
@@ -969,11 +937,6 @@ for item, data in next, bagItems do
 			data.type = 'holdingItem'
 			data.holdingImages = {data.png, data.png}
 			data.holdingAlign = {{-35, -20}, {-15, -20}}
-			data.func = function(player)
-				players[player].holdingItem = item
-				players[player].holdingDirection = (ROOM.playerList[player].isFacingRight and 'right' or 'left')
-				closeInterface(player, false, false, true)
-			end
 		end
 	end
 end

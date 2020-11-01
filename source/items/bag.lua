@@ -19,9 +19,7 @@ addItem = function(item, amount, player, coin)
 		end
 	end
 	local canAdd = false
-	players[player].totalOfStoredItems.bag = 0
 	for i, v in next, players[player].bag do 
-		players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag + v.qt
 		if v.name == item then
 			canAdd = i
 		end
@@ -29,8 +27,10 @@ addItem = function(item, amount, player, coin)
 
 	if players[player].totalOfStoredItems.bag + amount > players[player].bagLimit then
 		alert_Error(player, 'error', 'bagError')
-		if coin == 0 then
+		if coin == 0 and not players[player].trading then
 			item_drop(item, player, amount)
+		elseif players[player].trading then
+			players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag + amount
 		end
 		return
 	else
@@ -48,6 +48,7 @@ end
 
 removeBagItem = function(item, amount, player)
 	amount = math.abs(amount)
+	local hasItem = false
 	for i, v in next, players[player].bag do
 		if v.name == item then
 			if amount > v.qt then
@@ -55,11 +56,14 @@ removeBagItem = function(item, amount, player)
 			end
 			v.qt = v.qt - amount
 			if v.qt <= 0 then
-				table.remove(players[player].bag, i)
+				table_remove(players[player].bag, i)
 			end
+			hasItem = true
 			break
 		end
 	end
+	if not hasItem then return false end
 	players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag - amount
 	savedata(player)
+	return true
 end
