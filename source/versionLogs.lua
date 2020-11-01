@@ -214,12 +214,21 @@ versionLogs = {
 		},
 	},
 	['v3.3.0'] = {
-		releaseDate = '16/10/2020', -- dd/mm/yy
+		releaseDate = '22/10/2020', -- dd/mm/yy
 		banner = '175131e729f.png',
 		br = 'Evento de Halloween!',
 		en = 'Halloween Event!',
+	},
+	['v3.3.2'] = {
+		releaseDate = '31/10/2020', -- dd/mm/yy
+		banner = '175131e729f.png',
+		br = 'Evento de Halloween!',
+		en = 'Halloween Event!',
+		id = 'Acara Halloween!',
+		tr = 'Cadılar Bayramı Etkinliği!',
 	}
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']
 versionLogs['v3.2.1'] = versionLogs['v3.2.0']
+versionLogs['v3.3.1'] = versionLogs['v3.3.0']
