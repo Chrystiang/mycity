@@ -76,22 +76,22 @@ modernUI.build = function(self)
 	local backgroundImage = _UI and _UI or error('Invalid modernUI size.')
 	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(backgroundImage, ":10", x+10, y, player)
 
-	ui.addTextArea(id..'876', '', player, 5 - width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) ui.addTextArea(id..'877', '', player, 395 + width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) ui.addTextArea(id..'878', '', player, 0, 6 - height/2, 800, 200, 0x152d30, 0x152d30, 0, true) ui.addTextArea(id..'879', '', player, 0, 194 + height/2, 800, 200, 0x152d30, 0x152d30, 0, true)
+	showTextArea(id..'876', '', player, 5 - width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) showTextArea(id..'877', '', player, 395 + width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) showTextArea(id..'878', '', player, 0, 6 - height/2, 800, 200, 0x152d30, 0x152d30, 0, true) showTextArea(id..'879', '', player, 0, 194 + height/2, 800, 200, 0x152d30, 0x152d30, 0, true)
 	local function createButton(id)
 		local button = self.buttons[id]
 		players[player]._modernUIImages[self.id][#players[player]._modernUIImages[self.id]+1] = addImage(button.image, ":"..(100+id), (x+width)-23 - id*24, y+10, player)
-		ui.addTextArea(self.id..(896+id), "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_ButtonAction_"..self.id.."_"..id.."'>\n\n", player, (x+width)-23 - id*24 , y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
+		showTextArea(self.id..(896+id), "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_ButtonAction_"..self.id.."_"..id.."'>\n\n", player, (x+width)-23 - id*24 , y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
 	end
 
 	if self.title then
-		ui.addTextArea(id..'880', '<p align="center"><font color="#152d30" size="15"><b>'..self.title, player, x+26, y+16, width-55 + (totalButtons * -25), nil, 0x152d30, 0x152d30, 1, true)
-		ui.addTextArea(id..'881', '<p align="center"><font color="#caed87" size="15"><b>'..self.title, player, x+25, y+13, width-30, nil, 0x152d30, 0x152d3, 0, true)
+		showTextArea(id..'880', '<p align="center"><font color="#152d30" size="15"><b>'..self.title, player, x+26, y+16, width-55 + (totalButtons * -25), nil, 0x152d30, 0x152d30, 1, true)
+		showTextArea(id..'881', '<p align="center"><font color="#caed87" size="15"><b>'..self.title, player, x+25, y+13, width-30, nil, 0x152d30, 0x152d3, 0, true)
 	end
 	if self.text then
-		ui.addTextArea(id..'882', '<font color="#ebddc3" size="13">'..self.text, player, x+25, y+47, width-30, height-65, 0x152d30, 0x152d30, 1, true)
+		showTextArea(id..'882', '<font color="#ebddc3" size="13">'..self.text, player, x+25, y+47, width-30, height-65, 0x152d30, 0x152d30, 1, true)
 	end
 	if width ~= 800 then
-		ui.addTextArea(id..'896', "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_Close_"..id.."_"..self.errorUI.."'>\n\n", player, (x+width)-23, y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
+		showTextArea(id..'896', "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_Close_"..id.."_"..self.errorUI.."'>\n\n", player, (x+width)-23, y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
 	else
 		self.width = 520
 		self.height = 300
@@ -111,10 +111,10 @@ modernUI.addConfirmButton = function(self, toggleEvent, buttonText, ...)
 	local x = (400 - width/2)
 	local y = (200 - height/2) + self.height/2 - 30
 
-	ui.addTextArea(id..'930', '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
-	ui.addTextArea(id..'931', '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-	ui.addTextArea(id..'932', '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
-	ui.addTextArea(id..'933', '<p align="center"><font color="#cef1c3" size="13"><a href="event:modernUI_ButtonAction_'..self.id..'_'..(#self.buttons+1)..'">'..buttonText..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true)
+	showTextArea(id..'930', '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
+	showTextArea(id..'931', '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+	showTextArea(id..'932', '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
+	showTextArea(id..'933', '<p align="center"><font color="#cef1c3" size="13"><a href="event:modernUI_ButtonAction_'..self.id..'_'..(#self.buttons+1)..'">'..buttonText..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true)
 
 	players[player]._modernUIHistory[id][#self.buttons+1] = {toggleEvent = toggleEvent, args = ...}
 	return setmetatable(self, modernUI)

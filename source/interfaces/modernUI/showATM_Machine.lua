@@ -8,17 +8,17 @@ modernUI.showATM_Machine = function(self)
 
 	local writtenCode = {}
 
-	ui.addTextArea(id..(900), '<V><p align="center"><font size="13">'..translate('code', player), player, 300, y+20, 200, 20, 0x314e57, 0x314e57, 0.8, true)
+	showTextArea(id..(900), '<V><p align="center"><font size="13">'..translate('code', player), player, 300, y+20, 200, 20, 0x314e57, 0x314e57, 0.8, true)
 
 	local keys = {'QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'}
 	for index, v in next, {{6, 56}, {17, 79}, {42, 102}} do
 		for i = 1, #keys[index] do
 			local letter = keys[index]:sub(i, i)
-			ui.addTextArea(id..(900+i+(13*(index-1))), "<p align='center'><CS>"..letter, player, x + (i-1)*22 + v[1], y + v[2], nil, 15, 0, 0, 0, true, 
+			showTextArea(id..(900+i+(13*(index-1))), "<p align='center'><CS>"..letter, player, x + (i-1)*22 + v[1], y + v[2], nil, 15, 0, 0, 0, true, 
 				function()
 					if #writtenCode < 15 then
 						writtenCode[#writtenCode+1] = letter
-						ui.updateTextArea(id..(900), '<V><p align="center"><font size="13">'..table.concat(writtenCode, ''), player)
+						ui.updateTextArea(id..(900), '<V><p align="center"><font size="13">'..table_concat(writtenCode, ''), player)
 					end
 				end)
 		end
@@ -26,7 +26,7 @@ modernUI.showATM_Machine = function(self)
 
 	greenButton(id, 1, translate('submit', player), player, 
 		function()
-			local code = table.concat(writtenCode, '')
+			local code = table_concat(writtenCode, '')
 			writtenCode = {}
 			if codes[code] then
 				for i, v in next, players[player].receivedCodes do
