@@ -110,8 +110,8 @@ mainAssets.__cars = {
 		icon    = '16eccfc33a2.png',
 		effects = function(player)
 					local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-					player_removeImages(players[player].carLeds)
-					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[math.random(#lights)], '$'..player, -130, -20)
+					removeGroupImages(players[player].carLeds)
+					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -130, -20)
 				end,
 	},
 	[13] = {
@@ -135,8 +135,8 @@ mainAssets.__cars = {
 		icon    = '173d50d2a11.png',
 		effects = function(player)
 					local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-					player_removeImages(players[player].carLeds)
-					local light = lights[math.random(#lights)]
+					removeGroupImages(players[player].carLeds)
+					local light = lights[random(#lights)]
 					players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
 					players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
 				end,
@@ -152,8 +152,8 @@ mainAssets.__cars = {
 		icon    = '1747a428c69.png',
 		effects = function(player)
 					local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-					player_removeImages(players[player].carLeds)
-					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[math.random(#lights)], '$'..player, -130, -20)
+					removeGroupImages(players[player].carLeds)
+					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -130, -20)
 				end,
 	},
 	[16] = { -- Balloon

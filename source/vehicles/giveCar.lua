@@ -1,6 +1,6 @@
 giveCar = function(player, car)
 	if not mainAssets.__cars[car] then return alert_Error(player, 'error', 'Unknown Vehicle') end
-	if table.contains(players[player].cars, car) then return end
+	if table_find(players[player].cars, car) then return end
 	players[player].cars[#players[player].cars+1] = car
 	modernUI.new(player, 240, 220, translate('newCar', player), translate('unlockedCar', player))
 	:build()
