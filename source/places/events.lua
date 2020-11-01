@@ -10,11 +10,11 @@ kickPlayersFromPlace = function(place)
 	for name in next, ROOM.playerList do 
 		local playerData = players[name]
 		if playerData.place == place then
-			if places[place].town_tp then
-				TFM.movePlayer(name, places[place].town_tp[1], places[place].town_tp[2], false)
+			if places[place].tp_town then
+				movePlayer(name, places[place].tp_town[1], places[place].tp_town[2], false)
 				playerData.place = 'town'
 			else
-				TFM.movePlayer(name, places[place].island_tp[1], places[place].island_tp[2], false)
+				movePlayer(name, places[place].tp_island[1], places[place].tp_island[2], false)
 				playerData.place = 'island'
 			end
 			alert_Error(name, 'timeOut', 'closed_'..place) 
@@ -26,10 +26,10 @@ end
 goToHouse = function(player, terrainID)
 	players[player].place = 'house_'..terrainID
 	loadFound(player, terrainID)
-	TFM.movePlayer(player, ((terrainID-1)%terrainID)*1500+400, 1690, false)
+	movePlayer(player, ((terrainID-1)%terrainID)*1500+400, 1690, false)
 	showOptions(player)
 	checkIfPlayerIsDriving(player)
-	ui.addTextArea(400, string.rep('\n', 3), player, ((terrainID-1)%terrainID)*1500 + 317, 1616 + 45, 25, 25, 0, 0, 0, false, 
+	showTextArea(400, string.rep('\n', 3), player, ((terrainID-1)%terrainID)*1500 + 317, 1616 + 45, 25, 25, 0, 0, 0, false, 
 		function()
 			getOutHouse(player, terrainID)
 		end)
@@ -47,15 +47,15 @@ goToHouse = function(player, terrainID)
 end
 
 getOutHouse = function(player, terrainID)
-	if not string.find(players[player].place, 'house_') or players[player].editingHouse then return end
+	if not string_find(players[player].place, 'house_') or players[player].editingHouse then return end
 	if terrainID == 12 then -- Oliver's Farm
-		TFM.movePlayer(player, 11275, 7770, false)
+		movePlayer(player, 11275, 7770, false)
 	elseif terrainID == 11 then -- Remi's Restaurant
-		TFM.movePlayer(player, 10200, 7770, false)
+		movePlayer(player, 10200, 7770, false)
 	else
-		TFM.movePlayer(player, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2]+184, false)
+		movePlayer(player, mainAssets.__terrainsPositions[terrainID][1], mainAssets.__terrainsPositions[terrainID][2]+184, false)
 	end
-	if terrainID >= 10 then
+	if terrainID > 10 then
 		players[player].place = 'island'
 	else
 		players[player].place = 'town'
@@ -69,9 +69,9 @@ equipHouse = function(player, houseType, terrainID)
 	if players[player].houseData.houseid > 0 then
 		HouseSystem.new(player):removeHouse()
 	end
-	ui.removeTextArea(24+terrainID)
-	ui.removeTextArea(44+terrainID)
-	ui.removeTextArea(terrainID)
+	removeTextArea(24+terrainID)
+	removeTextArea(44+terrainID)
+	removeTextArea(terrainID)
 	players[player].houseData.houseid = terrainID
 	players[player].houseData.currentHouse = houseType
 	room.terrains[terrainID].bought = true

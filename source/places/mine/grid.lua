@@ -2,14 +2,14 @@ mine_setStoneType = function(depth, frequency)
 	local ores = {}
 	local y = depth
 	for i, v in next, Mine.stones do
-		local min = (i-1.87)* math.random(4, 6)
-		local max = i * math.random(4, 6)
+		local min = (i-1.87)* random(4, 6)
+		local max = i * random(4, 6)
 		if y >= min and y <= max then
-			local rarity = (y / (max*2.5) * frequency)*math.random(0, 100)
+			local rarity = (y / (max*2.5) * frequency)*random(0, 100)
 			ores[i] = rarity
 		end
 	end
-	local rarity = math.random(10)/perlin:noise(frequency)
+	local rarity = random(10)/perlin:noise(frequency)
 	for i, v in next, ores do
 		if v >= rarity then
 			return i
@@ -28,7 +28,7 @@ end
 mine_setOre = function(rockType)
 	if Mine.stones[rockType].ores then
 		for i = #Mine.stones[rockType].ores, 1, -1 do
-			local random = math.random(0, 100)
+			local random = random(0, 100)
 			local ore = Mine.stones[rockType].ores[i]
 			if random <= Mine.ores[ore].rarity then
 				return ore
@@ -40,12 +40,12 @@ end
 
 mine_generate = function(player)
 	for i = 1, (Mine.area[1] * Mine.area[2]) do
-		local depth = math.floor((i-1)/Mine.area[1])
+		local depth = floor((i-1)/Mine.area[1])
 		local x = Mine.position[1] + Mine.blockLength/2 + ((i-1)%Mine.area[1]) * Mine.blockLength
 		local y = Mine.position[2] + Mine.blockLength/2 + depth * Mine.blockLength
-		local stone = mine_setStoneType(depth, perlin:noise(x/10.101, y/10.101, perlin:noise(i/10.101*math.random(0, 10))))
+		local stone = mine_setStoneType(depth, perlin:noise(x/10.101, y/10.101, perlin:noise(i/10.101*random(0, 10))))
 		local ore = mine_setOre(stone)
-		Mine.blocks[i] = {type = stone, ore = ore, images = {}, oreImages = {}, size = 0, x = x, y = y, removed = false, life = {0, Mine.stones[stone].health, nil}, column = 1 + (i - 1)%Mine.area[1], line = 1 + math.floor((i - 1)/Mine.area[1])}
+		Mine.blocks[i] = {type = stone, ore = ore, images = {}, oreImages = {}, size = 0, x = x, y = y, removed = false, life = {0, Mine.stones[stone].health, nil}, column = 1 + (i - 1)%Mine.area[1], line = 1 + floor((i - 1)/Mine.area[1])}
 		if i <= 10 then
 			Mine.blocks[i].images[#Mine.blocks[i].images+1] = addImage(Mine.stones[stone].image, '_100'..i, x-Mine.blockLength/2, y-Mine.blockLength/2, player)
 			mine_updateBlockLife(i, player)
@@ -61,8 +61,8 @@ mine_updateBlockLife = function(groundID, player)
 	local x = Mine.blocks[groundID].x - blockLength/2
 	local y = Mine.blocks[groundID].y - blockLength/2
 	local life = Mine.blocks[groundID].life[2]-Mine.blocks[groundID].life[1]
-	ui.addTextArea(groundID..'40028923', '<p align="center"><font color="#000000" size="12"><b>'..life, player, x, y+20, blockLength, blockLength, 0x1, 0x1, 0)
-	ui.addTextArea(groundID..'40028922', '<a href="event:updateBlock_'..groundID..'">'..string.rep('\n', 10), player, x, y, blockLength, blockLength, 0x1, 0x1, 0)
+	showTextArea(groundID..'40028923', '<p align="center"><font color="#000000" size="12"><b>'..life, player, x, y+20, blockLength, blockLength, 0x1, 0x1, 0)
+	showTextArea(groundID..'40028922', '<a href="event:updateBlock_'..groundID..'">'..string.rep('\n', 10), player, x, y, blockLength, blockLength, 0x1, 0x1, 0)
 	Mine.blocks[groundID].life[3] = true
 end
 
@@ -73,7 +73,7 @@ mine_generateBlockAssets = function(groundID)
 		for j = -1, 1 do
 			local id = groundID + j + Mine.area[1]*i
 			if Mine.blocks[id] and id ~= groundID and not Mine.blocks[id].removed then
-				if math.hypo(Mine.blocks[id].x, Mine.blocks[id].y, Mine.blocks[groundID].x, Mine.blocks[groundID].y) <= 100 then
+				if math_hypo(Mine.blocks[id].x, Mine.blocks[id].y, Mine.blocks[groundID].x, Mine.blocks[groundID].y) <= 100 then
 					blocksAround[#blocksAround+1] = id
 					if i ~= 0 and j ~= 0 then
 						corner[id] = true

@@ -37,14 +37,14 @@ do
 	  z = z or 0
 
 	  -- Calculate the "unit cube" that the point asked will be located in
-	  local xi = bit32.band(math.floor(x),255)
-	  local yi = bit32.band(math.floor(y),255)
-	  local zi = bit32.band(math.floor(z),255)
+	  local xi = bit32.band(floor(x),255)
+	  local yi = bit32.band(floor(y),255)
+	  local zi = bit32.band(floor(z),255)
 
 	  -- Next we calculate the location (from 0 to 1) in that cube
-	  x = x - math.floor(x)
-	  y = y - math.floor(y)
-	  z = z - math.floor(z)
+	  x = x - floor(x)
+	  y = y - floor(y)
+	  z = z - floor(z)
 
 	  -- We also fade the location to smooth the result
 	  local u = self.fade(x)

@@ -12,16 +12,16 @@ addBankRobbingAssets = function()
 
 	for name in next, ROOM.playerList do
 		if not players[name].driving then
-			ui.addTextArea(1029, '<font size="15" color="#FF0000"><p align="center">' .. translate('robberyInProgress', name) .. '</a>', name, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
+			showTextArea(1029, '<font size="15" color="#FF0000"><p align="center">' .. translate('robberyInProgress', name) .. '</a>', name, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
 		end
 		if players[name].place == 'bank' then
 			if players[name].job ~= 'police' then
 				job_hire('thief', name)
-				TFM.chatMessage('<j>'..translate('copAlerted', name), name)
+				chatMessage('<j>'..translate('copAlerted', name), name)
 			end
 		end
 		if players[name].job == 'police' then
-			TFM.chatMessage('<vp>'..translate('bankRobAlert', name)..'</vp>', name)
+			chatMessage('<vp>'..translate('bankRobAlert', name)..'</vp>', name)
 		end
 		if players[name].questLocalData.other.goToBankRob then
 			quest_updateStep(name)
@@ -46,16 +46,9 @@ addBankRobbingAssets = function()
 	addGround(9995, 232+5275, 80+4812, {type = 14, width = 200, angle = -45, restitution = 999}) -- laser
 	addGround(9994, 809+5000, 338+4555, {type = 14, width = 25, height = 200})
 
-	ui.addTextArea(-5950, '<a href="event:lever">'..string.rep('\n', 5), nil, 5990, 4935, 25, 25, 0x324650, 0x0, 0)
+	showTextArea(-5950, '<a href="event:lever">'..string.rep('\n', 5), nil, 5990, 4935, 25, 25, 0x324650, 0x0, 0)
 
 	addTimer(function(time)
-		for player, v in next, ROOM.playerList do
-			if v.x > 5460 and v.x < 5615 and v.y > 5100 and v.y < 5250 then
-				ui.addTextArea(-5551, "<font color='#FFFFFF' size='40'><a href='event:getOut_bank'>• •", player, 5508, 5150, nil, nil, 1, 1, 0, false)
-			else
-				ui.removeTextArea(-5551, player)
-			end
-		end
 		if room.bankRobStep == 'vault' then
 			for player, v in next, ROOM.playerList do
 				if players[player].place == 'bank' then
@@ -64,18 +57,18 @@ addBankRobbingAssets = function()
 							if players[player].job == 'thief' then
 								players[player].timer = addTimer(function(j)
 									local time = room.robbing.bankRobbingTimer - j
-									ui.addTextArea(98900000001, "<p align='center'>"..translate('runAway', player):format(time)..'\n<vp><font size="10">'..translate('runAwayCoinInfo', player):format('$'..jobs['thief'].bankRobCoins), player, 250, 370, 250, nil, 0x1, 0x1, 0, true)
+									showTextArea(98900000001, "<p align='center'>"..translate('runAway', player):format(time)..'\n<vp><font size="10">'..translate('runAwayCoinInfo', player):format('$'..jobs['thief'].bankRobCoins), player, 250, 370, 250, nil, 0x1, 0x1, 0, true)
 									if j == room.robbing.bankRobbingTimer then
 										players[player].robbery.robbing = false
 										removeTimer(players[player].timer)
 										players[player].timer = {}
-										ui.removeTextArea(98900000001, player)
+										removeTextArea(98900000001, player)
 										showOptions(player)
 										giveCoin(jobs['thief'].bankRobCoins, player, true)
 										TFM.setNameColor(player, 0)
 										job_updatePlayerStats(player, 2)
 										local sidequest = sideQuests[players[player].sideQuests[1]].type
-										if string.find(sidequest, 'type:bank') then
+										if string_find(sidequest, 'type:bank') then
 											sideQuest_update(player, 1)
 										end
 									end
@@ -99,14 +92,14 @@ addBankRobbingAssets = function()
 		end
 		if time == room.bankRobbingTime then
 			room.bankBeingRobbed = false
-			ui.removeTextArea(-510, nil)
+			removeTextArea(-510, nil)
 			removeImage(room.bankDoors[1])
 			for i = 1, #room.bankTrashImages do
 				removeImage(room.bankTrashImages[i])
 			end
 			room.bankTrashImages = {}
 			for i in next, ROOM.playerList do
-				ui.addTextArea(1029, '<font size="15"><p align="center"><a href="event:enter_bank">' .. translate('goTo', i) .. '</a>', i, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
+				showTextArea(1029, '<font size="15"><p align="center"><a href="event:enter_bank">' .. translate('goTo', i) .. '</a>', i, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.3)
 				if players[i].place == 'bank' then
 					if players[i].job == 'thief' then
 						if players[i].inRoom then

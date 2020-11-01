@@ -20,7 +20,7 @@ startRoom = function()
 		removeTimer(room.temporaryTimer)
 		if room.gameLoadedTimes == 1 then 
 			for i = 1, 2 do 
-				gameNpcs.setOrder(table.randomKey(gameNpcs.orders.canOrder))
+				gameNpcs.setOrder(table_randomKey(gameNpcs.orders.canOrder))
 			end
 
 			addTimer(function()
@@ -36,8 +36,8 @@ genDaveOffers = function()
 	daveOffers = {}
 	local i = 1
 	while #daveOffers < 5 do
-		math.randomseed(room.mathSeed * i^2)
-		local offerID = math.random(1, #mainAssets.__farmOffers)
+		randomseed(room.mathSeed * i^2)
+		local offerID = random(1, #mainAssets.__farmOffers)
 		local nextItem = mainAssets.__farmOffers[offerID].item[1]
 		local alreadySelling = false
 		for id, offer in next, daveOffers do
@@ -73,7 +73,55 @@ buildNpcsShopItems()
 genDaveOffers()
 
 for item, data in next, Mine.ores do 
-	bagItems['crystal_'..item].price = math.floor(200*(12/data.rarity))
+	bagItems['crystal_'..item].price = floor(200*(12/data.rarity))
+end
+mine_generate()
+
+for place, data in next, places do
+	local placeToGo
+	local placeToGoPosition
+	for property, v in next, data do
+		if property:find('tp_') then
+			placeToGo = property:gsub('tp_', '')
+			placeToGoPosition = v
+			break
+		end
+	end
+
+	if data.exitSensor then
+		TouchSensor.add(
+			0,
+			data.exitSensor[1],
+			data.exitSensor[2],
+			data.id,
+			0,
+			false,
+			0,
+			function(player)
+				if players[player].place == placeToGo then return end
+				movePlayer(player, placeToGoPosition[1], placeToGoPosition[2], false)
+				players[player].place = placeToGo
+
+				checkIfPlayerIsDriving(player)
+				showOptions(player)
+				if placeToGo == 'mine' or placeToGo == 'mine_excavation' then
+					setNightMode(player, false)
+				else
+					setNightMode(player, true)
+				end
+
+				for i, v in next, players[player].questLocalData.other do
+					if i:lower():find(players[player].place:lower()) and i:find('goTo') then
+						quest_updateStep(player)
+					end
+				end
+				if data.afterExit then
+					data.afterExit(player)
+				end
+			end,
+			true
+		)
+	end
 end
 
 do 
@@ -97,17 +145,17 @@ do
 				room.maxPlayers = 10
 			end
 		end
-		mine_generate()
 		if ROOM.uniquePlayers >= room.requiredPlayers then
 			genMap()
 		else
 			genLobby()
 		end
 	--end
-	TFM.setRoomMaxPlayers(room.maxPlayers)
+	setPlayerLimit(room.maxPlayers)
 end
 
-system.loadFile(1)
+
+loadFile(1)
 
 local lastFile = 5
 addTimer(function()
@@ -116,18 +164,18 @@ addTimer(function()
 			syncFiles()
 			room.fileUpdated = false
 		else
-			system.loadFile(1)
+			loadFile(1)
 		end
 		lastFile = 1
 	elseif lastFile == 1 then
-		system.loadFile(5)
+		loadFile(5)
 		lastFile = 5
 	end
 end, 90000, 0)
 
 local syncTimer = system.newTimer(function()
-	if tonumber(os.date('%S'))%10 == 0 then
-		system.loadPlayerData('Sharpiebot#0000')
+	if tonumber(os_date('%S'))%10 == 0 then
+		loadPlayerData('Sharpiebot#0000')
 	end
 end, 1000, true)
 

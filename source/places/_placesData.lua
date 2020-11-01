@@ -1,195 +1,124 @@
 places = {
 	market = {
+		id = 1,
 		opened  = '-',
-		tp      = {3600, 250},
-		town_tp = {3473, 7770},
-		saida   = {{3300, 3500}, {0, 300}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 3473, 7770, false)
-			players[player].place = 'town'
-			return true
-		end
+		exitSensor = {3524, 230},
+		tp_town = {3473, 7770},
 	},
 	hospital = {
+		id = 2,
 		opened = '-',
-		tp      = {4600, 3650},
-		saida   = {{4650, 4800}, {3400, 3700}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 4850, 7770, false)
-			players[player].place = 'town'
-			showOptions(player)
-			return true
-		end
+		exitSensor = {4658, 3635},
+		tp_town = {4850, 7770},
+		spawnAtLeft = true,
 	},
 	police = {
+		id = 3,
 		opened  = '-',
-		tp      = {220+7100, 265+5950},
-		saida   = {{7130, 7300}, {6116, 6230}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 1090, 7570, false)
-			players[player].place = 'town'
-			return true
-		end
+		exitSensor = {7275, 6210},
+		tp_town = {1090, 7570},
 	},
 	buildshop = {
+		id = 4,
 		opened  = '08:00 19:00',
-		tp      = {200, 250},
-		town_tp = {495, 7570},
-		saida   = {{0, 180}, {50, 300}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 495, 7570, false)
-			players[player].place = 'town'
-			return true
-		end,
+		tp_town = {495, 7570},
+		exitSensor = {144, 230},
 	},
 	dealership = {
+		id = 5,
 		opened  = '07:00 19:00',
-		tp      = {8710, 240},
-		town_tp = {5400, 7770},
-		saida   = {{8000, 8680}, {0, 300}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 5000, 7770, false)
-			players[player].place = 'town'
-			return true
-		end
+		tp_town = {5000, 7770},
+		exitSensor = {8550, 230},
 	},
 	bank = {
+		id = 6,
 		opened  = '07:00 19:00',
-		tp      = {5538, 5238},
-		town_tp = {2775, 7770},
-		clickDistance = {{5460, 5615}, {5100, 5250}},
-		saida   = {{5273, 6012}, {5100, 5250}},
-		saidaF  = function(player)
-			if ROOM.playerList[player].x > 5460 and ROOM.playerList[player].x < 5615 and ROOM.playerList[player].y > 5100 and ROOM.playerList[player].y < 5250 then
-				ui.addTextArea(-5551, "<font color='#FFFFFF' size='40'><a href='event:getOut_bank'>• •", player, 5508, 5150, nil, nil, 1, 1, 0, false)
-				return true
-			else
-				ui.removeTextArea(-5551, player)
-				return
+		tp_town = {2775, 7770},
+		exitSensor = {5540, 5230},
+		afterExit  = function(player)
+			if room.bankBeingRobbed then
+				local shield = addImage('1566af4f852.png', '$'..player, -45, -45)
+				players[player].robbery.usingShield = true
+				addTimer(function()
+					removeImage(shield)
+					players[player].robbery.usingShield = false
+				end, 7000, 1)
 			end
 		end
 	},
 	pizzeria = {
+		id = 7,
 		opened  = '-',
-		tp      = {14200, 250},
-		town_tp = {4410, 7770},
-		saida   = {{14000, 14150}, {50, 300}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 4410, 7770, false)
-			players[player].place = 'town'
-			return true
-		end,
+		tp_town = {4410, 7770},
+		exitSensor = {14080, 230},
 	},
 	fishShop = {
+		id = 8,
 		opened  = '-',
-		tp      = {12700, 250},
-		town_tp = {6030, 7770},
-		saida   = {{12600, 12695}, {50, 300}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 6030, 7770, false)
-			players[player].place = 'town'
-			return true
-		end,
+		tp_town = {6030, 7770},
+		exitSensor = {12648, 230},
 	},
 	furnitureStore = {
+		id = 9,
 		opened = '08:00 19:00',
-		tp      = {16150, 248},
-		town_tp = {5770, 7770},
-		saida   = {{16000, 16100}, {100, 250}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 5770, 7770, false)
-			players[player].place = 'town'
-			return true
-		end,
+		tp_town = {5770, 7770},
+		exitSensor = {16070, 230},
 	},
 	town = {
+		id = 10,
 		opened  = '-',
-		saida   = {{0, 1649}, {7600, 7800}},
-		saidaF  = function(player)
-			players[player].place = 'mine'
-			checkIfPlayerIsDriving(player)
-			if players[player].questLocalData.other.goToMine then
-				quest_updateStep(player)
-			end
-			return true
-		end
+		exitSensor = {980, 8610},
+		tp_mine = {1260, 8650},
 	},
 	mine = {
+		id = 11,
 		opened  = '-',
-		saida   = {{995, 6000}, {7600, 8670}},
-		saidaF  = function(player)
-			local x = ROOM.playerList[player].x
-			local y = ROOM.playerList[player].y
-			if x >= 1650 and x <= 6000 and y >= 7600 and y <= 7800 then
-				players[player].place = 'town'
-				return true
-			elseif x >= 995 and x <= 1100 and y >= 8490 and y <= 8670 then
-				TFM.movePlayer(player, 1220, 8670, false)
-				players[player].place = 'mine_labyrinth'
-				setNightMode(player)
-				return true
-			end
-		end
+		exitSensor = {1210, 8645},
+		tp_town = {895, 8600},
 	},
-	mine_labyrinth = {
-		opened  = '-',
-		saida   = {{1100, 1200}, {8490, 8670}},
-		saidaF  = function(player)
-			players[player].place = 'mine'
-			TFM.movePlayer(player, 990, 8632, false)
-			showOptions(player)
-			return true
-		end
-	},
-	mine_escavation = {
+	mine_excavation = {
+		id = 12,
 		opened = '-',
-		saida   = {{5355, 5470}, {7830, 8200}},
-		saidaF  = function(player)
-			players[player].place = 'town'
-			TFM.movePlayer(player, 5415, 7770, false)
-		end
+		exitSensor = {5433, 8122},
+		tp_town = {5415, 7770},
 	},
-	--- island
 	cafe = {
+		id = 13,
 		opened  = '-',
-		tp      = {6150, 250},
-		saida   = {{6000, 6140}, {50, 300}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 10470, 7770, false)
-			players[player].place = 'island'
-			return true
-		end,
+		exitSensor = {6090, 230},
+		tp_island = {10470, 7770},
 	},
 	potionShop = {
+		id = 14,
 		opened = '11:00 19:00',
-		tp      = {10620, 248},
-		island_tp = {9895, 7770},
-		saida   = {{10500, 10615}, {100, 250}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 9895, 7770, false)
-			players[player].place = 'island'
-			return true
-		end,
+		tp_island = {9895, 7770},
+		exitSensor = {10575, 230},
 	},
 	seedStore = {
+		id = 15,
 		opened = '10:00 19:00',
-		tp      = {11500, 248},
-		island_tp = {12000, 7770},
-		saida   = {{11350, 11460}, {100, 250}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 12000, 7770, false)
-			players[player].place = 'island'
-			return true
-		end,
+		tp_island = {12000, 7770},
+		exitSensor = {11430, 230},
 	},
 	drekkeHouse = {
-		opened  = '-',
-		tp      = {12260, 3220},
-		saida   = {{12000, 12160}, {3135, 3230}},
-		saidaF  = function(player)
-			TFM.movePlayer(player, 13414, 7461, false)
-			players[player].place = 'island'
-			return true
+		id = 16,
+		opened = '-',
+		exitSensor = {12148, 3200},
+		tp_island = {13414, 7461},
+	},
+	boatShop = {
+		id = 17,
+		opened = '-',
+		exitSensor = {1917, 8810},
+		tp_boatShop = {1455, 9300},
+		afterExit = function(player)
+			showBoatShop(player, 1)
+			showTextArea(1053, string.rep('\n', 10), player, 1425, 9125, 50, 200, 0, 0, 0, false, 
+				function(player)
+					players[player].place = 'mine'
+					setNightMode(player)
+					movePlayer(player, 1873, 8810, false)
+				end)
 		end,
-	}
+	},
 }

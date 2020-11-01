@@ -1,5 +1,5 @@
 room.bank  = {
-	paperCurrentPlace = math.random(1, 13),
+	paperCurrentPlace = random(1, 13),
 	paperImages = {},
 	paperPlaces = {
 		{x = 500, y = 240}, -- Jason's Workshop
@@ -26,4 +26,4 @@ room.bankImages          = {}
 room.bankTrashImages     = {}
 room.bankRobStep         = nil
 room.bankDoors           = {'', '', '', '', ''}
-room.bankVaultPassword   = math.random(0,9) .. math.random(0,9) .. math.random(0,9) .. math.random(0,9)
+room.bankVaultPassword   = random(0,9) .. random(0,9) .. random(0,9) .. random(0,9)
