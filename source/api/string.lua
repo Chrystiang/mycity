@@ -1,4 +1,4 @@
-string.nick = function(name)
+string_nick = function(name)
 	if not name then return end
 	local var = name:lower():gsub('%a', string.upper, 1)
 	for i, v in next, ROOM.playerList do
@@ -8,7 +8,7 @@ string.nick = function(name)
 	end
 end
 
-string.replace = function(name, args)
+string_replace = function(name, args)
 	for i, v in next, args do
 		if i == '{1}' then
 			args[i] = '<font color="#7bbd40">'..v..'</font>'
@@ -20,6 +20,6 @@ string.replace = function(name, args)
 	return (gsub(str, '{.-}', args, #str /3))
 end
 
-string.toTable = function(x)
+string_toTable = function(x)
 	return (type(x) == "table" and x or {x})
 end

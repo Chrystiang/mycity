@@ -1,8 +1,8 @@
-math.hypo = function(x1, y1, x2, y2)
+math_hypo = function(x1, y1, x2, y2)
 	return ((x2-x1)^2 + (y2-y1)^2)^0.5
 end
 
-math.range = function(polygon, point)
+math_range = function(polygon, point)
 	local oddNodes = false
 	local j = #polygon
 	for i = 1, #polygon do
