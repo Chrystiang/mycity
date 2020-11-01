@@ -30,7 +30,7 @@ onEvent("Keyboard", function(player, key, down, x, y)
 				if not playerInfo.selectedCar or mainAssets.__cars[playerInfo.selectedCar].type ~= 'car' then
 					local biome = false
 					for place, settings in next, room.fishing.biomes do 
-						if math.range(settings.location, {x = x, y = y}) then 
+						if math_range(settings.location, {x = x, y = y}) then 
 							biome = place
 							break
 						end
@@ -38,13 +38,19 @@ onEvent("Keyboard", function(player, key, down, x, y)
 					if biome then
 						playerFishing(player, x, y, biome)
 					else
-						TFM.chatMessage('<r>'..translate('fishWarning', player), player)
+						chatMessage('<r>'..translate('fishWarning', player), player)
 					end
 				end
 			elseif playerInfo.job == 'police' then
-				if playerInfo.time > os.time() then return TFM.chatMessage('<r>'..translate('copError', player), player) end
+				if playerInfo.time > os_time() then return chatMessage('<r>'..translate('copError', player), player) end
+				if playerInfo.questLocalData.other.arrestRobber then
+					if math_hypo(x, y, 1930, 8530) <= 60 then
+						arrestPlayer('Robber', player)
+						return
+					end
+				end
 				for i, v in next, ROOM.playerList do
-					if math.hypo(x, y, v.x, v.y) <= 60 and i ~= player and not ROOM.playerList[player].isDead and not v.isDead then
+					if math_hypo(x, y, v.x, v.y) <= 60 and i ~= player and not ROOM.playerList[player].isDead and not v.isDead then
 						if players[i].job == 'thief' and players[i].robbery.robbing or players[i].robbery.escaped then
 							if playerInfo.place == players[i].place and not players[i].robbery.usingShield then
 								arrestPlayer(i, player)
@@ -53,17 +59,11 @@ onEvent("Keyboard", function(player, key, down, x, y)
 						end
 					end
 				end
-				if playerInfo.questLocalData.other.arrestRobber then
-					if math.hypo(x, y, 1930, 8530) <= 60 then
-						arrestPlayer('Robber', player)
-						quest_updateStep(player)
-					end
-				end
 			elseif playerInfo.job == 'thief' then
 				if not playerInfo.robbery.robbing then
 					for i, v in next, gameNpcs.robbing do
 						if gameNpcs.characters[i].visible then
-							if math.hypo(v.x, v.y, x, y) <= 60 then
+							if math_hypo(v.x, v.y, x, y) <= 60 then
 								startRobbery(player, i)
 								break
 							end
