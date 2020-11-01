@@ -18,8 +18,8 @@ showLifeStats = function(player, lifeStat)
 		loadHospitalFloor(player)
 		players[player].lifeStats[lifeStat] = 0
 	end
-	ui.addTextArea(999995-lifeStat*2, "<p align='center'><font color='#000000'>"..playerInfos.lifeStats[lifeStat], player, 11 + (lifeStat-1)*45, 386, 50, nil, 0x324650, 0x000000, 0, true)
-	ui.addTextArea(999994-lifeStat*2, "<p align='center'><font color='#ffffff'>"..playerInfos.lifeStats[lifeStat], player, 10 + (lifeStat-1)*45, 385, 50, nil, 0x324650, 0x000000, 0, true)
+	showTextArea(999995-lifeStat*2, "<p align='center'><font color='#000000'>"..playerInfos.lifeStats[lifeStat], player, 11 + (lifeStat-1)*45, 386, 50, nil, 0x324650, 0x000000, 0, true)
+	showTextArea(999994-lifeStat*2, "<p align='center'><font color='#ffffff'>"..playerInfos.lifeStats[lifeStat], player, 10 + (lifeStat-1)*45, 385, 50, nil, 0x324650, 0x000000, 0, true)
 end
 
 setLifeStat = function(player, lifeStat, quant)
@@ -37,7 +37,7 @@ updateBarLife = function(player)
 	if playerInfos.hospital.hospitalized then return end
 	if playerInfos.lifeStats[1] <= 94 and not playerInfos.robbery.robbing then
 		setLifeStat(player, 1, playerInfos.place == 'cafe' and 3 or 2)
-		if string.find(playerInfos.place, 'house_') then
+		if string_find(playerInfos.place, 'house_') then
 			local house_ = playerInfos.place:sub(7)
 			if playerInfos.houseData.houseid == house_ then
 				setLifeStat(player, 1, 1)

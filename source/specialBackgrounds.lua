@@ -1,4 +1,4 @@
-room.specialFounds   = {
+room.specialBackgrounds   = {
 	christmas2019 = {
 		evening     = '16ee11c6a13.jpg',
 		dawn        = '16ee11d3516.jpg',

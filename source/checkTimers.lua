@@ -15,7 +15,7 @@ do
 			if workingTimer == workingTimerState.setBroken then
 				workingTimer = workingTimerState.broken
 				print('<rose>[Warning]</rose> Timers are not working.')
-				TFM.chatMessage('<rose>[Warning]</rose> Timers are not working.', 'Fofinhoppp#0000')
+				chatMessage('<rose>[Warning]</rose> Timers are not working.', 'Fofinhoppp#0000')
 			elseif workingTimer == workingTimerState.setVerified then
 				workingTimer = workingTimerState.stop
 			end

@@ -1,7 +1,7 @@
 syncVersion = function(player, vs)
 	if not vs then vs = {0} end
-	local playerVersion = tonumber(table.concat(vs))
-	local gameVersion = tonumber(table.concat(version))
+	local playerVersion = tonumber(table_concat(vs))
+	local gameVersion = tonumber(table_concat(version))
 	if playerVersion == 0 then
 		for i = 1, players[player].questStep[1]-1 do
 			quest_setNewQuest(player, i)
@@ -32,7 +32,7 @@ syncVersion = function(player, vs)
 			end
 		end
 		savedata(player)
-		players[player].gameVersion = 'v'..table.concat(version, '.')
+		players[player].gameVersion = 'v'..table_concat(version, '.')
 		return
 	end
 	if playerVersion >= 300 then
@@ -52,31 +52,6 @@ syncVersion = function(player, vs)
 	end
 
 	if playerVersion <= 320 then
-		if table.contains(players[player].cars, 15) and not mainAssets.fileCopy._ranking:find(player) then
-			TFM.chatMessage('<g>Due to an error, your season 3 rewards given incorrectly have been removed.', player)
-			players[player].favoriteCars[1] = 0
-			for i, v in next, players[player].cars do
-				if v == 15 then
-					table.remove(players[player].cars, i)
-					break
-				end
-			end
-			for i, v in next, players[player].starIcons.owned do
-				if v == 4 then
-					table.remove(players[player].starIcons.owned, i)
-					players[player].starIcons.selected = 1
-					break
-				end
-			end
-			for i, v in next, players[player].badges do
-				if v == 13 then
-					table.remove(players[player].badges, i)
-					break
-				end
-			end
-			savedata(player)
-		end
-
 		local refund = 0
 		local inBag = checkItemQuanty('luckyFlowerSeed', 1, player)
 		if inBag then
@@ -99,8 +74,8 @@ syncVersion = function(player, vs)
 		if refund > 0 then
 			if refund > 50000 then refund = 50000 end
 			giveCoin(refund, player)
-			TFM.chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.2 and it was needed to remove them from your bag.', player)
-			TFM.chatMessage(string.format('<pt>You just received <fc>$%s</fc> as refund.', refund), player)
+			chatMessage('<r>Seems like you had at least 1 lucky flower seed in your bag/chest.\n<cs>A new lucky flower system has been added in V3.2.2 and it was needed to remove them from your bag.', player)
+			chatMessage(string.format('<pt>You just received <fc>$%s</fc> as refund.', refund), player)
 		end
 		if players[player].spentCoins > 100000000 then 
 			players[player].spentCoins = players[player].spentCoins - 100000000
@@ -120,6 +95,11 @@ syncVersion = function(player, vs)
 		if players[player].favoriteCars[1] == 9 then
 			players[player].favoriteCars[1] = 0
 		end
+	elseif playerVersion < 331 then
+		if player == 'Seratik#0000' then
+			players[player].level[1] = 3
+			players[player].level[2] = 4200
+		end
 	end
 
 	if players[player].seasonStats[1][1] ~= mainAssets.season then
@@ -127,14 +107,43 @@ syncVersion = function(player, vs)
 		players[player].seasonStats[1][2] = 0
 	end
 
+	local season3 = 'Xzowtx#0000,74,1977548,es,78666448;Dedektifyy#0000,50,1956150,tr,35734078;Luquinhas#3157,59,1658168,pt,104201717;Brunadrr#0000,64,1549952,pt,10974322;Gothic_girl#7500,44,1397966,pt,9391788;Millionaires#0928,53,1381148,ar,103424032;Epicninja7#0000,40,1290652,pt,50775677;Estronda002#0000,46,1170408,pt,89351885;Anaxs0#4480,48,1164692,pt,65621737;Ratagominha#0000,53,1159234,pt,3282553'
+
+	if table_find(players[player].starIcons.owned, 4) then
+		if not season3:find(player) then
+			chatMessage('<g>Due to an error, your season 3 rewards given incorrectly have been removed.', player)
+			players[player].favoriteCars[1] = 0
+			for i, v in next, players[player].cars do
+				if v == 15 then
+					table_remove(players[player].cars, i)
+					break
+				end
+			end
+			for i, v in next, players[player].starIcons.owned do
+				if v == 4 then
+					table_remove(players[player].starIcons.owned, i)
+					players[player].starIcons.selected = 1
+					break
+				end
+			end
+			for i, v in next, players[player].badges do
+				if v == 13 then
+					table_remove(players[player].badges, i)
+					break
+				end
+			end
+			savedata(player)
+		end
+	end
+
 	if mainAssets.fileCopy._ranking:find(player) then
-		if not table.contains(players[player].starIcons.owned, 5) then
+		if not table_find(players[player].starIcons.owned, 5) then
 			giveBadge(player, 21)
 			giveLevelOrb(player, 5)
 		end
 		giveCar(player, 16)
 	end
-	players[player].gameVersion = 'v'..table.concat(version, '.')
+	players[player].gameVersion = 'v'..table_concat(version, '.')
 end
 
 syncFiles = function()
@@ -148,7 +157,7 @@ syncFiles = function()
 		unrankedPlayers[#unrankedPlayers+1] = player..',0'
 	end
 
-	system.saveFile(table.concat(bannedPlayers, ';')..'|'..table.concat(unrankedPlayers, ';')..'|'..table.concat(mainAssets.roles.admin, ';')..'|'..table.concat(mainAssets.roles.mod, ';')..'|'..table.concat(mainAssets.roles.helper, ';')..'|'..table.concat(mainAssets.roles.moduleTeam, ';'), 1)
+	saveFile(table_concat(bannedPlayers, ';')..'|'..table_concat(unrankedPlayers, ';')..'|'..table_concat(mainAssets.roles.admin, ';')..'|'..table_concat(mainAssets.roles.mod, ';')..'|'..table_concat(mainAssets.roles.helper, ';')..'|'..table_concat(mainAssets.roles.moduleTeam, ';'), 1)
 end
 
 saveGameData = function(bot)
@@ -198,11 +207,11 @@ nextUpdateAnimation = function()
 		elseif stage == 4 then
 			stage = 5
 			local maxTime = 300
-			ui.addTextArea(-888888888889, '<p align="center"><font size="15" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="20" color="#c6bb8c">'..string.format("%.2d:%.2d", maxTime/60%60, maxTime%60)..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
+			showTextArea(-888888888889, '<p align="center"><font size="15" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="20" color="#c6bb8c">'..string.format("%.2d:%.2d", maxTime/60%60, maxTime%60)..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
 			addTimer(function(j)
 				local time = maxTime - j
 				time = string.format("%.2d:%.2d", time/60%60, time%60)
-				ui.addTextArea(-888888888889, '<p align="center"><font size="15" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="20" color="#c6bb8c">'..time..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
+				showTextArea(-888888888889, '<p align="center"><font size="15" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="20" color="#c6bb8c">'..time..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
 				if j == maxTime then
 					syncData.updating.updateMessage = ''
 					saveGameData('Sharpiebot#0000')
@@ -210,7 +219,7 @@ nextUpdateAnimation = function()
 			end, 1000, maxTime)
 		end
 		if stage < 4 then
-			ui.addTextArea(-888888888888, '', nil, x, y, width, height, 0x432c04, 0x432c04, 1, true)
+			showTextArea(-888888888888, '', nil, x, y, width, height, 0x432c04, 0x432c04, 1, true)
 		end
 	end, 15)
 end

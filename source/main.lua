@@ -23,21 +23,56 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 3, 0}
+local version       = {3, 3, 2}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
-local string        = string
+local system 		= system
+
+local getmetatable  = getmetatable
+local ipairs 		= ipairs
 local math          = math
+local next         	= next
+local os 			= os
+local setmetatable 	= setmetatable
+local string        = string
 local table         = table
+local tonumber     	= tonumber
+local type         	= type
+
+local ceil   		= math.ceil
+local floor 		= math.floor
 local gsub          = string.gsub
+local os_time		= os.time
+local os_date 		= os.date
+local random 		= math.random
+local randomseed 	= math.randomseed
+local string_find 	= string.find
+local table_concat 	= table.concat
+local table_insert 	= table.insert
+local table_remove 	= table.remove
+local table_sort   	= table.sort
+local table_unpack  = table.unpack
+
+local loadFile      = system.loadFile
+local loadPlayerData= system.loadPlayerData
+local saveFile      = system.saveFile
+local savePlayerData= system.savePlayerData
 
 local addGround     = TFM.addPhysicObject
-local removeGround  = TFM.removePhysicObject
-local addTextArea   = ui.addTextArea
-local move          = TFM.movePlayer
-
 local addImage      = TFM.addImage
+local changeSize 	= TFM.changePlayerSize
+local chatMessage 	= TFM.chatMessage
+local killPlayer 	= TFM.killPlayer
+local lowerSyncDelay= TFM.lowerSyncDelay
+local movePlayer    = TFM.movePlayer
+local removeGround  = TFM.removePhysicObject
 local removeImage   = TFM.removeImage
+local respawnPlayer = TFM.respawnPlayer
+local setPlayerLimit= TFM.setRoomMaxPlayers
+local setPlayerScore= TFM.setPlayerScore
+
+local addTextArea   = ui.addTextArea
+local removeTextArea= ui.removeTextArea
 
 local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter, places, sideQuests, versionLogs
 local codes, codesIds, community, badges, bagUpgrades
@@ -56,7 +91,7 @@ local maxFurnitureStorage   = 60
 local maxFurnitureDepot     = 60
 local questsAvailable       =  5
 
-math.randomseed(os.time())
+randomseed(os_time())
 
 TFM.disableAutoShaman()
 TFM.disableAfkDeath()
@@ -76,7 +111,7 @@ local room = { -- Assets that change while the script runs
 	gameLoadedTimes = 0,
 	fileUpdated     = false,
 	dayCounter      = 0,
-	mathSeed        = os.date("%j"),
+	mathSeed        = os_date("%j"),
 	unranked        = {},
 	bannedPlayers   = {},
 	rankingImages   = {},
@@ -101,6 +136,10 @@ local room = { -- Assets that change while the script runs
 		bankRobbingTimer = 60,
 	},
 	temporaryTimer  = nil,
+	map 			= {
+		gravity = 10,
+		wind 	= 0,
+	},
 }
 
 local mainAssets = { -- Assets that rarely changes while the script runs
