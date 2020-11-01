@@ -10,7 +10,7 @@ gameNpcs.talk = function(npc, player)
 				  [playerData.questStep[2]]
 	end
 	local dialog = npc.text or npcText
-	dialog = table.copy(dialog)
+	dialog = table_copy(dialog)
 	local formatText = playerData._npcsCallbacks.formatDialog[npc.name]
 
 	if formatText == 'fishingLuckiness' then
@@ -37,7 +37,7 @@ gameNpcs.talk = function(npc, player)
 	elseif #npc.name > 13 then
 		font = 10
 	end
-	ui.addTextArea(-88000, '<p align="center"><font size="'..font..'" color="#ffffea"><b>'..npc.name:gsub('%$', ''), player, 275, 335 + (15-font), 90, 30, 1, 1, 0, true)
-	ui.addTextArea(-88001, '', player, 380, 260, 210, 75, 1, 1, 0, true)
-	ui.addTextArea(-88002, "<textformat leftmargin='1' rightmargin='1'><a href='event:npcDialog_skipAnimation'>" .. string.rep('\n', 10), player, 300, 250, 300, 100, nil, 1, 0, true)
+	showTextArea(-88000, '<p align="center"><font size="'..font..'" color="#ffffea"><b>'..npc.name:gsub('%$', ''), player, 275, 335 + (15-font), 90, 30, 1, 1, 0, true)
+	showTextArea(-88001, '', player, 380, 260, 210, 75, 1, 1, 0, true)
+	showTextArea(-88002, "<textformat leftmargin='1' rightmargin='1'><a href='event:npcDialog_skipAnimation'>" .. string.rep('\n', 10), player, 300, 250, 300, 100, nil, 1, 0, true)
 end

@@ -23,13 +23,13 @@ local currentOrders = {
 
 showDishOrders = function(target)
 	if not target then
-		player_removeImages(currentOrders.images)
+		removeGroupImages(currentOrders.images)
 	end
 
 	local counter = 0
 	for npc, order in next, currentOrders.orders do
 		currentOrders.images[#currentOrders.images+1] = addImage(bagItems[order].png, "_1000", 15900, 1560+counter*40, target)
-		ui.addTextArea(4444441+counter, npc, target, 15940, 1575+counter*40, nil, nil, 1, 1, 0)
+		showTextArea(4444441+counter, npc, target, 15940, 1575+counter*40, nil, nil, 1, 1, 0)
 		currentOrders.index[npc] = counter
 		counter = counter + 1
 	end
@@ -42,13 +42,13 @@ gameNpcs.setOrder = function(npcName)
 	local x = npc.x
 	local y = npc.y
 	local character = gameNpcs.orders
-	local order = (math.random(1, 2) == 1 and (room.gameDayStep == 'night' or room.gameDayStep == 'dawn')) and 'strangePumpkin' or table.randomKey(recipes)
+	local order = (random(1, 5) == 1 and (room.gameDayStep == 'night' or room.gameDayStep == 'dawn')) and 'strangePumpkin' or table_randomKey(recipes)
 	local place = character.canOrder[npcName]
-	local orderTime = math.random(60*2, 60*3)
+	local orderTime = random(60*2, 60*3)
 
 	character.orderList[npcName] = {order = order, fulfilled = {}}
 	character.canOrder[npcName] = nil
-	player_removeImages(character.trashImages)
+	removeGroupImages(character.trashImages)
 	currentOrders.orders[npcName] = order
 
 	showDishOrders()
@@ -90,23 +90,23 @@ gameNpcs.setOrder = function(npcName)
 		local images = character.orderList[npcName].fulfilled
 		for player, k in next, images do 
 			if not k.completed then
-				player_removeImages(k.icons)
+				removeGroupImages(k.icons)
 			end
 		end
 		character.orderList[npcName] = nil
 		character.canOrder[npcName] = place
 		local nextOrder
 		while true do
-			nextOrder = table.randomKey(character.canOrder)
-			--TFM.chatMessage('<CS>Trying to choose '..nextOrder)
+			nextOrder = table_randomKey(character.canOrder)
+			--chatMessage('<CS>Trying to choose '..nextOrder)
 			local isOpened = places[character.canOrder[nextOrder]].opened
 			if checkGameHour(isOpened) or isOpened == '-' then
-				--TFM.chatMessage('<rose>'..character.canOrder[nextOrder]..' is opened!')
+				--chatMessage('<rose>'..character.canOrder[nextOrder]..' is opened!')
 				break
 			end
-			--TFM.chatMessage('<rose>'..character.canOrder[nextOrder]..' is closed!')
+			--chatMessage('<rose>'..character.canOrder[nextOrder]..' is closed!')
 		end
-		--TFM.chatMessage('<FC>'..nextOrder..' was chosen!')
+		--chatMessage('<FC>'..nextOrder..' was chosen!')
 		removeImage(stopwatch)
 		removeTimer(stopwatchTimer)
 		currentOrders.index[npcName] = nil

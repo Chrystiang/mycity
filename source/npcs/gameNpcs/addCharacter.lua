@@ -15,8 +15,10 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties)
 	local color = '6c99d6'
 	if properties.job then
 		color = jobs[properties.job].color 
-		if properties.jobConfirm then 
-			properties.callback = function(player) job_invite(properties.job, player) end
+		if properties.jobConfirm then
+			if not properties.endEvent then
+				properties.callback = function(player) job_invite(properties.job, player) end
+			end
 			addImage('17408124c64.png', "!30", x+38, y+20, player)
 		end
 	elseif properties.color then
@@ -68,7 +70,7 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties)
 				gameNpcs.orders.canOrder[name] = properties.place or 'town' 
 			end
 
-			gameNpcs.characters[name] = {visible = true, x = x, y = y, type = type, players = {}, runningImages = nil, image = image[1], image2 = image[2], callback = callback, color = color, fixAlign = imageFixAlign}
+			gameNpcs.characters[name] = {visible = true, x = x, y = y, type = type, players = {}, runningImages = nil, image = image[1], image2 = image[2], callback = callback, color = color, fixAlign = imageFixAlign, place = properties.place}
 			if properties.canRob then 
 				gameNpcs.robbing[name] = {x = x+50, y = y+80, cooldown = properties.canRob.cooldown} 				
 			end
