@@ -31,14 +31,14 @@ addLootDrop = function(x, y, wind)
 			if i == auxiliarBox then 
 				if lastPos[1] == v.x and lastPos[2] == v.y and v.y > 7490 then 
 					for i = 1, 10 do 
-						TFM.displayParticle(10, v.x+50+math.random(0, 150), v.y-250+math.random(0, 170))
-						TFM.displayParticle(3, v.x+80+math.random(0, 75), v.y+23)
+						TFM.displayParticle(10, v.x+50+random(0, 150), v.y-250+random(0, 170))
+						TFM.displayParticle(3, v.x+80+random(0, 75), v.y+23)
 					end
 					local objs = {}
 					local images = {'171ec448e1c.png', '171ec446276.png', '171ec443e74.png', '171ec4424c1.png'}
 					for i = 1, 15 do 
-						objs[#objs+1] = TFM.addShamanObject(95, v.x+20+math.random(0, 150), v.y-250+math.random(0, 80), math.random(0, 50), math.random(-10, 10))
-						addImage(images[math.random(#images)], '#'..objs[#objs], 0, 0)
+						objs[#objs+1] = TFM.addShamanObject(95, v.x+20+random(0, 150), v.y-250+random(0, 80), random(0, 50), random(-10, 10))
+						addImage(images[random(#images)], '#'..objs[#objs], 0, 0)
 					end
 					addTimer(function()
 						for i = 1, #objs do 
