@@ -49,17 +49,17 @@ loadRanking = function(player)
 		playerList[#playerList+1] = '\n\nConnecting...'
 	end
 
-	ui.addTextArea(5432, table.concat(playerList, '\n'), player, 128 + xAlign, 100 + yAlign, 180, 130, 0x324650, 0x0, 0)
-	ui.addTextArea(5433, table.concat(playerLevel[1], '\n'), player, 276+10+ xAlign, 101 + yAlign, 40, 130, 0x324650, 0x0, 0)
-	ui.addTextArea(5434, table.concat(playerLevel[2], '\n'), player, 275+10+ xAlign, 100 + yAlign, 40, 130, 0x324650, 0x0, 0)
+	showTextArea(5432, table_concat(playerList, '\n'), player, 128 + xAlign, 100 + yAlign, 180, 130, 0x324650, 0x0, 0)
+	showTextArea(5433, table_concat(playerLevel[1], '\n'), player, 276+10+ xAlign, 101 + yAlign, 40, 130, 0x324650, 0x0, 0)
+	showTextArea(5434, table_concat(playerLevel[2], '\n'), player, 275+10+ xAlign, 100 + yAlign, 40, 130, 0x324650, 0x0, 0)
 
-	ui.addTextArea(5435, table.concat(playerExperience[1], '\n'), player, 276+65+ xAlign, 101 + yAlign, 70, 130, 0x324650, 0x0, 0)
-	ui.addTextArea(5436, table.concat(playerExperience[2], '\n'), player, 275+65+ xAlign, 100 + yAlign, 70, 130, 0x324650, 0x0, 0)
+	showTextArea(5435, table_concat(playerExperience[1], '\n'), player, 276+65+ xAlign, 101 + yAlign, 70, 130, 0x324650, 0x0, 0)
+	showTextArea(5436, table_concat(playerExperience[2], '\n'), player, 275+65+ xAlign, 100 + yAlign, 70, 130, 0x324650, 0x0, 0)
 
 	if player then
-		ui.addTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Season', player):format(mainAssets.season), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
-		ui.addTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Season', player):format(mainAssets.season), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Season', player):format(mainAssets.season), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Season', player):format(mainAssets.season), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
 
-		ui.addTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os.time{day=16, year=2020, month=11})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os_time{day=16, year=2020, month=11})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
 	end
 end
