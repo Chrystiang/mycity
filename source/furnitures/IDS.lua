@@ -176,7 +176,7 @@ mainAssets.__furnitures = {
 		end,
 		qpPrice = 5,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[16] = { -- cross
 		image = '16de58103e8.png',
@@ -188,7 +188,7 @@ mainAssets.__furnitures = {
 		credits = 'Iho#5679',
 		qpPrice = 2,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[17] = { -- rip
 		image = '16de576af32.png',
@@ -200,7 +200,7 @@ mainAssets.__furnitures = {
 		credits = 'Iho#5679',
 		qpPrice = 2,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[18] = { -- pumpkin
 		image = '16de5799419.png',
@@ -211,7 +211,7 @@ mainAssets.__furnitures = {
 		name = 'pumpkin',
 		qpPrice = 2,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[19] = { -- spiderweb
 		image = '16de5881d9e.png',
@@ -223,7 +223,7 @@ mainAssets.__furnitures = {
 		credits = 'Iho#5679',
 		qpPrice = 2,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[20] = { -- candle-Left
 		image = '16de590d1f5.png',
@@ -234,7 +234,7 @@ mainAssets.__furnitures = {
 		name = 'candle',
 		qpPrice = 1,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[21] = { -- candle-Right
 		image = '16de59085fd.png',
@@ -245,7 +245,7 @@ mainAssets.__furnitures = {
 		name = 'candle',
 		qpPrice = 1,
 		type = 'limited-halloween2019',
-		limitedTime = os.time{day=11, year=2019, month=11},
+		limitedTime = os_time{day=11, year=2019, month=11},
 	},
 	[22] = { -- christmasSocks
 		image = '16eef7f6dcf.png',
@@ -256,7 +256,7 @@ mainAssets.__furnitures = {
 		name = 'christmasSocks',
 		qpPrice = 1,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[23] = { -- christmasWreath
 		image = '16ef9fa5b73.png',
@@ -267,7 +267,7 @@ mainAssets.__furnitures = {
 		name = 'christmasWreath',
 		qpPrice = 2,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[24] = { -- christmasGift
 		image = '16eef7eb241.png',
@@ -278,7 +278,7 @@ mainAssets.__furnitures = {
 		name = 'christmasGift',
 		qpPrice = 2,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[25] = { -- christmasSnowman
 		image = '16eef7f1007.png',
@@ -289,7 +289,7 @@ mainAssets.__furnitures = {
 		name = 'christmasSnowman',
 		qpPrice = 2,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[26] = { -- christmasFireplace
 		image = '16f1a26cfb8.png',
@@ -301,7 +301,7 @@ mainAssets.__furnitures = {
 		credits = 'Fofinhoppp#0000',
 		qpPrice = 5,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[27] = { -- christmasCandyBowl
 		image = '16f23c7c3dd.png',
@@ -313,7 +313,7 @@ mainAssets.__furnitures = {
 		credits = 'Iho#5679',
 		qpPrice = 2,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[28] = { -- christmasCarnivorousPlant
 		image = '16f23c49466.png',
@@ -325,7 +325,7 @@ mainAssets.__furnitures = {
 		credits = 'Iho#5679',
 		qpPrice = 2,
 		type = 'limited-christmas2019',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[29] = { -- apiary
 		image = '1704e32c2df.png',
@@ -509,7 +509,7 @@ mainAssets.__furnitures = {
 		area = {150, 90},
 		align = {x = -50, y = -140},
 		name = 'ordersList',
-		limitedTime = os.time{day=15, year=2020, month=1},
+		limitedTime = os_time{day=15, year=2020, month=1},
 	},
 	[46] = { -- fence
 		image = '17280f28298.png',
@@ -777,7 +777,7 @@ mainAssets.__furnitures = {
 		align = {x = -52, y = -58},
 		name = 'lamp',
 		qpPrice = 5,
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		npcShop = 'drekkemaus',
 	},
 	[70] = { -- bloodstain
@@ -787,7 +787,7 @@ mainAssets.__furnitures = {
 		align = {x = -18, y = -50},
 		name = 'bloodstain',
 		qpPrice = 3,
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		npcShop = 'drekkemaus',
 		credits = 'Iho#5679',
 	},
@@ -798,7 +798,7 @@ mainAssets.__furnitures = {
 		align = {x = -31, y = -77},
 		name = 'scarecrow',
 		qpPrice = 5,
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		npcShop = 'drekkemaus',
 		credits = 'Iho#5679',
 	},
@@ -809,7 +809,7 @@ mainAssets.__furnitures = {
 		align = {x = -50, y = -81},
 		name = 'amongUs_medBay',
 		qpPrice = 10,
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		npcShop = 'drekkemaus',
 		credits = '<CS>InnerSloth</CS>, Iho#5679',
 	},
@@ -820,7 +820,7 @@ mainAssets.__furnitures = {
 		align = {x = -23, y = -10},
 		name = 'amongUs_vent',
 		qpPrice = 3,
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		npcShop = 'drekkemaus',
 		credits = '<CS>InnerSloth</CS>, Iho#5679',
 	},
@@ -835,7 +835,7 @@ mainAssets.__furnitures = {
 		end,
 		qpPrice = 10,
 		npcShop = 'drekkemaus',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		credits = 'Qadori#0000',
 	},
 	[75] = { -- dryTree
@@ -846,7 +846,7 @@ mainAssets.__furnitures = {
 		name = 'dryTree',
 		price = 10000,
 		npcShop = 'drekkemaus',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		credits = 'Lou#0010',
 	},
 	[76] = { -- dryTree
@@ -857,7 +857,7 @@ mainAssets.__furnitures = {
 		name = 'dryTree',
 		price = 3000,
 		npcShop = 'drekkemaus',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 		credits = 'Lou#0010',
 	},
 	[77] = { -- dryTree
@@ -868,7 +868,7 @@ mainAssets.__furnitures = {
 		name = 'dryTree',
 		price = 2000,
 		npcShop = 'drekkemaus',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 	},
 	[78] = { -- fence
 		image = '1750fad6baf.png',
@@ -878,7 +878,7 @@ mainAssets.__furnitures = {
 		name = 'fence',
 		qpPrice = 3,
 		npcShop = 'drekkemaus',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
 	},
 	[79] = { -- scarecrow
 		image = '1750fad9a95.png',
@@ -888,6 +888,17 @@ mainAssets.__furnitures = {
 		name = 'scarecrow',
 		qpPrice = 7,
 		npcShop = 'drekkemaus',
-		limitedTime = os.time{day=16, year=2020, month=11},
+		limitedTime = os_time{day=16, year=2020, month=11},
+	},
+	[80] = { -- lamp
+		image = '1755119dc0b.png',
+		png = '17551173524.png',
+		area = {78, 80},
+		align = {x = -39, y = -42},
+		name = 'lamp',
+		qpPrice = 5,
+		limitedTime = os_time{day=16, year=2020, month=11},
+		npcShop = 'drekkemaus',
+		credits = 'Ricardinhotv#0000',
 	},
 }

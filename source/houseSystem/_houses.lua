@@ -55,7 +55,7 @@ mainAssets.__houses = {
 		properties = {
 			price = 13000,
 			png = '16c795c65e8.png',
-			limitedTime = os.time{day=1, year=2020, month=1},
+			limitedTime = os_time{day=1, year=2020, month=1},
 		},
 		inside = {
 			image   = '172566a23a6.png',
@@ -69,7 +69,7 @@ mainAssets.__houses = {
 		properties = {
 			price   = 20000,
 			png     = '16dd75fa5a1.png',
-			limitedTime = os.time{day=11, year=2019, month=11},
+			limitedTime = os_time{day=11, year=2019, month=11},
 		},
 		inside = {
 			image   = '1725669f804.png',
@@ -90,7 +90,7 @@ mainAssets.__houses = {
 		properties = {
 			price = 25000,
 			png = '16ee526d8a3.png',
-			limitedTime = os.time{day=15, year=2020, month=1},
+			limitedTime = os_time{day=15, year=2020, month=1},
 		},
 		inside = {
 			image   = '1725669cbbb.png',
@@ -163,7 +163,7 @@ mainAssets.__houses = {
 		properties = {
 			price = 25,
 			png = '1727ba2f8dd.png',
-			limitedTime = os.time{day=25, year=2020, month=4},
+			limitedTime = os_time{day=25, year=2020, month=4},
 		},
 		inside = {
 			image   = '174085c9366.png',
@@ -177,7 +177,7 @@ mainAssets.__houses = {
 		properties = {
 			price = 100000000,
 			png = '1750410633b.png',
-			limitedTime = os.time{day=16, year=2019, month=11},
+			limitedTime = os_time{day=16, year=2019, month=11},
 		},
 		inside = {
 			image   = '',

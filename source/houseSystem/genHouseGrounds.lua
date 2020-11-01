@@ -4,7 +4,7 @@ HouseSystem.genHouseGrounds = function(self, guest)
 	local terrainID = ownerData.houseData.houseid
 	local y = self.y
 	if not guest then 
-		player_removeImages(room.houseImgs[terrainID].expansions)
+		removeGroupImages(room.houseImgs[terrainID].expansions)
 	end
 	for i = 1, 5 do
 		if not ownerData.houseTerrain[i] then

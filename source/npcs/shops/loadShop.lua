@@ -45,7 +45,7 @@ checkIfPlayerHasFurniture = function(player, furniture)
 end
 
 mergeItemsWithFurnitures = function(t1, t2) -- Merge bag items with furnitures
-	local newTbl = table.copy(t1)
+	local newTbl = table_copy(t1)
 	for i, v in next, t2 do
 		newTbl[i+1000] = v.n
 	end
