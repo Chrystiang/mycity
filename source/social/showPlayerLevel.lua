@@ -1,6 +1,6 @@
 generateLevelImage = function(player, level, requested)
 	if player == requested then 
-		TFM.setPlayerScore(player, level)
+		setPlayerScore(player, level)
 	end
 	local level = tostring(level)
 	local iconImage = mainAssets.levelIcons.lvl -- change to player current star icon
