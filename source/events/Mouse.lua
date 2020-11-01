@@ -1,3 +1,4 @@
 onEvent("Mouse", function(player, x, y)
-	TFM.movePlayer(player, x, y, false)
+	movePlayer(player, x, y, false)
+	chatMessage('X: '..x..', Y: '..y, player)
 end)
