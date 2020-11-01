@@ -7,10 +7,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 		playerFinder.requests[name] = nil
 		return
 	end
-	if table.contains(room.bannedPlayers, name) then
-		return TFM.chatMessage('You can not play #mycity anymore.', name)
+	if table_find(room.bannedPlayers, name) then
+		return chatMessage('You can not play #mycity anymore.', name)
 	end
-	if #data > 1600 then return TFM.chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more info.', name) end
+	if #data > 1600 then return chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more info.', name) end
 	playerData:newPlayer(name, data)
 	------- setting data values to players[name]
 	local playerSettings = playerData:get(name, 'playerLog')
@@ -34,7 +34,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	local counter = 0
 	local vehicles = playerData:get(name, 'cars')
 	for i, v in next, vehicles do
-		if mainAssets.__cars[v] and not table.contains(players[name].cars, v) then
+		if mainAssets.__cars[v] and not table_find(players[name].cars, v) then
 			players[name].cars[#players[name].cars+1] = v
 		end
 	end
@@ -72,7 +72,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 			if v[2] >= 0 and v[2] <= 1500 then
 				players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
 			else
-				TFM.chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
+				chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
 				storeFurniture(i)
 			end
 		end
@@ -109,11 +109,11 @@ onEvent("PlayerDataLoaded", function(name, data)
 		if players[name].level[1] <= 10 or players[name].sideQuests[3] < 10 then
 			setPlayerData(name)
 			room.bannedPlayers[#room.bannedPlayers+1] = name
-			TFM.killPlayer(name)
+			killPlayer(name)
 			translatedMessage('playerBannedFromRoom', name)
-			TFM.chatMessage('<r>Reason: Bug Exploit')
+			chatMessage('<r>Reason: Bug Exploit')
 			room.fileUpdated = true
-			return TFM.chatMessage('Error: Bug exploit. If you think this is an error, please contact Fofinhoppp#0000.', name)
+			return chatMessage('Error: Bug exploit. If you think this is an error, please contact Fofinhoppp#0000.', name)
 		end
 	end
 	players[name].dataLoaded = true
@@ -134,7 +134,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	for i, v in next, ROOM.playerList do
 		if players[i].roomLog then
-			TFM.chatMessage('<g>[•][roomLog] '..name..' joined the room.', i)
+			chatMessage('<g>[•][roomLog] '..name..' joined the room.', i)
 		end
 		local level = players[i].level[1]
 		generateLevelImage(i, level, name)
@@ -145,9 +145,9 @@ onEvent("PlayerDataLoaded", function(name, data)
 		giveBadge(name, 1)
 	end
 
-	if not table.contains(players[name].badges, 20) then
-		players[name].questScreenIcon = tfm.exec.addImage('17529e2ce64.png', '&10', 750, 315, name)
-		ui.addTextArea(8541584, players[name].jobs[17]..'/15', name, 767, 315, nil, nil, 1, 1, 0, true)
+	if not table_find(players[name].badges, 20) then
+		players[name].questScreenIcon = addImage('17529e2ce64.png', '&10', 750, 315, name)
+		showTextArea(8541584, players[name].jobs[17]..'/15', name, 767, 315, nil, nil, 1, 1, 0, true)
 	end
 
 	addImage("170fa1a5400.png", ":1", 348, 355, name)

@@ -15,12 +15,12 @@ onEvent("FileLoaded", function(file, data)
 			end
 		end
 		saveRanking()
-		player_removeImages(room.rankingImages)
+		removeGroupImages(room.rankingImages)
 		loadRanking()
 
 	elseif tonumber(file) == 1 then
-		local bannedPlayers = datas[1] or table.concat(room.bannedPlayers, ';')
-		local unrankedPlayers = datas[2] or table.concat(room.unranked, ';')
+		local bannedPlayers = datas[1] or table_concat(room.bannedPlayers, ';')
+		local unrankedPlayers = datas[2] or table_concat(room.unranked, ';')
 		local admin = datas[3] or ''
 		local mod = datas[4] or ''
 		local helper = datas[5] or ''
@@ -30,7 +30,7 @@ onEvent("FileLoaded", function(file, data)
 		for player in string.gmatch(bannedPlayers, '([%w_+]+#%d+),(%w+)') do
 			room.bannedPlayers[#room.bannedPlayers+1] = player
 			if players[player] then
-				TFM.killPlayer(player)
+				killPlayer(player)
 			end
 		end
 
