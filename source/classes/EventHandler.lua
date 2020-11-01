@@ -8,13 +8,10 @@ local SCHEDULE = {
 	["PlayerDataLoaded"] = true,
 	["PlayerRespawn"] = true,
 	["PlayerLeft"] = true,
+	["PlayerBonusGrabbed"] = true,
 }
 
 do
-	-- Optimization
-	local os_time = os.time
-	local math_floor = math.floor
-
 	-- Runtime breaker
 	local cycleId = 0
 	local usedRuntime = 0
@@ -29,8 +26,8 @@ do
 
 	local function errorHandler(name, msg)
 		translatedMessage("emergencyMode_able")
-		TFM.chatMessage(name ..' - '.. msg)
-		TFM.setRoomMaxPlayers(1)
+		chatMessage(name ..' - '.. msg)
+		setPlayerLimit(1)
 		room.requiredPlayers = 1000
 		genLobby()
 
@@ -58,7 +55,7 @@ do
 				else
 					translatedMessage("syncingGame")
 				end
-				TFM.setRoomMaxPlayers(1)
+				setPlayerLimit(1)
 				for player in next, ROOM.playerList do
 					freezePlayer(player, true)
 				end
@@ -98,7 +95,7 @@ do
 		-- delete all the scheduled tables since they just use ram!
 		scheduled = {_count = 0, _pointer = 1}
 		translatedMessage("emergencyMode_resume")
-		TFM.setRoomMaxPlayers(room.maxPlayers)
+		setPlayerLimit(room.maxPlayers)
 		for player in next, ROOM.playerList do
 			freezePlayer(player, false)
 		end
@@ -113,7 +110,7 @@ do
 			if initializingModule then
 				local done, result = pcall(callListeners, evt, a, b, c, d, e, 1)
 				if not done and lastErrorLog ~= result then
-					TFM.chatMessage(name.. ' - '..result)
+					chatMessage(name.. ' - '..result)
 					lastErrorLog = result
 					--return errorHandler(name, result)
 				end
@@ -137,7 +134,7 @@ do
 			-- perform all the runtime breaker checks.
 			checkingRuntime = true
 			local start = os_time()
-			local thisCycle = math_floor(start / CYCLE_DURATION)
+			local thisCycle = floor(start / CYCLE_DURATION)
 
 			if thisCycle > cycleId then
 				-- new runtime cycle
@@ -183,10 +180,10 @@ do
 
 			local done, result = pcall(callListeners, evt, a, b, c, d, e, 1)
 			if not done and lastErrorLog ~= result then
-				TFM.chatMessage(name.. ' - '..result)
+				chatMessage(name.. ' - '..result)
 				lastErrorLog = result
-				table.insert(room.errorLogs, 1, '<ch>['..os.date("%X")..']</ch> <v>'..name .. '</v> <j>-</j> <g>'.. result:gsub('Fofinhoppp#0000.lua', 'main'))
-				if #table.concat(room.errorLogs, '\n') >= 1900 then
+				table_insert(room.errorLogs, 1, '<ch>['..os_date("%X")..']</ch> <v>'..name .. '</v> <j>-</j> <g>'.. result:gsub('Fofinhoppp#0000.lua', 'main'))
+				if #table_concat(room.errorLogs, '\n') >= 1900 then
 					room.errorLogs[#room.errorLogs] = nil
 				end
 				--return errorHandler(name, result)

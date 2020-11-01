@@ -177,7 +177,7 @@ do
 							strBuilder[v.index] = v.default() and '1' or '0'
 						end
 					end
-					modules[moduleID] = '{'..table.concat(strBuilder, ',')..'}'
+					modules[moduleID] = '{'..table_concat(strBuilder, ',')..'}'
 				end
 			end
 		end
@@ -228,7 +228,7 @@ do
 			if output[#output] == ',' then
 				output[#output] = ''
 			end
-			return table.concat(output)
+			return table_concat(output)
 		end
 
 		-- returns a module's data in string
@@ -281,7 +281,7 @@ do
 				output[#output+1] = '}'
 			end
 
-			return table.concat(output)
+			return table_concat(output)
 		end
 
 		output[#output+1] = getPlayerDataFrom(name, self.moduleID)
@@ -304,7 +304,7 @@ do
 			output[#output+1] = v
 		end
 
-		return table.concat(output)..self.originalStuff[name]
+		return table_concat(output)..self.originalStuff[name]
 	end
 
 	function DataHandler.get(self, name, dataName, moduleName)
@@ -330,7 +330,7 @@ do
 	end
 
 	function DataHandler.save(self, name)
-		system.savePlayerData(name, self:dumpPlayer(name))
+		savePlayerData(name, self:dumpPlayer(name))
 	end
 
 	-- gets the module data and stores it

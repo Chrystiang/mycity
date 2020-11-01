@@ -2,9 +2,9 @@ chatCommands.quest = {
 	permissions = {'admin'},
 	event = function(player, args)
 		local quest = tonumber(args[1])
-		if not lang['en'].quests[quest] then return TFM.chatMessage('<g>[•] invalid quest ID.', player) end
+		if not lang['en'].quests[quest] then return chatMessage('<g>[•] invalid quest ID.', player) end
 		local questStep = tonumber(args[2]) or 0
-		local target = string.nick(args[3])
+		local target = string_nick(args[3])
 		if not players[target] then target = player end
 		if players[target].questStep[1] < quest then
 			_QuestControlCenter[players[target].questStep[1]].reward(target)
@@ -16,6 +16,6 @@ chatCommands.quest = {
 
 		_QuestControlCenter[quest].active(target, 0)
 
-		TFM.chatMessage('<g>[•] quest '..quest..':'..questStep..' set to '..target..'.', player)
+		chatMessage('<g>[•] quest '..quest..':'..questStep..' set to '..target..'.', player)
 	end
 }

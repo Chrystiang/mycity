@@ -125,7 +125,7 @@ do
 		repeat
 			timer = List.popleft(timersPool)
 			if timer then
-				table.remove(timerList, timer)
+				table_remove(timerList, timer)
 			end
 		until timer == nil
 	end
@@ -145,7 +145,7 @@ do
 							end
 						end
 						if timer.callback ~= nil then
-							timer.callback(timer.currentLoop, table.unpack(timer.arguments))
+							timer.callback(timer.currentLoop, table_unpack(timer.arguments))
 						end
 					end
 				end

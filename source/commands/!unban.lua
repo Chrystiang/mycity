@@ -1,12 +1,12 @@
 chatCommands.unban = {
 	permissions = {'admin'},
 	event = function(player, args)
-		local target = string.nick(args[1]) or args[1]
+		local target = string_nick(args[1]) or args[1]
 		for i, banned in next, room.bannedPlayers do
 			if banned == target then
-				table.remove(room.bannedPlayers, i)
+				table_remove(room.bannedPlayers, i)
 				translatedMessage('playerUnbannedFromRoom', target)
-				TFM.respawnPlayer(target)
+				respawnPlayer(target)
 				room.fileUpdated = true
 				return
 			end
