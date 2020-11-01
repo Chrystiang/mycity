@@ -3,18 +3,18 @@ savedata = function(name, forceSave)
 	if not playerInfos.dataLoaded then return end
 
 	--[[if true then
-		TFM.chatMessage('<R>Stats are not being saved in this room.', name)
+		chatMessage('<R>Stats are not being saved in this room.', name)
 		return
 	end]]--
 	if ROOM.name ~= '*#fofinho' then
 		if ROOM.uniquePlayers < room.requiredPlayers then
-			TFM.chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
+			chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
 			return
 		elseif ROOM.passwordProtected then
-			TFM.chatMessage('<R>Stats are not saved if the room is protected with a password.', name)
+			chatMessage('<R>Stats are not saved if the room is protected with a password.', name)
 			return
 		elseif ROOM.isTribeHouse or ROOM.name:find('\3') then
-			TFM.chatMessage('<R>Stats are not saved in tribe house.', name)
+			chatMessage('<R>Stats are not saved in tribe house.', name)
 			return
 		end
 	end

@@ -63,7 +63,7 @@ setPlayerData = function(player)
 		},
 		timer		= {},
 		bannerLogin	= '',
-		time		= os.time(),
+		time		= os_time(),
 		pos			= {x = 0, y = 0},
 		-------------------
 		fishing 	= {false, {}, {}},
@@ -93,8 +93,6 @@ setPlayerData = function(player)
 		selectedItem = {name = nil, image = nil, images = {}},
 		bagLimit	= 20,
 		holdingItem = false,
-		holdingImage = nil,
-		holdingDirection = nil,
 		---------- QUESTS ----------
 		questLocalData = {images = {}, other = {}, step = 1},
 		questStep	= {1, 0},
@@ -125,13 +123,13 @@ setPlayerData = function(player)
 		playerNameIcons = {level = {}},
 		temporaryImages = {jobDisplay = {}},
 		-------------------
-		gameVersion 	= 'v'..table.concat(version, '.'),
+		gameVersion 	= 'v'..table_concat(version, '.'),
 		rankingImages 	= {},
 		dataLoaded 		= false,
 		roomLog 		= false,
-		lastCallback 	= {when = os.time(), callback = nil},
+		lastCallback 	= {when = os_time(), callback = nil},
 		lang			= playerLanguage,
-		whenJoined 		= os.time(),
+		whenJoined 		= os_time(),
 		settings 		= {mirroredMode = 0, language = playerLanguage, disableTrades = 0},
 		inRoom 			= false,
 	}

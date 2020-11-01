@@ -2,6 +2,7 @@ giveCoin = function(coin, name, work)
 	if room.isInLobby then return end
 	local playerData = players[name]
 	if not playerData then return end
+	if not coin then return end
 	players[name].coins = playerData.coins + coin
 	if players[name].coins < 0 then
 		players[name].coins = 0
@@ -13,10 +14,10 @@ giveCoin = function(coin, name, work)
 		players[name].spentCoins = playerData.spentCoins - coin
 	end
 	local sidequest = sideQuests[playerData.sideQuests[1]].type
-	if string.find(sidequest, 'type:coins') then
-		if string.find(sidequest, 'get') and coin > 0 then
+	if string_find(sidequest, 'type:coins') then
+		if string_find(sidequest, 'get') and coin > 0 then
 			sideQuest_update(name, coin)
-		elseif string.find(sidequest, 'use') and coin < 0 then
+		elseif string_find(sidequest, 'use') and coin < 0 then
 			sideQuest_update(name, -coin)
 		end
 	end
@@ -25,7 +26,7 @@ giveCoin = function(coin, name, work)
 end
 
 giveBadge = function(player, id)
-	if table.contains(players[player].badges, id) then return end
+	if table_find(players[player].badges, id) then return end
 
 	players[player].badges[#players[player].badges+1] = id
 
@@ -37,14 +38,14 @@ giveBadge = function(player, id)
 	if id == 20 then
 		removeImage(players[player].questScreenIcon)
 		players[player].questScreenIcon = nil
-		ui.removeTextArea(8541584, player)
+		removeTextArea(8541584, player)
 		giveLevelOrb(player, 6)
 	end
 	savedata(player)
 end
 
 giveLevelOrb = function(player, orb)
-	if table.contains(players[player].starIcons.owned, orb) then return end
+	if table_find(players[player].starIcons.owned, orb) then return end
 	if not mainAssets.levelIcons.star[orb] then return end
 
 	players[player].starIcons.owned[#players[player].starIcons.owned+1] = orb
@@ -64,7 +65,7 @@ giveExperiencePoints = function(player, xp)
 	local currentLEVEL = tonumber(players[player].level[1])
 
 	local sidequest = sideQuests[playerData.sideQuests[1]].type
-	if string.find(sidequest, 'type:getXP') then
+	if string_find(sidequest, 'type:getXP') then
 		sideQuest_update(player, xp)
 	end
 	setSeasonStats(player, 2, xp)
@@ -82,7 +83,7 @@ giveExperiencePoints = function(player, xp)
 		end
 
 		for ii, vv in next, ROOM.playerList do
-			TFM.chatMessage('<j>'..translate('levelUp', ii):format('<vp>'..player..'</vp>', '<vp>'..players[player].level[1]..'</vp>'), ii)
+			chatMessage('<j>'..translate('levelUp', ii):format('<vp>'..player..'</vp>', '<vp>'..players[player].level[1]..'</vp>'), ii)
 			generateLevelImage(player, players[player].level[1], ii)
 		end
 	end
@@ -107,7 +108,7 @@ openProfile = function(player, target)
 	:profileInterface(target)
 end
 
-player_removeImages = function(tbl)
+removeGroupImages = function(tbl)
 	if not tbl then return end
 	for i = 1, #tbl do 
 		removeImage(tbl[i])
