@@ -5,7 +5,7 @@ mainAssets.gamemodes.buildmode = {
 }
 mainAssets.gamemodes.buildmode.init = function() 
 	TFM.newGame('<C><P L="3840" H="1400" D="174f54092f1.jpg,0,0"/><Z><S><S X="1920" Y="1260" T="0" L="3000" H="220" P="0,0,0.3,0.2,0,0,0,0" i="0,0,1744c666529.jpg"/><S X="585" Y="700" T="14" L="1170" H="1400" P="0,0,0,0,0,0,0,0"/><S X="3255" Y="701" T="14" L="1170" H="1400" P="0,0,0,0,0,0,0,0"/><S X="1920" Y="80" T="14" L="3000" H="160" P="0,0,0,0,0,0,0,0"/></S><D><DS X="1920" Y="1135"/></D><O/><L/></Z></C>')
-	TFM.setRoomMaxPlayers(1)
+	setPlayerLimit(1)
 
 	ui.setMapName('Mycity - Build Mode')
 
@@ -16,14 +16,14 @@ mainAssets.gamemodes.buildmode.init = function()
 			initialize = true
 		else
 			initialize = false
-			TFM.setRoomMaxPlayers(1)
+			setPlayerLimit(1)
 			break
 		end
 	end
 
 	if initialize then
-		ui.addTextArea(20880, '', player, 0, 0, 800, 400, 0x152d30, 0x152d30, 0.7, true)
-		sendMenu(99, player, '<p align="center"><font size="16"><vp>v'..table.concat(version, '.')..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
+		showTextArea(20880, '', player, 0, 0, 800, 400, 0x152d30, 0x152d30, 0.7, true)
+		sendMenu(99, player, '<p align="center"><font size="16"><vp>v'..table_concat(version, '.')..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
 	end
 end
 
@@ -34,18 +34,18 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 	local terrainID = players[player].houseData.houseid
 	local showFurnitures, updateScrollbar, updatePage
 	local buildModeImages = {currentFurniture = nil, furnitures = {}}
-	local playerFurnitures = table.copy(players[player].houseData.furnitures.stored)
-	local playerFurnitures_length = table.getLength(playerFurnitures)
-	local playerPlacedFurnitures = table.copy(players[player].houseData.furnitures.placed)
-	local totalOfPlacedFurnitures = table.getLength(players[player].houseData.furnitures.placed)
+	local playerFurnitures = table_copy(players[player].houseData.furnitures.stored)
+	local playerFurnitures_length = table_getLength(playerFurnitures)
+	local playerPlacedFurnitures = table_copy(players[player].houseData.furnitures.placed)
+	local totalOfPlacedFurnitures = table_getLength(players[player].houseData.furnitures.placed)
 
 	button = function(i, text, callback, x, y, width, height)
 		local width = width or 180
 		local height = height or 15
-		ui.addTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
-		ui.addTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-		ui.addTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
-		ui.addTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
+		showTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
+		showTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
+		showTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
+		showTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
 	end
 
 	removeFurniture = function(index)
@@ -54,9 +54,9 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		if not data then return end
 		playerPlacedFurnitures[index] = false
 		removeImage(data.image)
-		ui.removeTextArea(- 85000 - (terrainID*200 + index), player)
+		removeTextArea(- 85000 - (terrainID*200 + index), player)
 		if mainAssets.__furnitures[data.type].grounds then
-			TFM.removePhysicObject(- 7000 - (terrainID-1)*200 - index)
+			removeGround(- 7000 - (terrainID-1)*200 - index)
 		end
 		totalOfPlacedFurnitures = totalOfPlacedFurnitures - 1
 		if not playerFurnitures[data.type] then 
@@ -80,9 +80,9 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		local furniture = mainAssets.__furnitures[data.type]
 		buildModeImages.currentFurniture = addImage(furniture.image, '%'..player, furniture.align.x, furniture.align.y, player)
 		images.icons[#images.icons+1] = addImage('172469fea71.jpg', ':25', 350, 317, player)
-		ui.addTextArea(id..'892', '<p align="center"><b><fc><font size="14">'..translate('houseSettings_placeFurniture', player)..'\n', player, 350, 321, 100, 25, 0x24474D, 0x00ff00, 0, true, 
+		showTextArea(id..'892', '<p align="center"><b><fc><font size="14">'..translate('houseSettings_placeFurniture', player)..'\n', player, 350, 321, 100, 25, 0x24474D, 0x00ff00, 0, true, 
 			function()
-				ui.removeTextArea(id..'892', player)
+				removeTextArea(id..'892', player)
 				if not playerFurnitures[index] then return end
 				if playerFurnitures[index].quanty <= 0 then return end
 				local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
@@ -95,22 +95,22 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 
 				local id = terrainID
 
-				TFM.killPlayer(player)
-				TFM.respawnPlayer(player)
-				TFM.movePlayer(player, x, y, false)
+				killPlayer(player)
+				respawnPlayer(player)
+				movePlayer(player, x, y, false)
 
 				local furniture_X = x + furniture.align.x 
 				local furniture_Y = y + furniture.align.y
 				local idd = #playerPlacedFurnitures+1
 				playerPlacedFurnitures[idd] = {type = data.type, x = furniture_X - (id-1)*1500, y = furniture_Y - 1000, image = addImage(furniture.image, '?1000'..idd, furniture_X, furniture_Y, player)}
-				ui.addTextArea(- 85000 - (id*200 + idd), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', furniture.area[2]/8), player, furniture_X, furniture_Y, furniture.area[1], furniture.area[2], 1, 0xfff000, 0, false, 
+				showTextArea(- 85000 - (id*200 + idd), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', furniture.area[2]/8), player, furniture_X, furniture_Y, furniture.area[1], furniture.area[2], 1, 0xfff000, 0, false, 
 					function()
 						removeFurniture(idd)
 					end)
 
 				if furniture.grounds then
 					furniture.grounds(furniture_X,  furniture_Y, - 7000 - (id-1)*200 - idd)
-					TFM.movePlayer(player, 0, - 50, true)
+					movePlayer(player, 0, - 50, true)
 				end
 
 				if playerFurnitures[index].quanty <= 0 then 
@@ -132,11 +132,11 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		end
 		if buildModeImages.currentFurniture then
 			local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
-			TFM.killPlayer(player)
-			TFM.respawnPlayer(player)
-			TFM.movePlayer(player, x, y, false)
+			killPlayer(player)
+			respawnPlayer(player)
+			movePlayer(player, x, y, false)
 			buildModeImages.currentFurniture = nil
-			ui.removeTextArea(id..'892', player)
+			removeTextArea(id..'892', player)
 		end
 		players[player].houseData.furnitures.stored = {}
 		for i, v in next, playerFurnitures do
@@ -149,7 +149,7 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 			if v then
 				players[player].houseData.furnitures.placed[i] = v
 				removeImage(v.image)
-				ui.removeTextArea(- 85000 - (terrainID*200 + i), player)
+				removeTextArea(- 85000 - (terrainID*200 + i), player)
 			end
 		end
 		giveCoin(furniture.price and furniture.price/2 or 0, player)
@@ -157,9 +157,9 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 	end
 
 	closeExpansionMenu = function()
-		player_removeImages(images.expansions)
-		ui.removeTextArea(id..'889', player)
-		ui.removeTextArea(id..'890', player)
+		removeGroupImages(images.expansions)
+		removeTextArea(id..'889', player)
+		removeTextArea(id..'890', player)
 		updatePage(0)
 	end
 
@@ -174,17 +174,17 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		if players[player].editingHouse then return end
 		players[player].editingHouse = true
 		for i = 0, 4 do 
-			ui.removeTextArea(98900000000+i, player)
-			ui.removeTextArea(999990+i, player)
+			removeTextArea(98900000000+i, player)
+			removeTextArea(999990+i, player)
 		end
 
-		player_removeImages(room.houseImgs[terrainID].furnitures)
+		removeGroupImages(room.houseImgs[terrainID].furnitures)
 		for i, furniture in next, playerPlacedFurnitures do
 			local data = mainAssets.__furnitures[furniture.type]
 			local x = furniture.x + ((terrainID-1)%terrainID)*1500
 			local y = furniture.y + 1000
 			furniture.image = addImage(data.image, '?1000', x, y, player)
-			ui.addTextArea(- 85000 - (terrainID*200 + i), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', data.area[2]/8), player, x, y, data.area[1], data.area[2], 1, 0xfff000, 0, false, 
+			showTextArea(- 85000 - (terrainID*200 + i), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', data.area[2]/8), player, x, y, data.area[1], data.area[2], 1, 0xfff000, 0, false, 
 				function()
 					removeFurniture(i)
 				end)
@@ -200,10 +200,10 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 		for i = 0, 4 do
 			if players[player].houseTerrainAdd[i+1] <= 1 then
-				ui.addTextArea(id..(885+i), '<p align="center"><fc>'..translate('houseSettings_changeExpansion', player)..'\n', player, (terrainID-1)*1500 + 650 + i*175, 1740, 175, nil, 0x24474D, 0xff0000, 0, false,
+				showTextArea(id..(885+i), '<p align="center"><fc>'..translate('houseSettings_changeExpansion', player)..'\n', player, (terrainID-1)*1500 + 650 + i*175, 1740, 175, nil, 0x24474D, 0xff0000, 0, false,
 					function()
 						if images.expansions[1] then return end
-						ui.addTextArea(id..'889', '', player, 0, 0, 800, 400, 0x24474D, 0xff0000, 0, true)
+						showTextArea(id..'889', '', player, 0, 0, 800, 400, 0x24474D, 0xff0000, 0, true)
 						local counter = 0
 						for _ = 0, 4 do
 							if _ ~= i then 
@@ -211,7 +211,7 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 							end
 						end
 						images.expansions[#images.expansions+1] = addImage('171d2a2e21a.png', ":25", 280, 140, player)
-						ui.addTextArea(id..'890', string.rep('\n', 4), player, 487, 150, 25, 25, 0xff0000, 0xff0000, 0, true, function() closeExpansionMenu() end)
+						showTextArea(id..'890', string.rep('\n', 4), player, 487, 150, 25, 25, 0xff0000, 0xff0000, 0, true, function() closeExpansionMenu() end)
 						for expansionID, v in next, HouseSystem.expansions do
 							if players[player].houseTerrain[i+1] ~= expansionID then
 								images.expansions[#images.expansions+1] = addImage(v.png, ":26", counter*109 + 324, 150, player)
@@ -236,15 +236,15 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		images.bg[#images.bg+1] = addImage('1723ed04fb4.jpg', ':25', 5, 340, player)
 		images.bg[#images.bg+1] = addImage('172469fea71.jpg', ':25', 695, 317, player)
 
-		ui.addTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player, 0, 321, nil, nil, 0x24474D, 0xff0000, 0, true)
-		ui.addTextArea(id..'893', '', player, 0, 340, 800, 60, 0x24474D, 0xff0000, 0, true)
-		ui.addTextArea(id..'894', '<p align="center"><b><font color="#95d44d" size="14">'..translate('houseSettings_finish', player)..'\n', player, 695, 321, 100, nil, 0x24474D, 0xff0000, 0, true, 
+		showTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player, 0, 321, nil, nil, 0x24474D, 0xff0000, 0, true)
+		showTextArea(id..'893', '', player, 0, 340, 800, 60, 0x24474D, 0xff0000, 0, true)
+		showTextArea(id..'894', '<p align="center"><b><font color="#95d44d" size="14">'..translate('houseSettings_finish', player)..'\n', player, 695, 321, 100, nil, 0x24474D, 0xff0000, 0, true, 
 			function()
 				if not players[player].editingHouse then return end
 				local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
-				TFM.killPlayer(player)
-				TFM.respawnPlayer(player)
-				TFM.movePlayer(player, x, y, false)
+				killPlayer(player)
+				respawnPlayer(player)
+				movePlayer(player, x, y, false)
 
 				players[player].houseData.furnitures.stored = {}
 				for i, v in next, playerFurnitures do
@@ -257,7 +257,7 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 					if v then
 						players[player].houseData.furnitures.placed[i] = v
 						removeImage(v.image)
-						ui.removeTextArea(- 85000 - (terrainID*200 + i), player)
+						removeTextArea(- 85000 - (terrainID*200 + i), player)
 					end
 				end
 				players[player].houseData.chests.position = {}
@@ -268,9 +268,9 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 					showLifeStats(player, i)
 				end
 				showOptions(player)
-				player_removeImages(images.icons)
-				player_removeImages(images.pages)
-				player_removeImages(images.bg)
+				removeGroupImages(images.icons)
+				removeGroupImages(images.pages)
+				removeGroupImages(images.bg)
 				eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 			end)
 		showFurnitures = function()
@@ -287,12 +287,12 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 						images.icons[#images.icons+1] = addImage(furnitureData.png, ':27', 39 + (i-1) * 52, 350, player)
 						images.icons[#images.icons+1] = addImage('172559203c1.png', ':28', 37 + (i-1) * 52, 350, player)
 
-						ui.addTextArea(id..(895+i*3), '<p align="right"><font color="#95d44d" size="13"><b>x'..v.quanty, player, 35 + (i-1)*52, 383, 54, nil, 0xff0000, 0xff0000, 0, true)
-						ui.addTextArea(id..(896+i*3), '\n\n\n\n', player, 35 + (i-1)*52, 347, 55, 55, 0xff0000, 0xff0000, 0, true,
+						showTextArea(id..(895+i*3), '<p align="right"><font color="#95d44d" size="13"><b>x'..v.quanty, player, 35 + (i-1)*52, 383, 54, nil, 0xff0000, 0xff0000, 0, true)
+						showTextArea(id..(896+i*3), '\n\n\n\n', player, 35 + (i-1)*52, 347, 55, 55, 0xff0000, 0xff0000, 0, true,
 							function()
 								placeFurniture(index)
 							end)
-						ui.addTextArea(id..(897+i*3), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 3), player, 37 + (i-1)*52, 350, 10, 10, 0xff0000, 0xff0000, 0, true,
+						showTextArea(id..(897+i*3), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 3), player, 37 + (i-1)*52, 350, 10, 10, 0xff0000, 0xff0000, 0, true,
 							function()
 								modernUI.new(player, 240, 220, translate('sellFurniture', player), translate('sellFurnitureWarning', player))
 								:build()
@@ -308,10 +308,10 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		updatePage = function(count)
 			if currentPage + count > maxPages or currentPage + count < 1 then return end 
 			currentPage = currentPage + count
-			player_removeImages(images.icons)
-			player_removeImages(images.pages)
+			removeGroupImages(images.icons)
+			removeGroupImages(images.pages)
 			for i = 895, 995 do
-				ui.removeTextArea(id..i, player)
+				removeTextArea(id..i, player)
 			end
 			updateScrollbar()
 			showFurnitures()
@@ -319,14 +319,14 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 		updateScrollbar = function()
 			if currentPage > 1 then
 				images.pages[#images.pages+1] = addImage('1723f16c0ba.jpg', ':25', 5, 340, player)
-				ui.addTextArea(id..'895', string.rep('\n', 10), player, 12, 345, 20, 60, 0x24474D, 0xff0000, 0, true, 
+				showTextArea(id..'895', string.rep('\n', 10), player, 12, 345, 20, 60, 0x24474D, 0xff0000, 0, true, 
 					function()
 						updatePage(-1)
 					end)
 			end
 			if currentPage < maxPages then
 				images.pages[#images.pages+1] = addImage('1723f16e3ba.jpg', ':25', 761, 340, player)
-				ui.addTextArea(id..'896', string.rep('\n', 10), player, 767, 345, 20, 60, 0x24474D, 0xff0000, 0, true, 
+				showTextArea(id..'896', string.rep('\n', 10), player, 767, 345, 20, 60, 0x24474D, 0xff0000, 0, true, 
 					function()
 						updatePage(1)
 					end)
