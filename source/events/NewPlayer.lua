@@ -1,10 +1,10 @@
 eventNewPlayer = function(player)
 	ui.setMapName('Mycity')
-	TFM.setPlayerScore(player, 0)
-	ui.addTextArea(8500, '', player, 805, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
-	ui.addTextArea(8501, '', player, -15005, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
-	ui.addTextArea(8502, '', player, -100, -1000, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
-	ui.addTextArea(8503, '', player, -100, 600, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
+	setPlayerScore(player, 0)
+	showTextArea(8500, '', player, 805, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
+	showTextArea(8501, '', player, -15005, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
+	showTextArea(8502, '', player, -100, -1000, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
+	showTextArea(8503, '', player, -100, 600, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
 	local playerLanguage = ROOM.playerList[player] and lang[ROOM.playerList[player].language] and ROOM.playerList[player].language or 'en'
 	if room.isInLobby then
 		addImage("16d888d9074.jpg", "?1", 0, 0, player)
@@ -14,16 +14,20 @@ eventNewPlayer = function(player)
 			lang = playerLanguage,
 			settings = {mirroredMode = 0, language = playerLanguage},
 		}
-		TFM.respawnPlayer(player)
+		respawnPlayer(player)
 		return
 	end
 
-	ui.removeTextArea(0, player)
-	TFM.changePlayerSize(player, 1)
-	TFM.lowerSyncDelay(player)
+	removeTextArea(0, player)
+	changeSize(player, 1)
+	lowerSyncDelay(player)
 	setPlayerData(player)
+	if player:find('*') or table_find(room.bannedPlayers, player) then
+		showTextArea(54215, '', player, -5, -10, 850, 500, 1, 1, 1, true)
+		return
+	end
 	players[player].inRoom = true
-	
+
 	modernUI.new(player, 800, 400)
 		:build()
 		:showUpdateLog()
@@ -32,9 +36,22 @@ eventNewPlayer = function(player)
 		local pngLoad = addImage(imgsToLoad[i], "!0", 0, 0, player)
 		removeImage(pngLoad)
 	end
-	if not table.contains(room.bannedPlayers, player) then
-		TFM.respawnPlayer(player)
+	for place, data in next, places do
+		if data.exitSensor then
+			addImage('1755c19fa28.png', "!10", data.exitSensor[1]-15, data.exitSensor[2]-15, player)
+			TouchSensor.add(
+				0,
+				data.exitSensor[1],
+				data.exitSensor[2],
+				data.id,
+				0,
+				false,
+				player
+			)
+		end
 	end
+	respawnPlayer(player)
+
 	local buildShopImages = {
 		['br'] = '16f1a5b0601.png',
 		['en'] = '16f1a5485c6.png',
@@ -103,7 +120,7 @@ eventNewPlayer = function(player)
 		addImage("16bb495d6f9.png", "?113", 5275, 4973, player)
 		for i = 1, 5 do
 			addImage("16ba53983a1.jpg", "?114", (i-1)*55 + 5705, 5150, player)
-			ui.addTextArea(-500+i, string.rep('\n', 10), player, (i-1)*55 + 5705, 5150, 50, 100, 1, 1, 0, false, 
+			showTextArea(-500+i, string.rep('\n', 10), player, (i-1)*55 + 5705, 5150, 50, 100, 1, 1, 0, false, 
 				function(player)
 					modernUI.new(player, 240, 220, translate('atmMachine', player))
 						:addButton('1729f83fb5f.png', function()
@@ -151,7 +168,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Louis', {'1719408559d.png', '1718e133635.png'}, player, 14150, 139, {type = '?', place = 'pizzeria'})
 	gameNpcs.addCharacter('*Souris', {'1719408754d.png', '1718e2f4445.png'}, player, 14620, 139, {type = '?', place = 'pizzeria'})
 	gameNpcs.addCharacter('Rupe', {'1719455ee6d.png', '17193000220.png'}, player, 780, 8509, {job = 'miner'})
-	gameNpcs.addCharacter('Heinrich', {'1719454397f.png', '171930c5cda.png'}, player, 670, 8509, {job = 'miner', endEvent = function(name) job_invite('miner', name) end})
+	gameNpcs.addCharacter('Heinrich', {'1719454397f.png', '171930c5cda.png'}, player, 670, 8509, {job = 'miner', jobConfirm = true, endEvent = function(name) job_invite('miner', name) end})
 	gameNpcs.addCharacter('Paulo', {'1719452167a.png', '17193169110.png'}, player, 590, 8509, {job = 'miner'})
 	gameNpcs.addCharacter('Goldie', {'17193b5b818.png', '172a0261c76.png'}, player, 540, 8092, {job = 'miner'})
 	gameNpcs.addCharacter('Dave', {'17193cb4903.png'}, player, 11670, 7677, {job = 'farmer', callback = function(name) modernUI.new(name, 310, 280, translate('daveOffers', player)):build():showDaveOffers() end})
@@ -159,12 +176,12 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Body', {'17193e274cd.png'}, player, 11880, 153, {color = '20B2AA', sellingItems = true, place = 'seedStore'})
 	gameNpcs.addCharacter('Kariina', {'17193fda8a1.png'}, player, 14850, 153, {color = '20B2AA', sellingItems = true, place = 'pizzeria'})
 	gameNpcs.addCharacter('Chrystian', {'171940da6ee.png'}, player, 16820, 153, {color = '20B2AA', sellingItems = true, place = 'furnitureStore'})
-	gameNpcs.addCharacter('Patric', {'17194118fa0.png'}, player, 13050, 153, {job = 'fisher', jobConfirm = true})
-	gameNpcs.addCharacter('Sherlock', {'171941d5222.png', '171a4910f9f.png'}, player, 7180, 5997, {job = 'police', jobConfirm = true})
-	gameNpcs.addCharacter('Oliver', {'171945c8816.png', '171b7af8508.png'}, player, 17120, 1618, {job = 'farmer', jobConfirm = true})
+	gameNpcs.addCharacter('Patric', {'17194118fa0.png'}, player, 13050, 153, {job = 'fisher', jobConfirm = true, place = 'fishShop'})
+	gameNpcs.addCharacter('Sherlock', {'171941d5222.png', '171a4910f9f.png'}, player, 7180, 5997, {job = 'police', jobConfirm = true, place = 'police'})
+	gameNpcs.addCharacter('Oliver', {'171945c8816.png', '171b7af8508.png'}, player, 17120, 1618, {job = 'farmer', jobConfirm = true, place = 'police'})
 	gameNpcs.addCharacter('Indy', {'171945ff967.png', '171a3de6a6d.png'}, player, 10820, 153, {color = '20B2AA', sellingItems = true, place = 'potionShop'})
 	gameNpcs.addCharacter('Davi', {'171989750b8.png', '17198988913.png'}, player, 13370, 7513)
-	gameNpcs.addCharacter('Pablo', {'17198a9903d.png', '1729ff740fd.png'}, player, 5090, 153, {job = 'thief', place = 'market', endEvent = function(name) job_invite('thief', name) end})
+	gameNpcs.addCharacter('Pablo', {'17198a9903d.png', '1729ff740fd.png'}, player, 5090, 153, {job = 'thief', place = 'market', jobConfirm = true, endEvent = function(name) job_invite('thief', name) end})
 	gameNpcs.addCharacter('Derek', {'17198af24b4.png', '1729ff71a42.png'}, player, 5000, 153, {job = 'thief', place = 'market'})
 	gameNpcs.addCharacter('Billy', {'17198b0df10.png', '1729ff6f7d2.png'}, player, 4955, 153, {job = 'thief', place = 'market'})
 	gameNpcs.addCharacter('Lauren', {'17198c1b7b5.png', '17198c3bd45.png'}, player, 14337, 139, {type = '?', canRob = {cooldown = 100}, place = 'pizzeria'})
@@ -175,10 +192,10 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Jason', {'17199cb7d8b.png', '1729ffd4116.png'}, player, 400, 153, {canRob = {cooldown = 100}, place = 'buildshop'})
 	gameNpcs.addCharacter('Alicia', {'17199d3b9b2.png', '172a027ee8c.png'}, player, 6880, 153, {sellingItems = true, place = 'cafe'})
 	gameNpcs.addCharacter('Colt', {'1719dc3bce6.png', '171a4adc2e1.png'}, player, 5250, 5147, {job = 'police', place = 'bank'})
-	gameNpcs.addCharacter('Alexa', {'171ae65bf52.png', '171ae65d8a1.png'}, player, 7740, 5997, {job = 'police'})
-	gameNpcs.addCharacter('Sebastian', {'171a497f4e2.png', '171a4adc2e1.png'}, player, 7195, 5852, {job = 'police'})
-	gameNpcs.addCharacter('Paul', {'171ae7460aa.png', '171ae74916a.png'}, player, 7650, 5997, {job = 'police'})
-	gameNpcs.addCharacter('John', {'1723790df64.png', '172379248f7.png'}, player, 4370, 8547, {job = 'miner', sellingItems = true})
+	gameNpcs.addCharacter('Alexa', {'171ae65bf52.png', '171ae65d8a1.png'}, player, 7740, 5997, {job = 'police', place = 'police'})
+	gameNpcs.addCharacter('Sebastian', {'171a497f4e2.png', '171a4adc2e1.png'}, player, 7195, 5852, {job = 'police', place = 'police'})
+	gameNpcs.addCharacter('Paul', {'171ae7460aa.png', '171ae74916a.png'}, player, 7650, 5997, {job = 'police', place = 'police'})
+	gameNpcs.addCharacter('John', {'1723790df64.png', '172379248f7.png'}, player, 4370, 8547, {job = 'miner', sellingItems = true, place = 'mine_excavation'})
 	gameNpcs.addCharacter('Blank', {'17275e43fe4.png', '17275e2a2f4.png'}, player, 1140, 9314, {endEvent = 
 		function(name)
 			local hasFlower = false
@@ -216,12 +233,12 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Drekkemaus', {'1750453019c.png'}, player, 13350, 2938, {sellingItems = true, place = 'drekkeHouse'})
 	addImage("1752eb3fdf0.png", "_1000", 13350, 7313, player) -- Drekkemaus House
 	addImage("1752e08ba50.png", "!1000", 13550, 3155, player) -- Broom
-	ui.addTextArea(-14454514, '<p align="center"><font size="12"><a href="event:enter_drekkeHouse">Drekkemaus\n', player, 13357, 7289+176+23, 150, nil, 0x1, 0x1, 0)
-	ui.addTextArea(-14454515, '<p align="center">17', player, 13357, 7289+176+11, 150, nil, 0, 0)
+	showTextArea(-14454514, '<p align="center"><font size="12"><a href="event:enter_drekkeHouse">Drekkemaus\n', player, 13357, 7289+176+23, 150, nil, 0x1, 0x1, 0)
+	showTextArea(-14454515, '<p align="center">17', player, 13357, 7289+176+11, 150, nil, 0, 0)
 
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)
-		ui.addTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), player, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
+		showTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), player, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
 	end
 	for _, key in next, {0, 1, 2, 3, 32, 70, 71, 72} do 
 		system.bindKeyboard(player, key, true) 
@@ -232,10 +249,7 @@ eventNewPlayer = function(player)
 			mine_reloadBlock(block, player)
 		end 
 	end
-	if player:find('*') or table.contains(room.bannedPlayers, player)  then
-		ui.addTextArea(54215, '', player, -5, -10, 850, 500, 1, 1, 1, true)
-	end
-	ui.addTextArea(4444440, string.rep('\n', 5), player, 16075, 1668, 90, 45, 1, 1, 0, false, 
+	showTextArea(4444440, string.rep('\n', 5), player, 16075, 1668, 90, 45, 1, 1, 0, false, 
 		function()
 			eventTextAreaCallback(0, player, 'recipes', true)
 		end)
@@ -247,7 +261,7 @@ eventNewPlayer = function(player)
 	loadRanking(player)
 
 	if ROOM.community == 'hu' then
-		TFM.chatMessage(translate('welcomeMsg', player), player)
+		chatMessage(translate('welcomeMsg', player), player)
 	end
 
 	if player == 'Fofinhoppp#0000' then
