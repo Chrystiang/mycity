@@ -1,7 +1,9 @@
 onEvent("PlayerLeft", function(player)
 	if room.isInLobby then return end
 	local playerData = players[player]
-
+	if playerData.trading then
+		tradeSystem.endTrade(tradeSystem.trades[playerData.tradeId], false, player)
+	end
 	HouseSystem.new(player):removeHouse()
 	if playerData.robbery.robbing then
 		removeTimer(playerData.timer)
@@ -14,6 +16,7 @@ onEvent("PlayerLeft", function(player)
 	if playerData.fishing[1] then
 		stopFishing(player)
 	end
+
 	if playerData.dataLoaded then
 		savedata(player, true)
 	end
