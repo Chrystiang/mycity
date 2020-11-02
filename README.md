@@ -56,3 +56,7 @@
 > ☑️ V3.1.1 released
 >
 > ☑️ V3.2.0 released
+>
+> ☑️ V3.3.0 released
+>
+> ☑️ New Trading System
