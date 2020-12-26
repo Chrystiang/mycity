@@ -10,7 +10,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if table_find(room.bannedPlayers, name) then
 		return chatMessage('You can not play #mycity anymore.', name)
 	end
-	if #data > 1600 then return chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more info.', name) end
+	if #data > 1800 then return chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more info.', name) end
 	playerData:newPlayer(name, data)
 	------- setting data values to players[name]
 	local playerSettings = playerData:get(name, 'playerLog')
@@ -105,17 +105,6 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	syncVersion(name, playerLogs[3])
 
-	if (players[name].coins + players[name].spentCoins > 1000000 or checkItemQuanty('pumpkinSeed', 5, name)) and not players[name].lucky[2] then 
-		if players[name].level[1] <= 10 or players[name].sideQuests[3] < 10 then
-			setPlayerData(name)
-			room.bannedPlayers[#room.bannedPlayers+1] = name
-			killPlayer(name)
-			translatedMessage('playerBannedFromRoom', name)
-			chatMessage('<r>Reason: Bug Exploit')
-			room.fileUpdated = true
-			return chatMessage('Error: Bug exploit. If you think this is an error, please contact Fofinhoppp#0000.', name)
-		end
-	end
 	players[name].dataLoaded = true
 
 	if players[name].questStep[1] <= questsAvailable then
@@ -145,10 +134,11 @@ onEvent("PlayerDataLoaded", function(name, data)
 		giveBadge(name, 1)
 	end
 
-	if not table_find(players[name].badges, 20) then
-		players[name].questScreenIcon = addImage('17529e2ce64.png', '&10', 750, 315, name)
-		showTextArea(8541584, players[name].jobs[17]..'/15', name, 767, 315, nil, nil, 1, 1, 0, true)
+	if not table_find(players[name].badges, 24) then
+		players[name].questScreenIcon = addImage('1768dd0515a.png', '&10', 740, 310, name)
+		showTextArea(8541584, players[name].jobs[18]..'/20', name, 767, 315, nil, nil, 1, 1, 0, true)
 	end
+	loadPenguinVillage(name)
 
 	addImage("170fa1a5400.png", ":1", 348, 355, name)
 end)

@@ -117,4 +117,11 @@ HouseSystem.plants = {
 		quantyOfSeeds = 1,
 		pricePerSeed = 1000,
 	},
+	[17] = { -- raspberry
+		name = 'raspberry',
+		growingTime = 60*11,
+		stages = {'16bf63634a0.png', '16bf63b93cf.png', '176886c0fef.png', '176886d0954.png', "176886c472a.png", '176886ccf32.png', '176886cecab.png'},
+		quantyOfSeeds = 2,
+		pricePerSeed = 1300,
+	},
 }

@@ -106,43 +106,37 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 						if checkItemQuanty(order.order, 1, player) then
 							removeBagItem(order.order, 1, player)
 							order.fulfilled[player].completed = true
-							for i = 1, #order.fulfilled[player].icons do
-								removeImage(order.fulfilled[player].icons[i])
-							end
+							
+							removeGroupImages(order.fulfilled[player].icons)
 							local reactions = {'17537c7a6ea.png', '17537c7c444.png', '17537c7dd86.png'}
 							local npcEmoji = addImage(reactions[random(#reactions)], '!100', npcRange[1]-50, npcRange[2]-70, player)
 							addTimer(function(time)
 								removeImage(npcEmoji)
 							end, 2000, 0)
 
-							if order.order ~= 'strangePumpkin' then
-								job_updatePlayerStats(player, 9)
-								local sidequest = sideQuests[players[player].sideQuests[1]].type
-								if string_find(sidequest, 'type:deliver') then
-									sideQuest_update(player, 1)
-								end
-								for id, properties in next, players[player].questLocalData.other do 
-									if id:find('deliverOrder') then
-										if type(properties) == 'boolean' then 
-											quest_updateStep(player)
-										else
-											players[player].questStep[3] = players[player].questStep[3] - 1
-											players[player].questLocalData.other[id] = players[player].questStep[3]
-											if players[player].questLocalData.other[id] == 0 then 
-												quest_updateStep(player)
-											end
-										end
-										break
-									end
-								end
-
-								giveExperiencePoints(player, 200)
-								giveCoin(bagItems[order.order].sellingPrice, player, true)
-								chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].sellingPrice..'</vp>', player), player)
-							else
-								job_updatePlayerStats(player, 17)
-								addItem('candyBucket', 1, player)
+							job_updatePlayerStats(player, 9)
+							local sidequest = sideQuests[players[player].sideQuests[1]].type
+							if string_find(sidequest, 'type:deliver') then
+								sideQuest_update(player, 1)
 							end
+							for id, properties in next, players[player].questLocalData.other do 
+								if id:find('deliverOrder') then
+									if type(properties) == 'boolean' then 
+										quest_updateStep(player)
+									else
+										players[player].questStep[3] = players[player].questStep[3] - 1
+										players[player].questLocalData.other[id] = players[player].questStep[3]
+										if players[player].questLocalData.other[id] == 0 then 
+											quest_updateStep(player)
+										end
+									end
+									break
+								end
+							end
+
+							giveExperiencePoints(player, 200)
+							giveCoin(bagItems[order.order].sellingPrice, player, true)
+							chatMessage('<j>'..translate('orderCompleted', player):format('<CE>'..npcName..'</CE>', '<vp>$'..bagItems[order.order].sellingPrice..'</vp>', player), player)
 							return
 						end
 					end
@@ -223,24 +217,20 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local place = callback:sub(7)
 		local placeData = places[place]
 		eventTextAreaCallback(102, player, 'close3_1', true)
-		if place == 'drekkeHouse' then 
-			if players[player].robbery.robbing then
-				return
-			else
-				showCarShop(player)
-			end
-		end
 		if checkGameHour(places[place].opened) or places[place].opened == '-' then
 			for i, v in next, players[player].questLocalData.other do
 				if i:lower():find(place:lower()) and i:find('goTo') then
 					quest_updateStep(player)
 				end
 			end
-			if place == "dealership" or place == "drekkeHouse" then
+			if place == "dealership" then
 				showCarShop(player)
 			elseif place == 'hospital' then
 				if players[player].robbery.robbing then return end
 				loadHospital(player, false)
+			end
+			if players[player].questLocalData.other.goToIsland and room.event:find('christmas') then
+				quest_updateStep(player)
 			end
 			if placeData.exitSensor then
 				movePlayer(
@@ -410,7 +400,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			savedata(player)
 			if players[player].job == 'farmer' then
 				job_updatePlayerStats(player, 5)
-				giveExperiencePoints(player, owner == 'Oliver' and 62 or 250)
+				giveExperiencePoints(player, owner == 'Oliver' and 12 or 50)
 			end
 		end
 	elseif callback == 'recipes' then

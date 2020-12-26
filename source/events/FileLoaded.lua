@@ -5,8 +5,9 @@ onEvent("FileLoaded", function(file, data)
 	end
 
 	if tonumber(file) == 5 then -- RANKING
-		mainAssets.fileCopy._ranking = datas[2]
-		local rankData = datas[1]
+		if true then return end
+		mainAssets.fileCopy._ranking = datas[(mainAssets.season%2 == 0 and 1 or 2)]
+		local rankData = datas[(mainAssets.season%2 == 0 and 2 or 1)]
 		room.globalRanking = {}
 
 		if rankData then

@@ -6,9 +6,15 @@ eventNewPlayer = function(player)
 	showTextArea(8502, '', player, -100, -1000, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
 	showTextArea(8503, '', player, -100, 600, 1000, 1000, 0x6a7595, 0x6a7595, 1, true)
 	local playerLanguage = ROOM.playerList[player] and lang[ROOM.playerList[player].language] and ROOM.playerList[player].language or 'en'
+	local isChristmas = room.event:find('christmas')
 	if room.isInLobby then
-		addImage("16d888d9074.jpg", "?1", 0, 0, player)
-		addImage("16d88917a35.png", "!1", 0, 0, player)
+		if isChristmas then
+			addImage("1767098858e.jpg", "?1", 0, 0, player)
+			addImage("17670997b44.png", "!1", 0, 0, player)
+		else
+			addImage("16d888d9074.jpg", "?1", 0, 0, player)
+			addImage("16d88917a35.png", "!1", 0, 0, player)
+		end
 		addImage("16d84d2ead7.png", "!1", 620, 315, player)
 		players[player] = {
 			lang = playerLanguage,
@@ -63,15 +69,16 @@ eventNewPlayer = function(player)
 	-- PLACE: Police Station 
 		addImage("15a09d13130.png", "?8", 1000, 1569+room.y, player)
 	-- PLACE: Clock Tower 
-		addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
+		--addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
+		addImage("1768d8f8e87.png", '?9', 2050-44, 1600+room.y, player)
 	-- PLACE: Bank
 		addImage("16b947781b3.png", "?10", 2700, 7487, player)
-	-- Ranking 
-		addImage("17118e74fb1.png", "?11", 3710, 7480, player)
+	-- Ranking
+		addImage(isChristmas and '17688e0864b.png' or "17118e74fb1.png", "?11", 3710, 7480, player)
 		addImage('17118ee6159.jpg', '?12', 3807, 7535, player)
 		addImage('17118f3c5fd.jpg', '?13', 3807, 7560, player)
-		for i = 1, 7 do 
-			addImage("1711921401a.png", "?14", 3669 + (i-1)*93, 7725, player)
+		for i = 1, 7 do
+			addImage(isChristmas and '17688ef19e3.png' or "17688f01766.png", "?14", 3660 + (i-1)*96, 7715, player)
 		end
 	-- PLACE: Market
 		addImage("16f0a2f5cab.png", "?16", 3390, 1764+room.y-7, player)
@@ -80,8 +87,10 @@ eventNewPlayer = function(player)
 	-- PLACE: Hospital 
 		addImage("16f1bb06081.png", "?18", 4650, 1560+room.y+11, player)
 	-- BIOME: Ocean
-		addImage("17087b677f9.png", "?20", 6399, 7800, player)
-		addImage("17087b28e8a.png", "!10", 6399, 7800, player)
+		--addImage("17087b677f9.png", "?20", 6399, 7800, player)
+		--addImage("17087b28e8a.png", "!10", 6399, 7800, player)
+		addImage("17690f11547.png", "_1000", 7948, 7676, player)
+
 	-- PLACE: Island
 		addImage("170926f4ab0.png", "?21", 9160, 7400, player)
 		addImage("171b840b733.png", "?22", 13893, 7375, player)
@@ -132,7 +141,11 @@ eventNewPlayer = function(player)
 				end)
 			addImage("16be83d875e.png", "_699", (i-1)*200 + 8800, 126+25, player)
 			-- Trees
-			addImage('170c16e6f4e.png', '?1', (i-1)*3300 - 100, -100, player)
+			if isChristmas then
+				addImage('176709c4b02.png', '?1', (i-1)*3300 - 100, -100, player)
+			else
+				addImage('170c16e6f4e.png', '?1', (i-1)*3300 - 100, -100, player)
+			end
 		end
 	-- PLACE: MINE 
 		addImage("172013ac7fd.png", "!121", 1000, 8450, player)
@@ -229,12 +242,9 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Iho', {'1739eb491e8.png'}, player, 16620, 153, {color = '20B2AA', sellingItems = true, place = 'furnitureStore'})
 	gameNpcs.addCharacter('Lindsey', {'17470458c9d.png'}, player, 11550, 7645, {type = '_', blockClick = true, job = 'farmer'})
 
-	--gameNpcs.addCharacter('Peter', {'17504532c06.png'}, player, 12650, 3130, {job = 'ghostbuster', jobConfirm = true})
-	gameNpcs.addCharacter('Drekkemaus', {'1750453019c.png'}, player, 13350, 2938, {sellingItems = true, place = 'drekkeHouse'})
-	addImage("1752eb3fdf0.png", "_1000", 13350, 7313, player) -- Drekkemaus House
-	addImage("1752e08ba50.png", "!1000", 13550, 3155, player) -- Broom
-	showTextArea(-14454514, '<p align="center"><font size="12"><a href="event:enter_drekkeHouse">Drekkemaus\n', player, 13357, 7289+176+23, 150, nil, 0x1, 0x1, 0)
-	showTextArea(-14454515, '<p align="center">17', player, 13357, 7289+176+11, 150, nil, 0, 0)
+	gameNpcs.addCharacter('Jingle', {'1768d8f6081.png'}, player, 9395, 4910, {sellingItems = true, place = 'clockTower'})
+	gameNpcs.addCharacter('Elf', {'1768d94a7f0.png', '1768d946991.png'}, player, 9370, 5162, {place = 'clockTower', formatDialog = 'christmasEventEnds'})
+	gameNpcs.addCharacter('Perry', {'17691500c86.png', '17691502e86.png'}, player, 4000, 7677)
 
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)
@@ -270,5 +280,29 @@ eventNewPlayer = function(player)
 				giveBadge(i, 1)
 			end
 		end
+	end
+end
+
+loadPenguinVillage = function(player)
+	if players[player].jobs[19] > 0 then
+		gameNpcs.addCharacter('Flipper', {'1768903003f.png', '1768902d959.png'}, player, 11000, 4936)
+		gameNpcs.addCharacter('Mac', {'1768903003f.png', '1768902d959.png'}, player, 12420, 5164)
+		gameNpcs.addCharacter('Poppy', {'1768903003f.png', '1768902d959.png'}, player, 12000, 5164)
+		gameNpcs.addCharacter('Penny', {'1768903003f.png', '1768902d959.png'}, player, 11465, 5164)
+		gameNpcs.addCharacter('Tiny', {'17690dcd596.png'}, player, 11950, 5075)
+		gameNpcs.addCharacter('Icicle', {'17690dcfd83.png', '1768902d959.png'}, player, 10880, 5047)
+	else
+		gameNpcs.addCharacter('Skipper', {'1768903003f.png', '1768902d959.png'}, player, 8075, 7665, {
+			endEvent = function(player)
+				if checkItemQuanty('fish_Frozice', 5, player) then
+					removeBagItem('fish_Frozice', 5, player)
+					players[player].jobs[19] = 1
+					loadPenguinVillage(player)
+					loadMap(player)
+					gameNpcs.removeNPC('Skipper', player)
+					savedata(player)
+				end
+			end
+		})
 	end
 end
