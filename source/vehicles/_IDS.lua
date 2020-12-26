@@ -176,4 +176,14 @@ mainAssets.__cars = {
 		name    = 'Broom',
 		icon    = '1752dfcf1c7.png',
 	},
+	[18] = {
+		type    = 'boat',
+		price  = 1000000000,
+		maxVel = 200,
+		image  = {'175d322a0e3.png', '175d322bb85.png'},
+		x      = -200,
+		y      = -65,
+		name   = 'Premium Yacht',
+		icon    = '175d328b301.png',
+	},
 }

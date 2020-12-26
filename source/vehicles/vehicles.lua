@@ -11,13 +11,16 @@ drive = function(name, vehicle)
 			if biome.canUseBoat then
 				if math_range(biome.location, {x = ROOM.playerList[name].x, y = ROOM.playerList[name].y}) then
 					canUseBoat = where
+					if where == 'sea' then
+						return alert_Error(name, 'error', 'frozenLake')
+					end
 					break
 				end
 			end
 		end
 		if not canUseBoat then return end
 		local align = players[name].place == room.fishing.biomes[canUseBoat].between[1] and room.fishing.biomes[canUseBoat].location[1].x+120 or room.fishing.biomes[canUseBoat].location[3].x-130
-		movePlayer(name, align, room.fishing.biomes[canUseBoat].location[1].y + (vehicle == 11 and -50 or 70), false)
+		movePlayer(name, align, room.fishing.biomes[canUseBoat].location[1].y + ((vehicle == 11 or vehicle == 18) and -50 or 70), false)
 		local function getOutVehicle(player, side)
 			players[player].place = room.fishing.biomes[canUseBoat].between[side]
 			removeCarImages(player)
@@ -179,30 +182,5 @@ showCarShop = function(player)
 				currentCount = currentCount + 1
 			end
 		end
-	end
-
-	showTextArea(5068, '<p align="center"><font color="#000000" size="14">'..translate('vehicle_17', player), player, 13520, 3231, 140, 80, 0x46585e, 0x46585e, 1)
-	showTextArea(5069, translate('speed', player):format(mainAssets.__cars[17].maxVel)..' km/h', player, 13520, 3231+20, 140, nil, 0x46585e, 0x00ff00, 0)
-
-	local broomInfo = mainAssets.__cars[17]
-	if not table_find(players[player].cars, 17) then
-		if broomInfo.price <= players[player].coins then
-			showTextArea(5070, '<p align="center"><vp>$'..broomInfo.price, player, 13520, 3231+60, 140, nil, nil, 0xff0000, 0.5, false,
-				function(player)
-					if table_find(players[player].cars, 17) then return end
-					giveCar(player, 17)
-					players[player].selectedCar = 17
-					players[player].place = 'island'
-
-					movePlayer(player, 13414, 7461, false)
-					giveCoin(-mainAssets.__cars[17].price, player)
-					drive(player, 17)
-					showCarShop(player)
-				end)
-		else
-			showTextArea(5070, '<p align="center"><r>$'..broomInfo.price, player, 13520, 3231+60, 140, nil, nil, 0xff0000, 0.5)
-		end
-	else
-		showTextArea(5070, '<p align="center">'..translate('owned', player), player, 13520, 3231+60, 140, nil, nil, 0xff0000, 0.5)
 	end
 end
