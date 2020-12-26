@@ -1,10 +1,10 @@
 local badgesPriority = {
-	10, 5, 2, 3, 15, 16, 17, 18, 19, 4, 8, 9, 14, 0, 6, 7, 20, 1, 11, 12, 13, 21
+	10, 5, 2, 3, 15, 16, 17, 18, 19, 4, 8, 9, 14, 0, 6, 7, 20, 24, 1, 11, 12, 13, 21, 22, 23
 }
 
 badges = {
 	[0] = { -- Halloween2019
-		png = '16de63ec86f.png',
+		png = '1769050490e.png',
 	},
 	[1] = { -- meet Fofinhoppp
 		png = '171e0f4e290.png',
@@ -46,7 +46,7 @@ badges = {
 		png = '17479ba7052.png',
 	},
 	[14] = { -- Cook 500 dishes
-		png = '171db534474.png',
+		png = '1769050831b.png',
 	},
 	[15] = { -- Sold 300 yellow crystals
 		png = '174b2214c49.png',
@@ -68,5 +68,14 @@ badges = {
 	},
 	[21] = { -- Season 4 reward
 		png = '17529b1df9b.png',
+	},
+	[22] = { -- Season 5 reward
+		png = '175d2a8ae26.png',
+	},
+	[23] = { -- Season 6 reward
+		png = '17690581d74.png',
+	},
+	[24] = { -- Christmas2020
+		png = '176905067bc.png',
 	},
 }
