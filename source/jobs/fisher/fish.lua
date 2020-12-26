@@ -34,7 +34,6 @@ playerFishing = function(name, x, y, biome)
 				end
 				player.fishing[3] = {}
 				player.fishing[3][#player.fishing[3]+1] = addImage(playerStatus.isFacingRight and '170b1daa3ed.png' or '170b1daccfb.png', '$'..name, playerStatus.isFacingRight and 0 or -40, -42)
-
 			else
 				player.fishing[3][#player.fishing[3]+1] = addImage('170b66954aa.png', '$'..name, playerStatus.isFacingRight and 35 or -40, -35)
 			end
@@ -53,22 +52,19 @@ playerFishing = function(name, x, y, biome)
 			local willFish = room.fishing.biomes[biome].fishes[rarityFished][random(#room.fishing.biomes[biome].fishes[rarityFished])]
 			local willFishInfo = bagItems[willFish]
 
+			if rarityFished == 'rare' then
+				if checkItemQuanty('raspberry', 2, name) then
+					removeBagItem('raspberry', 2, name)
+					willFish = 'fish_Frozice'
+					willFishInfo = bagItems['fish_Frozice']
+				end
+			end
+
 			modernUI.new(name, 120, 120)
 			:build()
 			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, ":70", 400 - 50 * 0.5, 180, name)
 
-			local canAddItem = true
-			if willFish:find('Goldenmare') then
-				local amount = (checkItemInChest('fish_Goldenmare', 1, name) or 0) + (checkItemQuanty('fish_Goldenmare', 1, name) or 0)
-				if amount > 10 then
-					canAddItem = false
-					giveCoin(10000, name)
-					chatMessage('<j>'..translate('seedSold', name):format('<vp>'..translate('item_fish_Goldenmare', name)..'</vp>', '<fc>$10000</fc>'), name)
-				end
-			end
-			if canAddItem then
-				addItem(willFish, 1, name)
-			end
+			addItem(willFish, 1, name)
 
 			if rarityFished == 'normal' then 
 				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] - .5
