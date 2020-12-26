@@ -27,7 +27,64 @@ startRoom = function()
 				for i, v in next, ROOM.playerList do
 					updateBarLife(i)
 				end
+				TFM.snow(1000, 10)
 			end, 60000, 0)
+
+			local totalOfSpawnedGifts = 0
+			addTimer(function()
+				if room.isInLobby then return end
+				local giftPosition = random(1, #room.giftsPositions)
+				local giftsLeft = 3
+				local giftId = 1000 + totalOfSpawnedGifts
+
+				local allImages = {}
+				local playerImages = {}
+
+				giftPosition = room.giftsPositions[giftPosition]
+				TouchSensor.add(
+					0,
+					giftPosition.x,
+					giftPosition.y-20,
+					giftId,
+					0,
+					false,
+					0,
+					function(player)
+						if giftsLeft > 0 then
+							giftsLeft = giftsLeft - 1
+
+							modernUI.new(player, 120, 120)
+							:build()
+							players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems['redPresent'].png, ":70", 400 - 50 * 0.5, 180, player)
+
+							addItem('redPresent', 1, player)
+							removeImage(playerImages[player])
+							if giftsLeft == 0 then
+								TouchSensor.remove(giftId)
+								removeGroupImages(allImages)
+							end
+						end
+					end,
+					false
+				)
+				for player in next, ROOM.playerList do
+					local _img = addImage('1768f9633af.png', "!10", giftPosition.x-15, giftPosition.y-15-20, player)
+
+					allImages[#allImages+1] = _img
+					playerImages[player] = _img
+
+					TouchSensor.add(
+						0,
+						giftPosition.x,
+						giftPosition.y-20,
+						giftId,
+						0,
+						false,
+						player
+					)
+				end
+				totalOfSpawnedGifts = totalOfSpawnedGifts + 1
+			end, 10 * 60 * 1000, 0)
 		end
 	end
 end

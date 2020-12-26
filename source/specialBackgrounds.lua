@@ -20,4 +20,12 @@ room.specialBackgrounds   = {
 		day         = '1752efbedd0.jpg',
 		align       = 1373,
 	},
+	christmas2020 = {
+		evening     = '17690bea277.jpg',
+		dawn        = '176708fb915.jpg',
+		night       = '1767090e36c.jpg',
+		day         = '1767089b19c.jpg',
+		forSaleSign = '1767190d05d.png',
+		align       = 1919,
+	},
 }

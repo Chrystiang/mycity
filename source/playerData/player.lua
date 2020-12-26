@@ -33,14 +33,8 @@ giveBadge = function(player, id)
 	modernUI.new(player, 240, 220, translate('newBadge', player))
 	:build()
 	:badgeInterface(id)
-	:addConfirmButton(function() end, translate('confirmButton_Great', player))
+	:addConfirmButton(function(player) if id == 24 then giveLevelOrb(player, 9) end end, translate('confirmButton_Great', player))
 
-	if id == 20 then
-		removeImage(players[player].questScreenIcon)
-		players[player].questScreenIcon = nil
-		removeTextArea(8541584, player)
-		giveLevelOrb(player, 6)
-	end
 	savedata(player)
 end
 

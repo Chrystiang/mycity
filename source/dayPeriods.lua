@@ -48,6 +48,7 @@ background = function(player, period, rain, getPng)
 		for i = 1, 3 do
 			players[player].background[#players[player].background+1] = addImage(png, '?1', 6700+(i-1)*align, 4830, player) -- police station
 			players[player].background[#players[player].background+1] = addImage(png, '?1', 4500+(i-1)*align, 4920 + yalign, player)
+			players[player].background[#players[player].background+1] = addImage(png, '?1', 8230+(i-1)*align, 3900, player)
 		end
 		if period == 'night' then
 			players[player].background[#players[player].background+1] = addImage("16b952d1012.png", "!9999", 4500, 4920 + yalign, player)

@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 3, 2}
+local version       = {3, 4, 0}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local system 		= system
@@ -74,7 +74,7 @@ local setPlayerScore= TFM.setPlayerScore
 local addTextArea   = ui.addTextArea
 local removeTextArea= ui.removeTextArea
 
-local bagIds, bagItems, recipes, modernUI, HouseSystem, _QuestControlCenter, places, sideQuests, versionLogs
+local bagIds, bagItems, lootDrops, recipes, modernUI, HouseSystem, _QuestControlCenter, places, sideQuests, versionLogs
 local codes, codesIds, community, badges, bagUpgrades
 
 local chatCommands  = {}
@@ -87,8 +87,8 @@ local players       = {}
 local jobs          = {}
 local daveOffers 	= {}
 
-local maxFurnitureStorage   = 60
-local maxFurnitureDepot     = 60
+local maxFurnitureStorage   = 65
+local maxFurnitureDepot     = 75
 local questsAvailable       =  5
 
 randomseed(os_time())
@@ -123,7 +123,7 @@ local room = { -- Assets that change while the script runs
 	requiredPlayers = 4,
 	discordServerUrl= 'https://discord.gg/uvGwa2y',
 	globalRanking   = {},
-	event           = 'halloween2020',
+	event           = 'christmas2020',
 	gameDayStep     = 'day',
 	houseImgs       = {},
 	y               = 5815,
@@ -140,13 +140,43 @@ local room = { -- Assets that change while the script runs
 		gravity = 10,
 		wind 	= 0,
 	},
+	giftsPositions = {
+		{x =   500, y =  240}, -- Jason's Workshop
+		{x =  7150, y = 6085}, -- Police Station, next to sherlock
+		{x =  7300, y = 5960}, -- Police Station, office
+		{x =  8200, y = 6400}, -- Police Station, jail
+		{x =  4980, y =  240}, -- Market
+		{x = 14700, y =  240}, -- Pizzeria
+		{x = 13130, y =  240}, -- Fish Shop
+		{x = 17500, y = 1710}, -- Oliver's Farm, garden
+		{x = 12120, y =  240}, -- Seed Store
+		{x =  6480, y =  240}, -- Café
+		{x = 10750, y =  240}, -- Potion Shop
+		{x = 11000, y = 7770}, -- Island, next to bridge
+		{x = 15970, y = 1705}, -- Remi's restaurant
+		{x =   700, y = 8180}, -- Mine
+		{x =  5800, y = 5235}, -- Bank
+		{x =  1618, y = 8558}, -- Maze
+		{x =  1979, y = 8449}, -- Maze
+		{x =  2562, y = 8651}, -- Maze
+		{x =  4489, y = 8644}, -- Maze
+		{x =  5440, y = 8352}, -- Maze
+		{x =  5844, y = 7774}, -- Town
+		{x =  2664, y = 7774}, -- Town
+		{x =  5812, y = 5244}, -- Bank
+		{x =   538, y = 7406}, -- Town - Build Shop
+		{x = 10835, y = 7620}, -- Bridge
+		{x = 12000, y = 7580}, -- Island - Seed Store
+		{x = 13390, y = 7464}, -- Apiary
+		{x =  9962, y = 7774}, -- Island
+	},
 }
 
 local mainAssets = { -- Assets that rarely changes while the script runs
-	season = 5,
+	season = 7,
 	gamemodes = {},
 	fileCopy = {
-		_ranking = 'Hakan#7572, Emirfaresi#0000, Gothic_girl#7500, Ddayyy#0000, Wolflidiwolf#0000, Darkknight#3569, Kb65#0000, Millionaires#0928, Beril#7474, Ratagominha#0000',
+		_ranking = 'Emirfaresi#0000 Zeldris#3874 Pandorastark#2899 Drivg#0000 Andy19#3870 Kb65#0000 Akbaba#0241 Ddayyy#0000 Gothic_girl#7500 Ratagominha#0000',
 	},
 	roles = {
 		admin = {},
@@ -169,6 +199,9 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 			'17479ee148d.png', -- Season 3
 			'17529b24a35.png', -- Season 4
 			'17529b280e3.png', -- Halloween2020
+			'175d27458f5.png', -- Season 5
+			'1769064dc3b.png', -- Season 6
+			'1769069fec5.png', -- Christmas2020
 		},
 		lvl = {
 			{'1716449ea8f.png'},
@@ -208,7 +241,7 @@ local imgsToLoad = {'175130b40ff.png', '1721ee7d5b9.png', '17184484e6b.png', '17
 local npcsStores = {
 	items = {},
 	shops = {
-		marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, alicia = {}, drekkemaus = {}, all = {},
+		marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, alicia = {}, drekkemaus = {}, jingle = {}, all = {},
 	},
 }
 

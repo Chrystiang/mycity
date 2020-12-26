@@ -226,6 +226,17 @@ versionLogs = {
 		en = 'Halloween Event!',
 		id = 'Acara Halloween!',
 		tr = 'Cadılar Bayramı Etkinliği!',
+	},
+	['v3.3.3'] = {
+		releaseDate = '16/11/2020', -- dd/mm/yy
+		banner = '175d2742cad.png',
+		en = '#MyCity!',
+	},
+	['v3.4.0'] = {
+		releaseDate = '23/12/2020', -- dd/mm/yy
+		banner = '17688a594a9.png',
+		en = 'Winter Event!',
+		br = 'Evento de Inverno!',
 	}
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
