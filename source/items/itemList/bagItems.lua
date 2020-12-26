@@ -1,3 +1,6 @@
+lootDrops = {
+	redPresent = {},
+}
 bagItems = {
 	energyDrink_Basic = {
 		id = 1,
@@ -6,6 +9,7 @@ bagItems = {
 		power = 10,
 		type = 'food',
 		npcShop = 'kariina',
+		canBeFoundIn = {'redPresent'},
 	},
 	energyDrink_Mega = {
 		id = 2,
@@ -14,6 +18,7 @@ bagItems = {
 		power = 15,
 		type = 'food',
 		npcShop = 'kariina',
+		canBeFoundIn = {'redPresent'},
 	},
 	energyDrink_Ultra = {
 		id = 3,
@@ -22,6 +27,7 @@ bagItems = {
 		power = 30,
 		type = 'food',
 		npcShop = 'kariina',
+		canBeFoundIn = {'redPresent'},
 	},
 	pickaxe = {
 		id = 4,
@@ -40,6 +46,7 @@ bagItems = {
 			chatMessage('<font color="#DAA520">'..updateHour(nil, true), i)
 		end,
 		npcShop = 'john',
+		canBeFoundIn = {'redPresent'},
 	},
 	milk = {
 		id = 6,
@@ -47,6 +54,7 @@ bagItems = {
 		png = '174acaef78b.png',
 		hunger = 1,
 		type = 'food',
+		canBeFoundIn = {'redPresent'},
 	},
 	goldNugget = {
 		id = 7,
@@ -98,10 +106,7 @@ bagItems = {
 					if room.bankBeingRobbed then return end
 					room.bankRobStep = 'robStarted'
 					removeTimer('bankDoorsBroken')
-					for i = 1, #room.bankImages do
-						removeImage(room.bankImages[i])
-					end
-					room.bankImages = {}
+					removeGroupImages(room.bankImages)
 					addBankRobbingAssets()
 					reloadBankAssets()
 
@@ -115,7 +120,7 @@ bagItems = {
 							if players[i].job ~= 'police' then 
 								if math_hypo(x, y, v.x, v.y) <= 100 then
 									checkIfPlayerIsDriving(i)
-									movePlayer(i, places['bank'].tp[1], places['bank'].tp[2], false)
+									movePlayer(i, places['bank'].exitSensor[1]-70, places['bank'].exitSensor[2], false)
 									players[i].place = 'bank'
 									showOptions(i)
 								end
@@ -127,6 +132,7 @@ bagItems = {
 			return true
 		end,
 		npcShop = 'john',
+		canBeFoundIn = {'redPresent'},
 	},
 	shrinkPotion = {
 		id = 9,
@@ -157,6 +163,7 @@ bagItems = {
 			end, 1000, 30)
 		end,
 		npcShop = 'indy',
+		canBeFoundIn = {'redPresent'},
 	},
 	growthPotion = {
 		id = 10,
@@ -183,6 +190,7 @@ bagItems = {
 			end, 1000, 30)
 		end,
 		npcShop = 'indy',
+		canBeFoundIn = {'redPresent'},
 	},
 	coffee = {
 		id = 11,
@@ -192,6 +200,7 @@ bagItems = {
 		png = '16c00e1f53b.png',
 		type = 'food',
 		npcShop = 'alicia',
+		canBeFoundIn = {'redPresent'},
 	},
 	hotChocolate = {
 		id = 12,
@@ -199,6 +208,8 @@ bagItems = {
 		png = '17157e81a35.png',
 		type = 'food',
 		npcShop = 'alicia',
+		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	milkShake = {
 		id = 13,
@@ -206,6 +217,7 @@ bagItems = {
 		png = '17157f95ae1.png',
 		type = 'food',
 		npcShop = 'kariina, alicia',
+		canBeFoundIn = {'redPresent'},
 	},
 	seed = {
 		id = 14,
@@ -272,6 +284,7 @@ bagItems = {
 			end
 		end,
 		npcShop = 'body',
+		canBeFoundIn = {'redPresent'},
 	},
 	fertilizer = {
 		id = 15,
@@ -285,6 +298,7 @@ bagItems = {
 			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
+		canBeFoundIn = {'redPresent'},
 	},
 	water = {
 		id = 16,
@@ -298,6 +312,7 @@ bagItems = {
 			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
+		canBeFoundIn = {'redPresent'},
 	},
 	tomato = {
 		id = 17,
@@ -305,6 +320,7 @@ bagItems = {
 		png = '174acaf266f.png',
 		hunger = .5,
 		type = 'food',
+		canBeFoundIn = {'redPresent'},
 	},
 	bag = {
 		id = 18,
@@ -315,6 +331,7 @@ bagItems = {
 	tomatoSeed = {
 		id = 18,
 		png = '16c00dafc00.png',
+		canBeFoundIn = {'redPresent'},
 	},
 	oregano = {
 		id = 19,
@@ -322,10 +339,12 @@ bagItems = {
 		png = '16bfcb07a36.png',
 		hunger = .1,
 		type = 'food',
+		canBeFoundIn = {'redPresent'},
 	},
 	oreganoSeed = {
 		id = 20,
 		png = '16c258cc26c.png',
+		canBeFoundIn = {'redPresent'},
 	},
 	lemon = {
 		id = 21,
@@ -334,10 +353,12 @@ bagItems = {
 		power = 2,
 		hunger = 3,
 		type = 'food',
+		canBeFoundIn = {'redPresent'},
 	},
 	lemonSeed = {
 		id = 22,
 		png = '16c00db153d.png',
+		canBeFoundIn = {'redPresent'},
 	},
 	salt = {
 		id = 23,
@@ -345,6 +366,7 @@ bagItems = {
 		type = 'food',
 		png = '16c1bfca398.png',
 		hunger = -15,
+		canBeFoundIn = {'redPresent'},
 	},
 	pepper = {
 		id = 24,
@@ -353,6 +375,7 @@ bagItems = {
 		hunger = -15,
 		type = 'food',
 		png = '174acaf0efe.png',
+		canBeFoundIn = {'redPresent'},
 	},
 	pepperSeed = {
 		id = 25,
@@ -375,6 +398,8 @@ bagItems = {
 		type = 'food',
 		png = '17157debbd9.png',
 		npcShop = 'kariina',
+		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	hotsauce = {
 		id = 29,
@@ -382,6 +407,8 @@ bagItems = {
 		type = 'food',
 		png = '17157e02ea4.png',
 		npcShop = 'kariina',
+		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	dough = {
 		id = 30,
@@ -407,6 +434,7 @@ bagItems = {
 		png = '171576bbb9e.png',
 		power = 20,
 		npcShop = 'kariina',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	cornFlakes = {
 		id = 34,
@@ -441,6 +469,7 @@ bagItems = {
 			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'marcus',
+		canBeFoundIn = {'redPresent'},
 	},
 	cookies = {
 		id = 38,
@@ -448,6 +477,7 @@ bagItems = {
 		png = '17157d3d7b0.png',
 		type = 'food',
 		npcShop = 'alicia',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	sugar = {
 		id = 39,
@@ -491,7 +521,8 @@ bagItems = {
 			if players[i].isBlind then setNightMode(i) end
 			if players[i].isFrozen then freezePlayer(i, true) end
 			movePlayer(i, oldPositions[1], oldPositions[2], false)
-		end
+		end,
+		canBeFoundIn = {'redPresent'},
 	},
 	fish_SmoltFry = {
 		id = 44,
@@ -500,6 +531,7 @@ bagItems = {
 		png = '170b7040298.png',
 		power = -10,
 		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Lionfish = {
 		id = 45,
@@ -508,6 +540,7 @@ bagItems = {
 		png = '170b733380f.png',
 		power = -10,
 		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Dogfish = {
 		id = 46,
@@ -516,6 +549,7 @@ bagItems = {
 		png = '170b778a98b.png',
 		power = -10,
 		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Catfish = {
 		id = 47,
@@ -524,6 +558,7 @@ bagItems = {
 		png = '170b77a4f6d.png',
 		power = -10,
 		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_RuntyGuppy = {
 		id = 48,
@@ -532,6 +567,7 @@ bagItems = {
 		png = '170b77ca0c7.png',
 		power = -10,
 		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Lobster = {
 		id = 49,
@@ -540,6 +576,7 @@ bagItems = {
 		png = '170b788a90d.png',
 		power = -20,
 		hunger = -20,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Goldenmare = {
 		id = 50,
@@ -548,6 +585,7 @@ bagItems = {
 		png = '170b7904d24.png',
 		power = -60,
 		hunger = -40,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Frog = {
 		id = 51,
@@ -556,30 +594,35 @@ bagItems = {
 		png = '170c186188b.png',
 		power = -1,
 		hunger = -1,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	lemonade = {
 		id = 52,
 		price = 0,
 		png = '17157d74289.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	lobsterBisque = {
 		id = 53,
 		price = 0,
 		png = '17157feb8ea.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	bread = {
 		id = 54,
 		price = 0,
 		png = '171577ce37b.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	bruschetta = {
 		id = 55,
 		price = 0,
 		png = '17157829bde.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	waffles = {
 		id = 56,
@@ -587,6 +630,7 @@ bagItems = {
 		png = '171578aa546.png',
 		type = 'food',
 		npcShop = 'alicia',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	egg = {
 		id = 57,
@@ -595,6 +639,7 @@ bagItems = {
 		type = 'food',
 		power = 1,
 		hunger = 1,
+		canBeFoundIn = {'redPresent'},
 	},
 	honey = {
 		id = 58,
@@ -603,18 +648,23 @@ bagItems = {
 		type = 'food',
 		power = 1,
 		hunger = 3,
+		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	grilledLobster = {
 		id = 59,
 		price = 0,
 		png = '17157dd5e6a.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	frogSandwich = {
 		id = 60,
 		price = 0,
 		png = '17157f6d781.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	chocolateCake = {
 		id = 61,
@@ -648,6 +698,7 @@ bagItems = {
 		price = 20,
 		png = '1715af36d28.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	potato = {
 		id = 66,	
@@ -667,12 +718,14 @@ bagItems = {
 		price = 20,
 		png = '1715b4476e2.png',
 		type = 'food',
+		credits = 'Mescoleur#0000',
 	},
 	garlicBread = {
 		id = 69,	
 		price = 20,
 		png = '1715f2f672e.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	garlic = {
 		id = 70,	
@@ -681,18 +734,21 @@ bagItems = {
 		type = 'food',
 		power = 4,
 		hunger = 1,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	blueprint = {
 		id = 71,
 		price = 200,
 		type = 'holdingItem',
 		png = '171af19adb5.png',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	crystal_yellow = {
 		id = 72,
 		type = 'crystal',
 		png = '172373f61f1.png',
 		jobStatID = 12,
+		canBeFoundIn = {'redPresent'},
 	},
 	crystal_blue = {
 		id = 73,
@@ -705,6 +761,7 @@ bagItems = {
 		type = 'crystal',
 		png = '172373f2060.png',
 		jobStatID = 14,
+		canBeFoundIn = {'redPresent'},
 	},
 	crystal_green = {
 		id = 75,
@@ -717,6 +774,7 @@ bagItems = {
 		type = 'crystal',
 		png = '172373f3f04.png',
 		jobStatID = 16,
+		canBeFoundIn = {'redPresent'},
 	},
 	banana = {
 		id = 77,
@@ -733,21 +791,25 @@ bagItems = {
 		id = 79,
 		type = 'food',
 		png = '1739f4c8a00.png',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	grilledCheese = {
 		id = 80,
 		type = 'food',
 		png = '173f8126cf7.png',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fishBurger = {
 		id = 81,
 		type = 'food',
 		png = '173f814d309.png',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	sushi = {
 		id = 82,
 		type = 'food',
 		png = '173f81bb164.png',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	bananaCake = {
 		id = 83,
@@ -758,6 +820,7 @@ bagItems = {
 		id = 84,
 		type = 'food',
 		png = '1740db2a66d.png',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	meat = {
 		id = 85,	
@@ -765,6 +828,7 @@ bagItems = {
 		png = '1745f80713e.png',
 		type = 'food',
 		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	mushroom = {
 		id = 86,
@@ -773,36 +837,44 @@ bagItems = {
 		price = 200,
 		energy = 9,
 		hunger = 4,
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	cheeseburger = {
 		id = 87,	
 		png = '1745f8487c1.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	lasagna = {
 		id = 88,	
 		png = '1745f84a7f0.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	meatballs = {
 		id = 89,	
 		png = '1745f8ed295.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	garlicMashedPotatoes = {
 		id = 90,	
 		png = '17479fb35b3.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	mushroomBurger = {
 		id = 91,	
 		png = '1745f96c2ba.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	creamOfMushroom = {
 		id = 92,	
 		png = '1745f9a16e2.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	pumpkinPie = {
 		id = 93,
@@ -810,21 +882,25 @@ bagItems = {
 		png = '1747006faae.png',
 		type = 'food',
 		npcShop = 'alicia',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	steakFrites = {
 		id = 94,	
 		png = '1747006cf6d.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	breadedCutlet = {
 		id = 95,	
 		png = '1747006a7b5.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fishAndChips = {
 		id = 96,	
 		png = '174700680f4.png',
 		type = 'food',
+		credits = '<CS>Klei Entertainment</CS>',
 	},
 	cyan_luckyFlowerSeed = {
 		id = 97,
@@ -853,6 +929,8 @@ bagItems = {
 	random_luckyFlowerSeed = {
 		id = 103,
 		png = '174accc594d.png',
+		canBeFoundIn = {'redPresent'},
+		lootBoxChance = 20,
 	},
 	cyan_luckyFlower = {
 		id = 104,
@@ -905,6 +983,7 @@ bagItems = {
 		placementFunction = function(player)
 			return HouseSystem.removeCrop(player)
 		end,
+		canBeFoundIn = {'redPresent'},
 	},
 	strangePumpkin = {
 		id = 111,
@@ -929,7 +1008,82 @@ bagItems = {
 		hunger = 20,
 		limitedTime = os_time{day=16, year=2020, month=11},
 	},
-}	
+	raspberry = {
+		id = 114,
+		png = '176887ebc7c.png',
+		type = 'food',
+		power = 30,
+		hunger = 25,
+		limitedTime = os_time{day=15, year=2021, month=1},
+	},
+	raspberrySeed = {
+		id = 115,
+		png = '1768883f48c.png',
+		qpPrice = 30,
+		limitedTime = os_time{day=15, year=2021, month=1},
+		canBeFoundIn = {'redPresent'},
+	},
+	fish_Mudfish = {
+		id = 116,
+		price = 15,
+		type = 'food',
+		png = '17688936fdb.png',
+		power = -10,
+		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
+	},
+	fish_Frozice = {
+		id = 117,
+		price = 1200,
+		type = 'food',
+		png = '1768896896f.png',
+		power = 20,
+		hunger = 20,
+		credits = '<CS>Klei Entertainment</CS>',
+		limitedTime = os_time{day=16, year=2021, month=1},
+	},
+	fish_Sinkfish = {
+		id = 118,
+		price = 15,
+		type = 'food',
+		png = '1768899aa8f.png',
+		power = -10,
+		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
+	},
+	fish_Bittyfish = {
+		id = 119,
+		price = 300,
+		type = 'food',
+		png = '176889e0f82.png',
+		power = -10,
+		hunger = -10,
+		credits = '<CS>Klei Entertainment</CS>',
+	},
+	redPresent = {
+		id = 120,
+		type = 'holdingItem',
+		png = '1768d396143.png',
+		holdingImages = {'1768d396143.png', '1768d396143.png'}, -- left, right
+		holdingAlign = {{-35, -20}, {-15, -20}}, -- left, right
+		placementFunction = function(player)
+			local gift = lootDrops.redPresent[random(#lootDrops.redPresent)]
+			if bagItems[gift].lootBoxChance then
+				local chance = random(100)
+				if chance >= bagItems[gift].lootBoxChance then
+					gift = 'cheese'
+				end
+			end
+
+			modernUI.new(player, 120, 120)
+			:build()
+			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[gift].png, ":70", 400 - 50 * 0.5, 180, player)
+			addItem(gift, 1, player)
+			return true
+		end,
+		limitedTime = os_time{day=15, year=2021, month=1},
+	},
+}
 
 for item, data in next, bagItems do
 	if item:find('Seed') then
@@ -938,5 +1092,8 @@ for item, data in next, bagItems do
 			data.holdingImages = {data.png, data.png}
 			data.holdingAlign = {{-35, -20}, {-15, -20}}
 		end
+	end
+	if data.canBeFoundIn and table_find(data.canBeFoundIn, 'redPresent') then
+		lootDrops.redPresent[#lootDrops.redPresent+1] = item
 	end
 end

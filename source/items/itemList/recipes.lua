@@ -272,6 +272,5 @@ recipes = {
 			frenchFries = 1,
 			wheatFlour = 1,
 		}
-	},
-	candyBucket = {},
+	}
 }

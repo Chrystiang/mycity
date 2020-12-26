@@ -26,11 +26,11 @@ item_getDescription = function(item, player, isFurniture)
 			description = description .. txt
 		end
 		if itemData.sellingPrice then
-			description = description .. '\n' .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.sellingPrice..'</vp>')..'\n'
+			description = description .. translate('itemInfo_sellingPrice', player):format('<vp>$'..itemData.sellingPrice..'</vp>')..'\n'
 		end
 	end
 	if itemData.credits then
-		description = description ..translate('createdBy', player):format('<vp>'..itemData.credits..'</vp>')..'\n'
+		description = description ..translate('createdBy', player):format('<cs>'..itemData.credits..'</cs>')..'\n'
 	end
 
 	if isLimitedTime then

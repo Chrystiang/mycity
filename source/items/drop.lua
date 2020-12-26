@@ -51,7 +51,13 @@ item_droppedEvent = function(id, player)
 	end
 						
 	if amount <= 0 then return end
-	if checkLocation_isInHouse(player) then
+	if players[player].place == 'clockTower' and item:find('Present') then
+		canRemove = true
+		local giftValue = 1000
+		giveCoin(giftValue * amount, player)
+		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(giftValue * amount)..'</fc>'), player)	
+		job_updatePlayerStats(player, 18, amount)
+	elseif checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
 		for chestID, v in next, players[player].houseData.chests.position do
 			if v.x then
@@ -71,7 +77,7 @@ item_droppedEvent = function(id, player)
 				if string_find(item, v.name) then
 					canRemove = true
 					giveCoin(v.pricePerSeed * amount, player, true)
-					chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..v.name..'Seed', player)..'</vp>', '<fc>$'..v.pricePerSeed..'</fc> <CE>('..amount..')</CE>'), player)
+					chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..v.name..'Seed', player)..'</vp>', '<fc>$'..(v.pricePerSeed * amount)..'</fc>'), player)
 					job_updatePlayerStats(player, 6, amount)
 					giveExperiencePoints(player, 2 * amount)
 					break
@@ -81,7 +87,7 @@ item_droppedEvent = function(id, player)
 			if itemData.isFruit then
 				canRemove = true
 				giveCoin(itemData.sellingPrice * amount, player, true)
-				chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..itemData.sellingPrice..'</fc> <CE>('..amount..')</CE>'), player)
+				chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(itemData.sellingPrice * amount)..'</fc>'), player)
 				job_updatePlayerStats(player, 11, amount)
 				giveExperiencePoints(player, 2 * amount)
 			end
@@ -89,14 +95,14 @@ item_droppedEvent = function(id, player)
 	elseif players[player].job == 'fisher' and players[player].place == 'fishShop' and string_find(item, 'fish_') then
 		canRemove = true
 		giveCoin(bagItems[item].price * amount, player)
-		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
+		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(bagItems[item].price * amount)..'</fc>'), player)
 	elseif players[player].job == 'miner' and players[player].place == 'town' then
 		if item:find('crystal_') or item:find('goldNugget') then
 			if ROOM.playerList[player].x > 475 and ROOM.playerList[player].x < 745 and ROOM.playerList[player].y > 8070 and ROOM.playerList[player].y < 8230 then
 				canRemove = true
 				giveCoin(bagItems[item].price * amount, player)
 				giveExperiencePoints(player, 40 * amount)
-				chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..bagItems[item].price..'</fc> <CE>('..amount..')</CE>'), player)
+				chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(bagItems[item].price * amount)..'</fc>'), player)
 				if item:find('crystal_') then
 					job_updatePlayerStats(player, bagItems[item].jobStatID, amount)
 				end

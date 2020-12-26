@@ -25,17 +25,20 @@ addItem = function(item, amount, player, coin)
 		end
 	end
 
-	if players[player].totalOfStoredItems.bag + amount > players[player].bagLimit then
+	if (players[player].totalOfStoredItems.bag + amount > players[player].bagLimit) and not players[player].trading then
 		alert_Error(player, 'error', 'bagError')
-		if coin == 0 and not players[player].trading then
+		if coin == 0 then
 			item_drop(item, player, amount)
-		elseif players[player].trading then
-			players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag + amount
 		end
 		return
 	else
 		players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag + amount
+		if (players[player].totalOfStoredItems.bag + amount > players[player].bagLimit) and players[player].trading then
+			modernUI.new(player, 240, 220, translate('warning', player), translate('bagTemporaryLimit', player):format(players[player].bagLimit), 'errorUI')
+			:build()
+		end
 	end
+
 	if canAdd then
 		players[player].bag[canAdd].qt = players[player].bag[canAdd].qt + amount
 		giveCoin(-coin, player)
