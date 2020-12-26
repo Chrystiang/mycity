@@ -100,14 +100,8 @@ places = {
 		tp_island = {12000, 7770},
 		exitSensor = {11430, 230},
 	},
-	drekkeHouse = {
-		id = 16,
-		opened = '-',
-		exitSensor = {12148, 3200},
-		tp_island = {13414, 7461},
-	},
 	boatShop = {
-		id = 17,
+		id = 16,
 		opened = '-',
 		exitSensor = {1917, 8810},
 		tp_boatShop = {1455, 9300},
@@ -120,5 +114,17 @@ places = {
 					movePlayer(player, 1873, 8810, false)
 				end)
 		end,
+	},
+	clockTower = {
+		id = 17,
+		opened = '-',
+		tp_town = {2155, 7770},
+		exitSensor = {9570, 5245},
+	},
+	penguinVillage = {
+		id = 18,
+		opened = '-',
+		tp_town = {8063, 7750},
+		exitSensor = {11084, 5245},
 	},
 }
