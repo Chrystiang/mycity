@@ -6,7 +6,7 @@ chatCommands.quest = {
 		local questStep = tonumber(args[2]) or 0
 		local target = string_nick(args[3])
 		if not players[target] then target = player end
-		if players[target].questStep[1] < quest then
+		if players[target].questStep[1] < quest and _QuestControlCenter[players[target].questStep[1]].reward then
 			_QuestControlCenter[players[target].questStep[1]].reward(target)
 		end
 		players[target].questStep[1] = quest
