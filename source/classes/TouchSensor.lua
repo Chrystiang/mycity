@@ -20,11 +20,16 @@ do
 
 	TouchSensor.remove = function(id, player)
 		TFM.removeBonus(id, player)
-		TouchSensor.sensors[id] = nil
+		if not player then
+			TouchSensor.sensors[id] = nil
+		end
 	end
 
 	TouchSensor.triggered = function(player, id)
 		local self = TouchSensor.sensors[id]
+		if not self then
+			return alert_Error(player, 'error', 'TouchSensor failed: <r>invalid id<cs('..id..')</cs></r>')
+		end
 		if self.callback then
 			self.callback(player)
 		end
