@@ -17,6 +17,8 @@ gameNpcs.talk = function(npc, player)
 		local lucky = playerData.lucky[1]
 		dialog[3] = dialog[3]:format(lucky.normal..'%', lucky.rare..'%', lucky.mythical..'%')
 		dialog[4] = dialog[4]:format(lucky.legendary..'%')
+	elseif formatText == 'christmasEventEnds' then
+		dialog[7] = dialog[7]:format(formatDaysRemaining(os_time{day=15, year=2021, month=1}))
 	end
 
 	dialogs[player] = {name = npc.name, text = dialog, length = 0, currentPage = 1, running = true, npcID = npc.npcID, isQuest = npc.questDialog}

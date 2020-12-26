@@ -42,7 +42,7 @@ gameNpcs.setOrder = function(npcName)
 	local x = npc.x
 	local y = npc.y
 	local character = gameNpcs.orders
-	local order = (random(1, 5) == 1 and (room.gameDayStep == 'night' or room.gameDayStep == 'dawn')) and 'strangePumpkin' or table_randomKey(recipes)
+	local order = table_randomKey(recipes)
 	local place = character.canOrder[npcName]
 	local orderTime = random(60*2, 60*3)
 
@@ -63,16 +63,8 @@ gameNpcs.setOrder = function(npcName)
 			completed = false,
 		}
 	end
-	if order ~= 'strangePumpkin' then
-		for _, player in next, jobs['chef'].working do
-			addDataToPlayer(player)
-		end
-	else
-		for player in next, ROOM.playerList do
-			if players[player].inRoom then
-				addDataToPlayer(player)
-			end
-		end
+	for _, player in next, jobs['chef'].working do
+		addDataToPlayer(player)
 	end
 
 	local currentSlice = 14
