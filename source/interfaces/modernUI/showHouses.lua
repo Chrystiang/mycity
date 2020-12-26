@@ -15,6 +15,9 @@ modernUI.showHouses = function(self, selectedTerrain)
 		if isLimitedTime and (isOutOfSale and not table_find(players[player].casas, _)) then
 			showItem = false
 		end
+		if v.properties.requeriment and showItem then
+			showItem = v.properties.requeriment(player)
+		end
 		if showItem then
 			i = i + 1
 			local image = v.properties.png or '16c25233487.png'

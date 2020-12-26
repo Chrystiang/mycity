@@ -52,8 +52,8 @@ tradeSystem.playerInterface = function(tradeInfo, player)
 			if canFinish then
 				tradeInfo.tradeData.finished = true
 				addTimer(function()
-					tradeSystem.endTrade(tradeInfo)
 					tradeSystem.confirmTrade(tradeInfo)
+					tradeSystem.endTrade(tradeInfo)
 				end, 1000, 1)
 			end
 		end, 
@@ -241,6 +241,7 @@ tradeSystem.confirmTrade = function(tradeInfo)
 	for player, items in next, tradeInfo.tradeData.trading do
 		if not players[player].inRoom then return alert_Error(tradeInfo.tradeData.players[player], 'trade_cancelled_title', 'trade_playerLeftRoom', player) end
 		if players[player].holdingItem then return alert_Error(tradeInfo.tradeData.players[player], 'trade_cancelled_title', 'trade_playerUsingAnItem', player) end
+		if players[player].totalOfStoredItems.bag > players[player].bagLimit then return alert_Error(tradeInfo.tradeData.players[player], 'trade_cancelled_title', 'trade_bagIsFull', player) end
 	end
 
 	for player, items in next, tradeInfo.tradeData.trading do
