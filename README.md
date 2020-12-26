@@ -57,6 +57,9 @@
 >
 > ☑️ V3.2.0 released
 >
-> ☑️ V3.3.0 released
+> ☑️ V3.3.0 released - Halloween Event 2020
 >
 > ☑️ New Trading System
+>
+> ☑️ V3.4.0 released - Christmas Event 2020
+>

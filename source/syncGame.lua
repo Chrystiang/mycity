@@ -95,56 +95,34 @@ syncVersion = function(player, vs)
 		if players[player].favoriteCars[1] == 9 then
 			players[player].favoriteCars[1] = 0
 		end
-	elseif playerVersion < 331 then
-		if player == 'Seratik#0000' then
-			players[player].level[1] = 3
-			players[player].level[2] = 4200
+	elseif playerVersion < 340 then
+		if player == 'Vitaminak1#5187' then
+			for i, v in next, players[player].cars do
+				if v == 15 then
+					table_remove(players[player].cars, i)
+					players[player].favoriteCars[1] = 0
+					break
+				end
+			end
 		end
+		players[player].jobs[19] = 0
 	end
-
 	if players[player].seasonStats[1][1] ~= mainAssets.season then
 		players[player].seasonStats[1][1] = mainAssets.season
 		players[player].seasonStats[1][2] = 0
 	end
 
-	local season3 = 'Xzowtx#0000,74,1977548,es,78666448;Dedektifyy#0000,50,1956150,tr,35734078;Luquinhas#3157,59,1658168,pt,104201717;Brunadrr#0000,64,1549952,pt,10974322;Gothic_girl#7500,44,1397966,pt,9391788;Millionaires#0928,53,1381148,ar,103424032;Epicninja7#0000,40,1290652,pt,50775677;Estronda002#0000,46,1170408,pt,89351885;Anaxs0#4480,48,1164692,pt,65621737;Ratagominha#0000,53,1159234,pt,3282553'
-
-	if table_find(players[player].starIcons.owned, 4) then
-		if not season3:find(player) then
-			chatMessage('<g>Due to an error, your season 3 rewards given incorrectly have been removed.', player)
-			players[player].favoriteCars[1] = 0
-			for i, v in next, players[player].cars do
-				if v == 15 then
-					table_remove(players[player].cars, i)
-					break
-				end
-			end
-			for i, v in next, players[player].starIcons.owned do
-				if v == 4 then
-					table_remove(players[player].starIcons.owned, i)
-					players[player].starIcons.selected = 1
-					break
-				end
-			end
-			for i, v in next, players[player].badges do
-				if v == 13 then
-					table_remove(players[player].badges, i)
-					break
-				end
-			end
-			savedata(player)
-		end
-	end
-
 	if mainAssets.fileCopy._ranking:find(player) then
-		if not table_find(players[player].starIcons.owned, 5) then
-			giveBadge(player, 21)
-			giveLevelOrb(player, 5)
+		if not table_find(players[player].starIcons.owned, 8) then
+			giveBadge(player, 23)
+			giveLevelOrb(player, 8)
+			--giveCar(player, 18)
 		end
-		giveCar(player, 16)
 	end
+
 	players[player].gameVersion = 'v'..table_concat(version, '.')
 end
+
 
 syncFiles = function()
 	local bannedPlayers = {}
@@ -207,11 +185,11 @@ nextUpdateAnimation = function()
 		elseif stage == 4 then
 			stage = 5
 			local maxTime = 300
-			showTextArea(-888888888889, '<p align="center"><font size="15" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="20" color="#c6bb8c">'..string.format("%.2d:%.2d", maxTime/60%60, maxTime%60)..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
+			showTextArea(-888888888889, '<p align="center"><font size="14" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="18" color="#c6bb8c">'..string.format("%.2d:%.2d", maxTime/60%60, maxTime%60)..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
 			addTimer(function(j)
 				local time = maxTime - j
 				time = string.format("%.2d:%.2d", time/60%60, time%60)
-				showTextArea(-888888888889, '<p align="center"><font size="15" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="20" color="#c6bb8c">'..time..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
+				showTextArea(-888888888889, '<p align="center"><font size="14" color="#95d44d">Updating...</p><ce>'..syncData.updating.updateMessage..'</ce>\n<font size="18" color="#c6bb8c">'..time..'</font>', nil, x, y, width, height, 0x432c04, 0xc6bb8c, 1, true)
 				if j == maxTime then
 					syncData.updating.updateMessage = ''
 					saveGameData('Sharpiebot#0000')
