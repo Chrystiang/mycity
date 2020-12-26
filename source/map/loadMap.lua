@@ -17,6 +17,12 @@ loadMap = function(name) -- TO REWRITE
 	showTextArea(1049, "<textformat leftmargin='1' rightmargin='1'><a href='event:BUY_chocolate'>" .. string.rep('\n', 15), name, 4600, 140, 40, 40, 0x122528, 0x122528, 0)
 	showTextArea(1051, '<font size="19"><p align="center"><a href="event:enter_fishShop">' .. translate('goTo', name) .. '\n</a>', name, 5868, 7615, 200, 30, 0x122528, 0x122528, 0.7)
 
+	showTextArea(1052, '<font size="19"><p align="center"><a href="event:enter_clockTower">' .. translate('goTo', name) .. '\n</a>', name, 2060, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
+
+	if players[name].jobs[19] > 0 then
+		showTextArea(1053, '<font size="19"><p align="center"><a href="event:enter_penguinVillage">' .. translate('goTo', name) .. '\n</a>', name, 7955, 1830+room.y, 200, 30, 0x122528, 0x122528, 0.7)
+	end
+
 	if room.bankBeingRobbed then
 		showTextArea(1029, '<font size="15" color="#FF0000"><p align="center">' .. translate('robberyInProgress', name) .. '\n</a>', name, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
 	else
