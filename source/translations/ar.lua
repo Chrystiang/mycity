@@ -792,4 +792,8 @@ lang.ar = {
     furniture_amongUs_medBay = 'Among Us: Med Bay', --same thing, 
     tip_airVehicle = 'اضغط مسافة لإيقاف استخدام المركبة الطائرة.',
     furniture_bloodstain = 'لطخة دم',
+    --- V3.3.2
+    trade_playerLeftRoom = '.غادر الغرفة %s',
+	trade_playerUsingAnItem = '.يستخدم حاليًا عنصرًا %s',
+	trade_unknownItems = 'أغراض غير معروفة',
 }
