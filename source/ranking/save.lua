@@ -1,4 +1,5 @@
 saveRanking = function()
+	if room.event == 'christmas2020' then return end
 	if ROOM.name:sub(1,2) == "*" then
 		return
 	elseif ROOM.uniquePlayers < room.requiredPlayers then
@@ -36,7 +37,9 @@ saveRanking = function()
 		newRanking[#newRanking+1] = string.format('%s,%i,%i,%s,%i', player.name, player.level, player.experience, player.commu, player.id)
 	end
 
-	-------------------------------------------
-	saveFile(table_concat(newRanking, ';')..'|'..mainAssets.fileCopy._ranking..'|', 5)
-	--saveFile(mainAssets.fileCopy._ranking..'|'..table_concat(newRanking, ';')..'|', 5)
+	if mainAssets.season%2 == 0 then 
+		saveFile(mainAssets.fileCopy._ranking..'|'..table_concat(newRanking, ';')..'|', 5)
+	else
+		saveFile(table_concat(newRanking, ';')..'|'..mainAssets.fileCopy._ranking..'|', 5)
+	end
 end

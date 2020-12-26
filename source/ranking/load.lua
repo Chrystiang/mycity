@@ -1,4 +1,5 @@
 loadRanking = function(player)
+	if room.event == 'christmas2020' then return end
 	local minn = 1
 	local maxx = 10
 
@@ -60,6 +61,6 @@ loadRanking = function(player)
 		showTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Season', player):format(mainAssets.season), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
 		showTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Season', player):format(mainAssets.season), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
 
-		showTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os_time{day=16, year=2020, month=11})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os_time{day=14, year=2020, month=12})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
 	end
 end
