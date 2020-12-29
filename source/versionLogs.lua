@@ -237,9 +237,18 @@ versionLogs = {
 		banner = '17688a594a9.png',
 		en = 'Winter Event!',
 		br = 'Evento de Inverno!',
+	},
+	['v3.4.1'] = {
+		releaseDate = '29/12/2020', -- dd/mm/yy
+		banner = '17688a594a9.png',
+		en = 'Winter Event!',
+		br = 'Evento de Inverno!',
+		tr = 'Kış Etkinliği!',
+		id = 'Acara Musim Dingin!',
 	}
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']
 versionLogs['v3.2.1'] = versionLogs['v3.2.0']
 versionLogs['v3.3.1'] = versionLogs['v3.3.0']
+versionLogs['v3.4.1'] = versionLogs['v3.4.0']

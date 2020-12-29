@@ -46,7 +46,6 @@ bagItems = {
 			chatMessage('<font color="#DAA520">'..updateHour(nil, true), i)
 		end,
 		npcShop = 'john',
-		canBeFoundIn = {'redPresent'},
 	},
 	milk = {
 		id = 6,
@@ -54,7 +53,6 @@ bagItems = {
 		png = '174acaef78b.png',
 		hunger = 1,
 		type = 'food',
-		canBeFoundIn = {'redPresent'},
 	},
 	goldNugget = {
 		id = 7,
@@ -132,7 +130,6 @@ bagItems = {
 			return true
 		end,
 		npcShop = 'john',
-		canBeFoundIn = {'redPresent'},
 	},
 	shrinkPotion = {
 		id = 9,
@@ -163,7 +160,6 @@ bagItems = {
 			end, 1000, 30)
 		end,
 		npcShop = 'indy',
-		canBeFoundIn = {'redPresent'},
 	},
 	growthPotion = {
 		id = 10,
@@ -190,7 +186,6 @@ bagItems = {
 			end, 1000, 30)
 		end,
 		npcShop = 'indy',
-		canBeFoundIn = {'redPresent'},
 	},
 	coffee = {
 		id = 11,
@@ -200,7 +195,6 @@ bagItems = {
 		png = '16c00e1f53b.png',
 		type = 'food',
 		npcShop = 'alicia',
-		canBeFoundIn = {'redPresent'},
 	},
 	hotChocolate = {
 		id = 12,
@@ -284,7 +278,6 @@ bagItems = {
 			end
 		end,
 		npcShop = 'body',
-		canBeFoundIn = {'redPresent'},
 	},
 	fertilizer = {
 		id = 15,
@@ -298,7 +291,6 @@ bagItems = {
 			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
-		canBeFoundIn = {'redPresent'},
 	},
 	water = {
 		id = 16,
@@ -312,7 +304,6 @@ bagItems = {
 			HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
-		canBeFoundIn = {'redPresent'},
 	},
 	tomato = {
 		id = 17,
@@ -320,7 +311,6 @@ bagItems = {
 		png = '174acaf266f.png',
 		hunger = .5,
 		type = 'food',
-		canBeFoundIn = {'redPresent'},
 	},
 	bag = {
 		id = 18,
@@ -331,7 +321,6 @@ bagItems = {
 	tomatoSeed = {
 		id = 18,
 		png = '16c00dafc00.png',
-		canBeFoundIn = {'redPresent'},
 	},
 	oregano = {
 		id = 19,
@@ -339,12 +328,10 @@ bagItems = {
 		png = '16bfcb07a36.png',
 		hunger = .1,
 		type = 'food',
-		canBeFoundIn = {'redPresent'},
 	},
 	oreganoSeed = {
 		id = 20,
 		png = '16c258cc26c.png',
-		canBeFoundIn = {'redPresent'},
 	},
 	lemon = {
 		id = 21,
@@ -353,7 +340,6 @@ bagItems = {
 		power = 2,
 		hunger = 3,
 		type = 'food',
-		canBeFoundIn = {'redPresent'},
 	},
 	lemonSeed = {
 		id = 22,
@@ -366,7 +352,6 @@ bagItems = {
 		type = 'food',
 		png = '16c1bfca398.png',
 		hunger = -15,
-		canBeFoundIn = {'redPresent'},
 	},
 	pepper = {
 		id = 24,
@@ -375,11 +360,11 @@ bagItems = {
 		hunger = -15,
 		type = 'food',
 		png = '174acaf0efe.png',
-		canBeFoundIn = {'redPresent'},
 	},
 	pepperSeed = {
 		id = 25,
 		png = '1739ecf9ca7.png',
+		canBeFoundIn = {'redPresent'},
 	},
 	luckyFlower = {
 		id = 26,
@@ -387,6 +372,7 @@ bagItems = {
 		power = 100,
 		type = 'food',
 		png = '16c258971c0.png',
+		canBeFoundIn = {'redPresent'},
 	},
 	luckyFlowerSeed = {
 		id = 27,
@@ -399,7 +385,6 @@ bagItems = {
 		png = '17157debbd9.png',
 		npcShop = 'kariina',
 		credits = '<CS>Klei Entertainment</CS>',
-		canBeFoundIn = {'redPresent'},
 	},
 	hotsauce = {
 		id = 29,
@@ -408,7 +393,6 @@ bagItems = {
 		png = '17157e02ea4.png',
 		npcShop = 'kariina',
 		credits = '<CS>Klei Entertainment</CS>',
-		canBeFoundIn = {'redPresent'},
 	},
 	dough = {
 		id = 30,
@@ -522,7 +506,6 @@ bagItems = {
 			if players[i].isFrozen then freezePlayer(i, true) end
 			movePlayer(i, oldPositions[1], oldPositions[2], false)
 		end,
-		canBeFoundIn = {'redPresent'},
 	},
 	fish_SmoltFry = {
 		id = 44,
@@ -631,6 +614,7 @@ bagItems = {
 		type = 'food',
 		npcShop = 'alicia',
 		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	egg = {
 		id = 57,
@@ -804,12 +788,14 @@ bagItems = {
 		type = 'food',
 		png = '173f814d309.png',
 		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	sushi = {
 		id = 82,
 		type = 'food',
 		png = '173f81bb164.png',
 		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	bananaCake = {
 		id = 83,
@@ -869,6 +855,7 @@ bagItems = {
 		png = '1745f96c2ba.png',
 		type = 'food',
 		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	creamOfMushroom = {
 		id = 92,	
@@ -883,12 +870,14 @@ bagItems = {
 		type = 'food',
 		npcShop = 'alicia',
 		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	steakFrites = {
 		id = 94,	
 		png = '1747006cf6d.png',
 		type = 'food',
 		credits = '<CS>Klei Entertainment</CS>',
+		canBeFoundIn = {'redPresent'},
 	},
 	breadedCutlet = {
 		id = 95,	
@@ -983,7 +972,6 @@ bagItems = {
 		placementFunction = function(player)
 			return HouseSystem.removeCrop(player)
 		end,
-		canBeFoundIn = {'redPresent'},
 	},
 	strangePumpkin = {
 		id = 111,

@@ -57,7 +57,8 @@ item_droppedEvent = function(id, player)
 		giveCoin(giftValue * amount, player)
 		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(giftValue * amount)..'</fc>'), player)	
 		job_updatePlayerStats(player, 18, amount)
-	elseif checkLocation_isInHouse(player) then
+	end
+	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
 		for chestID, v in next, players[player].houseData.chests.position do
 			if v.x then
