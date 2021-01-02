@@ -122,7 +122,7 @@ job_updatePlayerStats = function(player, type, quant)
 	--17: Halloween Event
 	--11: Amount of fruits sold
 
-	if players[player].jobs[18] >= 20 and not table_find(players[name].badges, 24) then
+	if players[player].jobs[18] >= 20 and not table_find(players[player].badges, 24) then
 		giveBadge(player, 24)
 		removeTextArea(8541584, player)
 		removeImage(players[player].questScreenIcon)

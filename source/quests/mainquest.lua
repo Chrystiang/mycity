@@ -108,6 +108,10 @@ quest_updateStep = function(player)
 	end
 	_QuestControlCenter[players[player].questStep[1]].active(player, players[player].questStep[2])
 	savedata(player)
+
+	if players[player].questLocalData.other.goToIsland and room.event:find('christmas') then
+		quest_updateStep(player)
+	end
 end
 
 quest_checkIfCanTalk = function(questID, questStep, npc)

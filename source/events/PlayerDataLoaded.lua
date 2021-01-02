@@ -109,6 +109,9 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	if players[name].questStep[1] <= questsAvailable then
 		_QuestControlCenter[players[name].questStep[1]].active(name, players[name].questStep[2])
+		if players[name].questLocalData.other.goToIsland and room.event:find('christmas') then
+			quest_updateStep(name)
+		end
 	end
 
 	loadMap(name)
@@ -139,6 +142,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 		showTextArea(8541584, players[name].jobs[18]..'/20', name, 767, 315, nil, nil, 1, 1, 0, true)
 	end
 	loadPenguinVillage(name)
+
 
 	addImage("170fa1a5400.png", ":1", 348, 355, name)
 end)
