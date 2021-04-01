@@ -37,10 +37,6 @@ modernUI.profileInterface = function(self, target)
    	showTextArea(id..'900', '<p align="center"><font color="#c6bb8c" size="20"><b>'..level, player, 380, y+54, 40, 40, 0, 0x24474, 0, true)
    	showTextArea(id..'901', '<p align="center"><font color="#c6bb8c" size="12"><b>'..minXP..'/'..maxXP..'xp', player, 315, y+80, 170, nil, 0, 0x24474, 0, true)
 
-   	for i, v in next, {translate('profile_basicStats', player), translate('profile_jobs', player), translate('profile_badges', player)} do
-   		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc5fbaf6.png', "&28", 150 + (i-1)*170, y+103, player)
-   		showTextArea(id..(902+i), '<p align="center"><font color="#c6bb8c" size="12"><b>'..v, player, 145 + (i-1)*170, y+105, 170, nil, 0, 0x24474, 0, true)
-   	end
    	local text_General =
    		string_replace(player, {["{0}"] = 'profile_coins', ["{1}"] = '$'..targetData.coins}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_spentCoins', ["{1}"] = '$'..targetData.spentCoins}) ..'\n' ..
@@ -48,7 +44,8 @@ modernUI.profileInterface = function(self, target)
    		string_replace(player, {["{0}"] = 'profile_purchasedCars', ["{1}"] = #targetData.cars..'/'..#mainAssets.__cars-1}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedQuests', ["{1}"] = (targetData.questStep[1]-1)..'/'..questsAvailable}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedSideQuests', ["{1}"] = targetData.sideQuests[3]}) ..'\n' ..
-   		string_replace(player, {["{0}"] = 'profile_questCoins', ["{1}"] = 'QP$'..targetData.sideQuests[4]}) ..'\n'
+   		string_replace(player, {["{0}"] = 'profile_questCoins', ["{1}"] = 'QP$'..targetData.sideQuests[4]}) ..'\n' ..
+   		string_replace(player, {["{0}"] = 'profile_timePlayed', ["{1}"] = floor(targetData.timePlayed)}) ..'\n'
 
 	local text_Jobs = {
 		police 	= 	string_replace(player, {["{0}"] = 'profile_arrestedPlayers', ["{1}"] = targetData.jobs[1]}),
@@ -68,29 +65,40 @@ modernUI.profileInterface = function(self, target)
 					string_replace(player, {["{0}"] = 'profile_fulfilledOrders', ["{1}"] = targetData.jobs[9]}),
 		ghostbuster = string_replace(player, {["{0}"] = 'profile_capturedGhosts', ["{1}"] = targetData.jobs[7]}),
    	}
-	showTextArea(id..'910', '<font size="10" color="#ebddc3">'..text_General, player, 155, y+133, 150, 150, 0x152d30, 0x152d30, 1, true)
+	showTextArea(id..'910', '<font size="10" color="#ebddc3">'..text_General, player, 155, y+102, 150, 150, 0x152d30, 0x152d30, 1, true)
 	local job = {'police', 'thief', 'fisher', 'miner', 'farmer', 'chef', 'ghostbuster'}
 	if targetData.jobs[7] == 0 then job[7] = nil end
 	for i, v in next, job do
-		showTextArea(id..(911+i), '<p align="left"><font size="11" color="#'..jobs[v].color..'">'..translate(v, player), player, 323, y+133 + (i-1)*17, 150, nil, 0x152d30, 0x152d3, 0, true)
-		showTextArea(id..(921+i), '<p align="left"><font size="11" color="#caed87">→', player, 460, y+133 + (i-1)*17, nil, nil, 0x152d30, 0x152d3, 0, true,
+		showTextArea(id..(911+i), '<p align="left"><font size="11" color="#'..jobs[v].color..'">'..translate(v, player), player, 323, y+102 + (i-1)*17, 150, nil, 0x152d30, 0x152d3, 0, true)
+		showTextArea(id..(921+i), '<p align="left"><font size="11" color="#caed87">→', player, 460, y+102 + (i-1)*17, nil, nil, 0x152d30, 0x152d3, 0, true,
 			function(player, args)
-				showTextArea(args.id..'930', '<font size="14" color="#'..jobs[args.title].color..'"><p align="center">'..translate(args.title, player)..'</p></font>\n'..args.data:gsub('7bbd40',jobs[args.title].color),
-					player, 480, 180 + args.y*17, 150, nil, 0x432c04, 0x7a5817, 1, true)
-				showTextArea(args.id..'931', '<textformat leftmargin="1" rightmargin="1">'..string.rep('\n', 10),
-					player, 480, 180 + args.y*17, 150, nil, 0x432c04, 0x7a5817, 0, true,
-						function(player, args)
-							removeTextArea(args.id..'930')
-							removeTextArea(args.id..'931')
-						end, {id = id})
-			end, {title = v, id = id, data = text_Jobs[v], y = i-1})
+				showTextArea(id..'930', '<font size="14" color="#'..jobs[args.title].color..'"><p align="center">'..translate(args.title, player)..'</p></font>\n'..args.data:gsub('7bbd40',jobs[args.title].color),
+					player, 480, 180 + args.y*17 -31, 150, nil, 0x432c04, 0x7a5817, 1, true)
+				showTextArea(id..'931', '<textformat leftmargin="1" rightmargin="1">'..string.rep('\n', 10),
+					player, 480, 180 + args.y*17 -31, 150, nil, 0x432c04, 0x7a5817, 0, true,
+						function(player)
+							removeTextArea(id..'930')
+							removeTextArea(id..'931')
+						end)
+			end, {title = v, data = text_Jobs[v], y = i-1})
 	end
-	--showTextArea(id..'912', text_Badges, player, 493, y+130, 150, 153, 0x152d30, 0x152d30, 1, true)
 
 	local i = 0
 	for _, v in next, badgesPriority do
 		if table_find(players[target].badges, v) then
-			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(badges[v].png, ":33", x+352+(i%5)*31, y+140+floor(i/5)*31, player)
+			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(badges[v].png, ":33", x+352+(i%5)*31, y+109+floor(i/5)*31, player)
+			showTextArea(id..(941+i), string.rep('\n', 4), player, x+352+(i%5)*31, y+109+floor(i/5)*31, 30, 30, 0, 0, 0, true,
+				function(player, args)
+					local i = args.i
+					showTextArea(id..'930', '<p align="center"><i><v>'..translate('badgeDesc_'..v, player),
+						player, x+352+(i%5)*31, y + 109 + 30 + floor(i/5)*31, 150, nil, 0x432c04, 0x7a5817, 1, true)
+					showTextArea(id..'931', '<textformat leftmargin="1" rightmargin="1">'..string.rep('\n', 10),
+						player, x+352+(i%5)*31, y + 109 + 30 + floor(i/5)*31, 150, nil, 0x432c04, 0x7a5817, 0, true,
+							function(player)
+								removeTextArea(id..'930')
+								removeTextArea(id..'931')
+							end)
+				end, {i = i})
 			i = i + 1
 		end
 	end

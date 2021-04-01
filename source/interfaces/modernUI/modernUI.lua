@@ -1,21 +1,25 @@
 modernUI = {}
 modernUI.__index = modernUI
 
-modernUI.new = function(player, width, height, title, text, errorUI)
+modernUI.new = function(player, width, height, title, text, errorUI, tag)
 	local playerData = players[player]
 	if not playerData then return end
-	local self = {
-		id = 10 + playerData._modernUIOpenedTabs,
-		player = player,
-		width = width and width or 200,
-	  	height = height and height or 150,
-	  	buttons = {},
-	  	title = title,
-	  	text = text,
-	  	errorUI = errorUI and errorUI or '',
-	}
 	if type(errorUI) == 'boolean' then return end
+
+	local self = {
+		id 		= 10 + playerData._modernUIOpenedTabs,
+		player 	= player,
+		width 	= width or 200,
+	  	height 	= height or 150,
+	  	buttons = {},
+	  	title 	= title,
+	  	text 	= text,
+	  	errorUI = errorUI or '',
+	  	tag 	= tag or '',
+	}
+
 	local id = self.id
+
 	local images = playerData._modernUIImages
 	if images[id] then
 		for i = 1, #images[id] do
@@ -25,6 +29,15 @@ modernUI.new = function(player, width, height, title, text, errorUI)
 	players[player]._modernUIHistory[id] = {}
 	players[player]._modernUIImages[id] = {}
 	players[player]._modernUIOpenedTabs = playerData._modernUIOpenedTabs + 1
+
+	if tag then
+		if players[player][tag..'_isOpen'] then
+			eventTextAreaCallback(0, player, "modernUI_Close_"..(id-1).."_ _"..tag, true)
+			return
+		end
+		players[player][tag..'_isOpen'] = id
+	end
+
 	return setmetatable(self, modernUI)
 end
 
@@ -91,7 +104,7 @@ modernUI.build = function(self)
 		showTextArea(id..'882', '<font color="#ebddc3" size="13">'..self.text, player, x+25, y+47, width-30, height-65, 0x152d30, 0x152d30, 1, true)
 	end
 	if width ~= 800 then
-		showTextArea(id..'896', "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_Close_"..id.."_"..self.errorUI.."'>\n\n", player, (x+width)-23, y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
+		showTextArea(id..'896', "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_Close_"..id.."_"..self.errorUI.."_"..self.tag.."'>\n\n", player, (x+width)-23, y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
 	else
 		self.width = 520
 		self.height = 300
