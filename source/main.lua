@@ -3,7 +3,7 @@
 
 MIT License
 
-Copyright (c) 2020 Chrystian Gabriel
+Copyright (c) 2020-2021 Chrystian Gabriel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 4, 1}
+local version       = {3, 5, 1}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local system 		= system
@@ -123,7 +123,7 @@ local room = { -- Assets that change while the script runs
 	requiredPlayers = 4,
 	discordServerUrl= 'https://discord.gg/uvGwa2y',
 	globalRanking   = {},
-	event           = 'christmas2020',
+	event           = '',
 	gameDayStep     = 'day',
 	houseImgs       = {},
 	y               = 5815,
@@ -170,6 +170,7 @@ local room = { -- Assets that change while the script runs
 		{x = 13390, y = 7464}, -- Apiary
 		{x =  9962, y = 7774}, -- Island
 	},
+	wheelsToSpin = {},
 }
 
 local mainAssets = { -- Assets that rarely changes while the script runs
@@ -217,12 +218,14 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 		},
 	},
 	credits = {
-		translations = {['Bodykudo#0000'] = 'ar', ['Chamelinct#0000'] = 'es', ['Zielony_olii#8526'] = 'pl', ['Melikefn#0000'] = 'tr', ['Danielthemouse#6206'] = 'he', ['Francio2582#3155'] = 'fr', ['Godzi#0941'] = 'pl', ['Noooooooorr#0000'] = 'ar', ['Tocutoeltuco#0000'] = 'es', ['Weth#9837'] = 'hu', ['Zigwin#0000'] = 'ru', ['Ppabcd#0000'] = 'id'},
+		translations = {['Bodykudo#0000'] = 'ar', ['Chamelinct#0000'] = 'es', ['Zielony_olii#8526'] = 'pl', ['Melikefn#0000'] = 'tr', ['Danielthemouse#6206'] = 'he', ['Flotealy#3155'] = 'fr', ['Godzi#0941'] = 'pl', ['Noooooooorr#0000'] = 'ar', ['Tocutoeltuco#0000'] = 'es', ['Zigwin#0000'] = 'ru', ['Ppabcd#0000'] = 'id'},
 		arts = {'Iho#5679', 'Kariina#0000', 'Mescouleur#0000'},
 		creator = {'Fofinhoppp#0000'},
 		help = {'Bolodefchoco#0000', 'Laagaadoo#0000', 'Lucasrslv#0000', 'Tocutoeltuco#0000'},
 	},
 }
+
+local gameNpcs = {characters = {}, robbing = {}, orders = {canOrder = {}, orderList = {}, activeOrders = {}, trashImages = {}}}
 
 local syncData = {
 	connected = false,

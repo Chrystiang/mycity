@@ -1,7 +1,7 @@
 HouseSystem.loadTerrains = function(self)
 	local name = self.houseOwner
 	local nameData = players[name]
-	local forSaleSign = room.event and room.specialBackgrounds[room.event].forSaleSign or '1708781ad73.png'
+	local forSaleSign = room.event ~= '' and room.specialBackgrounds[room.event].forSaleSign or '1708781ad73.png'
 	if room.terrains[1] then
 		for i = 1, #mainAssets.__terrainsPositions do
 			if not room.terrains[i].bought then
