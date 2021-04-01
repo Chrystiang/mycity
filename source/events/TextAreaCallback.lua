@@ -47,6 +47,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			removeTextArea(ui_ID..i, player)
 		end
 		removeGroupImages(playerData._modernUIImages[ui_ID])
+
 		if args[3] ~= 'errorUI' then
 			for i = 1, #playerData._modernUISelectedItemImages do
 				removeGroupImages(playerData._modernUISelectedItemImages[i])
@@ -55,6 +56,13 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				loadMap(player)
 				HouseSystem.new(player):loadTerrains()
 				savedata(player)
+			end
+		end
+
+		local shortcutGui = args[4] or ''
+		if shortcutGui ~= '' then
+			if players[player][shortcutGui..'_isOpen'] then
+				players[player][shortcutGui..'_isOpen'] = nil
 			end
 		end
 	elseif event == 'npcDialog' then
@@ -326,7 +334,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local checker = callback:sub(11, 11)
 		if checker == '_' then
 			if item == 'bag' then
-				if players[player].bagLimit < 45 then
+				if players[player].bagLimit < 55 then
 					players[player].bagLimit = players[player].bagLimit + 5
 					giveCoin(-bagItems[item].price, player)
 				end
@@ -366,7 +374,6 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		savedata(player)
 	elseif callback == 'closebag' then
 		removeTextArea(2040, player)
-		eventTextAreaCallback(0, player, 'close2', true)
 		for i = 0, 9 do
 			closeMenu(99+i, player)
 		end
