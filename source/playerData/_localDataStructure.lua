@@ -44,8 +44,11 @@ setPlayerData = function(player)
 		--------- CARS ---------
 		cars		= {},
 		carLeds 	= {},
+		carWheels	= {angle = 0, imgs = {}},
 		favoriteCars= {0, 0, 0},
 		currentCar = {direction = nil},
+		boughtWheels= {1},
+		selectedWheels = {1, 1},
 		selectedCar	= nil,
 		driving		= false,
 		canDrive	= false,
@@ -123,6 +126,7 @@ setPlayerData = function(player)
 		playerNameIcons = {level = {}},
 		temporaryImages = {jobDisplay = {}},
 		-------------------
+		timePlayed		= 0,
 		gameVersion 	= 'v'..table_concat(version, '.'),
 		rankingImages 	= {},
 		dataLoaded 		= false,

@@ -96,7 +96,7 @@ places = {
 	},
 	seedStore = {
 		id = 15,
-		opened = '10:00 19:00',
+		opened = '08:00 19:00',
 		tp_island = {12000, 7770},
 		exitSensor = {11430, 230},
 	},
@@ -114,17 +114,5 @@ places = {
 					movePlayer(player, 1873, 8810, false)
 				end)
 		end,
-	},
-	clockTower = {
-		id = 17,
-		opened = '-',
-		tp_town = {2155, 7770},
-		exitSensor = {9570, 5245},
-	},
-	penguinVillage = {
-		id = 18,
-		opened = '-',
-		tp_town = {8063, 7750},
-		exitSensor = {11084, 5245},
 	},
 }

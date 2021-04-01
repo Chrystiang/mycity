@@ -119,17 +119,11 @@ job_updatePlayerStats = function(player, type, quant)
 	if playerData.jobs[16] >= 10 then -- Sold 10 red crystals
 		giveBadge(player, 19)
 	end
-	--17: Halloween Event
-	--11: Amount of fruits sold
-
-	if players[player].jobs[18] >= 20 and not table_find(players[player].badges, 24) then
-		giveBadge(player, 24)
-		removeTextArea(8541584, player)
-		removeImage(players[player].questScreenIcon)
-		players[player].questScreenIcon = nil
-	elseif players[player].jobs[18] < 20 then
-		ui.updateTextArea(8541584, players[player].jobs[18]..'/20', player)
+	if playerData.jobs[11] >= 500 then -- Sell 500 fruits
+		giveBadge(player, 25)
 	end
+	--17: Halloween 2019 
+	--24: Christmas 2020
 
 	savedata(player)
 end

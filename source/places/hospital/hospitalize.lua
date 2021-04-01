@@ -1,4 +1,5 @@
 hospitalize = function(player)
+	setNightMode(player, true)
 	giveCoin(-600 * #players[player].hospital.diseases, player)
 	if players[player].hospital.hospitalized then return end
 	for i = 1, 4 do

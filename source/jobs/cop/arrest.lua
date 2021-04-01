@@ -55,6 +55,7 @@ arrestPlayer = function(thief, cop, command)
 		end, 1000, command and 30 or room.robbing.prisonTimer)
 	end
 
+	setNightMode(thief, true)
 	giveExperiencePoints(thief, 10)
 	giveExperiencePoints(cop, 30)
 	local complement = i:gmatch('(.-)#[0-9]+$')()

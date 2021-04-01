@@ -94,12 +94,42 @@ setSeasonStats = function(player, stat, quanty)
 	savedata(player)
 end
 
+openBag = function(player)
+	local Gui = modernUI.new(player, 520, 300, translate('bag', player), nil, nil, 'Bag')
+	if Gui then
+		--[[Gui:addButton('1787e839abd.png', function()
+				modernUI.new(player, 240, 180, translate('confirmButton_backpackIcon', player), '', 'errorUI')
+				:build()
+			end)]]
+			Gui:build()
+				:showPlayerItems(players[player].bag)
+	end
+end
+
 openProfile = function(player, target)
 	if not target then target = player end
 	if not players[target].dataLoaded then return end
-	modernUI.new(player, 520, 300, '<font size="20">'..target)
-	:build()
-	:profileInterface(target)
+	local Gui = modernUI.new(player, 520, 300, '<font size="20">'..target, nil, nil, 'Profile')
+	if Gui then
+		Gui:build()
+			:profileInterface(target)
+	end
+end
+
+openQuests = function(player)
+	local Gui = modernUI.new(player, 310, 280, translate('questsName', player), nil, nil, 'Quests')
+	if Gui then
+		Gui:build()
+			:questInterface()
+	end
+end
+
+openSettings = function(player)
+	local Gui = modernUI.new(player, 520, 300, nil, nil, 'configMenu', 'Settings')
+	if Gui then
+		Gui:build()
+			:showSettingsMenu()
+	end
 end
 
 removeGroupImages = function(tbl)

@@ -94,11 +94,19 @@ savedata = function(name, forceSave)
 		end
 		playerData:set(name, 'houseObjects', furnitures)
 
+		-- Save all furnitures bought
 		for _, v in next, playerInfos.houseData.furnitures.stored do
-			for i = 1, v.quanty do 
+			-- If the furniture amount is greater than 1, save it in a table, with the id and the amount
+			if v.quanty > 1 then
+				storedFurnitures[#storedFurnitures+1] = {v.type, v.quanty}
+
+			-- If is equal to 1, save it using it's id
+			----> Since we know there is only one of them, we will use less characters to save!
+			elseif v.quanty == 1 then
 				storedFurnitures[#storedFurnitures+1] = v.type
 			end
 		end
+
 		playerData:set(name, 'storedFurnitures', storedFurnitures)
 	end
 	----------------------------------------------------------------------
@@ -142,6 +150,7 @@ savedata = function(name, forceSave)
 		end 
 	end
 	playerData:set(name, 'playerLog', playerLogs)
+	--playerData:set(name, 'timePlayed', tonumber(string.format(".4f", playerInfos.timePlayed)))
 
 	local starIcons = playerData:get(name, 'starIcons')
 	for i, v in next, playerInfos.starIcons.owned do

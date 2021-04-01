@@ -167,6 +167,13 @@ local playerData = DataHandler.new('myc', {
 			return {{1}, 1, {1}, 1} -- Star Icons| Selected Star Icon| Level Icons| Selected Level Icon
 		end
 	},
+	timePlayed = {
+		index = 25,
+		type = 'number',
+		default = function()
+			return 0
+		end
+	}
 })
 
 local sharpieData = DataHandler.new('sync', {
