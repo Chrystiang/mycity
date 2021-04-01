@@ -245,7 +245,12 @@ versionLogs = {
 		br = 'Evento de Inverno!',
 		tr = 'Kış Etkinliği!',
 		id = 'Acara Musim Dingin!',
-	}
+	},
+	['v3.5.1'] = {
+		releaseDate = '01/04/2021', -- dd/mm/yy
+		banner = '175d2742cad.png',
+		en = '#MyCity!',
+	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']
