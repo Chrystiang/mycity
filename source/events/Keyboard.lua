@@ -9,7 +9,16 @@ onEvent("Keyboard", function(player, key, down, x, y)
 				removeCarImages(player)
 				playerInfo.driving = true
 				playerInfo.currentCar.direction = key == 2 and 1 or 2
-				playerInfo.carImages[#playerInfo.carImages+1] = addImage(mainAssets.__cars[playerInfo.selectedCar].image[playerInfo.currentCar.direction], "$"..player, mainAssets.__cars[playerInfo.selectedCar].x, mainAssets.__cars[playerInfo.selectedCar].y)
+				-- Get the vehicle's data
+				local vehicleData  = mainAssets.__cars[playerInfo.selectedCar]
+				-- Check if the vehicle has images of the left and right sides
+				local mirrorImage  = playerInfo.currentCar.direction == 2
+				-- If the vehicle has images from both sides, return them or mirror the main one
+				local vehicleImage = vehicleData.image
+				local x = vehicleData.x + (mirrorImage and (vehicleData.size and vehicleData.size[1]) or 0)
+				local y = vehicleData.y
+				playerInfo.carImages[#playerInfo.carImages+1] = addImage(vehicleImage, "$"..player, x, y, nil, mirrorImage and -1 or 1)
+			
 			elseif key == 3 then
 				playerInfo.currentCar.direction = 0
 			elseif key == 1 then
@@ -75,6 +84,23 @@ onEvent("Keyboard", function(player, key, down, x, y)
 			if playerInfo.fishing[1] then
 				stopFishing(player)
 			end
+		
+		-- "B" Key
+		elseif key == 66 then
+			openBag(player)
+
+		-- "C" Key
+		elseif key == 67 then
+			openSettings(player)
+
+		-- "P" Key
+		elseif key == 80 then
+			openProfile(player)
+
+		-- "Q" Key
+		elseif key == 81 then
+			openQuests(player)
+
 		elseif key >= 70 and key <= 72 then
 			local vehicleType = key-69
 			local car = playerInfo.favoriteCars[vehicleType]
