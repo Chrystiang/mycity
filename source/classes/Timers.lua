@@ -129,12 +129,12 @@ do
 			end
 		until timer == nil
 	end
-	function timersLoop()
+	function timersLoop(delay)
 		for id = 1, #timerList do
 			local timer = timerList[id]
 			if timer.isEnabled and timer.isPaused == false then
 				if not timer.isComplete then
-					timer.currentTime = timer.currentTime + 500
+					timer.currentTime = timer.currentTime + delay
 					if timer.currentTime >= timer.time then
 						timer.currentTime = 0
 						timer.currentLoop = timer.currentLoop + 1
