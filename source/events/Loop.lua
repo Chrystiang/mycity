@@ -1,5 +1,4 @@
 onEvent("Loop", function()
-	timersLoop()
 	if room.gameMode then return end
 	if room.started then
 		room.currentGameHour = room.currentGameHour + 1
