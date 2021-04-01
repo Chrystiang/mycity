@@ -10,9 +10,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if table_find(room.bannedPlayers, name) then
 		return chatMessage('You can not play #mycity anymore.', name)
 	end
-	if #data > 1800 then return chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more info.', name) end
+	if #data > 1950 then return chatMessage('You have reached your data size limit. Please contact Fofinhoppp#0000 for more informations.\nCurrent data size: <vp>'..#data, name) end
 	playerData:newPlayer(name, data)
 	------- setting data values to players[name]
+	local playerLogs = playerData:get(name, 'playerLog')
 	local playerSettings = playerData:get(name, 'playerLog')
 	players[name].settings.mirroredMode = playerSettings[2][1] or 0
 	players[name].settings.disableTrades = playerSettings[2][3] or 0
@@ -59,26 +60,17 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].houseData.furnitures.placed = {}
 	players[name].houseData.furnitures.stored = {}
 	local furnitures, storedFurnitures = playerData:get(name, 'houseObjects'), playerData:get(name, 'storedFurnitures')
-	do
-		local function storeFurniture(v)
-			if not players[name].houseData.furnitures.stored[v] then
-				players[name].houseData.furnitures.stored[v] = {quanty = 1, type = v}
-			else
-				players[name].houseData.furnitures.stored[v].quanty = players[name].houseData.furnitures.stored[v].quanty + 1
-			end
+	for i, v in next, furnitures do
+		if v[2] >= 0 and v[2] <= 1500 then
+			players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
+		else
+			chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
+			storeFurniture(name, i)
 		end
+	end
 
-		for i, v in next, furnitures do
-			if v[2] >= 0 and v[2] <= 1500 then
-				players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
-			else
-				chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
-				storeFurniture(i)
-			end
-		end
-		for i, v in next, storedFurnitures do
-			storeFurniture(v)
-		end
+	for i, v in next, storedFurnitures do
+		storeFurniture(name, v)
 	end
 	----------------------------------------------------------------------
 
@@ -94,7 +86,6 @@ onEvent("PlayerDataLoaded", function(name, data)
 	local fishingLuckiness = luckiness[1]
 	players[name].lucky = {{normal = fishingLuckiness[1], rare = fishingLuckiness[2], mythical = fishingLuckiness[3], legendary = fishingLuckiness[4]}, (type(luckiness[2]) == 'table' and false or luckiness[2])}
 
-	local playerLogs = playerData:get(name, 'playerLog')
 	players[name].favoriteCars = playerLogs[4] or players[name].favoriteCars
 
 	local starIcons = playerData:get(name, 'starIcons')
@@ -103,7 +94,12 @@ onEvent("PlayerDataLoaded", function(name, data)
 	end
 	players[name].starIcons.selected = starIcons[2]
 
-	syncVersion(name, playerLogs[3])
+	--players[name].timePlayed = playerData:get(name, 'timePlayed')
+	
+	if not syncVersion(name, playerLogs[3]) then
+		chatMessage('Data not loaded: Version error.', name)
+		return 
+	end
 
 	players[name].dataLoaded = true
 
@@ -136,13 +132,6 @@ onEvent("PlayerDataLoaded", function(name, data)
 	if ROOM.playerList['Fofinhoppp#0000'] then
 		giveBadge(name, 1)
 	end
-
-	if not table_find(players[name].badges, 24) then
-		players[name].questScreenIcon = addImage('1768dd0515a.png', '&10', 740, 310, name)
-		showTextArea(8541584, players[name].jobs[18]..'/20', name, 767, 315, nil, nil, 1, 1, 0, true)
-	end
-	loadPenguinVillage(name)
-
 
 	addImage("170fa1a5400.png", ":1", 348, 355, name)
 end)

@@ -69,8 +69,7 @@ eventNewPlayer = function(player)
 	-- PLACE: Police Station 
 		addImage("15a09d13130.png", "?8", 1000, 1569+room.y, player)
 	-- PLACE: Clock Tower 
-		--addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
-		addImage("1768d8f8e87.png", '?9', 2050-44, 1600+room.y, player)
+		addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
 	-- PLACE: Bank
 		addImage("16b947781b3.png", "?10", 2700, 7487, player)
 	-- Ranking
@@ -87,9 +86,8 @@ eventNewPlayer = function(player)
 	-- PLACE: Hospital 
 		addImage("16f1bb06081.png", "?18", 4650, 1560+room.y+11, player)
 	-- BIOME: Ocean
-		--addImage("17087b677f9.png", "?20", 6399, 7800, player)
-		--addImage("17087b28e8a.png", "!10", 6399, 7800, player)
-		addImage("17690f11547.png", "_1000", 7948, 7676, player)
+		addImage("17087b677f9.png", "?20", 6399, 7800, player)
+		addImage("17087b28e8a.png", "!10", 6399, 7800, player)
 
 	-- PLACE: Island
 		addImage("170926f4ab0.png", "?21", 9160, 7400, player)
@@ -242,22 +240,20 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Iho', {'1739eb491e8.png'}, player, 16620, 153, {color = '20B2AA', sellingItems = true, place = 'furnitureStore'})
 	gameNpcs.addCharacter('Lindsey', {'17470458c9d.png'}, player, 11550, 7645, {type = '_', blockClick = true, job = 'farmer'})
 
-	gameNpcs.addCharacter('Jingle', {'1768d8f6081.png'}, player, 9395, 4910, {sellingItems = true, place = 'clockTower'})
-	gameNpcs.addCharacter('Elf', {'1768d94a7f0.png', '1768d946991.png'}, player, 9370, 5162, {place = 'clockTower', formatDialog = 'christmasEventEnds'})
-	gameNpcs.addCharacter('Perry', {'17691500c86.png', '17691502e86.png'}, player, 4000, 7677)
+	--gameNpcs.addCharacter('Perry', {'17691500c86.png', '17691502e86.png'}, player, 4000, 7677)
 
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)
 		showTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), player, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
 	end
-	for _, key in next, {0, 1, 2, 3, 32, 70, 71, 72} do 
+	for _, key in next, {0, 1, 2, 3, 32, 65, 66, 67, 70, 71, 72, 80, 81} do 
 		system.bindKeyboard(player, key, true) 
 		system.bindKeyboard(player, key, false, true) 
 	end
 	for block, active in next, Mine.availableRocks do
 		if active then
 			mine_reloadBlock(block, player)
-		end 
+		end
 	end
 	showTextArea(4444440, string.rep('\n', 5), player, 16075, 1668, 90, 45, 1, 1, 0, false, 
 		function()
@@ -270,39 +266,11 @@ eventNewPlayer = function(player)
 	reloadBankAssets()
 	loadRanking(player)
 
-	if ROOM.community == 'hu' then
-		chatMessage(translate('welcomeMsg', player), player)
-	end
-
 	if player == 'Fofinhoppp#0000' then
 		for i, v in next, ROOM.playerList do
 			if players[i] and players[i].dataLoaded and player ~= i then
 				giveBadge(i, 1)
 			end
 		end
-	end
-end
-
-loadPenguinVillage = function(player)
-	if players[player].jobs[19] > 0 then
-		gameNpcs.addCharacter('Flipper', {'1768903003f.png', '1768902d959.png'}, player, 11000, 4936)
-		gameNpcs.addCharacter('Mac', {'1768903003f.png', '1768902d959.png'}, player, 12420, 5164)
-		gameNpcs.addCharacter('Poppy', {'1768903003f.png', '1768902d959.png'}, player, 12000, 5164)
-		gameNpcs.addCharacter('Penny', {'1768903003f.png', '1768902d959.png'}, player, 11465, 5164)
-		gameNpcs.addCharacter('Tiny', {'17690dcd596.png'}, player, 11950, 5075)
-		gameNpcs.addCharacter('Icicle', {'17690dcfd83.png', '1768902d959.png'}, player, 10880, 5047)
-	else
-		gameNpcs.addCharacter('Skipper', {'1768903003f.png', '1768902d959.png'}, player, 8075, 7665, {
-			endEvent = function(player)
-				if checkItemQuanty('fish_Frozice', 5, player) then
-					removeBagItem('fish_Frozice', 5, player)
-					players[player].jobs[19] = 1
-					loadPenguinVillage(player)
-					loadMap(player)
-					gameNpcs.removeNPC('Skipper', player)
-					savedata(player)
-				end
-			end
-		})
 	end
 end

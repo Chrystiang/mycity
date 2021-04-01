@@ -145,19 +145,19 @@ bagItems = {
 			local _timer
 			_timer = addTimer(function(time)
 				if not players[i].inRoom then removeTimer(_timer) end
-				local width = 84 - floor(time/30 * 80)
+				local width = 84 - floor(time/60 * 80)
 				showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0x19ba4d, 0x19ba4d, 0.5, true)
 				if players[i].place == 'bank' then
 					if room.bankRobStep == 'robStarted' then
 						room.bankRobStep = 'lazers'
 					end
 				end
-				if time == 30 then
+				if time == 60 then
 					players[i].mouseSize = players[i].mouseSize + 0.7
 					changeSize(i, players[i].mouseSize)
 					removeTextArea(989000000020+random, i)
 				end
-			end, 1000, 30)
+			end, 500, 60)
 		end,
 		npcShop = 'indy',
 	},
@@ -175,15 +175,15 @@ bagItems = {
 			local _timer
 			_timer = addTimer(function(time)
 				if not players[i].inRoom then removeTimer(_timer) end
-				local width = 84 - floor(time/30 * 80)
+				local width = 84 - floor(time/60 * 80)
 				showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0xf169ef, 0xf169ef, 0.5, true)
-				if time == 30 then
+				if time == 60 then
 					changeSize(i, 1)
 					players[i].mouseSize = players[i].mouseSize - 2
 					changeSize(i, players[i].mouseSize)
 					removeTextArea(989000000020+random, i)
 				end
-			end, 1000, 30)
+			end, 500, 60)
 		end,
 		npcShop = 'indy',
 	},
@@ -920,6 +920,7 @@ bagItems = {
 		png = '174accc594d.png',
 		canBeFoundIn = {'redPresent'},
 		lootBoxChance = 20,
+		limitedTime = os_time{day=15, year=2021, month=1},
 	},
 	cyan_luckyFlower = {
 		id = 104,
@@ -1070,6 +1071,39 @@ bagItems = {
 			return true
 		end,
 		limitedTime = os_time{day=15, year=2021, month=1},
+	},
+	speedPotion = {
+		id = 121,
+		price = 50,
+		png = '1770c7bfc1c.png',
+		complement = 30,
+		type = 'complementItem',
+		func = function(i)
+			local random = random(0, 100)
+			local _timer
+			local speed = 80
+
+			showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, 84, 25, 0xe8ba00, 0xe8ba00, 0.5, true)
+
+			_timer = addTimer(function(time)
+				if not players[i].inRoom then 
+					removeTimer(_timer)
+				end
+
+				if ROOM.playerList[i].movingLeft then
+					movePlayer(i, 0, 0, false, -speed, 0, false)
+				elseif ROOM.playerList[i].movingRight then
+					movePlayer(i, 0, 0, false, speed, 0, false)
+				end
+
+				local width = 84 - floor(time/60 * 80)
+				showTextArea(989000000020+random, '', i, 400 - 84 * 0.5, 365, width, 25, 0xe8ba00, 0xe8ba00, 0.5, true)
+				if time == 60 then
+					removeTextArea(989000000020+random, i)
+				end
+			end, 500, 60)
+		end,
+		npcShop = 'indy',
 	},
 }
 
