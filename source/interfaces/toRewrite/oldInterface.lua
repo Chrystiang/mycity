@@ -82,7 +82,7 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 			elseif bagItems[v].type == 'complementItem' then
 				showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><p align="center"><g><font size="9">"'.. translate('itemDesc_'..v, player):format(bagItems[v].complement) .. '"', player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
 			elseif bagItems[v].type == 'bag' then
-				if players[player].bagLimit < 45 then
+				if players[player].bagLimit < 55 then
 					showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><g><font size="9">'.. translate('itemDesc_bag', player):format(bagItems[v].capacity), player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
 				else
 					showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><r><font size="9">'.. translate('error_maxStorage', player), player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
@@ -92,7 +92,7 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 			end
 			if players[player].coins >= bagItems[v].price then
 				showTextArea(id..(895+(i-1)*3), translate('item_'..v, player), player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e57, 1, true)
-				if bagItems[v].type == 'bag' and players[player].bagLimit >= 45 then
+				if bagItems[v].type == 'bag' and players[player].bagLimit >= 55 then
 					showTextArea(id..(896+(i-1)*3), '', player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e, 0, true)
 				else
 					showTextArea(id..(896+(i-1)*3), '<p align="right"><a href="event:buyBagItem_'.. v ..'"><vp>$'.. bagItems[v].price ..'</p>', player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e, 0, true)
@@ -196,6 +196,7 @@ sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, pr
 		showTextArea(1020, '<p align="center"><font size="15" color="#ff0000"><a href="event:closeInfo_33"><b>X', player, 470, 180, 60, 50, 0x122528, 0x122528, 0, true)
 	end
 end
+
 showVehiclesButton = function(player, expandedInterface)
 	local x = 445
 	if expandedInterface then
@@ -208,10 +209,15 @@ showVehiclesButton = function(player, expandedInterface)
 				modernUI.new(player, 240, 180, translate('confirmButton_tip', player), translate('tip_vehicle', player), 'errorUI')
 				:build()
 			end)
+			--[[:addButton('1787e8f568f.png', function()
+				modernUI.new(player, 240, 180, translate('confirmButton_customizeVehicle', player), '', 'errorUI')
+				:build()
+			end)]]
 			:build()
 			:showPlayerVehicles()
 		end)
 end
+
 showOptions = function(player)
 	local playerInfo = players[player]
 	if playerInfo.blockScreen or playerInfo.holdingItem or playerInfo.hospital.hospitalized or playerInfo.editingHouse then return end
@@ -233,9 +239,7 @@ showOptions = function(player)
 
 			showTextArea(98900000001, string.rep('\n', 4), player, 300, 360, 50, 50, 1, 1, 0, true,
 				function(player)
-					modernUI.new(player, 520, 300, translate('bag', player))
-					:build()
-					:showPlayerItems(playerInfo.bag)
+					openBag(player)
 				end)
 		end
 		local function showCar()
