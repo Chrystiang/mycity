@@ -11,7 +11,7 @@ drive = function(name, vehicle)
 			if biome.canUseBoat then
 				if math_range(biome.location, {x = ROOM.playerList[name].x, y = ROOM.playerList[name].y}) then
 					canUseBoat = where
-					if where == 'sea' then
+					if where == 'sea' and room.event:find('christmas') then
 						return alert_Error(name, 'error', 'frozenLake')
 					end
 					break
@@ -62,30 +62,60 @@ drive = function(name, vehicle)
 	playerData.selectedCar = vehicle
 	playerData.canDrive = true
 	removeCarImages(name)
-	playerData.carImages[#playerData.carImages+1] = addImage(car.image[1], "$"..name, car.x, car.y)
+
+	playerData.carImages[#playerData.carImages+1] = addImage(car.image, "$"..name, car.x, car.y)
+	removeGroupImages(playerData.carWheels)
+	playerData.carWheels.angle = 0
+
+	if car.wheels then
+		for index, pos in next, car.wheels[1] do
+			local wheelID = (direction == 1 and index or (index == 1 and 2 or 1))
+			local scale_x = car.wheelsSize[wheelID] / 60
+			local scale_y = car.wheelsSize[wheelID] / 60
+			playerData.carWheels[#playerData.carWheels+1] = addImage('17870b5a75c.png', '$'..name, pos[1] + car.x, pos[2] + car.y, nil, scale_x, scale_y)
+		end
+	end
 
 	local vehicleMoving
 	vehicleMoving = addTimer(function()
 		local player = players[name]
-		if not player.canDrive then
+		if (not player.canDrive) or (player.selectedCar ~= vehicle) then
 			removeTimer(vehicleMoving)
 			return
 		else
-			if player.currentCar.direction == 1 then
-				local vel = mainAssets.__cars[player.selectedCar].maxVel
+			local direction = player.currentCar.direction
+			if direction == 1 then
+				local vel = car.maxVel
 				movePlayer(name, 0, 0, true, vel, 0, false)
-			elseif player.currentCar.direction == 2 then
-				local vel = mainAssets.__cars[player.selectedCar].maxVel
+			elseif direction == 2 then
+				local vel = car.maxVel
 				movePlayer(name, 0, 0, true, -(vel), 0, false)
-			elseif player.currentCar.direction == 3 then
-				local vel = mainAssets.__cars[player.selectedCar].maxVel
+			elseif direction == 3 then
+				local vel = car.maxVel
 				movePlayer(name, 0, 0, true, 0, -(vel/2), false)
+			end
+			if car.wheels then
+				if direction == 1 or direction == 2 then
+					local wheels = car.wheels[direction]
+					local left, right = wheels[1], wheels[2]
+					removeGroupImages(player.carWheels)
+					player.carWheels.angle = player.carWheels.angle + math.rad(30 * (direction == 2 and -1 or 1))
+
+					for index, pos in next, wheels do
+						local wheelID = (direction == 1 and index or (index == 1 and 2 or 1))
+						local scale_x = car.wheelsSize[wheelID] / 60
+						local scale_y = car.wheelsSize[wheelID] / 60
+						local x = pos[1] + car.x + car.wheelsSize[wheelID]/2
+						local y = pos[2] + car.y + car.wheelsSize[wheelID]/2
+						player.carWheels[#player.carWheels+1] = addImage('17870b5a75c.png', '$'..name, x, y, nil, scale_x, scale_y, player.carWheels.angle, 1, .5, .5)
+					end
+				end
 			end
 			if mainAssets.__cars[player.selectedCar].effects then
 				mainAssets.__cars[player.selectedCar].effects(name)
 			end
 		end
-	end, 500, 0)
+	end, 100, 0)
 end
 
 checkIfPlayerIsDriving = function(name)
@@ -106,6 +136,7 @@ removeCarImages = function(player)
 	if not players[player] then return end
 	removeGroupImages(players[player].carImages)
 	removeGroupImages(players[player].carLeds)
+	removeGroupImages(players[player].carWheels)
 end
 
 showBoatShop = function(player, shopFloor)
