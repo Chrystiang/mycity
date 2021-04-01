@@ -1,6 +1,6 @@
 loadFound = function(player, house)
 	local id = tonumber(house)
-	local align = room.event and room.specialBackgrounds[room.event].align or 1919
+	local align = room.event ~= '' and room.specialBackgrounds[room.event].align or 1919
 	removeGroupImages(players[player].dayImgs)
 	local img = background(nil, nil, nil, true)
 	for i = 1, 3 do
