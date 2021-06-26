@@ -55,7 +55,7 @@ lang.hu = {
 			},
 			[8] = {
 				_add = "Beszélj vele: Kane",
-				dialog = "Túl sokáig tartott... Már azt hittem, hogy elfelejtetted beszerezni a deszkákat...\nEgybébként, most már megépíthetem a csónakod...\nKész is van! Érezd jól magad a szigeten, és ne felejts el óvatos maradni!"
+				dialog = "Túl sokáig tartott... Már azt hittem, hogy elfelejtetted beszerezni a deszkákat...\nEgyébként, most már megépíthetem a csónakod...\nKész is van! Érezd jól magad a szigeten, és ne felejts el óvatos maradni!"
 			}
 		},
 		[2] = {
@@ -785,6 +785,7 @@ lang.hu = {
 	item_breadedCutlet = 'Rántott Szelet',
 	item_fishAndChips = 'Hal és Sültkrumpli',
 	npcDialog_Lindsey = 'Szeretnél gyümölcsöt eladni?\nDobd le mellém, hogy megállapíthassam az árát.',
+	tradeSystem_title = 'Csere Rendszer',
 	trade_invite_title = 'Csere Kérelem',
 	settings_config_disableTrades = 'Csere kérelmek letiltása',
 	trade_invite_error = '%s nem fogad csere kérelmeket.',
@@ -805,4 +806,54 @@ lang.hu = {
 	badgeDesc_17 = '75 eladott lila kristály',
 	badgeDesc_18 = '30 eladott zöld kristály',
 	badgeDesc_19 = '10 eladott piros kristály',
+	--- V3.3.0
+	trade_error_quest = 'A csere nem elérhető, ameddig nem teljesíted a <b>%s</b> küldetést.', -- Will print: "Trades are available after completing Quest 01: Building a boat!"
+	trade_error_quest2 = '%s needs to finish %s in order to accept trades.',
+	furniture_toilet = 'WC',
+	profile_changeOrb = 'Szintgömb megváltoztatása',
+	House10 = 'Tökház',
+	houseDescription_10 = 'Ez a ház egy nagy adag szupertrágyából származik. A tökház tökéletes kényelmet kínál a legijesztőbb éjszakákhoz.',
+	furniture_dryTree = 'Kiszáradt fa',
+	confirmButton_Play = 'Játék!',
+	newLevelOrb = 'Új Szintgömb',
+	newLevelOrb_info = 'Megváltoztathatod a Szintgömböd a profilod megnyitásával.',
+	item_strangePumpkin = 'Tökkosár',
+	item_strangePumpkinSeed = 'Furcsa Tökmag',
+	item_candyBucket = 'Cukorkosár',
+	airVehicles = 'Levegő',
+	vehicle_16 = 'Léggömb',
+	vehicle_17 = 'Seprű',
+	furniture_lamp = 'Lámpa',
+	furniture_amongUs_vent = 'Among Us: Szellőző',
+	furniture_amongUs_medBay = 'Among Us: Med Öböl',
+	tip_airVehicle = 'Nyomj SPACE gombot, hogy letedd a repülő járművet.',
+	furniture_bloodstain = 'Vérfolt',
+	--- V3.3.2
+	trade_playerLeftRoom = '%s elhagyta a szobát.',
+	trade_playerUsingAnItem = '%s jelenleg használ egy tárgyat.',
+	trade_unknownItems = 'Ismeretlen tárgyak',
+	
+	warning = 'Figyelem',
+	bagTemporaryLimit = 'Olyan mennyiségű tárgyat szállítasz, amely meghaladja az aktuális táska kapacitását. Ne feledd, garantáltan csak %s tárgyat lehet menteni, miután elhagyod a szobát.',
+	-- V3.4.0
+	item_fish_Mudfish = 'Iszaphal',
+	item_fish_Frozice = 'Frozice',
+	item_fish_Sinkfish = 'Mosogató Hal',
+	item_fish_Bittyfish = 'Csípős Hal',
+	item_raspberry = 'Málna',
+	item_raspberrySeed = 'Málna mag',
+	furniture_liveFence = 'Élő kerítés',
+	furniture_mailbox = 'Postaláda',
+	furniture_chimney = 'Kémény',
+	furniture_lights = 'Világítás',
+	furniture_candies = 'Cukorkák',
+	furniture_trunk = 'Törzs',
+	furniture_christmasTree = 'Karácsonyfa',
+	item_redPresent = 'Piros ajándék',
+	itemDesc_redPresent = 'Egy normális doboz, amely véletlen ajándékot tartalmaz.',
+	npcDialog_Elf = 'Üdvözlünk az Óratorony Műhelyében!\nItt tudsz találkozni Jingle-el, eladni ajándékokat és vásárolni ritka bútorokat...\nHa el akarsz adni ajándékokat, csak dobd mellém, és én vigyázni fogok rájuk!\nAjándékokat a pálya bármely részén találhatsz. Egyszer kinyithatod azt, amiből véletlenszerű tárgyat kapsz.\nHozz nekem 20 ajándékot, és jutalmat adok érte!\nSok szerencsét!\nNe feledd, az event véget ér %s napon belül és az ajándékok el fognak tűnni, miután 3 játékos összegyűjti azokat.',
+	npcDialog_Skipper = 'Helló!\n...\nNem hasonlítasz ránk, úgyhogy nem engedünk be a falunkba.\n...\nNos, ha csatlakozni akarsz, szivességet kell tenned nekem.\nHoznod kell nekem 5 Frozice-t. Ez egy igazán ritka halfaj, amelyet csak ritka gyümölcsök vonzanak.\nHa egyszer megszerzed, hozd el nekem, és engedélyezem a csatlakozásod a falunkba.',
+	House11 = 'Iglu',
+	houseDescription_11 = 'A falu pingvinjei által épített hiteles iglu.',
+	npcDialog_Perry = 'Sajnálom, a ranglista karbantartás alatt van.\nJanuárban kellene befejezni egy új mechanikával, hogy tisztességes legyen az új játékosok számára.',
 }
