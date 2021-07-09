@@ -191,9 +191,6 @@ lang.ru = {
 	item_dough = "Тесто",
 	item_dynamite = 'Динамит',
 	item_egg = "Яйцо",
-	item_energyDrink_Basic = 'Sprite',
-	item_energyDrink_Mega = 'Fanta',
-	item_energyDrink_Ultra = 'Coca-Cola',
 	item_fertilizer = 'Удобрение',
 	item_fish_Catfish = "Сом",
 	item_fish_Dogfish = "Морская собака",
@@ -201,8 +198,8 @@ lang.ru = {
 	item_fish_Goldenmare = "Goldenmare", -- ?
 	item_fish_Lionfish = "Крылатки",
 	item_fish_Lobster = "Лобстер",
-	item_fish_RuntyGuppy = "Низкорослый Гуппи",
-	item_fish_SmoltFry = "Маленькая рыбёшка",
+	item_fish_Guppy = "Низкорослый Гуппи",
+	item_fish_Smolty = "Маленькая рыбёшка",
 	item_fishBurger = 'Рыбный Бургер',
 	item_frenchFries = "Картофель фри",
 	item_frogSandwich = "Фрогвич", -- ?
@@ -472,10 +469,10 @@ lang.ru = {
 			},
 			[2] = {
 				_add = "Поговори с Kane",
-				dialog = "Вау! Спасибо тебе за рыбу! Не могу дождаться съесть её.\nПринесешь мне еще 3 Coca-Cola? Ты можешь купить её в магазине."
+				dialog = "Вау! Спасибо тебе за рыбу! Не могу дождаться съесть её.\nПринесешь мне еще 3 Energymax ($60)? Ты можешь купить её в магазине."
 			},
 			[3] = {
-				_add = "Купи %s Coca-Cola"
+				_add = "Купи %s Energymax ($60)"
 			},
 			[4] = {
 				_add = "Поговори с Kane",

@@ -1,6 +1,6 @@
 lang.fr = {
 	item_crystal_green = "Cristal Vert",
-	item_fish_RuntyGuppy = "Runty Guppy",
+	item_fish_Guppy = "Guppy",
 	landVehicles = "Terre",
 	item_pumpkinSeed = "Graine de citrouille",
 	item_garlic = "Ail",
@@ -110,7 +110,7 @@ lang.fr = {
 	rewardText = "Vous avez reçu une incroyable récompense!",
 	furniture_christmasFireplace = "Cheminée",
 	price = "Prix: %s",
-	item_fish_SmoltFry = "Saumoneau",
+	item_fish_Smolty = "Saumoneau",
 	settings_donate = "Faire un don",
 	permissions_coowner = "Copropriétaire",
 	item_tomatoSeed = "Graine de Tomate",
@@ -225,7 +225,6 @@ lang.fr = {
 	profile_spentCoins = "Argent Dépensé",
 	profile_seedsSold = "Ventes",
 	furniture_bookcase = "Bibliothèque",
-	item_energyDrink_Ultra = "Coca-Cola",
 	profile_completedSideQuests = "Quêtes Annexes",
 	expansion_grass = "Herbe",
 	item_blueberriesSeed = "Graine de Myrtille",
@@ -260,7 +259,6 @@ lang.fr = {
 	atmMachine = "Distributeur",
 	permissions_owner = "Propriétaire",
 	itemAmount = "Objets: %s",
-	item_energyDrink_Basic = "Sprite",
 	setPermission = "Faire %s",
 	closed_seedStore = "Le magasin de graines est fermé. Revenez plus tard!",
 	limitedItemBlock = "Vous devez attendre %s secondes pour utiliser cet objet.",
@@ -439,7 +437,7 @@ lang.fr = {
 				_add = "Pêchez %s poissons"
 			},
 			[2] = {
-				dialog = "Wow! Merci pour ces poissons! J'ai hâte de les manger durant mon expédition.\nMaintenant, tu va devoir m'apporter 3 Coca-Cola. Tu peux les acheter au supermarché.",
+				dialog = "Wow! Merci pour ces poissons! J'ai hâte de les manger durant mon expédition.\nMaintenant, tu va devoir m'apporter 3 Energymax ($60). Tu peux les acheter au supermarché.",
 				_add = "Parlez à Kane"
 			},
 			[4] = {
@@ -456,7 +454,7 @@ lang.fr = {
 			},
 			name = "Quête 01: Construire un bateau",
 			[3] = {
-				_add = "Achetez %s Coca-Cola"
+				_add = "Achetez %s Energymax ($60)"
 			},
 			[6] = {
 				_add = "Achetez une boite de céréales"
@@ -668,7 +666,6 @@ lang.fr = {
 	codeReceived = "Votre récompense: %s.",
 	chooseOption = "Choisissez une option",
 	item_pepperSeed = "Graine de piment",
-	item_energyDrink_Mega = "Fanta",
 	npcDialog_Derek = "Psst.. Nous allons faire quelque chose de gros ce soir: Nous allons braquer la banque.\nSi tu veux nous rejoindre, tu ferais mieux de parler à notre patron Pablo.",
 	harvest = "Récoltes",
 	furniture_scarecrow = "Épouvantail",
@@ -875,4 +872,7 @@ lang.fr = {
     House11 = 'Iglou',
     houseDescription_11 = 'Un authentique iglou fabriqué à la main par les pingouins du village.',
     npcDialog_Perry = 'Désolé, le classement est en cours de maintenance.\nIl devrait être remis en oeuvre en janvier, avec une nouvelle mécanique afin de le rendre équitable pour les nouveaux joueurs.',
+    --- V3.5.0
+    item_speedPotion = 'Potion de Vitesse',
+	itemDesc_speedPotion = 'Utilisez cette potion pour marcher plus rapidement pendant %s secondes!',
 }

@@ -33,10 +33,10 @@ lang.hu = {
 			},
 			[2] = {
 				_add = "Beszélj vele: Kane",
-				dialog = "Hűha! Köszönöm a halakat! Alig várom, hogy megehessem őket a felfedezésemen.\nMost hozz nekem 3 darab Coca-cola-t. A Boltban tudod megvásárolni."
+				dialog = "Hűha! Köszönöm a halakat! Alig várom, hogy megehessem őket a felfedezésemen.\nMost hozz nekem 3 darab Energymax ($60)-t. A Boltban tudod megvásárolni."
 			},
 			[3] = {
-				_add = "Vásárolj %s Coca-Cola-t"
+				_add = "Vásárolj %s Energymax ($60)-t"
 			},
 			[4] = {
 				_add = "Beszélj vele: Kane",
@@ -325,9 +325,9 @@ lang.hu = {
 	badgeDesc_9 = "500 teljesített megrendelés",
 	badgeDesc_10 = "500 letartóztatott rabló",
 	-- fish
-	item_fish_SmoltFry = "Ponty",
+	item_fish_Smolty = "Ponty",
 	item_fish_Frog = "Béka",
-	item_fish_RuntyGuppy = "Runty Guppy",
+	item_fish_Guppy = "Guppy",
 	item_fish_Dogfish = "Kutyahal",
 	item_fish_Catfish = "Macskahal",
 	item_fish_Lionfish = "Oroszlán hal",
@@ -404,10 +404,6 @@ lang.hu = {
 	--
 	item_shrinkPotion = "Zsugorító bájital",
 	item_growthPotion = "Növekedési bájital",
-	--
-	item_energyDrink_Ultra = "Coca-Cola",
-	item_energyDrink_Mega = "Fanta",
-	item_energyDrink_Basic = "Sprite",
 	--
 	item_crystal_yellow = "Citromsárga Kristály",
 	item_crystal_blue = "Kék Kristály",
