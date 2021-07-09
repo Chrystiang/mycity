@@ -12,7 +12,7 @@ arrestPlayer = function(thief, cop, command)
 	end
 
 	checkIfPlayerIsDriving(thief)
-	removeImages(thief)
+	removeGroupImages(players[thief].images)
 	removeTextArea(1012, thief)
 	removeTextArea(5001, thief)
 	closeMenu(920, thief)
@@ -69,11 +69,7 @@ arrestPlayer = function(thief, cop, command)
 	end
 	chatMessage(string.format(translate('arrestedPlayer', cop), complement), cop)
 
-	local sidequest = sideQuests[copData.sideQuests[1]].type
-	if string_find(sidequest, 'type:arrest') then
-		sideQuest_update(cop, 1)
-	end
-
+	sideQuest_sendTrigger(cop, 'arrest', 1)
 	giveCoin(jobs['police'].coins, cop, true)
 	job_updatePlayerStats(cop, 1)
 	players[cop].time = os_time() + 10000

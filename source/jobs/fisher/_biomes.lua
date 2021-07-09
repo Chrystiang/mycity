@@ -7,7 +7,7 @@ room.fishing = {
 				{x = 6400-70, y = 7775-70}, {x = 6400-70, y = 8000}, {x = 9160+70, y = 7775-70}, {x = 9160+70, y = 8000},
 			},
 			fishes = {
-				normal      = {'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy'},
+				normal      = {'fish_Smolty', 'cheese', 'wheatSeed', 'fish_Guppy'},
 				rare        = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish'},
 				mythical    = {'fish_Lobster',},
 				legendary   = {'fish_Goldenmare',},
@@ -18,7 +18,7 @@ room.fishing = {
 				{x = 10760, y = 7775-70}, {x = 10915, y = 7775-70}, {x = 10915, y = 7828}, {x = 10760, y = 7828},
 			},
 			fishes = {
-				normal      = {'fish_Frog', 'fish_RuntyGuppy', 'fish_Bittyfish'},
+				normal      = {'fish_Frog', 'fish_Guppy', 'fish_Bittyfish'},
 				rare        = {'fish_Dogfish'},
 				mythical    = {'fish_Lobster',},
 				legendary   = {'fish_Goldenmare',},
@@ -40,7 +40,7 @@ room.fishing = {
 	},
 	fishes = {
 		normal = {
-			'fish_SmoltFry', 'cheese', 'wheatSeed', 'fish_RuntyGuppy', 'fish_Frog'
+			'fish_Smolty', 'cheese', 'wheatSeed', 'fish_Guppy', 'fish_Frog'
 		},
 		rare = {
 			'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish',

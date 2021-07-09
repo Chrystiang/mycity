@@ -16,11 +16,11 @@ startRobbery = function(player, character)
 		if j == 10 then
 			removeImage(shield)
 			players[player].robbery.usingShield = false
+			
 		elseif j == room.robbing.robbingTimer then 
-			local sidequest = sideQuests[players[player].sideQuests[1]].type
-			if string_find(sidequest, 'type:rob') then
-				sideQuest_update(player, 1)
-			end
+			sideQuest_sendTrigger(player, 'rob', 1)
+			sideQuest_sendTrigger(player, 'rob_npc', 1, character)
+
 			players[player].robbery.robbing = false
 			removeTimer(players[player].timer)
 			players[player].timer = {}

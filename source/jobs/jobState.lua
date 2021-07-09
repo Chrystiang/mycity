@@ -1,7 +1,7 @@
 job_fire = function(i)
 	if not players[i] then return end
 	if not ROOM.playerList[i] then return end
-	removeImages(i)
+	removeGroupImages(players[i].images)
 	TFM.setNameColor(i, 0)
 
 	local job = players[i].job

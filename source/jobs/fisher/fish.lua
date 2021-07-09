@@ -53,7 +53,7 @@ playerFishing = function(name, x, y, biome)
 			local willFishInfo = bagItems[willFish]
 
 			--[[if rarityFished == 'rare' then
-				if checkItemQuanty('raspberry', 2, name) then
+				if checkItemAmount('raspberry', 2, name) then
 					removeBagItem('raspberry', 2, name)
 					willFish = 'fish_Frozice'
 					willFishInfo = bagItems['fish_Frozice']
