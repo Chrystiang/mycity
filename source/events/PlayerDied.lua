@@ -1,4 +1,5 @@
 onEvent("PlayerDied", function(player)
+	if player and isExploiting[player] then return end
 	if room.gameMode then return end
 	if room.isInLobby or not players[player] or players[player].editingHouse or checkLocation_isInHouse(player) then return end
 	if table_find(room.bannedPlayers, player) then return end

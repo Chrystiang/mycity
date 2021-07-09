@@ -1,4 +1,5 @@
 onEvent("Loop", function()
+	if GAME_PAUSED then return end
 	if room.gameMode then return end
 	if room.started then
 		room.currentGameHour = room.currentGameHour + 1

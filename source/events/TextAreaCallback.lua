@@ -1,4 +1,5 @@
 onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
+	if player and isExploiting[player] then return end
 	if room.isInLobby then return end
 	local playerData = players[player]
 	if not playerData then return end
@@ -43,7 +44,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		end
 
 		local ui_ID = tonumber(args[2])
-		for i = 876, 1200 do
+		for i = 870, 1200 do
 			removeTextArea(ui_ID..i, player)
 		end
 		removeGroupImages(playerData._modernUIImages[ui_ID])
@@ -111,7 +112,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				local order = gameNpcs.orders.orderList[npcName]
 				if order and order.fulfilled[player] then
 					if not order.fulfilled[player].completed then
-						if checkItemQuanty(order.order, 1, player) then
+						if checkItemAmount(order.order, 1, player) then
 							removeBagItem(order.order, 1, player)
 							order.fulfilled[player].completed = true
 							
@@ -123,10 +124,8 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 							end, 2000, 0)
 
 							job_updatePlayerStats(player, 9)
-							local sidequest = sideQuests[players[player].sideQuests[1]].type
-							if string_find(sidequest, 'type:deliver') then
-								sideQuest_update(player, 1)
-							end
+							sideQuest_sendTrigger(player, 'deliver', 1)
+
 							for id, properties in next, players[player].questLocalData.other do 
 								if id:find('deliverOrder') then
 									if type(properties) == 'boolean' then 
@@ -214,14 +213,12 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		goToHouse(player, id)
 	end
 	if playerData.editingHouse then return end
-	---------- TO REWRITE
-	if callback:sub(1,4) == 'BUY_' then
-		local item = callback:sub(5)
-		local complement = tonumber(item) and '' or '-'
-		local y = complement == '-' and 110 or 250
-		showPopup(5, player, nil, '', 400 - 250 *0.5, 200 - y * 0.5, 250, y, false, '9_'..complement ..item)
-	---------- ENTRAR NOS LOCAIS ---------
-	elseif callback:sub(1,6) == 'enter_' then
+	-----------------------------------------
+	-----------------------------------------
+	-------------- TO REWRITE ---------------
+	-----------------------------------------
+	-----------------------------------------
+	if callback:sub(1,6) == 'enter_' then
 		local place = callback:sub(7)
 		local placeData = places[place]
 		eventTextAreaCallback(102, player, 'close3_1', true)
@@ -329,49 +326,6 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			end
 		end
 	--------- Bag -----------
-	elseif callback:sub(1, 10) == 'buyBagItem' then
-		local item = callback:sub(12)
-		local checker = callback:sub(11, 11)
-		if checker == '_' then
-			if item == 'bag' then
-				if players[player].bagLimit < 55 then
-					players[player].bagLimit = players[player].bagLimit + 5
-					giveCoin(-bagItems[item].price, player)
-				end
-			else
-				addItem(item, 1, player, bagItems[item].price)
-			end
-			for id, properties in next, playerData.questLocalData.other do
-				if id:find('BUY_') then
-					if id:lower():find(item:lower()) then
-						if type(properties) == 'boolean' then
-							quest_updateStep(player)
-						else
-							playerData.questLocalData.other[id] = properties - 1
-							if playerData.questLocalData.other[id] <= 0 then
-								quest_updateStep(player)
-							end
-						end
-						break
-					end
-				end
-			end
-			showPopup(5, player, nil, '', 400 - 250 *0.5, 200 - (players[player].shopMenuHeight * 0.5), 250, players[player].shopMenuHeight, false, '9_'..players[player].shopMenuType)
-		else
-			if bagItems[item].type2 and bagItems[item].type2:find('limited-') then
-				if not checkItemQuanty(coins[bagItems[item].type2], 1, player) then return end
-				if checkItemQuanty(coins[bagItems[item].type2], 1, player) < bagItems[item].qpPrice then return end
-				removeBagItem(coins[bagItems[item].type2], bagItems[item].qpPrice, player)
-				addItem(item, 1, player, 0)
-				eventTextAreaCallback(0, player, 'closebag', true)
-			else
-				if players[player].sideQuests[4] < bagItems[item].qpPrice then return end
-				players[player].sideQuests[4] = players[player].sideQuests[4] - bagItems[item].qpPrice
-				addItem(item, 1, player, 0)
-				eventTextAreaCallback(0, player, 'closebag', true)
-			end
-		end
-		savedata(player)
 	elseif callback == 'closebag' then
 		removeTextArea(2040, player)
 		for i = 0, 9 do
@@ -405,6 +359,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 			players[owner].houseTerrainPlants[id] = 0
 			HouseSystem.new(owner):genHouseGrounds()
 			savedata(player)
+			sideQuest_sendTrigger(owner, "harvest", 1)
 			if players[player].job == 'farmer' then
 				job_updatePlayerStats(player, 5)
 				giveExperiencePoints(player, owner == 'Oliver' and 12 or 50)

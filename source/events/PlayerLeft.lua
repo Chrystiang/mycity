@@ -1,4 +1,5 @@
 onEvent("PlayerLeft", function(player)
+	if player and isExploiting[player] then return end
 	if room.isInLobby then return end
 	local playerData = players[player]
 	if playerData.trading then

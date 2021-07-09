@@ -1,4 +1,10 @@
 eventNewPlayer = function(player)
+	if player and isExploiting[player] then 
+		chatMessage("<r>Error.", player)
+		showTextArea(54215, '', player, -5, -10, 850, 500, 1, 1, 1, true)
+		return 
+	end
+
 	ui.setMapName('Mycity')
 	setPlayerScore(player, 0)
 	showTextArea(8500, '', player, 805, -200, 15000, 1000, 0x6a7595, 0x6a7595, 1, true)
@@ -29,6 +35,7 @@ eventNewPlayer = function(player)
 	lowerSyncDelay(player)
 	setPlayerData(player)
 	if player:find('*') or table_find(room.bannedPlayers, player) then
+		chatMessage("<r>Error.", player)
 		showTextArea(54215, '', player, -5, -10, 850, 500, 1, 1, 1, true)
 		return
 	end
@@ -115,7 +122,7 @@ eventNewPlayer = function(player)
 		for i = 1, 4 do
 			addImage(hoslpitalFloors[i], '?103', ((i-1)%i)*900+4000, 3000, player)
 		end
-		addImage("16f1b804909.png", '?108', 4000, 3400, player)
+		addImage("16f1b804909.png", '?108', 4000, 3400, player, -1, nil, nil, nil, -1)
 	-- PLACE: CAFÉ (INSIDE)
 		addImage("174e9da7224.png", "?109", 6000, 31, player)
 		addImage("174e9dbed31.png", "!103", 6000, 31, player)
@@ -192,14 +199,14 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Oliver', {'171945c8816.png', '171b7af8508.png'}, player, 17120, 1618, {job = 'farmer', jobConfirm = true, place = 'police'})
 	gameNpcs.addCharacter('Indy', {'171945ff967.png', '171a3de6a6d.png'}, player, 10820, 153, {color = '20B2AA', sellingItems = true, place = 'potionShop'})
 	gameNpcs.addCharacter('Davi', {'171989750b8.png', '17198988913.png'}, player, 13370, 7513)
-	gameNpcs.addCharacter('Pablo', {'17198a9903d.png', '1729ff740fd.png'}, player, 5090, 153, {job = 'thief', place = 'market', jobConfirm = true, endEvent = function(name) job_invite('thief', name) end})
-	gameNpcs.addCharacter('Derek', {'17198af24b4.png', '1729ff71a42.png'}, player, 5000, 153, {job = 'thief', place = 'market'})
-	gameNpcs.addCharacter('Billy', {'17198b0df10.png', '1729ff6f7d2.png'}, player, 4955, 153, {job = 'thief', place = 'market'})
+	gameNpcs.addCharacter('Pablo', {'17198a9903d.png', '1729ff740fd.png'}, player, 3700, 153, {job = 'thief', place = 'market', jobConfirm = true, endEvent = function(name) job_invite('thief', name) end}, -1, nil, nil, nil, -1)
+	gameNpcs.addCharacter('Derek', {'17198af24b4.png', '1729ff71a42.png'}, player, 3790, 153, {job = 'thief', place = 'market'}, -1, nil, nil, nil, -1)
+	gameNpcs.addCharacter('Billy', {'17198b0df10.png', '1729ff6f7d2.png'}, player, 3835, 153, {job = 'thief', place = 'market'}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Lauren', {'17198c1b7b5.png', '17198c3bd45.png'}, player, 14337, 139, {type = '?', canRob = {cooldown = 100}, place = 'pizzeria'})
 	gameNpcs.addCharacter('Marie', {'17198c6b4ee.png', '17198c8206f.png'}, player, 14440, 139, {type = '?', place = 'pizzeria'})
-	gameNpcs.addCharacter('Natasha', {'171995781e5.png', '171eb2e9c92.png'}, player, 3775, 125, {type = '_', place = 'market', canRob = {cooldown = 100}})
-	gameNpcs.addCharacter('Cassy', {'171995ccbe9.png', '171eb2e7ae6.png'}, player, 3650, 125, {type = '_', place = 'market', canRob = {cooldown = 100}})
-	gameNpcs.addCharacter('Julie', {'171995ecdee.png', '171eb2eb8df.png'}, player, 3900, 125, {type = '_', place = 'market', canRob = {cooldown = 100}})
+	gameNpcs.addCharacter('Natasha', {'171995781e5.png', '171eb2e9c92.png'}, player, 4704, 125, {type = '_', place = 'market', canRob = {cooldown = 100}}, -1, nil, nil, nil, -1)
+	gameNpcs.addCharacter('Cassy', {'171995ccbe9.png', '171eb2e7ae6.png'}, player, 4833, 125, {type = '_', place = 'market', canRob = {cooldown = 100}}, -1, nil, nil, nil, -1)
+	gameNpcs.addCharacter('Julie', {'171995ecdee.png', '171eb2eb8df.png'}, player, 4573, 125, {type = '_', place = 'market', canRob = {cooldown = 100}}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Jason', {'17199cb7d8b.png', '1729ffd4116.png'}, player, 400, 153, {canRob = {cooldown = 100}, place = 'buildshop'})
 	gameNpcs.addCharacter('Alicia', {'17199d3b9b2.png', '172a027ee8c.png'}, player, 6880, 153, {sellingItems = true, place = 'cafe'})
 	gameNpcs.addCharacter('Colt', {'1719dc3bce6.png', '171a4adc2e1.png'}, player, 5250, 5147, {job = 'police', place = 'bank'})
@@ -211,12 +218,12 @@ eventNewPlayer = function(player)
 		function(name)
 			local hasFlower = false
 			for i, v in next, {'luckyFlower', 'cyan_luckyFlower', 'orange_luckyFlower', 'red_luckyFlower', 'purple_luckyFlower', 'green_luckyFlower', 'black_luckyFlower'} do
-				if checkItemQuanty(v, 1, name) then
+				if checkItemAmount(v, 1, name) then
 					hasFlower = v
 					break
 				end
 			end
-			if hasFlower and checkItemQuanty('fish_Goldenmare', 1, name) then 
+			if hasFlower and checkItemAmount('fish_Goldenmare', 1, name) then 
 				removeBagItem(hasFlower, 1, name)
 				removeBagItem('fish_Goldenmare', 1, name)
 				room.boatShop2ndFloor = true 
@@ -239,6 +246,20 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Anny', {'172f185dccf.png'}, player, 17450, 1618, {job = 'farmer', callback = function(name) modernUI.new(name, 240, 220):build():showMill() end})
 	gameNpcs.addCharacter('Iho', {'1739eb491e8.png'}, player, 16620, 153, {color = '20B2AA', sellingItems = true, place = 'furnitureStore'})
 	gameNpcs.addCharacter('Lindsey', {'17470458c9d.png'}, player, 11550, 7645, {type = '_', blockClick = true, job = 'farmer'})
+	gameNpcs.addCharacter('Gominha', {'17958aa45ec.png'}, player, 4300, 153, {sellingItems = true}, -1, nil, nil, nil, -1)
+	gameNpcs.addCharacter('Daniel', {'17a8c3dd9e5.png'}, player, 5530, 7658, {type = '_', endEvent = 
+		function(player)
+			if players[player].bagLimit >= 55 then return alert_Error(player, 'error', 'error_maxBagStorage') end
+			local Gui = modernUI.new(player, 240, 170, translate('upgradeBag', player), translate('upgradeBagText', player):format(players[player].bagLimit + 5))
+			Gui:build()
+			Gui:addConfirmButton(function()
+				if players[player].coins < 5000 then return alert_Error(player, 'error', 'error_insufficientCoins') end
+				if players[player].bagLimit >= 55 then return alert_Error(player, 'error', 'error_maxBagStorage') end
+
+				players[player].bagLimit = players[player].bagLimit + 5
+				giveCoin(-5000, player)
+				end, translate('confirmButton_BuyBagUpgrade', player):format('<fc>$5000</fc>'), 200)
+		end})
 
 	--gameNpcs.addCharacter('Perry', {'17691500c86.png', '17691502e86.png'}, player, 4000, 7677)
 

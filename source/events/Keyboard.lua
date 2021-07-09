@@ -1,4 +1,5 @@
 onEvent("Keyboard", function(player, key, down, x, y)
+	if player and isExploiting[player] then return end
 	if room.gameMode then return end
 	if room.isInLobby then return end
 	local playerInfo = players[player]

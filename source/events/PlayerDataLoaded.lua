@@ -1,4 +1,5 @@
 onEvent("PlayerDataLoaded", function(name, data)
+	if name and isExploiting[name] then return end
 	if name == 'Sharpiebot#0000' then
 		return syncGameData(data, name)
 	end
@@ -27,7 +28,8 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].spentCoins = playerData:get(name, 'spentCoins')
 	players[name].lifeStats = playerData:get(name, 'lifeStats')
 	players[name].receivedCodes = playerData:get(name, 'codes')
-
+	players[name].currentBagIcon = playerData:get(name, 'currentBagIcon')
+	
 	local houses = playerData:get(name, 'houses')
 	for i, v in next, houses do
 		players[name].casas[i] = v
@@ -75,6 +77,10 @@ onEvent("PlayerDataLoaded", function(name, data)
 	----------------------------------------------------------------------
 
 	players[name].sideQuests = playerData:get(name, 'sideQuests')
+	if players[name].sideQuests[8] then
+		players[name].sideQuests[8]= players[name].sideQuests[8]:gsub('"', '')
+	end
+	
 	players[name].level = playerData:get(name, 'level')
 	local jobStats = playerData:get(name, 'jobStats')
 	for i, v in next, jobStats do
