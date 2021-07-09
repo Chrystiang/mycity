@@ -2,15 +2,15 @@ places = {
 	market = {
 		id = 1,
 		opened  = '-',
-		exitSensor = {3524, 230},
+		exitSensor = {5037, 230},
 		tp_town = {3473, 7770},
+		spawnAtLeft = true,
 	},
 	hospital = {
 		id = 2,
 		opened = '-',
-		exitSensor = {4658, 3635},
+		exitSensor = {4142, 3635},
 		tp_town = {4850, 7770},
-		spawnAtLeft = true,
 	},
 	police = {
 		id = 3,

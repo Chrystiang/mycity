@@ -1,5 +1,5 @@
 saveRanking = function()
-	if room.event == 'christmas2020' then return end
+	if true then return end
 	if ROOM.name:sub(1,2) == "*" then
 		return
 	elseif ROOM.uniquePlayers < room.requiredPlayers then

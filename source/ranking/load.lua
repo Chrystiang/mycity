@@ -1,5 +1,5 @@
 loadRanking = function(player)
-	if room.event == 'christmas2020' then return end
+	if true then return end
 	local minn = 1
 	local maxx = 10
 
