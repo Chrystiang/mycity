@@ -23,7 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ]]--
-local version       = {3, 5, 1}
+local version       = {3, 5, 3}
 local TFM           = tfm.exec
 local ROOM          = tfm.get.room
 local system 		= system
@@ -75,7 +75,7 @@ local addTextArea   = ui.addTextArea
 local removeTextArea= ui.removeTextArea
 
 local bagIds, bagItems, lootDrops, recipes, modernUI, HouseSystem, _QuestControlCenter, places, sideQuests, versionLogs
-local codes, codesIds, community, badges, bagUpgrades
+local codes, codesIds, community, badges, bagIcons
 
 local chatCommands  = {}
 local Mine          = {}
@@ -86,6 +86,9 @@ local groundIDS     = {}
 local players       = {}
 local jobs          = {}
 local daveOffers 	= {}
+local lastJoin		= {}
+local isExploiting 	= {}
+local lastRevive	= {}
 
 local maxFurnitureStorage   = 65
 local maxFurnitureDepot     = 75
@@ -225,7 +228,17 @@ local mainAssets = { -- Assets that rarely changes while the script runs
 	},
 }
 
-local gameNpcs = {characters = {}, robbing = {}, orders = {canOrder = {}, orderList = {}, activeOrders = {}, trashImages = {}}}
+local gameNpcs = {
+	characters 	= {},
+	robbing 	= {},
+	selling 	= {},
+	orders 		= {
+		canOrder = {}, 
+		orderList = {}, 
+		trashImages = {},
+		activeOrders = {}, 
+	}
+}
 
 local syncData = {
 	connected = false,
@@ -244,7 +257,7 @@ local imgsToLoad = {'175130b40ff.png', '1721ee7d5b9.png', '17184484e6b.png', '17
 local npcsStores = {
 	items = {},
 	shops = {
-		marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, alicia = {}, drekkemaus = {}, jingle = {}, all = {},
+		marcus = {}, chrystian = {}, jason = {}, john = {}, indy = {}, kariina = {}, body = {}, lucas = {}, iho = {}, alicia = {}, drekkemaus = {}, jingle = {}, gominha = {}, all = {},
 	},
 }
 

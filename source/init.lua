@@ -25,7 +25,7 @@ startRoom = function()
 
 			addTimer(function()
 				for player in next, ROOM.playerList do
-					players[player].timePlayed = players[player].timePlayed + 1/60/60
+					--players[player].timePlayed = players[player].timePlayed + 1/60/60
 					updateBarLife(player)
 				end
 			end, 60000, 0)
@@ -73,7 +73,7 @@ end
 
 for i, v in next, HouseSystem.plants do
 	if bagItems[v.name] then
-		bagItems[v.name].sellingPrice = v.pricePerSeed/10
+		bagItems[v.name].sellingPrice = bagItems[v.name].sellingPrice or v.pricePerSeed/10
 		bagItems[v.name].isFruit = true
 	end
 end
@@ -146,7 +146,7 @@ do
 		room.requiredPlayers = gameMode.requiredPlayers
 		gameMode.init()
 	else]]--
-		if ROOM.name == "*#fofinho" or ROOM.isTribeHouse then
+		if ROOM.name == "*#mytest" or ROOM.isTribeHouse then
 			room.requiredPlayers = 0
 		else
 			TFM.setRoomPassword('')
@@ -165,6 +165,7 @@ do
 end
 
 system.looping(function()
+	if GAME_PAUSED then return end
 	updateDialogs(4)
 	timersLoop(100)
 end, 10)
@@ -185,7 +186,7 @@ addTimer(function()
 		loadFile(5)
 		lastFile = 5
 	end
-end, 90000, 0)
+end, 15000, 0)
 
 local syncTimer = system.newTimer(function()
 	if tonumber(os_date('%S'))%10 == 0 then

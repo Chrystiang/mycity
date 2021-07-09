@@ -14,8 +14,7 @@ do
 		elseif workingTimer > workingTimerState.tryLimit then
 			if workingTimer == workingTimerState.setBroken then
 				workingTimer = workingTimerState.broken
-				print('<rose>[Warning]</rose> Timers are not working.')
-				chatMessage('<rose>[Warning]</rose> Timers are not working.', 'Fofinhoppp#0000')
+				errorHandler('Timers', 'Error')
 			elseif workingTimer == workingTimerState.setVerified then
 				workingTimer = workingTimerState.stop
 			end

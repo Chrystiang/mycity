@@ -79,19 +79,20 @@ drive = function(name, vehicle)
 	local vehicleMoving
 	vehicleMoving = addTimer(function()
 		local player = players[name]
-		if (not player.canDrive) or (player.selectedCar ~= vehicle) then
+		if (not player.canDrive) or (player.selectedCar ~= vehicle) or (player.robbery.arrested) then
+			checkIfPlayerIsDriving(name)
 			removeTimer(vehicleMoving)
 			return
 		else
 			local direction = player.currentCar.direction
 			if direction == 1 then
-				local vel = car.maxVel
+				local vel = car.speed
 				movePlayer(name, 0, 0, true, vel, 0, false)
 			elseif direction == 2 then
-				local vel = car.maxVel
+				local vel = car.speed
 				movePlayer(name, 0, 0, true, -(vel), 0, false)
 			elseif direction == 3 then
-				local vel = car.maxVel
+				local vel = car.speed
 				movePlayer(name, 0, 0, true, 0, -(vel/2), false)
 			end
 			if car.wheels then
@@ -140,6 +141,10 @@ removeCarImages = function(player)
 end
 
 showBoatShop = function(player, shopFloor)
+	local vehicles = {{6, 8}, {12, 11}}
+	local position = {{1510, 1710}, {775, 1150}}
+	local width = {{180, 180}, {180, 580}}
+
 	if not room.boatShop2ndFloor then
 		addGround(7777777777, 1125, 9280, {type = 14, height = 300, width = 20})
 	else
@@ -148,21 +153,21 @@ showBoatShop = function(player, shopFloor)
 				movePlayer(player, 1060, 9710)
 				players[player].place = 'boatShop_2'
 				showBoatShop(player, 2)
-			end)
+			end
+		)
 		showTextArea(5006, string.rep('\n', 20), player, 1000, 9590, 121, 120, 0x1, 0x1, 0, false,
 			function(player)
 				movePlayer(player, 1060, 9410)
 				players[player].place = 'boatShop'
 				showBoatShop(player, 1)
-			end)
+			end
+		)
 	end
-	local vehicles = {{6, 8}, {12, 11}}
-	local position = {{1510, 1710}, {775, 1150}}
-	local width = {{180, 180}, {180, 580}}
+	
 	for i, v in next, vehicles[shopFloor] do
 		local carInfo = mainAssets.__cars[v]
 		showTextArea(5005+i*5, '<p align="center"><font color="#000000" size="14">'..translate('vehicle_'..v, player), player, position[shopFloor][i], 9425+(shopFloor-1)*300, width[shopFloor][i], 80, 0x46585e, 0x46585e, 1)
-		showTextArea(5006+i*5, ''..translate('speed', player):format(floor(carInfo.maxVel/(carInfo.type == 'boat' and 1.85 or 1)))..' '..translate(carInfo.type == 'boat' and 'speed_knots' or 'speed_km', player), player, position[shopFloor][i], 9445+(shopFloor-1)*300, width[shopFloor][i], nil, 0x46585e, 0x00ff00, 0)
+		showTextArea(5006+i*5, ''..translate('speed', player):format(floor(carInfo.speed/(carInfo.type == 'boat' and 1.85 or 1)))..' '..translate(carInfo.type == 'boat' and 'speed_knots' or 'speed_km', player), player, position[shopFloor][i], 9445+(shopFloor-1)*300, width[shopFloor][i], nil, 0x46585e, 0x00ff00, 0)
 		if not table_find(players[player].cars, v) then
 			if carInfo.price <= players[player].coins then
 				showTextArea(5007+i*5, '<p align="center"><vp>$'..carInfo.price..'\n', player, position[shopFloor][i], 9485+(shopFloor-1)*300, width[shopFloor][i], nil, nil, 0x00ff00, 0.5, false,
@@ -189,7 +194,7 @@ showCarShop = function(player)
 		if carInfo then
 			if carInfo.type == 'car' then
 				showTextArea(5005+v*counter, '<p align="center"><font color="#000000" size="14">'..carInfo.name, player, (currentCount)*200 + 8805, 130+140, 180, 80, 0x46585e, 0x46585e, 1)
-				showTextArea(5006+v*counter, ''..translate('speed', player):format(carInfo.maxVel)..' '..translate('speed_km', player), player, (currentCount)*200 + 8805, 130+160, 180, nil, 0x46585e, 0x00ff00, 0)
+				showTextArea(5006+v*counter, ''..translate('speed', player):format(carInfo.speed)..' '..translate('speed_km', player), player, (currentCount)*200 + 8805, 130+160, 180, nil, 0x46585e, 0x00ff00, 0)
 
 				if not table_find(players[player].cars, v) then
 					if carInfo.price <= players[player].coins then
