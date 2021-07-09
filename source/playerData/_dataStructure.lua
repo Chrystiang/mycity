@@ -173,6 +173,13 @@ local playerData = DataHandler.new('myc', {
 		default = function()
 			return 0
 		end
+	},
+	currentBagIcon = {
+		index = 26,
+		type = 'number',
+		default = function()
+			return 1
+		end
 	}
 })
 

@@ -6,7 +6,7 @@ savedata = function(name, forceSave)
 		chatMessage('<R>Stats are not being saved in this room.', name)
 		return
 	end]]--
-	if ROOM.name ~= '*#fofinho' then
+	if ROOM.name ~= '*#mytest' then
 		if ROOM.uniquePlayers < room.requiredPlayers then
 			chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
 			return
@@ -22,6 +22,8 @@ savedata = function(name, forceSave)
 	playerData:set(name, 'coins', playerInfos.coins)
 	playerData:set(name, 'spentCoins', playerInfos.spentCoins)
 	playerData:set(name, 'bagStorage', playerInfos.bagLimit)
+	playerData:set(name, 'currentBagIcon', playerInfos.currentBagIcon)
+
 	local lifeStats = {}
 
 	for i = 1, 2 do

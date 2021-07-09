@@ -58,10 +58,7 @@ giveExperiencePoints = function(player, xp)
 	local currentXP = tonumber(players[player].level[2])
 	local currentLEVEL = tonumber(players[player].level[1])
 
-	local sidequest = sideQuests[playerData.sideQuests[1]].type
-	if string_find(sidequest, 'type:getXP') then
-		sideQuest_update(player, xp)
-	end
+	sideQuest_sendTrigger(player, 'getXP', xp)
 	setSeasonStats(player, 2, xp)
 
 	if currentXP >= ((currentLEVEL * 2000) + 500) then
@@ -97,11 +94,15 @@ end
 openBag = function(player)
 	local Gui = modernUI.new(player, 520, 300, translate('bag', player), nil, nil, 'Bag')
 	if Gui then
-		--[[Gui:addButton('1787e839abd.png', function()
-				modernUI.new(player, 240, 180, translate('confirmButton_backpackIcon', player), '', 'errorUI')
+		local TabID = players[player]._modernUIOpenedTabs - 1 + 10
+		Gui:addButton('1787e839abd.png', function()
+				eventTextAreaCallback(0, player, 'modernUI_Close_'..TabID, true)
+				modernUI.new(player, 240, 180, translate('confirmButton_backpackIcon', player))
 				:build()
-			end)]]
-			Gui:build()
+				:showBagIcons()
+			end)
+
+			:build()
 				:showPlayerItems(players[player].bag)
 	end
 end

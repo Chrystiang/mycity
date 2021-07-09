@@ -96,6 +96,7 @@ setPlayerData = function(player)
 		selectedItem = {name = nil, image = nil, images = {}},
 		bagLimit	= 20,
 		holdingItem = false,
+		currentBagIcon = 1,
 		---------- QUESTS ----------
 		questLocalData = {images = {}, other = {}, step = 1},
 		questStep	= {1, 0},
