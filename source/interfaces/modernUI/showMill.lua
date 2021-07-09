@@ -19,11 +19,11 @@ modernUI.showMill = function(self)
 
 		showTextArea(id..(900+(i-1)*3), '<p align="right"><b><font size="9"><j>x<font size="12"><vp>'..amount, player, 447, y+86 + (i-1)*45, 30, nil, 0xff0000, 0xff0000, 0, true)
 
-		if checkItemQuanty('wheat', amount2, player) then
+		if checkItemAmount('wheat', amount2, player) then
 			showTextArea(id..(901+(i-1)*3), '<p align="right"><b><font size="9"><j>x<font size="12"><vp>'..amount2, player, 322, y+86 + (i-1)*45, 30, nil, 0xff0000, 0xff0000, 0, true)
 			showTextArea(id..(902+(i-1)*3), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 5), player, 320, y+65 + (i-1)*45, 155, 40, 0xff0000, 0xff0000, 0, true,
 				function()
-					if not checkItemQuanty('wheat', amount2, player) then return end
+					if not checkItemAmount('wheat', amount2, player) then return end
 					removeBagItem('wheat', amount2, player)
 					addItem('wheatFlour', amount, player)
 					chatMessage('<j>'..translate('transferedItem', player):format('<vp>'..translate('item_wheatFlour', player)..' <fc>('..amount..')</fc></vp>'), player)

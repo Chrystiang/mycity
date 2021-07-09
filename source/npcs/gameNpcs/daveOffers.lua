@@ -69,6 +69,6 @@ mainAssets.__farmOffers = {
 	},
 	[18] = {
 		item = {'meat', 1},
-		requires = {'fish_SmoltFry', 3},
+		requires = {'fish_Smolty', 3},
 	},
 }

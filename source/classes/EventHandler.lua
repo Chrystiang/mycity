@@ -1,14 +1,16 @@
 -- EventHandler, made by Tocutoeltuco#0000
 local initializingModule = true
-
 local onEvent
-local CYCLE_DURATION = 3100
-local RUNTIME_LIMIT = 45
-local SCHEDULE = {
-	["PlayerDataLoaded"] = true,
-	["PlayerRespawn"] = true,
-	["PlayerLeft"] = true,
-	["PlayerBonusGrabbed"] = true,
+
+local GAME_PAUSED 		= false
+local CYCLE_DURATION 	= 3100
+local RUNTIME_LIMIT 	= 45
+local SCHEDULE 			= {
+	["PlayerBonusGrabbed"] 	= true,
+	["PlayerDataLoaded"] 	= true,
+	["PlayerRespawn"] 		= true,
+	["PlayerLeft"] 			= true,
+	["PlayerDied"] 			= true,
 }
 
 do
@@ -17,7 +19,6 @@ do
 	local usedRuntime = 0
 	local stopingAt = 0
 	local checkingRuntime = false
-	local paused = false
 	local scheduled = {_count = 0, _pointer = 1}
 	local lastErrorLog = ''
 
@@ -48,7 +49,7 @@ do
 					scheduled[ scheduled._count ] = {evt, a, b, c, d, e, index + 1}
 				end
 
-				paused = true
+				GAME_PAUSED = true
 				cycleId = cycleId + 2
 				if room.dayCounter > 0 then
 					translatedMessage("emergencyMode_pause")
@@ -72,7 +73,7 @@ do
 			event = scheduled[index]
 			callListeners(event[1], event[2], event[3], event[4], event[5], event[6], event[7])
 
-			if paused then
+			if GAME_PAUSED then
 				if scheduled._count > count then
 					-- If a new event has been scheduled, it is this one.
 					-- It should be the first one to run on the next attempt to resume.
@@ -117,7 +118,7 @@ do
 			end
 
 			if checkingRuntime then
-				if paused then
+				if GAME_PAUSED then
 					if schedule then
 						scheduled._count = scheduled._count + 1
 						scheduled[ scheduled._count ] = {evt, a, b, c, d, e, 1}
@@ -142,9 +143,9 @@ do
 				usedRuntime = 0
 				stopingAt = start + RUNTIME_LIMIT
 
-				-- if this was paused, we need to resume!
-				if paused then
-					paused = false
+				-- if this was GAME_PAUSED, we need to resume!
+				if GAME_PAUSED then
+					GAME_PAUSED = false
 					checkingRuntime = false
 
 					local done, result = pcall(resumeModule)
@@ -157,7 +158,7 @@ do
 
 					-- if resuming took a lot of runtime, we have to
 					-- pause again
-					if paused then
+					if GAME_PAUSED then
 						if schedule then
 							scheduled._count = scheduled._count + 1
 							scheduled[ scheduled._count ] = {evt, a, b, c, d, e, 1}
@@ -169,7 +170,7 @@ do
 				stopingAt = start + RUNTIME_LIMIT - usedRuntime
 			end
 
-			if paused then
+			if GAME_PAUSED then
 				if schedule then
 					scheduled._count = scheduled._count + 1
 					scheduled[ scheduled._count ] = {evt, a, b, c, d, e, 1}

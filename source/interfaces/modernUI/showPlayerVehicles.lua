@@ -19,12 +19,15 @@ modernUI.showPlayerVehicles = function(self)
 			if v.type == filter[currentPage] then 
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('17237e4b350.jpg', ":26", x + ((i-1)%4)*107, y + floor((i-1)/4)*65, player)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(v.icon, ":26", x + ((i-1)%4)*107, y + floor((i-1)/4)*65, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('17958659424.png', ":27", x + ((i-1)%4)*107, y + floor((i-1)/4)*65, player)
+
 				local isFavorite = favorites[currentPage] == players[player].cars[_] and '17238fea420.png' or '17238fe6532.png'
 				players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(isFavorite, ":27", x+82 + ((i-1)%4)*107, y +42 + floor((i-1)/4)*65, player)
 
 				local vehicleName = lang.en['vehicle_'..players[player].cars[_]] and translate('vehicle_'..players[player].cars[_], player) or v.name
-				showTextArea(id..(895+i*3), '<p align="center"><font color="#95d44d" size="10">'..vehicleName, player, x + ((i-1)%4)*107, y-2 + floor((i-1)/4)*65, 104, nil, 0xff0000, 0xff0000, 0, true)
-				showTextArea(id..(896+i*3), '\n\n\n\n', player, x + 3 + ((i-1)%4)*107, y + 3 + floor((i-1)/4)*65, 104, 62, 0xff0000, 0xff0000, 0, true,
+				showTextArea(id..(895+i*4), '<p align="center"><font color="#95d44d" size="10">'..vehicleName, player, x + ((i-1)%4)*107, y-2 + floor((i-1)/4)*65, 104, nil, 0xff0000, 0xff0000, 0, true)
+				showTextArea(id..(896+i*4), '<font size="7">'..v.speed..' '..(v.type == 'boat' and translate('speed_knots', player) or translate('speed_km', player)), player, x + ((i-1)%4)*107, y+54 + floor((i-1)/4)*65, 104, nil, 0xff0000, 0xff0000, 0, true)
+				showTextArea(id..(897+i*4), '\n\n\n\n', player, x + 3 + ((i-1)%4)*107, y + 3 + floor((i-1)/4)*65, 104, 62, 0xff0000, 0xff0000, 0, true,
 					function(player)
 						local car = players[player].cars[_]
 						if currentPage ~= 2 and (ROOM.playerList[player].y < 7000 or ROOM.playerList[player].y > 7800 or players[player].place ~= 'town' and players[player].place ~= 'island') and not players[player].canDrive then return alert_Error(player, 'error', 'vehicleError') end
@@ -35,7 +38,7 @@ modernUI.showPlayerVehicles = function(self)
 							:build()
 						end
 					end)
-				showTextArea(id..(897+i*3), "<textformat leftmargin='1' rightmargin='1'>\n\n\n\n", player, x + 82 + ((i-1)%4)*107, y + 42 + floor((i-1)/4)*65, 20, 20, 0xff0000, 0xff0000, 0, true,
+				showTextArea(id..(898+i*4), "<textformat leftmargin='1' rightmargin='1'>\n\n\n\n", player, x + 82 + ((i-1)%4)*107, y + 42 + floor((i-1)/4)*65, 20, 20, 0xff0000, 0xff0000, 0, true,
 					function(player)
 						favorites[currentPage] = players[player].cars[_]
 						players[player].favoriteCars[currentPage] = players[player].cars[_]

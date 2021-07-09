@@ -2,6 +2,8 @@ syncVersion = function(player, vs)
 	if not vs then vs = {0} end
 	local playerVersion = tonumber(table_concat(vs))
 	local gameVersion = tonumber(table_concat(version))
+	if playerVersion > gameVersion then return end
+
 	if playerVersion == 0 then
 		for i = 1, players[player].questStep[1]-1 do
 			quest_setNewQuest(player, i)
@@ -33,8 +35,8 @@ syncVersion = function(player, vs)
 		end
 		savedata(player)
 		players[player].gameVersion = 'v'..table_concat(version, '.')
-		return
 	end
+	
 	if playerVersion >= 300 then
 		for counter = 1, 3 do
 			if not chest_Item[counter] then 
@@ -53,7 +55,7 @@ syncVersion = function(player, vs)
 
 	if playerVersion <= 320 then
 		local refund = 0
-		local inBag = checkItemQuanty('luckyFlowerSeed', 1, player)
+		local inBag = checkItemAmount('luckyFlowerSeed', 1, player)
 		if inBag then
 			removeBagItem('luckyFlowerSeed', 50, player)
 			refund = refund + inBag * 10000
@@ -85,7 +87,7 @@ syncVersion = function(player, vs)
 		players[player].houseTerrainPlants[5] = 0
 	end
 	if playerVersion <= 322 then
-		local inBag = checkItemQuanty('pumpkinSeed', 5, player)
+		local inBag = checkItemAmount('pumpkinSeed', 5, player)
 		if inBag and players[player].jobs[7] <= 5 then
 			removeBagItem('pumpkinSeed', 50, player)
 			addItem('pumpkinSeed', 5, player)
@@ -96,17 +98,17 @@ syncVersion = function(player, vs)
 			players[player].favoriteCars[1] = 0
 		end
 	elseif playerVersion < 340 then
-		if player == 'Vitaminak1#5187' then
-			for i, v in next, players[player].cars do
-				if v == 15 then
-					table_remove(players[player].cars, i)
-					players[player].favoriteCars[1] = 0
-					break
-				end
-			end
-		end
-		players[player].jobs[19] = 0
+		players[player].jobs[19] = 0		
 	end
+	--[[
+	if playerVersion < 351 then
+		local targetData = players[player]
+		local timePlayed = 0
+   		timePlayed = (targetData.jobs[2] * 90) + (targetData.jobs[3] * 28) + (targetData.jobs[9] * 120) + (targetData.jobs[10] * 5) + ((targetData.questStep[1]-1)*60*90) + (targetData.jobs[1]*50) + (targetData.jobs[5]*60*5) + (targetData.jobs[12]*20 + targetData.jobs[13]*20*3 + targetData.jobs[14]*20*6 + targetData.jobs[15]*20*10 + targetData.jobs[16]*20*13) + (targetData.jobs[7]*60*40)
+   		timePlayed = timePlayed/60/60
+
+   		players[player].timePlayed = timePlayed
+   	end]]
 	if players[player].seasonStats[1][1] ~= mainAssets.season then
 		players[player].seasonStats[1][1] = mainAssets.season
 		players[player].seasonStats[1][2] = 0
@@ -121,6 +123,7 @@ syncVersion = function(player, vs)
 	end
 
 	players[player].gameVersion = 'v'..table_concat(version, '.')
+	return true
 end
 
 

@@ -73,6 +73,8 @@ modernUI.showPlayerItems = function(self, items, chest)
 							itemName = 'luckyFlowerSeed'
 						elseif itemName:find('_luckyFlower') then
 							itemName = 'luckyFlower'
+						elseif itemName:find('energymax') then
+							itemName = 'energymax'
 						end
 						showTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..itemName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 						showTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
@@ -106,7 +108,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 								local condition = (itemData.func and not itemData.fertilizingPower) and -1 or -selectedQuanty
 								if itemType ~= 'holdingItem' then
 									if not chest then
-										if not checkItemQuanty(v.name, condition*-1, player) then return end
+										if not checkItemAmount(v.name, condition*-1, player) then return end
 										removeBagItem(v.name, condition, player)
 									else
 										item_removeFromChest(v.name, condition, player, chest)
@@ -124,6 +126,14 @@ modernUI.showPlayerItems = function(self, items, chest)
 									showTextArea(98900000019, '<p align="center"><b><font color="#00FF00" size="20">✓\n', player, 350, 330, 100, nil, 1, 1, 0, true,
 										function()
 											if not playerData.holdingItem then return end
+											if not checkItemAmount(holdingItem, 1, player) then
+												chatMessage("Error: Unknown item.", player)
+												removeImage(holdingImage)
+												playerData.holdingItem = false
+												removeTextArea(9901327, player)
+												removeTextArea(98900000019, player)
+												return 
+											end
 											local x = ROOM.playerList[player].x
 											local y = ROOM.playerList[player].y
 
@@ -153,7 +163,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 													if not seedToDrop then return end
 													eventTextAreaCallback(0, player, 'closebag', true)
 												else
-													if not checkItemQuanty(v.name, condition*-1, player) then return end
+													if not checkItemAmount(v.name, condition*-1, player) then return end
 													used = true
 													for id, properties in next, playerData.questLocalData.other do
 														if id:find('plant_') then
@@ -164,7 +174,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 													end
 												end
 											else
-												if not checkItemQuanty(v.name, condition*-1, player) then return end
+												if not checkItemAmount(v.name, condition*-1, player) then return end
 												used = true
 												bagItems[holdingItem].placementFunction(player, selectedQuanty * itemData.fertilizingPower)
 											end
@@ -225,7 +235,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 								if players[player].isTrading then return alert_Error(player, 'error', 'error') end
 								if quanty > 0 then
 									if not chest then
-										if checkItemQuanty(v.name, selectedQuanty, player) then
+										if checkItemAmount(v.name, selectedQuanty, player) then
 											removeBagItem(v.name, -selectedQuanty, player)
 											item_drop(v.name, player, selectedQuanty)
 										end
@@ -263,17 +273,6 @@ modernUI.showPlayerItems = function(self, items, chest)
 							function()
 								selectAmount()
 							end)
-
-						--[[
-						for i = 1, 2 do 
-							button(1+i, i == 1 and '-' or '+', 
-								function(player) 
-									local calc = i == 1 and -1 or 1
-									if (selectedQuanty + calc) > quanty or (selectedQuanty + calc) < 1 then return end
-									selectedQuanty = selectedQuanty + calc
-									ui.updateTextArea(id..'893', '<font color="#cef1c3">'..string.format("%.2d", selectedQuanty), player)
-								end, 565 + (i-1)*50, 240 + (blockUse and 30 or 0), 10, 10)
-						end]]
 					end)
 			end
 		end

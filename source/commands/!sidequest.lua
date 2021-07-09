@@ -6,8 +6,7 @@ chatCommands.sidequest = {
 		local target = string_nick(args[2])
 		if not players[target] then target = player end
 
-		players[target].sideQuests[1] = nextQuest
-		players[target].sideQuests[2] = 0
+		sideQuest_new(target, nextQuest)
 		savedata(target)
 		chatMessage('<g>[•] Done! Side Quest '..nextQuest..' set to '..target..'.', player)
 	end

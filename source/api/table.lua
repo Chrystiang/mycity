@@ -1,7 +1,7 @@
 table_find = function(tbl, val)
    for i = 1, #tbl do
 	  if tbl[i] == val then
-		 return true
+		 return i
 	  end
    end
    return false

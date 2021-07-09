@@ -1,4 +1,4 @@
-gameNpcs.addCharacter = function(name, image, player, x, y, properties)
+gameNpcs.addCharacter = function(name, image, player, x, y, properties, ...)
 	if not properties then properties = {} end
 	local playerData = players[player]
 	if properties.questNPC and playerData._npcsCallbacks.questNPCS[name] then return end
@@ -65,24 +65,28 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties)
 		callback = callback .. '_questDialog'
 	end
 
-		if not gameNpcs.characters[name] then 
-			if canOrder then
-				gameNpcs.orders.canOrder[name] = properties.place or 'town' 
-			end
+	if not gameNpcs.characters[name] then 
+		if canOrder then
+			gameNpcs.orders.canOrder[name] = properties.place or 'town' 
+		end
 
-			gameNpcs.characters[name] = {visible = true, x = x, y = y, type = type, players = {}, runningImages = nil, image = image[1], image2 = image[2], callback = callback, color = color, fixAlign = imageFixAlign, place = properties.place}
-			if properties.canRob then 
-				gameNpcs.robbing[name] = {x = x+50, y = y+80, cooldown = properties.canRob.cooldown} 				
-			end
-			imgsToLoad[#imgsToLoad+1] = image[1]
-			imgsToLoad[#imgsToLoad+1] = image[2]
-		end 
+		gameNpcs.characters[name] = {visible = true, x = x, y = y, type = type, players = {}, runningImages = nil, image = image[1], image2 = image[2], callback = callback, color = color, fixAlign = imageFixAlign, place = properties.place}
+		if properties.canRob then 
+			gameNpcs.robbing[name] = {x = x+50, y = y+80, cooldown = properties.canRob.cooldown} 				
+		end
+		if properties.sellingItems then
+			gameNpcs.selling[name] = true
+		end
+
+		imgsToLoad[#imgsToLoad+1] = image[1]
+		imgsToLoad[#imgsToLoad+1] = image[2]
+	end 
 
 	playerData._npcsCallbacks.clickArea[npcID] = {x + 50, y + 80, name}
 
 	gameNpcs.characters[name].players[player] = {id = npcID}
 	if gameNpcs.characters[name].visible and players[player] then 
-		gameNpcs.characters[name].players[player] = {id = npcID, image = addImage(image[1], type.."1000", x, y, player)} 
+		gameNpcs.characters[name].players[player] = {id = npcID, image = addImage(image[1], type.."1000", x, y, player, ...), properties = (...)} 
 
 		local id = -89000+(npcID*6)
 		gameNpcs.setNPCName(id, name:gsub('%$', ''), callback, player, x, y, color, canClick)

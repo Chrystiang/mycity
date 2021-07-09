@@ -22,8 +22,7 @@ mainAssets.gamemodes.buildmode.init = function()
 	end
 
 	if initialize then
-		showTextArea(20880, '', player, 0, 0, 800, 400, 0x152d30, 0x152d30, 0.7, true)
-		sendMenu(99, player, '<p align="center"><font size="16"><vp>v'..table_concat(version, '.')..'</vp> - '.. translate('$VersionName', player) ..'</font>', 400 - 620 *0.5, 200 - 320*0.5, 600, 300, 1, false, 1, false, false, false, 15)
+		-- loading screen
 	end
 end
 

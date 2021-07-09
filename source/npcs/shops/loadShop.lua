@@ -3,7 +3,7 @@ showNPCShop = function(player, npc)
 	if not npcsStores.shops[npc] then return alert_Error(player, 'error', 'nonexistentShop') end
 	modernUI.new(player, 520, 300)
 	:build()
-	:showNPCShop(npcsStores.shops[npc])
+	:showNPCShop(npcsStores.shops[npc], npc)
 end
 
 buildNpcsShopItems = function()

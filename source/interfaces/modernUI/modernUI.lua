@@ -93,7 +93,7 @@ modernUI.build = function(self)
 	local function createButton(id)
 		local button = self.buttons[id]
 		players[player]._modernUIImages[self.id][#players[player]._modernUIImages[self.id]+1] = addImage(button.image, ":"..(100+id), (x+width)-23 - id*24, y+10, player)
-		showTextArea(self.id..(896+id), "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_ButtonAction_"..self.id.."_"..id.."'>\n\n", player, (x+width)-23 - id*24 , y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
+		showTextArea(self.id..(870+id), "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_ButtonAction_"..self.id.."_"..id.."'>\n\n", player, (x+width)-23 - id*24 , y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
 	end
 
 	if self.title then

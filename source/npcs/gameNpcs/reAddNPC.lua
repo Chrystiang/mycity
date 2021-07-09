@@ -11,6 +11,6 @@ gameNpcs.reAddNPC = function(npcName)
 	for player, v in next, npc.players do 
 		local id = -89000+(v.id*6)
 		gameNpcs.setNPCName(id, npcName, callback, player, x, y, color, true)
-		v.image = addImage(image, type.."1000", x, y, player)
+		v.image = addImage(image, type.."1000", x, y, player, npc.properties)
 	end
 end

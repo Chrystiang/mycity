@@ -57,7 +57,7 @@ modernUI.showRecipes = function(self)
 						for i, v in next, v.require do
 							counter = counter + 1
 							players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[i].png, "&70", ((counter-1)%2)*55+500, floor((counter-1)/2)*29+190, player)
-							if checkItemQuanty(i, v, player) then
+							if checkItemAmount(i, v, player) then
 								showTextArea(id..(934+counter), '<vp>'..v, player, ((counter-1)%2)*55+545, floor((counter-1)/2)*29+207, nil, nil, 0x24474D, 0xff0000, 0, true)
 							else
 								showTextArea(id..(934+counter), '<r>'..v, player, ((counter-1)%2)*55+545, floor((counter-1)/2)*29+207, nil, nil, 0x24474D, 0xff0000, 0, true)
@@ -70,7 +70,7 @@ modernUI.showRecipes = function(self)
 							cookedSomething = true
 							eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 							for i, v in next, v.require do
-								if not checkItemQuanty(i, v, player) then return end
+								if not checkItemAmount(i, v, player) then return end
 								removeBagItem(i, v, player)
 							end
 

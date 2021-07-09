@@ -1,4 +1,4 @@
-modernUI.showNPCShop = function(self, items)
+modernUI.showNPCShop = function(self, items, npc)
 	local id = self.id
 	local player = self.player
 	local width = self.width
@@ -36,11 +36,17 @@ modernUI.showNPCShop = function(self, items)
 
 				showTextArea(id..(900+i*2), '\n\n\n\n', player, x + 3 + (i%5)*63, y + 3 + floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true,
 				function(player, i)
-					local name = mainAssets.__furnitures[data[1]] and translate('furniture_'..v.name, player) or translate('item_'..data[2], player)
+					local isFurniture = mainAssets.__furnitures[data[1]]
+					local name = isFurniture and translate('furniture_'..v.name, player) or translate('item_'..data[2], player)
 					removeGroupImages(players[player]._modernUISelectedItemImages[1])
+
+					if not isFurniture and data[2]:find('energymax') then
+						name = translate('item_energymax', player)
+					end
 
 					showTextArea(id..'890', '<p align="center"><font size="13"><fc>'..name, player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 					local description = item_getDescription(mainAssets.__furnitures[data[1]] and data[1] or data[2], player, mainAssets.__furnitures[data[1]])
+
 					showTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
 					showTextArea(id..'894', '', player, x + 3 + (i%5)*63, y + 3 + floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true)
 
@@ -109,6 +115,7 @@ modernUI.showNPCShop = function(self, items)
 							giveCoin(-currency[2], player)
 						end
 
+						sideQuest_sendTrigger(player, 'buy_from_npc', selectedQuanty, npc)
 						boughtSomething = true
 						savedata(player)
 						eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)

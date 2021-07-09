@@ -13,15 +13,6 @@ showTextArea = function(id, text, player, x, y, width, height, color1, color2, a
 	return addTextArea(id, text, player, x, y, width, height, color1, color2, alpha, followPlayer)
 end
 
-removeImages = function(player)
-	if not players[player] then return end
-	if not players[player].images then
-		players[player].images = {}
-	end
-	for i = 1, #players[player].images do
-		removeImage(players[player].images[i])
-	end
-end
 addButton = function(id, text, player, x, y, width, height, blocked, ...)
 	showTextArea(id+1, '', player, x-1, y-1, width, height, 0x97a6aa, 0x97a6aa, 1, true)
 	showTextArea(id+2, '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
@@ -33,6 +24,7 @@ addButton = function(id, text, player, x, y, width, height, blocked, ...)
 		showTextArea(id+4, '<p align="center">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, ...)
 	end
 end
+
 showPopup = function(id, player, title, text, x, y, width, height, button, type, arg, ativado)
 	eventTextAreaCallback(0, player, 'closebag', true)
 	local txt = text
@@ -62,47 +54,8 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 		showTextArea(id..'892', '', player, x+16, y+height-20+27, width-10, 15, 0x1, 0x1, 1, true)
 		showTextArea(id..'893', '<p align="center"><a href="event:close3_'..id..'"><N>'.. translate('close', player) ..'</a>', player, x+15, y+height-20+26, width-10, nil, 0x314e57, 0x314e57, 1, true)
 	end
-	if tostring(type):sub(1, 1) == '9' then
-		local whatToSell = tonumber(type:sub(3))
-		if type:sub(3, 3) == '-' then
-			whatToSell = 0
-		end
 
-		players[player].shopMenuType = type:sub(3)
-		players[player].shopMenuHeight = height
-		local list = {
-			[0] = {type:sub(4)}, -- IF IS A SINGLE ITEM
-			[1] = {'energyDrink_Basic', 'energyDrink_Mega', 'energyDrink_Ultra'}, -- MARKET
-			[6] = {'bag'}, -- BAG
-		}
-
-		for i, v in next, list[whatToSell] do
-			if bagItems[v].type == 'food' then
-				showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><g><font size="9">'.. string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player), bagItems[v].power and bagItems[v].power or 0, bagItems[v].hunger and bagItems[v].hunger or 0), player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
-			elseif bagItems[v].type == 'complementItem' then
-				showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><p align="center"><g><font size="9">"'.. translate('itemDesc_'..v, player):format(bagItems[v].complement) .. '"', player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
-			elseif bagItems[v].type == 'bag' then
-				if players[player].bagLimit < 55 then
-					showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><g><font size="9">'.. translate('itemDesc_bag', player):format(bagItems[v].capacity), player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
-				else
-					showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><r><font size="9">'.. translate('error_maxStorage', player), player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
-				end
-			else
-				showTextArea(id..(894+(i-1)*3), '<textformat leftmargin="-5"><p align="center"><g><font size="9">"'.. translate('itemDesc_'..v, player) .. '"', player, x+15, y+73 + (i-1)*68, width-10, 28, 0x314e57, 0x314e57, 0.5, true)
-			end
-			if players[player].coins >= bagItems[v].price then
-				showTextArea(id..(895+(i-1)*3), translate('item_'..v, player), player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e57, 1, true)
-				if bagItems[v].type == 'bag' and players[player].bagLimit >= 55 then
-					showTextArea(id..(896+(i-1)*3), '', player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e, 0, true)
-				else
-					showTextArea(id..(896+(i-1)*3), '<p align="right"><a href="event:buyBagItem_'.. v ..'"><vp>$'.. bagItems[v].price ..'</p>', player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e, 0, true)
-				end
-			else
-				showTextArea(id..(895+(i-1)*3), '<font color="#999999">'.. translate('item_'..v, player), player, x+15, y+50 + (i-1)*68, width-10, 20, 0x22363c, 0x22363c, 1, true)
-				showTextArea(id..(896+(i-1)*3), '<p align="right"><r>$'.. bagItems[v].price ..'</p>', player, x+15, y+50 + (i-1)*68, width-10, 20, 0x314e57, 0x314e, 0, true)
-			end
-		end
-	elseif type == 18 then -- VAULT PASSWORD
+	if type == 18 then -- VAULT PASSWORD
 		if not players[player].place == 'bank' then return end
 		showTextArea(id..'891', '', player, x+14, y+height-20+25, width-10, 15, 0x97a6aa, 0x97a6aa, 1, true)
 		showTextArea(id..'892', '', player, x+16, y+height-20+27, width-10, 15, 0x1, 0x1, 1, true)
@@ -154,6 +107,7 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 		showTextArea(id..(890+(8+4)*14), '<p align="center"><font color="#ffffff" size="15">'..password, player, x+10 , y+25, width, 40, 0xff0000, 0xff0000, 0, true)
 	end
 end
+
 sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, prof, interface, tela, type, coin, showCoin)
 	local playerData = players[player]
 	if type and type ~= 16 and type ~= -10 then
@@ -220,6 +174,7 @@ end
 
 showOptions = function(player)
 	local playerInfo = players[player]
+	if not playerInfo.dataLoaded then return end
 	if playerInfo.blockScreen or playerInfo.holdingItem or playerInfo.hospital.hospitalized or playerInfo.editingHouse then return end
 	if not playerInfo.robbery.robbing and not playerInfo.robbery.arrested then
 		local images = playerInfo.interfaceImg
@@ -235,7 +190,7 @@ showOptions = function(player)
 		end
 		local function showBag()
 			players[player].interfaceImg[#images+1] = addImage("170fa5dddd8.png", ":2", 298, 353, player)
-			players[player].interfaceImg[#images+1] = addImage(bagUpgrades[playerInfo.bagLimit], ":3", 307, 362, player)
+			players[player].interfaceImg[#images+1] = addImage(bagIcons[playerInfo.currentBagIcon], ":3", 307, 362, player)
 
 			showTextArea(98900000001, string.rep('\n', 4), player, 300, 360, 50, 50, 1, 1, 0, true,
 				function(player)
@@ -300,6 +255,6 @@ closeMenu = function(id, player)
 		removeTextArea(id, player)
 	end
 	removeTextArea(9901327, player)
-	removeImages(player)
+	removeGroupImages(players[player].images)
 	removeImage(players[player].bannerLogin)
 end

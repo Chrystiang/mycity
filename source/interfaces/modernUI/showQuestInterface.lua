@@ -23,12 +23,16 @@ modernUI.questInterface = function(self)
 				max = #lang['en'].quests[playerData.questStep[1]]
 				goal = string.format(lang[getLang].quests[playerData.questStep[1]][playerData.questStep[2]]._add, quest_formatText(player, playerData.questStep[1], playerData.questStep[2]))
 			end
-		else 
-			title = '['..translate('_2ndquest', player)..']'
-			min = playerData.sideQuests[2] 
-			max = sideQuests[playerData.sideQuests[1]].quanty
+		else
 			local sideQuestID = sideQuests[playerData.sideQuests[1]].alias or playerData.sideQuests[1]
-			goal = lang[getLang].sideQuests[sideQuestID]:format(playerData.sideQuests[2] .. '/' .. sideQuests[playerData.sideQuests[1]].quanty)
+			local currentAmount = playerData.sideQuests[2]
+			local requiredAmount = playerData.sideQuests[7] or sideQuests[sideQuestID].amount
+			local description = sideQuests[sideQuestID].formatDescription and sideQuests[sideQuestID].formatDescription(player) or {"<vp>"..currentAmount .. '/' .. requiredAmount.."</vp>"}
+			title = '['..translate('_2ndquest', player)..']'
+			min = currentAmount
+			max = requiredAmount
+			
+			goal = lang[getLang].sideQuests[sideQuestID]:format(table.unpack(description))
 		end
 		local progress = floor(min / max * 100)
 		local progress2 = floor(min / max * 250/11.5)
