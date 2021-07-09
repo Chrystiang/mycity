@@ -272,5 +272,14 @@ recipes = {
 			frenchFries = 1,
 			wheatFlour = 1,
 		}
-	}
+	},
+	raspberryCake = {
+		require = {
+			raspberry = 2,
+			milk = 1,
+			egg = 2,
+			sugar = 1,
+			wheatFlour = 3,
+		},
+	},
 }

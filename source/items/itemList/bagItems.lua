@@ -1,32 +1,35 @@
 lootDrops = {
 	redPresent = {},
 }
+
+bagIds = {}
+
 bagItems = {
-	energyDrink_Basic = {
+	energymax_green = {
 		id = 1,
 		price = 25,
-		png = '172ced59c50.png',
+		png = '179588a8be3.png',
 		power = 10,
 		type = 'food',
-		npcShop = 'kariina',
+		npcShop = 'kariina, gominha',
 		canBeFoundIn = {'redPresent'},
 	},
-	energyDrink_Mega = {
+	energymax_orange = {
 		id = 2,
 		price = 30,
-		png = '172ced57ff3.png',
+		png = '179588aaa39.png',
 		power = 15,
 		type = 'food',
-		npcShop = 'kariina',
+		npcShop = 'kariina, gominha',
 		canBeFoundIn = {'redPresent'},
 	},
-	energyDrink_Ultra = {
+	energymax_blue = {
 		id = 3,
 		price = 60,
-		png = '172ced55dcc.png',
+		png = '179588a6bd9.png',
 		power = 30,
 		type = 'food',
-		npcShop = 'kariina',
+		npcShop = 'kariina, gominha',
 		canBeFoundIn = {'redPresent'},
 	},
 	pickaxe = {
@@ -36,6 +39,7 @@ bagItems = {
 		type = 'item',
 		npcShop = '-',
 		miningPower = 2,
+		blockUse = true,
 	},
 	clock = {
 		id = 5,
@@ -53,12 +57,14 @@ bagItems = {
 		png = '174acaef78b.png',
 		hunger = 1,
 		type = 'food',
+		npcShop = 'gominha',
 	},
 	goldNugget = {
 		id = 7,
 		price = 115,
 		png =  '16bc53d823f.png',
 		limitedTime = os_time{day = 20, year = 2020, month = 4},
+		blockUse = true,
 	},
 	dynamite = {
 		id = 8,
@@ -352,6 +358,7 @@ bagItems = {
 		type = 'food',
 		png = '16c1bfca398.png',
 		hunger = -15,
+		npcShop = 'gominha',
 	},
 	pepper = {
 		id = 24,
@@ -373,6 +380,7 @@ bagItems = {
 		type = 'food',
 		png = '16c258971c0.png',
 		canBeFoundIn = {'redPresent'},
+		sellingPrice = 2000,
 	},
 	luckyFlowerSeed = {
 		id = 27,
@@ -427,6 +435,7 @@ bagItems = {
 		png = '16c35643411.png',
 		power = 15,
 		hunger = 10,
+		npcShop = 'gominha',
 	},
 	pumpkin = {
 		id = 35,
@@ -468,6 +477,7 @@ bagItems = {
 		price = 3,
 		png = '174b29dfe45.png',
 		type = 'food',
+		npcShop = 'gominha',
 	},
 	chocolate = {
 		id = 40,
@@ -476,6 +486,7 @@ bagItems = {
 		type = 'food',
 		power = 6,
 		hunger = 2,
+		npcShop = 'gominha',
 	},
 	blueberries = {
 		id = 41,
@@ -507,14 +518,13 @@ bagItems = {
 			movePlayer(i, oldPositions[1], oldPositions[2], false)
 		end,
 	},
-	fish_SmoltFry = {
+	fish_Smolty = {
 		id = 44,
 		price = 15,
 		type = 'food',
-		png = '170b7040298.png',
+		png = '1790dd60e18.png',
 		power = -10,
 		hunger = -10,
-		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Lionfish = {
 		id = 45,
@@ -543,14 +553,13 @@ bagItems = {
 		hunger = -10,
 		credits = '<CS>Klei Entertainment</CS>',
 	},
-	fish_RuntyGuppy = {
+	fish_Guppy = {
 		id = 48,
 		price = 50,
 		type = 'food',
-		png = '170b77ca0c7.png',
+		png = '1790dd5c15f.png',
 		power = -10,
 		hunger = -10,
-		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Lobster = {
 		id = 49,
@@ -565,10 +574,9 @@ bagItems = {
 		id = 50,
 		price = 10000,
 		type = 'food',
-		png = '170b7904d24.png',
+		png = '1790dd5711f.png',
 		power = -60,
 		hunger = -40,
-		credits = '<CS>Klei Entertainment</CS>',
 	},
 	fish_Frog = {
 		id = 51,
@@ -726,6 +734,7 @@ bagItems = {
 		type = 'holdingItem',
 		png = '171af19adb5.png',
 		credits = '<CS>Klei Entertainment</CS>',
+		blockUse = true,
 	},
 	crystal_yellow = {
 		id = 72,
@@ -733,12 +742,14 @@ bagItems = {
 		png = '172373f61f1.png',
 		jobStatID = 12,
 		canBeFoundIn = {'redPresent'},
+		blockUse = true,
 	},
 	crystal_blue = {
 		id = 73,
 		type = 'crystal',
 		png = '172373eddec.png',
 		jobStatID = 13,
+		blockUse = true,
 	},
 	crystal_purple = {
 		id = 74,
@@ -746,12 +757,14 @@ bagItems = {
 		png = '172373f2060.png',
 		jobStatID = 14,
 		canBeFoundIn = {'redPresent'},
+		blockUse = true,
 	},
 	crystal_green = {
 		id = 75,
 		type = 'crystal',
 		png = '172373f009d.png',
 		jobStatID = 15,
+		blockUse = true,
 	},
 	crystal_red = {
 		id = 76,
@@ -759,6 +772,7 @@ bagItems = {
 		png = '172373f3f04.png',
 		jobStatID = 16,
 		canBeFoundIn = {'redPresent'},
+		blockUse = true,
 	},
 	banana = {
 		id = 77,
@@ -927,6 +941,7 @@ bagItems = {
 		png = '174acdb9149.png',
 		hunger = 100,
 		type = 'food',
+		sellingPrice = 2000,
 	},
 	orange_luckyFlower = {
 		id = 105,
@@ -934,6 +949,7 @@ bagItems = {
 		power = 50,
 		hunger = 50,
 		type = 'food',
+		sellingPrice = 2000,
 	},
 	red_luckyFlower = {
 		id = 106,
@@ -941,6 +957,7 @@ bagItems = {
 		hunger = 90,
 		power = 10,
 		type = 'food',
+		sellingPrice = 2000,
 	},
 	purple_luckyFlower = {
 		id = 107,
@@ -948,12 +965,14 @@ bagItems = {
 		hunger = 10,
 		power = 90,
 		type = 'food',
+		sellingPrice = 2000,
 	},
 	green_luckyFlower = {
 		id = 108,
 		png = '174acda4d8c.png',
 		power = -666,
 		type = 'food',
+		sellingPrice = 2000,
 	},
 	black_luckyFlower = {
 		id = 109,
@@ -961,6 +980,7 @@ bagItems = {
 		hunger = 100,
 		power = 100,
 		type = 'food',
+		sellingPrice = 2000,
 	},
 	shovel = {
 		id = 110,
@@ -1001,8 +1021,8 @@ bagItems = {
 		id = 114,
 		png = '176887ebc7c.png',
 		type = 'food',
-		power = 30,
-		hunger = 25,
+		power = 6,
+		hunger = 5,
 		limitedTime = os_time{day=15, year=2021, month=1},
 	},
 	raspberrySeed = {
@@ -1105,6 +1125,11 @@ bagItems = {
 		end,
 		npcShop = 'indy',
 	},
+	raspberryCake = {
+		id = 122,	
+		png = '178a768dab8.png',
+		type = 'food',
+	},
 }
 
 for item, data in next, bagItems do
@@ -1115,7 +1140,10 @@ for item, data in next, bagItems do
 			data.holdingAlign = {{-35, -20}, {-15, -20}}
 		end
 	end
+	
 	if data.canBeFoundIn and table_find(data.canBeFoundIn, 'redPresent') then
 		lootDrops.redPresent[#lootDrops.redPresent+1] = item
 	end
+
+	bagIds[data.id] = {n = item, blockUse = data.blockUse, blockTrades = data.blockTrades}
 end

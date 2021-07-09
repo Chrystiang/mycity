@@ -4,7 +4,7 @@ addItem = function(item, amount, player, coin)
 	if players[player].coins < coin then return end
 
 	for id, properties in next, players[player].questLocalData.other do 
-		if id:find('ItemQuanty_') then
+		if id:find('ItemAmount_') then
 			if id:lower():find(item:lower()) then 
 				if type(properties) == 'boolean' then 
 					quest_updateStep(player)
@@ -66,6 +66,7 @@ removeBagItem = function(item, amount, player)
 		end
 	end
 	if not hasItem then return false end
+
 	players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag - amount
 	savedata(player)
 	return true

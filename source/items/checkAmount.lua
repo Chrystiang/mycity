@@ -1,4 +1,4 @@
-checkItemQuanty = function(item, quant, player)
+checkItemAmount = function(item, quant, player)
 	if not players[player].bag then return end
 	if #players[player].bag == 0 then return false end
 	for i, v in next, players[player].bag do

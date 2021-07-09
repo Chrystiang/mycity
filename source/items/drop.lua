@@ -48,6 +48,8 @@ item_droppedEvent = function(id, player)
 		itemName = 'luckyFlowerSeed'
 	elseif itemName:find('_luckyFlower') then
 		itemName = 'luckyFlower'
+	elseif itemName:find('energymax') then
+		itemName = 'energymax'
 	end
 						
 	if amount <= 0 then return end
@@ -81,6 +83,7 @@ item_droppedEvent = function(id, player)
 					chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..v.name..'Seed', player)..'</vp>', '<fc>$'..(v.pricePerSeed * amount)..'</fc>'), player)
 					job_updatePlayerStats(player, 6, amount)
 					giveExperiencePoints(player, 2 * amount)
+					sideQuest_sendTrigger(player, "sell_seeds", amount)
 					break
 				end
 			end
@@ -91,11 +94,13 @@ item_droppedEvent = function(id, player)
 				chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(itemData.sellingPrice * amount)..'</fc>'), player)
 				job_updatePlayerStats(player, 11, amount)
 				giveExperiencePoints(player, 2 * amount)
+				sideQuest_sendTrigger(player, "sell_fruits", amount)
 			end
 		end
 	elseif players[player].job == 'fisher' and players[player].place == 'fishShop' and string_find(item, 'fish_') then
 		canRemove = true
 		giveCoin(bagItems[item].price * amount, player)
+		sideQuest_sendTrigger(player, "sell_fishes", amount)
 		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(bagItems[item].price * amount)..'</fc>'), player)
 	elseif players[player].job == 'miner' and players[player].place == 'town' then
 		if item:find('crystal_') or item:find('goldNugget') then
@@ -106,6 +111,7 @@ item_droppedEvent = function(id, player)
 				chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(bagItems[item].price * amount)..'</fc>'), player)
 				if item:find('crystal_') then
 					job_updatePlayerStats(player, bagItems[item].jobStatID, amount)
+					sideQuest_sendTrigger(player, "sell_crystal", amount)
 				end
 			end
 		end
