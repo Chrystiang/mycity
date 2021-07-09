@@ -66,11 +66,9 @@ addBankRobbingAssets = function()
 										showOptions(player)
 										giveCoin(jobs['thief'].bankRobCoins, player, true)
 										TFM.setNameColor(player, 0)
+										giveExperiencePoints(player, 250)
 										job_updatePlayerStats(player, 2)
-										local sidequest = sideQuests[players[player].sideQuests[1]].type
-										if string_find(sidequest, 'type:bank') then
-											sideQuest_update(player, 1)
-										end
+										sideQuest_sendTrigger(player, 'bank', 1)
 									end
 								end, 1000, room.robbing.bankRobbingTimer)
 

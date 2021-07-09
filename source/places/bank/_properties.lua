@@ -17,6 +17,7 @@ room.bank  = {
 		{x = 15970, y = 1705}, -- Remi's restaurant
 		{x = 700, y = 8180}, -- Mine
 		{x = 5800, y = 5235}, -- Bank
+		{x = 4750, y = 3621}, -- Hospital (P)
 	},
 }
 
