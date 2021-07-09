@@ -69,9 +69,9 @@ _QuestControlCenter = {
 			if questStep == 1 then 
 				playerData.questLocalData.other['fish_'] = 5
 			elseif questStep == 3 then 
-				players[player].questLocalData.other['BUY_energyDrink_Ultra'] = 3 - (checkItemQuanty('energyDrink_Ultra', 1, player) and checkItemQuanty('energyDrink_Ultra', 1, player) or 0)
+				players[player].questLocalData.other['BUY_energymax_blue'] = 3 - (checkItemAmount('energymax_blue', 1, player) and checkItemAmount('energymax_blue', 1, player) or 0)
 			elseif questStep == 4 then 
-				removeBagItem('energyDrink_Ultra', 3, player)
+				removeBagItem('energymax_blue', 3, player)
 			elseif questStep >= 5 and questStep <= 7 then
 				gameNpcs.addCharacter('Chrystian$', {'171a318e6ca.png', '171a310fffa.png'}, player, 2600, 7680, {questNPC = true})
 				if questStep == 6 then 
@@ -194,9 +194,9 @@ _QuestControlCenter = {
 			elseif questStep == 8 then 
 				playerData.questLocalData.other['harvestLemon'] = true
 			elseif questStep == 9 then 
-				playerData.questLocalData.other['ItemQuanty_lemon'] = 10 - (checkItemQuanty('lemon', 1, player) and checkItemQuanty('lemon', 1, player) or 0)
+				playerData.questLocalData.other['ItemAmount_lemon'] = 10 - (checkItemAmount('lemon', 1, player) and checkItemAmount('lemon', 1, player) or 0)
 			elseif questStep == 11 then 
-				playerData.questLocalData.other['ItemQuanty_tomato'] = 10 - (checkItemQuanty('tomato', 1, player) and checkItemQuanty('tomato', 1, player) or 0)
+				playerData.questLocalData.other['ItemAmount_tomato'] = 10 - (checkItemAmount('tomato', 1, player) and checkItemAmount('tomato', 1, player) or 0)
 			elseif questStep == 13 then 
 				gameNpcs.addCharacter('Indy$', {}, player, 0, 0, {questNPC = true})
 			end

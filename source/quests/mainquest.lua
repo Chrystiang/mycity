@@ -30,14 +30,14 @@ quest_formatText = function(player, quest, step)
 	local formats = {
 		[1] = {
 			[1] = players[player].questLocalData.other.fish_ and (5 - players[player].questLocalData.other.fish_) .. '/5',
-			[3] = players[player].questLocalData.other.BUY_energyDrink_Ultra and (3 - players[player].questLocalData.other.BUY_energyDrink_Ultra) .. '/3',
+			[3] = players[player].questLocalData.other.BUY_energymax_blue and (3 - players[player].questLocalData.other.BUY_energymax_blue) .. '/3',
 		},
 		[5] = {
 			[17] = players[player].questStep[3] and (20 - players[player].questStep[3]) .. '/20',
 		},
 		[99] = {
-			[9] = players[player].questLocalData.other.ItemQuanty_lemon and (10 - players[player].questLocalData.other.ItemQuanty_lemon) .. '/10',
-			[11] = players[player].questLocalData.other.ItemQuanty_tomato and (10 - players[player].questLocalData.other.ItemQuanty_tomato) .. '/10',
+			[9] = players[player].questLocalData.other.ItemAmount_lemon and (10 - players[player].questLocalData.other.ItemAmount_lemon) .. '/10',
+			[11] = players[player].questLocalData.other.ItemAmount_tomato and (10 - players[player].questLocalData.other.ItemAmount_tomato) .. '/10',
 		},
 	}
 	if formats[quest] then
