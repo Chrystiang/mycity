@@ -301,7 +301,23 @@ lang.hu = {
 		[17] = "Készíts egy pizzát.",
 		[18] = "Készíts egy bruschettat.",
 		[19] = "Készíts egy limonádét.",
-		[20] = "Készíts egy béka szendvicset."
+		[20] = "Készíts egy béka szendvicset.",
+		-- [21] = 'Adj el %s kristályt.',
+		-- [22] = 'Cserélj Dave-vel %s alkalommal',
+		-- [23] = 'Takaríts be %s növényt.',
+		-- [24] = 'Adj el %s magot.',
+		-- [25] = 'Adj el %s gyümölcsöt.',
+		-- [26] = 'Adj el %s halat.',
+		-- [27] = 'Rabold ki %s-t %s alkalommal', -- Rob [NPC] [Amount] times.
+		-- [28] = 'Vásárolj %s tárgyat %s-től.', -- Buy [Amount] items from [NPC].
+		[31] = 'Adj el %s kristályt.',
+		[32] = 'Cserélj Dave-vel %s alkalommal',
+		[33] = 'Takaríts be %s növényt.',
+		[34] = 'Adj el %s magot.',
+		[35] = 'Adj el %s gyümölcsöt.',
+		[36] = 'Adj el %s halat.',
+		[37] = 'Rabold ki %s-t %s alkalommal', -- Rob [NPC] [Amount] times.
+		[38] = 'Vásárolj %s tárgyat %s-től.', -- Buy [Amount] items from [NPC].
 	},
 	-- jobs
 	job = "Munka",
