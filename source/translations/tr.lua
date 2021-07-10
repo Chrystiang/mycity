@@ -139,7 +139,15 @@ lang.tr = {
 		[18] = "Bruschetta yap.",
 		[19] = "Limonata yap.",
 		[20] = "Kurbağa sandviçi yap.",
-		[17] = "Pizza yap."
+		[17] = "Pizza yap.",
+		[31] = '%s adet kristal sat.', -- Sell [Amount] crystals.
+		[32] = 'Dave ile %s kez takas yap.', -- Trade with Dave [Amount] times.
+		[33] = '%s adet ekin hasat et.', -- Sell [Amount] crops.
+		[34] = '%s adet tohum sat.', -- Sell [Amount] seeds.
+		[35] = '%s adet meyve sat.', -- Sell [Amount] fruits.
+		[36] = '%s adet balık sat.', -- Sell [Amount] fishes.
+		[37] = '%s isimli fareyi %s kez soy.', -- Rob [NPC] [Amount] times.
+		[38] = '%s isimli fareden %s adet eşya satın al.', -- Buy [Amount] items from [NPC].
 	},
 	npcDialog_Paulo = "Bu kutu cidden çok ağır...\nBuralarda bir forklift olsa ne de güzel olurdu be.",
 	item_luckyFlowerSeed = "Şanslı Çiçek Tohumu",
@@ -818,4 +826,20 @@ lang.tr = {
     npcDialog_Perry = 'Üzgünüm ama liderlik tablosu bakımda.\nMuhtemelen ocak ayına kadar biter, yeni oyuncular için daha adil olacak şekilde bir mekanik üzerinde çalışıyoruz da.',
     item_speedPotion = 'Hız İksiri',
 	itemDesc_speedPotion = '%s saniye boyunca hızlı koşmak için bu iksiri kullan!',
+	-- V3.5.1
+	item_raspberryCake = 'Ahududulu Pasta',
+	profile_timePlayed = 'Oynanan süre (saat)',
+	confirmButton_backpackIcon = 'Sırt Çantası Simgesi',
+	-- V3.5.2
+	badgeDesc_20 = 'Cadılar Bayramı 2020',
+	badgeDesc_24 = 'Noel 2020',
+	badgeDesc_8 = '500 tohum satıldı',
+	badgeDesc_25 = '500 meyve satıldı',
+	-- V3.5.3
+	npcDialog_Daniel = 'Selamlar! Sırt çantanı geliştirmek ister miydin?\nMüsaadenle yardımcı olayım!',
+	confirmButton_BuyBagUpgrade = '%s fiyatına sırt çantası geliştirmesi al',
+	error_insufficientCoins = 'Bu eşyayı almak için yeterli paran yok.',
+	error_maxBagStorage = 'Bütün sırt çantası geliştirmelerini aldın :(',
+	upgradeBag = 'Sırt Çantanı Geliştir',
+	upgradeBagText = 'Sırt çantası limitini <rose>%s</rose>a kadar yükseltmek ister misin?',
 }

@@ -139,7 +139,15 @@ lang.pl = {
         [7] = "Low %s razy.",
         [14] = "Zlow %s lwich ryb.",
         [15] = "Dostarcz %s zamowien.",
-        [19] = "Zrob lemoniade."
+        [19] = "Zrob lemoniade.",
+        [31] = 'Sprzedaj %s krysztalow.', -- Sell [Amount] crystals.
+        [32] = 'Wymien sie z Dave %s razy.', -- Trade with Dave [Amount] times.
+        [33] = 'Zbierz %s upraw.', -- Sell [Amount] crops.
+        [34] = 'Sprzedaj %s nasion.', -- Sell [Amount] seeds.
+        [35] = 'Sprzedaj %s owocow.', -- Sell [Amount] fruits.
+        [36] = 'Sprzedaj %s ryb.', -- Sell [Amount] fishes.
+        [37] = 'Napadnij %s %s razy.', -- Rob [NPC] [Amount] times.
+        [38] = 'Kup %s itemow od %s.', -- Buy [Amount] items from [NPC].
     },
     npcDialog_Paulo = "To pudelko jest naprawde ciezkie ... \n Byloby tak fajnie, gdybysmy mieli tutaj wozek widlowy",
     item_luckyFlowerSeed = "Szczesliwe nasiono kwiatowe",
@@ -742,4 +750,20 @@ lang.pl = {
     npcDialog_Perry = 'Przepraszamy, tablica wynikow jest w trakcie naprawy. \n Powinna zostac zakonczona w styczniu, z nowa mechanika, dzieki ktorej bedzie sprawiedliwa dla nowych graczy.',
     item_speedPotion = 'Mikstura szybkosci',
     itemDesc_speedPotion = 'Uzyj tej mikstury zeby chodzic szybciej przez %s sekund!',
+    -- V3.5.1
+    item_raspberryCake = 'Ciasto truskawkowe',
+    profile_timePlayed = 'Czas grania (godziny)',
+    confirmButton_backpackIcon = 'Backpack Icon',
+    -- V3.5.2
+    badgeDesc_20 = 'Halloween 2020',
+    badgeDesc_24 = 'Swieta 2020',
+    badgeDesc_8 = 'Sprzedano 500 nasion',
+    badgeDesc_25 = 'Sprzedano 500 owocow',
+    -- V3.5.3
+    npcDialog_Daniel = 'Czesc! Czy chcesz ulepszyc swoj plecak?\nPomoge ci!',
+    confirmButton_BuyBagUpgrade = 'Kup ulepszenie plecaka za %s', -- Buy backpack upgrade for [Coins Value]
+    error_insufficientCoins = 'Nie masz wystarczajaco pieniedzy zeby kupic ten przedmiot.',
+    error_maxBagStorage = 'Kupiles wszystkie ulepszenia plecaka :(',
+    upgradeBag = 'Ulepsz plecak',
+    upgradeBagText = 'Czy chcesz powiekszyc pojemnosc plecaka o <rose>%s</rose>?', -- Do you want to increase your backpack limit to [Number]?
 }
