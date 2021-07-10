@@ -852,4 +852,24 @@ lang.hu = {
 	House11 = 'Iglu',
 	houseDescription_11 = 'A falu pingvinjei által épített hiteles iglu.',
 	npcDialog_Perry = 'Sajnálom, a ranglista karbantartás alatt van.\nJanuárban kellene befejezni egy új mechanikával, hogy tisztességes legyen az új játékosok számára.',
+	-- V3.5.0
+	item_speedPotion = 'Gyorsaság bájital',
+	itemDesc_speedPotion = 'Használd ezt a bájitalt, hogy gyorsabban menj %s másodpercig!',
+	-- V3.5.1
+	profile_timePlayed = 'Játszott idő (óra)',
+	confirmButton_backpackIcon = 'Hátizsák Ikon',
+	-- V3.5.2
+	item_energymax = 'Energymax', -- ?
+	badgeDesc_20 = 'Halloween 2020',
+	badgeDesc_24 = 'Karácsony 2020',
+	badgeDesc_8 = '500 eladott mag',
+	badgeDesc_25 = '500 eladott gyümölcs',
+	item_raspberryCake = 'Málna torta',
+	-- V3.5.3
+	npcDialog_Daniel = 'Hello! Fejleszteni akarod a hátizsákod?\nHadd segítsek!',
+	confirmButton_BuyBagUpgrade = '%s hátizsák fejlesztés vásárlása',
+	error_insufficientCoins = 'Nincs elég érméd, hogy megvásárold ezt a tárgyat.',
+	error_maxBagStorage = 'Megvásároltál minden elérhető hátizsák fejlesztést :(',
+	upgradeBag = 'Hátizsák fejlesztése',
+	upgradeBagText = 'Szeretnéd növelni a hátizsákod limitjét ennyivel: <rose>%s</rose>?',
 }
