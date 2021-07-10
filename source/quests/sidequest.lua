@@ -3,6 +3,7 @@ sideQuest_update = function(player, value)
 
 	local currentAmount = players[player].sideQuests[2]
 	local requiredAmount = players[player].sideQuests[7] or sideQuests[players[player].sideQuests[1]].amount
+
 	if currentAmount >= requiredAmount then
 		sideQuest_reward(player)
 	end
@@ -15,7 +16,7 @@ sideQuest_sendTrigger = function(player, triggerName, value, extraData)
 	if string_find(sidequest, triggerName) then
 		if playerData.sideQuests[8] then
 			if not extraData then return end
-			if extraData ~= playerData.sideQuests[8]:lower() then return end
+			if extraData:lower() ~= playerData.sideQuests[8]:lower() then return end
 		end
 		sideQuest_update(player, value)
 	end

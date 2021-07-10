@@ -26,7 +26,8 @@ modernUI.questInterface = function(self)
 		else
 			local sideQuestID = sideQuests[playerData.sideQuests[1]].alias or playerData.sideQuests[1]
 			local currentAmount = playerData.sideQuests[2]
-			local requiredAmount = playerData.sideQuests[7] or sideQuests[sideQuestID].amount
+			local requiredAmount = playerData.sideQuests[7] or sideQuests[playerData.sideQuests[1]].amount
+			
 			local description = sideQuests[sideQuestID].formatDescription and sideQuests[sideQuestID].formatDescription(player) or {"<vp>"..currentAmount .. '/' .. requiredAmount.."</vp>"}
 			title = '['..translate('_2ndquest', player)..']'
 			min = currentAmount
