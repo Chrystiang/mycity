@@ -28,4 +28,11 @@ room.specialBackgrounds   = {
 		forSaleSign = '1767190d05d.png',
 		align       = 1919,
 	},
+	halloween2021 = {
+		evening     = '17c47acf78b.jpg',
+		dawn        = '17c47acaead.jpg',
+		night       = '17c47ad2d00.jpg',
+		day         = '17c47acd7bd.jpg',
+		align       = 1373,
+	},
 }
