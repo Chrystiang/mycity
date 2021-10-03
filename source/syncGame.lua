@@ -48,6 +48,7 @@ syncVersion = function(player, vs)
 			end
 		end
 	end
+	
 	if playerVersion < 310 then
 		chest_Item[3] = {}
 		chest_Quanty[3] = {}
