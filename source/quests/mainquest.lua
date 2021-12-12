@@ -66,7 +66,7 @@ quest_setNewQuest = function(player, syncRewards)
 	modernUI.new(player, 240, 220)
 		:rewardInterface({
 			{text = translate('experiencePoints', player), quanty = 3000, format = '+'},
-			{text = 'QP$', quanty = 20, format = '+'},
+			{currency = 'diamond', quanty = 20},
 		}, nil, translate('questCompleted', player):format('<CE><i>'..lang[players[player].lang].quests[syncRewards].name..'</i></CE>'))
 		:build()
 		:addConfirmButton(function() end, translate('confirmButton_Great', player))

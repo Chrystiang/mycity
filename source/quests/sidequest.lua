@@ -38,7 +38,7 @@ sideQuest_reward = function(player)
 	modernUI.new(player, 240, 220)
 		:rewardInterface({
 			{text = translate('experiencePoints', player), quanty = newxp, format = '+'},
-			{text = 'QP$', quanty = qpPoints, format = '+'},
+			{currency = 'diamond', quanty = qpPoints},
 		}, nil, translate('sidequestCompleted', player))
 		:build()
 		:addConfirmButton(function() end, translate('confirmButton_Great', player))
