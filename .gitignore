@@ -1,3 +1,4 @@
 source/syncGame.lua
 *.DS_Store
 builder.lua
+source/.DS_Store
