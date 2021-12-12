@@ -66,14 +66,17 @@ modernUI.showNPCShop = function(self, items, npc)
 						showTextArea(id..(992+i*5), '', player, x, y, width, height, colorPallete.button_confirmFront, colorPallete.button_confirmFront, 1, true)
 						showTextArea(id..(993+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, not blockClick and callback or nil)
 					end
-					local currency = v.qpPrice and {players[player].sideQuests[4], v.qpPrice*selectedQuanty} or {players[player].coins, v.price*selectedQuanty}
+					local isWithDiamond = v.qpPrice
+					local currency = isWithDiamond and {players[player].sideQuests[4], v.qpPrice*selectedQuanty} or {players[player].coins, v.price*selectedQuanty}
 					local buttonTxt = nil
 					local blockClick = false
+					local color = isWithDiamond and mainAssets.currencies.diamond.color or mainAssets.currencies.coin.color
+
 					if currency[1] >= currency[2] then
-						buttonTxt = '<font size="11">'..translate('confirmButton_Buy', player):format('<b><fc>'..(v.qpPrice and 'QP$'..(v.qpPrice*selectedQuanty) or '$'..(v.price*selectedQuanty)))
+						buttonTxt = color..(v.qpPrice or v.price)
 					else
 						blockClick = true
-						buttonTxt = '<r>'..(v.qpPrice and 'QP$'..v.qpPrice or '$'..v.price)
+						buttonTxt = '<r>$'..(v.qpPrice or v.price)
 					end
 					local function buyItem()
 						if boughtSomething then return end
@@ -137,7 +140,7 @@ modernUI.showNPCShop = function(self, items, npc)
 									selectedQuanty = selectedQuanty + calc
 									currency = v.qpPrice and {players[player].sideQuests[4], v.qpPrice*selectedQuanty} or {players[player].coins, v.price*selectedQuanty}
 									ui.updateTextArea(id..'893', '<font color="#cef1c3">'..string.format("%.2d", selectedQuanty), player)
-									buttonTxt = '<font size="11">'..translate('confirmButton_Buy', player):format('<b><fc>'..(v.qpPrice and 'QP$'..(v.qpPrice*selectedQuanty) or '$'..(v.price*selectedQuanty))..'</fc></b>')
+									buttonTxt = color..(v.qpPrice and (v.qpPrice*selectedQuanty) or (v.price*selectedQuanty))
 									addBuyButton(buttonTxt)
 								end, 565 + (i-1)*50, 270, 10, 10)
 						end

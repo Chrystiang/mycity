@@ -14,5 +14,4 @@ onEvent("PlayerDied", function(player)
 			movePlayer(player, 6240, 1944+room.y, false)
 		end
 	end
-	showOptions(player)
 end)

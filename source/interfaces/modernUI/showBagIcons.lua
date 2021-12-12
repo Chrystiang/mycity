@@ -16,7 +16,7 @@ modernUI.showBagIcons = function(self)
 					eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 					players[player].currentBagIcon = index
 					savedata(player)
-					showOptions(player)
+					loadBackpackIcon(player)
 				end)
 		end
 		i = i + 1

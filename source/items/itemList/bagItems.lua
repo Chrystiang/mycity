@@ -126,7 +126,6 @@ bagItems = {
 									checkIfPlayerIsDriving(i)
 									movePlayer(i, places['bank'].exitSensor[1]-70, places['bank'].exitSensor[2], false)
 									players[i].place = 'bank'
-									showOptions(i)
 								end
 							end
 						end

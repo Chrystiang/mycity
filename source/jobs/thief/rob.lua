@@ -25,14 +25,12 @@ startRobbery = function(player, character)
 			removeTimer(players[player].timer)
 			players[player].timer = {}
 			removeTextArea(98900000000, player)
-			showOptions(player)
 			giveExperiencePoints(player, 100)
 			job_updatePlayerStats(player, 2)
 			giveCoin(jobs['thief'].coins, player, true)
 			TFM.setNameColor(player, 0)
 		end
 	end, 1000, room.robbing.robbingTimer)
-	closeInterface(player, nil, nil, nil, nil, nil, true)
 
 	chatMessage('<j>'..translate('copAlerted', player), player)
 	TFM.setNameColor(player, 0xFF0000)

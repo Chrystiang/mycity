@@ -128,7 +128,6 @@ checkIfPlayerIsDriving = function(name)
 		playerData.canDrive = false
 		playerData.currentCar.direction = nil
 		freezePlayer(name, false)
-		showOptions(name)
 		loadMap(name)
 	end
 end

@@ -117,7 +117,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	end
 
 	loadMap(name)
-	showOptions(name)
+	updateCurrencies(name)
 	showCarShop(name)
 	sideQuest_update(name, 0)
 	HouseSystem.new(name):loadTerrains()
@@ -139,5 +139,54 @@ onEvent("PlayerDataLoaded", function(name, data)
 		giveBadge(name, 1)
 	end
 
-	addImage("170fa1a5400.png", ":1", 348, 355, name)
+	local icons = {
+		{
+			image = "17da6308116.png",
+			onClick = function()
+				openBag(name)
+			end
+		},
+		{
+			image = "17da6310177.png",
+			onClick = function()
+				openQuests(name)
+			end
+		},
+		{
+			image = "17da630001b.png",
+			onClick = function()
+				modernUI.new(name, 520, 300, translate('vehicles', name))
+				:addButton('1729f83fb5f.png', function()
+					modernUI.new(name, 240, 180, translate('confirmButton_tip', name), translate('tip_vehicle', name), 'errorUI')
+					:build()
+				end)
+				--[[:addButton('1787e8f568f.png', function()
+					modernUI.new(name, 240, 180, translate('confirmButton_customizeVehicle', name), '', 'errorUI')
+					:build()
+				end)]]
+				:build()
+				:showPlayerVehicles()
+			end
+		},
+		{
+			image = "17da62f9e1e.png",
+			onClick = function()
+				if not checkLocation_isInHouse(name) then return end
+				modernUI.new(name, 240, 120, translate('houseSettings', name))
+					:build()
+					:showHouseSettings()
+			end
+		}
+	}
+
+	local tot = 44 * #icons
+	for id, data in next, icons do
+		local i = id-1
+		local posX = 400 - tot/2 + i*44
+		addImage(data.image, ":3", posX, 365, name)
+		showTextArea(999970+i, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), name, posX, 365, 35, 35, 1, 1, 0, true, data.onClick)
+	end
+
+	addImage("17b349cc328.png", ":1", 650, 20, name)
+	loadBackpackIcon(name)
 end)

@@ -10,7 +10,6 @@ loadHospitalFloor = function(player)
 	showTextArea(8888808, "<textformat leftmargin='1' rightmargin='1'><a href='event:elevator'>" .. string.rep('\n', 5), player, ((andar-1)%andar)*900+388+4000, 188+3000, 20, 30, 1, 1, 0)
 
 	if not playerInfos.hospital.hospitalized then
-		closeInterface(player, false, true)
 		movePlayer(player, ((andar-1)%andar)*900+4400, 3240, false)
 	end
 
@@ -35,7 +34,6 @@ loadHospital = function(player, elevador)
 	showTextArea(8888807, "<textformat leftmargin='1' rightmargin='1'><a href='event:elevator'>" .. string.rep('\n', 5), player, ((andar-1)%andar)*900+388+4000, 188+3400, 20, 30, 1, 1, 0)
 
 	if not players[player].hospital.hospitalized and not elevador and not players[player].robbery.robbing then
-		closeInterface(player, false, true)
 		movePlayer(player, 4600, 3650, false)
 	end
 	if elevador then

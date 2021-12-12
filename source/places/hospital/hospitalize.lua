@@ -11,7 +11,6 @@ hospitalize = function(player)
 				players[player].hospital.currentFloor = i
 				freezePlayer(player, true)
 				movePlayer(player, ((i-1)%i)*900+4000+pos[x], 3200, false)
-				closeInterface(player, nil, nil, nil, nil, nil, true)
 				players[player].timer = addTimer(function(j) local time = 60 - j
 					if time > 0 then
 						showTextArea(98900000000, "<b><font color='#371616'><p align='center'>"..translate('healing', player):format(time), player, 250, 368, 290, 20, 0x1, 0x1, 0, true)
@@ -21,7 +20,6 @@ hospitalize = function(player)
 						end
 						players[player].hospital.diseases = {}
 						players[player].hospital.hospitalized = false
-						showOptions(player)
 						freezePlayer(player, false)
 						savedata(player)
 						room.hospital[i][x].name = nil

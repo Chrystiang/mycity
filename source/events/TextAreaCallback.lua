@@ -253,7 +253,6 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 				)
 			end
 			players[player].place = place
-			showOptions(player)
 			checkIfPlayerIsDriving(player)
 		else
 			alert_Error(player, 'timeOut', 'closed_'..place)

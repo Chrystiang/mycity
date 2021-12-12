@@ -34,7 +34,6 @@ arrestPlayer = function(thief, cop, command)
 		quest_updateStep(cop)
 		return
 	else
-		closeInterface(thief, nil, nil, nil, nil, nil, true)
 		players[thief].timer = addTimer(function(j)
 			local time = room.robbing.prisonTimer - j
 			local thiefPosition = ROOM.playerList[thief]
@@ -46,7 +45,6 @@ arrestPlayer = function(thief, cop, command)
 				players[thief].blockScreen = false
 				players[thief].timer = {}
 				movePlayer(thief, 8020, 6400, false)
-				showOptions(thief)
 			end
 
 			if not (thiefPosition.x > 8040 and thiefPosition.y > 6260 and thiefPosition.x < 8500 and thiefPosition.y < 6420) then

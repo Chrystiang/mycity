@@ -63,7 +63,6 @@ addBankRobbingAssets = function()
 										removeTimer(players[player].timer)
 										players[player].timer = {}
 										removeTextArea(98900000001, player)
-										showOptions(player)
 										giveCoin(jobs['thief'].bankRobCoins, player, true)
 										TFM.setNameColor(player, 0)
 										giveExperiencePoints(player, 250)
@@ -73,7 +72,6 @@ addBankRobbingAssets = function()
 								end, 1000, room.robbing.bankRobbingTimer)
 
 								players[player].robbery.robbing = true
-								closeInterface(player)
 								TFM.setNameColor(player, 0xFF0000)
 							end
 						end

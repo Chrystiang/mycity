@@ -38,13 +38,13 @@ modernUI.profileInterface = function(self, target)
    	showTextArea(id..'901', '<p align="center"><font color="#c6bb8c" size="12"><b>'..minXP..'/'..maxXP..'xp', player, 315, y+80, 170, nil, 0, 0x24474, 0, true)
 
    	local text_General =
+   	   	string_replace(player, {["{0}"] = 'profile_diamonds', ["{1}"] = '$'..targetData.sideQuests[4]}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_coins', ["{1}"] = '$'..targetData.coins}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_spentCoins', ["{1}"] = '$'..targetData.spentCoins}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_purchasedHouses', ["{1}"] = #targetData.casas..'/'..#mainAssets.__houses-2}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_purchasedCars', ["{1}"] = #targetData.cars..'/'..#mainAssets.__cars-1}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedQuests', ["{1}"] = (targetData.questStep[1]-1)..'/'..questsAvailable}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedSideQuests', ["{1}"] = targetData.sideQuests[3]}) ..'\n' ..
-   		string_replace(player, {["{0}"] = 'profile_questCoins', ["{1}"] = 'QP$'..targetData.sideQuests[4]}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_timePlayed', ["{1}"] = floor(targetData.timePlayed)}) ..'\n'
 
 	local text_Jobs = {

@@ -21,7 +21,8 @@ giveCoin = function(coin, name, work)
 			sideQuest_update(name, -coin)
 		end
 	end
-	showOptions(name)
+	
+	updateCurrencies(name)
 	savedata(name)
 end
 

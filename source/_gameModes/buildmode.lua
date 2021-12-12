@@ -266,7 +266,6 @@ mainAssets.gamemodes.buildmode.afterDataLoad = function(player)
 				for i = 1, 2 do 
 					showLifeStats(player, i)
 				end
-				showOptions(player)
 				removeGroupImages(images.icons)
 				removeGroupImages(images.pages)
 				removeGroupImages(images.bg)

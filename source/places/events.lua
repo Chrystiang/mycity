@@ -18,7 +18,6 @@ kickPlayersFromPlace = function(place)
 				playerData.place = 'island'
 			end
 			alert_Error(name, 'timeOut', 'closed_'..place) 
-			showOptions(name)
 		end
 	end
 end
@@ -27,7 +26,6 @@ goToHouse = function(player, terrainID)
 	players[player].place = 'house_'..terrainID
 	loadFound(player, terrainID)
 	movePlayer(player, ((terrainID-1)%terrainID)*1500+400, 1690, false)
-	showOptions(player)
 	checkIfPlayerIsDriving(player)
 	showTextArea(400, string.rep('\n', 3), player, ((terrainID-1)%terrainID)*1500 + 317, 1616 + 45, 25, 25, 0, 0, 0, false, 
 		function()
@@ -61,7 +59,6 @@ getOutHouse = function(player, terrainID)
 		players[player].place = 'town'
 	end
 	room.terrains[terrainID].guests[player] = false
-	showOptions(player)
 end
 
 equipHouse = function(player, houseType, terrainID)
@@ -77,7 +74,6 @@ equipHouse = function(player, houseType, terrainID)
 	room.terrains[terrainID].bought = true
 	room.terrains[terrainID].owner = player
 	room.terrains[terrainID].settings = {isClosed = false, permissions = {[player] = 4}}
-	showOptions(player)
 
 	HouseSystem.new(player):genHouseFace():genHouseGrounds()
 end
