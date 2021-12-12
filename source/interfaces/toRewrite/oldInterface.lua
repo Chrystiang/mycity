@@ -151,83 +151,9 @@ sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, pr
 	end
 end
 
-showVehiclesButton = function(player, expandedInterface)
-	local x = 445
-	if expandedInterface then
-		x = 546
-	end
-	showTextArea(98900000002, string.rep('\n', 4), player, x, 360, 50, 50, 1, 1, 0, true,
-		function(player)
-			modernUI.new(player, 520, 300, translate('vehicles', player))
-			:addButton('1729f83fb5f.png', function()
-				modernUI.new(player, 240, 180, translate('confirmButton_tip', player), translate('tip_vehicle', player), 'errorUI')
-				:build()
-			end)
-			--[[:addButton('1787e8f568f.png', function()
-				modernUI.new(player, 240, 180, translate('confirmButton_customizeVehicle', player), '', 'errorUI')
-				:build()
-			end)]]
-			:build()
-			:showPlayerVehicles()
-		end)
-end
-
-showOptions = function(player)
+loadBackpackIcon = function(player)
 	local playerInfo = players[player]
 	if not playerInfo.dataLoaded then return end
-	if playerInfo.blockScreen or playerInfo.holdingItem or playerInfo.hospital.hospitalized or playerInfo.editingHouse then return end
-	if not playerInfo.robbery.robbing and not playerInfo.robbery.arrested then
-		local images = playerInfo.interfaceImg
-		if images[1] then
-			for i = 1, #images do
-				removeImage(images[i])
-			end
-			players[player].interfaceImg = {}
-			images = players[player].interfaceImg
-		end
-		for i = 1, 4 do
-			removeTextArea(98900000000+i, player)
-		end
-		local function showBag()
-			players[player].interfaceImg[#images+1] = addImage("170fa5dddd8.png", ":2", 298, 353, player)
-			players[player].interfaceImg[#images+1] = addImage(bagIcons[playerInfo.currentBagIcon], ":3", 307, 362, player)
-
-			showTextArea(98900000001, string.rep('\n', 4), player, 300, 360, 50, 50, 1, 1, 0, true,
-				function(player)
-					openBag(player)
-				end)
-		end
-		local function showCar()
-			players[player].interfaceImg[#images+1] = addImage("170fa60a8a4.png", ":3", 440, 353, player)
-			players[player].interfaceImg[#images+1] = addImage("15b318c5f77.png", ":4", 452, 366, player)
-			showVehiclesButton(player)
-		end
-		local function showHouse()
-			players[player].interfaceImg[#images+1] = addImage("170fa60a8a4.png", ":3", 440, 353, player)
-			players[player].interfaceImg[#images+1] = addImage("15a197246f0.png", ":5", 451, 357, player)
-			showTextArea(98900000002, string.rep('\n', 4), player, 445, 360, 50, 50, 1, 1, 0, true,
-				function(player)
-					modernUI.new(player, 240, 120, translate('houseSettings', player))
-					:build()
-					:showHouseSettings()
-				end)
-		end
-		local allowedVehiclesPlaces = {'town', 'island', 'mine', 'mine_excavation'}
-		if table_find(allowedVehiclesPlaces, playerInfo.place) then
-			showCar()
-		elseif playerInfo.place:find('house') and checkLocation_isInHouse(player) then
-			showHouse()
-		end
-		showBag()
-
-		local size = playerInfo.coins < 999999 and 16 or 13
-		showTextArea(98900000000, '<b><font size="'..size..'" color="#371616"><p align="center">$'..playerInfo.coins, player, 350, size == 16 and 366 or 368, 100, 50, 1, 1, 0, true)
-	end
-end
-
-closeInterface = function(player, found, coin, placingItem, radioactiveMine, item, expandInterface)
-	local playerInfo = players[player]
-	if playerInfo.holdingItem and not placingItem then return end
 	local images = playerInfo.interfaceImg
 	if images[1] then
 		for i = 1, #images do
@@ -236,17 +162,16 @@ closeInterface = function(player, found, coin, placingItem, radioactiveMine, ite
 		players[player].interfaceImg = {}
 		images = players[player].interfaceImg
 	end
-	for i = 1, 4 do
-		removeTextArea(98900000000+i, player)
-	end
-	if expandInterface then
-		players[player].interfaceImg[#images+1] = addImage("170fa9bd6a6.png", ":1", 248, 355, player)
-		if not playerInfo.robbery.arrested and not playerInfo.hospital.hospitalized then
-			players[player].interfaceImg[#images+1] = addImage("170fa60a8a4.png", ":3", 541, 353, player)
-			players[player].interfaceImg[#images+1] = addImage("15b318c5f77.png", ":3", 553, 366, player)
-			showVehiclesButton(player, true)
-		end
-	end
+
+	players[player].interfaceImg[#images+1] = addImage(bagIcons[playerInfo.currentBagIcon], ":5000", 318, 371, player, 0.8, 0.8)
+end
+
+updateCurrencies = function(player)
+	local playerInfo = players[player]
+	showTextArea(98910000000, '<b><font size="14" color="#000000"><p align="right">$'..playerInfo.coins, player, 686, 30, 110, 20, 1, 1, 0, true)
+	showTextArea(98910000001, '<b><font size="14" color="#CFEFFC3"><p align="right">'..mainAssets.currencies.coin.color .. playerInfo.coins, player, 685, 29, 110, 20, 1, 1, 0, true)
+	showTextArea(98910000002, '<b><font size="14" color="#000000"><p align="right">$'..playerInfo.sideQuests[4], player, 686, 62, 110, 20, 1, 1, 0, true)
+	showTextArea(98910000003, '<b><font size="14" color="#FEFFC3"><p align="right">'..mainAssets.currencies.diamond.color .. playerInfo.sideQuests[4], player, 685, 61, 110, 20, 1, 1, 0, true)
 end
 
 closeMenu = function(id, player)
