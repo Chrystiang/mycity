@@ -11,10 +11,12 @@ do
 	checkWorkingTimer = function()
 		if workingTimer == workingTimerState.broken then
 			updateDialogs(10) -- Function used in timers is now used in eventLoop
+			timersLoop(500)
 		elseif workingTimer > workingTimerState.tryLimit then
 			if workingTimer == workingTimerState.setBroken then
 				workingTimer = workingTimerState.broken
-				errorHandler('Timers', 'Error')
+				--errorHandler('Timers', 'Error')
+				chatMessage("<r>[Timers Disruption] Some game animations may be affected.")
 			elseif workingTimer == workingTimerState.setVerified then
 				workingTimer = workingTimerState.stop
 			end
