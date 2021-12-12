@@ -4,11 +4,9 @@ playerFishing = function(name, x, y, biome)
 
 	randomseed(os_time())
 	local chances = random(1, 10000)
-	local counter = 0
 	local rarityFished = 'normal'
 
 	for rarity, percentage in next, player.lucky[1] do
-		counter = counter + (percentage * 100)
 		if (percentage * 100) >= chances then 
 			rarityFished = rarity
 			break
