@@ -24,14 +24,13 @@ background = function(player, period, rain, getPng)
 			png = '16baeb0ead4.jpg'
 		elseif period == 'dawn' then
 			png = '16b80619ab9.jpg'
-		elseif period == 'halloween' then
-			png = '15ed953938a.jpg'
 		end
-
 	else
 		png = room.specialBackgrounds[room.event][period]
 		align = room.specialBackgrounds[room.event].align
+		ui.setBackgroundColor(room.specialBackgrounds[room.event].uiBackground[period])
 	end
+
 	if getPng then return png end
 
 	removeGroupImages(players[player].background)
