@@ -28,11 +28,18 @@ room.specialBackgrounds   = {
 		forSaleSign = '1767190d05d.png',
 		align       = 1919,
 	},
-	halloween2021 = {
-		evening     = '17c47acf78b.jpg',
-		dawn        = '17c47acaead.jpg',
-		night       = '17c47ad2d00.jpg',
-		day         = '17c47acd7bd.jpg',
-		align       = 1373,
+	christmas2021 = {
+		evening     = '17690bea277.jpg',
+		dawn 		= '176708fb915.jpg',
+		night       = '1767090e36c.jpg',
+		day         = '1767089b19c.jpg',
+		forSaleSign = '1767190d05d.png',
+		uiBackground = {
+			dawn 	= '#C2CDF2',
+			day 	= '#95D2F4',
+			evening = '#EEF8CC',
+			night 	= '#889697',
+		},
+		align       = 1919,
 	},
 }
