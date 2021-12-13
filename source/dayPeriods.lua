@@ -16,15 +16,22 @@ background = function(player, period, rain, getPng)
 
 	if not room.event or room.event == '' then
 		align = 1919
+		local bgColor
 		if period == 'day' then
 			png = '1724c10adda.jpg'
+			bgColor = "#608EC6"
 		elseif period == 'evening' then
 			png = '1724c1daa44.jpg'
+			bgColor = "#FBA676"
 		elseif period == 'night' then
 			png = '16baeb0ead4.jpg'
+			bgColor = "#58235d"
 		elseif period == 'dawn' then
 			png = '16b80619ab9.jpg'
+			bgColor = "#2A287b"
 		end
+
+		ui.setBackgroundColor(bgColor)
 	else
 		png = room.specialBackgrounds[room.event][period]
 		align = room.specialBackgrounds[room.event].align
