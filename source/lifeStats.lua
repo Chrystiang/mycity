@@ -1,4 +1,8 @@
-local lifeStatsIcons = {{'171653c0aa6.png', '17174d72c5e.png', '17174d81707.png'}, {'170f8acc9f4.png', '170f8ac976f.png', '170f8acf954.png'}}
+local lifeStatsIcons = {
+	{'171653c0aa6.png', '17174d72c5e.png', '17174d81707.png'}, 
+	{'170f8acc9f4.png', '170f8ac976f.png', '170f8acf954.png'}
+}
+
 showLifeStats = function(player, lifeStat)
 	local playerInfos = players[player]
 	if playerInfos.editingHouse then return end
@@ -23,8 +27,24 @@ showLifeStats = function(player, lifeStat)
 end
 
 setLifeStat = function(player, lifeStat, quant)
+	quant = quant or 0
 	if not players[player].dataLoaded then return end
-	players[player].lifeStats[lifeStat] = players[player].lifeStats[lifeStat] + quant 
+	players[player].lifeStats[lifeStat] = players[player].lifeStats[lifeStat] + quant
+
+	if quant > 0 then
+		if lifeStat == 2 then
+			sideQuest_sendTrigger(player, 'recoveHunger', quant)
+		else
+			sideQuest_sendTrigger(player, 'recoveEnergy', quant)
+		end
+	else 
+		if lifeStat == 2 then
+			sideQuest_sendTrigger(player, 'loseHunger', -quant)
+		else
+			sideQuest_sendTrigger(player, 'loseEnergy', -quant)
+		end
+	end
+
 	if players[player].lifeStats[lifeStat] > 100 then
 		players[player].lifeStats[lifeStat] = 100
 	end

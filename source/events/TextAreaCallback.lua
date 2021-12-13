@@ -301,6 +301,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 	elseif callback == 'getVaultPassword' then
 		if math_hypo(ROOM.playerList[player].x, ROOM.playerList[player].y, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y) <= 80 then
 			alert_Error(player, 'password', '<p align="center">'..room.bankVaultPassword:sub(1, 3)..'_')
+			sideQuest_sendTrigger(player, 'findBankPaper', 1)
 		end
 	elseif callback == 'lever' then
 		if room.bankBeingRobbed then
