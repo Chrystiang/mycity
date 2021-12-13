@@ -194,7 +194,7 @@ bagItems = {
 	},
 	coffee = {
 		id = 11,
-		price = 100,
+		price = 50,
 		power = 25,
 		hunger = 1,
 		png = '16c00e1f53b.png',
