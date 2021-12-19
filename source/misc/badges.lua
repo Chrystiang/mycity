@@ -79,6 +79,9 @@ badges = {
 		png = '176905067bc.png',
 	},
 	[25] = { -- Sell 500 fruits
-		png = '1787a04ef92.png',
+		png = '17dd4a42ccb.png',
+	},
+	[26] = { -- Christmas2021
+		png = '17dd4a374e9.png',
 	},
 }
