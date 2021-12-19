@@ -25,20 +25,20 @@ end
 sideQuest_reward = function(player)
 	local currentSideQuest 	= players[player].sideQuests[1]
 	local hasNewDataFormat 	= players[player].sideQuests[7]
-	local qpPoints 			= sideQuests[currentSideQuest].points
+	local diamonds 			= sideQuests[currentSideQuest].points
 
 	if hasNewDataFormat then
 		local id = table_find(sideQuests[currentSideQuest].amount, hasNewDataFormat) or 1
-		qpPoints = sideQuests[currentSideQuest].points[id]
+		diamonds = sideQuests[currentSideQuest].points[id]
 	end
 
-	players[player].sideQuests[4] = players[player].sideQuests[4] + qpPoints
+	giveDiamond(diamonds, player)
 
-	local newxp = qpPoints * 100
+	local newxp = diamonds * 100
 	modernUI.new(player, 240, 220)
 		:rewardInterface({
 			{text = translate('experiencePoints', player), quanty = newxp, format = '+'},
-			{currency = 'diamond', quanty = qpPoints},
+			{currency = 'diamond', quanty = diamonds},
 		}, nil, translate('sidequestCompleted', player))
 		:build()
 		:addConfirmButton(function() end, translate('confirmButton_Great', player))

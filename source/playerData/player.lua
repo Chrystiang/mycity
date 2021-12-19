@@ -26,6 +26,13 @@ giveCoin = function(coin, name, work)
 	savedata(name)
 end
 
+giveDiamond = function(amount, name)
+	players[name].sideQuests[4] = players[name].sideQuests[4] + amount
+
+	updateCurrencies(name)
+	savedata(name)
+end
+
 giveBadge = function(player, id)
 	if table_find(players[player].badges, id) then return end
 

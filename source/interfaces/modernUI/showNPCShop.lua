@@ -113,7 +113,7 @@ modernUI.showNPCShop = function(self, items, npc)
 							end
 						end
 						if v.qpPrice then
-							players[player].sideQuests[4] = players[player].sideQuests[4] - currency[2]
+							giveDiamond(-currency[2], player)
 						else
 							giveCoin(-currency[2], player)
 						end

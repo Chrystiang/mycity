@@ -61,7 +61,9 @@ quest_setNewQuest = function(player, syncRewards)
 		loadMap(player)
 		syncRewards = players[player].questStep[1]-1
 	end
-	players[player].sideQuests[4] = players[player].sideQuests[4] + 20
+
+	giveDiamond(20, player)
+
 	giveExperiencePoints(player, 3000)
 	modernUI.new(player, 240, 220)
 		:rewardInterface({
