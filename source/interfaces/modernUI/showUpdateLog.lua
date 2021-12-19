@@ -31,17 +31,14 @@ modernUI.showUpdateLog = function(self, badge)
 					addImage("170fef3117d.png", ":1", 660, 365, player)
 					showTextArea(999997, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 660, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) openProfile(player) end)
 
-					addImage("170f8773bcb.png", ":2", 705, 365, player)
-					showTextArea(999998, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 705, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) openQuests(player) end)
-
 					addImage("170f8ccde22.png", ":3", 750, 365, player)
 					showTextArea(999999, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 750, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) openSettings(player) end)
 
 					addImage("1744cc60c32.png", ":4", 750, 330, player)
 					showTextArea(999996, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 750, 330, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 520, 300):build():showSettingsMenu(true) end)
 					
-					addImage("1744cf82bac.png", ":5", 705, 330, player)
-					showTextArea(999995, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 705, 330, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 380, 280, translate('tradeSystem_title', player)):build():showAvailableTradingPlayers() end)
+					addImage("1744cf82bac.png", ":5", 705, 365, player)
+					showTextArea(999995, "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 4), player, 705, 365, 35, 35, 0x324650, 0x000000, 0, true, function(player) modernUI.new(player, 380, 280, translate('tradeSystem_title', player)):build():showAvailableTradingPlayers() end)
 				end
 			end, 
 		350, 310, 100, 15)
