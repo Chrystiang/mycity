@@ -76,7 +76,8 @@ eventNewPlayer = function(player)
 	-- PLACE: Police Station 
 		addImage("15a09d13130.png", "?8", 1000, 1569+room.y, player)
 	-- PLACE: Clock Tower 
-		addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
+		--addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
+		addImage("1768d8f8e87.png", '?9', 2050-44, 1600+room.y, player)
 	-- PLACE: Bank
 		addImage("16b947781b3.png", "?10", 2700, 7487, player)
 	-- Ranking
@@ -261,6 +262,9 @@ eventNewPlayer = function(player)
 				end, translate('confirmButton_BuyBagUpgrade', player):format('<fc>$5000</fc>'), 200)
 		end})
 
+	gameNpcs.addCharacter('Jingle', {'1768d8f6081.png'}, player, 9395, 4910, {sellingItems = true, place = 'clockTower'})
+	gameNpcs.addCharacter('Elf', {'1768d94a7f0.png', '1768d946991.png'}, player, 9370, 5162, {place = 'clockTower', formatDialog = 'christmasEventEnds'})
+	
 	--gameNpcs.addCharacter('Perry', {'17691500c86.png', '17691502e86.png'}, player, 4000, 7677)
 
 	if room.dayCounter > 0 then 
