@@ -1,5 +1,4 @@
 loadRanking = function(player)
-	if true then return end
 	local minn = 1
 	local maxx = 10
 
@@ -15,7 +14,7 @@ loadRanking = function(player)
 		if not room.globalRanking[i] then break end
 		local name = room.globalRanking[i].name
 		local level = room.globalRanking[i].level
-		local experience = room.globalRanking[i].experience
+		local gifts = room.globalRanking[i].gifts
 		local commu = room.globalRanking[i].commu
 		if not room.globalRanking[i].commu then
 			room.globalRanking[i].commu = 'xx'
@@ -31,11 +30,11 @@ loadRanking = function(player)
 		end
 
 		playerList[#playerList+1] = '<font size="10" color="'..color..'">'..i..'. <font color="#000000">' .. name
-		playerLevel[2][#playerLevel[2]+1] = '<p align="right"><font size="10"><cs>'.. level
-		playerLevel[1][#playerLevel[1]+1] = '<p align="right"><font size="10" color="#000000">'.. level
+		--playerLevel[2][#playerLevel[2]+1] = '<p align="right"><font size="10"><cs>'.. level
+		--playerLevel[1][#playerLevel[1]+1] = '<p align="right"><font size="10" color="#000000">'.. level
 
-		playerExperience[2][#playerExperience[2]+1] = '<p align="right"><font size="10"><vp>'.. experience ..'xp'
-		playerExperience[1][#playerExperience[1]+1] = '<p align="right"><font size="10" color="#2F692F">'.. experience ..'xp'
+		playerExperience[2][#playerExperience[2]+1] = '<p align="right"><font size="10"><vp>'.. gifts ..'xp'
+		playerExperience[1][#playerExperience[1]+1] = '<p align="right"><font size="10" color="#2F692F">'.. gifts ..'xp'
 
 		room.rankingImages[#room.rankingImages+1] = addImage('1711870c79c.jpg', '?1000', 95 + xAlign, (i-1)*12+102 + yAlign, player)
 		room.rankingImages[#room.rankingImages+1] = addImage((community[commu] and community[commu] or community['xx']), '?1001', 109 + xAlign, (i-1)*12+101 + yAlign, player)
@@ -58,9 +57,9 @@ loadRanking = function(player)
 	showTextArea(5436, table_concat(playerExperience[2], '\n'), player, 275+65+ xAlign, 100 + yAlign, 70, 130, 0x324650, 0x0, 0)
 
 	if player then
-		showTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Season', player):format(mainAssets.season), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
-		showTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Season', player):format(mainAssets.season), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5440, '<p align="center"><font size="20" color="#000000">'..translate('ranking_Christmas2021', player), player, 94+ xAlign, 55+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5441, '<p align="center"><font size="20"><cs>'..translate('ranking_Christmas2021', player), player, 93+ xAlign, 54+ yAlign, 400, nil, 0x324650, 0x0, 0)
 
-		showTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os_time{day=14, year=2020, month=12})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
+		showTextArea(5442, '<p align="center"><font size="14"><r>'..translate('daysLeft', player):format(formatDaysRemaining(os_time{day=14, year=2022, month=1})), player, 93+ xAlign, 84+ yAlign, 400, nil, 0x324650, 0x0, 0)
 	end
 end

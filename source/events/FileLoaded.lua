@@ -19,6 +19,20 @@ onEvent("FileLoaded", function(file, data)
 		removeGroupImages(room.rankingImages)
 		loadRanking()
 
+	elseif tonumber(file) == 30 then -- Christmas 2021
+		local rankData = datas[1]
+		room.globalRanking = {}
+
+		if rankData then
+			for name, level, gifts, commu, id in string.gmatch(rankData, '([%w_+]+#%d+),(%d+),(%d+),(%w+),(%d+)') do
+				room.globalRanking[#room.globalRanking+1] = {name = name, level = level, gifts = gifts, commu = commu, id = id}
+			end
+		end
+
+		saveRanking()
+		removeGroupImages(room.rankingImages)
+		loadRanking()
+
 	elseif tonumber(file) == 1 then
 		local bannedPlayers = datas[1] or table_concat(room.bannedPlayers, ';')
 		local unrankedPlayers = datas[2] or table_concat(room.unranked, ';')
