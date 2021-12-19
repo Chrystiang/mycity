@@ -172,7 +172,7 @@ sideQuests = {
 	[35] = { -- Sell [Amount] fruits.
 		type = 'sell_fruits',
 		amount = {10, 15, 20},
-		points = {2, 3, 4},
+		points = {2, 3, 3},
 	},
 	[36] = { -- Sell [Amount] fishes.
 		type = 'sell_fishes',
@@ -206,6 +206,36 @@ sideQuests = {
 			local amount 	= "<vp>".. playerData.sideQuests[2] .. '/'.. playerData.sideQuests[7] .."</vp>"
 			return {amount, npc}
 		end
+	},
+	[39] = { -- Fish [Amount] mudfish.
+		type = 'type:fish;fish_Mudfish',
+		amount = {2, 3, 5},
+		points = {2, 3, 5},
+	},
+	[40] = { -- Find a suspicious paper in the map.
+		type = 'type:findBankPaper',
+		amount = 1,
+		points = 1,
+	},
+	[41] = { -- Recover [Amount] of hunger
+		type = 'type:recoveHunger',
+		amount = {50, 100, 300},
+		points = {1, 2, 3},
+	},
+	[42] = { -- Lose [Amount] of hunger
+		type = 'type:loseHunger',
+		amount = {20, 60, 150},
+		points = {1, 2, 3},
+	},
+	[43] = { -- Recover [Amount] of energy
+		type = 'type:recoveEnergy',
+		amount = {50, 100, 200},
+		points = {1, 2, 3},
+	},
+	[44] = { -- Lose [Amount] of energy
+		type = 'type:loseEnergy',
+		amount = {20, 60, 150},
+		points = {1, 2, 3},
 	},
 }
 
