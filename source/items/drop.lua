@@ -55,10 +55,13 @@ item_droppedEvent = function(id, player)
 	if amount <= 0 then return end
 	if players[player].place == 'clockTower' and item:find('Present') then
 		canRemove = true
-		local giftValue = 1000
+		local giftValue = 500
 		giveCoin(giftValue * amount, player)
 		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(giftValue * amount)..'</fc>'), player)	
-		job_updatePlayerStats(player, 18, amount)
+		
+		if item == "goldenPresent" then
+			job_updatePlayerStats(player, 20, amount)
+		end
 	end
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid

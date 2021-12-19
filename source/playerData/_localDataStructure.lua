@@ -9,7 +9,7 @@ setPlayerData = function(player)
 		level		= {1, 0},
 		starIcons 	= {owned = {1}, selected = 1},
 		badges		= {},
-		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		jobs		= {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		--------- TRADE ---------
 		isTrading 	= false,
 		wishList 	= {},
