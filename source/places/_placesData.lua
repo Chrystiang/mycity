@@ -115,4 +115,10 @@ places = {
 				end)
 		end,
 	},
+	clockTower = {
+		id = 17,
+		opened = '-',
+		tp_town = {2155, 7770},
+		exitSensor = {9570, 5245},
+	},
 }
