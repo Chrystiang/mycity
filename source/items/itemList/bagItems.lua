@@ -1,5 +1,6 @@
 lootDrops = {
 	redPresent = {},
+	goldenPresent = {},
 }
 
 bagIds = {}
@@ -1129,6 +1130,30 @@ bagItems = {
 		png = '178a768dab8.png',
 		type = 'food',
 	},
+	goldenPresent = {
+		id = 123,
+		type = 'holdingItem',
+		png = '17dd48d1819.png',
+		holdingImages = {'17dd48d1819.png', '17dd48d1819.png'}, -- left, right
+		holdingAlign = {{-35, -20}, {-15, -20}}, -- left, right
+		placementFunction = function(player)
+			local gift = lootDrops.goldenPresent[random(#lootDrops.goldenPresent)]
+			if bagItems[gift].lootBoxChance then
+				local chance = random(100)
+				if chance >= bagItems[gift].lootBoxChance then
+					gift = 'cheese'
+				end
+			end
+
+			modernUI.new(player, 120, 120)
+			:build()
+			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[gift].png, ":70", 400 - 50 * 0.5, 180, player)
+			addItem(gift, 1, player)
+			return true
+		end,
+		limitedTime = os_time{day=14, year=2022, month=1},
+		blockTrades = true,
+	},
 }
 
 for item, data in next, bagItems do
@@ -1140,8 +1165,11 @@ for item, data in next, bagItems do
 		end
 	end
 	
-	if data.canBeFoundIn and table_find(data.canBeFoundIn, 'redPresent') then
-		lootDrops.redPresent[#lootDrops.redPresent+1] = item
+	if data.canBeFoundIn then
+		if table_find(data.canBeFoundIn, 'redPresent') then
+			lootDrops.redPresent[#lootDrops.redPresent+1] = item
+			lootDrops.goldenPresent[#lootDrops.goldenPresent+1] = item			
+		end
 	end
 
 	bagIds[data.id] = {n = item, blockUse = data.blockUse, blockTrades = data.blockTrades}
