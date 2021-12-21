@@ -129,11 +129,14 @@ job_updatePlayerStats = function(player, type, quant)
 
 	if players[player].jobs[20] >= 20 and not table_find(players[name].badges, 26) then
 		giveBadge(player, 26)
+		removeTextArea(8541583, player)
 		removeTextArea(8541584, player)
 		removeImage(players[player].questScreenIcon)
 		players[player].questScreenIcon = nil
+
 	elseif players[player].jobs[20] < 20 then
-		ui.updateTextArea(8541584, players[player].jobs[20]..'/20', player)
+		ui.updateTextArea(8541583, "<font color='#000000'>".. players[player].jobs[20] ..'/20', player)
+		ui.updateTextArea(8541584, "<font color='#ffffff'>".. players[player].jobs[20] ..'/20', player)
 	end
 
 	savedata(player)
