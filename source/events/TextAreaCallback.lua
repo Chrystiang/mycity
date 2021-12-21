@@ -264,7 +264,7 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		local x = ROOM.playerList[player].x
 		local y = ROOM.playerList[player].y
 		if math_hypo(x, y, calc, 188 + (andar > 0 and 3000 or 3400)) <= 150 then
-			sendMenu(33, player, '<font size="15"><p align="center"><j>'..translate('elevator', player)..'</j></p><br><p align="center"><textformat leading="4"><b><rose><a href="event:andar4">4<br><a href="event:andar3">3<br><a href="event:andar2">2<br><a href="event:andar1">1<br><a href="event:andar0">P<br>', 390 - 200 *0.5, 160, 200, 170, 1, false, '', false, false, false, 11)
+			showElevatorButtons(33, player, '<font size="15"><p align="center"><j>'..translate('elevator', player)..'</j></p><br><p align="center"><textformat leading="4"><b><rose><a href="event:andar4">4<br><a href="event:andar3">3<br><a href="event:andar2">2<br><a href="event:andar1">1<br><a href="event:andar0">P<br>', 390 - 200 *0.5, 160, 200, 170)
 		end
 	elseif callback == 'getDiscordLink' then
 		chatMessage('<rose>'..room.discordServerUrl, player)

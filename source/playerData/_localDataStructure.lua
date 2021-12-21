@@ -28,7 +28,6 @@ setPlayerData = function(player)
 				position= {{}, {}, {}},
 			},
 		},
-		codigo    	= {},
 		houses		= {},
 		houseTerrain = {0, 0, 0, 0, 0},
 		houseTerrainAdd = {1, 1, 1, 1, 1},

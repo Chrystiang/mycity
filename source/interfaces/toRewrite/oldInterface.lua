@@ -13,19 +13,7 @@ showTextArea = function(id, text, player, x, y, width, height, color1, color2, a
 	return addTextArea(id, text, player, x, y, width, height, color1, color2, alpha, followPlayer)
 end
 
-addButton = function(id, text, player, x, y, width, height, blocked, ...)
-	showTextArea(id+1, '', player, x-1, y-1, width, height, 0x97a6aa, 0x97a6aa, 1, true)
-	showTextArea(id+2, '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
-	if blocked then
-		showTextArea(id+3, '', player, x, y, width, height, 0x22363c, 0x22363c, 1, true)
-		showTextArea(id+4, '<p align="center"><font color="#999999">'..text, player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true)
-	else
-		showTextArea(id+3, '', player, x, y, width, height, 0x314e57, 0x314e57, 1, true)
-		showTextArea(id+4, '<p align="center">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, ...)
-	end
-end
-
-showPopup = function(id, player, title, text, x, y, width, height, button, type, arg, ativado)
+showPopup = function(id, player, title, text, x, y, width, height, button, type)
 	eventTextAreaCallback(0, player, 'closebag', true)
 	local txt = text
 	local x = x - 12
@@ -108,47 +96,34 @@ showPopup = function(id, player, title, text, x, y, width, height, button, type,
 	end
 end
 
-sendMenu = function(id, player, text, x, y, width, height, alpha, close, arg, prof, interface, tela, type, coin, showCoin)
+showElevatorButtons = function(id, player, text, x, y, width, height)
 	local playerData = players[player]
-	if type and type ~= 16 and type ~= -10 then
-		showTextArea(9901327, '', player, -5, -5, 820, 420, 1, 1, 0.5, true)
-	end
-	showTextArea(id..'0', '', player, x+-2, y+18, width+24, height+14, 0x2E221B, 0x2E221B, alpha, true)
-	showTextArea(id..'00', '', player, x+-1, y+19, width+22, height+12, 0x78462b, 0x78462b, alpha, true)
-	showTextArea(id..'000', '', player, x, y+20, width+20, height+10, 0x171311, 0x171311, alpha, true)
-	showTextArea(id..'0000', '', player, x+3, y+23, width+14, height+4, 0x0C191C, 0x0C191C, alpha, true)
-	showTextArea(id..'00000', '', player, x+4, y+24, width+12, height+2, 0x24474D, 0x24474D, alpha, true)
-	showTextArea(id..'000000', '', player, x+5, y+25, width+10, height+0, 0x183337, 0x183337, alpha, true)
-	showTextArea(id..'0000000', text, player, x+6, y+26, width+8, height+-2, 0x122528, 0x122528, alpha, true)
 
-	if close then
-		showTextArea(id..'00000000', '', player, x+15, y+height-20+25, width-10, 15, 0x97a6aa, 0x97a6aa, alpha, true)
-		showTextArea(id..'000000000', '', player, x+15, y+height-20+27, width-10, 15, 0x1, 0x1, alpha, true)
-	  	showTextArea(id..'0000000000', '<p align="center"><a href="event:fechar@'..id..'"><N>'.. translate('close', player) ..'</a>', player, x+15, y+height-20+26, width-10, nil, 0x314e57, 0x314e57, alpha, true)
-	end
-	if tela then
-		showTextArea(id..'00000000', '', player, x+15, y+height-20+10, width-10, 15, 0x5D7D90, 0x5D7D90, alpha, true)
-		showTextArea(id..'000000000', '', player, x+15, y+height-20+12, width-10, 15, 0x11171C, 0x11171C, alpha, true)
-		showTextArea(id..'0000000000', '<p align="center"><a href="event:fechar@'..id..'"><N>'.. translate('close', player) ..'</a>', player, x+15, y+height-20+11, width-10, 15, 0x3C5064, 0x3C5064, alpha, true)
-	end
-	if type == 11 then
-		local names = {[1] = {}, [2] = {},}
-		for i = 1, 4 do
-			for v = 1, 2 do
-				if room.hospital[i][v].name then
-					names[v][#names[v]+1] = '<cs>'..room.hospital[i][v].name
-				else
-					names[v][#names[v]+1] = '<n>---'
-				end
+	showTextArea(9901327, '', player, -5, -5, 820, 420, 1, 1, 0.5, true)
+	showTextArea(id..'0', '', player, x+-2, y+18, width+24, height+14, 0x2E221B, 0x2E221B, 1, true)
+	showTextArea(id..'00', '', player, x+-1, y+19, width+22, height+12, 0x78462b, 0x78462b, 1, true)
+	showTextArea(id..'000', '', player, x, y+20, width+20, height+10, 0x171311, 0x171311, 1, true)
+	showTextArea(id..'0000', '', player, x+3, y+23, width+14, height+4, 0x0C191C, 0x0C191C, 1, true)
+	showTextArea(id..'00000', '', player, x+4, y+24, width+12, height+2, 0x24474D, 0x24474D, 1, true)
+	showTextArea(id..'000000', '', player, x+5, y+25, width+10, height+0, 0x183337, 0x183337, 1, true)
+	showTextArea(id..'0000000', text, player, x+6, y+26, width+8, height+-2, 0x122528, 0x122528, 1, true)
+
+	local names = {[1] = {}, [2] = {},}
+	for i = 1, 4 do
+		for v = 1, 2 do
+			if room.hospital[i][v].name then
+				names[v][#names[v]+1] = '<cs>'..room.hospital[i][v].name
+			else
+				names[v][#names[v]+1] = '<n>---'
 			end
 		end
-		table_sort(names[1], function(a, b) return a > b end)
-		table_sort(names[2], function(a, b) return a > b end)
-
-		showTextArea(id..'001', '<p align="right"><textformat leading="9">'..table_concat(names[1], '<br>'), player, 400 - 200 * 0.5, 225, 85, 120, 0xffff, 0xffff, 0, true)
-		showTextArea(id..'002', '<textformat leading="9">'..table_concat(names[2], '<br>'), player, 515 - 200 * 0.5, 225, 85, 120, 0xffff, 0xffff, 0, true)
-		showTextArea(1020, '<p align="center"><font size="15" color="#ff0000"><a href="event:closeInfo_33"><b>X', player, 470, 180, 60, 50, 0x122528, 0x122528, 0, true)
 	end
+	table_sort(names[1], function(a, b) return a > b end)
+	table_sort(names[2], function(a, b) return a > b end)
+
+	showTextArea(id..'001', '<p align="right"><textformat leading="9">'..table_concat(names[1], '<br>'), player, 400 - 200 * 0.5, 225, 85, 120, 0xffff, 0xffff, 0, true)
+	showTextArea(id..'002', '<textformat leading="9">'..table_concat(names[2], '<br>'), player, 515 - 200 * 0.5, 225, 85, 120, 0xffff, 0xffff, 0, true)
+	showTextArea(1020, '<p align="center"><font size="15" color="#ff0000"><a href="event:closeInfo_33"><b>X', player, 470, 180, 60, 50, 0x122528, 0x122528, 0, true)
 end
 
 loadBackpackIcon = function(player)
