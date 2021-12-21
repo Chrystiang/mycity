@@ -32,7 +32,7 @@ savedata = function(name, forceSave)
  	playerData:set(name, 'lifeStats', lifeStats)
 
 	local houses = playerData:get(name, 'houses')
-	for i, v in next, playerInfos.casas do
+	for i, v in next, playerInfos.houses do
 		houses[i] = v
 	end
 
