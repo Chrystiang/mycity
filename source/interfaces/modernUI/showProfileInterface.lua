@@ -41,7 +41,7 @@ modernUI.profileInterface = function(self, target)
    	   	string_replace(player, {["{0}"] = 'profile_diamonds', ["{1}"] = '$'..targetData.sideQuests[4]}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_coins', ["{1}"] = '$'..targetData.coins}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_spentCoins', ["{1}"] = '$'..targetData.spentCoins}) ..'\n' ..
-   		string_replace(player, {["{0}"] = 'profile_purchasedHouses', ["{1}"] = #targetData.casas..'/'..#mainAssets.__houses-2}) ..'\n' ..
+   		string_replace(player, {["{0}"] = 'profile_purchasedHouses', ["{1}"] = #targetData.houses..'/'..#mainAssets.__houses-2}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_purchasedCars', ["{1}"] = #targetData.cars..'/'..#mainAssets.__cars-1}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedQuests', ["{1}"] = (targetData.questStep[1]-1)..'/'..questsAvailable}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedSideQuests', ["{1}"] = targetData.sideQuests[3]}) ..'\n' ..

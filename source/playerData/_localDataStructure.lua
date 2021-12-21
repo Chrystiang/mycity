@@ -29,7 +29,7 @@ setPlayerData = function(player)
 			},
 		},
 		codigo    	= {},
-		casas		= {},
+		houses		= {},
 		houseTerrain = {0, 0, 0, 0, 0},
 		houseTerrainAdd = {1, 1, 1, 1, 1},
 		houseTerrainPlants = {0, 0, 0, 0, 0},

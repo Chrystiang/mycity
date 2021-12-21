@@ -12,11 +12,11 @@ modernUI.showHouses = function(self, selectedTerrain)
 		local isLimitedTime = v.properties.limitedTime
 		local isOutOfSale = isLimitedTime and formatDaysRemaining(isLimitedTime, true)
 		local showItem = true
-		if isLimitedTime and (isOutOfSale and not table_find(players[player].casas, _)) then
+		if isLimitedTime and (isOutOfSale and not table_find(players[player].houses, _)) then
 			showItem = false
 		end
-		if v.properties.requeriment and showItem then
-			showItem = v.properties.requeriment(player)
+		if v.properties.requires and showItem then
+			showItem = v.properties.requires(player)
 		end
 		if showItem then
 			i = i + 1
@@ -32,7 +32,7 @@ modernUI.showHouses = function(self, selectedTerrain)
 					removeGroupImages(players[player]._modernUISelectedItemImages[1])
 					showTextArea(id..'890', '<p align="center"><font size="13"><fc>'..itemName, player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 					local description = '<p align="center"><i>"'..translate('houseDescription_'.._, player)..'"</i>\n\n'
-					if isLimitedTime and table_find(players[player].casas, _) then
+					if isLimitedTime and table_find(players[player].houses, _) then
 						description = description..'<r>'..translate('collectorItem', player)
 					end
 					showTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+65, 135, nil, 0x24474D, 0x314e5, 0, true)
@@ -58,7 +58,7 @@ modernUI.showHouses = function(self, selectedTerrain)
 					local buttonType = nil
 					local blockClick = false
 					local buttonAction = nil
-					if table_find(players[player].casas, _) then
+					if table_find(players[player].houses, _) then
 						buttonType =  translate('use', player)
 						buttonAction = 'use'
 					elseif players[player].coins >= v.properties.price then
@@ -76,10 +76,10 @@ modernUI.showHouses = function(self, selectedTerrain)
 								equipHouse(player, _, selectedTerrain)
 							elseif buttonAction == 'buy' then
 								if room.terrains[selectedTerrain].owner then return alert_Error(player, 'error', 'alreadyLand') end
-								if table_find(players[player].casas, _) then return end
+								if table_find(players[player].houses, _) then return end
 
 								eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
-								players[player].casas[#players[player].casas+1] = _
+								players[player].houses[#players[player].houses+1] = _
 								giveCoin(-v.properties.price, player)
 								removeTextArea(24 + selectedTerrain)
 								removeTextArea(44 + selectedTerrain)

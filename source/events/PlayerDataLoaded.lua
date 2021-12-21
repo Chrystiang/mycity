@@ -32,7 +32,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	
 	local houses = playerData:get(name, 'houses')
 	for i, v in next, houses do
-		players[name].casas[i] = v
+		players[name].houses[i] = v
 	end
 	local counter = 0
 	local vehicles = playerData:get(name, 'cars')
