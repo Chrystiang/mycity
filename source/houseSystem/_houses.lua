@@ -204,7 +204,7 @@ mainAssets.__houses = {
 			price = 150000,
 			png = '176711a986c.png',
 			limitedTime = os_time{day=16, year=2021, month=1},
-			requeriment = function(player)
+			requires = function(player)
 				return players[player].jobs[19] > 0 
 			end
 		},
@@ -227,6 +227,23 @@ mainAssets.__houses = {
 		},
 		outside = {
 			icon    = '17670c9781a.png',
+			axis    = {0, -32},
+		},
+	},
+	[12] = { -- ???
+		properties = {
+			price = 10000000000,
+			png = '',
+			limitedTime = os_time{day=14, year=2022, month=1},
+			requires = function(player)
+				return false
+			end
+		},
+		inside = {
+			image   = '',
+		},
+		outside = {
+			icon    = '',
 			axis    = {0, -32},
 		},
 	},
