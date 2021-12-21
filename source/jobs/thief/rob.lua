@@ -12,7 +12,7 @@ startRobbery = function(player, character)
 	players[player].robbery.robbing = true
 	players[player].timer = addTimer(function(j)
 		local time = room.robbing.robbingTimer - j
-		showTextArea(98900000000, "<b><font color='#371616'><p align='center'>"..translate('runAway', player):format(time)..'\n<vp><font size="10">'..translate('runAwayCoinInfo', player):format('$'..jobs['thief'].coins), player, 253, 364, 290, nil, 1, 1, 0, true)
+		showTextArea(98900000000, "<font color='#ffffff'><p align='center'>"..translate('runAway', player):format(time)..'\n<vp><font size="10">'..translate('runAwayCoinInfo', player):format('$'..jobs['thief'].coins), player, 253, 345, 290, nil, 1, 1, 0, true)
 		if j == 10 then
 			removeImage(shield)
 			players[player].robbery.usingShield = false

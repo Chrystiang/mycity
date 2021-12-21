@@ -13,7 +13,7 @@ hospitalize = function(player)
 				movePlayer(player, ((i-1)%i)*900+4000+pos[x], 3200, false)
 				players[player].timer = addTimer(function(j) local time = 60 - j
 					if time > 0 then
-						showTextArea(98900000000, "<b><font color='#371616'><p align='center'>"..translate('healing', player):format(time), player, 250, 368, 290, 20, 0x1, 0x1, 0, true)
+						showTextArea(98900000000, "<font color='#ffffff'><p align='center'>"..translate('healing', player):format(time), player, 250, 345, 290, 20, 0x1, 0x1, 0, true)
 					else
 						for i, v in next, players[player].hospital.diseases do
 							setLifeStat(player, v, 60)
@@ -23,6 +23,9 @@ hospitalize = function(player)
 						freezePlayer(player, false)
 						savedata(player)
 						room.hospital[i][x].name = nil
+
+						removeTextArea(98900000000, player)
+						
 						if x == 1 then
 							showTextArea(8888805, '', nil, ((i-1)%i)*900+3+4000, 4+3000, 287, 249, 0x1, 0x1, 0.5)
 						else

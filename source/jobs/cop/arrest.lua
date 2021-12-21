@@ -38,9 +38,10 @@ arrestPlayer = function(thief, cop, command)
 			local time = room.robbing.prisonTimer - j
 			local thiefPosition = ROOM.playerList[thief]
 
-			showTextArea(98900000000, string.format("<b><font color='#371616'><p align='center'>"..translate('looseMgs', thief), time), thief, 253, 368, 290, nil, 1, 1, 0, true)
+			showTextArea(98900000000, string.format("<font color='#ffffff'><p align='center'>"..translate('looseMgs', thief), time), thief, 253, 345, 290, nil, 1, 1, 0, true)
 			if j == room.robbing.prisonTimer then
 				removeTimer(thiefData.timer)
+				removeTextArea(98900000000, thief)
 				players[thief].robbery.arrested = false
 				players[thief].blockScreen = false
 				players[thief].timer = {}
