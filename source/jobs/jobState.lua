@@ -127,7 +127,7 @@ job_updatePlayerStats = function(player, type, quant)
 	--24: Christmas 2020
 	--26: Christmas 2021
 
-	if players[player].jobs[20] >= 20 and not table_find(players[name].badges, 26) then
+	if players[player].jobs[20] >= 20 and not table_find(players[player].badges, 26) then
 		giveBadge(player, 26)
 		removeTextArea(8541583, player)
 		removeTextArea(8541584, player)
