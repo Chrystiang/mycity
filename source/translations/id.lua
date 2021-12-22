@@ -466,6 +466,14 @@ lang.id = {
 		[18] = 'Buat sebuah bruschetta.',
 		[19] = 'Buat sebuah lemonade.',
 		[20] = 'Buat sebuah frogwich.',
+		[31] = 'Jual %s kristal.', -- Sell [Amount] crystals.
+		[32] = 'Berdagang dengan Dave %s kali.', -- Trade with Dave [Amount] times.
+		[33] = 'Panen %s tanaman.', -- Sell [Amount] crops.
+		[34] = 'Jual %s benih.', -- Sell [Amount] seeds.
+		[35] = 'Jual %s buah.', -- Sell [Amount] fruits.
+		[36] = 'Jual %s ikan.', -- Sell [Amount] fishes.
+		[37] = 'Mencuri %s %s kali.', -- Rob [NPC] [Amount] times.
+		[38] = 'Beli %s item dari %s.', -- Buy [Amount] items from [NPC].
 	},
 	profile_coins = 'Koin',
 	profile_spentCoins = 'Koin Dihabiskan',
@@ -807,4 +815,20 @@ lang.id = {
     npcDialog_Perry = 'Maaf, papan peringkat sedang dalam perbaikan.\nItu akan selesai pada bulan januari, dengan mekatik baru untuk membuatnya lebih adil untuk pemain baru.',
     item_speedPotion = 'Ramuan Kecepatan',
 	itemDesc_speedPotion = 'Gunakan ramuan ini untuk berjalan lebih cepat selama %s detik!',
+	-- V3.5.1
+	item_raspberryCake = 'Kue Raspberi',
+	profile_timePlayed = 'Waktu bermain (jam)',
+	confirmButton_backpackIcon = 'Ikon Tas',
+	-- V3.5.2
+	badgeDesc_20 = 'Halloween 2020',
+	badgeDesc_24 = 'Natal 2020',
+	badgeDesc_8 = 'Menjual 500 benih',
+	badgeDesc_25 = 'Menjual 500 buah',
+	-- V3.5.3
+	npcDialog_Daniel = 'Halo! Kamu ingin meningkatkan tas kamu?\nBiarkan aku membantumu!',
+	confirmButton_BuyBagUpgrade = 'Beli peningkatan tas seharga %s', -- Buy backpack upgrade for [Coins Value]
+	error_insufficientCoins = 'Kamu tidak memiliki koin yang cukup untuk membeli item ini.',
+	error_maxBagStorage = 'Kamu telah membeli semua peningkatan tas yang tersedia :(',
+	upgradeBag = 'Tingkatkan Tas',
+	upgradeBagText = 'Apakah kamu ingin meningkatkan limit tas ke <rose>%s</rose>?', -- Do you want to increase your backpack limit to [Number]?
 }

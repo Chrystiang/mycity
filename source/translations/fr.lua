@@ -139,7 +139,15 @@ lang.fr = {
 		[7] = "Pêchez %s fois.",
 		[14] = "Pêchez %s rascasses volantes.",
 		[15] = "Livrez %s commandes.",
-		[19] = "Préparez une limonade."
+		[19] = "Préparez une limonade.",
+		[31] = 'Vendez %s cristaux.', -- Sell [Amount] crystals.
+		[32] = 'Échangez avec Dave %s fois.', -- Trade with Dave [Amount] times.
+		[33] = 'Récoltez %s récoltes.', -- Sell [Amount] crops.
+		[34] = 'Vendez %s graines.', -- Sell [Amount] seeds.
+		[35] = 'Vendez %s fruits.', -- Sell [Amount] fruits.
+		[36] = 'Vendez %s poissons.', -- Sell [Amount] fishes.
+		[37] = 'Volez %s %s fois.', -- Rob [NPC] [Amount] times.
+		[38] = 'Achetez %s articles auprès de %s.', -- Buy [Amount] items from [NPC].
 	},
 	npcDialog_Paulo = "Cette boite est vraiment lourde...\nCe serait tellement bien si nous avions un chariot élévateur ici.",
 	item_luckyFlowerSeed = "Graine de la Fleur de la Chance",
@@ -875,4 +883,20 @@ lang.fr = {
     --- V3.5.0
     item_speedPotion = 'Potion de Vitesse',
 	itemDesc_speedPotion = 'Utilisez cette potion pour marcher plus rapidement pendant %s secondes!',
+	-- V3.5.1
+	item_raspberryCake = 'Gâteau aux Framboises',
+	profile_timePlayed = 'Temps de jeu (en heures)',
+	confirmButton_backpackIcon = 'Icône de Sac à dos',
+	-- V3.5.2
+	badgeDesc_20 = 'Halloween 2020',
+	badgeDesc_24 = 'Noël 2020',
+	badgeDesc_8 = '500 graines vendues',
+	badgeDesc_25 = '500 fruits vendus',
+	-- V3.5.3
+	npcDialog_Daniel = 'Bonjour! Veux-tu améliorer ton sac à dos ?\n Laisse moi t\'aider!',
+	confirmButton_BuyBagUpgrade = 'Acheter une amélioration du sac à dos pour %s', -- Buy backpack upgrade for [Coins Value]
+	error_insufficientCoins = 'Vous n\'avez pas assez de pièces pour acheter cet article.',
+	error_maxBagStorage = 'Vous avez acheté toutes les améliorations de sac à dos disponibles :(',
+	upgradeBag = 'Améliorer le Sac à dos',
+	upgradeBagText = 'Voulez-vous augmenter la limite de votre sac à dos à <rose>%s</rose>?', -- Do you want to increase your backpack limit to [Number]?
 }
