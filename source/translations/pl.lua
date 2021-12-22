@@ -148,6 +148,12 @@ lang.pl = {
         [36] = 'Sprzedaj %s ryb.', -- Sell [Amount] fishes.
         [37] = 'Napadnij %s %s razy.', -- Rob [NPC] [Amount] times.
         [38] = 'Kup %s itemow od %s.', -- Buy [Amount] items from [NPC].
+        [39] = 'Zlow %s ryb blotnych w kopalni.', -- Fish [Amount] mud fish in the mine.
+        [40] = 'Znajdz podejrzany papier na mapie.', -- Find a suspicious paper in the map.
+        [41] = 'Odzyskaj %s glodu.', -- Recover [Amount] of hunger.
+        [42] = 'Strac %s glodu.', -- Lose [Amount] of hunger.
+        [43] = 'Przywroc %s energi.', -- Recover [Amount] of energy.
+        [44] = 'Strac %s energi.', -- Lose [Amount] of energy.
     },
     npcDialog_Paulo = "To pudelko jest naprawde ciezkie ... \n Byloby tak fajnie, gdybysmy mieli tutaj wozek widlowy",
     item_luckyFlowerSeed = "Szczesliwe nasiono kwiatowe",
@@ -766,4 +772,14 @@ lang.pl = {
     error_maxBagStorage = 'Kupiles wszystkie ulepszenia plecaka :(',
     upgradeBag = 'Ulepsz plecak',
     upgradeBagText = 'Czy chcesz powiekszyc pojemnosc plecaka o <rose>%s</rose>?', -- Do you want to increase your backpack limit to [Number]?
+    -- V3.6.0
+    profile_diamonds = "Diamenty",
+    ranking_Christmas2021 = "Najwiecej zebranych prezentow",
+    badgeDesc_26 = 'Swieta 2021',
+    furniture_christmasReindeer = "Renifer",
+    furniture_christmasTeddyMouse = "Pluszowa myszka",
+    furniture_christmasPenguin = "Pingwin",
+    furniture_hatstand = "Wieszak",
+    item_goldenPresent = "Zloty Prezent",
+    itemDesc_goldenPresent = 'Specjalne pudelko ktore zawiera losowy przedmiot.',
 }
