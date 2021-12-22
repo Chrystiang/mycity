@@ -474,6 +474,12 @@ lang.en = {
 		[36] = 'Sell %s fishes.',
 		[37] = 'Rob %s %s times.', -- Rob [NPC] [Amount] times.
 		[38] = 'Buy %s items from %s.', -- Buy [Amount] items from [NPC].
+		[39] = 'Fish %s mud fish in the mine.', -- Fish [Amount] mud fish in the mine.
+		[40] = 'Find a suspicious paper in the map.', -- Find a suspicious paper in the map.
+		[41] = 'Recover %s of hunger.', -- Recover [Amount] of hunger.
+		[42] = 'Lose %s of hunger.', -- Lose [Amount] of hunger.
+		[43] = 'Recover %s of energy.', -- Recover [Amount] of energy.
+		[44] = 'Lose %s of energy.', -- Lose [Amount] of energy.
 	},
 	profile_coins = 'Coins',
 	profile_spentCoins = 'Spent Coins',
@@ -852,4 +858,14 @@ lang.en = {
 	error_maxBagStorage = 'You have bought all the available backpack upgrades :(',
 	upgradeBag = 'Upgrade Backpack',
 	upgradeBagText = 'Do you want to increase your backpack limit to <rose>%s</rose>?',
+	-- V3.6.0
+	profile_diamonds = "Diamonds",
+	ranking_Christmas2021 = "Most Presents Collected",
+	badgeDesc_26 = 'Christmas 2021',
+	furniture_christmasReindeer = "Reindeer",
+	furniture_christmasTeddyMouse = "Teddy Mouse",
+	furniture_christmasPenguin = "Penguin",
+	furniture_hatstand = "Hatstand",
+	item_goldenPresent = "Golden Present",
+	itemDesc_goldenPresent = 'A special box that contains a random gift.',
 }

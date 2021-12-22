@@ -210,6 +210,12 @@ lang.br = {
 		[36] = 'Venda %s peixes.',
 		[37] = 'Roube %s %s vezes.', -- Rob [NPC] [Amount] times.
 		[38] = 'Compre %s itens de %s.', -- Buy [Amount] items from [NPC].
+		[39] = 'Pesque %s peixes barrentos na mina.', -- Fish [Amount] mud fish in the mine.
+		[40] = 'Encontre um bilhete misterioso no mapa.', -- Find a suspicious paper in the map.
+		[41] = 'Recupere %s de fome.', -- Recover [Amount] of hunger.
+		[42] = 'Perca %s de fome.', -- Lose [Amount] of hunger.
+		[43] = 'Recupee %s de energia.', -- Recover [Amount] of energy.
+		[44] = 'Perca %s de energia.', -- Lose [Amount] of energy.
 	},
 	profile_coins = 'Moedas',
 	profile_spentCoins = 'Moedas gastas',
@@ -837,5 +843,15 @@ lang.br = {
 	error_maxBagStorage = 'Você já comprou todas as expansões de mochila disponíveis :(',
 	upgradeBag = 'Expandir Mochila',
 	upgradeBagText = 'Você deseja expandir o limite da sua mochila para <rose>%s</rose>?',
+	-- V3.6.0
+	profile_diamonds = "Diamantes",
+	ranking_Christmas2021 = "Coletou Mais Presentes",
+	badgeDesc_26 = 'Natal 2021',
+	furniture_christmasReindeer = "Rena",
+	furniture_christmasTeddyMouse = "Ratinho",
+	furniture_christmasPenguin = "Pinguim",
+	furniture_hatstand = "Cabideiro",
+	item_goldenPresent = "Presente Dourado",
+	itemDesc_goldenPresent = 'Uma caixa especial que contém um item misterioso.',
 }
 lang.pt = lang.br
