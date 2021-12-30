@@ -4,6 +4,10 @@ sideQuest_update = function(player, value)
 	local currentAmount = players[player].sideQuests[2]
 	local requiredAmount = players[player].sideQuests[7] or sideQuests[players[player].sideQuests[1]].amount
 
+	if type(requiredAmount) == "table" then
+		requiredAmount = requiredAmount[1]
+	end
+
 	if currentAmount >= requiredAmount then
 		sideQuest_reward(player)
 	end
@@ -30,6 +34,10 @@ sideQuest_reward = function(player)
 	if hasNewDataFormat then
 		local id = table_find(sideQuests[currentSideQuest].amount, hasNewDataFormat) or 1
 		diamonds = sideQuests[currentSideQuest].points[id]
+	end
+
+	if type(diamonds) == "table" then
+		diamonds = 5
 	end
 
 	giveDiamond(diamonds, player)
