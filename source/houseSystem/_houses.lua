@@ -173,7 +173,7 @@ mainAssets.__houses = {
 	},
 	[9] = { -- Restaurant
 		properties = {
-			price = 25,
+			price = 100000000,
 			png = '1727ba2f8dd.png',
 			limitedTime = os_time{day=25, year=2020, month=4},
 		},
@@ -230,17 +230,18 @@ mainAssets.__houses = {
 			axis    = {0, -32},
 		},
 	},
-	[12] = { -- ???
+	[12] = { -- 
 		properties = {
-			price = 10000000000,
-			png = '',
+			price = 200000,
+			png = '17dd932a9be.png',
 			limitedTime = os_time{day=14, year=2022, month=1},
 			requires = function(player)
-				return false
+				return true
 			end
 		},
 		inside = {
-			image   = '',
+			image   	= '17e0d31bd06.png',
+			foreground 	= '17e0d321f7b.png',
 		},
 		outside = {
 			icon    = '',
