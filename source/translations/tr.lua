@@ -148,6 +148,12 @@ lang.tr = {
 		[36] = '%s adet balık sat.', -- Sell [Amount] fishes.
 		[37] = '%s isimli fareyi %s kez soy.', -- Rob [NPC] [Amount] times.
 		[38] = '%s isimli fareden %s adet eşya satın al.', -- Buy [Amount] items from [NPC].
+		[39] = 'Madende %s adet kel balık tut. ', -- Fish [Amount] mud fish in the mine.
+		[40] = 'Haritada gizemli bir kağıt bul.', -- Find a suspicious paper in the map.
+		[41] = '%s açlık yenile.', -- Recover [Amount] of hunger.
+		[42] = '%s açlık kaybet.', -- Lose [Amount] of hunger.
+		[43] = '%s enerji yenile.', -- Recover [Amount] of energy.
+		[44] = '%s enerji kaybet.', -- Lose [Amount] of energy.
 	},
 	npcDialog_Paulo = "Bu kutu cidden çok ağır...\nBuralarda bir forklift olsa ne de güzel olurdu be.",
 	item_luckyFlowerSeed = "Şanslı Çiçek Tohumu",
@@ -842,4 +848,14 @@ lang.tr = {
 	error_maxBagStorage = 'Bütün sırt çantası geliştirmelerini aldın :(',
 	upgradeBag = 'Sırt Çantanı Geliştir',
 	upgradeBagText = 'Sırt çantası limitini <rose>%s</rose>a kadar yükseltmek ister misin?',
+	-- V3.6.0
+	profile_diamonds = "Elmaslar",
+	ranking_Christmas2021 = "Toplanan En Çok Hediye",
+	badgeDesc_26 = 'Noel 2021',
+	furniture_christmasReindeer = "Ren Geyiği",
+	furniture_christmasTeddyMouse = "Oyuncak Fare",
+	furniture_christmasPenguin = "Penguen",
+	furniture_hatstand = "Şapkalık",
+	item_goldenPresent = "Altın Hediye",
+	itemDesc_goldenPresent = 'Rastgele bir hediye içeren özel bir kutu.',
 }

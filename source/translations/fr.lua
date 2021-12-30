@@ -148,6 +148,12 @@ lang.fr = {
 		[36] = 'Vendez %s poissons.', -- Sell [Amount] fishes.
 		[37] = 'Volez %s %s fois.', -- Rob [NPC] [Amount] times.
 		[38] = 'Achetez %s articles auprès de %s.', -- Buy [Amount] items from [NPC].
+		[39] = 'Pêcher %s poisson(s) de boue dans la mine.', -- Fish [Amount] mud fish in the mine.
+		[40] = 'Trouver un papier suspect sur la carte.', -- Find a suspicious paper in the map.
+		[41] = 'Récupérer %s de faim.', -- Recover [Amount] of hunger.
+		[42] = 'Perdre %s de faim.', -- Lose [Amount] of hunger.
+		[43] = 'Récuperer  %s d\'énergie.', -- Recover [Amount] of energy.
+		[44] = 'Perdre %s d\'énergie.', -- Lose [Amount] of energy.
 	},
 	npcDialog_Paulo = "Cette boite est vraiment lourde...\nCe serait tellement bien si nous avions un chariot élévateur ici.",
 	item_luckyFlowerSeed = "Graine de la Fleur de la Chance",
@@ -899,4 +905,14 @@ lang.fr = {
 	error_maxBagStorage = 'Vous avez acheté toutes les améliorations de sac à dos disponibles :(',
 	upgradeBag = 'Améliorer le Sac à dos',
 	upgradeBagText = 'Voulez-vous augmenter la limite de votre sac à dos à <rose>%s</rose>?', -- Do you want to increase your backpack limit to [Number]?
+	-- V3.6.0
+	profile_diamonds = "Diamands",
+	ranking_Christmas2021 = "Plus grand nombre de cadeaux collectés",
+	badgeDesc_26 = 'Noël 2021',
+	furniture_christmasReindeer = "Renne",
+	furniture_christmasTeddyMouse = "Souris en Peluche",
+	furniture_christmasPenguin = "Pingouin",
+	furniture_hatstand = "Portementeau",
+	item_goldenPresent = "Cadeau Doré",
+	itemDesc_goldenPresent = 'Une boîte spéciale qui contient un cadeau aléatoire.',
 }

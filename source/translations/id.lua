@@ -474,6 +474,12 @@ lang.id = {
 		[36] = 'Jual %s ikan.', -- Sell [Amount] fishes.
 		[37] = 'Mencuri %s %s kali.', -- Rob [NPC] [Amount] times.
 		[38] = 'Beli %s item dari %s.', -- Buy [Amount] items from [NPC].
+		[39] = 'Memancing %s ikan lumpur di tambang.', -- Fish [Amount] mud fish in the mine.
+		[40] = 'Cari kertas mencurigakan di peta.', -- Find a suspicious paper in the map.
+		[41] = 'Pulihkan %s lapar.', -- Recover [Amount] of hunger.
+		[42] = 'Hilangkan %s lapar.', -- Lose [Amount] of hunger.
+		[43] = 'Pulihkan %s energi.', -- Recover [Amount] of energy.
+		[44] = 'Hilangkan %s energi.', -- Lose [Amount] of energy.
 	},
 	profile_coins = 'Koin',
 	profile_spentCoins = 'Koin Dihabiskan',
@@ -831,4 +837,14 @@ lang.id = {
 	error_maxBagStorage = 'Kamu telah membeli semua peningkatan tas yang tersedia :(',
 	upgradeBag = 'Tingkatkan Tas',
 	upgradeBagText = 'Apakah kamu ingin meningkatkan limit tas ke <rose>%s</rose>?', -- Do you want to increase your backpack limit to [Number]?
+	-- V3.6.0
+	profile_diamonds = "Berlian",
+	ranking_Christmas2021 = "Hadiah Paling Banyak Didapat",
+	badgeDesc_26 = 'Natal 2021',
+	furniture_christmasReindeer = "Rusa Kutub",
+	furniture_christmasTeddyMouse = "Tikus Teddy",
+	furniture_christmasPenguin = "Pinguin",
+	furniture_hatstand = "Hatstand",
+	item_goldenPresent = "Hadiah Emas",
+	itemDesc_goldenPresent = 'Sebuah kotak spesial terdiri dari hadiah acak.',
 }
