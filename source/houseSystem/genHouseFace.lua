@@ -17,6 +17,10 @@ HouseSystem.genHouseFace = function(self, guest)
 	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('17256286356.jpg', '?901', (terrainID-1)*1500 + 317, 1616, guest) -- door
 	room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage('1725d43cb08.png', '_9020', (terrainID-1)*1500 + 317, 1616, guest) -- handle
 
+	if mainAssets.__houses[houseType].inside.foreground then
+		room.houseImgs[terrainID].img[#room.houseImgs[terrainID].img+1] = addImage(mainAssets.__houses[houseType].inside.foreground, "!10000", (terrainID-1)*1500 + 60, 847, guest)
+	end
+
 	for i, v in next, ownerData.houseData.furnitures.placed do 
 		local x = v.x + (terrainID-1)*1500
 		local y = v.y + 1000
