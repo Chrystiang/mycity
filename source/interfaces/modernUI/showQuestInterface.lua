@@ -28,6 +28,10 @@ modernUI.questInterface = function(self)
 			local currentAmount = playerData.sideQuests[2]
 			local requiredAmount = playerData.sideQuests[7] or sideQuests[playerData.sideQuests[1]].amount
 			
+			if type(requiredAmount) == "table" then
+				requiredAmount = requiredAmount[1]
+			end
+	
 			local description = sideQuests[sideQuestID].formatDescription and sideQuests[sideQuestID].formatDescription(player) or {"<vp>"..currentAmount .. '/' .. requiredAmount.."</vp>"}
 			title = '['..translate('_2ndquest', player)..']'
 			min = currentAmount
