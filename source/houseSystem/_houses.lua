@@ -247,5 +247,5 @@ mainAssets.__houses = {
 			icon    = '',
 			axis    = {0, -32},
 		},
-	},
+	}
 }
