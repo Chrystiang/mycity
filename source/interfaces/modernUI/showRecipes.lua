@@ -74,11 +74,7 @@ modernUI.showRecipes = function(self)
 								removeBagItem(i, v, player)
 							end
 
-							modernUI.new(player, 120, 120)
-							:build()
-							players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[recipeName].png, ":70", 400 - 50 * 0.5, 180, player)
-
-							addItem(recipeName, 1, player)
+							addItem(recipeName, 1, player, nil, true)
 
 							if players[player].job == 'chef' then
 								job_updatePlayerStats(player, 10)

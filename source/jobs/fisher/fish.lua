@@ -50,19 +50,7 @@ playerFishing = function(name, x, y, biome)
 			local willFish = room.fishing.biomes[biome].fishes[rarityFished][random(#room.fishing.biomes[biome].fishes[rarityFished])]
 			local willFishInfo = bagItems[willFish]
 
-			--[[if rarityFished == 'rare' then
-				if checkItemAmount('raspberry', 2, name) then
-					removeBagItem('raspberry', 2, name)
-					willFish = 'fish_Frozice'
-					willFishInfo = bagItems['fish_Frozice']
-				end
-			end]]
-
-			modernUI.new(name, 120, 120)
-			:build()
-			players[name]._modernUISelectedItemImages[1][#players[name]._modernUISelectedItemImages[1]+1] = addImage(willFishInfo.png, ":70", 400 - 50 * 0.5, 180, name)
-
-			addItem(willFish, 1, name)
+			addItem(willFish, 1, name, nil, true)
 
 			if rarityFished == 'normal' then 
 				players[name].lucky[1]['normal'] = player.lucky[1]['normal'] - .5

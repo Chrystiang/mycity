@@ -1,4 +1,4 @@
-addItem = function(item, amount, player, coin)
+addItem = function(item, amount, player, coin, notify)
 	local id = bagItems[item].id
 	if not coin then coin = 0 end
 	if players[player].coins < coin then return end
@@ -23,6 +23,12 @@ addItem = function(item, amount, player, coin)
 		if v.name == item then
 			canAdd = i
 		end
+	end
+
+	if notify then
+		modernUI.new(player, 120, 120)
+		:build()
+		players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[item].png, ":70", 400 - 50 * 0.5, 180, player)
 	end
 
 	if (players[player].totalOfStoredItems.bag + amount > players[player].bagLimit) and not players[player].trading then
@@ -69,5 +75,6 @@ removeBagItem = function(item, amount, player)
 
 	players[player].totalOfStoredItems.bag = players[player].totalOfStoredItems.bag - amount
 	savedata(player)
+	
 	return true
 end
