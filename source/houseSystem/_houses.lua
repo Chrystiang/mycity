@@ -230,7 +230,7 @@ mainAssets.__houses = {
 			axis    = {0, -32},
 		},
 	},
-	[12] = { -- 
+	[12] = { -- Snow Globe
 		properties = {
 			price = 200000,
 			png = '17dd932a9be.png',
@@ -240,11 +240,30 @@ mainAssets.__houses = {
 			end
 		},
 		inside = {
-			image   	= '17e0d31bd06.png',
-			foreground 	= '17e0d321f7b.png',
+			image   	= '17e1ceb9839.png',
+			foreground 	= '17e1ce9e370.png',
+			grounds = function(terrainID)
+				local x = (terrainID-1)*1500 + 60
+				local y = 847
+				local id = terrainID*20
+
+				addGround(-6500+id, 248 + x, 728 + y, {type = 14, height =  16, width = 298, friction = 0.3, restitution = 0.2})
+				addGround(-6501+id, 351 + x, 580 + y, {type = 14, height =  13, width = 385, friction = 0.3, restitution = 0.2})
+				addGround(-6502+id, 236 + x, 438 + y, {type = 14, height =  13, width = 398, friction = 0.3, restitution = 0.2})
+				addGround(-6503+id, 117 + x, 364 + y, {type = 14, height = 191, width =  11, angle = 45})
+				addGround(-6504+id, 471 + x, 373 + y, {type = 14, height = 193, width =  11, angle = -45})
+				addGround(-6505+id,  66 + x, 679 + y, {type = 14, height = 118, width =  11, angle = -30})
+				addGround(-6506+id, 508 + x, 681 + y, {type = 14, height = 130, width =  11, angle = 30})
+				addGround(-6507+id,  33 + x, 541 + y, {type = 14, height = 193, width =  11, friction = 0.3, restitution = 0.2})
+				addGround(-6508+id, 548 + x, 537 + y, {type = 14, height = 193, width =  11, friction = 0.3, restitution = 0.2})
+				addGround(-6509+id, 292 + x, 298 + y, {type = 14, height =  10, width = 223, friction = 0.3, restitution = 0.2})
+				addGround(-6510+id, 109 + x, 723 + y, {type = 14, height =  10, width =  27, friction = 0.3, restitution = 1.2})
+				addGround(-6511+id, 531 + x, 575 + y, {type = 14, height =  10, width =  27, friction = 0.3, restitution = 1.2})
+				addGround(-6512+id, 432 + x, 866 + y, {type = 14, height =  10, width =  66, friction = 0.3, restitution = 1.2})
+			end
 		},
 		outside = {
-			icon    = '',
+			icon    = '17e1cfb1e9b.png',
 			axis    = {0, -32},
 		},
 	}
