@@ -36,6 +36,7 @@ HouseSystem.fertilize = function(player, speed)
 			return
 		end
 	end
+	
 	if table_find(players[owner].houseTerrain, 2) then
 		local x = ROOM.playerList[player].x
 		local y = ROOM.playerList[player].y
@@ -64,6 +65,8 @@ HouseSystem.fertilize = function(player, speed)
 			end
 		end
 	end
+
+	return false
 end
 
 HouseSystem.removeCrop = function(player)
