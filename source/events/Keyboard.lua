@@ -92,7 +92,7 @@ onEvent("Keyboard", function(player, key, down, x, y)
 
 		-- "C" Key
 		elseif key == 67 then
-			openSettings(player)
+		--	openSettings(player)
 
 		-- "P" Key
 		elseif key == 80 then
