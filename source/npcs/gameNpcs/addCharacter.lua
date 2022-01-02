@@ -1,6 +1,8 @@
 gameNpcs.addCharacter = function(name, image, player, x, y, properties, ...)
 	if not properties then properties = {} end
 	local playerData = players[player]
+	local hideName = properties.hideName
+
 	if properties.questNPC and playerData._npcsCallbacks.questNPCS[name] then return end
 		local type = properties.type and properties.type or '!'
 		local canClick = true 
@@ -89,7 +91,7 @@ gameNpcs.addCharacter = function(name, image, player, x, y, properties, ...)
 		gameNpcs.characters[name].players[player] = {id = npcID, image = addImage(image[1], type.."1000", x, y, player, ...), properties = (...)} 
 
 		local id = -89000+(npcID*6)
-		gameNpcs.setNPCName(id, name:gsub('%$', ''), callback, player, x, y, color, canClick)
+		gameNpcs.setNPCName(id, name:gsub('%$', ''), callback, player, x, y, color, canClick, hideName)
 	end 
 	players[player]._npcsAdded = npcID + 1
 end
