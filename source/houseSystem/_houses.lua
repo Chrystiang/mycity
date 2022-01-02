@@ -236,7 +236,7 @@ mainAssets.__houses = {
 			png = '17dd932a9be.png',
 			limitedTime = os_time{day=14, year=2022, month=1},
 			requires = function(player)
-				return true
+				return players[player].jobs[22] > 0
 			end
 		},
 		inside = {
