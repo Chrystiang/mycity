@@ -15,6 +15,8 @@ item_getDescription = function(item, player, isFurniture)
 			description = description ..string.format(translate('energyInfo', player) ..'\n'.. translate('hungerInfo', player)..'\n', '<vp>'..power..'</vp>', '<vp>'..hunger..'</vp>')
 		elseif itemData.miningPower then 
 			description = description .. translate('itemInfo_miningPower', player):format('<vp>0</vp>')
+		elseif item:find("prop_") then
+			description = '<p align="center"><i>"'..translate('itemDesc_prop', player)..'"</i><v><p align="left">\n'
 		elseif item:find('Seed') and not isFurniture then 
 			local txt = translate('itemInfo_Seed', player)
 			for i, v in next, HouseSystem.plants do
