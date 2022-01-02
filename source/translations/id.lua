@@ -847,4 +847,16 @@ lang.id = {
 	furniture_hatstand = "Hatstand",
 	item_goldenPresent = "Hadiah Emas",
 	itemDesc_goldenPresent = 'Sebuah kotak spesial terdiri dari hadiah acak.',
+	-- V3.6.1
+	House12 = 'Bola Kristal Salju',
+	houseDescription_12 = 'Sebuah rumah kaca... Dengan salju di dalamnya!',
+	item_bucket = "Ember",
+	item_snowBucket = "Ember Salju",
+	item_prop = "Prop", -- prop is an object used by the actors performing in a play or film, like a glove or a mask.
+	itemDesc_prop = "Sebuah prop. Itu memiliki tujuan yang misterius...",
+	item_snowman = "Manusia Salju",
+	npcDialog_Sign = "<i><rose>Tempat ini terlihat sedikit kosong... Hanya ada sebuah surat disini.</rose></i>\n<i><rose>Suratnya berisi:</rose> “Saya pikir saya sudah mendapatkan salju yang cukup, tetapi saya masih belum mendapatkan pakaian mereka. Saya akan mencarinya. Saya akan mencarinya ditempat lain.”</i>",
+	furniture_snowGlobe = "Bola Kristal Salju",
+	furniture_box = "Kotak",
+	furniture_arcticFox = "Rubah Kutub",
 }

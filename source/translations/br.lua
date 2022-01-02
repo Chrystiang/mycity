@@ -802,7 +802,6 @@ lang.br = {
 	trade_playerLeftRoom = '%s saiu da sala.',
 	trade_playerUsingAnItem = '%s está usando um item.',
 	trade_unknownItems = 'Itens desconhecidos.',
-
 	warning = 'Aviso',
 	bagTemporaryLimit = 'Você está carregando uma quantidade de itens superior à capacidade da sua mochila. Lembre-se de que apenas %s itens serão salvos com garantia após você sair da sala.',
 	-- V3.4.0
@@ -846,6 +845,7 @@ lang.br = {
 	-- V3.6.0
 	profile_diamonds = "Diamantes",
 	ranking_Christmas2021 = "Coletou Mais Presentes",
+	badgeDesc_24 = 'Natal 2020',
 	badgeDesc_26 = 'Natal 2021',
 	furniture_christmasReindeer = "Rena",
 	furniture_christmasTeddyMouse = "Ratinho",
@@ -853,5 +853,17 @@ lang.br = {
 	furniture_hatstand = "Cabideiro",
 	item_goldenPresent = "Presente Dourado",
 	itemDesc_goldenPresent = 'Uma caixa especial que contém um item misterioso.',
+	-- V3.6.1
+	House12 = 'Globo de Neve',
+	houseDescription_12 = 'Uma estufa... Com neve dentro!',
+	item_bucket = "Balde",
+	item_snowBucket = "Balde de Neve",
+	item_prop = "Adereço",
+	itemDesc_prop = "Um adereço. Seu propósito é um tanto misterioso...",
+	item_snowman = "Boneco de Neve",
+	npcDialog_Sign = "<i><rose>Esse lugar parece um pouco vazio... Até uma mensagem foi deixada aqui.</rose></i>\n<i><rose>Ela diz:</rose> “Acho que já tenho a neve necessária, mas ainda não consegui achar nenhuma roupa para eles. Vou tentar procurar em outros lugares.”</i>",
+	furniture_snowGlobe = "Globo de Neve",
+	furniture_box = "Caixa",
+	furniture_arcticFox = "Raposa do Ártico",
 }
 lang.pt = lang.br

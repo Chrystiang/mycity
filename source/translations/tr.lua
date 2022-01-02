@@ -858,4 +858,16 @@ lang.tr = {
 	furniture_hatstand = "Şapkalık",
 	item_goldenPresent = "Altın Hediye",
 	itemDesc_goldenPresent = 'Rastgele bir hediye içeren özel bir kutu.',
+	-- V3.6.1
+	House12 = 'Kar Küresi',
+	houseDescription_12 = 'İçinde bir tutam kar barındıran bir sera!',
+	item_bucket = "Kova",
+	item_snowBucket = "Kar Dolu Kova",
+	item_prop = "Nesne", -- prop is an object used by the actors performing in a play or film, like a glove or a mask.
+	itemDesc_prop = "Bir nesne. Ama gizemli bir işlevi var gibi...",
+	item_snowman = "Kardan Adam",
+	npcDialog_Sign = "<i><rose>Bu mekan biraz boş gibi... Hatta bir mektup bırakılmış.</rose></i>\n<i><rose>Diyor ki:</rose> “Sanırım yeterli miktarda kar topladık. Ama onlar için hala kıyafet bulamadım, başka yerlere bakmam lazım.”</i>",
+	furniture_snowGlobe = "Kar Küresi",
+	furniture_box = "Kutu",
+	furniture_arcticFox = "Kutup Tilkisi",
 }

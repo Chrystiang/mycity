@@ -398,7 +398,7 @@ lang.en = {
 	item_tomatoSeed = 'Tomato seed',
 	item_oregano = 'Oregano',
 	item_oreganoSeed = 'Oregano seed',
-	item_water = 'Water bucket',
+	item_water = 'Bucket of Water',
 	itemDesc_water = 'Makes seeds grow faster!',
 	houses = 'Houses',
 	expansion = 'Expansions',
@@ -868,4 +868,16 @@ lang.en = {
 	furniture_hatstand = "Hatstand",
 	item_goldenPresent = "Golden Present",
 	itemDesc_goldenPresent = 'A special box that contains a random gift.',
+	-- V3.6.1
+	House12 = 'Snow Globe',
+	houseDescription_12 = 'A greenhouse... With some snow inside!',
+	item_bucket = "Bucket",
+	item_snowBucket = "Bucket of Snow",
+	item_prop = "Prop", -- prop is an object used by the actors performing in a play or film, like a glove or a mask.
+	itemDesc_prop = "A prop. Its purpose is somewhat mysterious...",
+	item_snowman = "Snowman",
+	npcDialog_Sign = "<i><rose>This place looks a little empty... Even a letter was left here.</rose></i>\n<i><rose>It says:</rose> “I think I've got enough snow, but I still couldn't find any clothes for them. I'll search for them elsewhere.”</i>",
+	furniture_snowGlobe = "Snow Globe",
+	furniture_box = "Box",
+	furniture_arcticFox = "Arctic Fox",
 }

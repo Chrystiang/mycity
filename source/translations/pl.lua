@@ -782,4 +782,16 @@ lang.pl = {
     furniture_hatstand = "Wieszak",
     item_goldenPresent = "Zloty Prezent",
     itemDesc_goldenPresent = 'Specjalne pudelko ktore zawiera losowy przedmiot.',
+    -- V3.6.1
+    House12 = 'Sniezna kula',
+    houseDescription_12 = 'Szklarnia... z odrobina sniegu w srodku!!',
+    item_bucket = "Wiadro",
+    item_snowBucket = "Wiadro ze sniegiem",
+    item_prop = "Rekwizyt", -- prop is an object used by the actors performing in a play or film, like a glove or a mask.
+    itemDesc_prop = "Rekwizyt. Jego przeznaczenie jest nieco tajemnicze...",
+    item_snowman = "Balwan",
+    npcDialog_Sign = "<i><rose>To miejsce wyglada na troche puste... Zostawiono tu nawet list.</rose></i>\n<i><rose>Napis mówi:</rose> „Mysle, ze” Mam dosc sniegu, ale wciaz nie moglem znalezc dla nich ubran. Poszukam ich gdzie indziej”.</i>",
+    furniture_snowGlobe = "Sniezna kula",
+    furniture_box = "Skrzynka",
+    furniture_arcticFox = "Arktyczny lis",
 }
