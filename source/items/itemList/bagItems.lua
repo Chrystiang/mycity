@@ -294,7 +294,7 @@ bagItems = {
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
 		fertilizingPower = 3,
 		placementFunction = function(player, speed)
-			HouseSystem.fertilize(player, speed)
+			return HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'body',
 	},
@@ -305,9 +305,15 @@ bagItems = {
 		type = 'holdingItem',
 		holdingImages = {'16bf5e003db.png', '16bf5e003db.png'}, -- left, right
 		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
-		fertilizingPower = 0.6,
+		fertilizingPower = 0.2,
 		placementFunction = function(player, speed)
-			HouseSystem.fertilize(player, speed)
+			local used = HouseSystem.fertilize(player, speed)
+			
+			if used then
+				addItem('bucket', 1, player)
+			end
+
+			return used
 		end,
 		npcShop = 'body',
 	},
@@ -459,7 +465,7 @@ bagItems = {
 		holdingAlign = {{-35, -15}, {-15, -15}}, -- left, right
 		fertilizingPower = 6,
 		placementFunction = function(player, speed)
-			HouseSystem.fertilize(player, speed)
+			return HouseSystem.fertilize(player, speed)
 		end,
 		npcShop = 'marcus',
 		canBeFoundIn = {'redPresent'},
@@ -1075,10 +1081,8 @@ bagItems = {
 				end
 			end
 
-			modernUI.new(player, 120, 120)
-			:build()
-			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[gift].png, ":70", 400 - 50 * 0.5, 180, player)
-			addItem(gift, 1, player)
+			addItem(gift, 1, player, nil, true)
+
 			return true
 		end,
 		limitedTime = os_time{day=15, year=2021, month=1},
@@ -1136,14 +1140,100 @@ bagItems = {
 				end
 			end
 
-			modernUI.new(player, 120, 120)
-			:build()
-			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[gift].png, ":70", 400 - 50 * 0.5, 180, player)
-			addItem(gift, 1, player)
+			addItem(gift, 1, player, nil, true)
+
 			return true
 		end,
 		limitedTime = os_time{day=14, year=2022, month=1},
 		blockTrades = true,
+	},
+	bucket = {
+		id = 124,	
+		png = '17e11e0b332.png',
+		type = 'holdingItem',
+		holdingImages = {'17e11e0b332.png', '17e11e0b332.png'}, -- left, right
+		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
+		placementFunction = function(player, x, y)
+			local biome = false
+			for place, settings in next, room.fishing.biomes do 
+				if math_range(settings.location, {x = x, y = y}) then 
+					biome = place
+					break
+				end
+			end
+
+			if biome then
+				addItem('water', 1, player, nil, true)
+			end
+
+			return biome
+		end,
+	},
+    prop_A1 = {
+        type = "prop",
+        id = 125,
+        png = "17e11dc3673.png",
+		limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    prop_A2 = {
+        type = "prop",
+        id = 126,
+        png = "17e11dc9d5f.png",
+		limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    prop_A3 = {
+        type = "prop",
+        id = 127,
+        png = "17e11dd22e4.png",
+		limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    prop_A4 = {
+        type = "prop",
+        id = 128,
+        png = "17e11dd81ed.png",
+		limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    prop_A5 = {
+        type = "prop",
+        id = 129,
+        png = "17e11dae425.png",
+        canBeFoundIn = {'redPresent'},
+		limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    prop_A6 = {
+        type = "prop",
+        id = 130,
+        png = "17e11db33c1.png",
+		limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    prop_A7 = {
+        type = "prop",
+        id = 131,
+        png = "17e11db892f.png",
+        canBeFoundIn = {'redPresent'},
+        limitedTime = os_time{day=14, year=2022, month=1},
+    },
+    snowBucket = {
+		id = 132,	
+		png = '17e1abfa005.png',
+		type = 'holdingItem',
+		holdingImages = {'17e1abfa005.png', '17e1abfa005.png'}, -- left, right
+		holdingAlign = {{-19, -9}, {1, -9}}, -- left, right
+		fertilizingPower = 0.3,
+		placementFunction = function(player, speed)
+			local used = HouseSystem.fertilize(player, speed)
+			
+			if used then
+				addItem('bucket', 1, player)
+			end
+
+			return used
+		end,
+	},
+	snowman = {
+		id = 133,	
+		png = '17e1af58f3a.png',
+		limitedTime = os_time{day=14, year=2022, month=1},
 	},
 }
 
