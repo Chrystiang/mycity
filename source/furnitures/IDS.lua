@@ -1122,6 +1122,9 @@ mainAssets.__furnitures = {
 		npcShop = 'jingle',
 		limitedTime = os_time{day=14, year=2022, month=1},
 		credits = 'Ricardinhotv#0000',
+		grounds = function(x, y, id)
+			addGround(id, x+20, y+20, {type = 14, height = 40, width = 40, friction = 0.3, restitution = 0.2})
+		end,
 	},
 	[100] = { -- arctic fox
 		image = '17e1fd1c41e.png',
