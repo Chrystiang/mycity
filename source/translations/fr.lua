@@ -915,4 +915,16 @@ lang.fr = {
 	furniture_hatstand = "Portementeau",
 	item_goldenPresent = "Cadeau Doré",
 	itemDesc_goldenPresent = 'Une boîte spéciale qui contient un cadeau aléatoire.',
+	-- V3.6.1
+	House12 = 'Boule à Neige',
+	houseDescription_12 = 'Une serre... Avec de la neige dedans!',
+	item_bucket = "Seau",
+	item_snowBucket = "Seau de Neige",
+	item_prop = "Accessoire", -- prop is an object used by the actors performing in a play or film, like a glove or a mask.
+	itemDesc_prop = "Un accessoire. Son but est quelque peu mystérieux...",
+	item_snowman = "Bonhomme de Neige",
+	npcDialog_Sign = "<i><rose>Cet endroit semble un peu vide... Une lettre a même été laissée ici.</rose></i>\n<i><rose>C\'est écrit:</rose> “Je pense avoir assez de neige, mais je n'ai toujours pas trouvé de vêtements pour eux. Je vais en chercher ailleurs.”</i>",
+	furniture_snowGlobe = "Boule à Neige",
+	furniture_box = "Boîte",
+	furniture_arcticFox = "Renard Arctique",
 }
