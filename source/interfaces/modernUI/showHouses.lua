@@ -62,7 +62,9 @@ modernUI.showHouses = function(self, selectedTerrain)
 						buttonType =  translate('use', player)
 						buttonAction = 'use'
 					elseif players[player].coins >= v.properties.price then
-						buttonType = '<font size="11">'..translate('confirmButton_Buy', player):format('<b><fc>$'..v.properties.price)
+						local color = mainAssets.currencies.coin.color
+
+						buttonType = color .. (v.properties.price)
 						buttonAction = 'buy'
 					else
 						blockClick = true
