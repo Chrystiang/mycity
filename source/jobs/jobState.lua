@@ -139,5 +139,7 @@ job_updatePlayerStats = function(player, type, quant)
 		ui.updateTextArea(8541584, "<font color='#ffffff'>".. players[player].jobs[20] ..'/20', player)
 	end
 
+	showTextArea(5443, '<p align="right"><CS>You: '.. players[player].jobs[21], player, 93+ 3710, 88 + 7480, 370, nil, 0x324650, 0x0, 0)
+
 	savedata(player)
 end
