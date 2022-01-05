@@ -29,6 +29,11 @@ startRobbery = function(player, character)
 			job_updatePlayerStats(player, 2)
 			giveCoin(jobs['thief'].coins, player, true)
 			TFM.setNameColor(player, 0)
+
+			local chance = math.random(0, 100)
+			if chance <= 20 then
+				addItem("prop_A4", 1, player, nil, true)
+			end
 		end
 	end, 1000, room.robbing.robbingTimer)
 
