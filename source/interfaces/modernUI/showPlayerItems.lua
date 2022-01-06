@@ -75,6 +75,8 @@ modernUI.showPlayerItems = function(self, items, chest)
 							itemName = 'luckyFlower'
 						elseif itemName:find('energymax') then
 							itemName = 'energymax'
+						elseif itemName:find('prop_') then
+							itemName = 'prop'
 						end
 						showTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..itemName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 						showTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
@@ -175,8 +177,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 												end
 											else
 												if not checkItemAmount(v.name, condition*-1, player) then return end
-												used = true
-												bagItems[holdingItem].placementFunction(player, selectedQuanty * itemData.fertilizingPower)
+												used = bagItems[holdingItem].placementFunction(player, selectedQuanty * itemData.fertilizingPower)
 											end
 											-- Remove Item
 											if used then
@@ -211,6 +212,19 @@ modernUI.showPlayerItems = function(self, items, chest)
 											if image ~= holdingImage then
 												removeImage(holdingImage)
 												holdingImage = addImage(image, "$" .. player, x, y)
+											end
+											if holdingItem == "bucket" then
+												addTimer(function()
+													if not playerData.holdingItem then return end
+													if not checkItemAmount(holdingItem, 1, player) then return end
+													removeBagItem(holdingItem, 1, player)
+													addItem('snowBucket', 1, player, nil, true)
+
+													removeImage(holdingImage)
+													playerData.holdingItem = false
+													removeTextArea(9901327, player)
+													removeTextArea(98900000019, player)
+												end, 10000, 1)
 											end
 										end
 									end, 500, 0)
