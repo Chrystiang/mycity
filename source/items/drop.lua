@@ -50,6 +50,8 @@ item_droppedEvent = function(id, player)
 		itemName = 'luckyFlower'
 	elseif itemName:find('energymax') then
 		itemName = 'energymax'
+	elseif itemName:find('prop_') then
+		itemName = 'prop'
 	end
 						
 	if amount <= 0 then return end
@@ -63,6 +65,7 @@ item_droppedEvent = function(id, player)
 			job_updatePlayerStats(player, 20, amount)
 		end
 	end
+
 	if checkLocation_isInHouse(player) then
 		local terrainID = players[player].houseData.houseid
 		for chestID, v in next, players[player].houseData.chests.position do
@@ -71,12 +74,14 @@ item_droppedEvent = function(id, player)
 					if players[player].totalOfStoredItems.chest[chestID] + amount > 50 then return chatMessage('<r>'.. translate('chestIsFull', player), player) end
 					item_addToChest(item, amount, player, chestID)
 					savedata(player)
+
 					chatMessage('<j>'.. translate('itemAddedToChest', player):format('<vp>'.. translate('item_'..itemName, player) ..'</vp> <CE>('..amount..')</CE>'), player)
 					canRemove = true
 					break
 				end
 			end
 		end
+
 	elseif players[player].job == 'farmer' then
 		if tonumber(players[player].place:sub(7)) == 12 and string_find(item, 'Seed') then
 			for i, v in next, HouseSystem.plants do
@@ -100,12 +105,14 @@ item_droppedEvent = function(id, player)
 				sideQuest_sendTrigger(player, "sell_fruits", amount)
 			end
 		end
+
 	elseif players[player].job == 'fisher' and players[player].place == 'fishShop' and string_find(item, 'fish_') then
 		canRemove = true
 		giveCoin(bagItems[item].price * amount, player)
 		sideQuest_sendTrigger(player, "sell_fishes", amount)
 		chatMessage('<j>'..translate('seedSold', player):format('<vp>'..translate('item_'..itemName, player)..'</vp>', '<fc>$'..(bagItems[item].price * amount)..'</fc>'), player)
-	elseif players[player].job == 'miner' and players[player].place == 'town' then
+	
+	elseif players[player].job == 'miner' then
 		if item:find('crystal_') or item:find('goldNugget') then
 			if ROOM.playerList[player].x > 475 and ROOM.playerList[player].x < 745 and ROOM.playerList[player].y > 8070 and ROOM.playerList[player].y < 8230 then
 				canRemove = true
