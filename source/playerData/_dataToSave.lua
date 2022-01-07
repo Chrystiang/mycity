@@ -87,30 +87,34 @@ savedata = function(name, forceSave)
 	playerData:set(name, 'chestStorageQuanty', chestStorageQuanty)
 
 	----------------------------- FURNITURES -----------------------------
-	local furnitures, furnitureCounter, storedFurnitures = {}, 0, {}
-	do 
-		for _, v in next, playerInfos.houseData.furnitures.placed do
-			furnitureCounter = furnitureCounter + 1
-			if furnitureCounter > maxFurnitureStorage then break end
-			furnitures[#furnitures+1] = {v.type, v.x, v.y}
+	local houseSaves = {}
+	local storedFurnitures = {}
+
+	for saveId, data in next, playerInfos.houseData.furnitures.placed do
+		houseSaves[saveId] = {}
+
+		for id, furnitureData in next, data do
+			if id > maxPlacedFurnitures then break end
+			houseSaves[saveId][id] = {v.type * (v.mirrored and -1 or 1), v.x, v.y}
 		end
-		playerData:set(name, 'houseObjects', furnitures)
-
-		-- Save all furnitures bought
-		for _, v in next, playerInfos.houseData.furnitures.stored do
-			-- If the furniture amount is greater than 1, save it in a table, with the id and the amount
-			if v.quanty > 1 then
-				storedFurnitures[#storedFurnitures+1] = {v.type, v.quanty}
-
-			-- If is equal to 1, save it using it's id
-			----> Since we know there is only one of them, we will use less characters to save!
-			elseif v.quanty == 1 then
-				storedFurnitures[#storedFurnitures+1] = v.type
-			end
-		end
-
-		playerData:set(name, 'storedFurnitures', storedFurnitures)
 	end
+
+	playerData:set(name, 'houseSaves', houseSaves)
+
+	-- Save all furnitures bought
+	for _, v in next, playerInfos.houseData.furnitures.stored do
+		-- If the furniture amount is greater than 1, save it in a table, with the id and the amount
+		if v.quanty > 1 then
+			storedFurnitures[#storedFurnitures+1] = {v.type, v.quanty}
+
+		-- If is equal to 1, save it using it's id
+		----> Since we know there is only one of them, we will use less characters to save!
+		elseif v.quanty == 1 then
+			storedFurnitures[#storedFurnitures+1] = v.type
+		end
+	end
+
+	playerData:set(name, 'storedFurnitures', storedFurnitures)
 	----------------------------------------------------------------------
 
 	local code = playerData:get(name, 'codes')
