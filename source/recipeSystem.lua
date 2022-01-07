@@ -10,7 +10,7 @@ newFoodValue = function(recipe)
 		if not item.hunger then 
 			item.hunger = (not recipes[i] and 0.11 or floor(newFoodValue(i)))
 		end 
-		newValue = newValue + (item.hunger >= 0 and item.hunger or ((i:find('fish') or i:find('meat')) and math.abs(item.hunger)/1.62 or spiceList[i] and spiceList[i] or 0.57)) * v
+		newValue = newValue + (item.hunger >= 0 and item.hunger or ((i:find('fish') or i:find('meat')) and abs(item.hunger)/1.62 or spiceList[i] and spiceList[i] or 0.57)) * v
 		ingredients = ingredients + 1
 	end
 	bagItems[recipe].hunger = floor((ingredients/1.025) * newValue)
@@ -35,7 +35,7 @@ newEnergyValue = function(recipe)
 		if not item.power then 
 			item.power = (not recipes[i] and 1.03 or floor(newEnergyValue(i)))
 		end 
-		newValue = newValue + ((item.power >= 0 and not spiceList[i]) and item.power*1.1 or ((i:find('fish') or i:find('meat')) and math.abs(item.power)/2.12 or spiceList[i] and spiceList[i] or 0.30)) * v
+		newValue = newValue + ((item.power >= 0 and not spiceList[i]) and item.power*1.1 or ((i:find('fish') or i:find('meat')) and abs(item.power)/2.12 or spiceList[i] and spiceList[i] or 0.30)) * v
 		ingredients = ingredients + 1
 	end
 	bagItems[recipe].power = floor((ingredients/0.971) * newValue/2)

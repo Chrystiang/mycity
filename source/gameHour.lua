@@ -37,7 +37,7 @@ end
 formatDaysRemaining = function(calc, ended)
 	local daysfrom = os.difftime(os_time(), calc) / (24 * 60 * 60) / 1000
 	if not ended then
-		return math.abs(floor(daysfrom))
+		return abs(floor(daysfrom))
 	else
 		if floor(daysfrom) >= 0 then
 			return true

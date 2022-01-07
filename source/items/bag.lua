@@ -56,7 +56,7 @@ addItem = function(item, amount, player, coin, notify)
 end
 
 removeBagItem = function(item, amount, player)
-	amount = math.abs(amount)
+	amount = abs(amount)
 	local hasItem = false
 	for i, v in next, players[player].bag do
 		if v.name == item then

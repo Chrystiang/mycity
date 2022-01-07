@@ -11,7 +11,7 @@ item_addToChest = function(item, amount, player, chest)
 end
 
 item_removeFromChest = function(item, amount, player, chest)
-	amount = math.abs(amount)
+	amount = abs(amount)
 	if chest then
 		for i, v in next, players[player].houseData.chests.storage[chest] do
 			if v.name == item then
