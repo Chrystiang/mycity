@@ -18,6 +18,7 @@ setPlayerData = function(player)
 		houseData	= {
 			houseid = 0,
 			currentHouse = nil,
+			currentSaveSlot = 1,
 			furnitures = {
 				stored = {},
 				placed = {},
