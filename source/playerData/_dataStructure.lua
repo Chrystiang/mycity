@@ -10,7 +10,10 @@ local playerData = DataHandler.new('myc', {
 		index = 2,
 		type = 'table',
 		default = function()
-			return {100, 100}
+			return {
+				100,
+				100
+			}
 		end
 	},
 	houses = {
@@ -31,7 +34,10 @@ local playerData = DataHandler.new('myc', {
 		index = 5,
 		type = 'table',
 		default = function()
-			return {1, 0}
+			return {
+				1, 
+				0
+			}
 		end
 	},
 	bagItem = {
@@ -66,21 +72,21 @@ local playerData = DataHandler.new('myc', {
 		index = 10,
 		type = 'table',
 		default = function()
-			return {0,0,0,0,0}
+			return {0, 0, 0, 0, 0}
 		end
 	},
 	housesTerrainsAdd = {
 		index = 11,
 		type = 'table',
 		default = function()
-			return {1,1,1,1,1}
+			return {1, 1, 1, 1, 1}
 		end
 	},
 	housesTerrainsPlants = {
 		index = 12,
 		type = 'table',
 		default = function()
-			return {0,0,0,0,0}
+			return {0, 0, 0, 0, 0}
 		end
 	},
 	bagStorage = {
@@ -164,7 +170,12 @@ local playerData = DataHandler.new('myc', {
 		index = 24,
 		type = 'table',
 		default = function()
-			return {{1}, 1, {1}, 1} -- Star Icons| Selected Star Icon| Level Icons| Selected Level Icon
+			return {
+				{1},	-- Star Icons
+				1, 		-- Selected Star Icon
+				{1}, 	-- Level Icons
+				1  		-- Selected Level Icon
+			}
 		end
 	},
 	timePlayed = {
@@ -180,7 +191,18 @@ local playerData = DataHandler.new('myc', {
 		default = function()
 			return 1
 		end
-	}
+	},
+	houseSaves = {
+		index = 27,
+		type = 'table',
+		default = function()
+			return {
+				{},
+				{},
+				{},
+			}
+		end
+	},
 })
 
 local sharpieData = DataHandler.new('sync', {
