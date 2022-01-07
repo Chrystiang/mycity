@@ -68,13 +68,24 @@ onEvent("PlayerDataLoaded", function(name, data)
 	----------------------------- FURNITURES -----------------------------
 	players[name].houseData.furnitures.placed = {}
 	players[name].houseData.furnitures.stored = {}
-	local furnitures, storedFurnitures = playerData:get(name, 'houseObjects'), playerData:get(name, 'storedFurnitures')
-	for i, v in next, furnitures do
-		if v[2] >= 0 and v[2] <= 1500 then
-			players[name].houseData.furnitures.placed[i] = {type = v[1], x = v[2], y = v[3]}
-		else
-			chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
-			storeFurniture(name, i)
+
+	local save, storedFurnitures = playerData:get(name, 'houseSaves'), playerData:get(name, 'storedFurnitures')
+	
+	for id, data in next, save do
+		players[name].houseData.furnitures.placed[id] = {}
+
+		for i, v in next, data do
+			if v[2] >= 0 and v[2] <= 1500 then
+				players[name].houseData.furnitures.placed[id][i] = {
+					type 		= v[1],
+					x 			= v[2],
+					y 			= v[3],
+					mirrored 	= v[1] < 1
+				}
+			else
+				chatMessage('<g>Due to an invalid position, a furniture has been moved to your furniture depot.', name)
+				storeFurniture(name, i)
+			end
 		end
 	end
 
