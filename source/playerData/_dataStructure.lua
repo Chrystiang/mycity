@@ -96,7 +96,7 @@ local playerData = DataHandler.new('myc', {
 			return 20
 		end
 	},
-	houseObjects = {
+	houseSaves = {
 		index = 14,
 		type = 'table',
 		default = function()
@@ -191,14 +191,7 @@ local playerData = DataHandler.new('myc', {
 		default = function()
 			return 1
 		end
-	},
-	houseSaves = {
-		index = 27,
-		type = 'table',
-		default = function()
-			return {}
-		end
-	},
+	}
 })
 
 local sharpieData = DataHandler.new('sync', {
