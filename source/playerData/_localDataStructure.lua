@@ -21,7 +21,7 @@ setPlayerData = function(player)
 			currentSaveSlot = 1,
 			furnitures = {
 				stored = {},
-				placed = {},
+				placed = {{}, {}, {}},
 				placedCounter = 0,
 			},
 			chests = {

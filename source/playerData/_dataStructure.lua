@@ -196,11 +196,7 @@ local playerData = DataHandler.new('myc', {
 		index = 27,
 		type = 'table',
 		default = function()
-			return {
-				{},
-				{},
-				{},
-			}
+			return {}
 		end
 	},
 })

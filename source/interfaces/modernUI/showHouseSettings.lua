@@ -38,12 +38,12 @@ modernUI.showHouseSettings = function(self)
 		else 
 			playerFurnitures[data.type].quanty = playerFurnitures[data.type].quanty + 1
 		end
-		ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player)
+		ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player)
 		updatePage(0)
 	end
 	local function placeFurniture(index)
 		if not players[player].editingHouse then return end
-		if totalOfPlacedFurnitures >= maxFurnitureStorage then return alert_Error(player, 'error', 'maxFurnitureStorage', maxFurnitureStorage) end
+		if totalOfPlacedFurnitures >= maxPlacedFurnitures then return alert_Error(player, 'error', 'maxPlacedFurnitures', maxPlacedFurnitures) end
 		if buildModeImages.currentFurniture then 
 			removeImage(buildModeImages.currentFurniture)
 			buildModeImages.currentFurniture = nil
@@ -64,7 +64,7 @@ modernUI.showHouseSettings = function(self)
 
 				playerFurnitures[index].quanty = playerFurnitures[index].quanty - 1
 				totalOfPlacedFurnitures = totalOfPlacedFurnitures + 1
-				ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player)
+				ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player)
 
 				local id = terrainID
 
@@ -207,7 +207,7 @@ modernUI.showHouseSettings = function(self)
 		images.bg[#images.bg+1] = addImage('1723ed04fb4.jpg', ':25', 5, 340, player)
 		images.bg[#images.bg+1] = addImage('172469fea71.jpg', ':25', 695, 317, player)
 
-		showTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxFurnitureStorage..'</b></fc>'), player, 0, 321, nil, nil, 0x24474D, 0xff0000, 0, true)
+		showTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player, 0, 321, nil, nil, 0x24474D, 0xff0000, 0, true)
 		showTextArea(id..'893', '', player, 0, 340, 800, 60, 0x24474D, 0xff0000, 0, true)
 		showTextArea(id..'894', '<p align="center"><b><font color="#95d44d" size="14">'..translate('houseSettings_finish', player)..'\n', player, 695, 321, 100, nil, 0x24474D, 0xff0000, 0, true, 
 			function()
