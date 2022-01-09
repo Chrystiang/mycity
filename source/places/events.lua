@@ -29,7 +29,7 @@ goToHouse = function(player, terrainID)
 	checkIfPlayerIsDriving(player)
 	showTextArea(400, string.rep('\n', 3), player, ((terrainID-1)%terrainID)*1500 + 317, 1616 + 45, 25, 25, 0, 0, 0, false, 
 		function()
-			getOutHouse(player, terrainID)
+			leaveHouse(player, terrainID)
 		end)
 	if room.terrains[terrainID].owner ~= player then 
 		room.terrains[terrainID].guests[player] = true
@@ -44,7 +44,7 @@ goToHouse = function(player, terrainID)
 	end
 end
 
-getOutHouse = function(player, terrainID)
+leaveHouse = function(player, terrainID)
 	if not string_find(players[player].place, 'house_') or players[player].editingHouse then return end
 	if terrainID == 12 then -- Oliver's Farm
 		movePlayer(player, 11275, 7770, false)

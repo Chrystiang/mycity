@@ -35,7 +35,7 @@ modernUI.showHousePermissions = function(self)
 									end
 									if _ == -1 then
 										if room.terrains[terrainID].guests[user] then 
-											getOutHouse(user, terrainID)
+											leaveHouse(user, terrainID)
 											alert_Error(user, 'error', 'error_blockedFromHouse', player)
 										end
 									end
@@ -54,7 +54,7 @@ modernUI.showHousePermissions = function(self)
 					if room.terrains[terrainID].guests[guest] then 
 						if not room.terrains[terrainID].settings.permissions[guest] then room.terrains[terrainID].settings.permissions[guest] = 0 end
 						if room.terrains[terrainID].settings.permissions[guest] < 1 then
-							getOutHouse(guest, terrainID)
+							leaveHouse(guest, terrainID)
 							alert_Error(guest, 'error', 'error_houseClosed', player)
 						end
 					end
