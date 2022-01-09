@@ -14,7 +14,7 @@ HouseSystem.removeHouse = function(self)
 		for i = 0, 15 do
 			removeGround(-6500+terrainID*20-i)
 		end
-		for i, v in next, ownerData.houseData.furnitures.placed do 
+		for i, v in next, ownerData.houseData.furnitures.placed[ownerData.houseData.currentSaveSlot] do 
 			local furniture = mainAssets.__furnitures[v.type]
 			if furniture.grounds then
 				removeGround(- 7000 - (terrainID-1)*200 - i)
@@ -27,7 +27,7 @@ HouseSystem.removeHouse = function(self)
 		end
 		for guest in next, room.terrains[terrainID].guests do
 			if room.terrains[terrainID].guests[guest] then 
-				getOutHouse(guest, terrainID)
+				leaveHouse(guest, terrainID)
 			end
 		end
 		removeTextArea(terrainID)

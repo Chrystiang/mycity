@@ -5,6 +5,16 @@ modernUI.showHouseSettings = function(self)
 	local x = (400 - 180/2)
 	local y = (200 - height/2) + 50
 
+	local images = {bg = {}, icons = {}, pages = {}, expansions = {}}
+	local showFurnitures, updateScrollbar, updatePage
+	local buildModeImages = {currentFurniture = nil, furnitures = {}}
+	local terrainID = players[player].houseData.houseid
+	local currentSaveSlot = players[player].houseData.currentSaveSlot 
+	local playerFurnitures = table_copy(players[player].houseData.furnitures.stored)
+	local playerFurnitures_length = table_getLength(playerFurnitures)
+	local playerPlacedFurnitures = table_copy(players[player].houseData.furnitures.placed[currentSaveSlot])
+	local totalOfPlacedFurnitures = table_getLength(players[player].houseData.furnitures.placed[currentSaveSlot])
+
 	local function button(i, text, callback, x, y, width, height)
 		local width = width or 180
 		local height = height or 15
@@ -13,14 +23,6 @@ modernUI.showHouseSettings = function(self)
 		showTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
 		showTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
 	end
-	local images = {bg = {}, icons = {}, pages = {}, expansions = {}}
-	local terrainID = players[player].houseData.houseid
-	local showFurnitures, updateScrollbar, updatePage
-	local buildModeImages = {currentFurniture = nil, furnitures = {}}
-	local playerFurnitures = table_copy(players[player].houseData.furnitures.stored)
-	local playerFurnitures_length = table_getLength(playerFurnitures)
-	local playerPlacedFurnitures = table_copy(players[player].houseData.furnitures.placed)
-	local totalOfPlacedFurnitures = table_getLength(players[player].houseData.furnitures.placed)
 
 	local function removeFurniture(index)
 		if not players[player].editingHouse then return end
@@ -41,6 +43,7 @@ modernUI.showHouseSettings = function(self)
 		ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player)
 		updatePage(0)
 	end
+
 	local function placeFurniture(index)
 		if not players[player].editingHouse then return end
 		if totalOfPlacedFurnitures >= maxPlacedFurnitures then return alert_Error(player, 'error', 'maxPlacedFurnitures', maxPlacedFurnitures) end
@@ -117,10 +120,10 @@ modernUI.showHouseSettings = function(self)
 				players[player].houseData.furnitures.stored[i] = v
 			end
 		end
-		players[player].houseData.furnitures.placed = {}
+		players[player].houseData.furnitures.placed[currentSaveSlot] = {}
 		for i, v in next, playerPlacedFurnitures do 
 			if v then
-				players[player].houseData.furnitures.placed[i] = v
+				players[player].houseData.furnitures.placed[currentSaveSlot][i] = v
 				removeImage(v.image)
 				removeTextArea(- 85000 - (terrainID*200 + i), player)
 			end
@@ -128,12 +131,14 @@ modernUI.showHouseSettings = function(self)
 		giveCoin(furniture.price and furniture.price/2 or 0, player)
 		updatePage(0)
 	end
+
 	local function closeExpansionMenu()
 		removeGroupImages(images.expansions)
 		removeTextArea(id..'889', player)
 		removeTextArea(id..'890', player)
 		updatePage(0)
 	end
+
 	button(0, translate('houseSettings_permissions', player), function() 
 		eventTextAreaCallback(0, player, 'modernUI_Close_'..id, 'errorUI')
 		modernUI.new(player, 380, 280, translate('houseSettings_permissions', player))
@@ -162,7 +167,7 @@ modernUI.showHouseSettings = function(self)
 		end
 		for guest in next, room.terrains[terrainID].guests do
 			if room.terrains[terrainID].guests[guest] then 
-				getOutHouse(guest, terrainID)
+				leaveHouse(guest, terrainID)
 				alert_Error(guest, 'error', 'error_houseUnderEdit', player)
 			end
 		end
@@ -223,10 +228,10 @@ modernUI.showHouseSettings = function(self)
 						players[player].houseData.furnitures.stored[i] = v
 					end
 				end
-				players[player].houseData.furnitures.placed = {}
+				players[player].houseData.furnitures.placed[currentSaveSlot] = {}
 				for i, v in next, playerPlacedFurnitures do 
 					if v then
-						players[player].houseData.furnitures.placed[i] = v
+						players[player].houseData.furnitures.placed[currentSaveSlot][i] = v
 						removeImage(v.image)
 						removeTextArea(- 85000 - (terrainID*200 + i), player)
 					end
@@ -275,6 +280,7 @@ modernUI.showHouseSettings = function(self)
 				end
 			end
 		end
+
 		updatePage = function(count)
 			if currentPage + count > maxPages or currentPage + count < 1 then return end 
 			currentPage = currentPage + count
@@ -286,6 +292,7 @@ modernUI.showHouseSettings = function(self)
 			updateScrollbar()
 			showFurnitures()
 		end
+		
 		updateScrollbar = function()
 			if currentPage > 1 then
 				images.pages[#images.pages+1] = addImage('1723f16c0ba.jpg', ':25', 5, 340, player)
