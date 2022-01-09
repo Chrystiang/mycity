@@ -8,7 +8,7 @@ room.fishing = {
 			},
 			fishes = {
 				normal      = {'fish_Smolty', 'cheese', 'wheatSeed', 'fish_Guppy'},
-				rare        = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish', 'prop_A1'},
+				rare        = {'fish_Lionfish', 'fish_Dogfish', 'fish_Catfish'},
 				mythical    = {'fish_Lobster',},
 				legendary   = {'fish_Goldenmare',},
 			},

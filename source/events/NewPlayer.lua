@@ -75,9 +75,12 @@ eventNewPlayer = function(player)
 		addImage(buildShopImages[players[player].lang] or buildShopImages['en'], "?7", 440, 1601+room.y, player)
 	-- PLACE: Police Station 
 		addImage("15a09d13130.png", "?8", 1000, 1569+room.y, player)
-	-- PLACE: Clock Tower 
-		--addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
-		addImage("1768d8f8e87.png", '?9', 2050-44, 1600+room.y, player)
+	-- PLACE: Clock Tower
+		if isChristmas then
+			addImage("1768d8f8e87.png", '?9', 2050-44, 1600+room.y, player)
+		else
+			addImage("1708d053178.png", '?9', 2050, 1600+room.y, player)
+		end
 	-- PLACE: Bank
 		addImage("16b947781b3.png", "?10", 2700, 7487, player)
 	-- Ranking
@@ -204,13 +207,7 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Derek', {'17198af24b4.png', '1729ff71a42.png'}, player, 3790, 153, {job = 'thief', place = 'market'}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Billy', {'17198b0df10.png', '1729ff6f7d2.png'}, player, 3835, 153, {job = 'thief', place = 'market'}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Lauren', {'17198c1b7b5.png', '17198c3bd45.png'}, player, 14337, 139, {type = '?', canRob = {cooldown = 100}, place = 'pizzeria'})
-	gameNpcs.addCharacter('Marie', {'17198c6b4ee.png', '17198c8206f.png'}, player, 14440, 139, {type = '?', place = 'pizzeria', endEvent = 
-		function(name) 
-			if checkItemAmount("cheese", 1, player) then 
-				removeBagItem("cheese", 1, player) 
-				addItem("prop_A6", 1, player, nil, true)
-			end
-		end})
+	gameNpcs.addCharacter('Marie', {'17198c6b4ee.png', '17198c8206f.png'}, player, 14440, 139, {type = '?', place = 'pizzeria'})
 	gameNpcs.addCharacter('Natasha', {'171995781e5.png', '171eb2e9c92.png'}, player, 4704, 125, {type = '_', place = 'market', canRob = {cooldown = 100}}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Cassy', {'171995ccbe9.png', '171eb2e7ae6.png'}, player, 4833, 125, {type = '_', place = 'market', canRob = {cooldown = 100}}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Julie', {'171995ecdee.png', '171eb2eb8df.png'}, player, 4573, 125, {type = '_', place = 'market', canRob = {cooldown = 100}}, -1, nil, nil, nil, -1)
@@ -268,46 +265,6 @@ eventNewPlayer = function(player)
 				end, translate('confirmButton_BuyBagUpgrade', player):format('<fc>$5000</fc>'), 200)
 		end})
 
-	gameNpcs.addCharacter('Jingle', {'1768d8f6081.png'}, player, 9395, 4910, {sellingItems = true, place = 'clockTower'})
-	gameNpcs.addCharacter('Elf', {'1768d94a7f0.png', '1768d946991.png'}, player, 9370, 5162, {place = 'clockTower', formatDialog = 'christmasEventEnds'})
-	gameNpcs.addCharacter('Sign', {'17e1b02d244.png'}, player, 7997, 7665, {type = '_', hideName = true, endEvent =
-		function(player)
-			local requires = {
-				snowman = 7,
-				prop_A1 = 1,
-				prop_A2 = 1,
-				prop_A3 = 1,
-				prop_A4 = 1,
-				prop_A5 = 1,
-				prop_A6 = 1,
-				prop_A7 = 1,
-			}
-
-			local canComplete = true
-
-			for item, amount in next, requires do
-				if not checkItemAmount(item, amount, player) then
-					canComplete = false
-					break
-				end
-			end
-
-			if canComplete and players[player].jobs[22] == 0 then
-				for item, amount in next, requires do
-					removeBagItem(item, amount, player)
-				end
-
-				giveLevelOrb(player, 10)
-				players[player].jobs[22] = 1
-				loadSnowmans(player)
-				return
-			end
-
-			if checkItemAmount("snowBucket", 1, player) then 
-				modernUI.new(player, 240, 120):build():showSnowmanOffers()
-			end
-		end})
-
 	if room.dayCounter > 0 then 
 		room.bank.paperImages[#room.bank.paperImages+1] = addImage('16bbf3aa649.png', '!1', room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, player)
 		showTextArea(-3333, '<a href="event:getVaultPassword">'..string.rep('\n', 10), player, room.bank.paperPlaces[room.bank.paperCurrentPlace].x, room.bank.paperPlaces[room.bank.paperCurrentPlace].y, 20, 20, 0, 0, 0)
@@ -339,19 +296,4 @@ eventNewPlayer = function(player)
 			end
 		end
 	end
-end
-
-loadSnowmans = function(player)
-	gameNpcs.removeNPC("Sign", player)
-	addImage("17e20241aab.png", "_100000", 7800, 7665, player)
-	addImage("17e20247557.png", "_100000", 8300, 7665, player)
-	addImage("17e2025e01e.png", "_100000", 8600, 7673, player)
-	addImage("17e20258dca.png", "_100000", 6700, 7685, player, -1)
-	addImage("17e20263555.png", "_100000", 7000, 7680, player)
-	addImage("17e2024c4e3.png", "_100000", 9000, 7680, player, -1)
-	addImage("17e20251882.png", "_100000", 7300, 7673, player, -1)
-	gameNpcs.addCharacter('Sign', {'17e1b02d244.png'}, player, 7997, 7665, {type = '_', hideName = true, callback =
-		function(player)
-			modernUI.new(player, 240, 120):build():showSnowmanOffers()
-		end})
 end

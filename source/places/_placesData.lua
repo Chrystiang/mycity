@@ -114,11 +114,5 @@ places = {
 					movePlayer(player, 1873, 8810, false)
 				end)
 		end,
-	},
-	clockTower = {
-		id = 17,
-		opened = '-',
-		tp_town = {2155, 7770},
-		exitSensor = {9570, 5245},
-	},
+	}
 }

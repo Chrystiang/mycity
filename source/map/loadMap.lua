@@ -11,8 +11,6 @@ loadMap = function(name) -- TO REWRITE
 
 	showTextArea(1051, '<font size="19"><p align="center"><a href="event:enter_fishShop">' .. translate('goTo', name) .. '\n</a>', name, 5868, 7615, 200, 30, 0x122528, 0x122528, 0.7)
 
-	showTextArea(1052, '<font size="19"><p align="center"><a href="event:enter_clockTower">' .. translate('goTo', name) .. '\n</a>', name, 2060, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
-
 	if room.bankBeingRobbed then
 		showTextArea(1029, '<font size="15" color="#FF0000"><p align="center">' .. translate('robberyInProgress', name) .. '\n</a>', name, 2670, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
 	else

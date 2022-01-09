@@ -46,11 +46,6 @@ arrestPlayer = function(thief, cop, command)
 				players[thief].blockScreen = false
 				players[thief].timer = {}
 				movePlayer(thief, 8020, 6400, false)
-
-				local chance = math.random(0, 100)
-				if chance <= 40 then
-					addItem("prop_A2", 1, thief, nil, true)
-				end
 			end
 
 			if not (thiefPosition.x > 8040 and thiefPosition.y > 6260 and thiefPosition.x < 8500 and thiefPosition.y < 6420) then
@@ -77,9 +72,4 @@ arrestPlayer = function(thief, cop, command)
 	giveCoin(jobs['police'].coins, cop, true)
 	job_updatePlayerStats(cop, 1)
 	players[cop].time = os_time() + 10000
-
-	local chance = math.random(0, 100)
-	if chance <= 40 then
-		addItem("prop_A3", 1, cop, nil, true)
-	end
 end

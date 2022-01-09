@@ -126,20 +126,5 @@ job_updatePlayerStats = function(player, type, quant)
 	--17: Halloween 2019 
 	--24: Christmas 2020
 	--26: Christmas 2021
-
-	if players[player].jobs[20] >= 20 and not table_find(players[player].badges, 26) then
-		giveBadge(player, 26)
-		removeTextArea(8541583, player)
-		removeTextArea(8541584, player)
-		removeImage(players[player].questScreenIcon)
-		players[player].questScreenIcon = nil
-
-	elseif players[player].jobs[20] < 20 then
-		ui.updateTextArea(8541583, "<font color='#000000'>".. players[player].jobs[20] ..'/20', player)
-		ui.updateTextArea(8541584, "<font color='#ffffff'>".. players[player].jobs[20] ..'/20', player)
-	end
-
-	showTextArea(5443, '<p align="right"><CS>You: '.. players[player].jobs[21], player, 93+ 3710, 88 + 7480, 370, nil, 0x324650, 0x0, 0)
-
 	savedata(player)
 end

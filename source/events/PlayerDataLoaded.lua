@@ -179,15 +179,4 @@ onEvent("PlayerDataLoaded", function(name, data)
 
 	addImage("17b349cc328.png", ":1", 650, 20, name)
 	loadBackpackIcon(name)
-
-	if not players[name].jobs[22] then players[name].jobs[22] = 0 end
-	if players[name].jobs[22] > 0 then
-		loadSnowmans(name)
-	end
-
-	if not table_find(players[name].badges, 26) then
-		players[name].questScreenIcon = addImage('1768dd0515a.png', '&10', 740, 310, name)
-		showTextArea(8541583, "<font color='#000000'>".. players[name].jobs[20] ..'/20', name, 768, 316, nil, nil, 1, 1, 0, true)
-		showTextArea(8541584, "<font color='#ffffff'>".. players[name].jobs[20] ..'/20', name, 767, 315, nil, nil, 1, 1, 0, true)
-	end
 end)
