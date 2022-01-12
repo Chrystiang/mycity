@@ -1145,7 +1145,6 @@ bagItems = {
 			return true
 		end,
 		limitedTime = os_time{day=14, year=2022, month=1},
-		blockTrades = true,
 	},
 	bucket = {
 		id = 124,	
