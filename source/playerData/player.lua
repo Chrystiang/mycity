@@ -22,6 +22,10 @@ giveCoin = function(coin, name, work)
 		end
 	end
 	
+	if players[name].spentCoins >= 5000000 then
+		system.giveEventGift(name, mainAssets.titles.tycoon)
+	end
+
 	updateCurrencies(name)
 	savedata(name)
 end
