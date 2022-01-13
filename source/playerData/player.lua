@@ -45,7 +45,7 @@ giveBadge = function(player, id)
 	modernUI.new(player, 240, 220, translate('newBadge', player))
 	:build()
 	:badgeInterface(id)
-	:addConfirmButton(function(player) if id == 24 then giveLevelOrb(player, 9) end end, translate('confirmButton_Great', player))
+	:addConfirmButton(function() end, translate('confirmButton_Great', player))
 
 	savedata(player)
 end
