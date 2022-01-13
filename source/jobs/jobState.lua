@@ -74,57 +74,12 @@ job_hire = function(job, player)
 	jobs[job].working[#jobs[job].working+1] = player
 end
 
-job_updatePlayerStats = function(player, type, quant)
-	if not quant then quant = 1 end
-	local playerData = players[player]
-	if not players[player].jobs[type] then players[player].jobs[type] = 0 end
-	players[player].jobs[type] = playerData.jobs[type] + quant
+job_updatePlayerStats = function(player, id, amount)
+	amount = amount or 1
+	players[player].jobs[id] = players[player].jobs[id] or 0
+	players[player].jobs[id] = players[player].jobs[id] + amount
 
-	if playerData.jobs[4] >= 1000 then
-		giveBadge(player, 3)
+	if jobRewards[id] and players[player].jobs[id] >= jobRewards[id].requires then
+		jobRewards.callback(player)
 	end
-	if playerData.jobs[3] >= 500 then
-		giveBadge(player, 2)
-	end
-	if playerData.jobs[5] >= 500 then
-		giveBadge(player, 4)
-	end
-	if playerData.jobs[6] >= 500 then
-		giveBadge(player, 8)
-	end
-	if playerData.jobs[2] >= 500 then -- THIEF
-		giveBadge(player, 5)
-	end
-	if playerData.jobs[1] >= 500 then -- COP
-		giveBadge(player, 10)
-	end
-	if playerData.jobs[9] >= 500 then -- Deliver 500 orders
-		giveBadge(player, 9)
-	end
-	if playerData.jobs[10] >= 500 then -- Cook 500 dishes
-		giveBadge(player, 14)
-	end
-	if playerData.jobs[12] >= 300 then -- Sold 300 yellow crystals
-		giveBadge(player, 15)
-	end
-	if playerData.jobs[13] >= 150 then -- Sold 150 blue crystals
-		giveBadge(player, 16)
-	end
-	if playerData.jobs[14] >= 75 then -- Sold 75 purple crystals
-		giveBadge(player, 17)
-	end
-	if playerData.jobs[15] >= 30 then -- Sold 30 green crystals
-		giveBadge(player, 18)
-	end
-	if playerData.jobs[16] >= 10 then -- Sold 10 red crystals
-		giveBadge(player, 19)
-	end
-	if playerData.jobs[11] >= 500 then -- Sell 500 fruits
-		giveBadge(player, 25)
-	end
-	
-	--17: Halloween 2019 
-	--24: Christmas 2020
-	--26: Christmas 2021
-	savedata(player)
 end
