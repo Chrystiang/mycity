@@ -213,7 +213,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 												removeImage(holdingImage)
 												holdingImage = addImage(image, "$" .. player, x, y)
 											end
-											if holdingItem == "bucket" then
+											if holdingItem == "bucket" and room.event:find('christmas') then
 												addTimer(function()
 													if not playerData.holdingItem then return end
 													if not checkItemAmount(holdingItem, 1, player) then return end
