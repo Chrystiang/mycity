@@ -90,7 +90,7 @@ onEvent("PlayerDataLoaded", function(name, data)
 	end
 	players[name].starIcons.selected = starIcons[2]
 
-	--players[name].timePlayed = playerData:get(name, 'timePlayed')
+	players[name].timePlayed = playerData:get(name, 'timePlayed')
 	
 	if not syncVersion(name, playerLogs[3]) then
 		chatMessage('Data not loaded: Version error.', name)

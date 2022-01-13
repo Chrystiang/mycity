@@ -36,7 +36,7 @@ modernUI.profileInterface = function(self, target)
    		string_replace(player, {["{0}"] = 'profile_purchasedCars', ["{1}"] = #targetData.cars..'/'..#mainAssets.__cars-1}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedQuests', ["{1}"] = (targetData.questStep[1]-1)..'/'..questsAvailable}) ..'\n' ..
    		string_replace(player, {["{0}"] = 'profile_completedSideQuests', ["{1}"] = targetData.sideQuests[3]}) ..'\n' ..
-   		string_replace(player, {["{0}"] = 'profile_timePlayed', ["{1}"] = floor(targetData.timePlayed)}) ..'\n'
+   		string_replace(player, {["{0}"] = 'profile_timePlayed', ["{1}"] = floor(targetData.timePlayed/60)}) ..'\n'
 
 	local text_Jobs = {
 		police 	= 	string_replace(player, {["{0}"] = 'profile_arrestedPlayers', ["{1}"] = targetData.jobs[1]}),
