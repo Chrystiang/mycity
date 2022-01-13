@@ -1,4 +1,6 @@
 saveRanking = function()
+	if not mainAssets.isRankingActive then return end
+	
 	if ROOM.name:sub(1,2) == "*" then
 		return
 	elseif ROOM.uniquePlayers < room.requiredPlayers then

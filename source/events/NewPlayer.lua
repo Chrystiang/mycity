@@ -84,9 +84,11 @@ eventNewPlayer = function(player)
 	-- PLACE: Bank
 		addImage("16b947781b3.png", "?10", 2700, 7487, player)
 	-- Ranking
-		addImage(isChristmas and '17688e0864b.png' or "17118e74fb1.png", "?11", 3710, 7480, player)
-		addImage('17118ee6159.jpg', '?12', 3807, 7535, player)
-		addImage('17118f3c5fd.jpg', '?13', 3807, 7560, player)
+		if mainAssets.isRankingActive then
+			addImage(isChristmas and '17688e0864b.png' or "17118e74fb1.png", "?11", 3710, 7480, player)
+			addImage('17118ee6159.jpg', '?12', 3807, 7535, player)
+			addImage('17118f3c5fd.jpg', '?13', 3807, 7560, player)
+		end
 		for i = 1, 7 do
 			addImage(isChristmas and '17688ef19e3.png' or "17688f01766.png", "?14", 3660 + (i-1)*96, 7715, player)
 		end

@@ -1,4 +1,6 @@
 loadRanking = function(player)
+	if not mainAssets.isRankingActive then return end
+	
 	local minn = 1
 	local maxx = 10
 
