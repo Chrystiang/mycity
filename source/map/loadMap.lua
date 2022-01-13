@@ -5,7 +5,6 @@ loadMap = function(name) -- TO REWRITE
 	showTextArea(1022, '<font size="15"><p align="center"><a href="event:enter_market">' .. translate('goTo', name) .. '\n</a>', name, 3445, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
 	showTextArea(1025, '<font size="15"><p align="center"><a href="event:enter_hospital">' .. translate('goTo', name) .. '\n</a>', name, 4675, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)
 	showTextArea(1027, '<font size="19"><p align="center"><a href="event:enter_dealership">' .. translate('goTo', name) .. '\n</a>', name, 4960, 1775+room.y+11, 310, 40, 0x122528, 0x122528, 0.7)
-	showTextArea(1033, "<textformat leftmargin='1' rightmargin='1'><a href='event:upgradeBag'>" .. string.rep('\n', 15), name, 4545, 140, 40, 110, 0x122528, 0x122528, 0)
 	showTextArea(459, '<font size="15"><p align="center"><a href="event:joinHouse_12">' .. translate('goTo', name) .. '\n</a>', name, 11177, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)	
 	showTextArea(458, '<font size="15"><p align="center"><a href="event:joinHouse_11">' .. translate('goTo', name) .. '\n</a>', name, 10027, 1800+room.y, 200, 30, 0x122528, 0x122528, 0.7)	
 

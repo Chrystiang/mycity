@@ -331,8 +331,6 @@ onEvent("TextAreaCallback", function(id, player, callback, serverRequest)
 		for i = 0, 9 do
 			closeMenu(99+i, player)
 		end
-	elseif callback == 'upgradeBag' then
-		showPopup(5, player, nil, '', 400 - 250 *0.5, 200 - 110 * 0.5, 250, 110, false, '9_6')
 	--------------- HOUSES ----------------------
 	elseif callback:sub(1,8) == 'harvest_' then
 		local id = tonumber(callback:sub(9))
