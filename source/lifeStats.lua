@@ -51,7 +51,7 @@ setLifeStat = function(player, lifeStat, quant)
 	showLifeStats(player, lifeStat)
 end
 
-updateBarLife = function(player)
+updateLifeBar = function(player)
 	local playerInfos = players[player]
 	if not playerInfos then return end
 	if playerInfos.hospital.hospitalized then return end

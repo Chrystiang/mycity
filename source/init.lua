@@ -25,69 +25,10 @@ startRoom = function()
 
 			addTimer(function()
 				for player in next, ROOM.playerList do
-					--players[player].timePlayed = players[player].timePlayed + 1/60/60
-					updateBarLife(player)
-					TFM.snow(1000, 10)
+					players[player].timePlayed = players[player].timePlayed + 1
+					updateLifeBar(player)
 				end
 			end, 60000, 0)
-
-			local totalOfSpawnedGifts = 0
-			addTimer(function()
-				if room.isInLobby then return end
-				local giftPosition = random(1, #room.giftsPositions)
-				local giftsLeft = 3
-				local giftId = 1000 + totalOfSpawnedGifts
-
-				local allImages = {}
-				local playerImages = {}
-
-				giftPosition = room.giftsPositions[giftPosition]
-				TouchSensor.add(
-					0,
-					giftPosition.x,
-					giftPosition.y-20,
-					giftId,
-					0,
-					false,
-					0,
-					function(player)
-						if giftsLeft > 0 then
-							giftsLeft = giftsLeft - 1
-
-							modernUI.new(player, 120, 120)
-							:build()
-							players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems['goldenPresent'].png, ":70", 400 - 50 * 0.5, 180, player)
-
-							addItem('goldenPresent', 1, player)
-							job_updatePlayerStats(player, 21, 1)
-
-							removeImage(playerImages[player])
-							if giftsLeft == 0 then
-								TouchSensor.remove(giftId)
-								removeGroupImages(allImages)
-							end
-						end
-					end,
-					false
-				)
-				for player in next, ROOM.playerList do
-					local _img = addImage('17dd48d1819.png', "!10", giftPosition.x-15, giftPosition.y-15-20, player)
-
-					allImages[#allImages+1] = _img
-					playerImages[player] = _img
-
-					TouchSensor.add(
-						0,
-						giftPosition.x,
-						giftPosition.y-20,
-						giftId,
-						0,
-						false,
-						player
-					)
-				end
-				totalOfSpawnedGifts = totalOfSpawnedGifts + 1
-			end, 10 * 60 * 1000, 0)
 		end
 	end
 end
@@ -193,33 +134,26 @@ for place, data in next, places do
 	end
 end
 
-do 
-	--[[local modeName, argsPos = string.match(ROOM.name, "%d+([%a_]+)()")
-	local gameMode = mainAssets.gamemodes[modeName]
-	if gameMode then
-		for name in next, ROOM.playerList do 
-			eventNewPlayer(name)
+do
+	if ROOM.name == "*#mytest" or ROOM.isTribeHouse then
+		room.requiredPlayers = 0
+	elseif ROOM.name:find("@") then
+		TFM.setRoomPassword('')
+		room.requiredPlayers = 4
+	else
+		TFM.setRoomPassword('')
+		if string.match(ROOM.name, "^*#mycity[1-9]$") then
+			room.requiredPlayers = 2
+			room.maxPlayers = 10
 		end
-		room.gameMode = modeName
-		room.maxPlayers = gameMode.maxPlayers
-		room.requiredPlayers = gameMode.requiredPlayers
-		gameMode.init()
-	else]]--
-		if ROOM.name == "*#mytest" or ROOM.isTribeHouse then
-			room.requiredPlayers = 0
-		else
-			TFM.setRoomPassword('')
-			if string.match(ROOM.name, "^*#mycity[1-9]$") then
-				room.requiredPlayers = 2
-				room.maxPlayers = 10
-			end
-		end
-		if ROOM.uniquePlayers >= room.requiredPlayers then
-			genMap()
-		else
-			genLobby()
-		end
-	--end
+	end
+
+	if ROOM.uniquePlayers >= room.requiredPlayers then
+		genMap()
+	else
+		genLobby()
+	end
+	
 	setPlayerLimit(room.maxPlayers)
 end
 
