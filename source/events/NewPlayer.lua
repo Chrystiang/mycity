@@ -255,12 +255,12 @@ eventNewPlayer = function(player)
 	gameNpcs.addCharacter('Gominha', {'17958aa45ec.png'}, player, 4300, 153, {sellingItems = true}, -1, nil, nil, nil, -1)
 	gameNpcs.addCharacter('Daniel', {'17a8c3dd9e5.png'}, player, 5530, 7658, {type = '_', endEvent = 
 		function(player)
-			if players[player].bagLimit >= 55 then return alert_Error(player, 'error', 'error_maxBagStorage') end
+			if players[player].bagLimit >= 70 then return alert_Error(player, 'error', 'error_maxBagStorage') end
 			local Gui = modernUI.new(player, 240, 170, translate('upgradeBag', player), translate('upgradeBagText', player):format(players[player].bagLimit + 5))
 			Gui:build()
 			Gui:addConfirmButton(function()
 				if players[player].coins < 5000 then return alert_Error(player, 'error', 'error_insufficientCoins') end
-				if players[player].bagLimit >= 55 then return alert_Error(player, 'error', 'error_maxBagStorage') end
+				if players[player].bagLimit >= 70 then return alert_Error(player, 'error', 'error_maxBagStorage') end
 
 				players[player].bagLimit = players[player].bagLimit + 5
 				giveCoin(-5000, player)
