@@ -218,13 +218,12 @@ lang.br = {
 		[44] = 'Perca %s de energia.', -- Lose [Amount] of energy.
 	},
 	profile_coins = 'Moedas',
-	profile_spentCoins = 'Moedas gastas',
-	profile_completedQuests = 'Missões feitas',
-	profile_completedSideQuests = 'Missões secundárias feitas',
-	profile_purchasedHouses = 'Casas adquiridas',
-	profile_purchasedCars = 'Veículos adquiridos',
+	profile_spentCoins = 'Moedas Gastas',
+	profile_completedQuests = 'Missões',
+	profile_completedSideQuests = 'Missões Secundárias',
+	profile_purchasedHouses = 'Casas',
+	profile_purchasedCars = 'Veículos',
 	profile_basicStats = 'Dados Gerais',
-	profile_questCoins = 'Pontos de missão',
 	profile_jobs = 'Trabalhos',
 	profile_arrestedPlayers = 'Prendeu',
 	profile_robbery = 'Roubos',
@@ -829,7 +828,7 @@ lang.br = {
 	item_speedPotion = 'Poção da Velocidade',
 	itemDesc_speedPotion = 'Use essa poção para andar mais rápido por %s segundos!',
 	-- V3.5.1
-	profile_timePlayed = 'Tempo de jogo (em horas)',
+	profile_timePlayed = 'Horas Jogadas',
 	confirmButton_backpackIcon = 'Ícone da Mochila',
 	-- V3.5.2
 	badgeDesc_8 = 'Vendeu 500 sementes',

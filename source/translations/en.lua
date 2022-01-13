@@ -842,7 +842,7 @@ lang.en = {
 	item_speedPotion = 'Speed Potion',
 	itemDesc_speedPotion = 'Use this potion to walk faster for %s seconds!',
 	-- V3.5.1
-	profile_timePlayed = 'Time played (hours)',
+	profile_timePlayed = 'Hours Played',
 	confirmButton_backpackIcon = 'Backpack Icon',
 	-- V3.5.2
 	item_energymax = 'Energymax',
