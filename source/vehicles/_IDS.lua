@@ -2,7 +2,7 @@ mainAssets.__cars = {
 	[1] = {
 		type    = 'car',
 		price   = 2000,
-		speed  = 70,
+		speed  	= 70,
 		image   = '17870b229c9.png',
 		wheels  = {{18, 38}, {115, 38}},
 		wheelsSize = {27, 27},
@@ -15,7 +15,7 @@ mainAssets.__cars = {
 	[2] = { -- Mini Cooper
 		type    = 'car',
 		price   = 6000,
-		speed  = 90,
+		speed  	= 90,
 		image   = '17870aa68f5.png',
 		wheels  = {{7, 32}, {91, 32}},
 		wheelsSize = {22, 22},
@@ -28,7 +28,7 @@ mainAssets.__cars = {
 	[3] = { -- Bmw
 		type    = 'car',
 		price   = 10000,
-		speed  = 120,
+		speed  	= 120,
 		image   = '17870ab1b49.png',
 		wheels  = {{25, 38}, {129, 38}},
 		wheelsSize = {23, 23},
@@ -41,7 +41,7 @@ mainAssets.__cars = {
 	[4] = { -- Ferrari
 		type    = 'car',
 		price   = 15000,
-		speed  = 150,
+		speed  	= 150,
 		image   = '1786fae6be3.png',
 		wheels  = {{16, 26}, {125, 26}},
 		wheelsSize = {29, 29},
@@ -54,7 +54,7 @@ mainAssets.__cars = {
 	[5] = {
 		type    = 'boat',
 		price   = 1000000,
-		speed  = 50,
+		speed  	= 50,
 		image   = '164d43b8055.png',
 		size 	= {95, 30},
 		x       = -50,
@@ -65,7 +65,7 @@ mainAssets.__cars = {
 	[6] = {
 		type    = 'boat',
 		price   = 30000,
-		speed  = 100,
+		speed  	= 100,
 		image   = '16bc49d0cb5.png',
 		size 	= {493, 200},
 		x       = -250,
@@ -76,7 +76,7 @@ mainAssets.__cars = {
 	[7] = { -- Lamborghini
 		type    = 'car',
 		price   = 45000,
-		speed  = 210,
+		speed  	= 210,
 		image   = '1786f9ee32f.png',
 		wheels  = {{16, 22}, {137, 24}},
 		wheelsSize = {31, 29},
@@ -100,7 +100,7 @@ mainAssets.__cars = {
 	[9] = { -- Sleigh
 		type    = 'air',
 		price   = 20000,
-		speed  = 110,
+		speed  	= 110,
 		image   = '16f1a649b5e.png',
 		size 	= {107, 53},
 		x       = -60,
@@ -122,7 +122,7 @@ mainAssets.__cars = {
 	[12] = { -- Bugatti
 		type    = 'car',
 		price   = 500000,
-		speed  = 400,
+		speed  	= 400,
 		image   = '1786fb39c81.png',
 		wheels  = {{19, 21}, {148, 21}},
 		wheelsSize = {36, 36},
@@ -132,15 +132,15 @@ mainAssets.__cars = {
 		name    = 'Bugatti',
 		icon    = '16eccfc33a2.png',
 		effects = function(player)
-					local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-					removeGroupImages(players[player].carLeds)
-					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -130, -20)
-				end,
+				local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
+				removeGroupImages(players[player].carLeds)
+				players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -130, -20)
+			end,
 	},
 	[13] = { -- Green Lamborghini
 		type    = 'car',
 		price   = 1000000000,
-		speed  = 210,
+		speed  	= 210,
 		image   = '1786fa13734.png',
 		wheels  = {{16, 22}, {137, 24}},
 		wheelsSize = {31, 29},
@@ -153,7 +153,7 @@ mainAssets.__cars = {
 	[14] = { -- Koenigsegg
 		type    = 'car',
 		price   = 1000000000,
-		speed  = 450,
+		speed  	= 450,
 		image   = '1786f13a095.png',
 		wheels	= {{20, 27}, {149, 27}},
 		wheelsSize = {30, 30},
@@ -163,17 +163,17 @@ mainAssets.__cars = {
 		name 	= 'Koenigsegg One',
 		icon 	= '173d50d2a11.png',
 		effects = function(player)
-					local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-					removeGroupImages(players[player].carLeds)
-					local light = lights[random(#lights)]
-					players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
-					players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
-				end,
+				local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
+				removeGroupImages(players[player].carLeds)
+				local light = lights[random(#lights)]
+				players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
+				players[player].carLeds[#players[player].carLeds+1] = addImage(light, '$'..player, -145, -25)
+			end,
 	},
 	[15] = { -- Purple Bugatti
 		type    = 'car',
 		price   = 1000000000,
-		speed  = 450,
+		speed  	= 450,
 		image   = '1786ff4edfd.png',
 		wheels  = {{19, 21}, {148, 21}},
 		wheelsSize = {36, 36},
@@ -183,15 +183,15 @@ mainAssets.__cars = {
 		name    = 'Purple Bugatti',
 		icon    = '1747a428c69.png',
 		effects = function(player)
-					local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
-					removeGroupImages(players[player].carLeds)
-					players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -130, -20)
-				end,
+				local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
+				removeGroupImages(players[player].carLeds)
+				players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -130, -20)
+			end,
 	},
 	[16] = { -- Balloon
 		type    = 'air',
 		price   = 1000000000,
-		speed  = 130,
+		speed  	= 130,
 		image   = '1752df03977.png',
 		size 	= {90, 113},
 		x       = -50,
@@ -202,7 +202,7 @@ mainAssets.__cars = {
 	[17] = { -- Broom
 		type    = 'air',
 		price   = 400000,
-		speed  = 120,
+		speed  	= 120,
 		image   = '1752e08ba50.png',
 		size 	= {79, 75},
 		x       = -40,
@@ -221,4 +221,22 @@ mainAssets.__cars = {
 		name   	= 'Premium Yacht',
 		icon    = '175d328b301.png',
 	},
+	[19] = { -- Huracán Evo
+		type    = 'car',
+		price   = 1000000000,
+		speed  	= 450,
+		image   = '17e548e8e68.png',
+		wheels  = {{16, 18}, {155, 22}},
+		wheelsSize = {39, 35},
+		size 	= {220, 52},
+		x       = -110,
+		y       = -20,
+		name    = 'Huracán Evo',
+		icon    = '17e54819a29.png',
+		effects = function(player)
+				local lights = {'16ecd112e05.png', '16ecd116c89.png', '16ecd118bc9.png', '16ecd125468.png', '16ecd125468.png', '16ecd13a260.png'}
+				removeGroupImages(players[player].carLeds)
+				players[player].carLeds[#players[player].carLeds+1] = addImage(lights[random(#lights)], '$'..player, -145, -10)
+			end,
+	}
 }
