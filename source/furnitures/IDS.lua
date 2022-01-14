@@ -604,7 +604,6 @@ mainAssets.__furnitures = {
 	[56] = { -- chest 2
 		image = '172f1082658.png',
 		png = '172f1124593.png',
-		price = 100,
 		area = {46, 40},
 		align = {x = -23, y = -24},
 		name = 'chest',
@@ -1136,5 +1135,21 @@ mainAssets.__furnitures = {
 		npcShop = 'jingle',
 		limitedTime = os_time{day=14, year=2022, month=1},
 		credits = 'Ricardinhotv#0000',
+	},
+	[101] = { -- chest 3
+		image = '17e542a4080.png',
+		png = '17e54413506.png',
+		price = 210000,
+		area = {40, 40},
+		align = {x = -23, y = -24},
+		name = 'chest',
+		type = 'especial',
+		usable = function(player)
+			modernUI.new(player, 520, 300, translate('furniture_chest', player))
+			:build()
+			:showPlayerItems(players[player].houseData.chests.storage[4], 4)
+		end,
+		uniqueID = 4,
+		stockLimit = 1,
 	},
 }

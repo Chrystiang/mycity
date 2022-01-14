@@ -80,6 +80,6 @@ job_updatePlayerStats = function(player, id, amount)
 	players[player].jobs[id] = players[player].jobs[id] + amount
 
 	if jobRewards[id] and players[player].jobs[id] >= jobRewards[id].requires then
-		jobRewards.callback(player)
+		jobRewards[id].callback(player)
 	end
 end
