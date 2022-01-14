@@ -81,7 +81,8 @@ modernUI.profileInterface = function(self, target)
 			showTextArea(id..(941+i), string.rep('\n', 4), player, x+352+(i%5)*31, y+109+floor(i/5)*31, 30, 30, 0, 0, 0, true,
 				function(player, args)
 					local i = args.i
-					showTextArea(id..'930', '<p align="center"><i><v>'..translate('badgeDesc_'..v, player),
+					local desc = badges[v].season and translate('badgeDesc_season', player):format(badges[v].season) or translate('badgeDesc_'..v, player)
+					showTextArea(id..'930', '<p align="center"><i><v>'..desc,
 						player, x+352+(i%5)*31, y + 109 + 30 + floor(i/5)*31, 150, nil, 0x432c04, 0x7a5817, 1, true)
 					showTextArea(id..'931', '<textformat leftmargin="1" rightmargin="1">'..string.rep('\n', 10),
 						player, x+352+(i%5)*31, y + 109 + 30 + floor(i/5)*31, 150, nil, 0x432c04, 0x7a5817, 0, true,
