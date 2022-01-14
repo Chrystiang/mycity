@@ -25,8 +25,8 @@ setPlayerData = function(player)
 				placedCounter = 0,
 			},
 			chests = {
-				storage = {{}, {}, {}},
-				position= {{}, {}, {}},
+				storage = {{}, {}, {}, {}},
+				position= {{}, {}, {}, {}},
 			},
 		},
 		houses		= {},
