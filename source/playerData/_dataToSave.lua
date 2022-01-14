@@ -5,7 +5,7 @@ savedata = function(name, forceSave)
 	--[[if true then
 		chatMessage('<R>Stats are not being saved in this room.', name)
 		return
-	end]]--
+	end]]
 	if ROOM.name ~= '*#mytest' then
 		if ROOM.uniquePlayers < room.requiredPlayers then
 			chatMessage('<R>Stats are not saved if the room have less than '..room.requiredPlayers..' players.', name)
@@ -75,9 +75,9 @@ savedata = function(name, forceSave)
 	playerData:set(name, 'bagItem', item)
 	playerData:set(name, 'bagQuant', quanty)
 
-	local chestStorage = {{}, {}, {}}
-	local chestStorageQuanty = {{}, {}, {}}
-	for counter = 1, 3 do
+	local chestStorage = {{}, {}, {}, {}}
+	local chestStorageQuanty = {{}, {}, {}, {}}
+	for counter = 1, 4 do
 		for i, v in next, playerInfos.houseData.chests.storage[counter] do
 			chestStorage[counter][i] = bagItems[v.name].id
 			chestStorageQuanty[counter][i] = v.qt
@@ -95,7 +95,7 @@ savedata = function(name, forceSave)
 
 		for id, furnitureData in next, data do
 			if id > maxPlacedFurnitures then break end
-			houseSaves[saveId][id] = {v.type * (v.mirrored and -1 or 1), v.x, v.y}
+			houseSaves[saveId][id] = {furnitureData.type * (furnitureData.mirrored and -1 or 1), furnitureData.x, furnitureData.y}
 		end
 	end
 
@@ -156,7 +156,7 @@ savedata = function(name, forceSave)
 		end 
 	end
 	playerData:set(name, 'playerLog', playerLogs)
-	--playerData:set(name, 'timePlayed', tonumber(string.format(".4f", playerInfos.timePlayed)))
+	playerData:set(name, 'timePlayed', playerInfos.timePlayed)
 
 	local starIcons = playerData:get(name, 'starIcons')
 	for i, v in next, playerInfos.starIcons.owned do
