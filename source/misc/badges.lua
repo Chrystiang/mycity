@@ -1,5 +1,5 @@
 local badgesPriority = {
-	10, 5, 2, 3, 15, 16, 17, 18, 19, 4, 8, 25, 9, 14, 0, 6, 7, 20, 24, 26, 1, 11, 12, 13, 21, 22, 23
+	10, 5, 2, 3, 15, 16, 17, 18, 19, 4, 8, 25, 9, 14, 0, 6, 7, 20, 24, 26, 1, 11, 12, 13, 21, 22, 23, 27
 }
 
 badges = {
@@ -38,12 +38,15 @@ badges = {
 	},
 	[11] = { -- Season 1 reward
 		png = '1733ad217ba.png',
+		season = 1,
 	},
 	[12] = { -- Season 2 reward
 		png = '17479ba02f4.png',
+		season = 2,
 	},
 	[13] = { -- Season 3 reward
 		png = '17479ba7052.png',
+		season = 3,
 	},
 	[14] = { -- Cook 500 dishes
 		png = '1769050831b.png',
@@ -68,12 +71,15 @@ badges = {
 	},
 	[21] = { -- Season 4 reward
 		png = '17529b1df9b.png',
+		season = 4,
 	},
 	[22] = { -- Season 5 reward
 		png = '175d2a8ae26.png',
+		season = 5,
 	},
 	[23] = { -- Season 6 reward
 		png = '17690581d74.png',
+		season = 6,
 	},
 	[24] = { -- Christmas2020
 		png = '176905067bc.png',
@@ -83,5 +89,9 @@ badges = {
 	},
 	[26] = { -- Christmas2021
 		png = '17dd4a374e9.png',
+	},
+	[27] = { -- Christmas2021 (Season 7) reward
+		png = '17e582cb13e.png',
+		season = 7,
 	},
 }
