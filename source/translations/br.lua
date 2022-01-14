@@ -864,5 +864,7 @@ lang.br = {
 	furniture_snowGlobe = "Globo de Neve",
 	furniture_box = "Caixa",
 	furniture_arcticFox = "Raposa do Ártico",
+	-- V3.6.3
+	badgeDesc_season = "Top 10 da temporada %s",
 }
 lang.pt = lang.br

@@ -4,7 +4,7 @@ local onEvent
 
 local GAME_PAUSED 		= false
 local CYCLE_DURATION 	= 3100
-local RUNTIME_LIMIT 	= 45
+local RUNTIME_LIMIT 	= 40
 local SCHEDULE 			= {
 	["PlayerBonusGrabbed"] 	= true,
 	["PlayerDataLoaded"] 	= true,

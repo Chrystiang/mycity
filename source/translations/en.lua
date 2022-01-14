@@ -880,4 +880,6 @@ lang.en = {
 	furniture_snowGlobe = "Snow Globe",
 	furniture_box = "Box",
 	furniture_arcticFox = "Arctic Fox",
+	-- V3.6.3
+	badgeDesc_season = "Top 10 of season %s",
 }
