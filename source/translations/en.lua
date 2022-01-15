@@ -853,7 +853,7 @@ lang.en = {
 	item_raspberryCake = 'Raspberry Cake',
 	-- V3.5.3
 	npcDialog_Daniel = 'Hello! Do you want to upgrade your backpack?\nLet me help you!',
-	confirmButton_BuyBagUpgrade = 'Buy backpack upgade for %s',
+	confirmButton_BuyBagUpgrade = 'Upgade for %s',
 	error_insufficientCoins = 'You don\'t have enough coins to buy this item.',
 	error_maxBagStorage = 'You have bought all the available backpack upgrades :(',
 	upgradeBag = 'Upgrade Backpack',

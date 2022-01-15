@@ -24,10 +24,10 @@ modernUI.showNPCShop = function(self, items, npc)
 			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1722d2d8234.jpg', ":26", x + (i%5)*63, y + floor(i/5)*65, player)
 			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(v.png, ":26", x + 5 + (i%5)*63, y + 5 + floor(i/5)*65, player)
 			if v.stockLimit and checkIfPlayerHasFurniture(player, data[1]) then
-				showTextArea(id..(900+i), '<p align="center"><font size="9"><r>'..translate('error_maxStorage', player), player, x + (i%5)*63, y + 3 + floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
+				showTextArea(id..(900+i*2), '<p align="center"><font size="9"><r>'..translate('error_maxStorage', player), player, x + (i%5)*63, y + 3 + floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + floor(i/5)*65, player)
 			elseif v.requireQuest and players[player].questStep[1] <= v.requireQuest then
-				showTextArea(id..(900+i), '<p align="center"><font size="9"><r>'..translate('locked_quest', player):format(v.requireQuest), player, x + (i%5)*63, y + 3 + floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
+				showTextArea(id..(900+i*2), '<p align="center"><font size="9"><r>'..translate('locked_quest', player):format(v.requireQuest), player, x + (i%5)*63, y + 3 + floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
 				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + floor(i/5)*65, player)
 			else
 				if v.limitedTime and not formatDaysRemaining(v.limitedTime, true) then

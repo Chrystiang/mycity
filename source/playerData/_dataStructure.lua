@@ -191,6 +191,13 @@ local playerData = DataHandler.new('myc', {
 		default = function()
 			return 1
 		end
+	},
+	houseCopy = {
+		index = 27,
+		type = 'table',
+		default = function()
+			return {}
+		end
 	}
 })
 

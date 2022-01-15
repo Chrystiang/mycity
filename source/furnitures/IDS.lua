@@ -91,7 +91,6 @@ mainAssets.__furnitures = {
 	[9] = { -- chest
 		image = '16c72fcbf05.png',
 		png = '16c72fe0a7b.png',
-		price = 0,
 		area = {43, 40},
 		align = {x = -22, y = -24},
 		name = 'chest',

@@ -31,7 +31,7 @@ buildNpcsShopItems = function()
 end
 
 checkIfPlayerHasFurniture = function(player, furniture)
-	for _, v in next, players[player].houseData.furnitures.placed do
+	for _, v in next, players[player].houseData.furnitures.placed[players[player].houseData.currentSaveSlot] do
 		if v.type == furniture then
 			return true
 		end
