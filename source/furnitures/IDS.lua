@@ -1066,6 +1066,12 @@ mainAssets.__furnitures = {
 		npcShop = 'jingle',
 		limitedTime = os_time{day=14, year=2022, month=1},
 		credits = 'Ricardinhotv#0000',
+		grounds = function(x, y, id)
+			addGround(id, x+14, y+16, {type = 14, height = 30, width = 24, friction = 0.3, restitution = 0.2})
+		end,
+		usable = function(player)
+			TFM.playEmote(player, 8)
+		end,
 	},
 	[95] = { -- trunk
 		image = '17dd7ff43b7.png',
@@ -1076,6 +1082,12 @@ mainAssets.__furnitures = {
 		qpPrice = 5,
 		npcShop = 'body',
 		credits = 'Ricardinhotv#0000',
+		grounds = function(x, y, id)
+			addGround(id, x+14, y+16, {type = 14, height = 30, width = 24, friction = 0.3, restitution = 0.2})
+		end,
+		usable = function(player)
+			TFM.playEmote(player, 8)
+		end,
 	},
 	[96] = { -- penguin
 		image = '17dd81fc89e.png',
