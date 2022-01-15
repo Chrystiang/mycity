@@ -128,7 +128,7 @@ local playerData = DataHandler.new('myc', {
 		index = 18,
 		type = 'table',
 		default = function()
-			return {1, 0, 0, 0}
+			return {1, 0, 0, 0, 0, 0}
 		end
 	},
 	level = {
