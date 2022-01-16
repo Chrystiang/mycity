@@ -33,8 +33,10 @@ onEvent("Keyboard", function(player, key, down, x, y)
 				end
 			elseif key == 32 and mainAssets.__cars[playerInfo.selectedCar].type == 'air' then
 				checkIfPlayerIsDriving(player)
+				return
 			end
 		end
+		
 		if key == 32 then
 			if playerInfo.job == 'fisher' and not playerInfo.fishing[1] then
 				if not playerInfo.selectedCar or mainAssets.__cars[playerInfo.selectedCar].type ~= 'car' then
