@@ -181,8 +181,6 @@ tradeSystem.showPlayerItems = function(tradeInfo, player)
 			if not table_find(mainAssets.roles.admin, player) then
 				if v.name:find('FlowerSeed') and players[tradeInfo.tradeData.players[player]].jobs[5] < 1000  then
 					cannotTrade = true
-				elseif v.name:find('Goldenmare') and players[player].jobs[3] < 50*v.qt then
-					cannotTrade = true
 				elseif bagIds[itemData.id].blockTrades then
 					cannotTrade = true
 				end
@@ -310,6 +308,7 @@ tradeSystem.new = function(player1, player2)
 			[player2] = {},
 		},
 	}
+	
 	local tradeInfo = tradeSystem.trades[tradeID]
 	for player, tradingWith in next, {[player1] = player2, [player2] = player1} do
 		players[player].isTrading = tradingWith
