@@ -55,7 +55,7 @@ modernUI.showPlayerVehicles = function(self)
 			currentPage = currentPage + count
 			removeGroupImages(players[player]._modernUISelectedItemImages[1])
 			removeGroupImages(players[player]._modernUISelectedItemImages[3])
-			for i = 899, 929 do 
+			for i = 899, 950 do 
 				removeTextArea(id..i, player)
 			end
 			updateScrollbar()

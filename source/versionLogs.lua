@@ -278,6 +278,11 @@ versionLogs = {
 		banner = '175d2742cad.png',
 		en = '#MyCity!',
 	},
+	['v3.6.4'] = {
+		releaseDate = '15/01/2022', -- dd/mm/yy
+		banner = '175d2742cad.png',
+		en = '#MyCity!',
+	},
 }
 versionLogs['v3.1.1'] = versionLogs['v3.1.0']
 versionLogs['v3.1.2'] = versionLogs['v3.1.1']
