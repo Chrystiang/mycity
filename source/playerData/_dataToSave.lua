@@ -92,9 +92,12 @@ savedata = function(name, forceSave)
 
 	for saveId, data in next, playerInfos.houseData.furnitures.placed do
 		houseSaves[saveId] = {}
+		local furnitureCounter = 0
 
 		for id, furnitureData in next, data do
-			if id > maxPlacedFurnitures then break end
+			furnitureCounter = furnitureCounter + 1
+			if furnitureCounter > maxPlacedFurnitures then break end
+
 			houseSaves[saveId][id] = {furnitureData.type * (furnitureData.mirrored and -1 or 1), furnitureData.x, furnitureData.y}
 		end
 	end
