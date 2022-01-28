@@ -2,10 +2,11 @@ drive = function(name, vehicle)
 	local playerData = players[name]
 	if playerData.canDrive or not playerData.cars[1] then return end
 	if playerData.holdingItem then return end
-	local car = mainAssets.__cars[vehicle]
-	if not car then return end
-	if car.type ~= 'boat' and (ROOM.playerList[name].y < 7000 or ROOM.playerList[name].y > 7800 or players[name].place ~= 'town' and players[name].place ~= 'island') then return end
-	if car.type == 'boat' then
+	local vehicleData = mainAssets.__cars[vehicle]
+
+	if not vehicleData then return end
+	if vehicleData.type ~= 'boat' and (ROOM.playerList[name].y < 7000 or ROOM.playerList[name].y > 7800 or players[name].place ~= 'town' and players[name].place ~= 'island') then return end
+	if vehicleData.type == 'boat' then
 		local canUseBoat = false
 		for where, biome in next, room.fishing.biomes do
 			if biome.canUseBoat then
@@ -56,23 +57,26 @@ drive = function(name, vehicle)
 	for i = 1021, 1051 do
 		removeTextArea(i, name)
 	end
-	if car.type ~= 'air' then
+	if vehicleData.type ~= 'air' then
 		freezePlayer(name, true)
 	end
 	playerData.selectedCar = vehicle
 	playerData.canDrive = true
 	removeCarImages(name)
 
-	playerData.carImages[#playerData.carImages+1] = addImage(car.image, "$"..name, car.x, car.y)
+	local x = vehicleData.x
+	local y = vehicleData.y
+	playerData.carImages[#playerData.carImages+1] = addImage(vehicleData.image, "$"..name, x, y, nil, -1)
+	
 	removeGroupImages(playerData.carWheels)
 	playerData.carWheels.angle = 0
 
-	if car.wheels then
-		for index, pos in next, car.wheels[1] do
+	if vehicleData.wheels then
+		for index, pos in next, vehicleData.wheels[1] do
 			local wheelID = (direction == 1 and index or (index == 1 and 2 or 1))
-			local scale_x = car.wheelsSize[wheelID] / 60
-			local scale_y = car.wheelsSize[wheelID] / 60
-			playerData.carWheels[#playerData.carWheels+1] = addImage('17870b5a75c.png', '$'..name, pos[1] + car.x, pos[2] + car.y, nil, scale_x, scale_y)
+			local scale_x = vehicleData.wheelsSize[wheelID] / 60
+			local scale_y = vehicleData.wheelsSize[wheelID] / 60
+			playerData.carWheels[#playerData.carWheels+1] = addImage('17870b5a75c.png', '$'..name, pos[1] + vehicleData.x, pos[2] + vehicleData.y, nil, scale_x, scale_y)
 		end
 	end
 
@@ -86,28 +90,28 @@ drive = function(name, vehicle)
 		else
 			local direction = player.currentCar.direction
 			if direction == 1 then
-				local vel = car.speed
+				local vel = vehicleData.speed
 				movePlayer(name, 0, 0, true, vel, 0, false)
 			elseif direction == 2 then
-				local vel = car.speed
+				local vel = vehicleData.speed
 				movePlayer(name, 0, 0, true, -(vel), 0, false)
 			elseif direction == 3 then
-				local vel = car.speed
+				local vel = vehicleData.speed
 				movePlayer(name, 0, 0, true, 0, -(vel/2), false)
 			end
-			if car.wheels then
+			if vehicleData.wheels then
 				if direction == 1 or direction == 2 then
-					local wheels = car.wheels[direction]
+					local wheels = vehicleData.wheels[direction]
 					local left, right = wheels[1], wheels[2]
 					removeGroupImages(player.carWheels)
 					player.carWheels.angle = player.carWheels.angle + math.rad(30 * (direction == 2 and -1 or 1))
 
 					for index, pos in next, wheels do
 						local wheelID = (direction == 1 and index or (index == 1 and 2 or 1))
-						local scale_x = car.wheelsSize[wheelID] / 60
-						local scale_y = car.wheelsSize[wheelID] / 60
-						local x = pos[1] + car.x + car.wheelsSize[wheelID]/2
-						local y = pos[2] + car.y + car.wheelsSize[wheelID]/2
+						local scale_x = vehicleData.wheelsSize[wheelID] / 60
+						local scale_y = vehicleData.wheelsSize[wheelID] / 60
+						local x = pos[1] + vehicleData.x + vehicleData.wheelsSize[wheelID]/2
+						local y = pos[2] + vehicleData.y + vehicleData.wheelsSize[wheelID]/2
 						player.carWheels[#player.carWheels+1] = addImage('17870b5a75c.png', '$'..name, x, y, nil, scale_x, scale_y, player.carWheels.angle, 1, .5, .5)
 					end
 				end
@@ -191,7 +195,7 @@ showCarShop = function(player)
 	for v = 1, 7 do
 		local carInfo = mainAssets.__cars[v]
 		if carInfo then
-			if carInfo.type == 'car' then
+			if carInfo.type == 'vehicleData' then
 				showTextArea(5005+v*counter, '<p align="center"><font color="#000000" size="14">'..carInfo.name, player, (currentCount)*200 + 8805, 130+140, 180, 80, 0x46585e, 0x46585e, 1)
 				showTextArea(5006+v*counter, ''..translate('speed', player):format(carInfo.speed)..' '..translate('speed_km', player), player, (currentCount)*200 + 8805, 130+160, 180, nil, 0x46585e, 0x00ff00, 0)
 

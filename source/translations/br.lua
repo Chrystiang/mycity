@@ -694,7 +694,7 @@ lang.br = {
 			},
 		},
 	},
-	daveOffers = 'Ofertas de hoje',
+	daveOffers = 'Ofertas do Dia',
 	placedFurnitures = 'Móveis colocados: %s',
 	npcDialog_Bill = 'Olá! Você gostaria que eu avaliasse a sua sorte na pesca?\nHmmm... Deixa eu conferir...\nVocê tem %s de chance de pescar um peixe comum, %s de pescar um peixe raro e %s de pescar um peixe mítico.\nVocê também tem %s de chance de pescar um peixe lendário!',
 	furniture_nightstand = 'Mesa de Cabeceira',

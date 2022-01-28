@@ -145,10 +145,10 @@ setPlayerData = function(player)
 		players[player].houseTerrainAdd = {2, 2, 2, 2, 2}
 		players[player].houseTerrainPlants = {6, 6, 6, 6, 6}
 		players[player].houseData.furnitures.placed[1] = {[1] = {y = 656,x = 958,type = 46},[2] = {y = 656,x = 1036,type = 46},[3] = {y = 656,x = 1114,type = 46},[4] = {y = 656,x = 1192,type = 46},[5] = {y = 656,x = 1270,type = 46},[6] = {y = 656,x = 1348,type = 46},[7] = {y = 656,x = 1426,type = 46},[8] = {y = 670,x = 34,type = 12},[9] = {y = 670,x = 120,type = 12},[10] = {y = 632,x = 96,type = 12},[11] = {y = 676,x = 218,type = 9},[12] = {y = 609,x = 127,type = 32},[13] = {y = 657,x = 1334,type = 3},[14] = {y = 654,x = 1140,type = 30},[15] = {y = 655,x = 1456,type = 30},[16] = {y = 574,x = 971,type = 31},[17] = {y = 656,x = 802,type = 46},[18] = {y = 657,x = 880,type = 46},[19] = {y = 657,x = 724,type = 46},[20] = {y = 656,x = 646,type = 46},[21] = {y = 657,x = 568,type = 46}}
-		equipHouse(player, 4, 12)
+		loadHouse(player, 4, 12)
 	elseif player == 'Remi' then
 		players[player].lastCallback.when = 0
 		players[player].houseData.furnitures.placed[1] = {{type = 44, x = 423, y = 664}, {type = 44, x = 527, y = 664}, {type = 44, x = 632, y = 664}, {type = 44, x = 738, y = 663}, {type = 2, x = 922, y = 663}, {type = 2, x = 876, y = 663}, {type = 1, x = 967, y = 665}, {type = 2, x = 1012, y = 663}, {type = 41, x = 1201, y = 564}, {type = 45, x = 895, y = 559}, {type = 54, x = 829, y = 629}, {type = 64, x = 1232, y = 614}, {type = 64, x = 1175, y = 614}, {type = 0, x = 1123, y = 669}, {type = 0, x = 1068, y = 668}}
-		equipHouse(player, 9, 11)
+		loadHouse(player, 9, 11)
 	end
 end
