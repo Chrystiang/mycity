@@ -84,7 +84,7 @@ modernUI.showHouses = function(self, selectedTerrain)
 						function(player)
 							if buttonAction == 'use' then
 								eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
-								modernUI.new(player, 310, 280, translate('chooseSaveSlot', player))
+								modernUI.new(player, 240, 170, translate('chooseSaveSlot', player))
 									:build()
 										:showHouseSlotsToChoose(_, selectedTerrain)
 
