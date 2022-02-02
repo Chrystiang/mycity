@@ -214,7 +214,7 @@ lang.br = {
 		[40] = 'Encontre um bilhete misterioso no mapa.', -- Find a suspicious paper in the map.
 		[41] = 'Recupere %s de fome.', -- Recover [Amount] of hunger.
 		[42] = 'Perca %s de fome.', -- Lose [Amount] of hunger.
-		[43] = 'Recupee %s de energia.', -- Recover [Amount] of energy.
+		[43] = 'Recupere %s de energia.', -- Recover [Amount] of energy.
 		[44] = 'Perca %s de energia.', -- Lose [Amount] of energy.
 	},
 	profile_coins = 'Moedas',
@@ -695,7 +695,7 @@ lang.br = {
 		},
 	},
 	daveOffers = 'Ofertas do Dia',
-	placedFurnitures = 'Móveis colocados: %s',
+	placedFurnitures = 'Móveis Colocados: %s',
 	npcDialog_Bill = 'Olá! Você gostaria que eu avaliasse a sua sorte na pesca?\nHmmm... Deixa eu conferir...\nVocê tem %s de chance de pescar um peixe comum, %s de pescar um peixe raro e %s de pescar um peixe mítico.\nVocê também tem %s de chance de pescar um peixe lendário!',
 	furniture_nightstand = 'Mesa de Cabeceira',
 	furniture_bush = 'Arbusto',
@@ -836,7 +836,7 @@ lang.br = {
 	item_raspberryCake = 'Bolo de Framboesa',
 	-- V3.5.3
 	npcDialog_Daniel = 'Olá! Você tem interesse em carregar mais itens na sua mochila?\nDeixa eu te ajudar!',
-	confirmButton_BuyBagUpgrade = 'Expandir mochila por %s',
+	confirmButton_BuyBagUpgrade = 'Expandir por %s',
 	error_insufficientCoins = 'Você não tem dinheiro suficiente para realizar a compra.',
 	error_maxBagStorage = 'Você já comprou todas as expansões de mochila disponíveis :(',
 	upgradeBag = 'Expandir Mochila',
@@ -866,5 +866,9 @@ lang.br = {
 	furniture_arcticFox = "Raposa do Ártico",
 	-- V3.6.3
 	badgeDesc_season = "Top 10 da temporada %s",
+	-- V3.7.0
+	chooseSaveSlot = "Escolha um Slot",
+	slot = "Slot %s",
+	storedFurnitures = 'Móveis Armazenados: %s',
 }
 lang.pt = lang.br

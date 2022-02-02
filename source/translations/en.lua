@@ -882,4 +882,8 @@ lang.en = {
 	furniture_arcticFox = "Arctic Fox",
 	-- V3.6.3
 	badgeDesc_season = "Top 10 of season %s",
+	-- V3.7.0
+	chooseSaveSlot = "Choose a Slot",
+	slot = "Slot %s",
+	storedFurnitures = 'Stored furnitures: %s',
 }
