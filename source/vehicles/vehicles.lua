@@ -58,7 +58,7 @@ drive = function(name, vehicle)
 		removeTextArea(i, name)
 	end
 	if vehicleData.type ~= 'air' then
-		freezePlayer(name, true)
+		freezePlayer(name, true, false)
 	end
 	playerData.selectedCar = vehicle
 	playerData.canDrive = true

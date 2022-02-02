@@ -9,7 +9,7 @@ hospitalize = function(player)
 				room.hospital[i][x].name = player
 				players[player].hospital.hospitalized = true
 				players[player].hospital.currentFloor = i
-				freezePlayer(player, true)
+				freezePlayer(player, true, false)
 				movePlayer(player, ((i-1)%i)*900+4000+pos[x], 3200, false)
 				players[player].timer = addTimer(function(j) local time = 60 - j
 					if time > 0 then

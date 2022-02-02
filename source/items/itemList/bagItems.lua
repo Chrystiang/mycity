@@ -520,7 +520,7 @@ bagItems = {
 			TFM.playerVictory(i)
 			respawnPlayer(i)
 			if players[i].isBlind then setNightMode(i) end
-			if players[i].isFrozen then freezePlayer(i, true) end
+			if players[i].isFrozen then freezePlayer(i, true, false) end
 			movePlayer(i, oldPositions[1], oldPositions[2], false)
 		end,
 	},
