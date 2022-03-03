@@ -9,7 +9,7 @@ modernUI.showHouseSlotsToChoose = function(self, houseId, terrainId)
 	for saveSlot = 1, 2 do
 		local totalOfPlacedFurnitures = table_getLength(players[player].houseData.furnitures.placed[saveSlot])
 
-		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage("1717eaef706.png", ":20", 288, y+65 + (saveSlot-1)*45, player)
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage("1717eaef706.png", "~20", 288, y+65 + (saveSlot-1)*45, player)
 		showTextArea(id..(900+(saveSlot-1)*3), '<font size="9"><bl><p align="right">'..translate('placedFurnitures', player):format('<v><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></v>'), player, 320, y+88 + (saveSlot-1)*45, 155, nil, 0xff0000, 0xff0000, 0, true)
 		showTextArea(id..(901+(saveSlot-1)*3), '<b><ce>'..translate("slot", player):format(saveSlot), player, 320, y+65 + (saveSlot-1)*45, 155, 40, 0xff0000, 0xff0000, 0, true)
 
