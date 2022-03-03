@@ -29,7 +29,7 @@ modernUI.showPlayerItems = function(self, items, chest)
 	end
 	local maxPages = math.ceil(#items/sizeScale[1])
 
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', "~27", x+337, y-14, player)
 	showTextArea(id..'895', '<font color="#95d44d">'..translate('itemAmount', player):format('<cs>'..storageAmount..'</cs>'), player, x, y -20, 312, nil, 0xff0000, 0xff0000, 0, true)
 	local function showItems()
 		local minn = 32 * (currentPage-1) + 1
@@ -46,8 +46,8 @@ modernUI.showPlayerItems = function(self, items, chest)
 				local _y = y + floor((i-1)/sizeScale[5]) * sizeScale[2]
 				local bgImage = itemData.limitedTime and 9 or 3
 
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(sizeScale[bgImage], ":26", _x, _y, player)
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(image, ":26", _x + sizeScale[6], _y + sizeScale[6], player)
+				players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(sizeScale[bgImage], "~26", _x, _y, player)
+				players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(image, "~26", _x + sizeScale[6], _y + sizeScale[6], player)
 				showTextArea(id..(895+i*2), '<p align="right"><font color="#95d44d" size="'..sizeScale[8]..'"><b>x'..v.qt, player, _x, _y + sizeScale[7], sizeScale[2] - 2, nil, 0xff0000, 0xff0000, 0, true)
 				showTextArea(id..(896+i*2), '\n\n\n\n', player, _x + 3, _y + 3, sizeScale[2] - 2, sizeScale[2] -2, 0xff0000, 0xff0000, 0, true,
 					function(player)
@@ -81,8 +81,8 @@ modernUI.showPlayerItems = function(self, items, chest)
 						showTextArea(id..'890', '<p align="center"><font size="13"><fc>'..translate('item_'..itemName, player), player, x+340, y-15, 135, 215, 0x24474D, 0x314e57, 0, true)
 						showTextArea(id..'891', '<font size="9"><bl>'..description, player, x+340, y+50, 135, nil, 0x24474D, 0x314e5, 0, true)
 
-						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(image, ":200", 542, 125, player)
-						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(sizeScale[4], ":26", _x - 1, _y - 1, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(image, "~200", 542, 125, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(sizeScale[4], "~26", _x - 1, _y - 1, player)
 
 						local function button(i, text, callback, x, y, width, height)
 							showTextArea(id..(990+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
@@ -313,9 +313,9 @@ modernUI.showPlayerItems = function(self, items, chest)
 			end)
 
 		removeGroupImages(players[player]._modernUISelectedItemImages[2])
-		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', ":26", x+2, y+205, player)
+		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', "~26", x+2, y+205, player)
 		for i = 1, (10 - math.min(8, maxPages)+1) do 
-			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', ":27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
+			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', "~27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
 		end
 	end
 	if maxPages > 1 then 
