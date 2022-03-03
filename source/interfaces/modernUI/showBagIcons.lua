@@ -9,7 +9,7 @@ modernUI.showBagIcons = function(self)
 
 	for index, v in next, bagIcons do
 		local isCurrentIcon = index == players[player].currentBagIcon
-		players[player]._modernUISelectedItemImages[4][#players[player]._modernUISelectedItemImages[4]+1] = addImage(v, ":20", x + (i%5)*45, y + floor(i/5)*45, player, nil, nil, nil, isCurrentIcon and 1 or .3)
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(v, "~20", x + (i%5)*45, y + floor(i/5)*45, player, nil, nil, nil, isCurrentIcon and 1 or .3)
 		if not isCurrentIcon then
 			showTextArea(id..(900+i*5), string.rep('\n', 5), player, x + (i%5)*45, y + floor(i/5)*45, 40, 29, 0, 1, 0, true,
 				function()
