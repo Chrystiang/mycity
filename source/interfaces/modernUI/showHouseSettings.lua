@@ -18,10 +18,23 @@ modernUI.showHouseSettings = function(self)
 	local function button(i, text, callback, x, y, width, height)
 		local width = width or 180
 		local height = height or 15
+
 		showTextArea(id..(930+i*5), '', player, x-1, y-1, width, height, 0x95d44d, 0x95d44d, 1, true)
 		showTextArea(id..(931+i*5), '', player, x+1, y+1, width, height, 0x1, 0x1, 1, true)
 		showTextArea(id..(932+i*5), '', player, x, y, width, height, 0x44662c, 0x44662c, 1, true)
 		showTextArea(id..(933+i*5), '<p align="center"><font color="#cef1c3" size="13">'..text..'\n', player, x-4, y-4, width+8, height+8, 0xff0000, 0xff0000, 0, true, callback)
+	end
+
+	local function getAmountOfStoredFurnitures()
+		local total_of_storedFurnitures = 0
+
+		for _, v in next, playerFurnitures do
+			if v then
+				total_of_storedFurnitures = total_of_storedFurnitures + v.quanty
+			end
+		end
+
+		return total_of_storedFurnitures
 	end
 
 	local function removeFurniture(index)
@@ -31,31 +44,39 @@ modernUI.showHouseSettings = function(self)
 		playerPlacedFurnitures[index] = false
 		removeImage(data.image)
 		removeTextArea(- 85000 - (terrainID*200 + index), player)
+
 		if mainAssets.__furnitures[data.type].grounds then
 			removeGround(- 7000 - (terrainID-1)*200 - index)
 		end
+
 		totalOfPlacedFurnitures = totalOfPlacedFurnitures - 1
+
 		if not playerFurnitures[data.type] then 
 			playerFurnitures[data.type] = {quanty = 1, type = data.type}
 		else 
 			playerFurnitures[data.type].quanty = playerFurnitures[data.type].quanty + 1
 		end
-		ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player)
+
+		ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>')..'\n'
+			..translate('storedFurnitures', player):format('<fc><b>'..getAmountOfStoredFurnitures()..'/'..maxFurnitureDepot..'</b></fc>'), player)
 		updatePage(0)
 	end
 
 	local function placeFurniture(index)
 		if not players[player].editingHouse then return end
 		if totalOfPlacedFurnitures >= maxPlacedFurnitures then return alert_Error(player, 'error', 'maxPlacedFurnitures', maxPlacedFurnitures) end
+		
 		if buildModeImages.currentFurniture then 
 			removeImage(buildModeImages.currentFurniture)
 			buildModeImages.currentFurniture = nil
 		end
+
 		local data = playerFurnitures[index]
 		if not data then return alert_Error(player, 'error', 'unknownFurniture') end
 		local furniture = mainAssets.__furnitures[data.type]
+
 		buildModeImages.currentFurniture = addImage(furniture.image, '%'..player, furniture.align.x, furniture.align.y, player)
-		images.icons[#images.icons+1] = addImage('172469fea71.jpg', ':25', 350, 317, player)
+		images.icons[#images.icons+1] = addImage('172469fea71.jpg', '~25', 350, 317, player)
 		showTextArea(id..'892', '<p align="center"><b><fc><font size="14">'..translate('houseSettings_placeFurniture', player)..'\n', player, 350, 321, 100, 25, 0x24474D, 0x00ff00, 0, true, 
 			function()
 				removeTextArea(id..'892', player)
@@ -67,8 +88,8 @@ modernUI.showHouseSettings = function(self)
 
 				playerFurnitures[index].quanty = playerFurnitures[index].quanty - 1
 				totalOfPlacedFurnitures = totalOfPlacedFurnitures + 1
-				ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player)
-
+				ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>')..'\n'
+					..translate('storedFurnitures', player):format('<fc><b>'..getAmountOfStoredFurnitures()..'/'..maxFurnitureDepot..'</b></fc>'), player)
 				local id = terrainID
 
 				killPlayer(player)
@@ -93,9 +114,10 @@ modernUI.showHouseSettings = function(self)
 					playerFurnitures[index] = false
 				end
 				updatePage(0)
-			end)
-
+			end
+		)
 	end
+
 	local function sellFurniture(index)
 		if not players[player].editingHouse then return end
 		local data = playerFurnitures[index]
@@ -103,9 +125,11 @@ modernUI.showHouseSettings = function(self)
 		local furniture = mainAssets.__furnitures[data.type]
 		if playerFurnitures[index].quanty <= 0 then return end
 		playerFurnitures[index].quanty = playerFurnitures[index].quanty - 1
+
 		if playerFurnitures[index].quanty <= 0 then 
 			playerFurnitures[index] = nil
 		end
+
 		if buildModeImages.currentFurniture then
 			local x, y = ROOM.playerList[player].x, ROOM.playerList[player].y
 			killPlayer(player)
@@ -114,21 +138,20 @@ modernUI.showHouseSettings = function(self)
 			buildModeImages.currentFurniture = nil
 			removeTextArea(id..'892', player)
 		end
+
 		players[player].houseData.furnitures.stored = {}
+
 		for i, v in next, playerFurnitures do
 			if v then
 				players[player].houseData.furnitures.stored[i] = v
 			end
 		end
-		players[player].houseData.furnitures.placed[currentSaveSlot] = {}
-		for i, v in next, playerPlacedFurnitures do 
-			if v then
-				players[player].houseData.furnitures.placed[currentSaveSlot][i] = v
-				removeImage(v.image)
-				removeTextArea(- 85000 - (terrainID*200 + i), player)
-			end
-		end
+
 		giveCoin(furniture.price and furniture.price/2 or 0, player)
+
+		ui.updateTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>')..'\n'
+			..translate('storedFurnitures', player):format('<fc><b>'..getAmountOfStoredFurnitures()..'/'..maxFurnitureDepot..'</b></fc>'), player)
+		
 		updatePage(0)
 	end
 
@@ -155,6 +178,7 @@ modernUI.showHouseSettings = function(self)
 		end
 
 		removeGroupImages(room.houseImgs[terrainID].furnitures)
+
 		for i, furniture in next, playerPlacedFurnitures do
 			local data = mainAssets.__furnitures[furniture.type]
 			local x = furniture.x + ((terrainID-1)%terrainID)*1500
@@ -165,6 +189,7 @@ modernUI.showHouseSettings = function(self)
 					removeFurniture(i)
 				end)
 		end
+
 		for guest in next, room.terrains[terrainID].guests do
 			if room.terrains[terrainID].guests[guest] then 
 				leaveHouse(guest, terrainID)
@@ -174,6 +199,7 @@ modernUI.showHouseSettings = function(self)
 		room.terrains[terrainID].guests = {}
 
 		eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
+
 		for i = 0, 4 do
 			if players[player].houseTerrainAdd[i+1] <= 1 then
 				showTextArea(id..(885+i), '<p align="center"><fc>'..translate('houseSettings_changeExpansion', player)..'\n', player, (terrainID-1)*1500 + 650 + i*175, 1740, 175, nil, 0x24474D, 0xff0000, 0, false,
@@ -186,11 +212,11 @@ modernUI.showHouseSettings = function(self)
 								images.expansions[#images.expansions+1] = addImage('17285e3d8e1.png', "!1000", (terrainID-1)*1500 + 650 + _*175, 1715, player)
 							end
 						end
-						images.expansions[#images.expansions+1] = addImage('171d2a2e21a.png', ":25", 280, 140, player)
+						images.expansions[#images.expansions+1] = addImage('171d2a2e21a.png', "~25", 280, 140, player)
 						showTextArea(id..'890', string.rep('\n', 4), player, 487, 150, 25, 25, 0xff0000, 0xff0000, 0, true, function() closeExpansionMenu() end)
 						for expansionID, v in next, HouseSystem.expansions do
 							if players[player].houseTerrain[i+1] ~= expansionID then
-								images.expansions[#images.expansions+1] = addImage(v.png, ":26", counter*109 + 324, 150, player)
+								images.expansions[#images.expansions+1] = addImage(v.png, "~26", counter*109 + 324, 150, player)
 								button(counter, translate('confirmButton_Buy2', player):format('<fc>'..translate('expansion_'..v.name, player)..'</fc>','<fc>$'..v.price..'</fc>'), 
 									function()
 										if players[player].coins < v.price or players[player].houseTerrain[i+1] == expansionID then return end
@@ -207,12 +233,14 @@ modernUI.showHouseSettings = function(self)
 					end)
 			end
 		end
+
 		local currentPage = 1
 		local maxPages = math.ceil(playerFurnitures_length/14)
-		images.bg[#images.bg+1] = addImage('1723ed04fb4.jpg', ':25', 5, 340, player)
-		images.bg[#images.bg+1] = addImage('172469fea71.jpg', ':25', 695, 317, player)
+		images.bg[#images.bg+1] = addImage('1723ed04fb4.jpg', '~25', 5, 340, player)
+		images.bg[#images.bg+1] = addImage('172469fea71.jpg', '~25', 695, 317, player)
 
-		showTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>'), player, 0, 321, nil, nil, 0x24474D, 0xff0000, 0, true)
+		showTextArea(id..'891', '<font size="12"><cs>'..translate('placedFurnitures', player):format('<fc><b>'..totalOfPlacedFurnitures..'/'..maxPlacedFurnitures..'</b></fc>')..'\n'
+			..translate('storedFurnitures', player):format('<fc><b>'..getAmountOfStoredFurnitures()..'/'..maxFurnitureDepot..'</b></fc>'), player, 0, 310, nil, nil, 0x24474D, 0xff0000, 0, true)
 		showTextArea(id..'893', '', player, 0, 340, 800, 60, 0x24474D, 0xff0000, 0, true)
 		showTextArea(id..'894', '<p align="center"><b><font color="#95d44d" size="14">'..translate('houseSettings_finish', player)..'\n', player, 695, 321, 100, nil, 0x24474D, 0xff0000, 0, true, 
 			function()
@@ -248,6 +276,7 @@ modernUI.showHouseSettings = function(self)
 				removeGroupImages(images.bg)
 				eventTextAreaCallback(0, player, 'modernUI_Close_'..id, true)
 			end)
+
 		showFurnitures = function()
 			local minn = 14 * (currentPage-1) + 1
 			local maxx = currentPage * 14
@@ -258,9 +287,9 @@ modernUI.showHouseSettings = function(self)
 					if i >= minn and i <= maxx then
 						local i = i - 14 * (currentPage-1)
 						local furnitureData = mainAssets.__furnitures[v.type]
-						images.icons[#images.icons+1] = addImage('1723ed07002.png', ':26', 37 + (i-1) * 52, 350, player)
-						images.icons[#images.icons+1] = addImage(furnitureData.png, ':27', 39 + (i-1) * 52, 350, player)
-						images.icons[#images.icons+1] = addImage('172559203c1.png', ':28', 37 + (i-1) * 52, 350, player)
+						images.icons[#images.icons+1] = addImage('1723ed07002.png', '~26', 37 + (i-1) * 52, 350, player)
+						images.icons[#images.icons+1] = addImage(furnitureData.png, '~27', 39 + (i-1) * 52, 350, player)
+						images.icons[#images.icons+1] = addImage('172559203c1.png', '~28', 37 + (i-1) * 52, 350, player)
 
 						showTextArea(id..(895+i*3), '<p align="right"><font color="#95d44d" size="13"><b>x'..v.quanty, player, 35 + (i-1)*52, 383, 54, nil, 0xff0000, 0xff0000, 0, true)
 						showTextArea(id..(896+i*3), '\n\n\n\n', player, 35 + (i-1)*52, 347, 55, 55, 0xff0000, 0xff0000, 0, true,
@@ -269,7 +298,7 @@ modernUI.showHouseSettings = function(self)
 							end)
 						showTextArea(id..(897+i*3), "<textformat leftmargin='1' rightmargin='1'>" .. string.rep('\n', 3), player, 37 + (i-1)*52, 350, 10, 10, 0xff0000, 0xff0000, 0, true,
 							function()
-								modernUI.new(player, 240, 220, translate('sellFurniture', player), translate('sellFurnitureWarning', player))
+								modernUI.new(player, 240, 180, translate('sellFurniture', player), translate('sellFurnitureWarning', player))
 								:build()
 								:addConfirmButton(function()
 									sellFurniture(index)
@@ -295,14 +324,14 @@ modernUI.showHouseSettings = function(self)
 		
 		updateScrollbar = function()
 			if currentPage > 1 then
-				images.pages[#images.pages+1] = addImage('1723f16c0ba.jpg', ':25', 5, 340, player)
+				images.pages[#images.pages+1] = addImage('1723f16c0ba.jpg', '~25', 5, 340, player)
 				showTextArea(id..'895', string.rep('\n', 10), player, 12, 345, 20, 60, 0x24474D, 0xff0000, 0, true, 
 					function()
 						updatePage(-1)
 					end)
 			end
 			if currentPage < maxPages then
-				images.pages[#images.pages+1] = addImage('1723f16e3ba.jpg', ':25', 761, 340, player)
+				images.pages[#images.pages+1] = addImage('1723f16e3ba.jpg', '~25', 761, 340, player)
 				showTextArea(id..'896', string.rep('\n', 10), player, 767, 345, 20, 60, 0x24474D, 0xff0000, 0, true, 
 					function()
 						updatePage(1)
