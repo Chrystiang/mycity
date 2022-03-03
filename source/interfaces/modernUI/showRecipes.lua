@@ -7,7 +7,7 @@ modernUI.showRecipes = function(self)
 	local y = (200 - height/2) + 65
 	local currentPage = 1
 	local maxPages = math.ceil(table_getLength(recipes)/40)
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', "~27", x+337, y-14, player)
 
 	local cookedSomething = false
 	local function showItems()
@@ -19,8 +19,8 @@ modernUI.showRecipes = function(self)
 				i = i + 1
 				if i >= minn and i <= maxx then
 					local i = i - 40 * (currentPage-1)
-					players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('174283c22c9.jpg', ":26", x + (i%8)*42, -12 + y + floor(i/8)*42, player)
-					players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(bagItems[recipeName].png, ":26", x - 5 + (i%8)*42 , -12 + y - 5 + floor(i/8)*42, player)
+					players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('174283c22c9.jpg', "~26", x + (i%8)*42, -12 + y + floor(i/8)*42, player)
+					players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(bagItems[recipeName].png, "~26", x - 5 + (i%8)*42 , -12 + y - 5 + floor(i/8)*42, player)
 
 					showTextArea(id..(900+i), '\n\n\n\n', player, x + (i%8)*42, -12 + y + 3 + floor(i/8)*42, 40, 40, 0xff0000, 0xff0000, 0, true,
 					function(player, i)
@@ -36,7 +36,7 @@ modernUI.showRecipes = function(self)
 						showTextArea(id..'894', '', player, x + 3 + (i%8)*42, -12 + y + 3 + floor(i/8)*42, 40, 40, 0xff0000, 0xff0000, 0, true)
 
 						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(bagItems[recipeName].png, "&26", 542, 125, player)
-						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('174284cb5fc.png', ":26", x + (i%8)*42-3, -12 + y + floor(i/8)*42-3, player)
+						players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('174284cb5fc.png', "~26", x + (i%8)*42-3, -12 + y + floor(i/8)*42-3, player)
 						local function button(i, text, callback, x, y, width, height, blockClick)
 							local colorPallete = {
 								button_confirmBg = 0x95d44d,
@@ -110,6 +110,7 @@ modernUI.showRecipes = function(self)
 			end
 		end
 	end
+	
 	local function updateScrollbar()
 		local function updatePage(count)
 			if currentPage + count > maxPages or currentPage + count < 1 then return end 
@@ -134,9 +135,9 @@ modernUI.showRecipes = function(self)
 			end)
 
 		removeGroupImages(players[player]._modernUISelectedItemImages[2])
-		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', ":26", x+2, y+205, player)
+		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', "~26", x+2, y+205, player)
 		for i = 1, (10 - math.min(8, maxPages)+1) do 
-			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', ":27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
+			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', "~27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
 		end
 	end
 	if maxPages > 1 then 
