@@ -7,7 +7,7 @@ modernUI.showSettingsMenu = function(self, donate)
 	local y = (200 - height/2) + 65
 	local selectedWindow = 1
 
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('17281987ff2.jpg', ":26", x-3, y-23, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('17281987ff2.jpg', "~26", x-3, y-23, player)
 	local function button(i, text, callback, x, y, width, height)
 		local width = width or 146
 		local height = height or 15
@@ -85,7 +85,7 @@ modernUI.showSettingsMenu = function(self, donate)
 			addToggleButton('disableTrades', translate('settings_config_disableTrades', player))
 			addLangSwitch()
 		elseif selectedWindow == 3 then
-			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17281d1a0f9.png', ":26", 505, y+10, player)
+			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17281d1a0f9.png', "~26", 505, y+10, player)
 			local credit = mainAssets.credits 
 			local counter = 0
 
@@ -106,8 +106,8 @@ modernUI.showSettingsMenu = function(self, donate)
 				, player, x, y + 130, 485, nil, 0xff0000, 0xff0000, 0, true)
 
 		elseif selectedWindow == 4 then
-			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('17281987ff2.jpg', ":24", x-3, y+5, player)
-			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17136fe68cc.png', ":26", 520, y, player)
+			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('17281987ff2.jpg', "~24", x-3, y+5, player)
+			players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('17136fe68cc.png', "~26", 520, y, player)
 			showTextArea(id..900, '<font color="#ebddc3"> '..translate('settings_donateText', player), player, x, y -23, 365, 200, 0xff0000, 0xff0000, 0, true)
 
 			button(5, translate('settings_donate', player), function(player) chatMessage('<rose>https://a801-luadev.github.io/?redirect=mycity', player) end, x, y+190, 480)
