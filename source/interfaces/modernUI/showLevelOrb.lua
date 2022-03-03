@@ -9,7 +9,7 @@ modernUI.showLevelOrb = function(self)
 
 	for _, v in next, players[player].starIcons.owned do
 		local isCurrentOrb = v == players[player].starIcons.selected
-		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(mainAssets.levelIcons.star[v], ":20", x + (i%5)*57, y + floor(i/5)*57, player, nil, nil, nil, isCurrentOrb and 1 or .3)
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(mainAssets.levelIcons.star[v], "~20", x + (i%5)*57, y + floor(i/5)*57, player, nil, nil, nil, isCurrentOrb and 1 or .3)
 		if not isCurrentOrb then
 			showTextArea(id..(900+i*5), string.rep('\n', 5), player, x + (i%5)*57, y + floor(i/5)*40, 57, 57, 0, 0, 0, true,
 				function()
