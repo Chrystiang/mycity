@@ -106,12 +106,10 @@ end
 openBag = function(player)
 	local Gui = modernUI.new(player, 520, 300, translate('bag', player), nil, nil, 'Bag')
 	if Gui then
-		local TabID = players[player]._modernUIOpenedTabs - 1 + 10
 		Gui:addButton('1787e839abd.png', function()
-			eventTextAreaCallback(0, player, 'modernUI_Close_'..TabID, true)
 			modernUI.new(player, 240, 180, translate('confirmButton_backpackIcon', player))
-			:build()
-				:showBagIcons()
+				:build()
+					:showBagIcons()
 		end)
 
 		:build()
@@ -125,12 +123,10 @@ openProfile = function(player, target)
 	local Gui = modernUI.new(player, 520, 300, '<font size="20">'..target, nil, nil, 'Profile')
 	if Gui then
 		if player == target then
-			local TabID = players[player]._modernUIOpenedTabs - 1 + 10
 			Gui:addButton('17e1d0dbb4e.png', function()
-				eventTextAreaCallback(0, player, 'modernUI_Close_'..TabID, true)
 				modernUI.new(player, 310, 280)
 					:build()
-						:showLevelOrb(target)
+						:showLevelOrb()
 			end)
 
 			:build()
