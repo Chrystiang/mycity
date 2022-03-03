@@ -6,8 +6,8 @@ modernUI.profileInterface = function(self, target)
 	local x = (400 - width/2)
 	local y = (200 - height/2)
 
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc2950de.png', ":26", x+170, y+80, player)
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc2950de.png', ":27", x+340, y+80, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc2950de.png', "~26", x+170, y+80, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc2950de.png', "~27", x+340, y+80, player)
 
 	local targetData = players[target]
 	local level = targetData.level[1]
@@ -15,15 +15,15 @@ modernUI.profileInterface = function(self, target)
 	local maxXP = (targetData.level[1] * 2000) + 500
    	local progress = floor(minXP/maxXP * 490/23.5)
 	for i = 1, progress do
-		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc34c3f0.png', ":28", 155 + (i-1)*23.5, y+68, player)
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc34c3f0.png', "~28", 155 + (i-1)*23.5, y+68, player)
 	end
 
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[targetData.lang], ":27", x+width-25, y+height-27, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[targetData.lang], "~27", x+width-25, y+height-27, player)
 	if targetData.lang ~= ROOM.playerList[target].language then
-		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[ROOM.playerList[target].language], ":27", x+width-42, y+height-27, player)
+		players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(community[ROOM.playerList[target].language], "~27", x+width-42, y+height-27, player)
 	end
 
-   	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc59da98.png', ":28", 150, y+48, player)
+   	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('171dc59da98.png', "~28", 150, y+48, player)
 
    	showTextArea(id..'900', '<p align="center"><font color="#c6bb8c" size="20"><b>'..level, player, 380, y+54, 40, 40, 0, 0x24474, 0, true)
    	showTextArea(id..'901', '<p align="center"><font color="#c6bb8c" size="12"><b>'..minXP..'/'..maxXP..'xp', player, 315, y+80, 170, nil, 0, 0x24474, 0, true)
@@ -77,7 +77,7 @@ modernUI.profileInterface = function(self, target)
 	local i = 0
 	for _, v in next, badgesPriority do
 		if table_find(players[target].badges, v) then
-			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(badges[v].png, ":33", x+352+(i%5)*31, y+109+floor(i/5)*31, player)
+			players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(badges[v].png, "~33", x+352+(i%5)*31, y+109+floor(i/5)*31, player)
 			showTextArea(id..(941+i), string.rep('\n', 4), player, x+352+(i%5)*31, y+109+floor(i/5)*31, 30, 30, 0, 0, 0, true,
 				function(player, args)
 					local i = args.i
