@@ -87,12 +87,13 @@ modernUI.build = function(self)
 	}
 	local _UI = backgrounds[width][height]
 	local backgroundImage = _UI and _UI or error('Invalid modernUI size.')
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(backgroundImage, ":10", x+10, y, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage(backgroundImage, "~10", x+10, y, player)
 
-	showTextArea(id..'876', '', player, 5 - width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) showTextArea(id..'877', '', player, 395 + width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) showTextArea(id..'878', '', player, 0, 6 - height/2, 800, 200, 0x152d30, 0x152d30, 0, true) showTextArea(id..'879', '', player, 0, 194 + height/2, 800, 200, 0x152d30, 0x152d30, 0, true)
+	--showTextArea(id..'876', '', player, 5 - width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) showTextArea(id..'877', '', player, 395 + width/2, 0, 400, 400, 0x152d30, 0x152d30, 0, true) showTextArea(id..'878', '', player, 0, 6 - height/2, 800, 200, 0x152d30, 0x152d30, 0, true) showTextArea(id..'879', '', player, 0, 194 + height/2, 800, 200, 0x152d30, 0x152d30, 0, true)
+	
 	local function createButton(id)
 		local button = self.buttons[id]
-		players[player]._modernUIImages[self.id][#players[player]._modernUIImages[self.id]+1] = addImage(button.image, ":"..(100+id), (x+width)-23 - id*24, y+10, player)
+		players[player]._modernUIImages[self.id][#players[player]._modernUIImages[self.id]+1] = addImage(button.image, "~"..(100+id), (x+width)-23 - id*24, y+10, player)
 		showTextArea(self.id..(870+id), "<textformat leftmargin='1' rightmargin='1'><a href='event:modernUI_ButtonAction_"..self.id.."_"..id.."'>\n\n", player, (x+width)-23 - id*24 , y+10, 25, 25, 0xff0000, 0xff0000, 0, true)
 	end
 
