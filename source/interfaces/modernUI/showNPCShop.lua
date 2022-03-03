@@ -8,9 +8,8 @@ modernUI.showNPCShop = function(self, items, npc)
 	local currentPage = 1
 	local maxPages = math.ceil(#items/15)
 	local boughtSomething = false -- for prevent players from duplicating items
-	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', ":27", x+337, y-14, player)
+	players[player]._modernUIImages[id][#players[player]._modernUIImages[id]+1] = addImage('172763e41e1.jpg', "~27", x+337, y-14, player)
 
-	
 	local function showItems()
 		local minn = 15 * (currentPage-1) + 1
 		local maxx = currentPage * 15
@@ -21,14 +20,14 @@ modernUI.showNPCShop = function(self, items, npc)
 			local selectedQuanty = 1
 			local v = mainAssets.__furnitures[data[1]] or bagItems[data[2]]
 
-			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1722d2d8234.jpg', ":26", x + (i%5)*63, y + floor(i/5)*65, player)
-			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(v.png, ":26", x + 5 + (i%5)*63, y + 5 + floor(i/5)*65, player)
+			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1722d2d8234.jpg', "~26", x + (i%5)*63, y + floor(i/5)*65, player)
+			players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage(v.png, "~26", x + 5 + (i%5)*63, y + 5 + floor(i/5)*65, player)
 			if v.stockLimit and checkIfPlayerHasFurniture(player, data[1]) then
 				showTextArea(id..(900+i*2), '<p align="center"><font size="9"><r>'..translate('error_maxStorage', player), player, x + (i%5)*63, y + 3 + floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + floor(i/5)*65, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', "~26", x + (i%5)*63, y + floor(i/5)*65, player)
 			elseif v.requireQuest and players[player].questStep[1] <= v.requireQuest then
 				showTextArea(id..(900+i*2), '<p align="center"><font size="9"><r>'..translate('locked_quest', player):format(v.requireQuest), player, x + (i%5)*63, y + 3 + floor(i/5)*65, 58, 55, 0xff0000, 0xff0000, 0, true)
-				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', ":26", x + (i%5)*63, y + floor(i/5)*65, player)
+				players[player]._modernUISelectedItemImages[3][#players[player]._modernUISelectedItemImages[3]+1] = addImage('1725d179b2f.png', "~26", x + (i%5)*63, y + floor(i/5)*65, player)
 			else
 				if v.limitedTime and not formatDaysRemaining(v.limitedTime, true) then
 					showTextArea(id..(901+i*2), '<p align="center"><font size="9"><r>'..translate('daysLeft2', player):format(formatDaysRemaining(v.limitedTime)), player, x + 3 + (i%5)*63, y + 49 + floor(i/5)*65, 55, nil, 0xff0000, 0xff0000, 0, true)
@@ -51,7 +50,7 @@ modernUI.showNPCShop = function(self, items, npc)
 					showTextArea(id..'894', '', player, x + 3 + (i%5)*63, y + 3 + floor(i/5)*65, 55, 55, 0xff0000, 0xff0000, 0, true)
 
 					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage(v.png, "&26", 542, 125, player)
-					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('1722d33f76a.png', ":26", x + (i%5)*63-3, y + floor(i/5)*65-3, player)
+					players[player]._modernUISelectedItemImages[1][#players[player]._modernUISelectedItemImages[1]+1] = addImage('1722d33f76a.png', "~26", x + (i%5)*63-3, y + floor(i/5)*65-3, player)
 					local function button(i, text, callback, x, y, width, height, blockClick)
 						local colorPallete = {
 							button_confirmBg = 0x95d44d,
@@ -173,9 +172,9 @@ modernUI.showNPCShop = function(self, items, npc)
 			end)
 
 		removeGroupImages(players[player]._modernUISelectedItemImages[2])
-		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', ":26", x+2, y+205, player)
+		players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729eacaeb5.jpg', "~26", x+2, y+205, player)
 		for i = 1, (10 - math.min(8, maxPages)+1) do
-			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', ":27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
+			players[player]._modernUISelectedItemImages[2][#players[player]._modernUISelectedItemImages[2]+1] = addImage('1729ebf25cc.jpg', "~27", x+2 + (i-1)*31 + (currentPage-1)*31, y+205, player)
 		end
 	end
 	if maxPages > 1 then
