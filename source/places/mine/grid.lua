@@ -61,7 +61,7 @@ mine_updateBlockLife = function(groundID, player)
 	local x = Mine.blocks[groundID].x - blockLength/2
 	local y = Mine.blocks[groundID].y - blockLength/2
 	local life = Mine.blocks[groundID].life[2]-Mine.blocks[groundID].life[1]
-	showTextArea(groundID..'40028923', '<p align="center"><font color="#000000" size="12"><b>'..life, player, x, y+20, blockLength, blockLength, 0x1, 0x1, 0)
+	showTextArea(groundID..'40028923', '<p align="center"><font color="#FFFFFF" size="12"><b>'..life, player, x, y+15, blockLength, blockLength, 0x1, 0x1, 0)
 	showTextArea(groundID..'40028922', '<a href="event:updateBlock_'..groundID..'">'..string.rep('\n', 10), player, x, y, blockLength, blockLength, 0x1, 0x1, 0)
 	Mine.blocks[groundID].life[3] = true
 end
