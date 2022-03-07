@@ -7,7 +7,7 @@ onEvent("PlayerDied", function(player)
 	checkIfPlayerIsDriving(player)
 	respawnPlayer(player)
 	if players[player].place == 'island' then
-		movePlayer(player, 9230, 1944+room.y, false)
+		movePlayer(player, 9350, 1944+room.y, false)
 	else
 		players[player].place = 'town'
 		if wasDriving then
