@@ -68,9 +68,17 @@ onEvent("PlayerDataLoaded", function(name, data)
 	players[name].sideQuests = playerData:get(name, 'sideQuests')
 	
 	if players[name].sideQuests[8] then
-		players[name].sideQuests[8]= players[name].sideQuests[8]:gsub('"', '')
+		players[name].sideQuests[8] = players[name].sideQuests[8]:gsub('"', '')
 	end
 	
+	if players[name].sideQuests[5] then
+		if type(players[name].sideQuests[5]) == "string" then
+			players[name].sideQuests[5] = 0
+			sideQuest_new(name)
+			chatMessage("[Error] Side quest...")
+		end
+	end
+
 	players[name].level = playerData:get(name, 'level')
 	local jobStats = playerData:get(name, 'jobStats')
 	for i, v in next, jobStats do
