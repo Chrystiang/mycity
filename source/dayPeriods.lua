@@ -64,9 +64,9 @@ end
 
 loadDayTimeEffects = function(period)
 	if period == 'night' then
-		gameNpcs.removeNPC('Colt')
+		gameNpcs.hideNPC('Colt')
 	elseif period == 'day' then
-		gameNpcs.reAddNPC('Colt')
+		gameNpcs.showNPC('Colt')
 		removeGroupImages(room.bankImages)
 		removeGroupImages(room.bank.paperImages)
 		room.bankBeingRobbed = false
