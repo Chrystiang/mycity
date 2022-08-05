@@ -65,7 +65,7 @@ _QuestControlCenter = {
 		active = function(player, questStep)
 			local playerData = players[player]
 
-			gameNpcs.addCharacter('Kane$', {'1719ea4bbdf.png', '1719ea24347.png'}, player, 5900, 7677, {questNPC = true})
+			gameNpcs.addCharacter('Kane$', '1719ea24347.png', player, 5900, 7677, {questNPC = true})
 			if questStep == 1 then 
 				playerData.questLocalData.other['fish_'] = 5
 			elseif questStep == 3 then 
@@ -73,7 +73,7 @@ _QuestControlCenter = {
 			elseif questStep == 4 then 
 				removeBagItem('energymax_blue', 3, player)
 			elseif questStep >= 5 and questStep <= 7 then
-				gameNpcs.addCharacter('Chrystian$', {'171a318e6ca.png', '171a310fffa.png'}, player, 2600, 7680, {questNPC = true})
+				gameNpcs.addCharacter('Chrystian$', '171a310fffa.png', player, 2600, 7680, {questNPC = true})
 				if questStep == 6 then 
 					playerData.questLocalData.other['BUY_cornflakes'] = true
 				end
@@ -89,7 +89,7 @@ _QuestControlCenter = {
 		active = function(player, questStep)
 			local playerData = players[player]
 
-			gameNpcs.addCharacter('Indy$', {'171945ff967.png', '171a3de6a6d.png'}, player, 9800, 7677, {questNPC = true})
+			gameNpcs.addCharacter('Indy$', '171a3de6a6d.png', player, 9800, 7677, {questNPC = true})
 			if questStep == 0 then 
 				playerData.questLocalData.other['goToIsland'] = true
 			elseif questStep == 2 or questStep == 5 then 
@@ -110,24 +110,24 @@ _QuestControlCenter = {
 			local localData = _QuestSteps[3]
 			
 			if questStep == 1 then 
-				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Sherlock$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 3 then 
-				gameNpcs.addCharacter('Colt$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Colt$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 5 then 
-				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Sherlock$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 7 then 
 				addQuestAsset(player, '_cloth')
 			elseif questStep == 9 then 
-				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Sherlock$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 10 then 
-				gameNpcs.addCharacter('Indy$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Indy$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 12 then
 				addQuestAsset(player, '_paper')
 			elseif questStep == 14 then
-				gameNpcs.addCharacter('Robber$', {'171a4cfc218.png'}, player, 1880, 8480, {questNPC = true})
+				gameNpcs.addCharacter('Robber$', '171a4cfc218.png', player, 1880, 8480, {questNPC = true})
 				playerData.questLocalData.other['arrestRobber'] = true
 			elseif questStep == 16 then 
-				gameNpcs.addCharacter('Sherlock$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Sherlock$', nil, player, 0, 0, {questNPC = true})
 			elseif localData[questStep] then
 			    playerData.questLocalData.other[localData[questStep]] = true
 			end
@@ -139,7 +139,7 @@ _QuestControlCenter = {
 			local playerData = players[player]
 			local localData = _QuestSteps[4]
 
-			gameNpcs.addCharacter('Kariina$', {'17193fda8a1.png', '171a8679a0c.png'}, player, 4360, 7677, {questNPC = true})
+			gameNpcs.addCharacter('Kariina$', '171a8679a0c.png', player, 4360, 7677, {questNPC = true})
 
 			if localData[questStep] then
 			    playerData.questLocalData.other[localData[questStep]] = true
@@ -153,7 +153,7 @@ _QuestControlCenter = {
 			local localData = _QuestSteps[5]
 
 			if questStep == 2 or questStep == 16 or questStep == 18 then 
-				gameNpcs.addCharacter('Remi$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Remi$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 17 then
 				if not players[player].questStep[3] then
 					players[player].questStep[3] = 20
@@ -175,14 +175,14 @@ _QuestControlCenter = {
 		active = function(player, questStep)
 			local playerData = players[player]
 
-			gameNpcs.addCharacter('Bill$', {'171b7b0d0a2.png', '171b81a2307.png'}, player, 13400, 7514, {questNPC = true})
+			gameNpcs.addCharacter('Bill$', '171b81a2307.png', player, 13400, 7514, {questNPC = true})
 
 			if questStep == 0 then
 				playerData.questLocalData.other['goToIsland'] = true
 			elseif questStep == 1 then 
 				playerData.questLocalData.other['goToOliver'] = true
 			elseif questStep == 2 then 
-				gameNpcs.addCharacter('Oliver$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Oliver$', nil, player, 0, 0, {questNPC = true})
 			elseif questStep == 4 then
 				playerData.questLocalData.other['goToSeedStore'] = true
 			elseif questStep == 5 then 
@@ -198,7 +198,7 @@ _QuestControlCenter = {
 			elseif questStep == 11 then 
 				playerData.questLocalData.other['ItemAmount_tomato'] = 10 - (checkItemAmount('tomato', 1, player) and checkItemAmount('tomato', 1, player) or 0)
 			elseif questStep == 13 then 
-				gameNpcs.addCharacter('Indy$', {}, player, 0, 0, {questNPC = true})
+				gameNpcs.addCharacter('Indy$', nil, player, 0, 0, {questNPC = true})
 			end
 		end
 	},
@@ -208,7 +208,7 @@ _QuestControlCenter = {
 		active = function(player, questStep)
 			local playerData = players[player]
 
-			gameNpcs.addCharacter('Ada$', {'171aea88c54.png', '171ae9be4af.png'}, player, 2070, 7677, {questNPC = true})
+			gameNpcs.addCharacter('Ada$', '171ae9be4af.png', player, 2070, 7677, {questNPC = true})
 			if questStep == 1 then 
 				playerData.questLocalData.other['BUY_water'] = 5
 			elseif questStep == 3 then 
