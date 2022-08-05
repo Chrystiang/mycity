@@ -875,7 +875,7 @@ lang.hu = {
 	profile_timePlayed = 'Játszott idő (óra)',
 	confirmButton_backpackIcon = 'Hátizsák Ikon',
 	-- V3.5.2
-	item_energymax = 'Energymax', -- ?
+	item_energymax = 'Energiaital',
 	badgeDesc_20 = 'Halloween 2020',
 	badgeDesc_24 = 'Karácsony 2020',
 	badgeDesc_8 = '500 eladott mag',
@@ -888,4 +888,32 @@ lang.hu = {
 	error_maxBagStorage = 'Megvásároltál minden elérhető hátizsák fejlesztést :(',
 	upgradeBag = 'Hátizsák fejlesztése',
 	upgradeBagText = 'Szeretnéd növelni a hátizsákod limitjét ennyivel: <rose>%s</rose>?',
+	-- V3.6.0
+	profile_diamonds = "Gyémántok",
+	ranking_Christmas2021 = "A legtöbb összegyűjtött ajándék",
+	badgeDesc_26 = 'Karácsony 2021',
+	furniture_christmasReindeer = "Rénszarvas",
+	furniture_christmasTeddyMouse = "Teddy Egér",
+	furniture_christmasPenguin = "Pingvin",
+	furniture_hatstand = "Kalaptartó",
+	item_goldenPresent = "Arany Ajándék",
+	itemDesc_goldenPresent = 'Egy speciális doboz, ami véletlenszerű ajándékokat tartalmaz.',
+	-- V3.6.1
+	House12 = 'Hógömb',
+	houseDescription_12 = 'Egy természetház... Némi hóval beterítve!',
+	item_bucket = "Vödör",
+	item_snowBucket = "Havas Vödör",
+	item_prop = "Kellék",
+	itemDesc_prop = "Egy kellék. Melynek célja kissé rejtélyes...",
+	item_snowman = "Hóember",
+	npcDialog_Sign = "<i><rose>Ez a hely egy kicsit üresnek tűnik... Még egy levelet is hagytak itt.</rose></i>\n<i><rose>Ez áll benne:</rose> “Szerintem van elég havam, de még nem találtam nekik ruhát. Máshol kell keresnem.”</i>",
+	furniture_snowGlobe = "Hógömb",
+	furniture_box = "Doboz",
+	furniture_arcticFox = "Sarkvidéki Róka",
+	-- V3.6.3
+	badgeDesc_season = "Legjobb 10 között a %s. Évadban",
+	-- V3.7.0
+	chooseSaveSlot = "Válassz egy helyet",
+	slot = "Hely: %s",
+	storedFurnitures = 'Tárolt bútorok: %s',
 }
