@@ -107,7 +107,7 @@ addBankRobbingAssets = function()
 			end
 			reloadBankAssets()
 		elseif time == room.bankRobbingTime - 5 then
-			gameNpcs.reAddNPC('Colt')
+			gameNpcs.showNPC('Colt')
 		end
 	end, 1000, room.bankRobbingTime)
 end
