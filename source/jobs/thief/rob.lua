@@ -1,9 +1,9 @@
 startRobbery = function(player, character)
 	local npcTimer = gameNpcs.robbing[character].cooldown
 	addTimer(function(j)
-		gameNpcs.removeNPC(character)
+		gameNpcs.hideNPC(character)
 		if j == npcTimer then
-			gameNpcs.reAddNPC(character)
+			gameNpcs.showNPC(character)
 		end
 	end, 1000, npcTimer)
 
