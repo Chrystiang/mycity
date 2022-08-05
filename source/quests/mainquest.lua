@@ -82,7 +82,7 @@ quest_updateStep = function(player)
 
 	for i, character in next, _QuestControlCenter[currentQuest].npcs do 
 		if playerData._npcsCallbacks.questNPCS[character] then
-			gameNpcs.removeNPC(character, player)
+			gameNpcs.hideNPC(character, player)
 			players[player]._npcsCallbacks.questNPCS[character] = nil
 		end 
 	end 
