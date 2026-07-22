@@ -9,7 +9,6 @@ onEvent("Loop", function()
 		elseif room.currentGameHour == 1440 then
 			room.currentGameHour = 0
 		end
-		HouseSystem.gardening()
 	end
 	if ROOM.uniquePlayers >= room.requiredPlayers then
 		if room.isInLobby then	

@@ -1,5 +1,6 @@
 HouseSystem.gardening = function()
-	for i, v in ipairs(room.gardens) do
+	for i = #room.gardens, 1, -1 do
+		local v = room.gardens[i]
 		if players[v.owner].houseTerrainAdd[v.terrain] < #HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].stages then
 			local growingTime = HouseSystem.plants[players[v.owner].houseTerrainPlants[v.terrain]].growingTime*1000
 			if os_time() - v.timer >= growingTime then

@@ -31,6 +31,10 @@ startRoom = function()
 					updateLifeBar(player)
 				end
 			end, 60000, 0)
+
+			addTimer(function()
+				HouseSystem.gardening()
+			end, 1000, 0)
 		end
 	end
 end
